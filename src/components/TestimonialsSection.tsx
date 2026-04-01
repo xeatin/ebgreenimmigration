@@ -6,19 +6,25 @@ const testimonials = [
   {
     name: "Ricardo & Ana Silva",
     category: "EB-2 NIW • Aprovado em 2024",
-    text: "A equipe foi excepcional do início ao fim. Em menos de 12 meses tivemos nosso Green Card aprovado. O suporte e a dedicação de toda a equipe fizeram toda a diferença na nossa jornada.",
+    text: "A equipe foi excepcional do início ao fim. Em menos de 12 meses tivemos nosso Green Card aprovado. O suporte fizeram toda a diferença.",
     rating: 5,
   },
   {
     name: "Mariana Costa",
     category: "H-1B • Profissional de TI",
-    text: "Depois de anos tentando sozinha, decidi contratar a assessoria e foi a melhor decisão. O processo foi claro, transparente e muito mais rápido do que eu imaginava.",
+    text: "Depois de anos tentando sozinha, decidi contratar a assessoria e foi a melhor decisão. Processo claro, transparente e rápido.",
     rating: 5,
   },
   {
     name: "Fernando Oliveira",
     category: "EB-5 • Investidor",
-    text: "Como empresário, precisava de uma equipe que entendesse tanto o lado jurídico quanto o empresarial. Superaram todas as minhas expectativas. Recomendo sem hesitar.",
+    text: "Precisava de uma equipe que entendesse o lado jurídico e empresarial. Superaram todas as expectativas. Recomendo sem hesitar.",
+    rating: 5,
+  },
+  {
+    name: "Camila & Pedro Almeida",
+    category: "EB-1A • Aprovado em 2023",
+    text: "Nosso caso era complexo, mas a equipe encontrou a melhor estratégia. Hoje vivemos nos EUA com tranquilidade e segurança.",
     rating: 5,
   },
 ];
@@ -35,9 +41,11 @@ const TestimonialsSection = () => {
             viewport={{ once: true }}
             className="sticky top-32"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
               Histórias de{" "}
-              <span className="text-accent italic">quem realizou o sonho</span>
+              <em className="text-accent not-italic font-bold bg-gradient-to-r from-accent to-[hsl(38_60%_72%)] bg-clip-text text-transparent">
+                quem realizou o sonho
+              </em>
             </h2>
             <p className="text-muted-foreground font-body mt-4 leading-relaxed max-w-md">
               Milhares de famílias já conquistaram seu Green Card e uma nova vida no exterior. Conheça algumas dessas histórias.
@@ -64,33 +72,33 @@ const TestimonialsSection = () => {
           </motion.div>
 
           {/* Right Column - Testimonials */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             {testimonials.map((t, i) => (
               <motion.div
                 key={t.name}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-secondary border border-border rounded-xl p-8 relative"
+                transition={{ delay: i * 0.08 }}
+                className="bg-secondary border border-border rounded-xl px-6 py-5 relative"
               >
                 <Quote
-                  size={40}
-                  className="absolute top-6 right-6 text-accent/30"
+                  size={32}
+                  className="absolute top-4 right-4 text-accent/20"
                 />
-                <div className="flex gap-1 mb-4">
+                <div className="flex gap-0.5 mb-2">
                   {Array.from({ length: t.rating }).map((_, j) => (
-                    <Star key={j} size={18} className="text-accent fill-accent" />
+                    <Star key={j} size={14} className="text-accent fill-accent" />
                   ))}
                 </div>
-                <p className="text-foreground/80 font-body leading-relaxed italic text-[15px]">
+                <p className="text-foreground/80 font-body leading-relaxed italic text-sm">
                   "{t.text}"
                 </p>
-                <div className="mt-6">
-                  <p className="font-display text-foreground font-semibold">
+                <div className="mt-3">
+                  <p className="font-display text-foreground font-semibold text-sm">
                     {t.name}
                   </p>
-                  <p className="text-muted-foreground text-sm font-body">
+                  <p className="text-muted-foreground text-xs font-body">
                     {t.category}
                   </p>
                 </div>
