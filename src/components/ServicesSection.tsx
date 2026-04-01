@@ -4,16 +4,28 @@ import { FileText, Users, Briefcase, GraduationCap, Shield, Globe, ArrowRight } 
 const services = [
   {
     icon: Shield,
-    title: "EB-2 NIW",
-    subtitle: "National Interest Waiver",
-    description: "Green Card sem necessidade de oferta de emprego. Ideal para profissionais com habilidades excepcionais ou grau avançado.",
+    title: "EB-1A",
+    subtitle: "Extraordinary Ability",
+    description: "Green Card para profissionais com habilidades extraordinárias reconhecidas nacional ou internacionalmente.",
     highlight: true,
   },
   {
     icon: FileText,
+    title: "EB-2 NIW",
+    subtitle: "National Interest Waiver",
+    description: "Green Card sem necessidade de oferta de emprego. Ideal para profissionais com habilidades excepcionais ou grau avançado.",
+  },
+  {
+    icon: Briefcase,
     title: "Vistos de Trabalho",
-    subtitle: "H-1B, L-1, O-1, TN",
+    subtitle: "H-1B, L-1, O-1",
     description: "Vistos para profissionais qualificados que desejam trabalhar legalmente nos Estados Unidos.",
+  },
+  {
+    icon: Globe,
+    title: "Vistos de Investidor",
+    subtitle: "EB-5, E-2",
+    description: "Caminhos para empreendedores e investidores que desejam abrir ou adquirir negócios nos EUA.",
   },
   {
     icon: Users,
@@ -22,25 +34,12 @@ const services = [
     description: "Petições através de cônjuges, filhos e familiares cidadãos americanos ou residentes permanentes.",
   },
   {
-    icon: Briefcase,
-    title: "Vistos de Investidor",
-    subtitle: "EB-5, E-2",
-    description: "Caminhos para empreendedores e investidores que desejam abrir ou adquirir negócios nos EUA.",
-  },
-  {
     icon: GraduationCap,
-    title: "Vistos de Estudante",
-    subtitle: "F-1, J-1, M-1",
-    description: "Acesso às melhores universidades americanas com planejamento estratégico de imigração.",
-  },
-  {
-    icon: Globe,
     title: "Consultoria Completa",
     subtitle: "Avaliação de Perfil",
     description: "Análise personalizada para identificar o melhor caminho migratório para o seu caso específico.",
   },
 ];
-
 const ServicesSection = () => {
   return (
     <section id="servicos" className="py-24 bg-gradient-dark">
