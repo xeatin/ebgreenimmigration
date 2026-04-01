@@ -2,14 +2,48 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 import { useState } from "react";
 
+const countries = [
+  "Brasil", "Portugal", "Angola", "Moçambique", "Cabo Verde", "Argentina", "Colômbia",
+  "México", "Chile", "Peru", "Venezuela", "Equador", "Uruguai", "Paraguai", "Bolívia",
+  "Estados Unidos", "Canadá", "Alemanha", "França", "Espanha", "Itália", "Reino Unido",
+  "Japão", "China", "Índia", "Austrália", "Outro"
+];
+
+const phoneCodes = [
+  { code: "+55", flag: "🇧🇷", country: "BR" },
+  { code: "+1", flag: "🇺🇸", country: "US" },
+  { code: "+351", flag: "🇵🇹", country: "PT" },
+  { code: "+244", flag: "🇦🇴", country: "AO" },
+  { code: "+258", flag: "🇲🇿", country: "MZ" },
+  { code: "+54", flag: "🇦🇷", country: "AR" },
+  { code: "+57", flag: "🇨🇴", country: "CO" },
+  { code: "+52", flag: "🇲🇽", country: "MX" },
+  { code: "+56", flag: "🇨🇱", country: "CL" },
+  { code: "+51", flag: "🇵🇪", country: "PE" },
+  { code: "+49", flag: "🇩🇪", country: "DE" },
+  { code: "+44", flag: "🇬🇧", country: "GB" },
+  { code: "+61", flag: "🇦🇺", country: "AU" },
+];
+
 const ContactSection = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", visa: "", message: "" });
+  const [formData, setFormData] = useState({
+    firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
+    nationality: "", migrateTo: "", education: "", experience: "",
+    visa: "", message: "", privacy: false
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert("Mensagem enviada com sucesso! Entraremos em contato em até 24 horas.");
-    setFormData({ name: "", email: "", phone: "", visa: "", message: "" });
+    setFormData({
+      firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
+      nationality: "", migrateTo: "", education: "", experience: "",
+      visa: "", message: "", privacy: false
+    });
   };
+
+  const inputClass = "w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body text-sm";
+  const labelClass = "text-sm text-muted-foreground font-body mb-1.5 block";
 
   return (
     <section id="contato" className="py-24 bg-secondary">
@@ -38,9 +72,9 @@ const ContactSection = () => {
             className="lg:col-span-2 space-y-6"
           >
             {[
-              { icon: Phone, label: "Telefone", value: "+1 (555) 123-4567", href: "tel:+15551234567" },
-              { icon: MessageCircle, label: "WhatsApp", value: "+1 (555) 123-4567", href: "https://wa.me/15551234567" },
-              { icon: Mail, label: "E-mail", value: "contato@ebgreen.com", href: "mailto:contato@ebgreen.com" },
+              { icon: Phone, label: "Telefone", value: "+1 (771) 201-7117", href: "tel:+17712017117" },
+              { icon: MessageCircle, label: "WhatsApp", value: "+1 (771) 201-7117", href: "https://wa.me/17712017117" },
+              { icon: Mail, label: "E-mail", value: "Info@ebgreenusa.com", href: "mailto:Info@ebgreenusa.com" },
               { icon: MapPin, label: "Orlando, FL", value: "Estados Unidos", href: "#" },
             ].map((item) => (
               <a key={item.label} href={item.href} className="flex items-start gap-4 group">
@@ -70,80 +104,144 @@ const ContactSection = () => {
             onSubmit={handleSubmit}
             className="lg:col-span-3 bg-card rounded-xl p-8 border border-border shadow-lg space-y-5"
           >
+            {/* Nome / Sobrenome */}
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className="text-sm text-muted-foreground font-body mb-1.5 block">Nome Completo *</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body"
-                  placeholder="Seu nome"
-                />
+                <label className={labelClass}>Primeiro Nome *</label>
+                <input type="text" required value={formData.firstName}
+                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                  className={inputClass} placeholder="Ex John" />
               </div>
               <div>
-                <label className="text-sm text-muted-foreground font-body mb-1.5 block">E-mail *</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body"
-                  placeholder="seu@email.com"
-                />
+                <label className={labelClass}>Último Nome *</label>
+                <input type="text" required value={formData.lastName}
+                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                  className={inputClass} placeholder="Ex Doe" />
               </div>
             </div>
+
+            {/* Email / Telefone */}
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className="text-sm text-muted-foreground font-body mb-1.5 block">Telefone / WhatsApp</label>
-                <input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body"
-                  placeholder="+55 (11) 99999-9999"
-                />
+                <label className={labelClass}>Endereço de email *</label>
+                <input type="email" required value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className={inputClass} placeholder="john@doe.com" />
               </div>
               <div>
-                <label className="text-sm text-muted-foreground font-body mb-1.5 block">Tipo de Visto</label>
-                <select
-                  value={formData.visa}
-                  onChange={(e) => setFormData({ ...formData, visa: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body"
-                >
+                <label className={labelClass}>Telefone *</label>
+                <div className="flex gap-2">
+                  <select value={formData.phoneCode}
+                    onChange={(e) => setFormData({ ...formData, phoneCode: e.target.value })}
+                    className="w-24 px-2 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body text-sm">
+                    {phoneCodes.map((p) => (
+                      <option key={p.code} value={p.code}>{p.flag} {p.code}</option>
+                    ))}
+                  </select>
+                  <input type="tel" value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className={`${inputClass} flex-1`} placeholder="300 400 5000" />
+                </div>
+              </div>
+            </div>
+
+            {/* Nacionalidade / Migrar para */}
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label className={labelClass}>Qual sua nacionalidade? *</label>
+                <select required value={formData.nationality}
+                  onChange={(e) => setFormData({ ...formData, nationality: e.target.value })}
+                  className={inputClass}>
                   <option value="">Selecione...</option>
-                  <option value="eb2-niw">EB-2 NIW</option>
-                  <option value="eb5">EB-5 (Investidor)</option>
-                  <option value="h1b">H-1B (Trabalho)</option>
-                  <option value="e2">E-2 (Investidor)</option>
-                  <option value="f1">F-1 (Estudante)</option>
-                  <option value="familiar">Green Card Familiar</option>
-                  <option value="outro">Outro / Não sei</option>
+                  {countries.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+              <div>
+                <label className={labelClass}>Migrar para *</label>
+                <select required value={formData.migrateTo}
+                  onChange={(e) => setFormData({ ...formData, migrateTo: e.target.value })}
+                  className={inputClass}>
+                  <option value="">Selecione...</option>
+                  <option value="estados-unidos">Estados Unidos</option>
+                  <option value="canada">Canadá</option>
+                  <option value="europa">Europa</option>
+                  <option value="outro">Outro</option>
                 </select>
               </div>
             </div>
-            <div>
-              <label className="text-sm text-muted-foreground font-body mb-1.5 block">Mensagem *</label>
-              <textarea
-                required
-                rows={4}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body resize-none"
-                placeholder="Conte-nos brevemente sobre seus objetivos e situação atual..."
-              />
+
+            {/* Formação / Experiência */}
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label className={labelClass}>Formação Acadêmica *</label>
+                <select required value={formData.education}
+                  onChange={(e) => setFormData({ ...formData, education: e.target.value })}
+                  className={inputClass}>
+                  <option value="">Selecione...</option>
+                  <option value="ensino-medio">Ensino Médio</option>
+                  <option value="tecnico">Técnico</option>
+                  <option value="tecnologo">Tecnólogo</option>
+                  <option value="superior">Nível superior/Bacharelado</option>
+                  <option value="pos-graduacao">Pós Graduação</option>
+                  <option value="mestrado">Mestrado</option>
+                  <option value="doutorado">Doutorado</option>
+                  <option value="pos-doutorado">Pós Doutorado</option>
+                </select>
+              </div>
+              <div>
+                <label className={labelClass}>Anos de Experiência Profissional *</label>
+                <select required value={formData.experience}
+                  onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                  className={inputClass}>
+                  <option value="">Selecione...</option>
+                  <option value="menos-5">Menos de 5 anos</option>
+                  <option value="5-10">De 5 a 10 anos</option>
+                  <option value="mais-10">Mais de 10 anos</option>
+                </select>
+              </div>
             </div>
-            <button
-              type="submit"
-              className="w-full bg-gradient-gold text-green-deep px-6 py-4 rounded-lg font-bold text-lg font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
-            >
+
+            {/* Tipo de Visto */}
+            <div>
+              <label className={labelClass}>Tipo de Visto</label>
+              <select value={formData.visa}
+                onChange={(e) => setFormData({ ...formData, visa: e.target.value })}
+                className={inputClass}>
+                <option value="">Selecione...</option>
+                <option value="eb2-niw">EB-2 NIW</option>
+                <option value="eb5">EB-5 (Investidor)</option>
+                <option value="h1b">H-1B (Trabalho)</option>
+                <option value="e2">E-2 (Investidor)</option>
+                <option value="f1">F-1 (Estudante)</option>
+                <option value="familiar">Green Card Familiar</option>
+                <option value="outro">Outro / Não sei</option>
+              </select>
+            </div>
+
+            {/* Mensagem */}
+            <div>
+              <label className={labelClass}>Mensagem</label>
+              <textarea rows={4} value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                className={`${inputClass} resize-none`}
+                placeholder="Fale mais sobre você e seu desejo de imigrar." />
+            </div>
+
+            {/* Privacy */}
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" required checked={formData.privacy}
+                onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
+                className="w-4 h-4 rounded border-input accent-accent" />
+              <span className="text-sm text-muted-foreground font-body">
+                Eu concordo com a Política de Privacidade.
+              </span>
+            </label>
+
+            <button type="submit"
+              className="w-full bg-gradient-gold text-green-deep px-6 py-4 rounded-lg font-bold text-lg font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2">
               Enviar Mensagem
               <Send size={18} />
             </button>
-            <p className="text-center text-xs text-muted-foreground font-body">
-              Ao enviar, você concorda com nossa política de privacidade.
-            </p>
           </motion.form>
         </div>
       </div>
