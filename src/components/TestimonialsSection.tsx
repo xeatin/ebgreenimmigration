@@ -43,20 +43,20 @@ const TestimonialsSection = () => {
               Milhares de famílias já conquistaram seu Green Card e uma nova vida no exterior. Conheça algumas dessas histórias.
             </p>
 
-            <div className="mt-8 relative rounded-2xl overflow-hidden">
+            <div className="mt-8 relative rounded-2xl overflow-hidden aspect-video max-h-[280px]">
               <img
                 src={familyImage}
                 alt="Família celebrando a aprovação do Green Card"
-                className="w-full h-auto object-cover rounded-2xl"
+                className="w-full h-full object-cover"
                 loading="lazy"
-                width={640}
-                height={800}
+                width={1280}
+                height={640}
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                <p className="text-white font-display text-xl font-bold">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                <p className="text-white font-display text-lg font-bold">
                   17.000+ famílias beneficiadas
                 </p>
-                <p className="text-white/70 font-body text-sm">
+                <p className="text-white/70 font-body text-xs">
                   Transformando sonhos em realidade
                 </p>
               </div>
