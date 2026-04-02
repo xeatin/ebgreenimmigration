@@ -52,18 +52,6 @@ const AboutSection = () => {
                 </li>
               ))}
             </ul>
-
-            <div className="grid grid-cols-2 gap-4 mt-10">
-              {s.badges.map((badge, i) => {
-                const Icon = badgeIcons[i];
-                return (
-                  <div key={i} className="flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-4 shadow-sm">
-                    <Icon className="text-gold shrink-0" size={22} />
-                    <span className="text-foreground font-body text-sm font-medium">{t(badge, lang)}</span>
-                  </div>
-                );
-              })}
-            </div>
           </motion.div>
         </div>
       </div>
