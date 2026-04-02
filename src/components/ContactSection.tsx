@@ -12,21 +12,6 @@ const countries = [
   "Japão", "China", "Índia", "Austrália", "Outro"
 ];
 
-const phoneCodes = [
-  { code: "+55", flag: "🇧🇷", country: "BR" },
-  { code: "+1", flag: "🇺🇸", country: "US" },
-  { code: "+351", flag: "🇵🇹", country: "PT" },
-  { code: "+244", flag: "🇦🇴", country: "AO" },
-  { code: "+258", flag: "🇲🇿", country: "MZ" },
-  { code: "+54", flag: "🇦🇷", country: "AR" },
-  { code: "+57", flag: "🇨🇴", country: "CO" },
-  { code: "+52", flag: "🇲🇽", country: "MX" },
-  { code: "+56", flag: "🇨🇱", country: "CL" },
-  { code: "+51", flag: "🇵🇪", country: "PE" },
-  { code: "+49", flag: "🇩🇪", country: "DE" },
-  { code: "+44", flag: "🇬🇧", country: "GB" },
-  { code: "+61", flag: "🇦🇺", country: "AU" },
-];
 
 const ContactSection = () => {
   const { lang } = useLanguage();
