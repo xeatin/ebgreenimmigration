@@ -24,7 +24,7 @@ const AboutSection = () => {
               <img src={teamImg} alt="Equipe Ebgreen Immigration" className="w-full h-auto object-cover" loading="lazy" width={800} height={1000} />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-card rounded-xl p-5 shadow-xl border border-border max-w-[220px]">
-              <p className="font-display text-3xl font-bold text-gold">15+</p>
+              <p className="font-display text-3xl font-bold text-gold">10+</p>
               <p className="text-muted-foreground text-sm font-body">{t(s.floatingCard, lang)}</p>
             </div>
           </motion.div>
