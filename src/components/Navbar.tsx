@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import ebgreenLogo from "@/assets/ebgreen-logo-negative.svg";
 
 const navLinks = [
   { label: "Início", href: "#hero" },
@@ -42,18 +43,8 @@ const Navbar = () => {
         scrolled ? "bg-green-deep/98 backdrop-blur-md shadow-xl md:top-0" : "bg-transparent"
       }`}>
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#hero" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-gold rounded-lg flex items-center justify-center">
-              <span className="font-display text-lg font-bold text-green-deep">Eb</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display text-xl font-bold text-cream leading-tight">
-                Ebgreen
-              </span>
-              <span className="text-cream/50 text-[10px] font-body tracking-[0.25em] uppercase leading-tight">
-                Immigration
-              </span>
-            </div>
+          <a href="#hero" className="flex items-center">
+            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-10" />
           </a>
 
           <div className="hidden lg:flex items-center gap-6">
