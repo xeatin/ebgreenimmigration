@@ -28,9 +28,9 @@ export const translations = {
     titleHighlight: { pt: "EUA", en: "USA", es: "EE.UU." },
     title2: { pt: "começa com quem entende", en: "starts with those who understand", es: "comienza con quienes entienden" },
     subtitle: {
-      pt: "Assessoria completa em Green Cards, Vistos de Trabalho, Investimento e EB-2 NIW. Mais de 500 famílias realizaram o sonho americano com a Ebgreen.",
-      en: "Full advisory on Green Cards, Work Visas, Investment and EB-2 NIW. Over 500 families achieved the American dream with Ebgreen.",
-      es: "Asesoría completa en Green Cards, Visas de Trabajo, Inversión y EB-2 NIW. Más de 500 familias lograron el sueño americano con Ebgreen.",
+      pt: "Assessoria completa em EB-1A, EB-2 NIW, Green Cards e Vistos de Trabalho com rigor técnico, estratégia individualizada e histórico consistente de aprovações.",
+      en: "Full advisory on EB-1A, EB-2 NIW, Green Cards and Work Visas with technical rigor, individualized strategy, and a consistent track record of approvals.",
+      es: "Asesoría completa en EB-1A, EB-2 NIW, Green Cards y Visas de Trabajo con rigor técnico, estrategia individualizada e historial consistente de aprobaciones.",
     },
     ctaPrimary: { pt: "Iniciar Minha Jornada", en: "Start My Journey", es: "Iniciar Mi Camino" },
     ctaSecondary: { pt: "Explorar Serviços", en: "Explore Services", es: "Explorar Servicios" },
