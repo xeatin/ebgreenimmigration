@@ -202,29 +202,6 @@ const ContactSection = () => {
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass}>{t(s.visaType, lang)}</label>
-                <select value={formData.visa}
-                  onChange={(e) => setFormData({ ...formData, visa: e.target.value })}
-                  className={inputClass}>
-                  <option value="">{t(s.select, lang)}</option>
-                  <option value="eb1a">EB-1A</option>
-                  <option value="eb2-niw">EB-2 NIW</option>
-                  <option value="eb3">EB-3</option>
-                  <option value="eb4">EB-4</option>
-                  <option value="eb5">EB-5</option>
-                  <option value="cr1">CR-1</option>
-                  <option value="e2">E-2</option>
-                  <option value="f1-f2">F-1/F-2</option>
-                  <option value="l1a">L-1A</option>
-                  <option value="k1">K-1</option>
-                  <option value="o1">O-1</option>
-                  <option value="r1">R-1</option>
-                  <option value="family-based">Family-Based</option>
-                  <option value="aos">AOS</option>
-                  <option value="outros">Outros</option>
-                </select>
-              </div>
-              <div>
                 <label className={labelClass}>{t(s.resume, lang)}</label>
                 <label className="flex items-center gap-2 px-4 py-3 rounded-lg border border-input bg-accent cursor-pointer hover:bg-accent/80 transition-colors">
                   <Upload size={18} className="text-foreground shrink-0" />
