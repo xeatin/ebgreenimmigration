@@ -111,14 +111,15 @@ const ContactSection = () => {
               </div>
               <div>
                 <label className={labelClass}>{t(s.phoneLabel, lang)}</label>
-                <div className="flex gap-2">
+                <div className="flex items-center rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-ring">
                   <PhoneCodeSelector
                     value={formData.phoneCode}
                     onChange={(val) => setFormData({ ...formData, phoneCode: val })}
                   />
+                  <div className="w-px h-6 bg-input shrink-0" />
                   <input type="tel" value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className={`${inputClass} flex-1`} placeholder="300 400 5000" />
+                    className="flex-1 px-3 py-3 bg-transparent text-foreground focus:outline-none font-body text-sm" placeholder="300 400 5000" />
                 </div>
               </div>
             </div>
