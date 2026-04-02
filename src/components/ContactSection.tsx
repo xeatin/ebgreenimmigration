@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
+import { Mail, Phone, Send, MessageCircle, Upload } from "lucide-react";
 import { useState } from "react";
 
 const countries = [
@@ -75,7 +75,6 @@ const ContactSection = () => {
               { icon: Phone, label: "Telefone", value: "+1 (771) 201-7117", href: "tel:+17712017117" },
               { icon: MessageCircle, label: "WhatsApp", value: "+1 (771) 201-7117", href: "https://wa.me/17712017117" },
               { icon: Mail, label: "E-mail", value: "Info@ebgreenusa.com", href: "mailto:Info@ebgreenusa.com" },
-              { icon: MapPin, label: "Orlando, FL", value: "Estados Unidos", href: "#" },
             ].map((item) => (
               <a key={item.label} href={item.href} className="flex items-start gap-4 group">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
@@ -201,21 +200,42 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Tipo de Visto */}
-            <div>
-              <label className={labelClass}>Tipo de Visto</label>
-              <select value={formData.visa}
-                onChange={(e) => setFormData({ ...formData, visa: e.target.value })}
-                className={inputClass}>
-                <option value="">Selecione...</option>
-                <option value="eb2-niw">EB-2 NIW</option>
-                <option value="eb5">EB-5 (Investidor)</option>
-                <option value="h1b">H-1B (Trabalho)</option>
-                <option value="e2">E-2 (Investidor)</option>
-                <option value="f1">F-1 (Estudante)</option>
-                <option value="familiar">Green Card Familiar</option>
-                <option value="outro">Outro / Não sei</option>
-              </select>
+            {/* Tipo de Visto / Currículo */}
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label className={labelClass}>Tipo de Visto</label>
+                <select value={formData.visa}
+                  onChange={(e) => setFormData({ ...formData, visa: e.target.value })}
+                  className={inputClass}>
+                  <option value="">Selecione...</option>
+                  <option value="eb1a">EB-1A</option>
+                  <option value="eb2-niw">EB-2 NIW</option>
+                  <option value="eb3">EB-3</option>
+                  <option value="eb4">EB-4</option>
+                  <option value="eb5">EB-5</option>
+                  <option value="cr1">CR-1</option>
+                  <option value="e2">E-2</option>
+                  <option value="f1-f2">F-1/F-2</option>
+                  <option value="l1a">L-1A</option>
+                  <option value="k1">K-1</option>
+                  <option value="o1">O-1</option>
+                  <option value="r1">R-1</option>
+                  <option value="family-based">Family-Based</option>
+                  <option value="aos">AOS</option>
+                </select>
+              </div>
+              <div>
+                <label className={labelClass}>Envie seu currículo</label>
+                <label className="flex items-center gap-2 px-4 py-3 rounded-lg border border-input bg-accent cursor-pointer hover:bg-accent/80 transition-colors">
+                  <Upload size={18} className="text-foreground shrink-0" />
+                  <span className="text-sm font-body text-foreground font-semibold">Selecione Arquivo</span>
+                  <input type="file" accept=".pdf,.doc,.docx" className="hidden"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) alert(`Arquivo "${file.name}" selecionado.`);
+                    }} />
+                </label>
+              </div>
             </div>
 
             {/* Mensagem */}
