@@ -7,14 +7,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-start gap-8 md:gap-12">
           {/* Brand / Logo */}
           <div className="shrink-0 flex flex-col items-center">
-            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-[62px] mb-2" />
+            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-[68px] mb-2" />
             <p className="text-gold font-display text-sm font-semibold tracking-wide">
               Respeito, Resposta e Resultados
             </p>
           </div>
 
           {/* Disclaimer */}
-          <div>
+          <div className="mt-2">
             <h4 className="font-display text-cream font-semibold mb-1 text-sm">Disclaimer:</h4>
             <p className="text-cream/50 text-xs font-body leading-relaxed">
               ebgreen Immigration is a registered trademark in the United States and other countries. Unauthorized use of the trademark is strictly prohibited.
@@ -26,8 +26,8 @@ const Footer = () => {
           </div>
 
           {/* Contato */}
-          <div className="md:text-right shrink-0">
-            <h4 className="font-display text-gold font-semibold mb-2 text-sm">Contato:</h4>
+          <div className="shrink-0">
+            <h4 className="font-display text-cream font-semibold mb-2 text-sm">Contato:</h4>
             <a href="tel:+17712017117" className="text-gold hover:text-gold-light text-sm font-body transition-colors">
               +1 771 201 7117
             </a>
