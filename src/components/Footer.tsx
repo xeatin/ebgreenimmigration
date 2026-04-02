@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-green-deep py-10">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-start gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-start gap-8 md:gap-8">
           {/* Brand / Logo */}
           <div className="shrink-0 flex flex-col items-center">
             <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-[68px] mb-2" />
