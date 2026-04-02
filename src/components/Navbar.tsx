@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import ebgreenLogo from "@/assets/ebgreen-logo-negative.svg";
 
 const navLinks = [
   { label: "Início", href: "#hero" },
