@@ -5,12 +5,8 @@ import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 
-const countries = [
-  "Brasil", "Portugal", "Angola", "Moçambique", "Cabo Verde", "Argentina", "Colômbia",
-  "México", "Chile", "Peru", "Venezuela", "Equador", "Uruguai", "Paraguai", "Bolívia",
-  "Estados Unidos", "Canadá", "Alemanha", "França", "Espanha", "Itália", "Reino Unido",
-  "Japão", "China", "Índia", "Austrália", "Outro"
-];
+
+
 
 
 const ContactSection = () => {
@@ -19,7 +15,7 @@ const ContactSection = () => {
 
   const [formData, setFormData] = useState({
     firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
-    nationality: "", migrateTo: "", education: "", experience: "",
+    migrateTo: "", education: "", experience: "",
     visa: "", message: "", privacy: false
   });
 
@@ -28,7 +24,7 @@ const ContactSection = () => {
     alert(t(s.successMsg, lang));
     setFormData({
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
-      nationality: "", migrateTo: "", education: "", experience: "",
+      migrateTo: "", education: "", experience: "",
       visa: "", message: "", privacy: false
     });
   };
@@ -125,16 +121,7 @@ const ContactSection = () => {
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label className={labelClass}>{t(s.nationality, lang)}</label>
-                <select required value={formData.nationality}
-                  onChange={(e) => setFormData({ ...formData, nationality: e.target.value })}
-                  className={inputClass}>
-                  <option value="">{t(s.select, lang)}</option>
-                  {countries.map((c) => <option key={c} value={c}>{c}</option>)}
-                </select>
-              </div>
+            <div className="grid sm:grid-cols-3 gap-5">
               <div>
                 <label className={labelClass}>{t(s.visaType, lang)}</label>
                 <select value={formData.visa}
@@ -158,9 +145,6 @@ const ContactSection = () => {
                   <option value="outros">Outros</option>
                 </select>
               </div>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-5">
               <div>
                 <label className={labelClass}>{t(s.education, lang)}</label>
                 <select required value={formData.education}
@@ -184,6 +168,9 @@ const ContactSection = () => {
                 </select>
               </div>
             </div>
+
+
+
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
