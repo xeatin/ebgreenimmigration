@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Globe, Languages, Users } from "lucide-react";
+import { Shield, Globe, Languages, Users, ShieldCheck } from "lucide-react";
 import teamImg from "@/assets/team.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
