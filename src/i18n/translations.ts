@@ -258,11 +258,13 @@ export const translations = {
   // Contact
   contact: {
     sectionLabel: { pt: "Fale Conosco", en: "Contact Us", es: "Contáctenos" },
-    sectionTitle: { pt: "Agende sua consulta gratuita", en: "Schedule your free consultation", es: "Agende su consulta gratuita" },
+    sectionTitle1: { pt: "Descubra qual é o seu caminho", en: "Discover your path", es: "Descubra su camino" },
+    sectionTitleHighlight: { pt: "Green Card", en: "Green Card", es: "Green Card" },
+    sectionTitle2: { pt: "para o", en: "to the", es: "hacia la" },
     sectionSubtitle: {
-      pt: "Preencha o formulário e descubra as possibilidades para a sua jornada nos EUA.",
-      en: "Fill out the form and discover the possibilities for your journey to the USA.",
-      es: "Complete el formulario y descubra las posibilidades para su camino a EE.UU.",
+      pt: "Nossa equipe analisa seu perfil e identifica a melhor estratégia para sua aprovação.",
+      en: "Our team analyzes your profile and identifies the best strategy for your approval.",
+      es: "Nuestro equipo analiza su perfil e identifica la mejor estrategia para su aprobación.",
     },
     phone: { pt: "Telefone", en: "Phone", es: "Teléfono" },
     email: { pt: "E-mail", en: "Email", es: "Correo" },
