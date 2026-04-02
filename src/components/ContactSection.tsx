@@ -52,7 +52,7 @@ const ContactSection = () => {
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -68,7 +68,7 @@ const ContactSection = () => {
                   <item.icon className="text-primary group-hover:text-primary-foreground transition-colors" size={20} />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground font-body">{item.label}</p>
+                  <p className="text-sm text-gold font-body font-semibold tracking-widest uppercase">{item.label}</p>
                   <p className="text-foreground font-semibold font-body group-hover:text-gold transition-colors">{item.value}</p>
                 </div>
               </a>
