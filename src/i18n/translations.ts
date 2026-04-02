@@ -214,9 +214,9 @@ export const translations = {
     title1: { pt: "Excelência e inovação em", en: "Excellence and innovation in", es: "Excelencia e innovación en" },
     titleHighlight: { pt: "mobilidade global", en: "global mobility", es: "movilidad global" },
     floatingCard: {
-      pt: "Anos de experiência em mobilidade global e direito imigratório.",
-      en: "Years of experience in global mobility and immigration law.",
-      es: "Años de experiencia en movilidad global y derecho migratorio.",
+      pt: "Atendimento global, estratégia individualizada.",
+      en: "Global service, individualized strategy.",
+      es: "Atención global, estrategia individualizada.",
     },
     paragraph1: {
       pt: "A <strong>Ebgreen Immigration</strong> é uma das mais respeitadas firmas de assessoria imigratória. Com anos de experiência, já ajudamos milhares de famílias a conquistarem o sonho de viver nos Estados Unidos.",
