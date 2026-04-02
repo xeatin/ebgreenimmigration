@@ -75,7 +75,6 @@ const ContactSection = () => {
               { icon: Phone, label: "Telefone", value: "+1 (771) 201-7117", href: "tel:+17712017117" },
               { icon: MessageCircle, label: "WhatsApp", value: "+1 (771) 201-7117", href: "https://wa.me/17712017117" },
               { icon: Mail, label: "E-mail", value: "Info@ebgreenusa.com", href: "mailto:Info@ebgreenusa.com" },
-              { icon: MapPin, label: "Orlando, FL", value: "Estados Unidos", href: "#" },
             ].map((item) => (
               <a key={item.label} href={item.href} className="flex items-start gap-4 group">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
