@@ -24,9 +24,9 @@ export const translations = {
       en: "+92% Approval Rate on Cases",
       es: "+92% de Tasa de Aprobación en los Procesos",
     },
-    title1: { pt: "Sua jornada para os", en: "Your journey to the", es: "Tu camino hacia" },
-    titleHighlight: { pt: "EUA", en: "USA", es: "EE.UU." },
-    title2: { pt: "começa com quem entende", en: "starts with those who understand", es: "comienza con quienes entienden" },
+    title1: { pt: "Conquiste seu", en: "Get your", es: "Conquista tu" },
+    titleHighlight: { pt: "Green Card", en: "Green Card", es: "Green Card" },
+    title2: { pt: "com a estratégia certa de quem realmente entende.", en: "with the right strategy from those who truly understand.", es: "con la estrategia correcta de quienes realmente entienden." },
     subtitle: {
       pt: "Assessoria completa em EB-1A, EB-2 NIW, Green Cards e Vistos de Trabalho com rigor técnico, estratégia individualizada e histórico consistente de aprovações.",
       en: "Full advisory on EB-1A, EB-2 NIW, Green Cards and Work Visas with technical rigor, individualized strategy, and a consistent track record of approvals.",
