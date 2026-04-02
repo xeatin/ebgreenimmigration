@@ -59,12 +59,12 @@ const ContactSection = () => {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <div className="bg-primary rounded-2xl p-8 border border-border/30 space-y-8">
+            <div className="space-y-8">
               <div>
-                <h3 className="font-display text-2xl font-bold text-primary-foreground">
+                <h3 className="font-display text-2xl font-bold text-foreground">
                   {t(s.sidebarTitle, lang)}
                 </h3>
-                <p className="mt-3 text-primary-foreground/70 text-sm font-body leading-relaxed">
+                <p className="mt-3 text-muted-foreground text-sm font-body leading-relaxed">
                   {t(s.sidebarSubtitle, lang)}
                 </p>
               </div>
@@ -81,13 +81,13 @@ const ContactSection = () => {
                       <item.icon className="text-gold" size={18} />
                     </div>
                     <div>
-                      <p className="text-[10px] text-primary-foreground/50 font-body font-semibold tracking-[0.2em] uppercase">{item.label}</p>
+                      <p className="text-[10px] text-muted-foreground font-body font-semibold tracking-[0.2em] uppercase">{item.label}</p>
                       {item.href ? (
-                        <a href={item.href} className="text-primary-foreground font-semibold font-body text-sm hover:text-gold transition-colors">
+                        <a href={item.href} className="text-foreground font-semibold font-body text-sm hover:text-gold transition-colors">
                           {item.value}
                         </a>
                       ) : (
-                        <p className="text-primary-foreground font-semibold font-body text-sm">{item.value}</p>
+                        <p className="text-foreground font-semibold font-body text-sm">{item.value}</p>
                       )}
                     </div>
                   </div>
