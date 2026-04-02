@@ -4,8 +4,8 @@ const Footer = () => {
   return (
     <footer className="bg-green-deep py-10">
       <div className="container mx-auto px-6">
-        {/* Main row: Logo+Slogan | Disclaimer */}
-        <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16">
+        {/* Main row: Logo+Slogan | Disclaimer | Contato */}
+        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-start gap-8 md:gap-12">
           {/* Brand / Logo */}
           <div className="shrink-0">
             <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-14 mb-2 brightness-0 invert" />
@@ -22,6 +22,15 @@ const Footer = () => {
               The information and services provided on this website are for informational purposes only. If you have any questions, please contact us at{" "}
               <a href="mailto:info@ebgreenusa.com" className="text-gold hover:underline">info@ebgreenusa.com</a>
             </p>
+          </div>
+
+          {/* Contato */}
+          <div className="md:text-right shrink-0">
+            <h4 className="font-display text-gold font-semibold mb-2 text-sm">USA:</h4>
+            <p className="text-cream/70 text-sm font-body">Washington, D.C.</p>
+            <a href="tel:+17712017117" className="text-gold hover:text-gold-light text-sm font-body transition-colors">
+              +1 771 201 7117
+            </a>
           </div>
         </div>
 
