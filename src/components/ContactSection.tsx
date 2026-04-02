@@ -112,16 +112,10 @@ const ContactSection = () => {
               <div>
                 <label className={labelClass}>{t(s.phoneLabel, lang)}</label>
                 <div className="flex gap-2">
-                  <div className="relative">
-                    <select value={formData.phoneCode}
-                      onChange={(e) => setFormData({ ...formData, phoneCode: e.target.value })}
-                      className="w-[110px] px-3 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body text-sm appearance-none pr-7 cursor-pointer">
-                      {phoneCodes.map((p) => (
-                        <option key={p.code} value={p.code}>{p.flag} {p.code}</option>
-                      ))}
-                    </select>
-                    <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">▼</span>
-                  </div>
+                  <PhoneCodeSelector
+                    value={formData.phoneCode}
+                    onChange={(val) => setFormData({ ...formData, phoneCode: val })}
+                  />
                   <input type="tel" value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className={`${inputClass} flex-1`} placeholder="300 400 5000" />
