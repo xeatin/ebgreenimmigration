@@ -42,7 +42,12 @@ const ContactSection = () => {
           className="text-center mb-16"
         >
           <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">{t(s.sectionLabel, lang)}</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">{t(s.sectionTitle, lang)}</h2>
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
+            {t(s.sectionTitle1, lang)}
+            <br />
+            {t(s.sectionTitle2, lang)}{" "}
+            <span className="text-gold">{t(s.sectionTitleHighlight, lang)}</span>
+          </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg font-body">{t(s.sectionSubtitle, lang)}</p>
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
