@@ -24,7 +24,7 @@ const ContactSection = () => {
     alert(t(s.successMsg, lang));
     setFormData({
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
-      nationality: "", migrateTo: "", education: "", experience: "",
+      migrateTo: "", education: "", experience: "",
       visa: "", message: "", privacy: false
     });
   };
