@@ -29,8 +29,9 @@ const Navbar = () => {
   return (
     <>
 
-      <nav className={`fixed top-0 md:top-8 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-green-deep/98 backdrop-blur-md shadow-xl md:top-0" : "bg-transparent"
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-green-deep/98 backdrop-blur-md shadow-xl" : "bg-transparent"
+      }`}>
       }`}>
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#hero" className="flex items-center">
