@@ -269,11 +269,11 @@ export const translations = {
     phone: { pt: "Telefone", en: "Phone", es: "Teléfono" },
     email: { pt: "E-mail", en: "Email", es: "Correo" },
     freeConsultation: { pt: "Consulta 100% Gratuita", en: "100% Free Consultation", es: "Consulta 100% Gratuita" },
-    freeConsultationDesc: {
-      pt: "Avaliação inicial sem compromisso. Analisamos seu perfil e apresentamos as melhores opções para o seu caso.",
-      en: "Initial assessment with no obligation. We analyze your profile and present the best options for your case.",
-      es: "Evaluación inicial sin compromiso. Analizamos su perfil y presentamos las mejores opciones para su caso.",
-    },
+    freeConsultationBullets: [
+      { pt: "Avaliação sem compromisso do seu perfil", en: "No-obligation profile assessment", es: "Evaluación sin compromiso de su perfil" },
+      { pt: "Identificamos a melhor rota para o seu caso", en: "We identify the best route for your case", es: "Identificamos la mejor ruta para su caso" },
+      { pt: "Resposta em até 24 horas", en: "Response within 24 hours", es: "Respuesta en hasta 24 horas" },
+    ],
     firstName: { pt: "Primeiro Nome *", en: "First Name *", es: "Nombre *" },
     lastName: { pt: "Último Nome *", en: "Last Name *", es: "Apellido *" },
     emailLabel: { pt: "Endereço de email *", en: "Email Address *", es: "Correo electrónico *" },

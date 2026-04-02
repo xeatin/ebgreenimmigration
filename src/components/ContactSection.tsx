@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, Send, MessageCircle, Upload } from "lucide-react";
+import { Mail, Send, MessageCircle, Upload } from "lucide-react";
 import PhoneCodeSelector from "./PhoneCodeSelector";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -60,9 +60,8 @@ const ContactSection = () => {
             className="lg:col-span-2 space-y-6"
           >
             {[
-              { icon: Phone, label: t(s.phone, lang), value: "+1 (771) 201-7117", href: "tel:+17712017117" },
               { icon: MessageCircle, label: "WhatsApp", value: "+1 (771) 201-7117", href: "https://wa.me/17712017117" },
-              { icon: Mail, label: t(s.email, lang), value: "Info@ebgreenusa.com", href: "mailto:Info@ebgreenusa.com" },
+              { icon: Mail, label: t(s.email, lang), value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
             ].map((item) => (
               <a key={item.label} href={item.href} className="flex items-start gap-4 group">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
@@ -77,7 +76,14 @@ const ContactSection = () => {
 
             <div className="bg-primary rounded-xl p-6 mt-4">
               <p className="text-primary-foreground font-display text-lg font-semibold">{t(s.freeConsultation, lang)}</p>
-              <p className="text-primary-foreground/70 text-sm mt-2 font-body leading-relaxed">{t(s.freeConsultationDesc, lang)}</p>
+              <ul className="mt-3 space-y-2">
+                {s.freeConsultationBullets.map((bullet, i) => (
+                  <li key={i} className="flex items-start gap-2 text-primary-foreground/80 text-sm font-body">
+                    <span className="text-gold mt-0.5">●</span>
+                    <span>{t(bullet, lang)}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </motion.div>
 
