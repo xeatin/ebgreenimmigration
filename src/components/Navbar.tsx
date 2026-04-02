@@ -44,7 +44,7 @@ const Navbar = () => {
       }`}>
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#hero" className="flex items-center">
-            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-10" />
+            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-[68px]" />
           </a>
 
           <div className="hidden lg:flex items-center gap-6">
