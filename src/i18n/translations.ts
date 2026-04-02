@@ -270,7 +270,8 @@ export const translations = {
     phone: { pt: "Telefone", en: "Phone", es: "Teléfono" },
     email: { pt: "E-mail", en: "Email", es: "Correo" },
     freeConsultation: { pt: "Consulta 100% Gratuita", en: "100% Free Consultation", es: "Consulta 100% Gratuita" },
-    sidebarTitle: { pt: "Pronto para começar?", en: "Ready to start?", es: "¿Listo para comenzar?" },
+    sidebarTitle1: { pt: "Pronto para", en: "Ready to", es: "¿Listo para" },
+    sidebarTitleHighlight: { pt: "começar?", en: "start?", es: "comenzar?" },
     sidebarSubtitle: {
       pt: "Preencha o formulário e nossa equipe de especialistas entrará em contato para avaliar seu perfil e traçar a melhor estratégia para sua jornada internacional.",
       en: "Fill out the form and our team of specialists will contact you to evaluate your profile and outline the best strategy for your international journey.",
