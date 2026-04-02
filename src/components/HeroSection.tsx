@@ -16,7 +16,7 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-6 pb-20 pt-40">
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -31,7 +31,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-cream leading-[1.1]"
+            className="font-display text-4xl sm:text-5xl md:text-[3.5rem] lg:text-[4.2rem] font-bold text-cream leading-[1.1]"
           >
             {t(s.title1, lang)}{" "}
             <span className="text-gradient-gold whitespace-nowrap">{t(s.titleHighlight, lang)}</span>
