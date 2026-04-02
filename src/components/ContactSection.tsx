@@ -117,9 +117,10 @@ const ContactSection = () => {
                     onChange={(val) => setFormData({ ...formData, phoneCode: val })}
                   />
                   <div className="w-px h-6 bg-input shrink-0" />
+                  <span className="px-2 text-sm text-foreground font-body shrink-0">{formData.phoneCode}</span>
                   <input type="tel" value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="flex-1 px-3 py-3 bg-transparent text-foreground focus:outline-none font-body text-sm" placeholder="300 400 5000" />
+                    className="flex-1 px-1 py-3 bg-transparent text-foreground focus:outline-none font-body text-sm" placeholder="300 400 5000" />
                 </div>
               </div>
             </div>
