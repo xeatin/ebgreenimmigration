@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Send, MessageCircle, Upload } from "lucide-react";
+import { Mail, Send, MessageCircle, Upload, Phone, Globe } from "lucide-react";
 import PhoneCodeSelector from "./PhoneCodeSelector";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -57,33 +57,32 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 space-y-6"
+            className="lg:col-span-2 space-y-0"
           >
-            {[
-              { icon: MessageCircle, label: "WhatsApp", value: "+1 (771) 201-7117", href: "https://wa.me/17712017117" },
-              { icon: Mail, label: t(s.email, lang), value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
-            ].map((item) => (
-              <a key={item.label} href={item.href} className="flex items-start gap-4 group">
-                <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
-                  <item.icon className="text-gold group-hover:text-foreground transition-colors" size={20} />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground font-body font-semibold tracking-widest uppercase">{item.label}</p>
-                  <p className="text-foreground font-semibold font-body group-hover:text-gold transition-colors">{item.value}</p>
-                </div>
-              </a>
-            ))}
+            <div className="bg-primary rounded-t-2xl p-6 border border-border/30 border-b-0">
+              <p className="text-gold font-display text-lg font-bold">Consulta fácil e Gratuita</p>
+              <p className="mt-2 text-primary-foreground/70 text-sm font-body leading-relaxed">
+                Analise inicial sem compromisso. Avaliaremos seu perfil e apresentaremos as melhores opções para o seu caso.
+              </p>
+            </div>
 
-            <div className="bg-primary rounded-2xl p-6 mt-4 border border-border/30">
-              <p className="text-gold font-display text-base font-bold">{t(s.freeConsultation, lang)}</p>
-              <ul className="mt-4 space-y-3">
-                {s.freeConsultationBullets.map((bullet, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-primary-foreground/80 text-sm font-body leading-snug">
-                    <span className="text-gold mt-1 text-xs">●</span>
-                    <span>{t(bullet, lang)}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="bg-card rounded-b-2xl p-6 border border-border/30 space-y-5">
+              {[
+                { icon: Phone, label: "CELULAR", value: "+1 (772) 200-7117", href: "tel:+17722007117" },
+                { icon: MessageCircle, label: "WHATSAPP", value: "+1 (772) 200-7117", href: "https://wa.me/17722007117" },
+                { icon: Mail, label: "E-MAIL", value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
+                { icon: Globe, label: "REDES", value: "ebgreenusa.com", href: "https://ebgreenusa.com" },
+              ].map((item) => (
+                <a key={item.label} href={item.href} className="flex items-center gap-3 group">
+                  <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
+                    <item.icon className="text-gold group-hover:text-foreground transition-colors" size={18} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-muted-foreground font-body font-semibold tracking-[0.2em] uppercase">{item.label}</p>
+                    <p className="text-foreground font-semibold font-body text-sm group-hover:text-gold transition-colors">{item.value}</p>
+                  </div>
+                </a>
+              ))}
             </div>
           </motion.div>
 
