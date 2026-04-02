@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-start gap-8 md:gap-12">
           {/* Brand / Logo */}
           <div className="shrink-0 flex flex-col items-center">
-            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-[62px] mb-2" />
+            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-[68px] mb-2" />
             <p className="text-gold font-display text-sm font-semibold tracking-wide">
               Respeito, Resposta e Resultados
             </p>
