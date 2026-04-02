@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FileText, Users, Briefcase, GraduationCap, Shield, Globe, ArrowRight } from "lucide-react";
+import { FileText, Users, Briefcase, GraduationCap, Shield, Globe, ArrowRight, Star } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 
@@ -20,6 +20,10 @@ const ServicesSection = () => {
     highlight: highlights[i],
   }));
 
+  // Separate highlighted (first 2) and rest
+  const highlightedServices = services.slice(0, 2);
+  const otherServices = services.slice(2);
+
   return (
     <section id="servicos" className="py-24 bg-gradient-dark">
       <div className="container mx-auto px-6">
@@ -39,30 +43,59 @@ const ServicesSection = () => {
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, i) => (
+        {/* Highlighted pair with shared tag */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative mb-6"
+        >
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 bg-gradient-gold text-green-deep text-xs font-bold font-body px-4 py-1 rounded-full flex items-center gap-1.5 whitespace-nowrap">
+            <Star size={12} className="fill-green-deep" />
+            {t(s.mostPopular, lang)}
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 border border-gold/30 rounded-xl p-4 pt-6 bg-gold/5">
+            {highlightedServices.map((service, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="relative p-8 rounded-xl border border-gold/30 hover:border-gold/60 bg-gold/10 transition-all group cursor-pointer hover:-translate-y-1"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-gold/20">
+                    <service.icon className="text-gold" size={24} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-display text-xl font-semibold text-cream">{service.title}</h3>
+                    <p className="text-gold/80 text-sm font-body mt-0.5">{service.subtitle}</p>
+                  </div>
+                </div>
+                <p className="text-cream/60 font-body mt-4 leading-relaxed text-sm">{service.description}</p>
+                <div className="mt-4 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
+                  {t(s.learnMore, lang)} <ArrowRight size={14} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Other services */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {otherServices.map((service, i) => (
             <motion.div
-              key={i}
+              key={i + 2}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className={`relative p-8 rounded-xl border transition-all group cursor-pointer hover:-translate-y-1 ${
-                service.highlight
-                  ? "bg-gold/10 border-gold/30 hover:border-gold/60"
-                  : "bg-cream/5 border-cream/10 hover:border-gold/30"
-              }`}
+              transition={{ delay: (i + 2) * 0.08 }}
+              className="relative p-8 rounded-xl border bg-cream/5 border-cream/10 hover:border-gold/30 transition-all group cursor-pointer hover:-translate-y-1"
             >
-              {service.highlight && (
-                <div className="absolute -top-3 left-6 bg-gradient-gold text-green-deep text-xs font-bold font-body px-3 py-1 rounded-full">
-                  {t(s.mostPopular, lang)}
-                </div>
-              )}
               <div className="flex items-start gap-4">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
-                  service.highlight ? "bg-gold/20" : "bg-cream/10"
-                }`}>
-                  <service.icon className={service.highlight ? "text-gold" : "text-cream/70"} size={24} />
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-cream/10">
+                  <service.icon className="text-cream/70" size={24} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-display text-xl font-semibold text-cream">{service.title}</h3>
