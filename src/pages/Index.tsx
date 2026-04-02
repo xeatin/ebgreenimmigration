@@ -23,6 +23,7 @@ const Index = () => {
       <ContactSection />
       <CTASection />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

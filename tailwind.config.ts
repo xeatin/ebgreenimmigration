@@ -102,7 +102,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.6s ease-out forwards",
         "count-up": "count-up 0.5s ease-out forwards",
-      },
+        "bounce-slow": "bounce-slow 2s ease-in-out infinite",
     },
   },
   plugins: [require("tailwindcss-animate")],
