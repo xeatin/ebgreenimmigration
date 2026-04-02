@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
+import { Mail, Phone, Send, MessageCircle, Upload } from "lucide-react";
 import { useState } from "react";
 
 const countries = [
