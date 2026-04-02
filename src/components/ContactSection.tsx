@@ -75,7 +75,7 @@ const ContactSection = () => {
             ))}
 
             <div className="bg-primary rounded-xl p-6 mt-4">
-              <p className="text-primary-foreground font-display text-lg font-semibold">{t(s.freeConsultation, lang)}</p>
+              <p className="text-gold font-display text-lg font-semibold">{t(s.freeConsultation, lang)}</p>
               <ul className="mt-3 space-y-2">
                 {s.freeConsultationBullets.map((bullet, i) => (
                   <li key={i} className="flex items-start gap-2 text-primary-foreground/80 text-sm font-body">
