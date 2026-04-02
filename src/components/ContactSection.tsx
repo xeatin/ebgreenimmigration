@@ -121,7 +121,7 @@ const ContactSection = () => {
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-3 gap-5">
+            <div className="grid sm:grid-cols-2 gap-5">
               <div>
                 <label className={labelClass}>{t(s.visaType, lang)}</label>
                 <select value={formData.visa}
@@ -156,6 +156,9 @@ const ContactSection = () => {
                   ))}
                 </select>
               </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-5">
               <div>
                 <label className={labelClass}>{t(s.experience, lang)}</label>
                 <select required value={formData.experience}
@@ -167,12 +170,6 @@ const ContactSection = () => {
                   ))}
                 </select>
               </div>
-            </div>
-
-
-
-
-            <div className="grid sm:grid-cols-2 gap-5">
               <div>
                 <label className={labelClass}>{t(s.resume, lang)}</label>
                 <label className="flex items-center gap-2 px-4 py-3 rounded-lg border border-input bg-accent cursor-pointer hover:bg-accent/80 transition-colors">
