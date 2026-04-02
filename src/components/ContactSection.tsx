@@ -125,16 +125,7 @@ const ContactSection = () => {
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label className={labelClass}>{t(s.nationality, lang)}</label>
-                <select required value={formData.nationality}
-                  onChange={(e) => setFormData({ ...formData, nationality: e.target.value })}
-                  className={inputClass}>
-                  <option value="">{t(s.select, lang)}</option>
-                  {countries.map((c) => <option key={c} value={c}>{c}</option>)}
-                </select>
-              </div>
+            <div className="grid sm:grid-cols-3 gap-5">
               <div>
                 <label className={labelClass}>{t(s.visaType, lang)}</label>
                 <select value={formData.visa}
@@ -156,6 +147,28 @@ const ContactSection = () => {
                   <option value="family-based">Family-Based</option>
                   <option value="aos">AOS</option>
                   <option value="outros">Outros</option>
+                </select>
+              </div>
+              <div>
+                <label className={labelClass}>{t(s.education, lang)}</label>
+                <select required value={formData.education}
+                  onChange={(e) => setFormData({ ...formData, education: e.target.value })}
+                  className={inputClass}>
+                  <option value="">{t(s.select, lang)}</option>
+                  {Object.entries(s.educationOptions).map(([key, val]) => (
+                    <option key={key} value={key}>{t(val, lang)}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className={labelClass}>{t(s.experience, lang)}</label>
+                <select required value={formData.experience}
+                  onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                  className={inputClass}>
+                  <option value="">{t(s.select, lang)}</option>
+                  {Object.entries(s.experienceOptions).map(([key, val]) => (
+                    <option key={key} value={key}>{t(val, lang)}</option>
+                  ))}
                 </select>
               </div>
             </div>
