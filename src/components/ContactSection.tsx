@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Send, MessageCircle, Upload, Instagram, Phone, Clock } from "lucide-react";
+import { Mail, Send, Upload, Instagram, Phone, Clock } from "lucide-react";
 import PhoneCodeSelector from "./PhoneCodeSelector";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";

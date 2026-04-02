@@ -270,6 +270,14 @@ export const translations = {
     phone: { pt: "Telefone", en: "Phone", es: "Teléfono" },
     email: { pt: "E-mail", en: "Email", es: "Correo" },
     freeConsultation: { pt: "Consulta 100% Gratuita", en: "100% Free Consultation", es: "Consulta 100% Gratuita" },
+    sidebarTitle: { pt: "Pronto para começar?", en: "Ready to start?", es: "¿Listo para comenzar?" },
+    sidebarSubtitle: {
+      pt: "Preencha o formulário e nossa equipe de especialistas entrará em contato para avaliar seu perfil e traçar a melhor estratégia para sua jornada internacional.",
+      en: "Fill out the form and our team of specialists will contact you to evaluate your profile and outline the best strategy for your international journey.",
+      es: "Complete el formulario y nuestro equipo de especialistas se comunicará con usted para evaluar su perfil y trazar la mejor estrategia para su jornada internacional.",
+    },
+    hoursLabel: { pt: "ATENDIMENTO", en: "OFFICE HOURS", es: "HORARIO" },
+    hoursValue: { pt: "Seg-Sex: 9h - 18h (EST)", en: "Mon-Fri: 9am - 6pm (EST)", es: "Lun-Vie: 9h - 18h (EST)" },
     freeConsultationBullets: [
       { pt: "Avaliação sem compromisso do seu perfil", en: "No-obligation profile assessment", es: "Evaluación sin compromiso de su perfil" },
       { pt: "Identificamos a melhor rota para o seu caso", en: "We identify the best route for your case", es: "Identificamos la mejor ruta para su caso" },
