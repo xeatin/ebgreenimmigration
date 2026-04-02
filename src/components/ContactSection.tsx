@@ -15,7 +15,7 @@ const ContactSection = () => {
 
   const [formData, setFormData] = useState({
     firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
-    nationality: "", migrateTo: "", education: "", experience: "",
+    migrateTo: "", education: "", experience: "",
     visa: "", message: "", privacy: false
   });
 
