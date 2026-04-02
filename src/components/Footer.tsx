@@ -1,4 +1,4 @@
-import ebgreenLogo from "@/assets/ebgreen-logo.svg";
+import ebgreenLogo from "@/assets/ebgreen-logo-negative.svg";
 
 const Footer = () => {
   return (
