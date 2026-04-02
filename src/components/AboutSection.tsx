@@ -24,7 +24,7 @@ const AboutSection = () => {
               <img src={teamImg} alt="Equipe Ebgreen Immigration" className="w-full h-auto object-cover" loading="lazy" width={800} height={1000} />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-card rounded-xl p-5 shadow-xl border border-border max-w-[220px]">
-              <p className="font-display text-xl font-bold text-gold">EUA · Brasil · Europa</p>
+              <p className="font-display text-base font-bold text-gold whitespace-nowrap">EUA · Brasil · Europa</p>
               <p className="text-muted-foreground text-sm font-body mt-1">{t(s.floatingCard, lang)}</p>
             </div>
           </motion.div>
