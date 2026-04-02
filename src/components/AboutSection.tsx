@@ -24,10 +24,15 @@ const AboutSection = () => {
               <img src={teamImg} alt="Equipe Ebgreen Immigration" className="w-full h-auto object-cover" loading="lazy" width={800} height={1000} />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-card rounded-xl p-5 shadow-xl border border-border max-w-[240px]">
-              <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mb-3">
-                <ShieldCheck className="text-gold" size={20} />
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="text-gold" size={20} />
+                </div>
+                <div>
+                  <p className="font-display text-xl font-bold text-foreground leading-none">29+</p>
+                  <p className="text-muted-foreground text-sm font-body">Anos de Mercado</p>
+                </div>
               </div>
-              <p className="font-display text-base font-bold text-gold whitespace-nowrap">EUA · Brasil · Europa</p>
               <div className="w-full h-px bg-border my-2" />
               <p className="text-muted-foreground text-sm font-body leading-relaxed">Referência mundial em mobilidade global e direito imigratório.</p>
             </div>
