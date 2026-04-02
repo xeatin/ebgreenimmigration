@@ -32,7 +32,7 @@ const Footer = () => {
 
         <div className="border-t border-cream/10 mt-8 pt-5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-cream/30 text-sm font-body">
-            © 2024 Ebgreen Immigration. {t(s.rights, lang)} {t(s.rights, lang)}
+            © {new Date().getFullYear()} Ebgreen Immigration. {t(s.rights, lang)}
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-cream/30 hover:text-gold text-sm font-body transition-colors">{t(s.privacy, lang)}</a>
