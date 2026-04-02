@@ -19,7 +19,7 @@ const HeroSection = () => {
             className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm border border-cream/20 rounded-full px-4 py-2 mb-8"
           >
             <Shield size={14} className="text-gold" />
-            <span className="text-cream/90 font-body text-sm">+98% de Taxa de Aprovação nos Processos</span>
+            <span className="text-cream/90 font-body text-sm">+92% de Taxa de Aprovação nos Processos</span>
           </motion.div>
 
           <motion.h1
@@ -74,7 +74,7 @@ const HeroSection = () => {
         >
           {[
             { number: "500+", label: "Famílias Beneficiadas" },
-            { number: "+98%", label: "Taxa de Sucesso" },
+            { number: "+92%", label: "Taxa de Sucesso" },
             { number: "15+", label: "Anos de Experiência" },
             { number: "2", label: "Escritórios nos EUA" },
           ].map((stat) => (
