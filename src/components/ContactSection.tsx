@@ -169,30 +169,8 @@ const ContactSection = () => {
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label className={labelClass}>{t(s.education, lang)}</label>
-                <select required value={formData.education}
-                  onChange={(e) => setFormData({ ...formData, education: e.target.value })}
-                  className={inputClass}>
-                  <option value="">{t(s.select, lang)}</option>
-                  {Object.entries(s.educationOptions).map(([key, val]) => (
-                    <option key={key} value={key}>{t(val, lang)}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className={labelClass}>{t(s.experience, lang)}</label>
-                <select required value={formData.experience}
-                  onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                  className={inputClass}>
-                  <option value="">{t(s.select, lang)}</option>
-                  {Object.entries(s.experienceOptions).map(([key, val]) => (
-                    <option key={key} value={key}>{t(val, lang)}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
+
+
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
