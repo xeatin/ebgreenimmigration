@@ -23,9 +23,13 @@ const AboutSection = () => {
             <div className="rounded-2xl overflow-hidden">
               <img src={teamImg} alt="Equipe Ebgreen Immigration" className="w-full h-auto object-cover" loading="lazy" width={800} height={1000} />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-card rounded-xl p-5 shadow-xl border border-border max-w-[220px]">
+            <div className="absolute -bottom-6 -left-6 bg-card rounded-xl p-5 shadow-xl border border-border max-w-[240px]">
+              <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mb-3">
+                <Globe className="text-gold" size={20} />
+              </div>
               <p className="font-display text-base font-bold text-gold whitespace-nowrap">EUA · Brasil · Europa</p>
-              <p className="text-muted-foreground text-sm font-body mt-1">{t(s.floatingCard, lang)}</p>
+              <div className="w-full h-px bg-border my-2" />
+              <p className="text-muted-foreground text-sm font-body leading-relaxed">Referência mundial em mobilidade global e direito imigratório.</p>
             </div>
           </motion.div>
 
