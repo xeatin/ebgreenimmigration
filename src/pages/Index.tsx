@@ -6,7 +6,7 @@ import ProcessSection from "@/components/ProcessSection";
 import AboutSection from "@/components/AboutSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
-import CTASection from "@/components/CTASection";
+
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
