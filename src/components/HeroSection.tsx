@@ -34,7 +34,7 @@ const HeroSection = () => {
             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-cream leading-[1.1]"
           >
             {t(s.title1, lang)}{" "}
-            <span className="text-gradient-gold">{t(s.titleHighlight, lang)}</span>
+            <span className="text-gradient-gold whitespace-nowrap">{t(s.titleHighlight, lang)}</span>
             <br />
             {t(s.title2, lang)}
             <br />
