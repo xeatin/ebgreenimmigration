@@ -43,47 +43,48 @@ const ServicesSection = () => {
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        {/* Highlighted pair with shared tag */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative mb-6"
-        >
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 bg-gradient-gold text-green-deep text-xs font-bold font-body px-4 py-1 rounded-full flex items-center gap-1.5 whitespace-nowrap">
-            <Star size={12} className="fill-green-deep" />
-            {t(s.mostPopular, lang)}
-          </div>
-          <div className="grid md:grid-cols-2 gap-6 border border-gold/30 rounded-xl p-3 pt-5 bg-gold/5">
-            {highlightedServices.map((service, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="relative p-8 rounded-xl border border-gold/30 hover:border-gold/60 bg-gold/10 transition-all group cursor-pointer hover:-translate-y-1"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-gold/20">
-                    <service.icon className="text-gold" size={24} />
+        {/* All services in uniform grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Highlighted pair with shared tag */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative md:col-span-2 lg:col-span-2"
+          >
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 bg-gradient-gold text-green-deep text-xs font-bold font-body px-4 py-1 rounded-full flex items-center gap-1.5 whitespace-nowrap">
+              <Star size={12} className="fill-green-deep" />
+              {t(s.mostPopular, lang)}
+            </div>
+            <div className="grid md:grid-cols-2 gap-4 border border-gold/30 rounded-xl p-3 pt-5 bg-gold/5 h-full">
+              {highlightedServices.map((service, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="relative p-6 rounded-xl border border-gold/30 hover:border-gold/60 bg-gold/10 transition-all group cursor-pointer hover:-translate-y-1"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-gold/20">
+                      <service.icon className="text-gold" size={20} />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-display text-lg font-semibold text-cream">{service.title}</h3>
+                      <p className="text-gold/80 text-xs font-body mt-0.5">{service.subtitle}</p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-display text-xl font-semibold text-cream">{service.title}</h3>
-                    <p className="text-gold/80 text-sm font-body mt-0.5">{service.subtitle}</p>
+                  <p className="text-cream/60 font-body mt-3 leading-relaxed text-sm">{service.description}</p>
+                  <div className="mt-3 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
+                    {t(s.learnMore, lang)} <ArrowRight size={14} />
                   </div>
-                </div>
-                <p className="text-cream/60 font-body mt-4 leading-relaxed text-sm">{service.description}</p>
-                <div className="mt-4 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
-                  {t(s.learnMore, lang)} <ArrowRight size={14} />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-        {/* Other services */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Other services */}
           {otherServices.map((service, i) => (
             <motion.div
               key={i + 2}
@@ -91,19 +92,19 @@ const ServicesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: (i + 2) * 0.08 }}
-              className="relative p-8 rounded-xl border bg-cream/5 border-cream/10 hover:border-gold/30 transition-all group cursor-pointer hover:-translate-y-1"
+              className="relative p-6 rounded-xl border bg-cream/5 border-cream/10 hover:border-gold/30 transition-all group cursor-pointer hover:-translate-y-1"
             >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-cream/10">
-                  <service.icon className="text-cream/70" size={24} />
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-cream/10">
+                  <service.icon className="text-cream/70" size={20} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-display text-xl font-semibold text-cream">{service.title}</h3>
-                  <p className="text-gold/80 text-sm font-body mt-0.5">{service.subtitle}</p>
+                  <h3 className="font-display text-lg font-semibold text-cream">{service.title}</h3>
+                  <p className="text-gold/80 text-xs font-body mt-0.5">{service.subtitle}</p>
                 </div>
               </div>
-              <p className="text-cream/60 font-body mt-4 leading-relaxed text-sm">{service.description}</p>
-              <div className="mt-4 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
+              <p className="text-cream/60 font-body mt-3 leading-relaxed text-sm">{service.description}</p>
+              <div className="mt-3 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
                 {t(s.learnMore, lang)} <ArrowRight size={14} />
               </div>
             </motion.div>
