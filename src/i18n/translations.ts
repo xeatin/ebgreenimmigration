@@ -300,7 +300,7 @@ export const translations = {
       "ensino-medio": { pt: "Ensino Médio", en: "High School", es: "Secundaria" },
       tecnico: { pt: "Técnico", en: "Technical", es: "Técnico" },
       tecnologo: { pt: "Tecnólogo", en: "Technologist", es: "Tecnólogo" },
-      superior: { pt: "Nível superior/Bacharelado", en: "Bachelor's Degree", es: "Licenciatura" },
+      superior: { pt: "Nível Superior/Bacharelado", en: "Bachelor's Degree", es: "Licenciatura" },
       "pos-graduacao": { pt: "Pós Graduação", en: "Postgraduate", es: "Posgrado" },
       mestrado: { pt: "Mestrado", en: "Master's Degree", es: "Maestría" },
       doutorado: { pt: "Doutorado", en: "Doctorate", es: "Doctorado" },
