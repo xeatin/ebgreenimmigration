@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, Send, MessageCircle, Upload } from "lucide-react";
+import PhoneCodeSelector from "./PhoneCodeSelector";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
@@ -11,21 +12,6 @@ const countries = [
   "Japão", "China", "Índia", "Austrália", "Outro"
 ];
 
-const phoneCodes = [
-  { code: "+55", flag: "🇧🇷", country: "BR" },
-  { code: "+1", flag: "🇺🇸", country: "US" },
-  { code: "+351", flag: "🇵🇹", country: "PT" },
-  { code: "+244", flag: "🇦🇴", country: "AO" },
-  { code: "+258", flag: "🇲🇿", country: "MZ" },
-  { code: "+54", flag: "🇦🇷", country: "AR" },
-  { code: "+57", flag: "🇨🇴", country: "CO" },
-  { code: "+52", flag: "🇲🇽", country: "MX" },
-  { code: "+56", flag: "🇨🇱", country: "CL" },
-  { code: "+51", flag: "🇵🇪", country: "PE" },
-  { code: "+49", flag: "🇩🇪", country: "DE" },
-  { code: "+44", flag: "🇬🇧", country: "GB" },
-  { code: "+61", flag: "🇦🇺", country: "AU" },
-];
 
 const ContactSection = () => {
   const { lang } = useLanguage();
@@ -126,16 +112,10 @@ const ContactSection = () => {
               <div>
                 <label className={labelClass}>{t(s.phoneLabel, lang)}</label>
                 <div className="flex gap-2">
-                  <div className="relative">
-                    <select value={formData.phoneCode}
-                      onChange={(e) => setFormData({ ...formData, phoneCode: e.target.value })}
-                      className="w-[110px] px-3 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body text-sm appearance-none pr-7 cursor-pointer">
-                      {phoneCodes.map((p) => (
-                        <option key={p.code} value={p.code}>{p.flag} {p.code}</option>
-                      ))}
-                    </select>
-                    <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">▼</span>
-                  </div>
+                  <PhoneCodeSelector
+                    value={formData.phoneCode}
+                    onChange={(val) => setFormData({ ...formData, phoneCode: val })}
+                  />
                   <input type="tel" value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className={`${inputClass} flex-1`} placeholder="300 400 5000" />
