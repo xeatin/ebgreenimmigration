@@ -28,19 +28,6 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="bg-green-deep text-cream/80 text-xs py-2 hidden md:block">
-        <div className="container mx-auto px-6 flex justify-between items-center">
-          <span>{t(translations.nav.topBar, lang)}</span>
-          <div className="flex items-center gap-4">
-            <a href="tel:+17712017117" className="flex items-center gap-1 hover:text-gold transition-colors">
-              <Phone size={12} />
-              +1 (771) 201-7117
-            </a>
-            <span className="text-cream/30">|</span>
-            <a href="https://wa.me/17712017117" className="hover:text-gold transition-colors">WhatsApp</a>
-          </div>
-        </div>
-      </div>
 
       <nav className={`fixed top-0 md:top-8 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? "bg-green-deep/98 backdrop-blur-md shadow-xl md:top-0" : "bg-transparent"
