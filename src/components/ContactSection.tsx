@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Send, MessageCircle, Upload, Globe, Instagram } from "lucide-react";
+import { Mail, Send, Upload, Instagram, Phone, Clock } from "lucide-react";
 import PhoneCodeSelector from "./PhoneCodeSelector";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -57,32 +57,42 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 space-y-0"
+            className="lg:col-span-2"
           >
-            <div className="bg-primary rounded-t-2xl p-6 border border-border/30 border-b-0">
-              <p className="text-gold font-display text-lg font-bold">Consulta fácil e Gratuita</p>
-              <p className="mt-2 text-primary-foreground/70 text-sm font-body leading-relaxed">
-                Analise inicial sem compromisso. Avaliaremos seu perfil e apresentaremos as melhores opções para o seu caso.
-              </p>
-            </div>
+            <div className="bg-primary rounded-2xl p-8 border border-border/30 space-y-8">
+              <div>
+                <h3 className="font-display text-2xl font-bold text-primary-foreground">
+                  {t(s.sidebarTitle, lang)}
+                </h3>
+                <p className="mt-3 text-primary-foreground/70 text-sm font-body leading-relaxed">
+                  {t(s.sidebarSubtitle, lang)}
+                </p>
+              </div>
 
-            <div className="bg-card rounded-b-2xl p-6 border border-border/30 space-y-5">
-              {[
-                { icon: MessageCircle, label: "WHATSAPP", value: "+1 (772) 200-7117", href: "https://wa.me/17722007117" },
-                { icon: Mail, label: "E-MAIL", value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
-                
-                { icon: Instagram, label: "INSTAGRAM", value: "@ebgreenusa", href: "https://instagram.com/ebgreenusa" },
-              ].map((item) => (
-                <a key={item.label} href={item.href} className="flex items-center gap-3 group">
-                  <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
-                    <item.icon className="text-gold group-hover:text-foreground transition-colors" size={18} />
+              <div className="space-y-6">
+                {[
+                  { icon: Phone, label: "WHATSAPP", value: "+1 (772) 200-7117", href: "https://wa.me/17722007117" },
+                  { icon: Mail, label: "E-MAIL", value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
+                  { icon: Instagram, label: "INSTAGRAM", value: "@ebgreenusa", href: "https://instagram.com/ebgreenusa" },
+                  { icon: Clock, label: t(s.hoursLabel, lang), value: t(s.hoursValue, lang), href: undefined },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center gap-4">
+                    <div className="w-11 h-11 bg-gold/10 rounded-full flex items-center justify-center shrink-0">
+                      <item.icon className="text-gold" size={18} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-primary-foreground/50 font-body font-semibold tracking-[0.2em] uppercase">{item.label}</p>
+                      {item.href ? (
+                        <a href={item.href} className="text-primary-foreground font-semibold font-body text-sm hover:text-gold transition-colors">
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="text-primary-foreground font-semibold font-body text-sm">{item.value}</p>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-[10px] text-muted-foreground font-body font-semibold tracking-[0.2em] uppercase">{item.label}</p>
-                    <p className="text-foreground font-semibold font-body text-sm group-hover:text-gold transition-colors">{item.value}</p>
-                  </div>
-                </a>
-              ))}
+                ))}
+              </div>
             </div>
           </motion.div>
 
