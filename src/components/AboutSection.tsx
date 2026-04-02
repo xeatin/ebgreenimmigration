@@ -25,7 +25,7 @@ const AboutSection = () => {
             </div>
             <div className="absolute -bottom-6 -left-6 bg-card rounded-xl p-5 shadow-xl border border-border max-w-[240px]">
               <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mb-3">
-                <Globe className="text-gold" size={20} />
+                <ShieldCheck className="text-gold" size={20} />
               </div>
               <p className="font-display text-base font-bold text-gold whitespace-nowrap">EUA · Brasil · Europa</p>
               <div className="w-full h-px bg-border my-2" />
