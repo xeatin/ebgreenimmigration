@@ -1,13 +1,12 @@
-import ebgreenLogo from "@/assets/ebgreen-logo.jpg";
+import ebgreenLogo from "@/assets/ebgreen-logo.svg";
 
 const Footer = () => {
   return (
     <footer className="bg-green-deep py-10">
       <div className="container mx-auto px-6">
-        {/* Main row: Logo+Slogan | Disclaimer | Contato */}
         <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-start gap-8 md:gap-12">
           {/* Brand / Logo */}
-          <div className="shrink-0">
+          <div className="shrink-0 flex flex-col items-center">
             <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-14 mb-2" />
             <p className="text-gold font-display text-sm font-semibold tracking-wide">
               Respeito, Resposta e Resultados
@@ -27,10 +26,10 @@ const Footer = () => {
 
           {/* Contato */}
           <div className="md:text-right shrink-0">
-            <h4 className="font-display text-gold font-semibold mb-2 text-sm">USA:</h4>
-            <p className="text-cream/70 text-sm font-body">
-              Washington, D.C. <a href="tel:+17712017117" className="text-gold hover:text-gold-light transition-colors">+1 771 201 7117</a>
-            </p>
+            <h4 className="font-display text-gold font-semibold mb-2 text-sm">Contato:</h4>
+            <a href="tel:+17712017117" className="text-gold hover:text-gold-light text-sm font-body transition-colors">
+              +1 771 201 7117
+            </a>
           </div>
         </div>
 
