@@ -208,20 +208,21 @@ const ContactSection = () => {
                   onChange={(e) => setFormData({ ...formData, visa: e.target.value })}
                   className={inputClass}>
                   <option value="">Selecione...</option>
-                  <option value="eb1a">EB-1A</option>
-                  <option value="eb2-niw">EB-2 NIW</option>
-                  <option value="eb3">EB-3</option>
-                  <option value="eb4">EB-4</option>
-                  <option value="eb5">EB-5</option>
-                  <option value="cr1">CR-1</option>
-                  <option value="e2">E-2</option>
-                  <option value="f1-f2">F-1/F-2</option>
-                  <option value="l1a">L-1A</option>
-                  <option value="k1">K-1</option>
-                  <option value="o1">O-1</option>
-                  <option value="r1">R-1</option>
-                  <option value="family-based">Family-Based</option>
-                  <option value="aos">AOS</option>
+                  <option value="eb1a">EB-1A (Habilidade Extraordinária)</option>
+                  <option value="eb2-niw">EB-2 NIW (Interesse Nacional)</option>
+                  <option value="eb3">EB-3 (Trabalhador Qualificado)</option>
+                  <option value="eb4">EB-4 (Imigrante Especial)</option>
+                  <option value="eb5">EB-5 (Investidor)</option>
+                  <option value="cr1">CR-1 (Cônjuge)</option>
+                  <option value="e2">E-2 (Investidor Tratado)</option>
+                  <option value="f1-f2">F-1/F-2 (Estudante)</option>
+                  <option value="l1a">L-1A (Transferência)</option>
+                  <option value="k1">K-1 (Noivo/a)</option>
+                  <option value="o1">O-1 (Habilidade Extraordinária)</option>
+                  <option value="r1">R-1 (Religioso)</option>
+                  <option value="family-based">Family-Based (Familiar)</option>
+                  <option value="aos">AOS (Ajuste de Status)</option>
+                  <option value="outro">Outros</option>
                 </select>
               </div>
               <div>
