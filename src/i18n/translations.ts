@@ -219,14 +219,14 @@ export const translations = {
       es: "Atención global, estrategia individualizada.",
     },
     paragraph1: {
-      pt: "A <strong>Ebgreen Immigration</strong> é uma das mais respeitadas firmas de assessoria imigratória. Com anos de experiência, já ajudamos milhares de famílias a conquistarem o sonho de viver nos Estados Unidos.",
-      en: "<strong>Ebgreen Immigration</strong> is one of the most respected immigration advisory firms. With years of experience, we have helped thousands of families achieve their dream of living in the United States.",
-      es: "<strong>Ebgreen Immigration</strong> es una de las firmas de asesoría migratoria más respetadas. Con años de experiencia, hemos ayudado a miles de familias a cumplir el sueño de vivir en Estados Unidos.",
+      pt: "A <strong>EBGreen Immigration</strong> é uma assessoria especializada em Green Card por mérito profissional, com atuação nos Estados Unidos, Brasil e Europa. Nossa abordagem combina análise estratégica individual e rigor técnico baseado nos critérios do USCIS com acompanhamento dedicado de cada caso até a aprovação.",
+      en: "<strong>EBGreen Immigration</strong> is an advisory firm specialized in merit-based Green Cards, operating in the United States, Brazil, and Europe. Our approach combines individual strategic analysis and technical rigor based on USCIS criteria with dedicated case support through approval.",
+      es: "<strong>EBGreen Immigration</strong> es una asesoría especializada en Green Card por mérito profesional, con actuación en Estados Unidos, Brasil y Europa. Nuestro enfoque combina análisis estratégico individual y rigor técnico basado en los criterios del USCIS con acompañamiento dedicado de cada caso hasta la aprobación.",
     },
     paragraph2: {
-      pt: "Nossa equipe conta com advogados especializados e consultores dedicados que acompanham cada caso de perto, garantindo a melhor estratégia para o seu perfil.",
-      en: "Our team includes specialized attorneys and dedicated consultants who closely follow each case, ensuring the best strategy for your profile.",
-      es: "Nuestro equipo cuenta con abogados especializados y consultores dedicados que acompañan cada caso de cerca, garantizando la mejor estrategia para tu perfil.",
+      pt: "Cada cliente recebe atenção exclusiva de uma equipe dedicada de advogados e consultores especializados, que acompanham o caso de perto até a aprovação.",
+      en: "Each client receives exclusive attention from a dedicated team of attorneys and specialized consultants who closely follow the case through approval.",
+      es: "Cada cliente recibe atención exclusiva de un equipo dedicado de abogados y consultores especializados, que acompañan el caso de cerca hasta la aprobación.",
     },
     bullets: [
       { pt: "Atendimento bilíngue (Português, Inglês e Espanhol)", en: "Bilingual support (Portuguese, English and Spanish)", es: "Atención bilingüe (Portugués, Inglés y Español)" },
