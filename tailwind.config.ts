@@ -93,13 +93,16 @@ export default {
           from: { opacity: "0", transform: "scale(0.8)" },
           to: { opacity: "1", transform: "scale(1)" },
         },
-      },
+        "bounce-slow": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.6s ease-out forwards",
         "count-up": "count-up 0.5s ease-out forwards",
-      },
+        "bounce-slow": "bounce-slow 2s ease-in-out infinite",
     },
   },
   plugins: [require("tailwindcss-animate")],
