@@ -96,15 +96,14 @@ const PhoneCodeSelector = ({ value, onChange }: PhoneCodeSelectorProps) => {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 px-2.5 py-3 bg-transparent text-foreground font-body text-sm cursor-pointer hover:bg-accent/50 transition-colors rounded-l-lg"
+        className="flex items-center gap-2 px-2.5 py-3 bg-transparent text-foreground font-body text-sm cursor-pointer hover:bg-accent/50 transition-colors rounded-l-lg"
       >
         <img
           src={getFlagUrl(currentSelected.iso)}
           alt={currentSelected.name}
           className="w-5 h-3.5 object-cover rounded-[2px] shrink-0"
         />
-        <ChevronDown size={12} className="text-muted-foreground shrink-0" />
-        <span className="text-sm">{currentSelected.code}</span>
+        <ChevronDown size={10} className="text-muted-foreground shrink-0 -ml-1" />
       </button>
 
       {open && (
