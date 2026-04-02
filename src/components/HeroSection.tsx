@@ -74,7 +74,7 @@ const HeroSection = () => {
         >
           {[
             { number: "500+", label: "Famílias Beneficiadas" },
-            { number: "+98%", label: "Taxa de Sucesso" },
+            { number: "+92%", label: "Taxa de Sucesso" },
             { number: "15+", label: "Anos de Experiência" },
             { number: "2", label: "Escritórios nos EUA" },
           ].map((stat) => (
