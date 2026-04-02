@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations, t } from "@/i18n/translations";
 
 const CTASection = () => {
+  const { lang } = useLanguage();
+  const s = translations.cta;
+
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-6">
@@ -16,27 +21,26 @@ const CTASection = () => {
           
           <div className="relative">
             <h2 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground leading-tight">
-              A conquista do seu{" "}
-              <span className="text-gradient-gold">Green Card</span>{" "}
-              começa aqui
+              {t(s.title1, lang)}{" "}
+              <span className="text-gradient-gold">{t(s.titleHighlight, lang)}</span>{" "}
+              {t(s.title2, lang)}
             </h2>
             <p className="mt-4 text-primary-foreground/70 text-lg max-w-2xl mx-auto font-body">
-              Não espere mais. Agende uma consulta gratuita e descubra qual o melhor 
-              caminho para você e sua família nos Estados Unidos.
+              {t(s.subtitle, lang)}
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#contato"
                 className="inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity"
               >
-                Agendar Consulta Gratuita
+                {t(s.ctaPrimary, lang)}
                 <ArrowRight size={20} />
               </a>
               <a
-                href="https://wa.me/15551234567"
+                href="https://wa.me/17712017117"
                 className="inline-flex items-center justify-center gap-2 border border-primary-foreground/30 text-primary-foreground px-8 py-4 rounded-md font-semibold font-body hover:border-gold hover:text-gold transition-colors"
               >
-                Falar pelo WhatsApp
+                {t(s.ctaSecondary, lang)}
               </a>
             </div>
           </div>

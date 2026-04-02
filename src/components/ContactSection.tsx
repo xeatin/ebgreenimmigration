@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, Send, MessageCircle, Upload } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations, t } from "@/i18n/translations";
 
 const countries = [
   "Brasil", "Portugal", "Angola", "Moçambique", "Cabo Verde", "Argentina", "Colômbia",
@@ -26,6 +28,9 @@ const phoneCodes = [
 ];
 
 const ContactSection = () => {
+  const { lang } = useLanguage();
+  const s = translations.contact;
+
   const [formData, setFormData] = useState({
     firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
     nationality: "", migrateTo: "", education: "", experience: "",
@@ -34,7 +39,7 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Mensagem enviada com sucesso! Entraremos em contato em até 24 horas.");
+    alert(t(s.successMsg, lang));
     setFormData({
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
       nationality: "", migrateTo: "", education: "", experience: "",
@@ -54,13 +59,9 @@ const ContactSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">Fale Conosco</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
-            Agende sua consulta gratuita
-          </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg font-body">
-            Preencha o formulário e descubra as possibilidades para a sua jornada nos EUA.
-          </p>
+          <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">{t(s.sectionLabel, lang)}</p>
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">{t(s.sectionTitle, lang)}</h2>
+          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg font-body">{t(s.sectionSubtitle, lang)}</p>
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
@@ -72,9 +73,9 @@ const ContactSection = () => {
             className="lg:col-span-2 space-y-6"
           >
             {[
-              { icon: Phone, label: "Telefone", value: "+1 (771) 201-7117", href: "tel:+17712017117" },
+              { icon: Phone, label: t(s.phone, lang), value: "+1 (771) 201-7117", href: "tel:+17712017117" },
               { icon: MessageCircle, label: "WhatsApp", value: "+1 (771) 201-7117", href: "https://wa.me/17712017117" },
-              { icon: Mail, label: "E-mail", value: "Info@ebgreenusa.com", href: "mailto:Info@ebgreenusa.com" },
+              { icon: Mail, label: t(s.email, lang), value: "Info@ebgreenusa.com", href: "mailto:Info@ebgreenusa.com" },
             ].map((item) => (
               <a key={item.label} href={item.href} className="flex items-start gap-4 group">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
@@ -88,11 +89,8 @@ const ContactSection = () => {
             ))}
 
             <div className="bg-primary rounded-xl p-6 mt-4">
-              <p className="text-primary-foreground font-display text-lg font-semibold">Consulta 100% Gratuita</p>
-              <p className="text-primary-foreground/70 text-sm mt-2 font-body leading-relaxed">
-                Avaliação inicial sem compromisso. Analisamos seu perfil e apresentamos 
-                as melhores opções para o seu caso.
-              </p>
+              <p className="text-primary-foreground font-display text-lg font-semibold">{t(s.freeConsultation, lang)}</p>
+              <p className="text-primary-foreground/70 text-sm mt-2 font-body leading-relaxed">{t(s.freeConsultationDesc, lang)}</p>
             </div>
           </motion.div>
 
@@ -103,32 +101,30 @@ const ContactSection = () => {
             onSubmit={handleSubmit}
             className="lg:col-span-3 bg-card rounded-xl p-8 border border-border shadow-lg space-y-5"
           >
-            {/* Nome / Sobrenome */}
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass}>Primeiro Nome *</label>
+                <label className={labelClass}>{t(s.firstName, lang)}</label>
                 <input type="text" required value={formData.firstName}
                   onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                   className={inputClass} placeholder="Ex John" />
               </div>
               <div>
-                <label className={labelClass}>Último Nome *</label>
+                <label className={labelClass}>{t(s.lastName, lang)}</label>
                 <input type="text" required value={formData.lastName}
                   onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                   className={inputClass} placeholder="Ex Doe" />
               </div>
             </div>
 
-            {/* Email / Telefone */}
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass}>Endereço de email *</label>
+                <label className={labelClass}>{t(s.emailLabel, lang)}</label>
                 <input type="email" required value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className={inputClass} placeholder="john@doe.com" />
               </div>
               <div>
-                <label className={labelClass}>Telefone *</label>
+                <label className={labelClass}>{t(s.phoneLabel, lang)}</label>
                 <div className="flex gap-2">
                   <select value={formData.phoneCode}
                     onChange={(e) => setFormData({ ...formData, phoneCode: e.target.value })}
@@ -144,70 +140,61 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Nacionalidade / Migrar para */}
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass}>Qual sua nacionalidade? *</label>
+                <label className={labelClass}>{t(s.nationality, lang)}</label>
                 <select required value={formData.nationality}
                   onChange={(e) => setFormData({ ...formData, nationality: e.target.value })}
                   className={inputClass}>
-                  <option value="">Selecione...</option>
+                  <option value="">{t(s.select, lang)}</option>
                   {countries.map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
               <div>
-                <label className={labelClass}>Migrar para *</label>
+                <label className={labelClass}>{t(s.migrateTo, lang)}</label>
                 <select required value={formData.migrateTo}
                   onChange={(e) => setFormData({ ...formData, migrateTo: e.target.value })}
                   className={inputClass}>
-                  <option value="">Selecione...</option>
-                  <option value="estados-unidos">Estados Unidos</option>
-                  <option value="canada">Canadá</option>
-                  <option value="europa">Europa</option>
-                  <option value="outro">Outro</option>
+                  <option value="">{t(s.select, lang)}</option>
+                  {Object.entries(s.migrateOptions).map(([key, val]) => (
+                    <option key={key} value={key}>{t(val, lang)}</option>
+                  ))}
                 </select>
               </div>
             </div>
 
-            {/* Formação / Experiência */}
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass}>Formação Acadêmica *</label>
+                <label className={labelClass}>{t(s.education, lang)}</label>
                 <select required value={formData.education}
                   onChange={(e) => setFormData({ ...formData, education: e.target.value })}
                   className={inputClass}>
-                  <option value="">Selecione...</option>
-                  <option value="ensino-medio">Ensino Médio</option>
-                  <option value="tecnico">Técnico</option>
-                  <option value="tecnologo">Tecnólogo</option>
-                  <option value="superior">Nível superior/Bacharelado</option>
-                  <option value="pos-graduacao">Pós Graduação</option>
-                  <option value="mestrado">Mestrado</option>
-                  <option value="doutorado">Doutorado</option>
-                  <option value="pos-doutorado">Pós Doutorado</option>
+                  <option value="">{t(s.select, lang)}</option>
+                  {Object.entries(s.educationOptions).map(([key, val]) => (
+                    <option key={key} value={key}>{t(val, lang)}</option>
+                  ))}
                 </select>
               </div>
               <div>
-                <label className={labelClass}>Anos de Experiência Profissional *</label>
+                <label className={labelClass}>{t(s.experience, lang)}</label>
                 <select required value={formData.experience}
                   onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
                   className={inputClass}>
-                  <option value="">Selecione...</option>
-                  <option value="menos-5">Menos de 5 anos</option>
-                  <option value="5-10">De 5 a 10 anos</option>
-                  <option value="mais-10">Mais de 10 anos</option>
+                  <option value="">{t(s.select, lang)}</option>
+                  {Object.entries(s.experienceOptions).map(([key, val]) => (
+                    <option key={key} value={key}>{t(val, lang)}</option>
+                  ))}
                 </select>
               </div>
             </div>
 
-            {/* Tipo de Visto / Currículo */}
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass}>Tipo de Visto</label>
+                <label className={labelClass}>{t(s.visaType, lang)}</label>
                 <select value={formData.visa}
                   onChange={(e) => setFormData({ ...formData, visa: e.target.value })}
                   className={inputClass}>
-                  <option value="">Selecione...</option>
+                  <option value="">{t(s.select, lang)}</option>
                   <option value="eb1a">EB-1A</option>
                   <option value="eb2-niw">EB-2 NIW</option>
                   <option value="eb3">EB-3</option>
@@ -226,10 +213,10 @@ const ContactSection = () => {
                 </select>
               </div>
               <div>
-                <label className={labelClass}>Envie seu currículo</label>
+                <label className={labelClass}>{t(s.resume, lang)}</label>
                 <label className="flex items-center gap-2 px-4 py-3 rounded-lg border border-input bg-accent cursor-pointer hover:bg-accent/80 transition-colors">
                   <Upload size={18} className="text-foreground shrink-0" />
-                  <span className="text-sm font-body text-foreground font-semibold">Selecione Arquivo</span>
+                  <span className="text-sm font-body text-foreground font-semibold">{t(s.selectFile, lang)}</span>
                   <input type="file" accept=".pdf,.doc,.docx" className="hidden"
                     onChange={(e) => {
                       const file = e.target.files?.[0];
@@ -239,28 +226,24 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Mensagem */}
             <div>
-              <label className={labelClass}>Mensagem</label>
+              <label className={labelClass}>{t(s.message, lang)}</label>
               <textarea rows={4} value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className={`${inputClass} resize-none`}
-                placeholder="Fale mais sobre você e seu desejo de imigrar." />
+                placeholder={t(s.messagePlaceholder, lang)} />
             </div>
 
-            {/* Privacy */}
             <label className="flex items-center gap-2 cursor-pointer">
               <input type="checkbox" required checked={formData.privacy}
                 onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
                 className="w-4 h-4 rounded border-input accent-accent" />
-              <span className="text-sm text-muted-foreground font-body">
-                Eu concordo com a Política de Privacidade.
-              </span>
+              <span className="text-sm text-muted-foreground font-body">{t(s.privacy, lang)}</span>
             </label>
 
             <button type="submit"
               className="w-full bg-gradient-gold text-green-deep px-6 py-4 rounded-lg font-bold text-lg font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2">
-              Enviar Mensagem
+              {t(s.submit, lang)}
               <Send size={18} />
             </button>
           </motion.form>

@@ -1,46 +1,25 @@
 import { motion } from "framer-motion";
 import { FileText, Users, Briefcase, GraduationCap, Shield, Globe, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations, t } from "@/i18n/translations";
 
-const services = [
-  {
-    icon: Shield,
-    title: "EB-1A",
-    subtitle: "Extraordinary Ability",
-    description: "Green Card para profissionais com habilidades extraordinárias reconhecidas nacional ou internacionalmente.",
-    highlight: true,
-  },
-  {
-    icon: FileText,
-    title: "EB-2 NIW",
-    subtitle: "National Interest Waiver",
-    description: "Green Card sem necessidade de oferta de emprego. Ideal para profissionais com habilidades excepcionais ou grau avançado.",
-  },
-  {
-    icon: Briefcase,
-    title: "Vistos de Trabalho",
-    subtitle: "H-1B, L-1, O-1",
-    description: "Vistos para profissionais qualificados que desejam trabalhar legalmente nos Estados Unidos.",
-  },
-  {
-    icon: Globe,
-    title: "Vistos de Investidor",
-    subtitle: "EB-5, E-2",
-    description: "Caminhos para empreendedores e investidores que desejam abrir ou adquirir negócios nos EUA.",
-  },
-  {
-    icon: Users,
-    title: "Green Card Familiar",
-    subtitle: "Reunificação Familiar",
-    description: "Petições através de cônjuges, filhos e familiares cidadãos americanos ou residentes permanentes.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Consultoria Completa",
-    subtitle: "Avaliação de Perfil",
-    description: "Análise personalizada para identificar o melhor caminho migratório para o seu caso específico.",
-  },
-];
+const icons = [Shield, FileText, Briefcase, Globe, Users, GraduationCap];
+const titles = ["EB-1A", "EB-2 NIW", "", "", "", ""];
+const subtitles = ["Extraordinary Ability", "National Interest Waiver", "H-1B, L-1, O-1", "EB-5, E-2", "", ""];
+const highlights = [true, false, false, false, false, false];
+
 const ServicesSection = () => {
+  const { lang } = useLanguage();
+  const s = translations.services;
+
+  const services = s.items.map((item, i) => ({
+    icon: icons[i],
+    title: (item as any).title ? t((item as any).title, lang) : titles[i],
+    subtitle: (item as any).subtitle ? t((item as any).subtitle, lang) : subtitles[i],
+    description: t(item.description, lang),
+    highlight: highlights[i],
+  }));
+
   return (
     <section id="servicos" className="py-24 bg-gradient-dark">
       <div className="container mx-auto px-6">
@@ -50,12 +29,12 @@ const ServicesSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">Nossos Serviços</p>
+          <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">{t(s.sectionLabel, lang)}</p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-cream">
-            Soluções completas para cada perfil
+            {t(s.sectionTitle, lang)}
           </h2>
           <p className="mt-4 text-cream/60 max-w-2xl mx-auto text-lg font-body">
-            Da avaliação inicial à aprovação final, oferecemos acompanhamento em todas as etapas.
+            {t(s.sectionSubtitle, lang)}
           </p>
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
@@ -63,7 +42,7 @@ const ServicesSection = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
             <motion.div
-              key={service.title}
+              key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -76,7 +55,7 @@ const ServicesSection = () => {
             >
               {service.highlight && (
                 <div className="absolute -top-3 left-6 bg-gradient-gold text-green-deep text-xs font-bold font-body px-3 py-1 rounded-full">
-                  MAIS PROCURADO
+                  {t(s.mostPopular, lang)}
                 </div>
               )}
               <div className="flex items-start gap-4">
@@ -92,7 +71,7 @@ const ServicesSection = () => {
               </div>
               <p className="text-cream/60 font-body mt-4 leading-relaxed text-sm">{service.description}</p>
               <div className="mt-4 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
-                Saiba mais <ArrowRight size={14} />
+                {t(s.learnMore, lang)} <ArrowRight size={14} />
               </div>
             </motion.div>
           ))}
