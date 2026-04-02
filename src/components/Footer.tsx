@@ -28,12 +28,6 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="shrink-0 mt-4 md:-ml-16">
-            <h4 className="font-display text-cream font-semibold mb-2 text-sm">{t(s.contactLabel, lang)}</h4>
-            <a href="tel:+17712017117" className="text-gold hover:text-gold-light text-sm font-body transition-colors">
-              +1 771 201 7117
-            </a>
-          </div>
         </div>
 
         <div className="border-t border-cream/10 mt-8 pt-5 flex flex-col md:flex-row justify-between items-center gap-4">
