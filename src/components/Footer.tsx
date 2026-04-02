@@ -1,4 +1,4 @@
-import ebgreenLogo from "@/assets/ebgreen-logo.svg";
+import ebgreenLogo from "@/assets/ebgreen-logo-negative.svg";
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-start gap-8 md:gap-12">
           {/* Brand / Logo */}
           <div className="shrink-0 flex flex-col items-center">
-            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-14 mb-2" />
+            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-[62px] mb-2" />
             <p className="text-gold font-display text-sm font-semibold tracking-wide">
               Respeito, Resposta e Resultados
             </p>
@@ -19,7 +19,8 @@ const Footer = () => {
             <p className="text-cream/50 text-xs font-body leading-relaxed">
               ebgreen Immigration is a registered trademark in the United States and other countries. Unauthorized use of the trademark is strictly prohibited.
               <br />
-              The information and services provided on this website are for informational purposes only. If you have any questions, please contact us at{" "}
+              The information and services provided on this website are for informational purposes only. If you have any questions, please contact us at
+              <br />
               <a href="mailto:info@ebgreenusa.com" className="text-gold hover:underline">info@ebgreenusa.com</a>
             </p>
           </div>
