@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Send, MessageCircle, Upload, Phone, Globe } from "lucide-react";
+import { Mail, Send, MessageCircle, Upload, Globe } from "lucide-react";
 import PhoneCodeSelector from "./PhoneCodeSelector";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -52,7 +52,7 @@ const ContactSection = () => {
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -68,7 +68,6 @@ const ContactSection = () => {
 
             <div className="bg-card rounded-b-2xl p-6 border border-border/30 space-y-5">
               {[
-                { icon: Phone, label: "CELULAR", value: "+1 (772) 200-7117", href: "tel:+17722007117" },
                 { icon: MessageCircle, label: "WHATSAPP", value: "+1 (772) 200-7117", href: "https://wa.me/17722007117" },
                 { icon: Mail, label: "E-MAIL", value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
                 { icon: Globe, label: "REDES", value: "ebgreenusa.com", href: "https://ebgreenusa.com" },
