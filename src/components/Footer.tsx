@@ -14,7 +14,7 @@ const Footer = () => {
           </div>
 
           {/* Disclaimer */}
-          <div className="mt-4 md:ml-8">
+          <div className="mt-4 md:ml-16">
             <h4 className="font-display text-cream font-semibold mb-1 text-sm">Disclaimer:</h4>
             <p className="text-cream/50 text-xs font-body leading-relaxed">
               ebgreen Immigration is a registered trademark in the United States and other countries. Unauthorized use of the trademark is strictly prohibited.
