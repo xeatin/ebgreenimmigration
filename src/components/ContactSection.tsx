@@ -74,12 +74,12 @@ const ContactSection = () => {
               </a>
             ))}
 
-            <div className="bg-primary rounded-xl p-6 mt-4">
-              <p className="text-gold font-display text-lg font-semibold">{t(s.freeConsultation, lang)}</p>
-              <ul className="mt-3 space-y-2">
+            <div className="bg-primary rounded-2xl p-6 mt-4 border border-border/30">
+              <p className="text-gold font-display text-base font-bold">{t(s.freeConsultation, lang)}</p>
+              <ul className="mt-4 space-y-3">
                 {s.freeConsultationBullets.map((bullet, i) => (
-                  <li key={i} className="flex items-start gap-2 text-primary-foreground/80 text-sm font-body">
-                    <span className="text-gold mt-0.5">●</span>
+                  <li key={i} className="flex items-start gap-2.5 text-primary-foreground/80 text-sm font-body leading-snug">
+                    <span className="text-gold mt-1 text-xs">●</span>
                     <span>{t(bullet, lang)}</span>
                   </li>
                 ))}
