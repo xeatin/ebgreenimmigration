@@ -71,6 +71,7 @@ const ContactSection = () => {
                 { icon: MessageCircle, label: "WHATSAPP", value: "+1 (772) 200-7117", href: "https://wa.me/17722007117" },
                 { icon: Mail, label: "E-MAIL", value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
                 { icon: Globe, label: "REDES", value: "ebgreenusa.com", href: "https://ebgreenusa.com" },
+                { icon: Instagram, label: "INSTAGRAM", value: "@ebgreenusa", href: "https://instagram.com/ebgreenusa" },
               ].map((item) => (
                 <a key={item.label} href={item.href} className="flex items-center gap-3 group">
                   <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
