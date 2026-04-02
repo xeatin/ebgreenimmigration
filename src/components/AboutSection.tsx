@@ -29,8 +29,7 @@ const AboutSection = () => {
                   <ShieldCheck className="text-gold" size={20} />
                 </div>
                 <div>
-                  <p className="font-display text-xl font-bold text-foreground leading-none">29+</p>
-                  <p className="text-muted-foreground text-sm font-body">Anos de Mercado</p>
+                  <p className="font-display text-base font-bold text-gold leading-none">EUA · Brasil · Europa</p>
                 </div>
               </div>
               <div className="w-full h-px bg-border my-2" />
