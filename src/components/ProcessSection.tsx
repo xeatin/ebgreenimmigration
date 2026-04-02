@@ -1,15 +1,17 @@
 import { motion } from "framer-motion";
-
-const steps = [
-  { num: "01", title: "Avaliação de Perfil", desc: "Análise completa da sua elegibilidade e melhor estratégia migratória." },
-  { num: "02", title: "Planejamento Estratégico", desc: "Definição do caminho ideal com cronograma e expectativas claras." },
-  { num: "03", title: "Documentação", desc: "Preparação e revisão criteriosa de toda documentação necessária." },
-  { num: "04", title: "Petição & Apresentação", desc: "Submissão oficial ao USCIS com acompanhamento dedicado." },
-  { num: "05", title: "Entrevista Consular", desc: "Preparação completa para entrevista, incluindo simulações." },
-  { num: "06", title: "Aprovação", desc: "Visto aprovado! Suporte contínuo na sua chegada aos EUA." },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations, t } from "@/i18n/translations";
 
 const ProcessSection = () => {
+  const { lang } = useLanguage();
+  const s = translations.process;
+
+  const steps = s.steps.map((step, i) => ({
+    num: String(i + 1).padStart(2, "0"),
+    title: t(step.title, lang),
+    desc: t(step.desc, lang),
+  }));
+
   return (
     <section id="processo" className="py-24 bg-secondary">
       <div className="container mx-auto px-6">
@@ -19,12 +21,12 @@ const ProcessSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">Processo</p>
+          <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">{t(s.sectionLabel, lang)}</p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
-            Como funciona
+            {t(s.sectionTitle, lang)}
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg font-body">
-            Um processo claro, transparente e com acompanhamento em cada etapa.
+            {t(s.sectionSubtitle, lang)}
           </p>
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
@@ -63,7 +65,7 @@ const ProcessSection = () => {
             href="#contato"
             className="inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity"
           >
-            Comece Sua Jornada Agora
+            {t(s.cta, lang)}
           </a>
         </motion.div>
       </div>

@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Shield } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations, t } from "@/i18n/translations";
 
 const HeroSection = () => {
+  const { lang } = useLanguage();
+  const s = translations.hero;
+
   return (
     <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
       <div className="absolute inset-0">
@@ -19,7 +24,7 @@ const HeroSection = () => {
             className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm border border-cream/20 rounded-full px-4 py-2 mb-8"
           >
             <Shield size={14} className="text-gold" />
-            <span className="text-cream/90 font-body text-sm">+92% de Taxa de Aprovação nos Processos</span>
+            <span className="text-cream/90 font-body text-sm">{t(s.badge, lang)}</span>
           </motion.div>
 
           <motion.h1
@@ -28,9 +33,9 @@ const HeroSection = () => {
             transition={{ delay: 0.4 }}
             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-cream leading-[1.1]"
           >
-            Sua jornada para os{" "}
-            <span className="text-gradient-gold">EUA</span>{" "}
-            começa com quem entende
+            {t(s.title1, lang)}{" "}
+            <span className="text-gradient-gold">{t(s.titleHighlight, lang)}</span>{" "}
+            {t(s.title2, lang)}
           </motion.h1>
 
           <motion.p
@@ -39,8 +44,7 @@ const HeroSection = () => {
             transition={{ delay: 0.6 }}
             className="mt-6 text-cream/70 text-lg md:text-xl max-w-xl font-body leading-relaxed"
           >
-            Assessoria completa em Green Cards, Vistos de Trabalho, Investimento e 
-            EB-2 NIW. Mais de 500 famílias realizaram o sonho americano com a Ebgreen.
+            {t(s.subtitle, lang)}
           </motion.p>
 
           <motion.div
@@ -53,19 +57,18 @@ const HeroSection = () => {
               href="#contato"
               className="inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity"
             >
-              Iniciar Minha Jornada
+              {t(s.ctaPrimary, lang)}
               <ArrowRight size={20} />
             </a>
             <a
               href="#servicos"
               className="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream px-8 py-4 rounded-md font-semibold font-body hover:border-gold hover:text-gold transition-colors"
             >
-              Explorar Serviços
+              {t(s.ctaSecondary, lang)}
             </a>
           </motion.div>
         </div>
 
-        {/* Stats bar */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -73,10 +76,10 @@ const HeroSection = () => {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-cream/10 bg-cream/5 backdrop-blur-sm rounded-xl border border-cream/10 p-6 md:p-0"
         >
           {[
-            { number: "500+", label: "Famílias Beneficiadas" },
-            { number: "+92%", label: "Taxa de Sucesso" },
-            { number: "15+", label: "Anos de Experiência" },
-            { number: "2", label: "Escritórios nos EUA" },
+            { number: "500+", label: t(s.stats.families, lang) },
+            { number: "+92%", label: t(s.stats.success, lang) },
+            { number: "15+", label: t(s.stats.experience, lang) },
+            { number: "2", label: t(s.stats.offices, lang) },
           ].map((stat) => (
             <div key={stat.label} className="text-center md:py-6">
               <p className="font-display text-3xl md:text-4xl font-bold text-gold">{stat.number}</p>

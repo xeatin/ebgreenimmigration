@@ -2,19 +2,23 @@ import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ebgreenLogo from "@/assets/ebgreen-logo-negative.svg";
-
-const navLinks = [
-  { label: "Início", href: "#hero" },
-  { label: "Diferenciais", href: "#diferenciais" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Como Funciona", href: "#processo" },
-  { label: "Sobre", href: "#sobre" },
-  { label: "Contato", href: "#contato" },
-];
+import LanguageSelector from "@/components/LanguageSelector";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations, t } from "@/i18n/translations";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { lang } = useLanguage();
+
+  const navLinks = [
+    { label: t(translations.nav.home, lang), href: "#hero" },
+    { label: t(translations.nav.differentials, lang), href: "#diferenciais" },
+    { label: t(translations.nav.services, lang), href: "#servicos" },
+    { label: t(translations.nav.process, lang), href: "#processo" },
+    { label: t(translations.nav.about, lang), href: "#sobre" },
+    { label: t(translations.nav.contact, lang), href: "#contato" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -24,17 +28,16 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Top bar */}
       <div className="bg-green-deep text-cream/80 text-xs py-2 hidden md:block">
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <span>Escritório nos EUA — Orlando, FL | Miami, FL</span>
+          <span>{t(translations.nav.topBar, lang)}</span>
           <div className="flex items-center gap-4">
-            <a href="tel:+15551234567" className="flex items-center gap-1 hover:text-gold transition-colors">
+            <a href="tel:+17712017117" className="flex items-center gap-1 hover:text-gold transition-colors">
               <Phone size={12} />
-              +1 (555) 123-4567
+              +1 (771) 201-7117
             </a>
             <span className="text-cream/30">|</span>
-            <a href="https://wa.me/15551234567" className="hover:text-gold transition-colors">WhatsApp</a>
+            <a href="https://wa.me/17712017117" className="hover:text-gold transition-colors">WhatsApp</a>
           </div>
         </div>
       </div>
@@ -57,17 +60,21 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
+            <LanguageSelector />
             <a
               href="#contato"
               className="bg-gradient-gold text-green-deep px-6 py-2.5 rounded-md text-sm font-bold font-body hover:opacity-90 transition-opacity ml-2"
             >
-              Consulta Gratuita
+              {t(translations.nav.cta, lang)}
             </a>
           </div>
 
-          <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden text-cream">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center gap-3 lg:hidden">
+            <LanguageSelector />
+            <button onClick={() => setIsOpen(!isOpen)} className="text-cream">
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>
@@ -94,7 +101,7 @@ const Navbar = () => {
                   onClick={() => setIsOpen(false)}
                   className="bg-gradient-gold text-green-deep px-6 py-2.5 rounded-md text-sm font-bold font-body text-center"
                 >
-                  Consulta Gratuita
+                  {t(translations.nav.cta, lang)}
                 </a>
               </div>
             </motion.div>
