@@ -36,10 +36,11 @@ export const translations = {
     ctaPrimary: { pt: "Iniciar Minha Jornada", en: "Start My Journey", es: "Iniciar Mi Camino" },
     ctaSecondary: { pt: "Explorar Serviços", en: "Explore Services", es: "Explorar Servicios" },
     stats: {
-      families: { pt: "Famílias Beneficiadas", en: "Families Served", es: "Familias Beneficiadas" },
-      success: { pt: "Taxa de Sucesso", en: "Success Rate", es: "Tasa de Éxito" },
-      experience: { pt: "Anos de Experiência", en: "Years of Experience", es: "Años de Experiencia" },
-      offices: { pt: "Escritórios nos EUA", en: "Offices in the USA", es: "Oficinas en EE.UU." },
+      families: { pt: "Foco em Imigração", en: "Immigration Focus", es: "Enfoque en Inmigración" },
+      success: { pt: "Taxa de Aprovação", en: "Approval Rate", es: "Tasa de Aprobación" },
+      experience: { pt: "Experiência em imigração", en: "Immigration experience", es: "Experiencia en inmigración" },
+      offices: { pt: "Presença Internacional", en: "International Presence", es: "Presencia Internacional" },
+      officesSubtitle: { pt: "Brasil, Estados Unidos e Europa", en: "Brazil, United States and Europe", es: "Brasil, Estados Unidos y Europa" },
     },
   },
 

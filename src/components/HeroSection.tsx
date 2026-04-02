@@ -79,14 +79,15 @@ const HeroSection = () => {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-cream/10 bg-cream/5 backdrop-blur-sm rounded-xl border border-cream/10 p-6 md:p-0"
         >
           {[
-            { number: "500+", label: t(s.stats.families, lang) },
+            { number: "100%", label: t(s.stats.families, lang) },
             { number: "+92%", label: t(s.stats.success, lang) },
-            { number: "15+", label: t(s.stats.experience, lang) },
-            { number: "2", label: t(s.stats.offices, lang) },
+            { number: "10+", label: t(s.stats.experience, lang) },
+            { number: "3", label: t(s.stats.offices, lang), subtitle: t(s.stats.officesSubtitle, lang) },
           ].map((stat) => (
             <div key={stat.label} className="text-center md:py-6">
               <p className="font-display text-3xl md:text-4xl font-bold text-gold">{stat.number}</p>
               <p className="text-cream/50 text-sm mt-1 font-body">{stat.label}</p>
+              {stat.subtitle && <p className="text-cream/40 text-xs mt-0.5 font-body">{stat.subtitle}</p>}
             </div>
           ))}
         </motion.div>
