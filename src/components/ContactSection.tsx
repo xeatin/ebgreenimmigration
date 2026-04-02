@@ -5,12 +5,8 @@ import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 
-const countries = [
-  "Brasil", "Portugal", "Angola", "Moçambique", "Cabo Verde", "Argentina", "Colômbia",
-  "México", "Chile", "Peru", "Venezuela", "Equador", "Uruguai", "Paraguai", "Bolívia",
-  "Estados Unidos", "Canadá", "Alemanha", "França", "Espanha", "Itália", "Reino Unido",
-  "Japão", "China", "Índia", "Austrália", "Outro"
-];
+
+
 
 
 const ContactSection = () => {
