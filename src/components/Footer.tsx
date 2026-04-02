@@ -19,7 +19,8 @@ const Footer = () => {
             <p className="text-cream/50 text-xs font-body leading-relaxed">
               ebgreen Immigration is a registered trademark in the United States and other countries. Unauthorized use of the trademark is strictly prohibited.
               <br />
-              The information and services provided on this website are for informational purposes only. If you have any questions, please contact us at{" "}
+              The information and services provided on this website are for informational purposes only. If you have any questions, please contact us at
+              <br />
               <a href="mailto:info@ebgreenusa.com" className="text-gold hover:underline">info@ebgreenusa.com</a>
             </p>
           </div>
