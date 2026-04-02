@@ -93,7 +93,7 @@ export const translations = {
       en: "From initial evaluation to final approval, we provide support at every stage.",
       es: "Desde la evaluación inicial hasta la aprobación final, brindamos acompañamiento en todas las etapas.",
     },
-    mostPopular: { pt: "MAIS PROCURADO", en: "MOST POPULAR", es: "MÁS SOLICITADO" },
+    mostPopular: { pt: "MAIS PROCURADOS", en: "MOST POPULAR", es: "MÁS SOLICITADOS" },
     learnMore: { pt: "Saiba mais", en: "Learn more", es: "Saber más" },
     items: [
       {

@@ -54,7 +54,7 @@ const ServicesSection = () => {
             <Star size={12} className="fill-green-deep" />
             {t(s.mostPopular, lang)}
           </div>
-          <div className="grid md:grid-cols-2 gap-6 border border-gold/30 rounded-xl p-4 pt-6 bg-gold/5">
+          <div className="grid md:grid-cols-2 gap-6 border border-gold/30 rounded-xl p-3 pt-5 bg-gold/5">
             {highlightedServices.map((service, i) => (
               <motion.div
                 key={i}
