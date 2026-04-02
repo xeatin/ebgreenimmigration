@@ -39,7 +39,7 @@ export const translations = {
       families: { pt: "Foco em Imigração", en: "Immigration Focus", es: "Enfoque en Inmigración" },
       success: { pt: "Taxa de Aprovação", en: "Approval Rate", es: "Tasa de Aprobación" },
       experience: { pt: "Experiência em imigração", en: "Immigration experience", es: "Experiencia en inmigración" },
-      offices: { pt: "Presença nos EUA e Brasil", en: "Presence in the USA and Brazil", es: "Presencia en EE.UU. y Brasil" },
+      offices: { pt: "Presença nos EUA, Brasil e Europa", en: "Presence in the USA, Brazil and Europe", es: "Presencia en EE.UU., Brasil y Europa" },
       officesSubtitle: { pt: "", en: "", es: "" },
     },
   },
@@ -236,7 +236,7 @@ export const translations = {
     ],
     badges: [
       { pt: "Atendimento bilíngue (PT, EN, ES)", en: "Bilingual support (PT, EN, ES)", es: "Atención bilingüe (PT, EN, ES)" },
-      { pt: "Presença nos EUA e Brasil", en: "Presence in USA and Brazil", es: "Presencia en EE.UU. y Brasil" },
+      { pt: "Presença nos EUA, Brasil e Europa", en: "Presence in USA, Brazil and Europe", es: "Presencia en EE.UU., Brasil y Europa" },
       { pt: "Compromisso com resultados", en: "Commitment to results", es: "Compromiso con resultados" },
       { pt: "Equipe multidisciplinar dedicada", en: "Dedicated multidisciplinary team", es: "Equipo multidisciplinario dedicado" },
     ],
