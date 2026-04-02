@@ -64,11 +64,11 @@ const ContactSection = () => {
               { icon: Mail, label: t(s.email, lang), value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
             ].map((item) => (
               <a key={item.label} href={item.href} className="flex items-start gap-4 group">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
-                  <item.icon className="text-primary group-hover:text-primary-foreground transition-colors" size={20} />
+                <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
+                  <item.icon className="text-gold group-hover:text-foreground transition-colors" size={20} />
                 </div>
                 <div>
-                  <p className="text-sm text-gold font-body font-semibold tracking-widest uppercase">{item.label}</p>
+                  <p className="text-sm text-muted-foreground font-body font-semibold tracking-widest uppercase">{item.label}</p>
                   <p className="text-foreground font-semibold font-body group-hover:text-gold transition-colors">{item.value}</p>
                 </div>
               </a>
