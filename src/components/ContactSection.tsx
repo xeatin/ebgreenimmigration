@@ -196,7 +196,7 @@ const ContactSection = () => {
 
             <div>
               <label className={labelClass}>{t(s.message, lang)}</label>
-              <textarea rows={4} value={formData.message}
+              <textarea rows={2} value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className={`${inputClass} resize-none`}
                 placeholder={t(s.messagePlaceholder, lang)} />
