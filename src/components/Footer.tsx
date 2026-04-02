@@ -26,7 +26,7 @@ const Footer = () => {
           </div>
 
           {/* Contato */}
-          <div className="shrink-0 mt-4">
+          <div className="shrink-0 mt-4 md:-ml-16">
             <h4 className="font-display text-cream font-semibold mb-2 text-sm">Contato:</h4>
             <a href="tel:+17712017117" className="text-gold hover:text-gold-light text-sm font-body transition-colors">
               +1 771 201 7117
