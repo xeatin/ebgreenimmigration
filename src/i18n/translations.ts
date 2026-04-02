@@ -58,11 +58,11 @@ export const translations = {
         },
       },
       {
-        title: { pt: "Famílias Beneficiadas", en: "Families Served", es: "Familias Beneficiadas" },
+        title: { pt: "Anos de Experiência Combinada", en: "Years of Combined Experience", es: "Años de Experiencia Combinada" },
         description: {
-          pt: "Centenas de famílias já conquistaram seu Green Card e realizaram o sonho de viver nos EUA.",
-          en: "Hundreds of families have already obtained their Green Card and fulfilled their dream of living in the USA.",
-          es: "Cientos de familias ya obtuvieron su Green Card y cumplieron el sueño de vivir en EE.UU.",
+          pt: "Nossa equipe reúne especialistas com ampla atuação em imigração americana e histórico de aprovações.",
+          en: "Our team brings together specialists with extensive experience in American immigration and a proven track record of approvals.",
+          es: "Nuestro equipo reúne especialistas con amplia trayectoria en inmigración americana e historial de aprobaciones.",
         },
       },
       {
