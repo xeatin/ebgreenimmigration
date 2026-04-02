@@ -233,6 +233,7 @@ export const translations = {
       { pt: "Análise estratégica individual de cada caso", en: "Individual strategic analysis of each case", es: "Análisis estratégico individual de cada caso" },
       { pt: "Acompanhamento completo do início à aprovação", en: "Complete follow-up from start to approval", es: "Acompañamiento completo desde el inicio hasta la aprobación" },
       { pt: "Transparência em todas as etapas do processo", en: "Transparency at every stage of the process", es: "Transparencia en todas las etapas del proceso" },
+      { pt: "Compromisso com resultados", en: "Commitment to results", es: "Compromiso con resultados" },
     ],
     badges: [
       { pt: "Atendimento bilíngue (PT, EN, ES)", en: "Bilingual support (PT, EN, ES)", es: "Atención bilingüe (PT, EN, ES)" },
