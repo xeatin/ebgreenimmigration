@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Send, Upload, Instagram, Phone, Clock } from "lucide-react";
+import { Mail, Send, Upload, Instagram, Phone, Clock, MapPin } from "lucide-react";
 import PhoneCodeSelector from "./PhoneCodeSelector";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -75,6 +75,7 @@ const ContactSection = () => {
                   { icon: Phone, label: "WHATSAPP", value: "+1 (772) 200-7117", href: "https://wa.me/17722007117" },
                   { icon: Mail, label: "E-MAIL", value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
                   { icon: Instagram, label: "INSTAGRAM", value: "@ebgreenusa", href: "https://instagram.com/ebgreenusa" },
+                  { icon: MapPin, label: t(s.officesLabel, lang), value: "EUA • Brasil • Europa", href: undefined },
                   { icon: Clock, label: t(s.hoursLabel, lang), value: t(s.hoursValue, lang), href: undefined },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-4">
