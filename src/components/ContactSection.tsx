@@ -61,8 +61,9 @@ const ContactSection = () => {
           >
             <div className="space-y-8">
               <div>
-                <h3 className="font-display text-2xl font-bold text-foreground">
-                  {t(s.sidebarTitle, lang)}
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+                  {t(s.sidebarTitle1, lang)}{" "}
+                  <span className="text-gold italic">{t(s.sidebarTitleHighlight, lang)}</span>
                 </h3>
                 <p className="mt-3 text-muted-foreground text-sm font-body leading-relaxed">
                   {t(s.sidebarSubtitle, lang)}
