@@ -96,7 +96,7 @@ const PhoneCodeSelector = ({ value, onChange }: PhoneCodeSelectorProps) => {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 w-[110px] px-2.5 py-3 rounded-lg border border-input bg-background text-foreground font-body text-sm cursor-pointer hover:bg-accent transition-colors"
+        className="flex items-center gap-1.5 px-2.5 py-3 bg-transparent text-foreground font-body text-sm cursor-pointer hover:bg-accent/50 transition-colors rounded-l-lg"
       >
         <img
           src={getFlagUrl(currentSelected.iso)}
