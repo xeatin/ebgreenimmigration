@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="bg-green-deep py-10">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-start gap-8 md:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-8 md:gap-4">
           <div className="shrink-0 flex flex-col items-center">
             <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-[68px] mb-2" />
             <p className="text-gold font-display text-sm font-semibold tracking-wide">
@@ -28,12 +28,6 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="shrink-0 mt-4 md:-ml-16">
-            <h4 className="font-display text-cream font-semibold mb-2 text-sm">{t(s.contactLabel, lang)}</h4>
-            <a href="tel:+17712017117" className="text-gold hover:text-gold-light text-sm font-body transition-colors">
-              +1 771 201 7117
-            </a>
-          </div>
         </div>
 
         <div className="border-t border-cream/10 mt-8 pt-5 flex flex-col md:flex-row justify-between items-center gap-4">
