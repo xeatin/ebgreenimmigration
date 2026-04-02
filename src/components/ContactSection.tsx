@@ -48,7 +48,7 @@ const ContactSection = () => {
             {t(s.sectionTitle2, lang)}{" "}
             <span className="text-gold">{t(s.sectionTitleHighlight, lang)}</span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg font-body">{t(s.sectionSubtitle, lang)}</p>
+          <p className="mt-4 text-muted-foreground mx-auto text-lg font-body">{t(s.sectionSubtitle, lang)}</p>
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
