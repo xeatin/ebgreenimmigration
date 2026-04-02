@@ -222,6 +222,7 @@ const ContactSection = () => {
                   <option value="r1">R-1</option>
                   <option value="family-based">Family-Based</option>
                   <option value="aos">AOS</option>
+                  <option value="outros">Outros</option>
                 </select>
               </div>
               <div>
