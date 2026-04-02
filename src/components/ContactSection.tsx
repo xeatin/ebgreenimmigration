@@ -79,7 +79,7 @@ const ContactSection = () => {
                   { icon: Clock, label: t(s.hoursLabel, lang), value: t(s.hoursValue, lang), href: undefined },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-4">
-                    <div className="w-11 h-11 bg-gold/10 rounded-full flex items-center justify-center shrink-0">
+                    <div className="w-11 h-11 rounded-xl border border-gold/40 bg-gold/5 flex items-center justify-center shrink-0">
                       <item.icon className="text-gold" size={18} />
                     </div>
                     <div>
