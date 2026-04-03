@@ -287,7 +287,7 @@ export const translations = {
     },
     hoursLabel: { pt: "ATENDIMENTO", en: "OFFICE HOURS", es: "HORARIO" },
     officesLabel: { pt: "ESCRITÓRIOS", en: "OFFICES", es: "OFICINAS" },
-    hoursValue: { pt: "Seg-Sex: 9h - 18h (EST)", en: "Mon-Fri: 9am - 6pm (EST)", es: "Lun-Vie: 9h - 18h (EST)" },
+    hoursValue: { pt: "Segunda – Sexta: 9:00 AM – 6:00 PM (Eastern Time)", en: "Monday – Friday: 9:00 AM – 6:00 PM (Eastern Time)", es: "Lunes – Viernes: 9:00 AM – 6:00 PM (Eastern Time)" },
     freeConsultationBullets: [
       { pt: "Avaliação sem compromisso do seu perfil", en: "No-obligation profile assessment", es: "Evaluación sin compromiso de su perfil" },
       { pt: "Identificamos a melhor rota para o seu caso", en: "We identify the best route for your case", es: "Identificamos la mejor ruta para su caso" },
