@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import ebgreenLogo from "@/assets/ebgreen-logo-negative.svg";
+import ebgreenLogoNegative from "@/assets/ebgreen-logo-negative.svg";
+import ebgreenLogo from "@/assets/ebgreen-logo.svg";
 import LanguageSelector from "@/components/LanguageSelector";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
