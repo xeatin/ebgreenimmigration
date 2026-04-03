@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import ebgreenLogo from "@/assets/ebgreen-logo-negative.svg";
+import ebgreenLogoNegative from "@/assets/ebgreen-logo-negative.svg";
+import ebgreenLogo from "@/assets/ebgreen-logo.svg";
 import LanguageSelector from "@/components/LanguageSelector";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
@@ -61,7 +62,7 @@ const Navbar = () => {
       }`}>
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#hero" className="flex items-center">
-            <img src={ebgreenLogo} alt="Ebgreen Immigration" className={`h-[75px] transition-all duration-300 ${overLight && scrolled ? "brightness-0" : ""}`} />
+            <img src={overLight && scrolled ? ebgreenLogo : ebgreenLogoNegative} alt="Ebgreen Immigration" className="h-[75px] transition-all duration-300" />
           </a>
 
           <div className="hidden lg:flex items-center gap-6">
@@ -78,7 +79,7 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <LanguageSelector />
+            <LanguageSelector darkMode={overLight && scrolled} />
             <a
               href="#contato"
               className="bg-gradient-gold text-green-deep px-6 py-2.5 rounded-md text-sm font-bold font-body hover:opacity-90 transition-opacity ml-2"
@@ -88,7 +89,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-3 lg:hidden">
-            <LanguageSelector />
+            <LanguageSelector darkMode={overLight && scrolled} />
             <button onClick={() => setIsOpen(!isOpen)} className="text-cream">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
