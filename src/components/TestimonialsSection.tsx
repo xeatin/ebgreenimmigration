@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ChevronUp, ChevronDown } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -82,6 +82,7 @@ const testimonials = [
 const TestimonialsSection = () => {
   const { lang } = useLanguage();
   const s = translations.testimonials;
+  const wheelLockRef = useRef(false);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     axis: "y",
@@ -117,6 +118,30 @@ const TestimonialsSection = () => {
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
+  const handleWheel = useCallback(
+    (event: React.WheelEvent<HTMLDivElement>) => {
+      if (!emblaApi || wheelLockRef.current || Math.abs(event.deltaY) < 12) return;
+
+      if ((event.deltaY > 0 && !emblaApi.canScrollNext()) || (event.deltaY < 0 && !emblaApi.canScrollPrev())) {
+        return;
+      }
+
+      event.preventDefault();
+      wheelLockRef.current = true;
+
+      if (event.deltaY > 0) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollPrev();
+      }
+
+      window.setTimeout(() => {
+        wheelLockRef.current = false;
+      }, 450);
+    },
+    [emblaApi]
+  );
+
   return (
     <section id="depoimentos" className="py-24 bg-background">
       <div className="container mx-auto px-6">
@@ -150,7 +175,11 @@ const TestimonialsSection = () => {
 
           {/* Right column – Vertical Embla carousel */}
           <div className="relative">
-            <div className="overflow-hidden h-[580px] lg:h-[720px]" ref={emblaRef}>
+            <div
+              className="overflow-hidden h-[580px] lg:h-[720px] touch-pan-y"
+              ref={emblaRef}
+              onWheel={handleWheel}
+            >
               <div className="flex flex-col gap-4">
                 {testimonials.map((item, i) => (
                   <motion.div
