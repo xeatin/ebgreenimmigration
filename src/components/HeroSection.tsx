@@ -82,7 +82,7 @@ const HeroSection = () => {
             { number: "100%", label: t(s.stats.families, lang) },
             { number: "89+", label: t(s.stats.success, lang) },
             { number: "10+", label: t(s.stats.experience, lang) },
-            { number: "3", label: t(s.stats.offices, lang), subtitle: t(s.stats.officesSubtitle, lang) },
+            { number: "", label: t(s.stats.offices, lang), subtitle: t(s.stats.officesSubtitle, lang) },
           ].map((stat) => (
             <div key={stat.label} className="text-center md:py-6 flex flex-col items-center justify-start">
               <p className="font-display text-3xl md:text-4xl font-bold text-gold">{stat.number}</p>
