@@ -256,9 +256,9 @@ export const translations = {
     title1: { pt: "Histórias de", en: "Stories from", es: "Historias de" },
     titleHighlight: { pt: "quem realizou o sonho", en: "those who achieved the dream", es: "quienes lograron el sueño" },
     subtitle: {
-      pt: "Milhares de famílias já conquistaram seu Green Card e uma nova vida no exterior. Conheça algumas dessas histórias.",
-      en: "Thousands of families have already obtained their Green Card and a new life abroad. Discover some of these stories.",
-      es: "Miles de familias ya obtuvieron su Green Card y una nueva vida en el exterior. Conoce algunas de estas historias.",
+      pt: "Conheça histórias reais de profissionais e famílias que conquistaram o Green Card e deram início a uma nova fase de vida no exterior.",
+      en: "Discover real stories of professionals and families who obtained their Green Card and started a new chapter of life abroad.",
+      es: "Conozca historias reales de profesionales y familias que obtuvieron su Green Card e iniciaron una nueva fase de vida en el exterior.",
     },
     familiesCount: { pt: "Sua família pode ser a próxima.", en: "Your family could be next.", es: "Su familia puede ser la próxima." },
     familiesSubtitle: { pt: "Acompanhamento completo do início ao Green Card.", en: "Complete support from start to Green Card.", es: "Acompañamiento completo desde el inicio hasta el Green Card." },
