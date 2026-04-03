@@ -53,11 +53,15 @@ const Navbar = () => {
     <>
 
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-green-deep/98 backdrop-blur-md shadow-xl" : "bg-transparent"
+        scrolled
+          ? overLight
+            ? "bg-white/95 backdrop-blur-md shadow-xl"
+            : "bg-green-deep/98 backdrop-blur-md shadow-xl"
+          : "bg-transparent"
       }`}>
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#hero" className="flex items-center">
-            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-[75px]" />
+            <img src={ebgreenLogo} alt="Ebgreen Immigration" className={`h-[75px] transition-all duration-300 ${overLight && scrolled ? "brightness-0" : ""}`} />
           </a>
 
           <div className="hidden lg:flex items-center gap-6">
@@ -65,7 +69,11 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-cream/70 hover:text-gold transition-colors text-sm font-medium font-body"
+                className={`transition-colors text-sm font-medium font-body ${
+                  overLight && scrolled
+                    ? "text-green-deep/80 hover:text-gold"
+                    : "text-cream/70 hover:text-gold"
+                }`}
               >
                 {link.label}
               </a>
