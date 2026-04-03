@@ -261,10 +261,10 @@ const ContactSection = () => {
               <span className="text-sm text-muted-foreground font-body">{t(s.privacy, lang)}</span>
             </label>
 
-            <button type="submit"
-              className="w-full bg-gradient-gold text-green-deep px-6 py-4 rounded-lg font-bold text-lg font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2">
-              {t(s.submit, lang)}
-              <Send size={18} />
+            <button type="submit" disabled={isSubmitting}
+              className="w-full bg-gradient-gold text-green-deep px-6 py-4 rounded-lg font-bold text-lg font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 disabled:opacity-60">
+              {isSubmitting ? "Enviando..." : t(s.submit, lang)}
+              {!isSubmitting && <Send size={18} />}
             </button>
           </motion.form>
         </div>
