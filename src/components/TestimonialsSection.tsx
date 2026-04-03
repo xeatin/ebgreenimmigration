@@ -78,7 +78,16 @@ const testimonials = [
   },
 ];
 
-const TestimonialsSection = () => {
+const getAvatarColor = (category: string): string => {
+  if (category.includes("EB-1") || category.includes("EB-2")) return "bg-[#C8962D]";
+  if (category.includes("H-1B")) return "bg-[#2D3A5C]";
+  if (category.includes("EB-5")) return "bg-[#1B4D3E]";
+  if (category.includes("F-1") || category.includes("F-2")) return "bg-[#5B2C6F]";
+  if (category.includes("R-1")) return "bg-[#8B4513]";
+  return "bg-accent";
+};
+
+
   const { lang } = useLanguage();
   const s = translations.testimonials;
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
