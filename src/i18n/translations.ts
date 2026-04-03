@@ -221,6 +221,12 @@ export const translations = {
     sectionLabel: { pt: "Sobre a Ebgreen", en: "About Ebgreen", es: "Sobre Ebgreen" },
     title1: { pt: "Excelência e inovação em", en: "Excellence and innovation in", es: "Excelencia e innovación en" },
     titleHighlight: { pt: "mobilidade global", en: "global mobility", es: "movilidad global" },
+    cardTitle: { pt: "EUA · Brasil · Europa", en: "USA · Brazil · Europe", es: "EE.UU. · Brasil · Europa" },
+    cardDescription: {
+      pt: "Referência mundial em mobilidade global e direito imigratório.",
+      en: "World reference in global mobility and immigration law.",
+      es: "Referencia mundial en movilidad global y derecho migratorio.",
+    },
     floatingCard: {
       pt: "Atendimento global, estratégia individualizada.",
       en: "Global service, individualized strategy.",
