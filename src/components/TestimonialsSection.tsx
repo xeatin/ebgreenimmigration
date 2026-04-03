@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ChevronUp, ChevronDown } from "lucide-react";
-import useEmblaCarousel from "embla-carousel-react";
 import familyImage from "@/assets/family-flag.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
@@ -82,71 +81,68 @@ const testimonials = [
 const TestimonialsSection = () => {
   const { lang } = useLanguage();
   const s = translations.testimonials;
-  const wheelLockRef = useRef(false);
-
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    axis: "y",
-    align: "start",
-    loop: false,
-    skipSnaps: false,
-    dragFree: false,
-    containScroll: "trimSnaps",
-  });
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setCanScrollPrev(emblaApi.canScrollPrev());
-    setCanScrollNext(emblaApi.canScrollNext());
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
+  const updateScrollState = useCallback(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const maxScrollTop = Math.max(container.scrollHeight - container.clientHeight, 0);
+    setCanScrollPrev(container.scrollTop > 4);
+    setCanScrollNext(container.scrollTop < maxScrollTop - 4);
+
+    let closestIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    cardRefs.current.forEach((card, index) => {
+      if (!card) return;
+      const distance = Math.abs(card.offsetTop - container.scrollTop);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    setSelectedIndex(closestIndex);
+  }, []);
 
   useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
+    updateScrollState();
+    window.addEventListener("resize", updateScrollState);
+
     return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
+      window.removeEventListener("resize", updateScrollState);
     };
-  }, [emblaApi, onSelect]);
+  }, [updateScrollState]);
 
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+  const scrollToIndex = useCallback((index: number) => {
+    const container = scrollContainerRef.current;
+    const card = cardRefs.current[index];
+    if (!container || !card) return;
 
-  const handleWheel = useCallback(
-    (event: React.WheelEvent<HTMLDivElement>) => {
-      if (!emblaApi || wheelLockRef.current || Math.abs(event.deltaY) < 12) return;
+    container.scrollTo({
+      top: card.offsetTop,
+      behavior: "smooth",
+    });
+  }, []);
 
-      if ((event.deltaY > 0 && !emblaApi.canScrollNext()) || (event.deltaY < 0 && !emblaApi.canScrollPrev())) {
-        return;
-      }
+  const scrollPrev = useCallback(() => {
+    scrollToIndex(Math.max(selectedIndex - 1, 0));
+  }, [scrollToIndex, selectedIndex]);
 
-      event.preventDefault();
-      wheelLockRef.current = true;
-
-      if (event.deltaY > 0) {
-        emblaApi.scrollNext();
-      } else {
-        emblaApi.scrollPrev();
-      }
-
-      window.setTimeout(() => {
-        wheelLockRef.current = false;
-      }, 450);
-    },
-    [emblaApi]
-  );
+  const scrollNext = useCallback(() => {
+    scrollToIndex(Math.min(selectedIndex + 1, testimonials.length - 1));
+  }, [scrollToIndex, selectedIndex]);
 
   return (
     <section id="depoimentos" className="py-24 bg-background">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left column – title + image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -173,22 +169,24 @@ const TestimonialsSection = () => {
             </div>
           </motion.div>
 
-          {/* Right column – Vertical Embla carousel */}
           <div className="relative">
             <div
-              className="overflow-hidden h-[580px] lg:h-[720px] touch-pan-y"
-              ref={emblaRef}
-              onWheel={handleWheel}
+              ref={scrollContainerRef}
+              onScroll={updateScrollState}
+              className="h-[580px] lg:h-[720px] overflow-y-auto pr-2 scroll-smooth"
             >
               <div className="flex flex-col gap-4">
                 {testimonials.map((item, i) => (
                   <motion.div
                     key={item.name}
+                    ref={(node) => {
+                      cardRefs.current[i] = node;
+                    }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.08 }}
-                    className="bg-card border border-border rounded-xl px-6 py-5 relative min-h-0 flex-[0_0_auto]"
+                    className="bg-card border border-border rounded-xl px-6 py-5 relative min-h-0"
                   >
                     <Quote size={28} className="absolute top-5 right-5 text-accent/25" />
                     <div className="flex gap-0.5 mb-3">
@@ -208,7 +206,6 @@ const TestimonialsSection = () => {
               </div>
             </div>
 
-            {/* Navigation arrows */}
             <div className="flex items-center justify-center gap-3 mt-5">
               <button
                 onClick={scrollPrev}
@@ -219,12 +216,11 @@ const TestimonialsSection = () => {
                 <ChevronUp size={18} />
               </button>
 
-              {/* Dot indicators */}
               <div className="flex gap-1.5">
                 {testimonials.map((_, i) => (
                   <button
                     key={i}
-                    onClick={() => emblaApi?.scrollTo(i)}
+                    onClick={() => scrollToIndex(i)}
                     className={`h-2 rounded-full transition-all duration-300 ${
                       i === selectedIndex
                         ? "bg-accent w-5"
