@@ -260,8 +260,8 @@ export const translations = {
       en: "Thousands of families have already obtained their Green Card and a new life abroad. Discover some of these stories.",
       es: "Miles de familias ya obtuvieron su Green Card y una nueva vida en el exterior. Conoce algunas de estas historias.",
     },
-    familiesCount: { pt: "17.000+ famílias beneficiadas", en: "17,000+ families served", es: "17.000+ familias beneficiadas" },
-    familiesSubtitle: { pt: "Transformando sonhos em realidade", en: "Turning dreams into reality", es: "Transformando sueños en realidad" },
+    familiesCount: { pt: "Sua família pode ser a próxima.", en: "Your family could be next.", es: "Su familia puede ser la próxima." },
+    familiesSubtitle: { pt: "Acompanhamento completo do início ao Green Card.", en: "Complete support from start to Green Card.", es: "Acompañamiento completo desde el inicio hasta el Green Card." },
   },
 
   // Contact
