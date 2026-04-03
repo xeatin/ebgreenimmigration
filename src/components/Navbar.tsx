@@ -79,7 +79,7 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <LanguageSelector />
+            <LanguageSelector darkMode={overLight && scrolled} />
             <a
               href="#contato"
               className="bg-gradient-gold text-green-deep px-6 py-2.5 rounded-md text-sm font-bold font-body hover:opacity-90 transition-opacity ml-2"
