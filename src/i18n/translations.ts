@@ -221,6 +221,12 @@ export const translations = {
     sectionLabel: { pt: "Sobre a Ebgreen", en: "About Ebgreen", es: "Sobre Ebgreen" },
     title1: { pt: "Excelência e inovação em", en: "Excellence and innovation in", es: "Excelencia e innovación en" },
     titleHighlight: { pt: "mobilidade global", en: "global mobility", es: "movilidad global" },
+    cardTitle: { pt: "EUA · Brasil · Europa", en: "USA · Brazil · Europe", es: "EE.UU. · Brasil · Europa" },
+    cardDescription: {
+      pt: "Referência mundial em mobilidade global e direito imigratório.",
+      en: "World reference in global mobility and immigration law.",
+      es: "Referencia mundial en movilidad global y derecho migratorio.",
+    },
     floatingCard: {
       pt: "Atendimento global, estratégia individualizada.",
       en: "Global service, individualized strategy.",
@@ -287,6 +293,7 @@ export const translations = {
     },
     hoursLabel: { pt: "ATENDIMENTO", en: "OFFICE HOURS", es: "HORARIO" },
     officesLabel: { pt: "ESCRITÓRIOS", en: "OFFICES", es: "OFICINAS" },
+    officesValue: { pt: "EUA • Brasil • Europa", en: "USA • Brazil • Europe", es: "EE.UU. • Brasil • Europa" },
     hoursValue: { pt: "Segunda – Sexta: 9:00 AM – 5:00 PM (Eastern Time)", en: "Monday – Friday: 9:00 AM – 5:00 PM (Eastern Time)", es: "Lunes – Viernes: 9:00 AM – 5:00 PM (Eastern Time)" },
     freeConsultationBullets: [
       { pt: "Avaliação sem compromisso do seu perfil", en: "No-obligation profile assessment", es: "Evaluación sin compromiso de su perfil" },
