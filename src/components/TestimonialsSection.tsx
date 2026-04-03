@@ -88,6 +88,7 @@ const getAvatarColor = (category: string): string => {
 };
 
 const TestimonialsSection = () => {
+  const { lang } = useLanguage();
   const s = translations.testimonials;
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
