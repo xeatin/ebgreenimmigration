@@ -173,32 +173,47 @@ const TestimonialsSection = () => {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             <style>{`[data-testimonials-scroll]::-webkit-scrollbar { display: none; }`}</style>
-            {testimonials.map((item, i) => (
-              <motion.div
-                key={item.name}
-                ref={(node) => { cardRefs.current[i] = node; }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
-                className="bg-card border border-border rounded-xl px-6 py-5 relative snap-start shrink-0 w-[320px] md:w-[380px]"
-                data-testimonials-scroll
-              >
-                <Quote size={28} className="absolute top-5 right-5 text-accent/25" />
-                <div className="flex gap-0.5 mb-3">
-                  {Array.from({ length: item.rating }).map((_, j) => (
-                    <Star key={j} size={14} className="text-accent fill-accent" />
-                  ))}
-                </div>
-                <p className="text-foreground/80 font-body leading-relaxed italic text-sm pr-8">
-                  "{t(item.text, lang)}"
-                </p>
-                <div className="mt-4">
-                  <p className="font-display text-foreground font-semibold text-sm">{item.name}</p>
-                  <p className="text-accent text-xs font-body">{item.category}</p>
-                </div>
-              </motion.div>
-            ))}
+            {testimonials.map((item, i) => {
+              const initials = item.name
+                .split(/[\s&]+/)
+                .filter(w => w.length > 0)
+                .map(w => w[0].toUpperCase())
+                .slice(0, 2)
+                .join("");
+
+              return (
+                <motion.div
+                  key={item.name}
+                  ref={(node) => { cardRefs.current[i] = node; }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 }}
+                  className="bg-card border border-border rounded-xl px-6 py-5 snap-start shrink-0 w-[320px] md:w-[380px]"
+                  data-testimonials-scroll
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center shrink-0">
+                      <span className="text-white font-display font-bold text-sm">{initials}</span>
+                    </div>
+                    <div>
+                      <p className="font-display text-foreground font-semibold text-sm leading-tight">{item.name}</p>
+                      <p className="text-accent text-xs font-body">{item.category}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-0.5 mb-3">
+                    {Array.from({ length: item.rating }).map((_, j) => (
+                      <Star key={j} size={14} className="text-accent fill-accent" />
+                    ))}
+                  </div>
+
+                  <p className="text-foreground/80 font-body leading-relaxed italic text-sm">
+                    "{t(item.text, lang)}"
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* Navigation below */}
