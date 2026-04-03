@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, Quote, ChevronUp, ChevronDown } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import familyImage from "@/assets/family-flag.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -11,9 +11,9 @@ const testimonials = [
     name: "Ricardo & Ana Silva",
     category: "EB-2 NIW • Aprovado em 2024",
     text: {
-      pt: "A equipe foi excepcional do início ao fim. Em menos de 12 meses tivemos nosso Green Card aprovado. O suporte fizeram toda a diferença.",
-      en: "The team was exceptional from start to finish. In less than 12 months we had our Green Card approved. The support made all the difference.",
-      es: "El equipo fue excepcional de principio a fin. En menos de 12 meses obtuvimos nuestro Green Card aprobado. El soporte hizo toda la diferencia.",
+      pt: "A equipe foi excepcional do início ao fim. Em menos de 12 meses tivemos nosso Green Card aprovado. O suporte e a dedicação de toda a equipe fizeram toda a diferença na nossa jornada.",
+      en: "The team was exceptional from start to finish. In less than 12 months we had our Green Card approved. The support and dedication of the entire team made all the difference in our journey.",
+      es: "El equipo fue excepcional de principio a fin. En menos de 12 meses obtuvimos nuestro Green Card aprobado. El soporte y la dedicación de todo el equipo hicieron toda la diferencia en nuestro viaje.",
     },
     rating: 5,
   },
@@ -21,9 +21,9 @@ const testimonials = [
     name: "Mariana Costa",
     category: "H-1B • Profissional de TI",
     text: {
-      pt: "Depois de anos tentando sozinha, decidi contratar a assessoria e foi a melhor decisão. Processo claro, transparente e rápido.",
-      en: "After years of trying on my own, I decided to hire the advisory and it was the best decision. Clear, transparent, and fast process.",
-      es: "Después de años intentándolo sola, decidí contratar la asesoría y fue la mejor decisión. Proceso claro, transparente y rápido.",
+      pt: "Depois de anos tentando sozinha, decidi contratar a assessoria e foi a melhor decisão. O processo foi claro, transparente e muito mais rápido do que eu imaginava.",
+      en: "After years of trying on my own, I decided to hire the advisory and it was the best decision. The process was clear, transparent, and much faster than I imagined.",
+      es: "Después de años intentándolo sola, decidí contratar la asesoría y fue la mejor decisión. El proceso fue claro, transparente y mucho más rápido de lo que imaginaba.",
     },
     rating: 5,
   },
@@ -31,9 +31,9 @@ const testimonials = [
     name: "Fernando Oliveira",
     category: "EB-5 • Investidor",
     text: {
-      pt: "Precisava de uma equipe que entendesse o lado jurídico e empresarial. Superaram todas as expectativas. Recomendo sem hesitar.",
-      en: "I needed a team that understood both the legal and business sides. They exceeded all expectations. I recommend without hesitation.",
-      es: "Necesitaba un equipo que entendiera el lado jurídico y empresarial. Superaron todas las expectativas. Recomiendo sin dudar.",
+      pt: "Como empresário, precisava de uma equipe que entendesse tanto o lado jurídico quanto o empresarial. Superaram todas as minhas expectativas. Recomendo sem hesitar.",
+      en: "As a businessman, I needed a team that understood both the legal and business sides. They exceeded all my expectations. I recommend without hesitation.",
+      es: "Como empresario, necesitaba un equipo que entendiera tanto el lado jurídico como el empresarial. Superaron todas mis expectativas. Recomiendo sin dudar.",
     },
     rating: 5,
   },
@@ -54,10 +54,12 @@ const TestimonialsSection = () => {
   const s = translations.testimonials;
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
+    axis: "y",
     align: "start",
     loop: false,
     skipSnaps: false,
     dragFree: false,
+    containScroll: "trimSnaps",
   });
 
   const [canScrollPrev, setCanScrollPrev] = useState(false);
@@ -113,88 +115,75 @@ const TestimonialsSection = () => {
                 <p className="text-white/70 font-body text-xs">{t(s.familiesSubtitle, lang)}</p>
               </div>
             </div>
+          </motion.div>
 
-            {/* Desktop nav arrows + dots */}
-            <div className="hidden lg:flex items-center gap-3 mt-6">
+          {/* Right column – Vertical Embla carousel */}
+          <div className="relative">
+            <div className="overflow-hidden max-h-[520px]" ref={emblaRef}>
+              <div className="flex flex-col gap-4">
+                {testimonials.map((item, i) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                    className="bg-card border border-border rounded-xl px-6 py-5 relative min-h-0 flex-[0_0_auto]"
+                  >
+                    <Quote size={28} className="absolute top-5 right-5 text-accent/25" />
+                    <div className="flex gap-0.5 mb-3">
+                      {Array.from({ length: item.rating }).map((_, j) => (
+                        <Star key={j} size={14} className="text-accent fill-accent" />
+                      ))}
+                    </div>
+                    <p className="text-foreground/80 font-body leading-relaxed italic text-sm pr-8">
+                      "{t(item.text, lang)}"
+                    </p>
+                    <div className="mt-4">
+                      <p className="font-display text-foreground font-semibold text-sm">{item.name}</p>
+                      <p className="text-accent text-xs font-body">{item.category}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation arrows */}
+            <div className="flex items-center justify-center gap-3 mt-5">
               <button
                 onClick={scrollPrev}
                 disabled={!canScrollPrev}
-                className="w-10 h-10 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-9 h-9 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
                 aria-label="Previous testimonial"
               >
-                <ChevronLeft size={20} />
-              </button>
-              <button
-                onClick={scrollNext}
-                disabled={!canScrollNext}
-                className="w-10 h-10 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight size={20} />
+                <ChevronUp size={18} />
               </button>
 
               {/* Dot indicators */}
-              <div className="flex gap-1.5 ml-2">
+              <div className="flex gap-1.5">
                 {testimonials.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => emblaApi?.scrollTo(i)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    className={`h-2 rounded-full transition-all duration-300 ${
                       i === selectedIndex
                         ? "bg-accent w-5"
-                        : "bg-border hover:bg-muted-foreground"
+                        : "bg-border w-2 hover:bg-muted-foreground"
                     }`}
                     aria-label={`Go to testimonial ${i + 1}`}
                   />
                 ))}
               </div>
-            </div>
-          </motion.div>
 
-          {/* Right column – Embla carousel */}
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-4">
-              {testimonials.map((item, i) => (
-                <motion.div
-                  key={item.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  className="bg-secondary border border-border rounded-xl px-6 py-5 relative flex-[0_0_85%] sm:flex-[0_0_340px] lg:flex-[0_0_320px] min-w-0"
-                >
-                  <Quote size={32} className="absolute top-4 right-4 text-accent/20" />
-                  <div className="flex gap-0.5 mb-2">
-                    {Array.from({ length: item.rating }).map((_, j) => (
-                      <Star key={j} size={14} className="text-accent fill-accent" />
-                    ))}
-                  </div>
-                  <p className="text-foreground/80 font-body leading-relaxed italic text-sm">
-                    "{t(item.text, lang)}"
-                  </p>
-                  <div className="mt-3">
-                    <p className="font-display text-foreground font-semibold text-sm">{item.name}</p>
-                    <p className="text-muted-foreground text-xs font-body">{item.category}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile dot indicators */}
-          <div className="flex lg:hidden justify-center gap-1.5 -mt-6">
-            {testimonials.map((_, i) => (
               <button
-                key={i}
-                onClick={() => emblaApi?.scrollTo(i)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  i === selectedIndex
-                    ? "bg-accent w-5"
-                    : "bg-border hover:bg-muted-foreground"
-                }`}
-                aria-label={`Go to testimonial ${i + 1}`}
-              />
-            ))}
+                onClick={scrollNext}
+                disabled={!canScrollNext}
+                className="w-9 h-9 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+                aria-label="Next testimonial"
+              >
+                <ChevronDown size={18} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
