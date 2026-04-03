@@ -87,8 +87,7 @@ const getAvatarColor = (category: string): string => {
   return "bg-accent";
 };
 
-
-  const { lang } = useLanguage();
+const TestimonialsSection = () => {
   const s = translations.testimonials;
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
