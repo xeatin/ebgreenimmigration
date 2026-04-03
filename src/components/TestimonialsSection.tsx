@@ -1,5 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
-import useEmblaCarousel from "embla-carousel-react";
+import { useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import familyImage from "@/assets/family-flag.jpg";
@@ -52,37 +51,44 @@ const testimonials = [
 const TestimonialsSection = () => {
   const { lang } = useLanguage();
   const s = translations.testimonials;
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
-    slidesToScroll: 1,
-    containScroll: "trimSnaps",
-    loop: false,
-  });
+  const checkScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 10);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
 
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+    // Calculate active index based on scroll position
+    const cardEl = el.querySelector<HTMLElement>(":scope > div");
+    if (cardEl) {
+      const cardWidth = cardEl.offsetWidth + 16; // card + gap
+      const idx = Math.round(el.scrollLeft / cardWidth);
+      setActiveIndex(Math.min(idx, testimonials.length - 1));
+    }
+  }, []);
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setCanScrollPrev(emblaApi.canScrollPrev());
-    setCanScrollNext(emblaApi.canScrollNext());
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
+  const scroll = (dir: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.querySelector<HTMLElement>(":scope > div")?.offsetWidth ?? 320;
+    el.scrollBy({ left: dir === "left" ? -cardWidth - 16 : cardWidth + 16, behavior: "smooth" });
+    setTimeout(checkScroll, 350);
+  };
 
-  useEffect(() => {
-    if (!emblaApi) return;
-    setScrollSnaps(emblaApi.scrollSnapList());
-    onSelect();
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-    return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
-    };
-  }, [emblaApi, onSelect]);
+  const scrollToIndex = (idx: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardEl = el.querySelector<HTMLElement>(":scope > div");
+    if (cardEl) {
+      const cardWidth = cardEl.offsetWidth + 16;
+      el.scrollTo({ left: idx * cardWidth, behavior: "smooth" });
+      setTimeout(checkScroll, 350);
+    }
+  };
 
   return (
     <section id="depoimentos" className="py-24 bg-background">
@@ -114,42 +120,45 @@ const TestimonialsSection = () => {
             </div>
           </motion.div>
 
-          {/* Right column – Embla carousel */}
+          {/* Right column – scroll carousel */}
           <div className="flex flex-col">
-            <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex gap-4">
-                {testimonials.map((item, i) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08 }}
-                    className="bg-secondary border border-border rounded-xl px-6 py-5 relative shrink-0 w-[85vw] sm:w-[340px] lg:w-[280px]"
-                  >
-                    <Quote size={32} className="absolute top-4 right-4 text-accent/20" />
-                    <div className="flex gap-0.5 mb-2">
-                      {Array.from({ length: item.rating }).map((_, j) => (
-                        <Star key={j} size={14} className="text-accent fill-accent" />
-                      ))}
-                    </div>
-                    <p className="text-foreground/80 font-body leading-relaxed italic text-sm">
-                      "{t(item.text, lang)}"
-                    </p>
-                    <div className="mt-3">
-                      <p className="font-display text-foreground font-semibold text-sm">{item.name}</p>
-                      <p className="text-muted-foreground text-xs font-body">{item.category}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+            <div
+              ref={scrollRef}
+              onScroll={checkScroll}
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
+              {testimonials.map((item, i) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="bg-secondary border border-border rounded-xl px-6 py-5 relative snap-start shrink-0 w-[85vw] sm:w-[340px] lg:w-[280px]"
+                >
+                  <Quote size={32} className="absolute top-4 right-4 text-accent/20" />
+                  <div className="flex gap-0.5 mb-2">
+                    {Array.from({ length: item.rating }).map((_, j) => (
+                      <Star key={j} size={14} className="text-accent fill-accent" />
+                    ))}
+                  </div>
+                  <p className="text-foreground/80 font-body leading-relaxed italic text-sm">
+                    "{t(item.text, lang)}"
+                  </p>
+                  <div className="mt-3">
+                    <p className="font-display text-foreground font-semibold text-sm">{item.name}</p>
+                    <p className="text-muted-foreground text-xs font-body">{item.category}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
             {/* Controls below carousel */}
-            <div className="flex items-center justify-center gap-4 mt-6">
+            <div className="flex items-center justify-center gap-4 mt-4">
               <button
-                onClick={() => emblaApi?.scrollPrev()}
-                disabled={!canScrollPrev}
+                onClick={() => scroll("left")}
+                disabled={!canScrollLeft}
                 className="w-10 h-10 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
                 aria-label="Previous testimonial"
               >
@@ -157,12 +166,12 @@ const TestimonialsSection = () => {
               </button>
 
               <div className="flex gap-2">
-                {scrollSnaps.map((_, idx) => (
+                {testimonials.map((_, idx) => (
                   <button
                     key={idx}
-                    onClick={() => emblaApi?.scrollTo(idx)}
+                    onClick={() => scrollToIndex(idx)}
                     className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                      idx === selectedIndex ? "bg-accent" : "bg-border"
+                      idx === activeIndex ? "bg-accent" : "bg-border"
                     }`}
                     aria-label={`Go to slide ${idx + 1}`}
                   />
@@ -170,8 +179,8 @@ const TestimonialsSection = () => {
               </div>
 
               <button
-                onClick={() => emblaApi?.scrollNext()}
-                disabled={!canScrollNext}
+                onClick={() => scroll("right")}
+                disabled={!canScrollRight}
                 className="w-10 h-10 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
                 aria-label="Next testimonial"
               >
