@@ -31,7 +31,7 @@ const ProcessSection = () => {
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-14">
+        <div className="flex flex-wrap justify-center gap-x-12 gap-y-14">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
@@ -39,7 +39,7 @@ const ProcessSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="flex items-start gap-5"
+              className="flex items-start gap-5 w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)]"
             >
               <span className="font-display text-6xl font-bold text-gold/20 leading-none select-none shrink-0">
                 {step.num}
