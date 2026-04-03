@@ -105,42 +105,42 @@ export const translations = {
       },
       {
         description: {
-          pt: "Green Card sem necessidade de oferta de emprego. Ideal para profissionais com habilidades excepcionais ou grau avançado.",
-          en: "Green Card without job offer requirement. Ideal for professionals with exceptional abilities or advanced degrees.",
-          es: "Green Card sin necesidad de oferta de empleo. Ideal para profesionales con habilidades excepcionales o grado avanzado.",
+          pt: "Green Card sem necessidade de oferta de emprego, voltado a profissionais qualificados com atuação relevante e impacto na sua área.",
+          en: "Green Card without a job offer requirement, aimed at qualified professionals with relevant experience and impact in their field.",
+          es: "Green Card sin necesidad de oferta de empleo, dirigido a profesionales calificados con actuación relevante e impacto en su área.",
         },
       },
       {
         title: { pt: "Vistos de Trabalho", en: "Work Visas", es: "Visas de Trabajo" },
         description: {
-          pt: "Vistos para profissionais qualificados que desejam trabalhar legalmente nos Estados Unidos.",
-          en: "Visas for qualified professionals who want to work legally in the United States.",
-          es: "Visas para profesionales calificados que desean trabajar legalmente en Estados Unidos.",
+          pt: "Vistos para profissionais qualificados que desejam atuar legalmente nos Estados Unidos, com base em oferta de emprego e requisitos específicos da categoria.",
+          en: "Visas for qualified professionals who want to work legally in the United States, based on job offers and category-specific requirements.",
+          es: "Visas para profesionales calificados que desean actuar legalmente en Estados Unidos, con base en oferta de empleo y requisitos específicos de la categoría.",
         },
       },
       {
         title: { pt: "Vistos de Investidor", en: "Investor Visas", es: "Visas de Inversionista" },
         description: {
-          pt: "Caminhos para empreendedores e investidores que desejam abrir ou adquirir negócios nos EUA.",
-          en: "Pathways for entrepreneurs and investors looking to start or acquire businesses in the USA.",
-          es: "Caminos para emprendedores e inversionistas que desean abrir o adquirir negocios en EE.UU.",
+          pt: "Vistos para investidores e empreendedores que desejam estabelecer ou abrir ou expandir negócios nos Estados Unidos com segurança e planejamento.",
+          en: "Visas for investors and entrepreneurs looking to establish, open, or expand businesses in the United States with security and planning.",
+          es: "Visas para inversionistas y emprendedores que desean establecer, abrir o expandir negocios en Estados Unidos con seguridad y planificación.",
         },
       },
       {
         title: { pt: "Green Card Familiar", en: "Family Green Card", es: "Green Card Familiar" },
         description: {
-          pt: "Petições através de cônjuges, filhos e familiares cidadãos americanos ou residentes permanentes.",
-          en: "Petitions through spouses, children, and family members who are US citizens or permanent residents.",
-          es: "Peticiones a través de cónyuges, hijos y familiares ciudadanos americanos o residentes permanentes.",
+          pt: "Processos de residência permanente por meio de vínculos familiares, como cônjuges, filhos e outros familiares elegíveis de cidadãos americanos ou residentes permanentes.",
+          en: "Permanent residence processes through family ties, such as spouses, children, and other eligible relatives of US citizens or permanent residents.",
+          es: "Procesos de residencia permanente a través de vínculos familiares, como cónyuges, hijos y otros familiares elegibles de ciudadanos americanos o residentes permanentes.",
         },
       },
       {
         title: { pt: "Consultoria Completa", en: "Full Consulting", es: "Consultoría Completa" },
         subtitle: { pt: "Avaliação de Perfil", en: "Profile Assessment", es: "Evaluación de Perfil" },
         description: {
-          pt: "Análise personalizada para identificar o melhor caminho migratório para o seu caso específico.",
-          en: "Personalized analysis to identify the best immigration path for your specific case.",
-          es: "Análisis personalizado para identificar el mejor camino migratorio para tu caso específico.",
+          pt: "Análise estratégica do seu perfil para identificar o melhor caminho imigratório com base nos critérios de elegibilidade.",
+          en: "Strategic analysis of your profile to identify the best immigration path based on eligibility criteria.",
+          es: "Análisis estratégico de tu perfil para identificar el mejor camino inmigratorio con base en los criterios de elegibilidad.",
         },
       },
     ],
