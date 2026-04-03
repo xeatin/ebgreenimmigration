@@ -154,7 +154,13 @@ const TestimonialsSection = () => {
             </em>
           </h2>
           <p className="text-muted-foreground font-body mt-4 leading-relaxed max-w-lg mx-auto">
-            {t(s.subtitle, lang)}
+            {t(s.subtitle, lang).split("Green Card").map((part, i, arr) =>
+              i < arr.length - 1 ? (
+                <span key={i}>{part}<span className="text-accent font-semibold">Green Card</span></span>
+              ) : (
+                <span key={i}>{part}</span>
+              )
+            )}
           </p>
         </motion.div>
 
