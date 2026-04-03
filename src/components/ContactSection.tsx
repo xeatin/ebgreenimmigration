@@ -72,7 +72,7 @@ const ContactSection = () => {
 
               <div className="space-y-6">
                 {[
-                  { icon: Phone, label: "WHATSAPP", value: "+1 (772) 200-7117", href: "https://wa.me/17722007117" },
+                  { icon: Phone, label: "WHATSAPP", value: "+1 (771) 201-7117", href: "https://wa.me/17712017117" },
                   { icon: Mail, label: "E-MAIL", value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
                   { icon: Instagram, label: "INSTAGRAM", value: "@ebgreenusa", href: "https://instagram.com/ebgreenusa" },
                   { icon: MapPin, label: t(s.officesLabel, lang), value: "EUA • Brasil • Europa", href: undefined },
