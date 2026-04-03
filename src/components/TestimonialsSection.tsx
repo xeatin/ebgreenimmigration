@@ -143,7 +143,7 @@ const TestimonialsSection = () => {
               <img src={familyImage} alt="Família celebrando" className="w-full h-full object-cover" loading="lazy" width={1280} height={640} />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                 <p className="text-white font-display text-lg font-bold">{t(s.familiesCount, lang)}</p>
-                <p className="text-white/70 font-body text-xs">{t(s.familiesSubtitle, lang)}</p>
+                <p className="text-white/70 font-body text-sm">{t(s.familiesSubtitle, lang)}</p>
               </div>
             </div>
           </motion.div>
