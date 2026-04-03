@@ -202,7 +202,7 @@ const TestimonialsSection = () => {
                   data-testimonials-scroll
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center shrink-0">
+                    <div className={`w-10 h-10 rounded-full ${getAvatarColor(item.category)} flex items-center justify-center shrink-0`}>
                       <span className="text-white font-display font-bold text-sm">{initials}</span>
                     </div>
                     <div>
