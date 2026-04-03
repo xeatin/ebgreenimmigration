@@ -1,5 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
-import useEmblaCarousel from "embla-carousel-react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import familyImage from "@/assets/family-flag.jpg";
