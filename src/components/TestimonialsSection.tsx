@@ -150,7 +150,7 @@ const TestimonialsSection = () => {
 
           {/* Right column – Vertical Embla carousel */}
           <div className="relative">
-            <div className="overflow-hidden h-[520px] lg:h-[620px]" ref={emblaRef}>
+            <div className="overflow-hidden h-[580px] lg:h-[720px]" ref={emblaRef}>
               <div className="flex flex-col gap-4">
                 {testimonials.map((item, i) => (
                   <motion.div
