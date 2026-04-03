@@ -9,6 +9,7 @@ import { translations, t } from "@/i18n/translations";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [overLight, setOverLight] = useState(false);
   const { lang } = useLanguage();
 
   const navLinks = [
@@ -21,9 +22,31 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const lightSectionIds = ["diferenciais", "processo", "sobre"];
+
+    const checkBackground = () => {
+      setScrolled(window.scrollY > 50);
+      const navHeight = 80;
+      const checkPoint = window.scrollY + navHeight;
+
+      let isOverLightSection = false;
+      for (const id of lightSectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          const bottom = top + el.offsetHeight;
+          if (checkPoint >= top && checkPoint < bottom) {
+            isOverLightSection = true;
+            break;
+          }
+        }
+      }
+      setOverLight(isOverLightSection);
+    };
+
+    window.addEventListener("scroll", checkBackground);
+    checkBackground();
+    return () => window.removeEventListener("scroll", checkBackground);
   }, []);
 
   return (
