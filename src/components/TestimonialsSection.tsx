@@ -89,7 +89,7 @@ const TestimonialsSection = () => {
     loop: false,
     skipSnaps: false,
     dragFree: false,
-    containScroll: "trimSnaps",
+    containScroll: false,
   });
 
   const [canScrollPrev, setCanScrollPrev] = useState(false);
