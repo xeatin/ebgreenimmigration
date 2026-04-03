@@ -4,7 +4,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 
 const icons = [Award, Users, Scale, Clock];
-const stats = ["+92%", "10+", "100%", "24/7"];
+const stats = ["89+", "10+", "100%", "24/7"];
 
 const DifferentialsSection = () => {
   const { lang } = useLanguage();
