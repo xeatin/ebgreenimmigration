@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Star, Quote, ChevronUp, ChevronDown } from "lucide-react";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import familyImage from "@/assets/family-flag.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
@@ -92,16 +92,16 @@ const TestimonialsSection = () => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    const maxScrollTop = Math.max(container.scrollHeight - container.clientHeight, 0);
-    setCanScrollPrev(container.scrollTop > 4);
-    setCanScrollNext(container.scrollTop < maxScrollTop - 4);
+    const maxScrollLeft = Math.max(container.scrollWidth - container.clientWidth, 0);
+    setCanScrollPrev(container.scrollLeft > 4);
+    setCanScrollNext(container.scrollLeft < maxScrollLeft - 4);
 
     let closestIndex = 0;
     let closestDistance = Number.POSITIVE_INFINITY;
 
     cardRefs.current.forEach((card, index) => {
       if (!card) return;
-      const distance = Math.abs(card.offsetTop - container.scrollTop);
+      const distance = Math.abs(card.offsetLeft - container.scrollLeft - container.offsetLeft);
       if (distance < closestDistance) {
         closestDistance = distance;
         closestIndex = index;
@@ -114,10 +114,7 @@ const TestimonialsSection = () => {
   useEffect(() => {
     updateScrollState();
     window.addEventListener("resize", updateScrollState);
-
-    return () => {
-      window.removeEventListener("resize", updateScrollState);
-    };
+    return () => window.removeEventListener("resize", updateScrollState);
   }, [updateScrollState]);
 
   const scrollToIndex = useCallback((index: number) => {
@@ -126,7 +123,7 @@ const TestimonialsSection = () => {
     if (!container || !card) return;
 
     container.scrollTo({
-      top: card.offsetTop,
+      left: card.offsetLeft - container.offsetLeft,
       behavior: "smooth",
     });
   }, []);
@@ -140,106 +137,98 @@ const TestimonialsSection = () => {
   }, [scrollToIndex, selectedIndex]);
 
   return (
-    <section id="depoimentos" className="py-24 bg-background">
+    <section id="depoimentos" className="py-20 bg-background">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:sticky lg:top-32"
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-10"
+        >
+          <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">Depoimentos</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
+            {t(s.title1, lang)}{" "}
+            <em className="text-accent not-italic font-bold bg-gradient-to-r from-accent to-[hsl(38_60%_72%)] bg-clip-text text-transparent">
+              {t(s.titleHighlight, lang)}
+            </em>
+          </h2>
+          <p className="text-muted-foreground font-body mt-4 leading-relaxed max-w-lg mx-auto">
+            {t(s.subtitle, lang)}
+          </p>
+        </motion.div>
+
+        {/* Horizontal scroll carousel */}
+        <div className="relative">
+          <div
+            ref={scrollContainerRef}
+            onScroll={updateScrollState}
+            className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">Depoimentos</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
-              {t(s.title1, lang)}{" "}
-              <em className="text-accent not-italic font-bold bg-gradient-to-r from-accent to-[hsl(38_60%_72%)] bg-clip-text text-transparent">
-                {t(s.titleHighlight, lang)}
-              </em>
-            </h2>
-            <p className="text-muted-foreground font-body mt-4 leading-relaxed max-w-md">
-              {t(s.subtitle, lang)}
-            </p>
+            <style>{`[data-testimonials-scroll]::-webkit-scrollbar { display: none; }`}</style>
+            {testimonials.map((item, i) => (
+              <motion.div
+                key={item.name}
+                ref={(node) => { cardRefs.current[i] = node; }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="bg-card border border-border rounded-xl px-6 py-5 relative snap-start shrink-0 w-[320px] md:w-[380px]"
+                data-testimonials-scroll
+              >
+                <Quote size={28} className="absolute top-5 right-5 text-accent/25" />
+                <div className="flex gap-0.5 mb-3">
+                  {Array.from({ length: item.rating }).map((_, j) => (
+                    <Star key={j} size={14} className="text-accent fill-accent" />
+                  ))}
+                </div>
+                <p className="text-foreground/80 font-body leading-relaxed italic text-sm pr-8">
+                  "{t(item.text, lang)}"
+                </p>
+                <div className="mt-4">
+                  <p className="font-display text-foreground font-semibold text-sm">{item.name}</p>
+                  <p className="text-accent text-xs font-body">{item.category}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
-            <div className="mt-8 relative rounded-2xl overflow-hidden aspect-video max-h-[280px]">
-              <img src={familyImage} alt="Família celebrando" className="w-full h-full object-cover" loading="lazy" width={1280} height={640} />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                <p className="text-white font-display text-lg font-bold">{t(s.familiesCount, lang)}</p>
-                <p className="text-white/70 font-body text-sm">{t(s.familiesSubtitle, lang)}</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <div className="relative">
-            <div
-              ref={scrollContainerRef}
-              onScroll={updateScrollState}
-              className="h-[580px] lg:h-[720px] overflow-y-auto pr-2 scroll-smooth"
+          {/* Navigation below */}
+          <div className="flex items-center justify-center gap-3 mt-6">
+            <button
+              onClick={scrollPrev}
+              disabled={!canScrollPrev}
+              className="w-9 h-9 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Previous testimonial"
             >
-              <div className="flex flex-col gap-4">
-                {testimonials.map((item, i) => (
-                  <motion.div
-                    key={item.name}
-                    ref={(node) => {
-                      cardRefs.current[i] = node;
-                    }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08 }}
-                    className="bg-card border border-border rounded-xl px-6 py-5 relative min-h-0"
-                  >
-                    <Quote size={28} className="absolute top-5 right-5 text-accent/25" />
-                    <div className="flex gap-0.5 mb-3">
-                      {Array.from({ length: item.rating }).map((_, j) => (
-                        <Star key={j} size={14} className="text-accent fill-accent" />
-                      ))}
-                    </div>
-                    <p className="text-foreground/80 font-body leading-relaxed italic text-sm pr-8">
-                      "{t(item.text, lang)}"
-                    </p>
-                    <div className="mt-4">
-                      <p className="font-display text-foreground font-semibold text-sm">{item.name}</p>
-                      <p className="text-accent text-xs font-body">{item.category}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              <ChevronLeft size={18} />
+            </button>
+
+            <div className="flex gap-1.5">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => scrollToIndex(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === selectedIndex
+                      ? "bg-accent w-5"
+                      : "bg-border w-2 hover:bg-muted-foreground"
+                  }`}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                />
+              ))}
             </div>
 
-            <div className="flex items-center justify-center gap-3 mt-5">
-              <button
-                onClick={scrollPrev}
-                disabled={!canScrollPrev}
-                className="w-9 h-9 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
-                aria-label="Previous testimonial"
-              >
-                <ChevronUp size={18} />
-              </button>
-
-              <div className="flex gap-1.5">
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => scrollToIndex(i)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      i === selectedIndex
-                        ? "bg-accent w-5"
-                        : "bg-border w-2 hover:bg-muted-foreground"
-                    }`}
-                    aria-label={`Go to testimonial ${i + 1}`}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={scrollNext}
-                disabled={!canScrollNext}
-                className="w-9 h-9 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
-                aria-label="Next testimonial"
-              >
-                <ChevronDown size={18} />
-              </button>
-            </div>
+            <button
+              onClick={scrollNext}
+              disabled={!canScrollNext}
+              className="w-9 h-9 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={18} />
+            </button>
           </div>
         </div>
       </div>
