@@ -18,11 +18,9 @@ const Footer = () => {
           </div>
 
           <div className="mt-4 md:ml-16">
-            <h4 className="font-display text-cream font-semibold mb-1 text-sm">Disclaimer:</h4>
+            <h4 className="font-display text-cream font-semibold mb-1 text-sm">{t(s.disclaimerTitle, lang)}</h4>
             <p className="text-cream/50 text-xs font-body leading-relaxed">
-              ebgreen Immigration is a registered trademark in the United States and other countries. Unauthorized use of the trademark is strictly prohibited.
-              <br />
-              The information and services provided on this website are for informational purposes only. If you have any questions, please contact us at
+              {t(s.disclaimerText, lang)}
               <br />
               <a href="mailto:info@ebgreenusa.com" className="text-gold hover:underline">info@ebgreenusa.com</a>
             </p>

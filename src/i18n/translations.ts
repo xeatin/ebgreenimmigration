@@ -355,6 +355,12 @@ export const translations = {
   footer: {
     slogan: { pt: "Respeito, Resposta e Resultados", en: "Respect, Response and Results", es: "Respeto, Respuesta y Resultados" },
     contactLabel: { pt: "Contato:", en: "Contact:", es: "Contacto:" },
+    disclaimerTitle: { pt: "Aviso Legal:", en: "Disclaimer:", es: "Aviso Legal:" },
+    disclaimerText: {
+      pt: "ebgreen Immigration é uma marca registrada nos Estados Unidos e em outros países. O uso não autorizado da marca é estritamente proibido.\nAs informações e serviços fornecidos neste site são apenas para fins informativos. Se você tiver alguma dúvida, entre em contato conosco em",
+      en: "ebgreen Immigration is a registered trademark in the United States and other countries. Unauthorized use of the trademark is strictly prohibited.\nThe information and services provided on this website are for informational purposes only. If you have any questions, please contact us at",
+      es: "ebgreen Immigration es una marca registrada en los Estados Unidos y otros países. El uso no autorizado de la marca está estrictamente prohibido.\nLa información y los servicios proporcionados en este sitio web son solo para fines informativos. Si tiene alguna pregunta, contáctenos en",
+    },
     privacy: { pt: "Política de Privacidade", en: "Privacy Policy", es: "Política de Privacidad" },
     terms: { pt: "Termos de Uso", en: "Terms of Use", es: "Términos de Uso" },
     rights: { pt: "Todos os direitos reservados.", en: "All rights reserved.", es: "Todos los derechos reservados." },
