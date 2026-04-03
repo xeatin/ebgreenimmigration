@@ -254,7 +254,7 @@ export const translations = {
   // Testimonials
   testimonials: {
     title1: { pt: "Histórias de", en: "Stories from", es: "Historias de" },
-    titleHighlight: { pt: "quem realizou o sonho", en: "those who achieved the dream", es: "quienes lograron el sueño" },
+    titleHighlight: { pt: "quem transformou sonhos em realidade", en: "those who turned dreams into reality", es: "quienes transformaron sueños en realidad" },
     subtitle: {
       pt: "Conheça histórias reais de profissionais e famílias que conquistaram o Green Card e deram início a uma nova fase de vida no exterior.",
       en: "Discover real stories of professionals and families who obtained their Green Card and started a new chapter of life abroad.",
