@@ -98,9 +98,9 @@ export const translations = {
     items: [
       {
         description: {
-          pt: "Green Card para profissionais com habilidades extraordinárias reconhecidas nacional ou internacionalmente.",
-          en: "Green Card for professionals with extraordinary abilities recognized nationally or internationally.",
-          es: "Green Card para profesionales con habilidades extraordinarias reconocidas nacional o internacionalmente.",
+          pt: "Green Card para profissionais com reconhecimento comprovado na sua área, como pesquisadores, executivos, artistas, atletas, empresários, músicos, cantores e demais talentos de destaque, sem necessidade de oferta de emprego.",
+          en: "Green Card for professionals with proven recognition in their field, such as researchers, executives, artists, athletes, entrepreneurs, musicians, singers, and other outstanding talents, without the need for a job offer.",
+          es: "Green Card para profesionales con reconocimiento comprobado en su área, como investigadores, ejecutivos, artistas, atletas, empresarios, músicos, cantantes y demás talentos destacados, sin necesidad de oferta de empleo.",
         },
       },
       {
