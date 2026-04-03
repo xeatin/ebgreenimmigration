@@ -27,14 +27,46 @@ const ContactSection = () => {
     visa: "", message: "", privacy: false
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const shouldSendEmail = (education: string, experience: string): boolean => {
+    if (education === "ensino-medio") return false;
+    if ((education === "tecnico" || education === "tecnologo") && experience !== "mais-10") return false;
+    if (education === "superior" && experience === "menos-5") return false;
+    return true;
+  };
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      if (shouldSendEmail(formData.education, formData.experience)) {
+        await supabase.functions.invoke('send-contact-email', {
+          body: {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            phoneCode: formData.phoneCode,
+            phone: formData.phone,
+            visa: formData.visa,
+            education: formData.education,
+            experience: formData.experience,
+            message: formData.message,
+          },
+        });
+      }
+    } catch (err) {
+      // silently fail - user should not notice
+    }
+
     alert(t(s.successMsg, lang));
     setFormData({
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
       migrateTo: "", education: "", experience: "",
       visa: "", message: "", privacy: false
     });
+    setIsSubmitting(false);
   };
 
   const inputClass = "w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body text-sm";
