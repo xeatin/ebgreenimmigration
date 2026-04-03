@@ -47,6 +47,36 @@ const testimonials = [
     },
     rating: 5,
   },
+  {
+    name: "Giovanna Paula",
+    category: "F-1/F-2 • Aprovado em 2026",
+    text: {
+      pt: "A assessoria tornou todo o processo do visto de estudante muito mais simples. Me senti acompanhada em cada etapa e hoje estou realizando meu sonho de estudar nos Estados Unidos.",
+      en: "The advisory made the entire student visa process much simpler. I felt supported at every step and today I am living my dream of studying in the United States.",
+      es: "La asesoría hizo que todo el proceso de visa de estudiante fuera mucho más simple. Me sentí acompañada en cada etapa y hoy estoy cumpliendo mi sueño de estudiar en Estados Unidos.",
+    },
+    rating: 5,
+  },
+  {
+    name: "Cátia Simone",
+    category: "F-1/F-2 • Aprovado em 2025",
+    text: {
+      pt: "Graças ao trabalho impecável da equipe, consegui meu visto sem nenhuma complicação. O atendimento foi humanizado e profissional do início ao fim.",
+      en: "Thanks to the team's impeccable work, I got my visa without any complications. The service was humanized and professional from start to finish.",
+      es: "Gracias al trabajo impecable del equipo, obtuve mi visa sin ninguna complicación. El servicio fue humanizado y profesional de principio a fin.",
+    },
+    rating: 5,
+  },
+  {
+    name: "Claudio de Jesus",
+    category: "R-1 • Aprovado em 2025",
+    text: {
+      pt: "O processo do visto religioso parecia impossível, mas a equipe demonstrou conhecimento profundo e conseguiu a aprovação com agilidade. Sou muito grato por todo o suporte.",
+      en: "The religious visa process seemed impossible, but the team demonstrated deep knowledge and achieved approval quickly. I am very grateful for all the support.",
+      es: "El proceso de visa religiosa parecía imposible, pero el equipo demostró un conocimiento profundo y logró la aprobación con agilidad. Estoy muy agradecido por todo el apoyo.",
+    },
+    rating: 5,
+  },
 ];
 
 const TestimonialsSection = () => {
