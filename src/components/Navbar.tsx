@@ -23,7 +23,7 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    const lightSectionIds = ["diferenciais", "processo", "sobre"];
+    const lightSectionIds = ["diferenciais", "processo", "sobre", "depoimentos", "contato"];
 
     const checkBackground = () => {
       setScrolled(window.scrollY > 50);
