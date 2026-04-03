@@ -47,7 +47,7 @@ export const translations = {
   // Differentials
   diff: {
     sectionLabel: { pt: "Diferenciais", en: "Why Choose Us", es: "Diferenciales" },
-    sectionTitle: { pt: "Nossos resultados falam por nós", en: "Our results speak for themselves", es: "Nuestros resultados hablan por nosotros" },
+    sectionTitle: { pt: "Nossos resultados fazem a diferença", en: "Our results make the difference", es: "Nuestros resultados hacen la diferencia" },
     items: [
       {
         title: { pt: "Taxa de Sucesso", en: "Success Rate", es: "Tasa de Éxito" },
