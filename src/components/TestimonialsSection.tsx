@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import familyImage from "@/assets/family-flag.jpg";
@@ -53,7 +53,7 @@ const TestimonialsSection = () => {
   const s = translations.testimonials;
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [canScrollRight, setCanScrollRight] = useState(false);
 
   const checkScroll = useCallback(() => {
     const el = scrollRef.current;
@@ -62,96 +62,103 @@ const TestimonialsSection = () => {
     setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
   }, []);
 
+  useEffect(() => {
+    checkScroll();
+    window.addEventListener("resize", checkScroll);
+    return () => window.removeEventListener("resize", checkScroll);
+  }, [checkScroll]);
+
   const scroll = (dir: "left" | "right") => {
     const el = scrollRef.current;
     if (!el) return;
-    const cardWidth = el.querySelector<HTMLElement>(":scope > div")?.offsetWidth ?? 320;
+    const cardWidth = el.querySelector<HTMLElement>(":scope > div")?.offsetWidth ?? 300;
     el.scrollBy({ left: dir === "left" ? -cardWidth - 16 : cardWidth + 16, behavior: "smooth" });
-    setTimeout(checkScroll, 350);
+    setTimeout(checkScroll, 400);
   };
 
   return (
-    <section id="depoimentos" className="py-24 bg-background">
+    <section id="depoimentos" className="py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left column – title + image */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:sticky lg:top-32"
-          >
+        {/* Header row */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12"
+        >
+          <div className="max-w-xl">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
               {t(s.title1, lang)}{" "}
               <em className="text-accent not-italic font-bold bg-gradient-to-r from-accent to-[hsl(38_60%_72%)] bg-clip-text text-transparent">
                 {t(s.titleHighlight, lang)}
               </em>
             </h2>
-            <p className="text-muted-foreground font-body mt-4 leading-relaxed max-w-md">
+            <p className="text-muted-foreground font-body mt-4 leading-relaxed">
               {t(s.subtitle, lang)}
             </p>
-
-            <div className="mt-8 relative rounded-2xl overflow-hidden aspect-video max-h-[280px]">
-              <img src={familyImage} alt="Família celebrando" className="w-full h-full object-cover" loading="lazy" width={1280} height={640} />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                <p className="text-white font-display text-lg font-bold">{t(s.familiesCount, lang)}</p>
-                <p className="text-white/70 font-body text-xs">{t(s.familiesSubtitle, lang)}</p>
-              </div>
-            </div>
-
-            {/* Desktop nav arrows */}
-            <div className="hidden lg:flex gap-3 mt-6">
-              <button
-                onClick={() => scroll("left")}
-                disabled={!canScrollLeft}
-                className="w-10 h-10 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button
-                onClick={() => scroll("right")}
-                disabled={!canScrollRight}
-                className="w-10 h-10 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Right column – horizontal carousel */}
-          <div
-            ref={scrollRef}
-            onScroll={checkScroll}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-6 px-6 lg:mx-0 lg:px-0"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {testimonials.map((item, i) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="bg-secondary border border-border rounded-xl px-6 py-5 relative snap-start shrink-0 w-[85vw] sm:w-[340px] lg:w-[320px]"
-              >
-                <Quote size={32} className="absolute top-4 right-4 text-accent/20" />
-                <div className="flex gap-0.5 mb-2">
-                  {Array.from({ length: item.rating }).map((_, j) => (
-                    <Star key={j} size={14} className="text-accent fill-accent" />
-                  ))}
-                </div>
-                <p className="text-foreground/80 font-body leading-relaxed italic text-sm">
-                  "{t(item.text, lang)}"
-                </p>
-                <div className="mt-3">
-                  <p className="font-display text-foreground font-semibold text-sm">{item.name}</p>
-                  <p className="text-muted-foreground text-xs font-body">{item.category}</p>
-                </div>
-              </motion.div>
-            ))}
           </div>
+
+          {/* Image badge */}
+          <div className="relative rounded-2xl overflow-hidden w-full lg:w-[320px] aspect-video lg:aspect-[16/9] shrink-0">
+            <img src={familyImage} alt="Família celebrando" className="w-full h-full object-cover" loading="lazy" width={1280} height={640} />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+              <p className="text-white font-display text-lg font-bold">{t(s.familiesCount, lang)}</p>
+              <p className="text-white/70 font-body text-xs">{t(s.familiesSubtitle, lang)}</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Carousel */}
+        <div
+          ref={scrollRef}
+          onScroll={checkScroll}
+          className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 -mx-6 px-6"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}
+        >
+          {testimonials.map((item, i) => (
+            <motion.div
+              key={item.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="bg-secondary border border-border rounded-xl px-6 py-5 relative snap-start shrink-0 w-[85vw] sm:w-[calc(50%-10px)] lg:w-[calc(25%-15px)]"
+            >
+              <Quote size={32} className="absolute top-4 right-4 text-accent/20" />
+              <div className="flex gap-0.5 mb-2">
+                {Array.from({ length: item.rating }).map((_, j) => (
+                  <Star key={j} size={14} className="text-accent fill-accent" />
+                ))}
+              </div>
+              <p className="text-foreground/80 font-body leading-relaxed italic text-sm">
+                "{t(item.text, lang)}"
+              </p>
+              <div className="mt-3">
+                <p className="font-display text-foreground font-semibold text-sm">{item.name}</p>
+                <p className="text-muted-foreground text-xs font-body">{item.category}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Navigation controls */}
+        <div className="flex justify-center gap-3 mt-8">
+          <button
+            onClick={() => scroll("left")}
+            disabled={!canScrollLeft}
+            className="w-10 h-10 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Previous"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            disabled={!canScrollRight}
+            className="w-10 h-10 rounded-full border border-border bg-secondary flex items-center justify-center text-foreground transition-colors hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Next"
+          >
+            <ChevronRight size={20} />
+          </button>
         </div>
       </div>
     </section>
