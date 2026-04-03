@@ -139,24 +139,38 @@ const TestimonialsSection = () => {
   return (
     <section id="depoimentos" className="py-20 bg-background">
       <div className="container mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-10"
-        >
-          <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">Depoimentos</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
-            {t(s.title1, lang)}{" "}
-            <em className="text-accent not-italic font-bold bg-gradient-to-r from-accent to-[hsl(38_60%_72%)] bg-clip-text text-transparent">
-              {t(s.titleHighlight, lang)}
-            </em>
-          </h2>
-          <p className="text-muted-foreground font-body mt-4 leading-relaxed max-w-lg mx-auto">
-            {t(s.subtitle, lang)}
-          </p>
-        </motion.div>
+        {/* Header with image */}
+        <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-end mb-10">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">Depoimentos</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
+              {t(s.title1, lang)}{" "}
+              <em className="text-accent not-italic font-bold bg-gradient-to-r from-accent to-[hsl(38_60%_72%)] bg-clip-text text-transparent">
+                {t(s.titleHighlight, lang)}
+              </em>
+            </h2>
+            <p className="text-muted-foreground font-body mt-4 leading-relaxed max-w-md">
+              {t(s.subtitle, lang)}
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative rounded-2xl overflow-hidden w-full lg:w-[360px] aspect-video max-h-[200px]"
+          >
+            <img src={familyImage} alt="Família celebrando" className="w-full h-full object-cover" loading="lazy" width={1280} height={640} />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+              <p className="text-white font-display text-lg font-bold">{t(s.familiesCount, lang)}</p>
+              <p className="text-white/70 font-body text-sm">{t(s.familiesSubtitle, lang)}</p>
+            </div>
+          </motion.div>
+        </div>
 
         {/* Horizontal scroll carousel */}
         <div className="relative">
