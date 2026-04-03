@@ -115,7 +115,7 @@ const ContactSection = () => {
                   { icon: WhatsAppIcon, label: "WHATSAPP", value: "+1 (771) 201-7117", href: "https://wa.me/17712017117" },
                   { icon: Mail, label: "E-MAIL", value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
                   { icon: Instagram, label: "INSTAGRAM", value: "@ebgreenusa", href: "https://instagram.com/ebgreenusa" },
-                  { icon: MapPin, label: t(s.officesLabel, lang), value: "EUA • Brasil • Europa", href: undefined },
+                  { icon: MapPin, label: t(s.officesLabel, lang), value: t(s.officesValue, lang), href: undefined },
                   { icon: Clock, label: t(s.hoursLabel, lang), value: t(s.hoursValue, lang), href: undefined },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-4">

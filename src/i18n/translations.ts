@@ -293,6 +293,7 @@ export const translations = {
     },
     hoursLabel: { pt: "ATENDIMENTO", en: "OFFICE HOURS", es: "HORARIO" },
     officesLabel: { pt: "ESCRITÓRIOS", en: "OFFICES", es: "OFICINAS" },
+    officesValue: { pt: "EUA • Brasil • Europa", en: "USA • Brazil • Europe", es: "EE.UU. • Brasil • Europa" },
     hoursValue: { pt: "Segunda – Sexta: 9:00 AM – 5:00 PM (Eastern Time)", en: "Monday – Friday: 9:00 AM – 5:00 PM (Eastern Time)", es: "Lunes – Viernes: 9:00 AM – 5:00 PM (Eastern Time)" },
     freeConsultationBullets: [
       { pt: "Avaliação sem compromisso do seu perfil", en: "No-obligation profile assessment", es: "Evaluación sin compromiso de su perfil" },
