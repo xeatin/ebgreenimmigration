@@ -190,19 +190,27 @@ export const translations = {
         },
       },
       {
-        title: { pt: "Entrevista Consular", en: "Consular Interview", es: "Entrevista Consular" },
+        title: { pt: "Acompanhamento do Processo", en: "Case Monitoring", es: "Seguimiento del Proceso" },
         desc: {
-          pt: "Preparação completa para entrevista, incluindo simulações.",
-          en: "Complete interview preparation, including mock interviews.",
-          es: "Preparación completa para entrevista, incluyendo simulaciones.",
+          pt: "Monitoramento ativo junto ao USCIS, e atualizações em tempo real sobre o andamento do caso.",
+          en: "Active monitoring with USCIS, and real-time updates on case progress.",
+          es: "Monitoreo activo ante USCIS, y actualizaciones en tiempo real sobre el avance del caso.",
         },
       },
       {
         title: { pt: "Aprovação", en: "Approval", es: "Aprobación" },
         desc: {
-          pt: "Visto aprovado! Suporte contínuo na sua chegada aos EUA.",
-          en: "Visa approved! Ongoing support upon your arrival in the USA.",
-          es: "¡Visa aprobada! Soporte continuo a tu llegada a EE.UU.",
+          pt: "Aprovação oficial pelo USCIS. Nossa equipe coordena a transição para o Adjustment of Status ou Consular Processing.",
+          en: "Official USCIS approval. Our team coordinates the transition to Adjustment of Status or Consular Processing.",
+          es: "Aprobación oficial por USCIS. Nuestro equipo coordina la transición al Adjustment of Status o Consular Processing.",
+        },
+      },
+      {
+        title: { pt: "Green Card", en: "Green Card", es: "Green Card" },
+        desc: {
+          pt: "Residência permanente nos Estados Unidos. A EBGreen continua ao seu lado com suporte na chegada, adaptação e próximos passos da sua vida americana.",
+          en: "Permanent residence in the United States. EBGreen stays by your side with support on arrival, adaptation, and next steps of your American life.",
+          es: "Residencia permanente en Estados Unidos. EBGreen sigue a tu lado con soporte en la llegada, adaptación y próximos pasos de tu vida americana.",
         },
       },
     ],

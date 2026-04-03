@@ -31,26 +31,23 @@ const ProcessSection = () => {
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-14">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="relative"
+              transition={{ delay: i * 0.08 }}
+              className="flex items-start gap-5"
             >
-              <div className="flex items-start gap-4">
-                <span className="font-display text-5xl font-bold text-gold/20 leading-none">{step.num}</span>
-                <div className="pt-2">
-                  <h3 className="font-display text-lg font-semibold text-foreground">{step.title}</h3>
-                  <p className="text-muted-foreground font-body text-sm mt-2 leading-relaxed">{step.desc}</p>
-                </div>
+              <span className="font-display text-6xl font-bold text-gold/20 leading-none select-none shrink-0">
+                {step.num}
+              </span>
+              <div className="pt-2">
+                <h3 className="font-display text-lg font-bold text-foreground mb-1">{step.title}</h3>
+                <p className="text-muted-foreground font-body text-sm leading-relaxed">{step.desc}</p>
               </div>
-              {i < steps.length - 1 && (
-                <div className="hidden lg:block absolute -bottom-4 left-8 w-px h-8 bg-border" />
-              )}
             </motion.div>
           ))}
         </div>
