@@ -39,8 +39,8 @@ export const translations = {
       families: { pt: "Foco em Imigração", en: "Immigration Focus", es: "Enfoque en Inmigración" },
       success: { pt: "Taxa de Aprovação", en: "Approval Rate", es: "Tasa de Aprobación" },
       experience: { pt: "Experiência em imigração", en: "Immigration experience", es: "Experiencia en inmigración" },
-      offices: { pt: "Presença nos EUA, Brasil e Europa", en: "Presence in the USA, Brazil and Europe", es: "Presencia en EE.UU., Brasil y Europa" },
-      officesSubtitle: { pt: "", en: "", es: "" },
+      offices: { pt: "EUA, Brasil e Europa", en: "USA, Brazil and Europe", es: "EE.UU., Brasil y Europa" },
+      officesSubtitle: { pt: "Países de Atuação", en: "Countries of Operation", es: "Países de Actuación" },
     },
   },
 
