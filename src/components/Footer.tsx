@@ -19,9 +19,8 @@ const Footer = () => {
 
           <div className="mt-4 md:ml-16">
             <h4 className="font-display text-cream font-semibold mb-1 text-sm">{t(s.disclaimerTitle, lang)}</h4>
-            <p className="text-cream/50 text-xs font-body leading-relaxed">
-              {t(s.disclaimerText, lang)}
-              <br />
+            <p className="text-cream/50 text-xs font-body leading-relaxed whitespace-pre-line">
+              {t(s.disclaimerText, lang)}{"\n"}
               <a href="mailto:info@ebgreenusa.com" className="text-gold hover:underline">info@ebgreenusa.com</a>
             </p>
           </div>
