@@ -266,7 +266,7 @@ const TestimonialsSection = () => {
             </button>
 
             <div className="flex gap-1.5">
-              {testimonials.map((_, i) => (
+              {Array.from({ length: testimonials.length + 1 }).map((_, i) => (
                 <button
                   key={i}
                   onClick={() => scrollToIndex(i)}
