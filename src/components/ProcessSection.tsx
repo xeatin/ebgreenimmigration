@@ -31,7 +31,7 @@ const ProcessSection = () => {
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-x-[43px] gap-y-[50px]">
+        <div className="flex flex-wrap justify-center gap-x-12 gap-y-14">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
