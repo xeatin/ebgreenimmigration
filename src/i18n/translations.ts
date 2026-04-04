@@ -259,6 +259,7 @@ export const translations = {
 
   // Testimonials
   testimonials: {
+    sectionLabel: { pt: "Depoimentos", en: "Testimonials", es: "Testimonios" },
     title1: { pt: "Histórias de quem transformou", en: "Stories from those who turned", es: "Historias de quienes transformaron" },
     titleHighlight: { pt: "sonho em realidade", en: "dreams into reality", es: "sueños en realidad" },
     subtitle: {
