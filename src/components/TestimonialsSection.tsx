@@ -209,7 +209,7 @@ const TestimonialsSection = () => {
                     </div>
                     <div>
                       <p className="font-display text-foreground font-semibold text-sm leading-tight">{item.name}</p>
-                      <p className="text-accent text-xs font-body">{item.category}</p>
+                      <p className="text-accent text-xs font-body">{t(item.category, lang)}</p>
                     </div>
                   </div>
 
