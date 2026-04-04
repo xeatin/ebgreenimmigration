@@ -259,6 +259,7 @@ export const translations = {
 
   // Testimonials
   testimonials: {
+    sectionLabel: { pt: "Depoimentos", en: "Testimonials", es: "Testimonios" },
     title1: { pt: "Histórias de quem transformou", en: "Stories from those who turned", es: "Historias de quienes transformaron" },
     titleHighlight: { pt: "sonho em realidade", en: "dreams into reality", es: "sueños en realidad" },
     subtitle: {
@@ -315,6 +316,7 @@ export const translations = {
     messagePlaceholder: { pt: "Fale mais sobre você e seu desejo de imigrar.", en: "Tell us more about yourself and your desire to immigrate.", es: "Cuéntenos más sobre usted y su deseo de inmigrar." },
     privacy: { pt: "Eu concordo com a Política de Privacidade.", en: "I agree with the Privacy Policy.", es: "Acepto la Política de Privacidad." },
     submit: { pt: "Enviar Mensagem", en: "Send Message", es: "Enviar Mensaje" },
+    submitting: { pt: "Enviando...", en: "Sending...", es: "Enviando..." },
     successMsg: {
       pt: "Mensagem enviada com sucesso! Entraremos em contato em até 24 horas.",
       en: "Message sent successfully! We will contact you within 24 hours.",

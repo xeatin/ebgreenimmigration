@@ -90,7 +90,7 @@ const Navbar = () => {
 
           <div className="flex items-center gap-3 lg:hidden">
             <LanguageSelector darkMode={overLight && scrolled} />
-            <button onClick={() => setIsOpen(!isOpen)} className="text-cream">
+            <button onClick={() => setIsOpen(!isOpen)} className={overLight && scrolled ? "text-green-deep" : "text-cream"}>
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>

@@ -1,14 +1,13 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import familyImage from "@/assets/family-flag.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 
 const testimonials = [
   {
     name: "Ricardo & Ana Silva",
-    category: "EB-2 NIW • Aprovado em 2024",
+    category: { pt: "EB-2 NIW • Aprovado em 2024", en: "EB-2 NIW • Approved in 2024", es: "EB-2 NIW • Aprobado en 2024" },
     text: {
       pt: "A equipe foi excepcional do início ao fim. Em menos de 12 meses tivemos nosso Green Card aprovado. O suporte e a dedicação de toda a equipe fizeram toda a diferença na nossa jornada.",
       en: "The team was exceptional from start to finish. In less than 12 months we had our Green Card approved. The support and dedication of the entire team made all the difference in our journey.",
@@ -18,7 +17,7 @@ const testimonials = [
   },
   {
     name: "Mariana Costa",
-    category: "H-1B • Profissional de TI",
+    category: { pt: "H-1B • Profissional de TI", en: "H-1B • IT Professional", es: "H-1B • Profesional de TI" },
     text: {
       pt: "Depois de anos tentando sozinha, decidi contratar a assessoria e foi a melhor decisão. O processo foi claro, transparente e muito mais rápido do que eu imaginava.",
       en: "After years of trying on my own, I decided to hire the advisory and it was the best decision. The process was clear, transparent, and much faster than I imagined.",
@@ -28,7 +27,7 @@ const testimonials = [
   },
   {
     name: "Fernando Oliveira",
-    category: "EB-5 • Investidor",
+    category: { pt: "EB-5 • Investidor", en: "EB-5 • Investor", es: "EB-5 • Inversionista" },
     text: {
       pt: "Como empresário, precisava de uma equipe que entendesse tanto o lado jurídico quanto o empresarial. Superaram todas as minhas expectativas. Recomendo sem hesitar.",
       en: "As a businessman, I needed a team that understood both the legal and business sides. They exceeded all my expectations. I recommend without hesitation.",
@@ -38,7 +37,7 @@ const testimonials = [
   },
   {
     name: "Camila & Pedro Almeida",
-    category: "EB-1A • Aprovado em 2025",
+    category: { pt: "EB-1A • Aprovado em 2025", en: "EB-1A • Approved in 2025", es: "EB-1A • Aprobado en 2025" },
     text: {
       pt: "Nosso caso era complexo, mas a equipe encontrou a melhor estratégia. Hoje vivemos nos EUA com tranquilidade e segurança.",
       en: "Our case was complex, but the team found the best strategy. Today we live in the USA with peace and security.",
@@ -48,7 +47,7 @@ const testimonials = [
   },
   {
     name: "Giovanna Paula",
-    category: "F-1/F-2 • Aprovado em 2026",
+    category: { pt: "F-1/F-2 • Aprovado em 2026", en: "F-1/F-2 • Approved in 2026", es: "F-1/F-2 • Aprobado en 2026" },
     text: {
       pt: "A assessoria tornou todo o processo do visto de estudante muito mais simples. Foi aprovado em apenas 3 dias! Me senti acompanhada em cada etapa e hoje estou realizando meu sonho de estudar nos Estados Unidos.",
       en: "The advisory made the entire student visa process much simpler. It was approved in just 3 days! I felt supported at every step and today I am living my dream of studying in the United States.",
@@ -58,7 +57,7 @@ const testimonials = [
   },
   {
     name: "Cátia Simone",
-    category: "F-1/F-2 • Aprovado em 2025",
+    category: { pt: "F-1/F-2 • Aprovado em 2025", en: "F-1/F-2 • Approved in 2025", es: "F-1/F-2 • Aprobado en 2025" },
     text: {
       pt: "Graças ao trabalho impecável da equipe, consegui meu visto sem nenhuma complicação. O atendimento foi humanizado e profissional do início ao fim.",
       en: "Thanks to the team's impeccable work, I got my visa without any complications. The service was humanized and professional from start to finish.",
@@ -68,7 +67,7 @@ const testimonials = [
   },
   {
     name: "Claudio de Jesus",
-    category: "R-1 • Aprovado em 2025",
+    category: { pt: "R-1 • Aprovado em 2025", en: "R-1 • Approved in 2025", es: "R-1 • Aprobado en 2025" },
     text: {
       pt: "O processo do visto religioso parecia impossível, mas a equipe demonstrou conhecimento profundo e conseguiu a aprovação com agilidade. Sou muito grato por todo o suporte.",
       en: "The religious visa process seemed impossible, but the team demonstrated deep knowledge and achieved approval quickly. I am very grateful for all the support.",
@@ -78,12 +77,13 @@ const testimonials = [
   },
 ];
 
-const getAvatarColor = (category: string): string => {
-  if (category.includes("EB-1") || category.includes("EB-2")) return "bg-[#C8962D]";
-  if (category.includes("H-1B")) return "bg-[#2D3A5C]";
-  if (category.includes("EB-5")) return "bg-[#1B4D3E]";
-  if (category.includes("F-1") || category.includes("F-2")) return "bg-[#5B2C6F]";
-  if (category.includes("R-1")) return "bg-[#8B4513]";
+const getAvatarColor = (category: Record<string, string>): string => {
+  const cat = category.pt;
+  if (cat.includes("EB-1") || cat.includes("EB-2")) return "bg-[#C8962D]";
+  if (cat.includes("H-1B")) return "bg-[#2D3A5C]";
+  if (cat.includes("EB-5")) return "bg-[#1B4D3E]";
+  if (cat.includes("F-1") || cat.includes("F-2")) return "bg-[#5B2C6F]";
+  if (cat.includes("R-1")) return "bg-[#8B4513]";
   return "bg-accent";
 };
 
@@ -155,7 +155,7 @@ const TestimonialsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-10"
         >
-          <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">Depoimentos</p>
+          <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">{t(s.sectionLabel, lang)}</p>
           <h2 className="font-display text-3xl md:text-4xl font-black text-foreground leading-tight tracking-tight">
             {t(s.title1, lang)}
             <br />
@@ -208,7 +208,7 @@ const TestimonialsSection = () => {
                     </div>
                     <div>
                       <p className="font-display text-foreground font-semibold text-sm leading-tight">{item.name}</p>
-                      <p className="text-accent text-xs font-body">{item.category}</p>
+                      <p className="text-accent text-xs font-body">{t(item.category, lang)}</p>
                     </div>
                   </div>
 
