@@ -78,12 +78,13 @@ const testimonials = [
   },
 ];
 
-const getAvatarColor = (category: string): string => {
-  if (category.includes("EB-1") || category.includes("EB-2")) return "bg-[#C8962D]";
-  if (category.includes("H-1B")) return "bg-[#2D3A5C]";
-  if (category.includes("EB-5")) return "bg-[#1B4D3E]";
-  if (category.includes("F-1") || category.includes("F-2")) return "bg-[#5B2C6F]";
-  if (category.includes("R-1")) return "bg-[#8B4513]";
+const getAvatarColor = (category: Record<string, string>): string => {
+  const cat = category.pt;
+  if (cat.includes("EB-1") || cat.includes("EB-2")) return "bg-[#C8962D]";
+  if (cat.includes("H-1B")) return "bg-[#2D3A5C]";
+  if (cat.includes("EB-5")) return "bg-[#1B4D3E]";
+  if (cat.includes("F-1") || cat.includes("F-2")) return "bg-[#5B2C6F]";
+  if (cat.includes("R-1")) return "bg-[#8B4513]";
   return "bg-accent";
 };
 
