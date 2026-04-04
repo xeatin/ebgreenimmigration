@@ -8,7 +8,7 @@ import { translations, t } from "@/i18n/translations";
 const testimonials = [
   {
     name: "Ricardo & Ana Silva",
-    category: "EB-2 NIW • Aprovado em 2024",
+    category: { pt: "EB-2 NIW • Aprovado em 2024", en: "EB-2 NIW • Approved in 2024", es: "EB-2 NIW • Aprobado en 2024" },
     text: {
       pt: "A equipe foi excepcional do início ao fim. Em menos de 12 meses tivemos nosso Green Card aprovado. O suporte e a dedicação de toda a equipe fizeram toda a diferença na nossa jornada.",
       en: "The team was exceptional from start to finish. In less than 12 months we had our Green Card approved. The support and dedication of the entire team made all the difference in our journey.",
