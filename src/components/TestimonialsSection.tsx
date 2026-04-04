@@ -68,7 +68,7 @@ const testimonials = [
   },
   {
     name: "Claudio de Jesus",
-    category: "R-1 • Aprovado em 2025",
+    category: { pt: "R-1 • Aprovado em 2025", en: "R-1 • Approved in 2025", es: "R-1 • Aprobado en 2025" },
     text: {
       pt: "O processo do visto religioso parecia impossível, mas a equipe demonstrou conhecimento profundo e conseguiu a aprovação com agilidade. Sou muito grato por todo o suporte.",
       en: "The religious visa process seemed impossible, but the team demonstrated deep knowledge and achieved approval quickly. I am very grateful for all the support.",
