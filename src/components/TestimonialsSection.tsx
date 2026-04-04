@@ -58,7 +58,7 @@ const testimonials = [
   },
   {
     name: "Cátia Simone",
-    category: "F-1/F-2 • Aprovado em 2025",
+    category: { pt: "F-1/F-2 • Aprovado em 2025", en: "F-1/F-2 • Approved in 2025", es: "F-1/F-2 • Aprobado en 2025" },
     text: {
       pt: "Graças ao trabalho impecável da equipe, consegui meu visto sem nenhuma complicação. O atendimento foi humanizado e profissional do início ao fim.",
       en: "Thanks to the team's impeccable work, I got my visa without any complications. The service was humanized and professional from start to finish.",
