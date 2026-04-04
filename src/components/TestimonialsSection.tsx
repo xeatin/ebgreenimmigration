@@ -222,7 +222,7 @@ const TestimonialsSection = () => {
               return (
                 <motion.div
                   key={item.name}
-                  ref={(node) => { cardRefs.current[i] = node; }}
+                  ref={(node) => { cardRefs.current[i + 1] = node; }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
