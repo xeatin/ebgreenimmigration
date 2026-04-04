@@ -18,7 +18,7 @@ const testimonials = [
   },
   {
     name: "Mariana Costa",
-    category: "H-1B • Profissional de TI",
+    category: { pt: "H-1B • Profissional de TI", en: "H-1B • IT Professional", es: "H-1B • Profesional de TI" },
     text: {
       pt: "Depois de anos tentando sozinha, decidi contratar a assessoria e foi a melhor decisão. O processo foi claro, transparente e muito mais rápido do que eu imaginava.",
       en: "After years of trying on my own, I decided to hire the advisory and it was the best decision. The process was clear, transparent, and much faster than I imagined.",
