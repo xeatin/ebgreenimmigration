@@ -143,7 +143,7 @@ const TestimonialsSection = () => {
   }, [scrollToIndex, selectedIndex]);
 
   const scrollNext = useCallback(() => {
-    scrollToIndex(Math.min(selectedIndex + 1, testimonials.length - 1));
+    scrollToIndex(Math.min(selectedIndex + 1, testimonials.length));
   }, [scrollToIndex, selectedIndex]);
 
   return (
