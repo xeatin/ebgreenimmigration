@@ -28,7 +28,7 @@ const testimonials = [
   },
   {
     name: "Fernando Oliveira",
-    category: "EB-5 • Investidor",
+    category: { pt: "EB-5 • Investidor", en: "EB-5 • Investor", es: "EB-5 • Inversionista" },
     text: {
       pt: "Como empresário, precisava de uma equipe que entendesse tanto o lado jurídico quanto o empresarial. Superaram todas as minhas expectativas. Recomendo sem hesitar.",
       en: "As a businessman, I needed a team that understood both the legal and business sides. They exceeded all my expectations. I recommend without hesitation.",
