@@ -184,6 +184,33 @@ const TestimonialsSection = () => {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             <style>{`[data-testimonials-scroll]::-webkit-scrollbar { display: none; }`}</style>
+            {/* Family photo card */}
+            <motion.div
+              ref={(node) => { cardRefs.current[0] = node; }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative snap-start shrink-0 w-[320px] md:w-[380px] rounded-xl overflow-hidden"
+            >
+              <img
+                src={testimonialsFamilyImg}
+                alt="Happy family celebrating Green Card approval"
+                loading="lazy"
+                width={640}
+                height={800}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <p className="text-white font-display font-black text-lg leading-tight">
+                  {t(s.familiesCount, lang)}
+                </p>
+                <p className="text-white/70 font-body text-sm mt-1">
+                  {t(s.familiesSubtitle, lang)}
+                </p>
+              </div>
+            </motion.div>
+
             {testimonials.map((item, i) => {
               const initials = item.name
                 .split(/[\s&]+/)
