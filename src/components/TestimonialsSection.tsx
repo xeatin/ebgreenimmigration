@@ -38,7 +38,7 @@ const testimonials = [
   },
   {
     name: "Camila & Pedro Almeida",
-    category: "EB-1A • Aprovado em 2025",
+    category: { pt: "EB-1A • Aprovado em 2025", en: "EB-1A • Approved in 2025", es: "EB-1A • Aprobado en 2025" },
     text: {
       pt: "Nosso caso era complexo, mas a equipe encontrou a melhor estratégia. Hoje vivemos nos EUA com tranquilidade e segurança.",
       en: "Our case was complex, but the team found the best strategy. Today we live in the USA with peace and security.",
