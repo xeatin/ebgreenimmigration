@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
-import testimonialsFamilyImg from "@/assets/testimonials-family.jpg";
 
 const testimonials = [
   {
@@ -143,7 +142,7 @@ const TestimonialsSection = () => {
   }, [scrollToIndex, selectedIndex]);
 
   const scrollNext = useCallback(() => {
-    scrollToIndex(Math.min(selectedIndex + 1, testimonials.length));
+    scrollToIndex(Math.min(selectedIndex + 1, testimonials.length - 1));
   }, [scrollToIndex, selectedIndex]);
 
   return (
@@ -184,33 +183,6 @@ const TestimonialsSection = () => {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             <style>{`[data-testimonials-scroll]::-webkit-scrollbar { display: none; }`}</style>
-            {/* Family photo card */}
-            <motion.div
-              ref={(node) => { cardRefs.current[0] = node; }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="relative snap-start shrink-0 w-[320px] md:w-[380px] rounded-xl overflow-hidden"
-            >
-              <img
-                src={testimonialsFamilyImg}
-                alt="Happy family celebrating Green Card approval"
-                loading="lazy"
-                width={640}
-                height={800}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                <p className="text-white font-display font-black text-lg leading-tight">
-                  {t(s.familiesCount, lang)}
-                </p>
-                <p className="text-white/70 font-body text-sm mt-1">
-                  {t(s.familiesSubtitle, lang)}
-                </p>
-              </div>
-            </motion.div>
-
             {testimonials.map((item, i) => {
               const initials = item.name
                 .split(/[\s&]+/)
@@ -222,7 +194,7 @@ const TestimonialsSection = () => {
               return (
                 <motion.div
                   key={item.name}
-                  ref={(node) => { cardRefs.current[i + 1] = node; }}
+                  ref={(node) => { cardRefs.current[i] = node; }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -266,7 +238,7 @@ const TestimonialsSection = () => {
             </button>
 
             <div className="flex gap-1.5">
-              {Array.from({ length: testimonials.length + 1 }).map((_, i) => (
+              {testimonials.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => scrollToIndex(i)}
