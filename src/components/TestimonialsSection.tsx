@@ -48,7 +48,7 @@ const testimonials = [
   },
   {
     name: "Giovanna Paula",
-    category: "F-1/F-2 • Aprovado em 2026",
+    category: { pt: "F-1/F-2 • Aprovado em 2026", en: "F-1/F-2 • Approved in 2026", es: "F-1/F-2 • Aprobado en 2026" },
     text: {
       pt: "A assessoria tornou todo o processo do visto de estudante muito mais simples. Foi aprovado em apenas 3 dias! Me senti acompanhada em cada etapa e hoje estou realizando meu sonho de estudar nos Estados Unidos.",
       en: "The advisory made the entire student visa process much simpler. It was approved in just 3 days! I felt supported at every step and today I am living my dream of studying in the United States.",
