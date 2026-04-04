@@ -43,7 +43,7 @@ const AboutSection = () => {
               {t(s.title1, lang)}{" "}
               <span className="text-gradient-gold">{t(s.titleHighlight, lang)}</span>
             </h2>
-            <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 mb-8 rounded-full" />
+            <div className="w-16 h-1 bg-gradient-gold mt-6 mb-8 rounded-full" />
 
             <p className="text-muted-foreground text-lg leading-relaxed font-body" dangerouslySetInnerHTML={{ __html: t(s.paragraph1, lang) }} />
             <p className="mt-4 text-muted-foreground text-lg leading-relaxed font-body">{t(s.paragraph2, lang)}</p>
