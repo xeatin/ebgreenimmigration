@@ -155,7 +155,7 @@ export const translations = {
       en: "A clear, transparent process with support at every step.",
       es: "Un proceso claro, transparente y con acompañamiento en cada etapa.",
     },
-    cta: { pt: "Comece Sua Jornada Agora", en: "Start Your Journey Now", es: "Comienza Tu Camino Ahora" },
+    cta: { pt: "Agendar Consulta Estratégica", en: "Schedule Strategic Consultation", es: "Agendar Consulta Estratégica" },
     steps: [
       {
         title: { pt: "Avaliação de Perfil", en: "Profile Assessment", es: "Evaluación de Perfil" },
