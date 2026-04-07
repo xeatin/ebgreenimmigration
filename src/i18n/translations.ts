@@ -33,7 +33,7 @@ export const translations = {
       en: "Specialists in EB-1A, EB-2 NIW, O-1, Work and Investor Visas. Technical rigor, individualized strategy, and a consistent track record of approvals.",
       es: "Especialistas en EB-1A, EB-2 NIW, O-1, Visas de Trabajo e Inversionista. Rigor técnico, estrategia individualizada e historial consistente de aprobaciones.",
     },
-    ctaPrimary: { pt: "Iniciar Minha Jornada", en: "Start My Journey", es: "Iniciar Mi Camino" },
+    ctaPrimary: { pt: "Avaliar Minha Elegibilidade", en: "Assess My Eligibility", es: "Evaluar Mi Elegibilidad" },
     ctaSecondary: { pt: "Explorar Serviços", en: "Explore Services", es: "Explorar Servicios" },
     stats: {
       families: { pt: "Foco em Imigração", en: "Immigration Focus", es: "Enfoque en Inmigración" },
