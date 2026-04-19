@@ -28,9 +28,9 @@ const ContactSection = () => {
   });
 
   const shouldSendEmail = (education: string, experience: string): boolean => {
+    // Bloqueia leads desqualificados (sem feedback visual ao usuário)
     if (education === "ensino-medio") return false;
     if ((education === "tecnico" || education === "tecnologo") && experience !== "mais-10") return false;
-    if (education === "superior" && experience === "menos-5") return false;
     return true;
   };
 
