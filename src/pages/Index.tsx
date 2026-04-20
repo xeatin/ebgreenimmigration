@@ -10,8 +10,10 @@ import ContactSection from "@/components/ContactSection";
 
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { useSeoMeta } from "@/hooks/useSeoMeta";
 
 const Index = () => {
+  useSeoMeta();
   return (
     <div className="min-h-screen">
       <Navbar />
