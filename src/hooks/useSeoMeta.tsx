@@ -34,10 +34,10 @@ const SEO_BY_LANG: Record<string, SeoConfig> = {
   es: {
     title: "EBGreen Immigration | Green Card EB-1A, EB-2 NIW y Visas para EE.UU.",
     description:
-      "Asesoría especializada en Green Card por mérito profesional. EB-1A, EB-2 NIW, O-1 y visas de trabajo. Atención en portugués, inglés y español. Consulta gratuita.",
+      "Asesoría especializada en Green Card por mérito profesional. EB-1A, EB-2 NIW, O-1 y visas de trabajo. Atención en español. Consulta gratuita.",
     ogTitle: "EBGreen Immigration | Expertos en Green Card",
     ogDescription:
-      "Obtenga su Green Card con la estrategia correcta. Especialistas en EB-1A, EB-2 NIW, O-1 y visas de inversionista. Consulta gratuita.",
+      "Consigue tu Green Card con la estrategia correcta. Especialistas en EB-1A, EB-2 NIW, O-1 y visas de inversor. Consulta gratuita.",
     ogLocale: "es_ES",
     htmlLang: "es",
   },
