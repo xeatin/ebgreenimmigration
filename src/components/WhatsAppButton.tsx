@@ -1,18 +1,14 @@
 import { useState } from "react";
 import { z } from "zod";
+import { User, Mail, Plane, GraduationCap, ArrowRight, Lock, Sparkles } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
+import { cn } from "@/lib/utils";
 
 const WHATSAPP_NUMBER = "17712017117";
 
