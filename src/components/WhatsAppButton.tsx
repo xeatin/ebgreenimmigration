@@ -19,7 +19,7 @@ const copy = {
   pt: {
     badge: "Atendimento BIA",
     title: "Antes de continuar no WhatsApp",
-    desc: "Preencha os dados abaixo para que a BIA inicie seu atendimento já com contexto.",
+    desc: "Preencha seus dados abaixo e inicie seu atendimento com mais rapidez e precisão.",
     name: "Nome completo",
     namePh: "Como podemos te chamar?",
     email: "E-mail",
