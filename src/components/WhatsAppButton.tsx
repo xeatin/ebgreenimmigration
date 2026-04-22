@@ -1,8 +1,16 @@
 import { useState } from "react";
 import { z } from "zod";
-import { User, Mail, Plane, GraduationCap, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -17,64 +25,46 @@ const leadSchema = z.object({
 
 const copy = {
   pt: {
-    badge: "Atendimento BIA",
     title: "Antes de continuar no WhatsApp",
-    desc: "Preencha os dados abaixo para que a BIA inicie seu atendimento já com contexto.",
-    name: "Nome completo",
-    namePh: "Como podemos te chamar?",
+    desc: "Preencha rapidamente para que a BIA já inicie seu atendimento com contexto.",
+    name: "Nome",
     email: "E-mail",
-    emailPh: "voce@email.com",
     visa: "Tipo de visto",
-    visaPh: "Ex: EB-1A, EB-2 NIW, O-1...",
     education: "Graduação",
-    eduPh: "Ex: Graduado em Engenharia",
-    optional: "opcional",
-    required: "obrigatório",
+    visaPh: "Ex: EB-1A, EB-2 NIW, O-1...",
+    eduPh: "Ex: Mestrado em Engenharia",
     submit: "Continuar para WhatsApp",
     sending: "Enviando...",
-    privacy: "Seus dados estão seguros e são usados apenas para seu atendimento.",
     aria: "Falar pelo WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
       `Olá, meu nome é ${n}.\n\nSeguem minhas informações:\n\nE-mail: ${e}\nTipo de visto: ${v || "Não informado"}\nGraduação: ${ed || "Não informado"}\n\nGostaria de mais informações.`,
   },
   en: {
-    badge: "BIA Assistant",
     title: "Before continuing on WhatsApp",
-    desc: "Fill in your details so BIA can start your service with full context.",
-    name: "Full name",
-    namePh: "What should we call you?",
+    desc: "Fill in quickly so BIA can start your service with context.",
+    name: "Name",
     email: "Email",
-    emailPh: "you@email.com",
     visa: "Visa type",
-    visaPh: "Ex: EB-1A, EB-2 NIW, O-1...",
     education: "Education",
-    eduPh: "Ex: Bachelor's in Engineering",
-    optional: "optional",
-    required: "required",
+    visaPh: "Ex: EB-1A, EB-2 NIW, O-1...",
+    eduPh: "Ex: Master's in Engineering",
     submit: "Continue to WhatsApp",
     sending: "Sending...",
-    privacy: "Your data is safe and used only for your service.",
     aria: "Chat on WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
       `Hello, my name is ${n}.\n\nHere is my information:\n\nEmail: ${e}\nVisa type: ${v || "Not provided"}\nEducation: ${ed || "Not provided"}\n\nI would like more information.`,
   },
   es: {
-    badge: "Atención BIA",
     title: "Antes de continuar en WhatsApp",
-    desc: "Complete sus datos para que BIA inicie su atención con contexto.",
-    name: "Nombre completo",
-    namePh: "¿Cómo te llamamos?",
+    desc: "Complete rápidamente para que BIA inicie su atención con contexto.",
+    name: "Nombre",
     email: "Correo electrónico",
-    emailPh: "tu@correo.com",
     visa: "Tipo de visa",
-    visaPh: "Ej: EB-1A, EB-2 NIW, O-1...",
     education: "Formación",
-    eduPh: "Ej: Graduado en Ingeniería",
-    optional: "opcional",
-    required: "obligatorio",
+    visaPh: "Ej: EB-1A, EB-2 NIW, O-1...",
+    eduPh: "Ej: Maestría en Ingeniería",
     submit: "Continuar a WhatsApp",
     sending: "Enviando...",
-    privacy: "Sus datos están seguros y se usan solo para su atención.",
     aria: "Hablar por WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
       `Hola, mi nombre es ${n}.\n\nMis datos:\n\nCorreo: ${e}\nTipo de visa: ${v || "No informado"}\nFormación: ${ed || "No informado"}\n\nMe gustaría más información.`,
@@ -83,6 +73,7 @@ const copy = {
 
 const WhatsAppButton = () => {
   const { lang } = useLanguage();
+  const { toast } = useToast();
   const c = copy[lang];
 
   const [open, setOpen] = useState(false);
@@ -108,6 +99,7 @@ const WhatsAppButton = () => {
     const [firstName, ...rest] = name.split(" ");
     const lastName = rest.join(" ") || "-";
 
+    // Fire-and-forget: capture lead via edge function (CRM/Email)
     try {
       await supabase.functions.invoke("send-contact-email", {
         body: {
@@ -136,13 +128,6 @@ const WhatsAppButton = () => {
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
-  const fieldWrap =
-    "group relative rounded-xl border border-input bg-background transition-all focus-within:border-[#25D366] focus-within:ring-2 focus-within:ring-[#25D366]/20";
-  const inputBase =
-    "w-full bg-transparent pl-11 pr-3 py-3 text-sm font-body text-foreground placeholder:text-muted-foreground/70 focus:outline-none";
-  const iconBase =
-    "absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-[#25D366] transition-colors";
-
   return (
     <>
       <button
@@ -157,142 +142,73 @@ const WhatsAppButton = () => {
       </button>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="p-0 overflow-hidden sm:max-w-[460px] border-border/60 rounded-2xl">
-          {/* Header em gradiente verde-marca */}
-          <div className="relative bg-gradient-to-br from-[#128C7E] via-[#25D366] to-[#20bd5a] px-6 pt-7 pb-6 text-white">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur px-3 py-1 text-[11px] font-semibold tracking-wide uppercase">
-              <Sparkles size={13} />
-              {c.badge}
-            </div>
-            <h2 className="font-display text-xl sm:text-2xl font-bold mt-3 leading-tight">
-              {c.title}
-            </h2>
-            <p className="font-body text-sm text-white/90 mt-1.5 leading-relaxed">
-              {c.desc}
-            </p>
-          </div>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="font-display text-xl">{c.title}</DialogTitle>
+            <DialogDescription className="font-body text-sm">{c.desc}</DialogDescription>
+          </DialogHeader>
 
-          <form onSubmit={handleSubmit} className="px-6 pt-5 pb-6 space-y-4">
-            {/* Nome */}
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label htmlFor="wa-name" className="text-xs font-body font-semibold text-foreground tracking-wide">
-                  {c.name}
-                </label>
-                <span className="text-[10px] uppercase tracking-wider text-[#25D366] font-semibold">
-                  {c.required}
-                </span>
-              </div>
-              <div className={fieldWrap}>
-                <User size={16} className={iconBase} />
-                <input
-                  id="wa-name"
-                  type="text"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  maxLength={120}
-                  autoComplete="name"
-                  required
-                  placeholder={c.namePh}
-                  className={inputBase}
-                />
-              </div>
-              {errors.name && <p className="mt-1 text-xs text-destructive font-body">{errors.name}</p>}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="wa-name" className="font-body">
+                {c.name} <span className="text-destructive">*</span>
+              </Label>
+              <Input
+                id="wa-name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                maxLength={120}
+                autoComplete="name"
+                required
+              />
+              {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
             </div>
 
-            {/* E-mail */}
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label htmlFor="wa-email" className="text-xs font-body font-semibold text-foreground tracking-wide">
-                  {c.email}
-                </label>
-                <span className="text-[10px] uppercase tracking-wider text-[#25D366] font-semibold">
-                  {c.required}
-                </span>
-              </div>
-              <div className={fieldWrap}>
-                <Mail size={16} className={iconBase} />
-                <input
-                  id="wa-email"
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  maxLength={255}
-                  autoComplete="email"
-                  required
-                  placeholder={c.emailPh}
-                  className={inputBase}
-                />
-              </div>
-              {errors.email && <p className="mt-1 text-xs text-destructive font-body">{errors.email}</p>}
+            <div className="space-y-1.5">
+              <Label htmlFor="wa-email" className="font-body">
+                {c.email} <span className="text-destructive">*</span>
+              </Label>
+              <Input
+                id="wa-email"
+                type="email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                maxLength={255}
+                autoComplete="email"
+                required
+              />
+              {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
             </div>
 
-            {/* Visto + Graduação em grid no desktop */}
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label htmlFor="wa-visa" className="text-xs font-body font-semibold text-foreground tracking-wide">
-                    {c.visa}
-                  </label>
-                  <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">
-                    {c.optional}
-                  </span>
-                </div>
-                <div className={fieldWrap}>
-                  <Plane size={16} className={iconBase} />
-                  <input
-                    id="wa-visa"
-                    type="text"
-                    value={form.visa}
-                    onChange={(e) => setForm({ ...form, visa: e.target.value })}
-                    maxLength={80}
-                    placeholder={c.visaPh}
-                    className={inputBase}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label htmlFor="wa-edu" className="text-xs font-body font-semibold text-foreground tracking-wide">
-                    {c.education}
-                  </label>
-                  <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">
-                    {c.optional}
-                  </span>
-                </div>
-                <div className={fieldWrap}>
-                  <GraduationCap size={16} className={iconBase} />
-                  <input
-                    id="wa-edu"
-                    type="text"
-                    value={form.education}
-                    onChange={(e) => setForm({ ...form, education: e.target.value })}
-                    maxLength={120}
-                    placeholder={c.eduPh}
-                    className={inputBase}
-                  />
-                </div>
-              </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="wa-visa" className="font-body">{c.visa}</Label>
+              <Input
+                id="wa-visa"
+                value={form.visa}
+                onChange={(e) => setForm({ ...form, visa: e.target.value })}
+                maxLength={80}
+                placeholder={c.visaPh}
+              />
             </div>
 
-            {/* CTA */}
+            <div className="space-y-1.5">
+              <Label htmlFor="wa-edu" className="font-body">{c.education}</Label>
+              <Input
+                id="wa-edu"
+                value={form.education}
+                onChange={(e) => setForm({ ...form, education: e.target.value })}
+                maxLength={120}
+                placeholder={c.eduPh}
+              />
+            </div>
+
             <Button
               type="submit"
               disabled={submitting}
-              className="w-full h-12 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold text-sm rounded-xl shadow-md hover:shadow-lg transition-all group"
+              className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
             >
               {submitting ? c.sending : c.submit}
-              {!submitting && (
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-              )}
             </Button>
-
-            {/* Microcopy de privacidade */}
-            <div className="flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground font-body pt-1">
-              <ShieldCheck size={12} className="text-[#25D366]" />
-              <span>{c.privacy}</span>
-            </div>
           </form>
         </DialogContent>
       </Dialog>
