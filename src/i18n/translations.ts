@@ -322,6 +322,35 @@ export const translations = {
       en: "Message sent successfully! We will contact you within 24 hours.",
       es: "¡Mensaje enviado con éxito! Nos pondremos en contacto en 24 horas.",
     },
+    successTitle: { pt: "Sucesso", en: "Success", es: "Éxito" },
+    validationTitle: {
+      pt: "Verifique os campos do formulário",
+      en: "Please check the form fields",
+      es: "Verifique los campos del formulario",
+    },
+    errors: {
+      required: { pt: "Campo obrigatório", en: "Required field", es: "Campo obligatorio" },
+      firstNameMin: { pt: "Informe seu primeiro nome", en: "Enter your first name", es: "Ingrese su nombre" },
+      lastNameMin: { pt: "Informe seu último nome", en: "Enter your last name", es: "Ingrese su apellido" },
+      emailInvalid: { pt: "E-mail inválido", en: "Invalid email", es: "Correo inválido" },
+      phoneInvalid: {
+        pt: "Telefone inválido (apenas números, mínimo 6 dígitos)",
+        en: "Invalid phone (digits only, min 6)",
+        es: "Teléfono inválido (solo dígitos, mínimo 6)",
+      },
+      educationRequired: { pt: "Selecione sua formação", en: "Select your education", es: "Seleccione su formación" },
+      experienceRequired: { pt: "Selecione sua experiência", en: "Select your experience", es: "Seleccione su experiencia" },
+      privacyRequired: {
+        pt: "Você precisa aceitar a Política de Privacidade",
+        en: "You must accept the Privacy Policy",
+        es: "Debe aceptar la Política de Privacidad",
+      },
+      messageMax: {
+        pt: "Mensagem muito longa (máx. 2000 caracteres)",
+        en: "Message too long (max 2000 characters)",
+        es: "Mensaje demasiado largo (máx. 2000 caracteres)",
+      },
+    },
     select: { pt: "Selecione...", en: "Select...", es: "Seleccione..." },
     educationOptions: {
       "ensino-medio": { pt: "Ensino Médio", en: "High School", es: "Secundaria" },
