@@ -26,7 +26,7 @@ const leadSchema = z.object({
 const copy = {
   pt: {
     title: "Antes de continuar no WhatsApp",
-    desc: "Preencha rapidamente para que a BIA já inicie seu atendimento com contexto.",
+    desc: "Preencha os dados abaixo para que a BIA inicie seu atendimento com mais rapidez e precisão.",
     name: "Nome",
     email: "E-mail",
     visa: "Tipo de visto",
