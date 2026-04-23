@@ -194,33 +194,43 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             onSubmit={handleSubmit}
+            noValidate
             className="lg:col-span-3 bg-card rounded-xl p-8 border border-border shadow-lg space-y-5"
           >
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass}>{t(s.firstName, lang)}</label>
-                <input type="text" required value={formData.firstName}
+                <label className={labelClass} htmlFor="firstName">{t(s.firstName, lang)}</label>
+                <input id="firstName" type="text" value={formData.firstName}
+                  aria-invalid={!!errors.firstName}
+                  aria-describedby={errors.firstName ? "firstName-err" : undefined}
                   onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                  className={inputClass} placeholder="Ex John" />
+                  className={`${inputClass} ${errors.firstName ? inputErrorClass : ""}`} placeholder="Ex John" />
+                {errors.firstName && <p id="firstName-err" className={errorClass}>{errors.firstName}</p>}
               </div>
               <div>
-                <label className={labelClass}>{t(s.lastName, lang)}</label>
-                <input type="text" required value={formData.lastName}
+                <label className={labelClass} htmlFor="lastName">{t(s.lastName, lang)}</label>
+                <input id="lastName" type="text" value={formData.lastName}
+                  aria-invalid={!!errors.lastName}
+                  aria-describedby={errors.lastName ? "lastName-err" : undefined}
                   onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                  className={inputClass} placeholder="Ex Doe" />
+                  className={`${inputClass} ${errors.lastName ? inputErrorClass : ""}`} placeholder="Ex Doe" />
+                {errors.lastName && <p id="lastName-err" className={errorClass}>{errors.lastName}</p>}
               </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass}>{t(s.emailLabel, lang)}</label>
-                <input type="email" required value={formData.email}
+                <label className={labelClass} htmlFor="email">{t(s.emailLabel, lang)}</label>
+                <input id="email" type="email" value={formData.email}
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-err" : undefined}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className={inputClass} placeholder="john@doe.com" />
+                  className={`${inputClass} ${errors.email ? inputErrorClass : ""}`} placeholder="john@doe.com" />
+                {errors.email && <p id="email-err" className={errorClass}>{errors.email}</p>}
               </div>
               <div>
                 <label className={labelClass}>{t(s.phoneLabel, lang)}</label>
-                <div className="flex items-center rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-ring">
+                <div className={`flex items-center rounded-lg border bg-background focus-within:ring-2 focus-within:ring-ring ${errors.phone ? "border-destructive focus-within:ring-destructive" : "border-input"}`}>
                   <PhoneCodeSelector
                     value={formData.phoneCode}
                     onChange={(val) => setFormData({ ...formData, phoneCode: val })}
@@ -228,9 +238,12 @@ const ContactSection = () => {
                   <div className="w-px h-6 bg-input shrink-0" />
                   <span className="px-2 text-sm text-foreground font-body shrink-0">{formData.phoneCode}</span>
                   <input type="tel" value={formData.phone}
+                    aria-invalid={!!errors.phone}
+                    aria-describedby={errors.phone ? "phone-err" : undefined}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="flex-1 px-1 py-3 bg-transparent text-foreground focus:outline-none font-body text-sm" placeholder="300 400 5000" />
                 </div>
+                {errors.phone && <p id="phone-err" className={errorClass}>{errors.phone}</p>}
               </div>
             </div>
 
@@ -259,29 +272,35 @@ const ContactSection = () => {
                 </select>
               </div>
               <div>
-                <label className={labelClass}>{t(s.education, lang)}</label>
-                <select required value={formData.education}
+                <label className={labelClass} htmlFor="education">{t(s.education, lang)}</label>
+                <select id="education" value={formData.education}
+                  aria-invalid={!!errors.education}
+                  aria-describedby={errors.education ? "education-err" : undefined}
                   onChange={(e) => setFormData({ ...formData, education: e.target.value })}
-                  className={inputClass}>
+                  className={`${inputClass} ${errors.education ? inputErrorClass : ""}`}>
                   <option value="">{t(s.select, lang)}</option>
                   {Object.entries(s.educationOptions).map(([key, val]) => (
                     <option key={key} value={key}>{t(val, lang)}</option>
                   ))}
                 </select>
+                {errors.education && <p id="education-err" className={errorClass}>{errors.education}</p>}
               </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass}>{t(s.experience, lang)}</label>
-                <select required value={formData.experience}
+                <label className={labelClass} htmlFor="experience">{t(s.experience, lang)}</label>
+                <select id="experience" value={formData.experience}
+                  aria-invalid={!!errors.experience}
+                  aria-describedby={errors.experience ? "experience-err" : undefined}
                   onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                  className={inputClass}>
+                  className={`${inputClass} ${errors.experience ? inputErrorClass : ""}`}>
                   <option value="">{t(s.select, lang)}</option>
                   {Object.entries(s.experienceOptions).map(([key, val]) => (
                     <option key={key} value={key}>{t(val, lang)}</option>
                   ))}
                 </select>
+                {errors.experience && <p id="experience-err" className={errorClass}>{errors.experience}</p>}
               </div>
               <div>
                 <label className={labelClass}>{t(s.resume, lang)}</label>
@@ -291,26 +310,34 @@ const ContactSection = () => {
                   <input type="file" accept=".pdf,.doc,.docx" className="hidden"
                     onChange={(e) => {
                       const file = e.target.files?.[0];
-                      if (file) alert(`Arquivo "${file.name}" selecionado.`);
+                      if (file) toast({ title: file.name });
                     }} />
                 </label>
               </div>
             </div>
 
             <div>
-              <label className={labelClass}>{t(s.message, lang)}</label>
-              <textarea rows={2} value={formData.message}
+              <label className={labelClass} htmlFor="message">{t(s.message, lang)}</label>
+              <textarea id="message" rows={2} value={formData.message}
+                maxLength={2000}
+                aria-invalid={!!errors.message}
+                aria-describedby={errors.message ? "message-err" : undefined}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className={`${inputClass} resize-none`}
+                className={`${inputClass} resize-none ${errors.message ? inputErrorClass : ""}`}
                 placeholder={t(s.messagePlaceholder, lang)} />
+              {errors.message && <p id="message-err" className={errorClass}>{errors.message}</p>}
             </div>
 
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" required checked={formData.privacy}
-                onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
-                className="w-4 h-4 rounded border-input accent-accent" />
-              <span className="text-sm text-muted-foreground font-body">{t(s.privacy, lang)}</span>
-            </label>
+            <div>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" checked={formData.privacy}
+                  aria-invalid={!!errors.privacy}
+                  onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
+                  className="w-4 h-4 rounded border-input accent-accent" />
+                <span className="text-sm text-muted-foreground font-body">{t(s.privacy, lang)}</span>
+              </label>
+              {errors.privacy && <p className={errorClass}>{errors.privacy}</p>}
+            </div>
 
             <button type="submit" disabled={isSubmitting}
               className="w-full bg-gradient-gold text-green-deep px-6 py-4 rounded-lg font-bold text-lg font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 disabled:opacity-60">
