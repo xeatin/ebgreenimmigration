@@ -318,9 +318,9 @@ export const translations = {
     submit: { pt: "Enviar Mensagem", en: "Send Message", es: "Enviar Mensaje" },
     submitting: { pt: "Enviando...", en: "Sending...", es: "Enviando..." },
     successMsg: {
-      pt: "Mensagem enviada com sucesso! Entraremos em contato em até 24 horas.",
-      en: "Message sent successfully! We will contact you within 24 hours.",
-      es: "¡Mensaje enviado con éxito! Nos pondremos en contacto en 24 horas.",
+      pt: "Mensagem enviada. Obrigado.",
+      en: "Message sent. Thank you.",
+      es: "Mensaje enviado. Gracias.",
     },
     successTitle: { pt: "Sucesso", en: "Success", es: "Éxito" },
     validationTitle: {
