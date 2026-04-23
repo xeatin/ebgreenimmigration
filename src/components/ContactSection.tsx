@@ -9,16 +9,20 @@ const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?
 
 import PhoneCodeSelector from "./PhoneCodeSelector";
 import { useState } from "react";
+import { z } from "zod";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
-
-
-
+type FormErrors = Partial<Record<
+  "firstName" | "lastName" | "email" | "phone" | "education" | "experience" | "privacy" | "message",
+  string
+>>;
 
 const ContactSection = () => {
   const { lang } = useLanguage();
+  const { toast } = useToast();
   const s = translations.contact;
 
   const [formData, setFormData] = useState({
@@ -26,18 +30,60 @@ const ContactSection = () => {
     migrateTo: "", education: "", experience: "",
     visa: "", message: "", privacy: false
   });
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const shouldSendEmail = (education: string, experience: string): boolean => {
-    // Bloqueia leads desqualificados (sem feedback visual ao usuário)
     if (education === "ensino-medio") return false;
     if ((education === "tecnico" || education === "tecnologo") && experience === "menos-5") return false;
     return true;
   };
 
+  const buildSchema = () =>
+    z.object({
+      firstName: z.string().trim().min(2, t(s.errors.firstNameMin, lang)).max(80),
+      lastName: z.string().trim().min(2, t(s.errors.lastNameMin, lang)).max(80),
+      email: z.string().trim().email(t(s.errors.emailInvalid, lang)).max(255),
+      phone: z
+        .string()
+        .trim()
+        .min(1, t(s.errors.required, lang))
+        .refine((v) => /^\d{6,20}$/.test(v.replace(/\D/g, "")), {
+          message: t(s.errors.phoneInvalid, lang),
+        }),
+      education: z.string().min(1, t(s.errors.educationRequired, lang)),
+      experience: z.string().min(1, t(s.errors.experienceRequired, lang)),
+      message: z.string().max(2000, t(s.errors.messageMax, lang)).optional().or(z.literal("")),
+      privacy: z.literal(true, {
+        errorMap: () => ({ message: t(s.errors.privacyRequired, lang) }),
+      }),
+    });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const schema = buildSchema();
+    const parsed = schema.safeParse(formData);
+    if (!parsed.success) {
+      const f = parsed.error.flatten().fieldErrors;
+      setErrors({
+        firstName: f.firstName?.[0],
+        lastName: f.lastName?.[0],
+        email: f.email?.[0],
+        phone: f.phone?.[0],
+        education: f.education?.[0],
+        experience: f.experience?.[0],
+        message: f.message?.[0],
+        privacy: f.privacy?.[0],
+      });
+      toast({
+        title: t(s.validationTitle, lang),
+        variant: "destructive",
+      });
+      return;
+    }
+    setErrors({});
     setIsSubmitting(true);
 
     try {
@@ -60,7 +106,10 @@ const ContactSection = () => {
       // silently fail - user should not notice
     }
 
-    alert(t(s.successMsg, lang));
+    toast({
+      title: t(s.successTitle, lang),
+      description: t(s.successMsg, lang),
+    });
     setFormData({
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
       migrateTo: "", education: "", experience: "",
@@ -70,7 +119,9 @@ const ContactSection = () => {
   };
 
   const inputClass = "w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body text-sm";
+  const inputErrorClass = "border-destructive focus:ring-destructive";
   const labelClass = "text-sm text-muted-foreground font-body mb-1.5 block";
+  const errorClass = "text-xs text-destructive font-body mt-1";
 
   return (
     <section id="contato" className="py-24 bg-secondary">
