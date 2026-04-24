@@ -70,12 +70,22 @@ Deno.serve(async (req) => {
     })
 
     const result = await res.text()
+    console.log('Resend response status:', res.status)
+    console.log('Resend response body:', result)
+
+    if (!res.ok) {
+      return new Response(
+        JSON.stringify({ success: false, status: res.status, resend: result }),
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
 
     return new Response(
-      JSON.stringify({ success: true }),
+      JSON.stringify({ success: true, resend: result }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )
   } catch (error) {
+    console.error('send-contact-email error:', error)
     return new Response(
       JSON.stringify({ error: 'Internal server error' }),
       { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
