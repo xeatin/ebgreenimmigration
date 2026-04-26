@@ -340,6 +340,7 @@ export const translations = {
       },
       educationRequired: { pt: "Selecione sua formação", en: "Select your education", es: "Seleccione su formación" },
       experienceRequired: { pt: "Selecione sua experiência", en: "Select your experience", es: "Seleccione su experiencia" },
+      visaRequired: { pt: "Selecione o tipo de visto", en: "Select the visa type", es: "Seleccione el tipo de visa" },
       privacyRequired: {
         pt: "Você precisa aceitar a Política de Privacidade",
         en: "You must accept the Privacy Policy",
