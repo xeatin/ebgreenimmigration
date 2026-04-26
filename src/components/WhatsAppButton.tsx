@@ -165,7 +165,6 @@ const initialForm: FormState = {
   email: "",
   visa: "",
   education: "",
-  experience: "",
 };
 
 const WhatsAppButton = () => {
