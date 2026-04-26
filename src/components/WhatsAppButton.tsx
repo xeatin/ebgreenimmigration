@@ -23,8 +23,7 @@ import { supabase } from "@/integrations/supabase/client";
 const WHATSAPP_NUMBER = "17712017117";
 
 const leadSchema = z.object({
-  firstName: z.string().trim().min(1, "Obrigatório").max(100),
-  lastName: z.string().trim().min(1, "Obrigatório").max(100),
+  fullName: z.string().trim().min(1, "Obrigatório").max(200),
   email: z.string().trim().email("E-mail inválido").max(255),
   visa: z.string().trim().min(1, "Obrigatório").max(80),
   education: z.string().trim().min(1, "Obrigatório").max(120),
