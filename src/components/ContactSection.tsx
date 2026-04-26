@@ -73,6 +73,7 @@ const ContactSection = () => {
         lastName: f.lastName?.[0],
         email: f.email?.[0],
         phone: f.phone?.[0],
+        visa: f.visa?.[0],
         education: f.education?.[0],
         experience: f.experience?.[0],
         message: f.message?.[0],
