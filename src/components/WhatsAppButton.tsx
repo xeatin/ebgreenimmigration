@@ -23,8 +23,7 @@ import { supabase } from "@/integrations/supabase/client";
 const WHATSAPP_NUMBER = "17712017117";
 
 const leadSchema = z.object({
-  firstName: z.string().trim().min(1, "Obrigatório").max(100),
-  lastName: z.string().trim().min(1, "Obrigatório").max(100),
+  fullName: z.string().trim().min(1, "Obrigatório").max(200),
   email: z.string().trim().email("E-mail inválido").max(255),
   visa: z.string().trim().min(1, "Obrigatório").max(80),
   education: z.string().trim().min(1, "Obrigatório").max(120),
@@ -37,8 +36,7 @@ const copy = {
   pt: {
     title: "Antes de continuar no WhatsApp",
     desc: "Preencha os dados abaixo para que a BIA inicie seu atendimento com mais rapidez e precisão.",
-    firstName: "Nome",
-    lastName: "Sobrenome",
+    fullName: "Nome completo",
     email: "E-mail",
     visa: "Tipo de visto",
     education: "Formação acadêmica",
@@ -78,8 +76,7 @@ const copy = {
   en: {
     title: "Before continuing on WhatsApp",
     desc: "Fill in quickly so BIA can start your service with context.",
-    firstName: "First name",
-    lastName: "Last name",
+    fullName: "Full name",
     email: "Email",
     visa: "Visa type",
     education: "Education",
@@ -119,8 +116,7 @@ const copy = {
   es: {
     title: "Antes de continuar en WhatsApp",
     desc: "Complete rápidamente para que BIA inicie su atención con contexto.",
-    firstName: "Nombre",
-    lastName: "Apellido",
+    fullName: "Nombre completo",
     email: "Correo electrónico",
     visa: "Tipo de visa",
     education: "Formación académica",
@@ -160,8 +156,7 @@ const copy = {
 };
 
 const initialForm: FormState = {
-  firstName: "",
-  lastName: "",
+  fullName: "",
   email: "",
   visa: "",
   education: "",
@@ -187,8 +182,7 @@ const WhatsAppButton = () => {
     if (!parsed.success) {
       const fe = parsed.error.flatten().fieldErrors;
       setErrors({
-        firstName: fe.firstName?.[0],
-        lastName: fe.lastName?.[0],
+        fullName: fe.fullName?.[0],
         email: fe.email?.[0],
         visa: fe.visa?.[0],
         education: fe.education?.[0],
@@ -198,8 +192,10 @@ const WhatsAppButton = () => {
     setErrors({});
     setSubmitting(true);
 
-    const { firstName, lastName, email, visa, education } = parsed.data;
-    const fullName = `${firstName} ${lastName}`.trim();
+    const { fullName, email, visa, education } = parsed.data;
+    const parts = fullName.split(/\s+/);
+    const firstName = parts[0] || fullName;
+    const lastName = parts.slice(1).join(" ");
 
     try {
       await supabase.functions.invoke("send-contact-email", {
@@ -251,34 +247,18 @@ const WhatsAppButton = () => {
           </DialogHeader>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1.5">
-                <Label htmlFor="wa-first" className="font-body">{c.firstName} {req}</Label>
-                <Input
-                  id="wa-first"
-                  value={form.firstName}
-                  onChange={(e) => update("firstName", e.target.value)}
-                  maxLength={100}
-                  autoComplete="given-name"
-                  required
-                  aria-invalid={!!errors.firstName}
-                />
-                {errors.firstName && <p className="text-xs text-destructive">{errors.firstName}</p>}
-              </div>
-
-              <div className="space-y-1.5">
-                <Label htmlFor="wa-last" className="font-body">{c.lastName} {req}</Label>
-                <Input
-                  id="wa-last"
-                  value={form.lastName}
-                  onChange={(e) => update("lastName", e.target.value)}
-                  maxLength={100}
-                  autoComplete="family-name"
-                  required
-                  aria-invalid={!!errors.lastName}
-                />
-                {errors.lastName && <p className="text-xs text-destructive">{errors.lastName}</p>}
-              </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="wa-name" className="font-body">{c.fullName} {req}</Label>
+              <Input
+                id="wa-name"
+                value={form.fullName}
+                onChange={(e) => update("fullName", e.target.value)}
+                maxLength={200}
+                autoComplete="name"
+                required
+                aria-invalid={!!errors.fullName}
+              />
+              {errors.fullName && <p className="text-xs text-destructive">{errors.fullName}</p>}
             </div>
 
             <div className="space-y-1.5">
