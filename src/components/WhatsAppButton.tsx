@@ -36,8 +36,7 @@ const copy = {
   pt: {
     title: "Antes de continuar no WhatsApp",
     desc: "Preencha os dados abaixo para que a BIA inicie seu atendimento com mais rapidez e precisão.",
-    firstName: "Nome",
-    lastName: "Sobrenome",
+    fullName: "Nome completo",
     email: "E-mail",
     visa: "Tipo de visto",
     education: "Formação acadêmica",
