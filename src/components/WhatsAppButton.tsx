@@ -326,20 +326,6 @@ const WhatsAppButton = () => {
               {errors.education && <p className="text-xs text-destructive">{errors.education}</p>}
             </div>
 
-            <div className="space-y-1.5">
-              <Label htmlFor="wa-exp" className="font-body">{c.experience} {req}</Label>
-              <Select value={form.experience} onValueChange={(v) => update("experience", v)}>
-                <SelectTrigger id="wa-exp" aria-invalid={!!errors.experience}>
-                  <SelectValue placeholder={c.expPlaceholder} />
-                </SelectTrigger>
-                <SelectContent>
-                  {c.expOptions.map((o) => (
-                    <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.experience && <p className="text-xs text-destructive">{errors.experience}</p>}
-            </div>
 
             <Button
               type="submit"
