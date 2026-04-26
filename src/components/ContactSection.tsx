@@ -251,7 +251,7 @@ const ContactSection = () => {
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass} htmlFor="visa">{t(s.visaType, lang)}</label>
+                <label className={labelClass} htmlFor="visa">{t(s.visaType, lang)} *</label>
                 <select id="visa" value={formData.visa}
                   aria-invalid={!!errors.visa}
                   aria-describedby={errors.visa ? "visa-err" : undefined}
