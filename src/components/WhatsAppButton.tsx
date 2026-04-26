@@ -83,10 +83,8 @@ const copy = {
     email: "Email",
     visa: "Visa type",
     education: "Education",
-    experience: "Years of professional experience",
     visaPlaceholder: "Select",
     eduPlaceholder: "Select",
-    expPlaceholder: "Select",
     visaOptions: [
       { value: "EB-1A", label: "EB-1A" },
       { value: "EB-2 NIW", label: "EB-2 NIW" },
@@ -112,16 +110,11 @@ const copy = {
       { value: "Master's", label: "Master's Degree" },
       { value: "PhD", label: "PhD" },
     ],
-    expOptions: [
-      { value: "Less than 5 years", label: "Less than 5 years" },
-      { value: "5 to 10 years", label: "5 to 10 years" },
-      { value: "More than 10 years", label: "More than 10 years" },
-    ],
     submit: "Continue to WhatsApp",
     sending: "Sending...",
     aria: "Chat on WhatsApp",
-    greet: (n: string, e: string, v: string, ed: string, ex: string) =>
-      `Hello, my name is ${n}.\n\nHere is my information:\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}\nYears of professional experience: ${ex}\n\nI would like more information.`,
+    greet: (n: string, e: string, v: string, ed: string) =>
+      `Hello, my name is ${n}.\n\nHere is my information:\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}\n\nI would like more information.`,
   },
   es: {
     title: "Antes de continuar en WhatsApp",
