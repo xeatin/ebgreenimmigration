@@ -156,8 +156,7 @@ const copy = {
 };
 
 const initialForm: FormState = {
-  firstName: "",
-  lastName: "",
+  fullName: "",
   email: "",
   visa: "",
   education: "",
@@ -183,8 +182,7 @@ const WhatsAppButton = () => {
     if (!parsed.success) {
       const fe = parsed.error.flatten().fieldErrors;
       setErrors({
-        firstName: fe.firstName?.[0],
-        lastName: fe.lastName?.[0],
+        fullName: fe.fullName?.[0],
         email: fe.email?.[0],
         visa: fe.visa?.[0],
         education: fe.education?.[0],
@@ -194,8 +192,10 @@ const WhatsAppButton = () => {
     setErrors({});
     setSubmitting(true);
 
-    const { firstName, lastName, email, visa, education } = parsed.data;
-    const fullName = `${firstName} ${lastName}`.trim();
+    const { fullName, email, visa, education } = parsed.data;
+    const parts = fullName.split(/\s+/);
+    const firstName = parts[0] || fullName;
+    const lastName = parts.slice(1).join(" ");
 
     try {
       await supabase.functions.invoke("send-contact-email", {
@@ -247,34 +247,18 @@ const WhatsAppButton = () => {
           </DialogHeader>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1.5">
-                <Label htmlFor="wa-first" className="font-body">{c.firstName} {req}</Label>
-                <Input
-                  id="wa-first"
-                  value={form.firstName}
-                  onChange={(e) => update("firstName", e.target.value)}
-                  maxLength={100}
-                  autoComplete="given-name"
-                  required
-                  aria-invalid={!!errors.firstName}
-                />
-                {errors.firstName && <p className="text-xs text-destructive">{errors.firstName}</p>}
-              </div>
-
-              <div className="space-y-1.5">
-                <Label htmlFor="wa-last" className="font-body">{c.lastName} {req}</Label>
-                <Input
-                  id="wa-last"
-                  value={form.lastName}
-                  onChange={(e) => update("lastName", e.target.value)}
-                  maxLength={100}
-                  autoComplete="family-name"
-                  required
-                  aria-invalid={!!errors.lastName}
-                />
-                {errors.lastName && <p className="text-xs text-destructive">{errors.lastName}</p>}
-              </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="wa-name" className="font-body">{c.fullName} {req}</Label>
+              <Input
+                id="wa-name"
+                value={form.fullName}
+                onChange={(e) => update("fullName", e.target.value)}
+                maxLength={200}
+                autoComplete="name"
+                required
+                aria-invalid={!!errors.fullName}
+              />
+              {errors.fullName && <p className="text-xs text-destructive">{errors.fullName}</p>}
             </div>
 
             <div className="space-y-1.5">
