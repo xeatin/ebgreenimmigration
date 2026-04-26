@@ -50,6 +50,7 @@ const ContactSection = () => {
         .refine((v) => /^\d{6,20}$/.test(v.replace(/\D/g, "")), {
           message: t(s.errors.phoneInvalid, lang),
         }),
+      visa: z.string().min(1, t(s.errors.visaRequired, lang)),
       education: z.string().min(1, t(s.errors.educationRequired, lang)),
       experience: z.string().min(1, t(s.errors.experienceRequired, lang)),
       message: z.string().max(2000, t(s.errors.messageMax, lang)).optional().or(z.literal("")),
