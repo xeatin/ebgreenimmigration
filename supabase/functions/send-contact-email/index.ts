@@ -55,6 +55,33 @@ Deno.serve(async (req) => {
       </table>
     `
 
+    // Fire-and-forget: notify N8N webhook in parallel (does not block user response)
+    const n8nPromise = fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        phoneCode,
+        phone,
+        visa,
+        education,
+        experience,
+        message,
+      }),
+    })
+      .then(async (r) => {
+        console.log('N8N webhook status:', r.status)
+        try {
+          const txt = await r.text()
+          console.log('N8N webhook body:', txt)
+        } catch (_) {}
+      })
+      .catch((err) => {
+        console.error('N8N webhook error:', err)
+      })
+
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -72,6 +99,10 @@ Deno.serve(async (req) => {
     const result = await res.text()
     console.log('Resend response status:', res.status)
     console.log('Resend response body:', result)
+
+    // Ensure the N8N call completes (or fails) before the function shuts down,
+    // but never let it affect the response to the user.
+    await Promise.allSettled([n8nPromise])
 
     if (!res.ok) {
       return new Response(
