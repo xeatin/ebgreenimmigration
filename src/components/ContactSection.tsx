@@ -16,7 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 type FormErrors = Partial<Record<
-  "firstName" | "lastName" | "email" | "phone" | "education" | "experience" | "privacy" | "message",
+  "firstName" | "lastName" | "email" | "phone" | "visa" | "education" | "experience" | "privacy" | "message",
   string
 >>;
 
@@ -50,6 +50,7 @@ const ContactSection = () => {
         .refine((v) => /^\d{6,20}$/.test(v.replace(/\D/g, "")), {
           message: t(s.errors.phoneInvalid, lang),
         }),
+      visa: z.string().min(1, t(s.errors.visaRequired, lang)),
       education: z.string().min(1, t(s.errors.educationRequired, lang)),
       experience: z.string().min(1, t(s.errors.experienceRequired, lang)),
       message: z.string().max(2000, t(s.errors.messageMax, lang)).optional().or(z.literal("")),
@@ -72,6 +73,7 @@ const ContactSection = () => {
         lastName: f.lastName?.[0],
         email: f.email?.[0],
         phone: f.phone?.[0],
+        visa: f.visa?.[0],
         education: f.education?.[0],
         experience: f.experience?.[0],
         message: f.message?.[0],
@@ -249,10 +251,12 @@ const ContactSection = () => {
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass}>{t(s.visaType, lang)}</label>
-                <select value={formData.visa}
+                <label className={labelClass} htmlFor="visa">{t(s.visaType, lang)}</label>
+                <select id="visa" value={formData.visa}
+                  aria-invalid={!!errors.visa}
+                  aria-describedby={errors.visa ? "visa-err" : undefined}
                   onChange={(e) => setFormData({ ...formData, visa: e.target.value })}
-                  className={inputClass}>
+                  className={`${inputClass} ${errors.visa ? inputErrorClass : ""}`}>
                   <option value="">{t(s.select, lang)}</option>
                   <option value="eb1a">EB-1A</option>
                   <option value="eb2-niw">EB-2 NIW</option>
@@ -270,6 +274,7 @@ const ContactSection = () => {
                   <option value="aos">AOS</option>
                   <option value="outros">Outros</option>
                 </select>
+                {errors.visa && <p id="visa-err" className={errorClass}>{errors.visa}</p>}
               </div>
               <div>
                 <label className={labelClass} htmlFor="education">{t(s.education, lang)}</label>
