@@ -76,8 +76,7 @@ const copy = {
   en: {
     title: "Before continuing on WhatsApp",
     desc: "Fill in quickly so BIA can start your service with context.",
-    firstName: "First name",
-    lastName: "Last name",
+    fullName: "Full name",
     email: "Email",
     visa: "Visa type",
     education: "Education",
@@ -117,8 +116,7 @@ const copy = {
   es: {
     title: "Antes de continuar en WhatsApp",
     desc: "Complete rápidamente para que BIA inicie su atención con contexto.",
-    firstName: "Nombre",
-    lastName: "Apellido",
+    fullName: "Nombre completo",
     email: "Correo electrónico",
     visa: "Tipo de visa",
     education: "Formación académica",
