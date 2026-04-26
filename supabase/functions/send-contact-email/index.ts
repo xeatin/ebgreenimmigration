@@ -55,6 +55,33 @@ Deno.serve(async (req) => {
       </table>
     `
 
+    // Fire-and-forget: notify N8N webhook in parallel (does not block user response)
+    const n8nPromise = fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        phoneCode,
+        phone,
+        visa,
+        education,
+        experience,
+        message,
+      }),
+    })
+      .then(async (r) => {
+        console.log('N8N webhook status:', r.status)
+        try {
+          const txt = await r.text()
+          console.log('N8N webhook body:', txt)
+        } catch (_) {}
+      })
+      .catch((err) => {
+        console.error('N8N webhook error:', err)
+      })
+
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
