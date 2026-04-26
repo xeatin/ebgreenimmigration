@@ -192,14 +192,13 @@ const WhatsAppButton = () => {
         email: fe.email?.[0],
         visa: fe.visa?.[0],
         education: fe.education?.[0],
-        experience: fe.experience?.[0],
       });
       return;
     }
     setErrors({});
     setSubmitting(true);
 
-    const { firstName, lastName, email, visa, education, experience } = parsed.data;
+    const { firstName, lastName, email, visa, education } = parsed.data;
     const fullName = `${firstName} ${lastName}`.trim();
 
     try {
@@ -212,7 +211,6 @@ const WhatsAppButton = () => {
           phone: "",
           visa,
           education,
-          experience,
           message: "Lead via botão WhatsApp (pop-up)",
         },
       });
@@ -220,7 +218,7 @@ const WhatsAppButton = () => {
       // não bloqueia o redirect
     }
 
-    const message = c.greet(fullName, email, visa, education, experience);
+    const message = c.greet(fullName, email, visa, education);
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
     setSubmitting(false);
