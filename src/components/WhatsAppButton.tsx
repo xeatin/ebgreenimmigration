@@ -10,96 +10,194 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 
 const WHATSAPP_NUMBER = "17712017117";
 
 const leadSchema = z.object({
-  name: z.string().trim().min(1, "Nome obrigatório").max(120),
+  firstName: z.string().trim().min(1, "Obrigatório").max(100),
+  lastName: z.string().trim().min(1, "Obrigatório").max(100),
   email: z.string().trim().email("E-mail inválido").max(255),
-  visa: z.string().trim().max(80).optional().or(z.literal("")),
-  education: z.string().trim().max(120).optional().or(z.literal("")),
+  visa: z.string().trim().min(1, "Obrigatório").max(80),
+  education: z.string().trim().min(1, "Obrigatório").max(120),
+  experience: z.string().trim().min(1, "Obrigatório").max(50),
 });
+
+type FormState = z.infer<typeof leadSchema>;
+type FormErrors = Partial<Record<keyof FormState, string>>;
 
 const copy = {
   pt: {
     title: "Antes de continuar no WhatsApp",
     desc: "Preencha os dados abaixo para que a BIA inicie seu atendimento com mais rapidez e precisão.",
-    name: "Nome",
+    firstName: "Nome",
+    lastName: "Sobrenome",
     email: "E-mail",
     visa: "Tipo de visto",
-    education: "Graduação",
-    visaPh: "Ex: EB-1A, EB-2 NIW, O-1, Outros...",
-    eduPh: "Ex: Graduado em Engenharia",
+    education: "Formação acadêmica",
+    experience: "Anos de experiência profissional",
+    visaPlaceholder: "Selecione",
+    eduPlaceholder: "Selecione",
+    expPlaceholder: "Selecione",
+    visaOptions: [
+      { value: "EB-1A", label: "EB-1A" },
+      { value: "EB-2 NIW", label: "EB-2 NIW" },
+      { value: "O-1", label: "O-1" },
+      { value: "Visto de Trabalho", label: "Visto de Trabalho" },
+      { value: "Visto de Investidor", label: "Visto de Investidor" },
+      { value: "Outros", label: "Outros / Não sei" },
+    ],
+    eduOptions: [
+      { value: "Ensino Médio", label: "Ensino Médio" },
+      { value: "Técnico", label: "Curso Técnico" },
+      { value: "Graduação", label: "Graduação" },
+      { value: "Pós-graduação", label: "Pós-graduação / MBA" },
+      { value: "Mestrado", label: "Mestrado" },
+      { value: "Doutorado", label: "Doutorado" },
+    ],
+    expOptions: [
+      { value: "Menos de 5 anos", label: "Menos de 5 anos" },
+      { value: "De 5 a 10 anos", label: "De 5 a 10 anos" },
+      { value: "Mais de 10 anos", label: "Mais de 10 anos" },
+    ],
     submit: "Continuar para WhatsApp",
     sending: "Enviando...",
     aria: "Falar pelo WhatsApp",
-    greet: (n: string, e: string, v: string, ed: string) =>
-      `Olá, meu nome é ${n}.\n\nSeguem minhas informações:\n\nE-mail: ${e}\nTipo de visto: ${v || "Não informado"}\nGraduação: ${ed || "Não informado"}\n\nGostaria de mais informações.`,
+    greet: (n: string, e: string, v: string, ed: string, ex: string) =>
+      `Olá, meu nome é ${n}.\n\nSeguem minhas informações:\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}\nAnos de experiência profissional: ${ex}\n\nGostaria de mais informações.`,
   },
   en: {
     title: "Before continuing on WhatsApp",
     desc: "Fill in quickly so BIA can start your service with context.",
-    name: "Name",
+    firstName: "First name",
+    lastName: "Last name",
     email: "Email",
     visa: "Visa type",
     education: "Education",
-    visaPh: "Ex: EB-1A, EB-2 NIW, O-1, Other...",
-    eduPh: "Ex: Engineering graduate",
+    experience: "Years of professional experience",
+    visaPlaceholder: "Select",
+    eduPlaceholder: "Select",
+    expPlaceholder: "Select",
+    visaOptions: [
+      { value: "EB-1A", label: "EB-1A" },
+      { value: "EB-2 NIW", label: "EB-2 NIW" },
+      { value: "O-1", label: "O-1" },
+      { value: "Work Visa", label: "Work Visa" },
+      { value: "Investor Visa", label: "Investor Visa" },
+      { value: "Other", label: "Other / Not sure" },
+    ],
+    eduOptions: [
+      { value: "High School", label: "High School" },
+      { value: "Technical", label: "Technical Course" },
+      { value: "Bachelor's", label: "Bachelor's Degree" },
+      { value: "Postgraduate", label: "Postgraduate / MBA" },
+      { value: "Master's", label: "Master's Degree" },
+      { value: "PhD", label: "PhD" },
+    ],
+    expOptions: [
+      { value: "Less than 5 years", label: "Less than 5 years" },
+      { value: "5 to 10 years", label: "5 to 10 years" },
+      { value: "More than 10 years", label: "More than 10 years" },
+    ],
     submit: "Continue to WhatsApp",
     sending: "Sending...",
     aria: "Chat on WhatsApp",
-    greet: (n: string, e: string, v: string, ed: string) =>
-      `Hello, my name is ${n}.\n\nHere is my information:\n\nEmail: ${e}\nVisa type: ${v || "Not provided"}\nEducation: ${ed || "Not provided"}\n\nI would like more information.`,
+    greet: (n: string, e: string, v: string, ed: string, ex: string) =>
+      `Hello, my name is ${n}.\n\nHere is my information:\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}\nYears of professional experience: ${ex}\n\nI would like more information.`,
   },
   es: {
     title: "Antes de continuar en WhatsApp",
     desc: "Complete rápidamente para que BIA inicie su atención con contexto.",
-    name: "Nombre",
+    firstName: "Nombre",
+    lastName: "Apellido",
     email: "Correo electrónico",
     visa: "Tipo de visa",
-    education: "Formación",
-    visaPh: "Ej: EB-1A, EB-2 NIW, O-1, Otros...",
-    eduPh: "Ej: Graduado en Ingeniería",
+    education: "Formación académica",
+    experience: "Años de experiencia profesional",
+    visaPlaceholder: "Seleccione",
+    eduPlaceholder: "Seleccione",
+    expPlaceholder: "Seleccione",
+    visaOptions: [
+      { value: "EB-1A", label: "EB-1A" },
+      { value: "EB-2 NIW", label: "EB-2 NIW" },
+      { value: "O-1", label: "O-1" },
+      { value: "Visa de Trabajo", label: "Visa de Trabajo" },
+      { value: "Visa de Inversionista", label: "Visa de Inversionista" },
+      { value: "Otros", label: "Otros / No sé" },
+    ],
+    eduOptions: [
+      { value: "Secundaria", label: "Secundaria" },
+      { value: "Técnico", label: "Curso Técnico" },
+      { value: "Pregrado", label: "Pregrado" },
+      { value: "Posgrado", label: "Posgrado / MBA" },
+      { value: "Maestría", label: "Maestría" },
+      { value: "Doctorado", label: "Doctorado" },
+    ],
+    expOptions: [
+      { value: "Menos de 5 años", label: "Menos de 5 años" },
+      { value: "De 5 a 10 años", label: "De 5 a 10 años" },
+      { value: "Más de 10 años", label: "Más de 10 años" },
+    ],
     submit: "Continuar a WhatsApp",
     sending: "Enviando...",
     aria: "Hablar por WhatsApp",
-    greet: (n: string, e: string, v: string, ed: string) =>
-      `Hola, mi nombre es ${n}.\n\nMis datos:\n\nCorreo: ${e}\nTipo de visa: ${v || "No informado"}\nFormación: ${ed || "No informado"}\n\nMe gustaría más información.`,
+    greet: (n: string, e: string, v: string, ed: string, ex: string) =>
+      `Hola, mi nombre es ${n}.\n\nMis datos:\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}\nAños de experiencia profesional: ${ex}\n\nMe gustaría más información.`,
   },
+};
+
+const initialForm: FormState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  visa: "",
+  education: "",
+  experience: "",
 };
 
 const WhatsAppButton = () => {
   const { lang } = useLanguage();
-  const { toast } = useToast();
   const c = copy[lang];
 
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", visa: "", education: "" });
-  const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
+  const [form, setForm] = useState<FormState>(initialForm);
+  const [errors, setErrors] = useState<FormErrors>({});
+
+  const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+    if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = leadSchema.safeParse(form);
     if (!parsed.success) {
-      const fieldErrors = parsed.error.flatten().fieldErrors;
+      const fe = parsed.error.flatten().fieldErrors;
       setErrors({
-        name: fieldErrors.name?.[0],
-        email: fieldErrors.email?.[0],
+        firstName: fe.firstName?.[0],
+        lastName: fe.lastName?.[0],
+        email: fe.email?.[0],
+        visa: fe.visa?.[0],
+        education: fe.education?.[0],
+        experience: fe.experience?.[0],
       });
       return;
     }
     setErrors({});
     setSubmitting(true);
 
-    const { name, email, visa, education } = parsed.data;
-    const [firstName, ...rest] = name.split(" ");
-    const lastName = rest.join(" ") || "-";
+    const { firstName, lastName, email, visa, education, experience } = parsed.data;
+    const fullName = `${firstName} ${lastName}`.trim();
 
-    // Fire-and-forget: capture lead via edge function (CRM/Email)
     try {
       await supabase.functions.invoke("send-contact-email", {
         body: {
@@ -108,9 +206,9 @@ const WhatsAppButton = () => {
           email,
           phoneCode: "",
           phone: "",
-          visa: visa || "",
-          education: education || "",
-          experience: "",
+          visa,
+          education,
+          experience,
           message: "Lead via botão WhatsApp (pop-up)",
         },
       });
@@ -118,15 +216,17 @@ const WhatsAppButton = () => {
       // não bloqueia o redirect
     }
 
-    const message = c.greet(name, email, visa || "", education || "");
+    const message = c.greet(fullName, email, visa, education, experience);
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
     setSubmitting(false);
     setOpen(false);
-    setForm({ name: "", email: "", visa: "", education: "" });
+    setForm(initialForm);
 
     window.open(url, "_blank", "noopener,noreferrer");
   };
+
+  const req = <span className="text-destructive">*</span>;
 
   return (
     <>
@@ -142,64 +242,101 @@ const WhatsAppButton = () => {
       </button>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-display text-xl">{c.title}</DialogTitle>
             <DialogDescription className="font-body text-sm">{c.desc}</DialogDescription>
           </DialogHeader>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-1.5">
-              <Label htmlFor="wa-name" className="font-body">
-                {c.name} <span className="text-destructive">*</span>
-              </Label>
-              <Input
-                id="wa-name"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                maxLength={120}
-                autoComplete="name"
-                required
-              />
-              {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <Label htmlFor="wa-first" className="font-body">{c.firstName} {req}</Label>
+                <Input
+                  id="wa-first"
+                  value={form.firstName}
+                  onChange={(e) => update("firstName", e.target.value)}
+                  maxLength={100}
+                  autoComplete="given-name"
+                  required
+                  aria-invalid={!!errors.firstName}
+                />
+                {errors.firstName && <p className="text-xs text-destructive">{errors.firstName}</p>}
+              </div>
+
+              <div className="space-y-1.5">
+                <Label htmlFor="wa-last" className="font-body">{c.lastName} {req}</Label>
+                <Input
+                  id="wa-last"
+                  value={form.lastName}
+                  onChange={(e) => update("lastName", e.target.value)}
+                  maxLength={100}
+                  autoComplete="family-name"
+                  required
+                  aria-invalid={!!errors.lastName}
+                />
+                {errors.lastName && <p className="text-xs text-destructive">{errors.lastName}</p>}
+              </div>
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="wa-email" className="font-body">
-                {c.email} <span className="text-destructive">*</span>
-              </Label>
+              <Label htmlFor="wa-email" className="font-body">{c.email} {req}</Label>
               <Input
                 id="wa-email"
                 type="email"
                 value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                onChange={(e) => update("email", e.target.value)}
                 maxLength={255}
                 autoComplete="email"
                 required
+                aria-invalid={!!errors.email}
               />
               {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="wa-visa" className="font-body">{c.visa}</Label>
-              <Input
-                id="wa-visa"
-                value={form.visa}
-                onChange={(e) => setForm({ ...form, visa: e.target.value })}
-                maxLength={80}
-                placeholder={c.visaPh}
-              />
+              <Label htmlFor="wa-visa" className="font-body">{c.visa} {req}</Label>
+              <Select value={form.visa} onValueChange={(v) => update("visa", v)}>
+                <SelectTrigger id="wa-visa" aria-invalid={!!errors.visa}>
+                  <SelectValue placeholder={c.visaPlaceholder} />
+                </SelectTrigger>
+                <SelectContent>
+                  {c.visaOptions.map((o) => (
+                    <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.visa && <p className="text-xs text-destructive">{errors.visa}</p>}
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="wa-edu" className="font-body">{c.education}</Label>
-              <Input
-                id="wa-edu"
-                value={form.education}
-                onChange={(e) => setForm({ ...form, education: e.target.value })}
-                maxLength={120}
-                placeholder={c.eduPh}
-              />
+              <Label htmlFor="wa-edu" className="font-body">{c.education} {req}</Label>
+              <Select value={form.education} onValueChange={(v) => update("education", v)}>
+                <SelectTrigger id="wa-edu" aria-invalid={!!errors.education}>
+                  <SelectValue placeholder={c.eduPlaceholder} />
+                </SelectTrigger>
+                <SelectContent>
+                  {c.eduOptions.map((o) => (
+                    <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.education && <p className="text-xs text-destructive">{errors.education}</p>}
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="wa-exp" className="font-body">{c.experience} {req}</Label>
+              <Select value={form.experience} onValueChange={(v) => update("experience", v)}>
+                <SelectTrigger id="wa-exp" aria-invalid={!!errors.experience}>
+                  <SelectValue placeholder={c.expPlaceholder} />
+                </SelectTrigger>
+                <SelectContent>
+                  {c.expOptions.map((o) => (
+                    <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.experience && <p className="text-xs text-destructive">{errors.experience}</p>}
             </div>
 
             <Button
