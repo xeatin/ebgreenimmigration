@@ -251,10 +251,12 @@ const ContactSection = () => {
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelClass}>{t(s.visaType, lang)}</label>
-                <select value={formData.visa}
+                <label className={labelClass} htmlFor="visa">{t(s.visaType, lang)}</label>
+                <select id="visa" value={formData.visa}
+                  aria-invalid={!!errors.visa}
+                  aria-describedby={errors.visa ? "visa-err" : undefined}
                   onChange={(e) => setFormData({ ...formData, visa: e.target.value })}
-                  className={inputClass}>
+                  className={`${inputClass} ${errors.visa ? inputErrorClass : ""}`}>
                   <option value="">{t(s.select, lang)}</option>
                   <option value="eb1a">EB-1A</option>
                   <option value="eb2-niw">EB-2 NIW</option>
@@ -272,6 +274,7 @@ const ContactSection = () => {
                   <option value="aos">AOS</option>
                   <option value="outros">Outros</option>
                 </select>
+                {errors.visa && <p id="visa-err" className={errorClass}>{errors.visa}</p>}
               </div>
               <div>
                 <label className={labelClass} htmlFor="education">{t(s.education, lang)}</label>
