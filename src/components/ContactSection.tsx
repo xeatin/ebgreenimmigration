@@ -87,8 +87,9 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      await supabase.functions.invoke('send-contact-email', {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: {
+          source: "website-main-form",
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
@@ -100,8 +101,18 @@ const ContactSection = () => {
           message: formData.message,
         },
       });
+
+      if (error || data?.success === false) {
+        throw error || new Error(data?.error || "Erro ao enviar lead");
+      }
     } catch (err) {
-      // silently fail - user should not notice
+      toast({
+        title: t(s.validationTitle, lang),
+        description: "Não foi possível enviar o lead. Tente novamente.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
     }
 
     toast({
