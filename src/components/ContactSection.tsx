@@ -399,6 +399,15 @@ const ContactSection = () => {
               {isSubmitting ? t(s.submitting, lang) : t(s.submit, lang)}
               {!isSubmitting && <Send size={18} />}
             </button>
+
+            <button
+              type="button"
+              onClick={handleTestLead}
+              disabled={isTestingLead}
+              className="w-full mt-2 border border-dashed border-muted-foreground/40 text-muted-foreground px-4 py-2 rounded-lg text-xs font-body hover:bg-muted/40 transition-colors disabled:opacity-60"
+            >
+              {isTestingLead ? "Enviando lead de teste..." : "🔧 Enviar lead de teste (validação Kommo)"}
+            </button>
           </motion.form>
         </div>
       </div>
