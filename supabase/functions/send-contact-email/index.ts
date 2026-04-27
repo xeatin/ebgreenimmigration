@@ -6,14 +6,14 @@ import { z } from 'npm:zod@3.25.76'
 
 const ContactSchema = z.object({
   firstName: z.string().min(1).max(100),
-  lastName: z.string().min(1).max(100),
+  lastName: z.string().min(1).max(100).optional().default(''),
   email: z.string().email().max(255),
-  phoneCode: z.string().max(10),
-  phone: z.string().max(30),
+  phoneCode: z.string().max(10).optional().default(''),
+  phone: z.string().max(30).optional().default(''),
   visa: z.string().max(50),
   education: z.string().max(50),
-  experience: z.string().max(50),
-  message: z.string().max(5000),
+  experience: z.string().max(50).optional().default(''),
+  message: z.string().max(5000).optional().default(''),
 })
 
 Deno.serve(async (req) => {
@@ -55,19 +55,32 @@ Deno.serve(async (req) => {
       </table>
     `
 
-    // Skip N8N (Kommo) when education is "ensino médio" (high school).
-    // Matches Portuguese, English and Spanish variants used across the site.
+    // Skip N8N (Kommo) for low-qualification leads:
+    //  - Ensino Médio / High School / Secundaria
+    //  - Técnico ou Tecnólogo com menos de 5 anos de experiência
     const eduNormalized = (education || '').trim().toLowerCase()
+    const expNormalized = (experience || '').trim().toLowerCase()
     const isHighSchool =
       eduNormalized === 'ensino-medio' ||
       eduNormalized === 'ensino medio' ||
       eduNormalized === 'ensino médio' ||
       eduNormalized === 'high school' ||
       eduNormalized === 'secundaria'
+    const isTechnical =
+      eduNormalized === 'tecnico' ||
+      eduNormalized === 'técnico' ||
+      eduNormalized === 'tecnologo' ||
+      eduNormalized === 'tecnólogo' ||
+      eduNormalized === 'technical'
+    const isLowExperience =
+      expNormalized === 'menos-5' ||
+      expNormalized.includes('menos de 5') ||
+      expNormalized.includes('less than 5')
+    const skipKommo = isHighSchool || (isTechnical && isLowExperience)
 
     // Fire-and-forget: notify N8N webhook in parallel (does not block user response)
-    const n8nPromise = isHighSchool
-      ? Promise.resolve(console.log('N8N webhook skipped: education is high school'))
+    const n8nPromise = skipKommo
+      ? Promise.resolve(console.log('N8N webhook skipped:', { isHighSchool, isTechnical, isLowExperience }))
       : fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
