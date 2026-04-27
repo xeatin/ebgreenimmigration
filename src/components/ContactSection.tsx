@@ -87,21 +87,19 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      if (shouldSendEmail(formData.education, formData.experience)) {
-        await supabase.functions.invoke('send-contact-email', {
-          body: {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            phoneCode: formData.phoneCode,
-            phone: formData.phone,
-            visa: formData.visa,
-            education: formData.education,
-            experience: formData.experience,
-            message: formData.message,
-          },
-        });
-      }
+      await supabase.functions.invoke('send-contact-email', {
+        body: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phoneCode: formData.phoneCode,
+          phone: formData.phone,
+          visa: formData.visa,
+          education: formData.education,
+          experience: formData.experience,
+          message: formData.message,
+        },
+      });
     } catch (err) {
       // silently fail - user should not notice
     }
