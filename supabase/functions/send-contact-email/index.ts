@@ -55,15 +55,28 @@ Deno.serve(async (req) => {
       </table>
     `
 
-    // Skip N8N (Kommo) when education is "ensino médio" (high school).
-    // Matches Portuguese, English and Spanish variants used across the site.
+    // Skip N8N (Kommo) for low-qualification leads:
+    //  - Ensino Médio / High School / Secundaria
+    //  - Técnico ou Tecnólogo com menos de 5 anos de experiência
     const eduNormalized = (education || '').trim().toLowerCase()
+    const expNormalized = (experience || '').trim().toLowerCase()
     const isHighSchool =
       eduNormalized === 'ensino-medio' ||
       eduNormalized === 'ensino medio' ||
       eduNormalized === 'ensino médio' ||
       eduNormalized === 'high school' ||
       eduNormalized === 'secundaria'
+    const isTechnical =
+      eduNormalized === 'tecnico' ||
+      eduNormalized === 'técnico' ||
+      eduNormalized === 'tecnologo' ||
+      eduNormalized === 'tecnólogo' ||
+      eduNormalized === 'technical'
+    const isLowExperience =
+      expNormalized === 'menos-5' ||
+      expNormalized.includes('menos de 5') ||
+      expNormalized.includes('less than 5')
+    const skipKommo = isHighSchool || (isTechnical && isLowExperience)
 
     // Fire-and-forget: notify N8N webhook in parallel (does not block user response)
     const n8nPromise = isHighSchool
