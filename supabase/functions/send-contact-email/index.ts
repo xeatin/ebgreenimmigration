@@ -79,8 +79,8 @@ Deno.serve(async (req) => {
     const skipKommo = isHighSchool || (isTechnical && isLowExperience)
 
     // Fire-and-forget: notify N8N webhook in parallel (does not block user response)
-    const n8nPromise = isHighSchool
-      ? Promise.resolve(console.log('N8N webhook skipped: education is high school'))
+    const n8nPromise = skipKommo
+      ? Promise.resolve(console.log('N8N webhook skipped:', { isHighSchool, isTechnical, isLowExperience }))
       : fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
