@@ -5,6 +5,7 @@ const corsHeaders = {
 import { z } from 'npm:zod@3.25.76'
 
 const ContactSchema = z.object({
+  source: z.string().max(80).optional().default('website'),
   firstName: z.string().min(1).max(100),
   lastName: z.string().min(1).max(100).optional().default(''),
   email: z.string().email().max(255),
@@ -32,7 +33,7 @@ Deno.serve(async (req) => {
       )
     }
 
-    const { firstName, lastName, email, phoneCode, phone, visa, education, experience, message } = parsed.data
+    const { source, firstName, lastName, email, phoneCode, phone, visa, education, experience, message } = parsed.data
 
     const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
     if (!RESEND_API_KEY) {
@@ -45,6 +46,7 @@ Deno.serve(async (req) => {
     const emailHtml = `
       <h2>Novo lead do site EB Green</h2>
       <table style="border-collapse:collapse;width:100%">
+        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Origem</td><td style="padding:8px;border:1px solid #ddd">${source}</td></tr>
         <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Nome</td><td style="padding:8px;border:1px solid #ddd">${firstName} ${lastName}</td></tr>
         <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">E-mail</td><td style="padding:8px;border:1px solid #ddd">${email}</td></tr>
         <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Telefone</td><td style="padding:8px;border:1px solid #ddd">${phoneCode} ${phone}</td></tr>
@@ -85,6 +87,9 @@ Deno.serve(async (req) => {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            source,
+            formSource: source,
+            leadSource: source,
             firstName,
             lastName,
             email,
