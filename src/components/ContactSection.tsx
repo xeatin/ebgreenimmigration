@@ -127,6 +127,49 @@ const ContactSection = () => {
     setIsSubmitting(false);
   };
 
+  const [isTestingLead, setIsTestingLead] = useState(false);
+  const handleTestLead = async () => {
+    setIsTestingLead(true);
+    const stamp = Date.now();
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          source: "website-main-form",
+          firstName: "Teste",
+          lastName: `Lead ${stamp}`,
+          email: `teste+${stamp}@ebgreenusa.com`,
+          phoneCode: "+55",
+          phone: "11999999999",
+          visa: "EB-1A",
+          education: "Bacharelado",
+          experience: "Mais de 10 anos",
+          message: `Lead de teste gerado pelo botão de validação (${new Date().toISOString()})`,
+        },
+      });
+      if (error) throw error;
+      const kommo = (data as any)?.kommo;
+      const leadId = kommo?.leadId;
+      console.log("[Test Lead] resposta completa:", data);
+      toast({
+        title: leadId ? "Lead enviado ao Kommo ✓" : "Lead processado",
+        description: leadId
+          ? `leadId: ${leadId} (status N8N: ${kommo?.status ?? "?"})`
+          : kommo?.skipped
+            ? "Envio ao Kommo foi pulado pelas regras de qualificação."
+            : `Sem leadId no retorno. Status N8N: ${kommo?.status ?? "?"}. Veja o console.`,
+      });
+    } catch (err: any) {
+      console.error("[Test Lead] erro:", err);
+      toast({
+        title: "Falha no lead de teste",
+        description: err?.message ?? "Erro desconhecido",
+        variant: "destructive",
+      });
+    } finally {
+      setIsTestingLead(false);
+    }
+  };
+
   const inputClass = "w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body text-sm";
   const inputErrorClass = "border-destructive focus:ring-destructive";
   const labelClass = "text-sm text-muted-foreground font-body mb-1.5 block";
@@ -355,6 +398,15 @@ const ContactSection = () => {
               className="w-full bg-gradient-gold text-green-deep px-6 py-4 rounded-lg font-bold text-lg font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 disabled:opacity-60">
               {isSubmitting ? t(s.submitting, lang) : t(s.submit, lang)}
               {!isSubmitting && <Send size={18} />}
+            </button>
+
+            <button
+              type="button"
+              onClick={handleTestLead}
+              disabled={isTestingLead}
+              className="w-full mt-2 border border-dashed border-muted-foreground/40 text-muted-foreground px-4 py-2 rounded-lg text-xs font-body hover:bg-muted/40 transition-colors disabled:opacity-60"
+            >
+              {isTestingLead ? "Enviando lead de teste..." : "🔧 Enviar lead de teste (validação Kommo)"}
             </button>
           </motion.form>
         </div>

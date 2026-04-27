@@ -80,7 +80,8 @@ Deno.serve(async (req) => {
       expNormalized.includes('less than 5')
     const skipKommo = isHighSchool || (isTechnical && isLowExperience)
 
-    // Fire-and-forget: notify N8N webhook in parallel (does not block user response)
+    // Notify N8N webhook (Kommo). We await so we can return leadId to the client.
+    let kommo: { skipped: boolean; status?: number; leadId?: string | number; body?: unknown; error?: string } = { skipped: skipKommo }
     const n8nPromise = skipKommo
       ? Promise.resolve(console.log('N8N webhook skipped:', { isHighSchool, isTechnical, isLowExperience }))
       : fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
@@ -103,13 +104,18 @@ Deno.serve(async (req) => {
         })
           .then(async (r) => {
             console.log('N8N webhook status:', r.status)
-            try {
-              const txt = await r.text()
-              console.log('N8N webhook body:', txt)
-            } catch (_) {}
+            const txt = await r.text().catch(() => '')
+            console.log('N8N webhook body:', txt)
+            let parsed: any = txt
+            try { parsed = JSON.parse(txt) } catch (_) {}
+            const leadId =
+              parsed?.leadId ?? parsed?.lead_id ?? parsed?.id ??
+              parsed?.lead?.id ?? parsed?.data?.id ?? parsed?.[0]?.id
+            kommo = { skipped: false, status: r.status, leadId, body: parsed }
           })
           .catch((err) => {
             console.error('N8N webhook error:', err)
+            kommo = { skipped: false, error: String(err) }
           })
 
     const res = await fetch('https://api.resend.com/emails', {
@@ -136,13 +142,13 @@ Deno.serve(async (req) => {
 
     if (!res.ok) {
       return new Response(
-        JSON.stringify({ success: false, status: res.status, resend: result }),
+        JSON.stringify({ success: false, status: res.status, resend: result, kommo }),
         { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
 
     return new Response(
-      JSON.stringify({ success: true, resend: result }),
+      JSON.stringify({ success: true, resend: result, kommo }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )
   } catch (error) {
