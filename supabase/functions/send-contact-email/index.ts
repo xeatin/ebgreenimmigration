@@ -6,14 +6,14 @@ import { z } from 'npm:zod@3.25.76'
 
 const ContactSchema = z.object({
   firstName: z.string().min(1).max(100),
-  lastName: z.string().min(1).max(100),
+  lastName: z.string().min(1).max(100).optional().default(''),
   email: z.string().email().max(255),
-  phoneCode: z.string().max(10),
-  phone: z.string().max(30),
+  phoneCode: z.string().max(10).optional().default(''),
+  phone: z.string().max(30).optional().default(''),
   visa: z.string().max(50),
   education: z.string().max(50),
-  experience: z.string().max(50),
-  message: z.string().max(5000),
+  experience: z.string().max(50).optional().default(''),
+  message: z.string().max(5000).optional().default(''),
 })
 
 Deno.serve(async (req) => {
