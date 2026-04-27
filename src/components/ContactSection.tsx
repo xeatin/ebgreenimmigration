@@ -32,11 +32,9 @@ const ContactSection = () => {
   });
   const [errors, setErrors] = useState<FormErrors>({});
 
-  const shouldSendEmail = (education: string, experience: string): boolean => {
-    if (education === "ensino-medio") return false;
-    if ((education === "tecnico" || education === "tecnologo") && experience === "menos-5") return false;
-    return true;
-  };
+  // A regra de filtragem (ensino médio / técnico+menos de 5 anos)
+  // agora é aplicada no servidor (edge function send-contact-email),
+  // garantindo o mesmo comportamento para o formulário e o botão WhatsApp.
 
   const buildSchema = () =>
     z.object({
