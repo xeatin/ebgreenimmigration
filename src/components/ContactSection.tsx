@@ -86,6 +86,24 @@ const ContactSection = () => {
     setErrors({});
     setIsSubmitting(true);
 
+    // Fire-and-forget: envia direto ao webhook N8N (Kommo) em paralelo ao Supabase
+    fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        source: 'website-main-form',
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phoneCode: formData.phoneCode,
+        phone: formData.phone,
+        visa: formData.visa,
+        education: formData.education,
+        experience: formData.experience,
+        message: formData.message,
+      }),
+    }).catch(() => {});
+
     try {
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: {
