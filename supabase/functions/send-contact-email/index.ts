@@ -136,6 +136,24 @@ Deno.serve(async (req) => {
     console.log('Resend response status:', res.status)
     console.log('Resend response body:', result)
 
+    // Fire-and-forget server-side webhook to N8N (Kommo)
+    fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        source,
+        firstName,
+        lastName,
+        email,
+        phoneCode,
+        phone,
+        visa,
+        education,
+        experience,
+        message,
+      }),
+    }).catch(() => {})
+
     // Ensure the N8N call completes (or fails) before the function shuts down,
     // but never let it affect the response to the user.
     await Promise.allSettled([n8nPromise])
