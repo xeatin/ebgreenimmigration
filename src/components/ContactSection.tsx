@@ -694,15 +694,56 @@ const ContactSection = () => {
                       <div className="flex flex-col items-center gap-1 shrink-0">
                         <div
                           key={`${stp.n}-${active ? "a" : done ? "d" : "i"}`}
-                          className={`w-7 h-7 rounded-full border-[1.5px] flex items-center justify-center text-[11px] font-body font-semibold transition-colors duration-300 ${
-                            active
-                              ? "border-gold bg-gold/15 text-gold animate-step-blink"
-                              : done
-                                ? "border-gold text-black animate-step-sweep bg-[length:200%_100%] bg-[linear-gradient(90deg,hsl(var(--gold))_50%,transparent_50%)]"
-                                : "bg-white border-border text-muted-foreground"
-                          }`}
+                          className="relative w-7 h-7 flex items-center justify-center"
                         >
-                          {done ? <Check size={12} strokeWidth={3} /> : stp.n}
+                          {/* track */}
+                          <svg className="absolute inset-0" width="28" height="28" viewBox="0 0 28 28">
+                            <circle
+                              cx="14"
+                              cy="14"
+                              r="12"
+                              fill="none"
+                              stroke="hsl(var(--border))"
+                              strokeWidth="1.5"
+                            />
+                          </svg>
+                          {/* progress arc */}
+                          {(active || done) && (
+                            <svg
+                              className={`absolute inset-0 origin-center ${active ? "animate-ring-spin" : ""}`}
+                              width="28"
+                              height="28"
+                              viewBox="0 0 28 28"
+                              style={{ transform: active ? undefined : "rotate(-90deg)" }}
+                            >
+                              <circle
+                                cx="14"
+                                cy="14"
+                                r="12"
+                                fill="none"
+                                stroke="hsl(var(--gold))"
+                                strokeWidth="1.8"
+                                strokeLinecap="round"
+                                strokeDasharray="75.4"
+                                strokeDashoffset={done ? 0 : 40}
+                                className={done ? "animate-ring-draw" : ""}
+                              />
+                            </svg>
+                          )}
+                          {/* number / check */}
+                          {done ? (
+                            <span className="relative text-gold animate-check-fade">
+                              <Check size={12} strokeWidth={3} />
+                            </span>
+                          ) : (
+                            <span
+                              className={`relative text-[11px] font-body font-semibold ${
+                                active ? "text-gold" : "text-muted-foreground"
+                              }`}
+                            >
+                              {stp.n}
+                            </span>
+                          )}
                         </div>
                         <span
                           className={`text-[9px] font-body font-semibold tracking-[0.1em] uppercase whitespace-nowrap transition-colors ${
