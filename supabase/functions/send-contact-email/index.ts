@@ -56,6 +56,7 @@ Deno.serve(async (req) => {
         <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Formação</td><td style="padding:8px;border:1px solid #ddd">${education}</td></tr>
         <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Experiência</td><td style="padding:8px;border:1px solid #ddd">${experience}</td></tr>
         <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Mensagem</td><td style="padding:8px;border:1px solid #ddd">${message || 'Nenhuma'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Currículo</td><td style="padding:8px;border:1px solid #ddd">${resumeUrl ? `<a href="${resumeUrl}" target="_blank" rel="noopener">${resumeName || 'Baixar currículo'}</a>` : 'Não enviado'}</td></tr>
       </table>
     `
 
