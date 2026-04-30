@@ -111,6 +111,14 @@ export const translations = {
         },
       },
       {
+        title: { pt: "Vistos de Investidor", en: "Investor Visas", es: "Visas de Inversionista" },
+        description: {
+          pt: "Vistos para investidores e empreendedores que desejam abrir, estruturar ou expandir negócios nos Estados Unidos com segurança e planejamento.",
+          en: "Visas for investors and entrepreneurs looking to open, structure, or expand businesses in the United States with security and planning.",
+          es: "Visas para inversionistas y emprendedores que desean abrir, estructurar o expandir negocios en Estados Unidos con seguridad y planificación.",
+        },
+      },
+      {
         title: { pt: "Vistos de Trabalho", en: "Work Visas", es: "Visas de Trabajo" },
         description: {
           pt: "Vistos para profissionais qualificados que desejam atuar legalmente nos Estados Unidos, com base em oferta de emprego e requisitos específicos da categoria.",
@@ -119,11 +127,12 @@ export const translations = {
         },
       },
       {
-        title: { pt: "Vistos de Investidor", en: "Investor Visas", es: "Visas de Inversionista" },
+        title: { pt: "Visto de Estudante", en: "Student Visa", es: "Visa de Estudiante" },
+        subtitle: { pt: "F-1", en: "F-1", es: "F-1" },
         description: {
-          pt: "Vistos para investidores e empreendedores que desejam abrir, estruturar ou expandir negócios nos Estados Unidos com segurança e planejamento.",
-          en: "Visas for investors and entrepreneurs looking to open, structure, or expand businesses in the United States with security and planning.",
-          es: "Visas para inversionistas y emprendedores que desean abrir, estructurar o expandir negocios en Estados Unidos con seguridad y planificación.",
+          pt: "Visto para estudantes internacionais que desejam cursar programas acadêmicos em instituições de ensino reconhecidas nos Estados Unidos.",
+          en: "Visa for international students who wish to pursue academic programs at recognized educational institutions in the United States.",
+          es: "Visa para estudiantes internacionales que desean cursar programas académicos en instituciones educativas reconocidas en Estados Unidos.",
         },
       },
       {
