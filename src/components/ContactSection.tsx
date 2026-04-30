@@ -467,19 +467,19 @@ const ContactSection = () => {
 
       <div>
         <label className={labelCls}>WhatsApp / Telefone <span className={reqCls}>*</span></label>
-        <div className={`flex items-center gap-2 rounded-md border bg-[#12141B] transition focus-within:border-gold/70 focus-within:ring-2 focus-within:ring-gold/15 ${errors.phone ? "border-red-500/50" : "border-white/8"}`}>
+        <div className={`flex items-center gap-2 rounded-md border bg-white transition focus-within:border-gold focus-within:ring-2 focus-within:ring-gold/20 ${errors.phone ? "border-red-500/60" : "border-border"}`}>
           <PhoneCodeSelector
             value={formData.phoneCode}
             onChange={(val) => setFormData({ ...formData, phoneCode: val })}
           />
-          <div className="w-px h-6 bg-white/10 shrink-0" />
+          <div className="w-px h-6 bg-border shrink-0" />
           <span className="px-1 text-sm text-foreground font-body shrink-0">{formData.phoneCode}</span>
           <input
             type="tel"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             placeholder="(00) 00000-0000"
-            className="flex-1 h-11 px-1 bg-transparent text-foreground placeholder:text-foreground/25 text-sm font-body outline-none"
+            className="flex-1 h-11 px-1 bg-transparent text-foreground placeholder:text-foreground/30 text-sm font-body outline-none"
           />
         </div>
         {errors.phone && <p className={errCls}>{errors.phone}</p>}
