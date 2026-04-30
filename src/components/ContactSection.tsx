@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Send, Instagram, Clock, MapPin, Lock, ChevronDown, ArrowRight, Check } from "lucide-react";
+import { Mail, Send, Instagram, Lock, ChevronDown, ArrowRight, ArrowLeft, Check, ShieldCheck, Info } from "lucide-react";
 
 const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -8,13 +8,12 @@ const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?
 );
 
 import PhoneCodeSelector from "./PhoneCodeSelector";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { z } from "zod";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import ebgreenLogo from "@/assets/ebgreen-logo.svg";
 
 type FormErrors = Partial<Record<
   "firstName" | "lastName" | "email" | "phone" | "visa" | "education" | "achievements" |
@@ -23,15 +22,14 @@ type FormErrors = Partial<Record<
 >>;
 
 const VISA_OPTIONS = [
-  { id: "eb1a-o1", label: "EB-1A / O-1", desc: "Habilidade extraordinária" },
-  { id: "eb2-niw", label: "EB-2 NIW", desc: "Interesse nacional" },
-  { id: "eb3", label: "EB-3", desc: "Profissional qualificado" },
-  { id: "eb5-e2", label: "EB-5 / E-2", desc: "Investidor" },
-  { id: "h1b-l1-others", label: "H-1B / L-1 / Outros", desc: "Trabalho temporário" },
-  { id: "f1", label: "F-1", desc: "Estudante" },
-  { id: "family-based", label: "Family-Based", desc: "Reunificação familiar" },
-  { id: "r1", label: "R-1", desc: "Religioso" },
-  { id: "nao-sei", label: "Não sei ainda", desc: "Quero orientação" },
+  { id: "EB-1A / O-1", label: "EB-1A / O-1", desc: "Habilidade Extraordinária" },
+  { id: "EB-2 NIW", label: "EB-2 NIW", desc: "Profissionais qualificados e interesse nacional" },
+  { id: "EB-3", label: "EB-3", desc: "Trabalho e oferta de emprego" },
+  { id: "EB-5 / E-2 Investidor", label: "EB-5 / E-2", desc: "Investimento nos Estados Unidos" },
+  { id: "H-1B / L-1 / Outros Trabalho", label: "H-1B / L-1 / Outros", desc: "Vistos de Trabalho" },
+  { id: "F-1 Estudante", label: "F-1", desc: "Visto de Estudante" },
+  { id: "Family-Based", label: "Family-Based", desc: "Patrocínio Familiar" },
+  { id: "R-1 Religioso", label: "R-1", desc: "Trabalhador Religioso" },
 ];
 
 const EDUCATION_OPTIONS = [
@@ -45,49 +43,27 @@ const EDUCATION_OPTIONS = [
 ];
 
 const ACHIEVEMENTS_OPTIONS = [
-  "Sim — publicações",
-  "Sim — prêmios",
-  "Sim — ambos",
-  "Não, mas tenho evidências",
+  "Sim, publicações acadêmicas",
+  "Sim, prêmios e reconhecimentos",
+  "Sim, ambos",
+  "Não, mas tenho outras evidências",
   "Ainda não",
 ];
 
-const EXPERIENCE_OPTIONS = [
-  "Menos de 5 anos",
-  "De 5 a 10 anos",
-  "Mais de 10 anos",
-];
+const EXPERIENCE_OPTIONS = ["Menos de 5 anos", "De 5 a 10 anos", "Mais de 10 anos"];
 
 const COUNTRY_GROUPS: { continent: string; countries: string[] }[] = [
-  {
-    continent: "América do Sul",
-    countries: ["Brasil", "Argentina", "Chile", "Colômbia", "Equador", "Paraguai", "Peru", "Uruguai", "Venezuela", "Bolívia"],
-  },
-  {
-    continent: "América do Norte e Central",
-    countries: ["Estados Unidos", "Canadá", "México", "Costa Rica", "Cuba", "Panamá", "República Dominicana"],
-  },
-  {
-    continent: "Europa",
-    countries: ["Portugal", "Espanha", "Itália", "França", "Alemanha", "Reino Unido", "Irlanda", "Suíça", "Países Baixos", "Bélgica"],
-  },
-  {
-    continent: "África",
-    countries: ["Angola", "Moçambique", "Cabo Verde", "África do Sul", "Nigéria", "Egito", "Marrocos"],
-  },
-  {
-    continent: "Ásia",
-    countries: ["China", "Índia", "Japão", "Coreia do Sul", "Filipinas", "Vietnã", "Tailândia", "Israel"],
-  },
-  {
-    continent: "Oceania",
-    countries: ["Austrália", "Nova Zelândia"],
-  },
+  { continent: "América do Sul", countries: ["🇧🇷 Brasil", "🇦🇷 Argentina", "🇨🇱 Chile", "🇨🇴 Colômbia", "🇪🇨 Equador", "🇵🇾 Paraguai", "🇵🇪 Peru", "🇺🇾 Uruguai", "🇻🇪 Venezuela", "🇧🇴 Bolívia"] },
+  { continent: "América do Norte e Central", countries: ["🇺🇸 Estados Unidos", "🇨🇦 Canadá", "🇲🇽 México", "🇨🇷 Costa Rica", "🇨🇺 Cuba", "🇵🇦 Panamá", "🇩🇴 República Dominicana"] },
+  { continent: "Europa", countries: ["🇵🇹 Portugal", "🇪🇸 Espanha", "🇮🇹 Itália", "🇫🇷 França", "🇩🇪 Alemanha", "🇬🇧 Reino Unido", "🇮🇪 Irlanda", "🇨🇭 Suíça", "🇳🇱 Países Baixos", "🇧🇪 Bélgica"] },
+  { continent: "África", countries: ["🇦🇴 Angola", "🇲🇿 Moçambique", "🇨🇻 Cabo Verde", "🇿🇦 África do Sul", "🇳🇬 Nigéria", "🇪🇬 Egito", "🇲🇦 Marrocos"] },
+  { continent: "Ásia", countries: ["🇨🇳 China", "🇮🇳 Índia", "🇯🇵 Japão", "🇰🇷 Coreia do Sul", "🇵🇭 Filipinas", "🇻🇳 Vietnã", "🇹🇭 Tailândia", "🇮🇱 Israel"] },
+  { continent: "Oceania", countries: ["🇦🇺 Austrália", "🇳🇿 Nova Zelândia"] },
 ];
 
 const CURRENT_STATUS_OPTIONS = [
   "Visto de Turista (B1/B2)",
-  "Estudante (F1/F2)",
+  "Visto de Estudante (F1/F2)",
   "Green Card em processo",
   "Outros",
 ];
@@ -96,7 +72,7 @@ const TIMELINE_OPTIONS = [
   "O quanto antes",
   "Em breve (1–3 meses)",
   "Planejando (3–12 meses)",
-  "Ainda explorando",
+  "Ainda estou explorando opções",
 ];
 
 const STEPS = [
@@ -281,465 +257,546 @@ const ContactSection = () => {
     setIsSubmitting(false);
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body text-sm";
-  const inputErrorClass = "border-destructive focus:ring-destructive";
-  const labelClass = "text-sm text-muted-foreground font-body mb-1.5 block";
-  const errorClass = "text-xs text-destructive font-body mt-1";
-
-  /* ---------- Reusable building blocks ---------- */
-
-  const ChoiceCard = ({
-    selected, onClick, title, desc, className = "",
-  }: { selected: boolean; onClick: () => void; title: string; desc?: string; className?: string }) => (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`relative text-left p-4 rounded-xl border transition-all font-body ${
-        selected
-          ? "border-gold bg-gold/10 shadow-md"
-          : "border-border bg-background hover:border-gold/50 hover:bg-gold/5"
-      } ${className}`}
-    >
-      <div className="flex items-start justify-between gap-2">
-        <div>
-          <p className="font-display text-sm font-semibold text-foreground">{title}</p>
-          {desc && <p className="text-xs text-muted-foreground mt-1">{desc}</p>}
-        </div>
-        {selected && (
-          <span className="w-5 h-5 shrink-0 rounded-full bg-gold flex items-center justify-center">
-            <Check size={12} className="text-green-deep" strokeWidth={3} />
-          </span>
-        )}
-      </div>
-    </button>
-  );
-
-  const SelectField = ({
-    id, label, value, onChange, options, error, placeholder = "Selecione",
-  }: {
-    id: string; label: string; value: string; onChange: (v: string) => void;
-    options: string[] | { group: string; items: string[] }[]; error?: string; placeholder?: string;
-  }) => {
-    const isGrouped = Array.isArray(options) && options.length > 0 && typeof options[0] !== "string";
-    return (
-      <div>
-        <label className={labelClass} htmlFor={id}>{label}</label>
-        <select
-          id={id} value={value} onChange={(e) => onChange(e.target.value)}
-          className={`${inputClass} ${error ? inputErrorClass : ""}`}
-        >
-          <option value="">{placeholder}</option>
-          {isGrouped
-            ? (options as { group: string; items: string[] }[]).map((g) => (
-                <optgroup key={g.group} label={g.group}>
-                  {g.items.map((it) => <option key={it} value={it}>{it}</option>)}
-                </optgroup>
-              ))
-            : (options as string[]).map((it) => <option key={it} value={it}>{it}</option>)}
-        </select>
-        {error && <p className={errorClass}>{error}</p>}
-      </div>
-    );
+  /* ---------- Tokens (dark premium, fiel ao sample) ---------- */
+  const labelCls = "block text-[11px] font-semibold text-white/45 tracking-[0.08em] uppercase mb-1.5 font-body";
+  const reqCls = "text-gold";
+  const inputBase =
+    "w-full h-11 px-3.5 bg-[#12141B] border rounded-md text-white text-sm font-body placeholder:text-white/25 outline-none transition focus:border-gold/70 focus:ring-2 focus:ring-gold/15";
+  const inputCls = (err?: string) =>
+    `${inputBase} ${err ? "border-red-500/50" : "border-white/8"}`;
+  const selectCls = (err?: string) =>
+    `${inputCls(err)} appearance-none bg-no-repeat pr-9 cursor-pointer`;
+  const selectBg = {
+    backgroundImage:
+      "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 5 4.5-5' stroke='%23C9963B' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    backgroundPosition: "right 12px center",
   };
+  const errCls = "text-[11px] text-red-400 font-body mt-1";
 
-  /* ---------- Steps ---------- */
+  /* ---------- Step contents ---------- */
 
   const Step1 = (
-    <div className="space-y-6">
-      <div>
-        <h3 className="font-display text-2xl font-bold text-foreground">
-          Pronto para iniciar sua <span className="text-gold italic">avaliação?</span>
-        </h3>
-        <p className="mt-2 text-sm text-muted-foreground font-body leading-relaxed">
-          Responda algumas perguntas rápidas e receba uma análise preliminar do seu perfil, com orientação clara sobre os caminhos migratórios mais adequados e os próximos passos.
-        </p>
-      </div>
+    <div>
+      <h3 className="font-display text-[22px] sm:text-[24px] font-semibold text-white leading-tight mb-2">
+        Pronto para iniciar sua <span className="text-gold italic">avaliação?</span>
+      </h3>
+      <p className="text-[13px] text-white/55 font-body font-light leading-relaxed mb-6 max-w-[62ch]">
+        Responda algumas perguntas rápidas e receba uma análise preliminar do seu perfil, com orientação clara sobre os caminhos migratórios mais adequados e os próximos passos.
+      </p>
 
-      <div>
-        <p className={labelClass}>Qual visto mais se aproxima do seu objetivo? *</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {VISA_OPTIONS.slice(0, 7).map((v) => (
-            <ChoiceCard
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+        {VISA_OPTIONS.map((v) => {
+          const selected = formData.visa === v.id;
+          return (
+            <button
               key={v.id}
-              selected={formData.visa === v.id}
+              type="button"
               onClick={() => setFormData({ ...formData, visa: v.id })}
-              title={v.label}
-              desc={v.desc}
-            />
-          ))}
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
-          <ChoiceCard
-            selected={formData.visa === "r1"}
-            onClick={() => setFormData({ ...formData, visa: "r1" })}
-            title="R-1"
-            desc="Religioso"
-            className="md:col-span-2"
+              className={`relative text-left p-3 rounded-[10px] border transition-all bg-[#12141B] overflow-hidden group ${
+                selected
+                  ? "border-gold/70 bg-gold/[0.07]"
+                  : "border-white/8 hover:border-gold/40"
+              }`}
+            >
+              <span
+                className={`absolute top-0 left-0 right-0 h-[2px] bg-gold origin-left transition-transform ${
+                  selected ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                }`}
+              />
+              {selected && (
+                <span className="absolute top-1.5 right-1.5 w-3.5 h-3.5 rounded-full bg-gold flex items-center justify-center">
+                  <Check size={8} strokeWidth={3} className="text-black" />
+                </span>
+              )}
+              <p className={`font-body font-semibold text-[12px] mb-0.5 leading-tight ${selected ? "text-[#E4BC78]" : "text-white"}`}>
+                {v.label}
+              </p>
+              <p className="text-[10px] text-white/40 leading-snug">{v.desc}</p>
+            </button>
+          );
+        })}
+
+        <button
+          type="button"
+          onClick={() => setFormData({ ...formData, visa: "Não sei ainda" })}
+          className={`relative text-left p-3 rounded-[10px] border transition-all bg-[#12141B] col-span-2 md:col-span-4 overflow-hidden group ${
+            formData.visa === "Não sei ainda"
+              ? "border-gold/70 bg-gold/[0.07]"
+              : "border-white/8 hover:border-gold/40"
+          }`}
+        >
+          <span
+            className={`absolute top-0 left-0 right-0 h-[2px] bg-gold origin-left transition-transform ${
+              formData.visa === "Não sei ainda" ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+            }`}
           />
-          <ChoiceCard
-            selected={formData.visa === "nao-sei"}
-            onClick={() => setFormData({ ...formData, visa: "nao-sei" })}
-            title="Não sei ainda"
-            desc="Quero orientação"
-            className="md:col-span-2"
-          />
-        </div>
-        {errors.visa && <p className={errorClass}>{errors.visa}</p>}
+          {formData.visa === "Não sei ainda" && (
+            <span className="absolute top-1.5 right-1.5 w-3.5 h-3.5 rounded-full bg-gold flex items-center justify-center">
+              <Check size={8} strokeWidth={3} className="text-black" />
+            </span>
+          )}
+          <p className={`font-body font-semibold text-[12px] mb-0.5 ${formData.visa === "Não sei ainda" ? "text-[#E4BC78]" : "text-white"}`}>
+            Não sei ainda
+          </p>
+          <p className="text-[10px] text-white/40">Quero descobrir a melhor opção para meu perfil</p>
+        </button>
       </div>
+      {errors.visa && <p className={`${errCls} mt-2`}>{errors.visa}</p>}
     </div>
   );
 
   const Step2 = (
-    <div className="space-y-5">
-      <div>
-        <h3 className="font-display text-2xl font-bold text-foreground">
-          Conte-nos sobre seu <span className="text-gold italic">perfil</span>
-        </h3>
-        <p className="mt-2 text-sm text-muted-foreground font-body">
-          Essas informações nos ajudam a identificar os caminhos migratórios mais adequados.
-        </p>
+    <div>
+      <h3 className="font-display text-[22px] font-semibold text-white leading-tight mb-1.5">
+        Seu <span className="text-gold italic">perfil profissional</span>
+      </h3>
+      <p className="text-[13px] text-white/55 font-body font-light mb-6">
+        Essas informações ajudam nossa equipe a avaliar sua elegibilidade antes da consulta.
+      </p>
+
+      <div className="grid sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label className={labelCls}>Formação Acadêmica <span className={reqCls}>*</span></label>
+          <select
+            value={formData.education}
+            onChange={(e) => setFormData({ ...formData, education: e.target.value })}
+            className={selectCls(errors.education)}
+            style={selectBg}
+          >
+            <option value="" className="bg-[#1C1E28]">Selecionar...</option>
+            {EDUCATION_OPTIONS.map((o) => <option key={o} value={o} className="bg-[#1C1E28]">{o}</option>)}
+          </select>
+          {errors.education && <p className={errCls}>{errors.education}</p>}
+        </div>
+        <div>
+          <label className={labelCls}>Publicações, prêmios ou reconhecimentos? <span className={reqCls}>*</span></label>
+          <select
+            value={formData.achievements}
+            onChange={(e) => setFormData({ ...formData, achievements: e.target.value })}
+            className={selectCls(errors.achievements)}
+            style={selectBg}
+          >
+            <option value="" className="bg-[#1C1E28]">Selecionar...</option>
+            {ACHIEVEMENTS_OPTIONS.map((o) => <option key={o} value={o} className="bg-[#1C1E28]">{o}</option>)}
+          </select>
+          {errors.achievements && <p className={errCls}>{errors.achievements}</p>}
+        </div>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-5">
-        <SelectField
-          id="education" label="Escolaridade *" value={formData.education}
-          onChange={(v) => setFormData({ ...formData, education: v })}
-          options={EDUCATION_OPTIONS} error={errors.education}
-        />
-        <SelectField
-          id="experience" label="Experiência profissional *" value={formData.experience}
-          onChange={(v) => setFormData({ ...formData, experience: v })}
-          options={EXPERIENCE_OPTIONS} error={errors.experience}
-        />
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label className={labelCls}>Experiência Profissional <span className={reqCls}>*</span></label>
+          <select
+            value={formData.experience}
+            onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+            className={selectCls(errors.experience)}
+            style={selectBg}
+          >
+            <option value="" className="bg-[#1C1E28]">Selecionar...</option>
+            {EXPERIENCE_OPTIONS.map((o) => <option key={o} value={o} className="bg-[#1C1E28]">{o}</option>)}
+          </select>
+          {errors.experience && <p className={errCls}>{errors.experience}</p>}
+        </div>
+        <div>
+          <label className={labelCls}>País de Nascimento <span className={reqCls}>*</span></label>
+          <select
+            value={formData.countryOfBirth}
+            onChange={(e) => setFormData({ ...formData, countryOfBirth: e.target.value })}
+            className={selectCls(errors.countryOfBirth)}
+            style={selectBg}
+          >
+            <option value="" className="bg-[#1C1E28]">Selecionar país...</option>
+            {COUNTRY_GROUPS.map((g) => (
+              <optgroup key={g.continent} label={g.continent} className="bg-[#1C1E28]">
+                {g.countries.map((c) => <option key={c} value={c} className="bg-[#1C1E28]">{c}</option>)}
+              </optgroup>
+            ))}
+          </select>
+          {errors.countryOfBirth && <p className={errCls}>{errors.countryOfBirth}</p>}
+        </div>
       </div>
-
-      <SelectField
-        id="achievements" label="Possui publicações ou prêmios na sua área? *"
-        value={formData.achievements}
-        onChange={(v) => setFormData({ ...formData, achievements: v })}
-        options={ACHIEVEMENTS_OPTIONS} error={errors.achievements}
-      />
-
-      <SelectField
-        id="countryOfBirth" label="País de nascimento *"
-        value={formData.countryOfBirth}
-        onChange={(v) => setFormData({ ...formData, countryOfBirth: v })}
-        options={COUNTRY_GROUPS.map((g) => ({ group: g.continent, items: g.countries }))}
-        error={errors.countryOfBirth}
-        placeholder="Selecione seu país"
-      />
     </div>
   );
 
   const Step3 = (
-    <div className="space-y-5">
-      <div>
-        <h3 className="font-display text-2xl font-bold text-foreground">
-          Seus <span className="text-gold italic">dados de contato</span>
-        </h3>
-        <p className="mt-2 text-sm text-muted-foreground font-body">
-          Usaremos para enviar sua análise preliminar e dar continuidade ao atendimento.
-        </p>
-      </div>
+    <div>
+      <h3 className="font-display text-[22px] font-semibold text-white leading-tight mb-1.5">
+        Suas <span className="text-gold italic">informações</span>
+      </h3>
+      <p className="text-[13px] text-white/55 font-body font-light mb-6">
+        Para enviarmos o resultado da sua avaliação e agendar sua consulta gratuita.
+      </p>
 
-      <div className="grid sm:grid-cols-2 gap-5">
+      <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelClass} htmlFor="firstName">Nome *</label>
-          <input id="firstName" type="text" value={formData.firstName}
+          <label className={labelCls}>Nome <span className={reqCls}>*</span></label>
+          <input
+            type="text"
+            value={formData.firstName}
             onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-            className={`${inputClass} ${errors.firstName ? inputErrorClass : ""}`} placeholder="Ex.: João" />
-          {errors.firstName && <p className={errorClass}>{errors.firstName}</p>}
+            placeholder="Ex: João"
+            className={inputCls(errors.firstName)}
+          />
+          {errors.firstName && <p className={errCls}>{errors.firstName}</p>}
         </div>
         <div>
-          <label className={labelClass} htmlFor="lastName">Sobrenome *</label>
-          <input id="lastName" type="text" value={formData.lastName}
+          <label className={labelCls}>Sobrenome <span className={reqCls}>*</span></label>
+          <input
+            type="text"
+            value={formData.lastName}
             onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-            className={`${inputClass} ${errors.lastName ? inputErrorClass : ""}`} placeholder="Ex.: Silva" />
-          {errors.lastName && <p className={errorClass}>{errors.lastName}</p>}
+            placeholder="Ex: Silva"
+            className={inputCls(errors.lastName)}
+          />
+          {errors.lastName && <p className={errCls}>{errors.lastName}</p>}
         </div>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className={labelClass} htmlFor="email">E-mail *</label>
-          <input id="email" type="email" value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className={`${inputClass} ${errors.email ? inputErrorClass : ""}`} placeholder="voce@email.com" />
-          {errors.email && <p className={errorClass}>{errors.email}</p>}
+      <div className="mb-4">
+        <label className={labelCls}>E-mail <span className={reqCls}>*</span></label>
+        <input
+          type="email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          placeholder="seu@email.com"
+          className={inputCls(errors.email)}
+        />
+        {errors.email && <p className={errCls}>{errors.email}</p>}
+      </div>
+
+      <div>
+        <label className={labelCls}>WhatsApp / Telefone <span className={reqCls}>*</span></label>
+        <div className={`flex items-center gap-2 rounded-md border bg-[#12141B] transition focus-within:border-gold/70 focus-within:ring-2 focus-within:ring-gold/15 ${errors.phone ? "border-red-500/50" : "border-white/8"}`}>
+          <PhoneCodeSelector
+            value={formData.phoneCode}
+            onChange={(val) => setFormData({ ...formData, phoneCode: val })}
+          />
+          <div className="w-px h-6 bg-white/10 shrink-0" />
+          <span className="px-1 text-sm text-white font-body shrink-0">{formData.phoneCode}</span>
+          <input
+            type="tel"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            placeholder="(00) 00000-0000"
+            className="flex-1 h-11 px-1 bg-transparent text-white placeholder:text-white/25 text-sm font-body outline-none"
+          />
         </div>
-        <div>
-          <label className={labelClass}>Telefone *</label>
-          <div className={`flex items-center rounded-lg border bg-background focus-within:ring-2 focus-within:ring-ring ${errors.phone ? "border-destructive focus-within:ring-destructive" : "border-input"}`}>
-            <PhoneCodeSelector
-              value={formData.phoneCode}
-              onChange={(val) => setFormData({ ...formData, phoneCode: val })}
-            />
-            <div className="w-px h-6 bg-input shrink-0" />
-            <span className="px-2 text-sm text-foreground font-body shrink-0">{formData.phoneCode}</span>
-            <input type="tel" value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="flex-1 px-1 py-3 bg-transparent text-foreground focus:outline-none font-body text-sm" placeholder="11 99999 0000" />
-          </div>
-          {errors.phone && <p className={errorClass}>{errors.phone}</p>}
-        </div>
+        {errors.phone && <p className={errCls}>{errors.phone}</p>}
       </div>
     </div>
   );
 
   const Step4 = (
-    <div className="space-y-5">
-      <div>
-        <h3 className="font-display text-2xl font-bold text-foreground">
-          Análise <span className="text-gold italic">preliminar</span>
-        </h3>
-        <p className="mt-2 text-sm text-muted-foreground font-body">
-          Detalhes finais para personalizar sua avaliação.
-        </p>
+    <div>
+      <h3 className="font-display text-[22px] font-semibold text-white leading-tight mb-1.5">
+        Contexto do <span className="text-gold italic">seu caso</span>
+      </h3>
+      <p className="text-[13px] text-white/55 font-body font-light mb-5">
+        Informações complementares para uma análise mais precisa do seu perfil.
+      </p>
+
+      <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-emerald-500/[0.07] border border-emerald-500/20 mb-5">
+        <ShieldCheck size={14} className="text-emerald-400 shrink-0" />
+        <span className="text-[12px] text-emerald-300 font-body">
+          Todas as informações são estritamente confidenciais e protegidas.
+        </span>
       </div>
 
-      <div>
-        <label className={labelClass} htmlFor="message">Conte-nos brevemente sobre seu objetivo (opcional)</label>
-        <textarea id="message" rows={3} value={formData.message}
+      <div className="mb-4">
+        <label className={labelCls}>
+          Descreva brevemente sua situação atual <span className="text-white/40 normal-case font-light tracking-normal text-[10px] ml-1">(opcional)</span>
+        </label>
+        <textarea
+          value={formData.message}
           maxLength={2000}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className={`${inputClass} resize-none`}
-          placeholder="Ex.: Sou pesquisador na área de…" />
+          rows={3}
+          placeholder="Ex: Sou médico com 8 anos de experiência, 3 publicações indexadas e recebi convite para hospital universitário nos EUA..."
+          className={`${inputBase} h-auto py-3 resize-y min-h-[88px] leading-relaxed`}
+        />
       </div>
 
-      <SelectField
-        id="currentStatus" label="Status migratório atual (opcional)"
-        value={formData.currentStatus}
-        onChange={(v) => setFormData({ ...formData, currentStatus: v })}
-        options={CURRENT_STATUS_OPTIONS}
-        placeholder="Selecione (se aplicável)"
-      />
-
-      <div>
-        <p className={labelClass}>Quando pretende iniciar o processo? *</p>
-        <div className="grid grid-cols-2 gap-3">
-          {TIMELINE_OPTIONS.map((opt) => (
-            <ChoiceCard
-              key={opt}
-              selected={formData.timeline === opt}
-              onClick={() => setFormData({ ...formData, timeline: opt })}
-              title={opt}
-            />
-          ))}
+      <div className="grid sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label className={labelCls}>
+            Status atual <span className="text-white/40 normal-case font-light tracking-normal text-[10px] ml-1">(opcional)</span>
+          </label>
+          <select
+            value={formData.currentStatus}
+            onChange={(e) => setFormData({ ...formData, currentStatus: e.target.value })}
+            className={selectCls()}
+            style={selectBg}
+          >
+            <option value="" className="bg-[#1C1E28]">Selecionar...</option>
+            {CURRENT_STATUS_OPTIONS.map((o) => <option key={o} value={o} className="bg-[#1C1E28]">{o}</option>)}
+          </select>
         </div>
-        {errors.message && !formData.timeline && <p className={errorClass}>Selecione uma opção.</p>}
+        <div>
+          <label className={labelCls}>Quando pretende iniciar? <span className={reqCls}>*</span></label>
+          <select
+            value={formData.timeline}
+            onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+            className={selectCls(!formData.timeline && errors.message ? "x" : undefined)}
+            style={selectBg}
+          >
+            <option value="" className="bg-[#1C1E28]">Selecionar...</option>
+            {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-[#1C1E28]">{o}</option>)}
+          </select>
+          {errors.message && !formData.timeline && <p className={errCls}>Selecione quando pretende iniciar.</p>}
+        </div>
       </div>
 
-      <div>
-        <label className="flex items-start gap-2 cursor-pointer">
-          <input type="checkbox" checked={formData.privacy}
-            onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
-            className="w-4 h-4 mt-0.5 rounded border-input accent-gold" />
-          <span className="text-sm text-muted-foreground font-body">{t(s.privacy, lang)}</span>
-        </label>
-        {errors.privacy && <p className={errorClass}>{errors.privacy}</p>}
-      </div>
+      <label className="flex items-start gap-2.5 cursor-pointer group" onClick={(e) => {
+        if ((e.target as HTMLElement).tagName === "A") e.stopPropagation();
+      }}>
+        <span
+          className={`w-[18px] h-[18px] mt-0.5 rounded border-[1.5px] flex items-center justify-center shrink-0 transition ${
+            formData.privacy ? "bg-gold border-gold" : "border-white/15 bg-[#12141B]"
+          }`}
+        >
+          {formData.privacy && <Check size={11} strokeWidth={3} className="text-black" />}
+        </span>
+        <input
+          type="checkbox"
+          checked={formData.privacy}
+          onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
+          className="sr-only"
+        />
+        <span className="text-[12px] text-white/55 font-body leading-relaxed">
+          {t(s.privacy, lang)}
+        </span>
+      </label>
+      {errors.privacy && <p className={errCls}>{errors.privacy}</p>}
     </div>
   );
 
   const stepContent = step === 1 ? Step1 : step === 2 ? Step2 : step === 3 ? Step3 : Step4;
 
   return (
-    <section id="contato" className="py-24 bg-secondary">
-      <div className="container mx-auto px-6">
+    <section id="contato" className="py-20 md:py-24 bg-secondary">
+      <div className="container mx-auto px-4 sm:px-6">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-14 max-w-3xl mx-auto"
         >
-          <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">{t(s.sectionLabel, lang)}</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
-            {t(s.sectionTitle1, lang)}
-            <br />
-            {t(s.sectionTitle2, lang)}{" "}
-            <span className="text-gold">{t(s.sectionTitleHighlight, lang)}</span>
+          <p className="text-gold font-body text-xs sm:text-sm tracking-[0.3em] uppercase mb-3 font-semibold">{t(s.sectionLabel, lang)}</p>
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground leading-tight">
+            {t(s.sectionTitle1, lang)} {t(s.sectionTitle2, lang)}{" "}
+            <span className="text-gold italic">{t(s.sectionTitleHighlight, lang)}</span>
           </h2>
-          <p className="mt-4 text-muted-foreground mx-auto text-lg font-body">{t(s.sectionSubtitle, lang)}</p>
+          <p className="mt-4 text-muted-foreground text-base md:text-lg font-body">{t(s.sectionSubtitle, lang)}</p>
           <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-20 max-w-5xl mx-auto">
-          {/* Sidebar */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-2"
-          >
-            <div className="space-y-8">
+        {/* Premium dark card */}
+        <motion.form
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          onSubmit={handleSubmit}
+          noValidate
+          className="relative max-w-[1100px] mx-auto bg-[#0F1117] rounded-2xl border border-white/8 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] overflow-hidden"
+        >
+          {/* Top gold accent line */}
+          <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent z-10" />
+
+          {/* HEADER: logo + stepper inline */}
+          <div className="bg-[#161820] border-b border-white/8 px-5 sm:px-7 py-4 flex flex-col md:flex-row md:items-center gap-4">
+            {/* Logo block */}
+            <div className="flex items-center gap-3 md:pr-6 md:border-r md:border-white/8 shrink-0">
+              <div className="w-9 h-9 rounded-md bg-gold/10 border border-gold/30 flex items-center justify-center">
+                <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+                  <path d="M9 2L3 5.5v5C3 13.8 5.8 16.5 9 16.5s6-2.7 6-6v-5L9 2z" stroke="#C9963B" strokeWidth="1.3" fill="none"/>
+                  <path d="M6 9l2 2 4-4" stroke="#C9963B" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
               <div>
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-                  {t(s.sidebarTitle1, lang)}{" "}
-                  <span className="text-gold italic">{t(s.sidebarTitleHighlight, lang)}</span>
-                </h3>
-                <p className="mt-3 text-muted-foreground text-sm font-body leading-relaxed whitespace-pre-line">
-                  {t(s.sidebarSubtitle, lang)}
+                <p className="font-display text-[17px] font-semibold text-white leading-none">
+                  eb<span className="text-gold">green</span>
+                </p>
+                <p className="text-[9px] text-white/40 tracking-[0.06em] mt-1 font-body uppercase">
+                  Análise Preliminar de Elegibilidade
                 </p>
               </div>
-
-              <div className="space-y-6">
-                {[
-                  { icon: WhatsAppIcon, label: "WHATSAPP", value: "+1 (771) 201-7117", href: "https://wa.me/17712017117" },
-                  { icon: Mail, label: "E-MAIL", value: "info@ebgreenusa.com", href: "mailto:info@ebgreenusa.com" },
-                  { icon: Instagram, label: "INSTAGRAM", value: "@ebgreenusa", href: "https://instagram.com/ebgreenusa" },
-                  { icon: MapPin, label: t(s.officesLabel, lang), value: t(s.officesValue, lang), href: undefined },
-                  { icon: Clock, label: t(s.hoursLabel, lang), value: t(s.hoursValue, lang), href: undefined },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-center gap-4">
-                    <div className="w-11 h-11 rounded-xl border border-gold/40 bg-gold/5 flex items-center justify-center shrink-0">
-                      <item.icon className="text-gold" size={18} />
-                    </div>
-                    <div>
-                      <p className="text-[10px] text-muted-foreground font-body font-semibold tracking-[0.2em] uppercase">{item.label}</p>
-                      {item.href ? (
-                        <a href={item.href} className="text-foreground font-semibold font-body text-sm hover:text-gold transition-colors">
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-foreground font-semibold font-body text-sm">{item.value}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
-          </motion.div>
 
-          {/* Multi-step form */}
-          <motion.form
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            onSubmit={handleSubmit}
-            noValidate
-            className="lg:col-span-3 bg-card rounded-xl border border-border shadow-lg overflow-hidden flex flex-col"
-          >
-            {/* Header */}
-            <div className="px-6 sm:px-8 pt-6 pb-5 border-b border-border">
-              <div className="flex items-center gap-3">
-                <img src={ebgreenLogo} alt="Ebgreen" className="h-9 w-auto" />
-                <div className="w-px h-8 bg-border" />
-                <div>
-                  <p className="text-[10px] text-muted-foreground font-body font-semibold tracking-[0.2em] uppercase">
-                    Avaliação
-                  </p>
-                  <p className="font-display text-sm font-semibold text-foreground">
-                    Análise Preliminar de Elegibilidade
-                  </p>
-                </div>
-              </div>
-
-              {/* Progress steps */}
-              <div className="mt-6 grid grid-cols-4 gap-2">
-                {STEPS.map((st) => {
-                  const active = step === st.n;
-                  const done = step > st.n;
-                  return (
-                    <div key={st.n} className="flex flex-col items-center gap-2">
-                      <div className="w-full flex items-center gap-2">
-                        <div
-                          className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-body font-bold shrink-0 transition-all ${
-                            active
-                              ? "bg-gold text-green-deep ring-2 ring-gold/30"
-                              : done
-                                ? "bg-gold/80 text-green-deep"
-                                : "bg-background border border-border text-muted-foreground"
-                          }`}
-                        >
-                          {done ? <Check size={14} strokeWidth={3} /> : st.n}
-                        </div>
-                        <div className={`flex-1 h-0.5 rounded-full ${done || active ? "bg-gold/60" : "bg-border"}`} />
+            {/* Stepper inline */}
+            <div className="flex items-center flex-1 md:pl-2 w-full">
+              {STEPS.map((stp, idx) => {
+                const active = step === stp.n;
+                const done = step > stp.n;
+                return (
+                  <Fragment key={stp.n}>
+                    <div className="flex flex-col items-center gap-1 shrink-0">
+                      <div
+                        className={`w-7 h-7 rounded-full border-[1.5px] flex items-center justify-center text-[11px] font-body font-semibold transition-all ${
+                          active
+                            ? "bg-gold border-gold text-black"
+                            : done
+                              ? "bg-gold border-gold text-black"
+                              : "bg-[#0F1117] border-white/15 text-white/45"
+                        }`}
+                      >
+                        {done ? <Check size={12} strokeWidth={3} /> : stp.n}
                       </div>
-                      <span className={`text-[11px] font-body text-center w-full ${active ? "text-foreground font-semibold" : "text-muted-foreground"}`}>
-                        {st.label}
+                      <span
+                        className={`text-[9px] font-body font-semibold tracking-[0.1em] uppercase whitespace-nowrap ${
+                          active ? "text-gold" : "text-white/40"
+                        }`}
+                      >
+                        {stp.label}
                       </span>
                     </div>
-                  );
-                })}
+                    {idx < STEPS.length - 1 && (
+                      <div className="flex-1 h-px bg-white/10 mb-[18px] mx-1.5 sm:mx-2 relative overflow-hidden min-w-[12px]">
+                        <span
+                          className="absolute inset-y-0 left-0 bg-gold transition-all duration-500"
+                          style={{ width: step > stp.n ? "100%" : "0%" }}
+                        />
+                      </div>
+                    )}
+                  </Fragment>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* BODY */}
+          <div className="px-5 sm:px-7 pt-7 pb-4 min-h-[420px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={step}
+                initial={{ opacity: 0, x: 18 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -18 }}
+                transition={{ duration: 0.28, ease: "easeOut" }}
+              >
+                {stepContent}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* ELIGIBILITY NOTICE */}
+          <div className="mx-5 sm:mx-7 mb-3 rounded-[10px] border border-gold/25 bg-[#13151F] overflow-hidden">
+            <button
+              type="button"
+              onClick={() => setDisclaimerOpen((v) => !v)}
+              className="w-full flex items-center gap-2.5 px-4 py-3 text-left"
+            >
+              <span className="w-5 h-5 rounded-full border-[1.5px] border-gold flex items-center justify-center shrink-0">
+                <Info size={10} className="text-gold" />
+              </span>
+              <span className="flex-1 text-[11px] font-bold text-gold tracking-[0.14em] uppercase font-body">
+                Aviso de Elegibilidade
+              </span>
+              <ChevronDown
+                size={14}
+                className={`text-white/40 transition-transform ${disclaimerOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+            {disclaimerOpen && (
+              <div className="px-4 pb-3.5">
+                <p className="text-[12px] text-white/55 font-body font-light leading-[1.75]">
+                  A análise considera seu histórico profissional, objetivos imigratórios, documentação disponível e requisitos legais aplicáveis.
+                  <br />
+                  Essa avaliação tem como objetivo assegurar que cada caso seja desenvolvido com estratégia, transparência e elevado padrão técnico.
+                </p>
               </div>
+            )}
+          </div>
+
+          {/* FOOTER */}
+          <div className="bg-[#161820] border-t border-white/8 px-5 sm:px-7 py-3.5 flex items-center gap-3 flex-wrap">
+            <div className="flex items-center gap-2 text-[11px] text-white/40 font-body font-light">
+              <Lock size={12} />
+              Dados protegidos e análise confidencial.
             </div>
 
-            {/* Step body */}
-            <div className="px-6 sm:px-8 py-5 min-h-[360px] flex-1">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={step}
-                  initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -12 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  {stepContent}
-                </motion.div>
-              </AnimatePresence>
-            </div>
+            {step > 1 && (
+              <button
+                type="button"
+                onClick={handleBack}
+                className="h-11 px-4 rounded-md border border-white/10 text-white/55 text-[13px] font-body hover:border-white/20 hover:text-white transition inline-flex items-center gap-1.5"
+              >
+                <ArrowLeft size={14} /> Voltar
+              </button>
+            )}
 
-            {/* Actions */}
-            <div className="px-6 sm:px-8 pb-6 flex items-center justify-between gap-3">
-              {step > 1 ? (
-                <button
-                  type="button"
-                  onClick={handleBack}
-                  className="text-sm font-body text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  ← Voltar
-                </button>
-              ) : <span />}
-
+            <div className="ml-auto">
               {step < 4 ? (
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="bg-gradient-gold text-green-deep px-6 py-3 rounded-lg font-bold text-sm font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
+                  className="h-11 px-7 rounded-md bg-gold text-black font-body font-semibold text-[13px] tracking-[0.02em] hover:bg-[#E4BC78] active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center"
                 >
-                  Continuar avaliação <ArrowRight size={16} />
+                  Continuar avaliação <ArrowRight size={15} />
                 </button>
               ) : (
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-gradient-gold text-green-deep px-6 py-3 rounded-lg font-bold text-sm font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 disabled:opacity-60"
+                  className="h-11 px-7 rounded-md bg-gold text-black font-body font-semibold text-[13px] tracking-[0.02em] hover:bg-[#E4BC78] active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center disabled:opacity-60"
                 >
-                  {isSubmitting ? t(s.submitting, lang) : "Receber minha avaliação"}
-                  {!isSubmitting && <Send size={16} />}
+                  {isSubmitting ? t(s.submitting, lang) : (
+                    <>Receber minha avaliação <Send size={14} /></>
+                  )}
                 </button>
               )}
             </div>
+          </div>
+        </motion.form>
 
-            {/* Footer */}
-            <div className="border-t border-border bg-background/40 px-6 sm:px-8 py-4 space-y-3">
-              <button
-                type="button"
-                onClick={() => setDisclaimerOpen((v) => !v)}
-                className="w-full flex items-center justify-between text-left"
-              >
-                <span className="text-xs font-body font-semibold text-foreground tracking-wide">
-                  Aviso de Elegibilidade
-                </span>
-                <ChevronDown
-                  size={14}
-                  className={`text-muted-foreground transition-transform ${disclaimerOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-              {disclaimerOpen && (
-                <p className="text-[11px] leading-relaxed text-muted-foreground font-body">
-                  A análise considera seu histórico profissional, objetivos imigratórios, documentação disponível e requisitos legais aplicáveis. Essa avaliação tem como objetivo assegurar que cada caso seja desenvolvido com estratégia, transparência e elevado padrão técnico.
-                </p>
-              )}
-              <div className="flex items-center gap-2 pt-1">
-                <Lock size={12} className="text-gold shrink-0" />
-                <span className="text-[11px] text-muted-foreground font-body">
-                  Dados protegidos e análise confidencial
-                </span>
-              </div>
-            </div>
-          </motion.form>
-        </div>
+        {/* Contact pills below card */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-[1100px] mx-auto mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
+        >
+          <a
+            href="https://wa.me/17712017117"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2.5 text-sm font-body text-muted-foreground hover:text-foreground transition"
+          >
+            <span className="w-8 h-8 rounded-md bg-gold/10 border border-gold/30 flex items-center justify-center text-gold group-hover:bg-gold/15 transition">
+              <WhatsAppIcon size={14} />
+            </span>
+            <span>
+              <span className="block text-[10px] font-semibold tracking-[0.18em] uppercase text-muted-foreground">WhatsApp</span>
+              <span className="block font-semibold text-foreground">+1 (771) 201-7117</span>
+            </span>
+          </a>
+          <a
+            href="mailto:info@ebgreenusa.com"
+            className="group flex items-center gap-2.5 text-sm font-body text-muted-foreground hover:text-foreground transition"
+          >
+            <span className="w-8 h-8 rounded-md bg-gold/10 border border-gold/30 flex items-center justify-center text-gold group-hover:bg-gold/15 transition">
+              <Mail size={14} />
+            </span>
+            <span>
+              <span className="block text-[10px] font-semibold tracking-[0.18em] uppercase text-muted-foreground">E-mail</span>
+              <span className="block font-semibold text-foreground">info@ebgreenusa.com</span>
+            </span>
+          </a>
+          <a
+            href="https://instagram.com/ebgreenusa"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2.5 text-sm font-body text-muted-foreground hover:text-foreground transition"
+          >
+            <span className="w-8 h-8 rounded-md bg-gold/10 border border-gold/30 flex items-center justify-center text-gold group-hover:bg-gold/15 transition">
+              <Instagram size={14} />
+            </span>
+            <span>
+              <span className="block text-[10px] font-semibold tracking-[0.18em] uppercase text-muted-foreground">Instagram</span>
+              <span className="block font-semibold text-foreground">@ebgreenusa</span>
+            </span>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
