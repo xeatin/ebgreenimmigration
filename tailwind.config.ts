@@ -119,7 +119,7 @@ export default {
         "fade-up": "fade-up 0.6s ease-out forwards",
         "count-up": "count-up 0.5s ease-out forwards",
         "bounce-slow": "bounce-slow 2s ease-in-out infinite",
-        "pulse-gold": "pulse-gold 1.6s ease-out infinite",
+        "pulse-gold": "pulse-gold 2.2s ease-in-out infinite",
         "step-pop": "step-pop 0.45s ease-out",
       },
     },
