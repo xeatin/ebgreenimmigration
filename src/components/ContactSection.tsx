@@ -226,7 +226,7 @@ const ContactSection = () => {
                   {t(s.sidebarTitle1, lang)}{" "}
                   <span className="text-gold italic">{t(s.sidebarTitleHighlight, lang)}</span>
                 </h3>
-                <p className="mt-3 text-muted-foreground text-sm font-body leading-relaxed">
+                <p className="mt-3 text-muted-foreground text-sm font-body leading-relaxed whitespace-pre-line">
                   {t(s.sidebarSubtitle, lang)}
                 </p>
               </div>
