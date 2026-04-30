@@ -693,18 +693,19 @@ const ContactSection = () => {
                     <Fragment key={stp.n}>
                       <div className="flex flex-col items-center gap-1 shrink-0">
                         <div
-                          className={`w-7 h-7 rounded-full border-[1.5px] flex items-center justify-center text-[11px] font-body font-semibold transition-all ${
+                          key={`${stp.n}-${active ? "a" : done ? "d" : "i"}`}
+                          className={`w-7 h-7 rounded-full border-[1.5px] flex items-center justify-center text-[11px] font-body font-semibold transition-colors duration-300 ${
                             active
-                              ? "bg-gold border-gold text-black"
+                              ? "bg-gold border-gold text-black animate-pulse-gold"
                               : done
-                                ? "bg-gold border-gold text-black"
+                                ? "bg-gold border-gold text-black animate-step-pop"
                                 : "bg-white border-border text-muted-foreground"
                           }`}
                         >
                           {done ? <Check size={12} strokeWidth={3} /> : stp.n}
                         </div>
                         <span
-                          className={`text-[9px] font-body font-semibold tracking-[0.1em] uppercase whitespace-nowrap ${
+                          className={`text-[9px] font-body font-semibold tracking-[0.1em] uppercase whitespace-nowrap transition-colors ${
                             active ? "text-gold" : "text-muted-foreground"
                           }`}
                         >
