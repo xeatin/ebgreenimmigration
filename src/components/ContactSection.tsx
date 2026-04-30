@@ -348,10 +348,10 @@ const ContactSection = () => {
 
   const Step2 = (
     <div>
-      <h3 className="font-display text-[22px] font-semibold text-white leading-tight mb-1.5">
+      <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
         Seu <span className="text-gold italic">perfil profissional</span>
       </h3>
-      <p className="text-[13px] text-white/55 font-body font-light mb-6">
+      <p className="text-[13px] text-foreground/55 font-body font-light mb-6">
         Essas informações ajudam nossa equipe a avaliar sua elegibilidade antes da consulta.
       </p>
 
@@ -364,8 +364,8 @@ const ContactSection = () => {
             className={selectCls(errors.education)}
             style={selectBg}
           >
-            <option value="" className="bg-[#1C1E28]">Selecionar...</option>
-            {EDUCATION_OPTIONS.map((o) => <option key={o} value={o} className="bg-[#1C1E28]">{o}</option>)}
+            <option value="" className="bg-white">Selecionar...</option>
+            {EDUCATION_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
           </select>
           {errors.education && <p className={errCls}>{errors.education}</p>}
         </div>
@@ -377,8 +377,8 @@ const ContactSection = () => {
             className={selectCls(errors.achievements)}
             style={selectBg}
           >
-            <option value="" className="bg-[#1C1E28]">Selecionar...</option>
-            {ACHIEVEMENTS_OPTIONS.map((o) => <option key={o} value={o} className="bg-[#1C1E28]">{o}</option>)}
+            <option value="" className="bg-white">Selecionar...</option>
+            {ACHIEVEMENTS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
           </select>
           {errors.achievements && <p className={errCls}>{errors.achievements}</p>}
         </div>
@@ -393,8 +393,8 @@ const ContactSection = () => {
             className={selectCls(errors.experience)}
             style={selectBg}
           >
-            <option value="" className="bg-[#1C1E28]">Selecionar...</option>
-            {EXPERIENCE_OPTIONS.map((o) => <option key={o} value={o} className="bg-[#1C1E28]">{o}</option>)}
+            <option value="" className="bg-white">Selecionar...</option>
+            {EXPERIENCE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
           </select>
           {errors.experience && <p className={errCls}>{errors.experience}</p>}
         </div>
@@ -406,10 +406,10 @@ const ContactSection = () => {
             className={selectCls(errors.countryOfBirth)}
             style={selectBg}
           >
-            <option value="" className="bg-[#1C1E28]">Selecionar país...</option>
+            <option value="" className="bg-white">Selecionar país...</option>
             {COUNTRY_GROUPS.map((g) => (
-              <optgroup key={g.continent} label={g.continent} className="bg-[#1C1E28]">
-                {g.countries.map((c) => <option key={c} value={c} className="bg-[#1C1E28]">{c}</option>)}
+              <optgroup key={g.continent} label={g.continent} className="bg-white">
+                {g.countries.map((c) => <option key={c} value={c} className="bg-white">{c}</option>)}
               </optgroup>
             ))}
           </select>
@@ -421,10 +421,10 @@ const ContactSection = () => {
 
   const Step3 = (
     <div>
-      <h3 className="font-display text-[22px] font-semibold text-white leading-tight mb-1.5">
+      <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
         Suas <span className="text-gold italic">informações</span>
       </h3>
-      <p className="text-[13px] text-white/55 font-body font-light mb-6">
+      <p className="text-[13px] text-foreground/55 font-body font-light mb-6">
         Para enviarmos o resultado da sua avaliação e agendar sua consulta gratuita.
       </p>
 
@@ -473,13 +473,13 @@ const ContactSection = () => {
             onChange={(val) => setFormData({ ...formData, phoneCode: val })}
           />
           <div className="w-px h-6 bg-white/10 shrink-0" />
-          <span className="px-1 text-sm text-white font-body shrink-0">{formData.phoneCode}</span>
+          <span className="px-1 text-sm text-foreground font-body shrink-0">{formData.phoneCode}</span>
           <input
             type="tel"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             placeholder="(00) 00000-0000"
-            className="flex-1 h-11 px-1 bg-transparent text-white placeholder:text-white/25 text-sm font-body outline-none"
+            className="flex-1 h-11 px-1 bg-transparent text-foreground placeholder:text-foreground/25 text-sm font-body outline-none"
           />
         </div>
         {errors.phone && <p className={errCls}>{errors.phone}</p>}
@@ -489,10 +489,10 @@ const ContactSection = () => {
 
   const Step4 = (
     <div>
-      <h3 className="font-display text-[22px] font-semibold text-white leading-tight mb-1.5">
+      <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
         Contexto do <span className="text-gold italic">seu caso</span>
       </h3>
-      <p className="text-[13px] text-white/55 font-body font-light mb-5">
+      <p className="text-[13px] text-foreground/55 font-body font-light mb-5">
         Informações complementares para uma análise mais precisa do seu perfil.
       </p>
 
@@ -505,7 +505,7 @@ const ContactSection = () => {
 
       <div className="mb-4">
         <label className={labelCls}>
-          Descreva brevemente sua situação atual <span className="text-white/40 normal-case font-light tracking-normal text-[10px] ml-1">(opcional)</span>
+          Descreva brevemente sua situação atual <span className="text-foreground/40 normal-case font-light tracking-normal text-[10px] ml-1">(opcional)</span>
         </label>
         <textarea
           value={formData.message}
@@ -520,7 +520,7 @@ const ContactSection = () => {
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
           <label className={labelCls}>
-            Status atual <span className="text-white/40 normal-case font-light tracking-normal text-[10px] ml-1">(opcional)</span>
+            Status atual <span className="text-foreground/40 normal-case font-light tracking-normal text-[10px] ml-1">(opcional)</span>
           </label>
           <select
             value={formData.currentStatus}
@@ -528,8 +528,8 @@ const ContactSection = () => {
             className={selectCls()}
             style={selectBg}
           >
-            <option value="" className="bg-[#1C1E28]">Selecionar...</option>
-            {CURRENT_STATUS_OPTIONS.map((o) => <option key={o} value={o} className="bg-[#1C1E28]">{o}</option>)}
+            <option value="" className="bg-white">Selecionar...</option>
+            {CURRENT_STATUS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
           </select>
         </div>
         <div>
@@ -540,8 +540,8 @@ const ContactSection = () => {
             className={selectCls(!formData.timeline && errors.message ? "x" : undefined)}
             style={selectBg}
           >
-            <option value="" className="bg-[#1C1E28]">Selecionar...</option>
-            {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-[#1C1E28]">{o}</option>)}
+            <option value="" className="bg-white">Selecionar...</option>
+            {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
           </select>
           {errors.message && !formData.timeline && <p className={errCls}>Selecione quando pretende iniciar.</p>}
         </div>
@@ -563,7 +563,7 @@ const ContactSection = () => {
           onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
           className="sr-only"
         />
-        <span className="text-[12px] text-white/55 font-body leading-relaxed">
+        <span className="text-[12px] text-foreground/55 font-body leading-relaxed">
           {t(s.privacy, lang)}
         </span>
       </label>
@@ -615,10 +615,10 @@ const ContactSection = () => {
                 </svg>
               </div>
               <div>
-                <p className="font-display text-[17px] font-semibold text-white leading-none">
+                <p className="font-display text-[17px] font-semibold text-foreground leading-none">
                   eb<span className="text-gold">green</span>
                 </p>
-                <p className="text-[9px] text-white/40 tracking-[0.06em] mt-1 font-body uppercase">
+                <p className="text-[9px] text-foreground/40 tracking-[0.06em] mt-1 font-body uppercase">
                   Análise Preliminar de Elegibilidade
                 </p>
               </div>
@@ -638,14 +638,14 @@ const ContactSection = () => {
                             ? "bg-gold border-gold text-black"
                             : done
                               ? "bg-gold border-gold text-black"
-                              : "bg-[#0F1117] border-white/15 text-white/45"
+                              : "bg-[#0F1117] border-white/15 text-foreground/45"
                         }`}
                       >
                         {done ? <Check size={12} strokeWidth={3} /> : stp.n}
                       </div>
                       <span
                         className={`text-[9px] font-body font-semibold tracking-[0.1em] uppercase whitespace-nowrap ${
-                          active ? "text-gold" : "text-white/40"
+                          active ? "text-gold" : "text-foreground/40"
                         }`}
                       >
                         {stp.label}
@@ -695,12 +695,12 @@ const ContactSection = () => {
               </span>
               <ChevronDown
                 size={14}
-                className={`text-white/40 transition-transform ${disclaimerOpen ? "rotate-180" : ""}`}
+                className={`text-foreground/40 transition-transform ${disclaimerOpen ? "rotate-180" : ""}`}
               />
             </button>
             {disclaimerOpen && (
               <div className="px-4 pb-3.5">
-                <p className="text-[12px] text-white/55 font-body font-light leading-[1.75]">
+                <p className="text-[12px] text-foreground/55 font-body font-light leading-[1.75]">
                   A análise considera seu histórico profissional, objetivos imigratórios, documentação disponível e requisitos legais aplicáveis.
                   <br />
                   Essa avaliação tem como objetivo assegurar que cada caso seja desenvolvido com estratégia, transparência e elevado padrão técnico.
@@ -711,7 +711,7 @@ const ContactSection = () => {
 
           {/* FOOTER */}
           <div className="bg-[#161820] border-t border-white/8 px-5 sm:px-7 py-3.5 flex items-center gap-3 flex-wrap">
-            <div className="flex items-center gap-2 text-[11px] text-white/40 font-body font-light">
+            <div className="flex items-center gap-2 text-[11px] text-foreground/40 font-body font-light">
               <Lock size={12} />
               Dados protegidos e análise confidencial.
             </div>
@@ -720,7 +720,7 @@ const ContactSection = () => {
               <button
                 type="button"
                 onClick={handleBack}
-                className="h-11 px-4 rounded-md border border-white/10 text-white/55 text-[13px] font-body hover:border-white/20 hover:text-white transition inline-flex items-center gap-1.5"
+                className="h-11 px-4 rounded-md border border-white/10 text-foreground/55 text-[13px] font-body hover:border-white/20 hover:text-foreground transition inline-flex items-center gap-1.5"
               >
                 <ArrowLeft size={14} /> Voltar
               </button>
