@@ -619,29 +619,29 @@ const ContactSection = () => {
             </div>
 
             {/* Dark contact card */}
-            <div className="mt-6 rounded-xl bg-[#0F1117] text-white p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] relative overflow-hidden">
+            <div className="mt-6 rounded-xl bg-green-deep text-white p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] relative overflow-hidden">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
               <p className="font-display text-lg font-semibold mb-5">
                 Fale com a <span className="italic text-gold/95">Eb<span className="text-white">green</span></span>
               </p>
-              <div className="grid sm:grid-cols-3 gap-5 mb-6">
-                <a href="https://wa.me/17712017117" target="_blank" rel="noopener noreferrer" className="group">
+              <div className="grid sm:grid-cols-[auto_1fr_auto] gap-x-6 gap-y-5 mb-6">
+                <a href="https://wa.me/17712017117" target="_blank" rel="noopener noreferrer" className="group min-w-0">
                   <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
                     <span className="text-gold"><WhatsAppIcon size={12} /></span> WhatsApp
                   </div>
-                  <p className="text-sm font-body text-white group-hover:text-gold transition">+1 (771) 201-7117</p>
+                  <p className="text-sm font-body text-white group-hover:text-gold transition whitespace-nowrap">+1 (771) 201-7117</p>
                 </a>
-                <a href="mailto:info@ebgreenusa.com" className="group">
+                <a href="mailto:info@ebgreenusa.com" className="group min-w-0">
                   <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
                     <Mail size={12} className="text-gold" /> E-mail
                   </div>
-                  <p className="text-sm font-body text-white group-hover:text-gold transition break-all">info@ebgreenusa.com</p>
+                  <p className="text-sm font-body text-white group-hover:text-gold transition whitespace-nowrap">info@ebgreenusa.com</p>
                 </a>
-                <a href="https://instagram.com/ebgreenusa" target="_blank" rel="noopener noreferrer" className="group">
+                <a href="https://instagram.com/ebgreenusa" target="_blank" rel="noopener noreferrer" className="group min-w-0">
                   <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
                     <Instagram size={12} className="text-gold" /> Instagram
                   </div>
-                  <p className="text-sm font-body text-white group-hover:text-gold transition">@ebgreenusa</p>
+                  <p className="text-sm font-body text-white group-hover:text-gold transition whitespace-nowrap">@ebgreenusa</p>
                 </a>
               </div>
               <div className="pt-5 border-t border-white/10">
