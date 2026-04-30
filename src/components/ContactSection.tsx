@@ -496,9 +496,9 @@ const ContactSection = () => {
         Informações complementares para uma análise mais precisa do seu perfil.
       </p>
 
-      <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-emerald-500/[0.07] border border-emerald-500/20 mb-5">
-        <ShieldCheck size={14} className="text-emerald-400 shrink-0" />
-        <span className="text-[12px] text-emerald-300 font-body">
+      <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25 mb-5">
+        <ShieldCheck size={14} className="text-emerald-600 shrink-0" />
+        <span className="text-[12px] text-emerald-700 font-body">
           Todas as informações são estritamente confidenciais e protegidas.
         </span>
       </div>
