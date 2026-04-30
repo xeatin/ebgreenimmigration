@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Send, Instagram, Lock, ChevronDown, ArrowRight, ArrowLeft, Check, ShieldCheck, Info, Award, Globe2, Target, Shield, Clock } from "lucide-react";
+import { Mail, Send, Instagram, Lock, ChevronDown, ArrowRight, ArrowLeft, Check, ShieldCheck, Info, Award, Globe2, Target, Shield, Clock, Paperclip, X } from "lucide-react";
 
 const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -88,12 +88,20 @@ const ContactSection = () => {
   const s = translations.contact;
 
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    firstName: string; lastName: string; email: string; phoneCode: string; phone: string;
+    visa: string;
+    education: string; achievements: string; experience: string; countryOfBirth: string;
+    message: string; currentStatus: string; timeline: string;
+    privacy: boolean;
+    resume: File | null;
+  }>({
     firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
     visa: "",
     education: "", achievements: "", experience: "", countryOfBirth: "",
     message: "", currentStatus: "", timeline: "",
     privacy: false,
+    resume: null,
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -545,6 +553,56 @@ const ContactSection = () => {
           </select>
           {errors.message && !formData.timeline && <p className={errCls}>Selecione quando pretende iniciar.</p>}
         </div>
+      </div>
+
+      {/* Currículo */}
+      <div className="mb-5">
+        <label className={labelCls}>
+          Envie seu currículo <span className="text-foreground/40 normal-case font-light tracking-normal text-[10px] ml-1">(opcional)</span>
+        </label>
+        {formData.resume ? (
+          <div className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-md border border-border bg-white">
+            <div className="flex items-center gap-2 min-w-0">
+              <Paperclip size={14} className="text-gold shrink-0" />
+              <span className="text-sm text-foreground font-body truncate">{formData.resume.name}</span>
+              <span className="text-[11px] text-foreground/40 font-body shrink-0">
+                ({(formData.resume.size / 1024).toFixed(0)} KB)
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, resume: null })}
+              className="p-1 rounded text-foreground/50 hover:text-foreground hover:bg-foreground/5 transition shrink-0"
+              aria-label="Remover arquivo"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        ) : (
+          <label className="flex items-center gap-2.5 px-3 py-2.5 rounded-md border border-dashed border-border bg-white hover:border-gold hover:bg-gold/5 transition cursor-pointer group">
+            <Paperclip size={15} className="text-foreground/50 group-hover:text-gold transition shrink-0" />
+            <span className="text-sm text-foreground/60 group-hover:text-foreground font-body transition">
+              Selecione arquivo
+            </span>
+            <span className="ml-auto text-[11px] text-foreground/40 font-body">
+              PDF, DOC, DOCX · até 5MB
+            </span>
+            <input
+              type="file"
+              accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+              className="sr-only"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                if (file.size > 5 * 1024 * 1024) {
+                  toast({ title: "Arquivo muito grande", description: "O currículo deve ter no máximo 5MB.", variant: "destructive" });
+                  return;
+                }
+                setFormData({ ...formData, resume: file });
+              }}
+            />
+          </label>
+        )}
       </div>
 
       <label className="flex items-start gap-2.5 cursor-pointer group" onClick={(e) => {
