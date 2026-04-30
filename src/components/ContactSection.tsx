@@ -573,234 +573,247 @@ const ContactSection = () => {
 
   const stepContent = step === 1 ? Step1 : step === 2 ? Step2 : step === 3 ? Step3 : Step4;
 
+  const DIFFERENTIALS = [
+    { icon: Award, label: "Análise especializada" },
+    { icon: Globe2, label: "Atendimento internacional" },
+    { icon: Target, label: "Estratégia personalizada" },
+    { icon: Shield, label: "Confidencialidade e segurança" },
+  ];
+
   return (
     <section id="contato" className="py-20 md:py-24 bg-secondary">
       <div className="container mx-auto px-4 sm:px-6">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 md:mb-14 max-w-3xl mx-auto"
-        >
-          <p className="text-gold font-body text-xs sm:text-sm tracking-[0.3em] uppercase mb-3 font-semibold">{t(s.sectionLabel, lang)}</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground leading-tight">
-            {t(s.sectionTitle1, lang)} {t(s.sectionTitle2, lang)}{" "}
-            <span className="text-gold italic">{t(s.sectionTitleHighlight, lang)}</span>
-          </h2>
-          <p className="mt-4 text-muted-foreground text-base md:text-lg font-body">{t(s.sectionSubtitle, lang)}</p>
-          <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
-        </motion.div>
+        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-10 lg:gap-14 items-start max-w-[1280px] mx-auto">
+          {/* ============ LEFT: Institutional column ============ */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:sticky lg:top-28"
+          >
+            <p className="text-gold font-body text-xs tracking-[0.32em] uppercase mb-5 font-semibold">
+              {t(s.sectionLabel, lang)}
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-foreground leading-[1.05] tracking-tight">
+              Qual é o seu caminho<br />
+              para o <span className="text-gold italic">Green Card?</span>
+            </h2>
+            <p className="mt-5 text-muted-foreground text-base font-body leading-relaxed max-w-md">
+              Nossa equipe analisa seu perfil e identifica a melhor estratégia para sua aprovação.
+            </p>
 
-        {/* Premium dark card */}
-        <motion.form
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          onSubmit={handleSubmit}
-          noValidate
-          className="relative max-w-[1100px] mx-auto bg-[#0F1117] rounded-2xl border border-white/8 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] overflow-hidden"
-        >
-          {/* Top gold accent line */}
-          <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent z-10" />
-
-          {/* HEADER: logo + stepper inline */}
-          <div className="bg-[#161820] border-b border-white/8 px-5 sm:px-7 py-4 flex flex-col md:flex-row md:items-center gap-4">
-            {/* Logo block */}
-            <div className="flex items-center gap-3 md:pr-6 md:border-r md:border-white/8 shrink-0">
-              <div className="w-9 h-9 rounded-md bg-gold/10 border border-gold/30 flex items-center justify-center">
-                <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
-                  <path d="M9 2L3 5.5v5C3 13.8 5.8 16.5 9 16.5s6-2.7 6-6v-5L9 2z" stroke="#C9963B" strokeWidth="1.3" fill="none"/>
-                  <path d="M6 9l2 2 4-4" stroke="#C9963B" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <p className="font-display text-[17px] font-semibold text-foreground leading-none">
-                  eb<span className="text-gold">green</span>
-                </p>
-                <p className="text-[9px] text-foreground/40 tracking-[0.06em] mt-1 font-body uppercase">
-                  Análise Preliminar de Elegibilidade
-                </p>
+            {/* Differentials card */}
+            <div className="mt-8 rounded-xl border border-border bg-white px-6 py-5 shadow-sm">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+                {DIFFERENTIALS.map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex flex-col items-center text-center gap-2.5">
+                    <span className="w-10 h-10 rounded-full border border-gold/40 bg-gold/[0.06] flex items-center justify-center text-gold">
+                      <Icon size={17} strokeWidth={1.6} />
+                    </span>
+                    <p className="text-[11px] font-body font-medium text-foreground leading-snug">
+                      {label}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Stepper inline */}
-            <div className="flex items-center flex-1 md:pl-2 w-full">
-              {STEPS.map((stp, idx) => {
-                const active = step === stp.n;
-                const done = step > stp.n;
-                return (
-                  <Fragment key={stp.n}>
-                    <div className="flex flex-col items-center gap-1 shrink-0">
-                      <div
-                        className={`w-7 h-7 rounded-full border-[1.5px] flex items-center justify-center text-[11px] font-body font-semibold transition-all ${
-                          active
-                            ? "bg-gold border-gold text-black"
-                            : done
+            {/* Dark contact card */}
+            <div className="mt-6 rounded-xl bg-[#0F1117] text-white p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] relative overflow-hidden">
+              <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
+              <p className="font-display text-lg font-semibold mb-5">
+                Fale com a <span className="italic text-gold/95">Eb<span className="text-white">green</span></span>
+              </p>
+              <div className="grid sm:grid-cols-3 gap-5 mb-6">
+                <a href="https://wa.me/17712017117" target="_blank" rel="noopener noreferrer" className="group">
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
+                    <span className="text-gold"><WhatsAppIcon size={12} /></span> WhatsApp
+                  </div>
+                  <p className="text-sm font-body text-white group-hover:text-gold transition">+1 (771) 201-7117</p>
+                </a>
+                <a href="mailto:info@ebgreenusa.com" className="group">
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
+                    <Mail size={12} className="text-gold" /> E-mail
+                  </div>
+                  <p className="text-sm font-body text-white group-hover:text-gold transition break-all">info@ebgreenusa.com</p>
+                </a>
+                <a href="https://instagram.com/ebgreenusa" target="_blank" rel="noopener noreferrer" className="group">
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
+                    <Instagram size={12} className="text-gold" /> Instagram
+                  </div>
+                  <p className="text-sm font-body text-white group-hover:text-gold transition">@ebgreenusa</p>
+                </a>
+              </div>
+              <div className="pt-5 border-t border-white/10">
+                <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
+                  <Clock size={12} className="text-gold" /> Atendimento
+                </div>
+                <p className="text-sm font-body text-white">Seg – Sex, 9:00 AM – 5:00 PM</p>
+                <p className="text-[11px] text-white/45 font-body mt-0.5">(Eastern Time)</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ============ RIGHT: Form card ============ */}
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            onSubmit={handleSubmit}
+            noValidate
+            className="relative bg-white rounded-2xl border border-border shadow-[0_30px_60px_-30px_rgba(15,17,23,0.25)] overflow-hidden"
+          >
+            <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent z-10" />
+
+            {/* HEADER */}
+            <div className="bg-secondary/60 border-b border-border px-5 sm:px-7 py-4 flex flex-col md:flex-row md:items-center gap-4">
+              <div className="flex items-center gap-3 md:pr-6 md:border-r md:border-border shrink-0">
+                <div className="w-9 h-9 rounded-md bg-gold/10 border border-gold/30 flex items-center justify-center">
+                  <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 2L3 5.5v5C3 13.8 5.8 16.5 9 16.5s6-2.7 6-6v-5L9 2z" stroke="#C9963B" strokeWidth="1.3" fill="none"/>
+                    <path d="M6 9l2 2 4-4" stroke="#C9963B" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-[9px] text-muted-foreground tracking-[0.18em] font-body uppercase font-semibold">
+                    Avaliação
+                  </p>
+                  <p className="font-display text-[15px] font-semibold text-foreground leading-tight">
+                    Análise Preliminar de Elegibilidade
+                  </p>
+                </div>
+              </div>
+
+              {/* Stepper inline */}
+              <div className="flex items-center flex-1 md:pl-2 w-full">
+                {STEPS.map((stp, idx) => {
+                  const active = step === stp.n;
+                  const done = step > stp.n;
+                  return (
+                    <Fragment key={stp.n}>
+                      <div className="flex flex-col items-center gap-1 shrink-0">
+                        <div
+                          className={`w-7 h-7 rounded-full border-[1.5px] flex items-center justify-center text-[11px] font-body font-semibold transition-all ${
+                            active
                               ? "bg-gold border-gold text-black"
-                              : "bg-[#0F1117] border-white/15 text-foreground/45"
-                        }`}
-                      >
-                        {done ? <Check size={12} strokeWidth={3} /> : stp.n}
-                      </div>
-                      <span
-                        className={`text-[9px] font-body font-semibold tracking-[0.1em] uppercase whitespace-nowrap ${
-                          active ? "text-gold" : "text-foreground/40"
-                        }`}
-                      >
-                        {stp.label}
-                      </span>
-                    </div>
-                    {idx < STEPS.length - 1 && (
-                      <div className="flex-1 h-px bg-white/10 mb-[18px] mx-1.5 sm:mx-2 relative overflow-hidden min-w-[12px]">
+                              : done
+                                ? "bg-gold border-gold text-black"
+                                : "bg-white border-border text-muted-foreground"
+                          }`}
+                        >
+                          {done ? <Check size={12} strokeWidth={3} /> : stp.n}
+                        </div>
                         <span
-                          className="absolute inset-y-0 left-0 bg-gold transition-all duration-500"
-                          style={{ width: step > stp.n ? "100%" : "0%" }}
-                        />
+                          className={`text-[9px] font-body font-semibold tracking-[0.1em] uppercase whitespace-nowrap ${
+                            active ? "text-gold" : "text-muted-foreground"
+                          }`}
+                        >
+                          {stp.label}
+                        </span>
                       </div>
-                    )}
-                  </Fragment>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* BODY */}
-          <div className="px-5 sm:px-7 pt-7 pb-4 min-h-[420px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={step}
-                initial={{ opacity: 0, x: 18 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -18 }}
-                transition={{ duration: 0.28, ease: "easeOut" }}
-              >
-                {stepContent}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* ELIGIBILITY NOTICE */}
-          <div className="mx-5 sm:mx-7 mb-3 rounded-[10px] border border-gold/25 bg-[#13151F] overflow-hidden">
-            <button
-              type="button"
-              onClick={() => setDisclaimerOpen((v) => !v)}
-              className="w-full flex items-center gap-2.5 px-4 py-3 text-left"
-            >
-              <span className="w-5 h-5 rounded-full border-[1.5px] border-gold flex items-center justify-center shrink-0">
-                <Info size={10} className="text-gold" />
-              </span>
-              <span className="flex-1 text-[11px] font-bold text-gold tracking-[0.14em] uppercase font-body">
-                Aviso de Elegibilidade
-              </span>
-              <ChevronDown
-                size={14}
-                className={`text-foreground/40 transition-transform ${disclaimerOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-            {disclaimerOpen && (
-              <div className="px-4 pb-3.5">
-                <p className="text-[12px] text-foreground/55 font-body font-light leading-[1.75]">
-                  A análise considera seu histórico profissional, objetivos imigratórios, documentação disponível e requisitos legais aplicáveis.
-                  <br />
-                  Essa avaliação tem como objetivo assegurar que cada caso seja desenvolvido com estratégia, transparência e elevado padrão técnico.
-                </p>
+                      {idx < STEPS.length - 1 && (
+                        <div className="flex-1 h-px bg-border mb-[18px] mx-1.5 sm:mx-2 relative overflow-hidden min-w-[12px]">
+                          <span
+                            className="absolute inset-y-0 left-0 bg-gold transition-all duration-500"
+                            style={{ width: step > stp.n ? "100%" : "0%" }}
+                          />
+                        </div>
+                      )}
+                    </Fragment>
+                  );
+                })}
               </div>
-            )}
-          </div>
-
-          {/* FOOTER */}
-          <div className="bg-[#161820] border-t border-white/8 px-5 sm:px-7 py-3.5 flex items-center gap-3 flex-wrap">
-            <div className="flex items-center gap-2 text-[11px] text-foreground/40 font-body font-light">
-              <Lock size={12} />
-              Dados protegidos e análise confidencial.
             </div>
 
-            {step > 1 && (
+            {/* BODY */}
+            <div className="px-5 sm:px-7 pt-7 pb-4 min-h-[420px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={step}
+                  initial={{ opacity: 0, x: 18 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -18 }}
+                  transition={{ duration: 0.28, ease: "easeOut" }}
+                >
+                  {stepContent}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* ELIGIBILITY NOTICE */}
+            <div className="mx-5 sm:mx-7 mb-3 rounded-[10px] border border-gold/30 bg-gold/[0.04] overflow-hidden">
               <button
                 type="button"
-                onClick={handleBack}
-                className="h-11 px-4 rounded-md border border-white/10 text-foreground/55 text-[13px] font-body hover:border-white/20 hover:text-foreground transition inline-flex items-center gap-1.5"
+                onClick={() => setDisclaimerOpen((v) => !v)}
+                className="w-full flex items-center gap-2.5 px-4 py-3 text-left"
               >
-                <ArrowLeft size={14} /> Voltar
+                <span className="w-5 h-5 rounded-full border-[1.5px] border-gold flex items-center justify-center shrink-0">
+                  <Info size={10} className="text-gold" />
+                </span>
+                <span className="flex-1 text-[11px] font-bold text-gold tracking-[0.14em] uppercase font-body">
+                  Aviso de Elegibilidade
+                </span>
+                <ChevronDown
+                  size={14}
+                  className={`text-muted-foreground transition-transform ${disclaimerOpen ? "rotate-180" : ""}`}
+                />
               </button>
-            )}
-
-            <div className="ml-auto">
-              {step < 4 ? (
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="h-11 px-7 rounded-md bg-gold text-black font-body font-semibold text-[13px] tracking-[0.02em] hover:bg-[#E4BC78] active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center"
-                >
-                  Continuar avaliação <ArrowRight size={15} />
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="h-11 px-7 rounded-md bg-gold text-black font-body font-semibold text-[13px] tracking-[0.02em] hover:bg-[#E4BC78] active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center disabled:opacity-60"
-                >
-                  {isSubmitting ? t(s.submitting, lang) : (
-                    <>Receber minha avaliação <Send size={14} /></>
-                  )}
-                </button>
+              {disclaimerOpen && (
+                <div className="px-4 pb-3.5">
+                  <p className="text-[12px] text-muted-foreground font-body font-light leading-[1.75]">
+                    A análise considera seu histórico profissional, objetivos imigratórios, documentação disponível e requisitos legais aplicáveis. Essa avaliação tem como objetivo assegurar que cada caso seja desenvolvido com estratégia, transparência e elevado padrão técnico.
+                  </p>
+                </div>
               )}
             </div>
-          </div>
-        </motion.form>
 
-        {/* Contact pills below card */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-[1100px] mx-auto mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
-        >
-          <a
-            href="https://wa.me/17712017117"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-2.5 text-sm font-body text-muted-foreground hover:text-foreground transition"
-          >
-            <span className="w-8 h-8 rounded-md bg-gold/10 border border-gold/30 flex items-center justify-center text-gold group-hover:bg-gold/15 transition">
-              <WhatsAppIcon size={14} />
-            </span>
-            <span>
-              <span className="block text-[10px] font-semibold tracking-[0.18em] uppercase text-muted-foreground">WhatsApp</span>
-              <span className="block font-semibold text-foreground">+1 (771) 201-7117</span>
-            </span>
-          </a>
-          <a
-            href="mailto:info@ebgreenusa.com"
-            className="group flex items-center gap-2.5 text-sm font-body text-muted-foreground hover:text-foreground transition"
-          >
-            <span className="w-8 h-8 rounded-md bg-gold/10 border border-gold/30 flex items-center justify-center text-gold group-hover:bg-gold/15 transition">
-              <Mail size={14} />
-            </span>
-            <span>
-              <span className="block text-[10px] font-semibold tracking-[0.18em] uppercase text-muted-foreground">E-mail</span>
-              <span className="block font-semibold text-foreground">info@ebgreenusa.com</span>
-            </span>
-          </a>
-          <a
-            href="https://instagram.com/ebgreenusa"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-2.5 text-sm font-body text-muted-foreground hover:text-foreground transition"
-          >
-            <span className="w-8 h-8 rounded-md bg-gold/10 border border-gold/30 flex items-center justify-center text-gold group-hover:bg-gold/15 transition">
-              <Instagram size={14} />
-            </span>
-            <span>
-              <span className="block text-[10px] font-semibold tracking-[0.18em] uppercase text-muted-foreground">Instagram</span>
-              <span className="block font-semibold text-foreground">@ebgreenusa</span>
-            </span>
-          </a>
-        </motion.div>
+            {/* FOOTER */}
+            <div className="bg-secondary/60 border-t border-border px-5 sm:px-7 py-3.5 flex items-center gap-3 flex-wrap">
+              <div className="flex items-center gap-2 text-[11px] text-muted-foreground font-body font-light">
+                <Lock size={12} />
+                Dados protegidos e análise confidencial.
+              </div>
+
+              {step > 1 && (
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="h-11 px-4 rounded-md border border-border text-muted-foreground text-[13px] font-body hover:border-foreground/30 hover:text-foreground transition inline-flex items-center gap-1.5"
+                >
+                  <ArrowLeft size={14} /> Voltar
+                </button>
+              )}
+
+              <div className="ml-auto">
+                {step < 4 ? (
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="h-11 px-7 rounded-md bg-gold text-black font-body font-semibold text-[13px] tracking-[0.02em] hover:bg-[#E4BC78] active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center"
+                  >
+                    Continuar avaliação <ArrowRight size={15} />
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="h-11 px-7 rounded-md bg-gold text-black font-body font-semibold text-[13px] tracking-[0.02em] hover:bg-[#E4BC78] active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center disabled:opacity-60"
+                  >
+                    {isSubmitting ? t(s.submitting, lang) : (
+                      <>Receber minha avaliação <Send size={14} /></>
+                    )}
+                  </button>
+                )}
+              </div>
+            </div>
+          </motion.form>
+        </div>
       </div>
     </section>
   );
+};
+
+export default ContactSection;
 };
 
 export default ContactSection;
