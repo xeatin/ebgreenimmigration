@@ -581,7 +581,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contato" className="py-20 md:py-24 bg-secondary">
+    <section id="contato" className="py-20 md:py-24 bg-green-deep">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-10 lg:gap-14 items-start max-w-[1280px] mx-auto">
           {/* ============ LEFT: Institutional column ============ */}
@@ -624,7 +624,7 @@ const ContactSection = () => {
               <p className="font-display text-lg font-semibold mb-5">
                 Fale com a <span className="italic text-gold/95">Eb<span className="text-white">green</span></span>
               </p>
-              <div className="grid sm:grid-cols-3 gap-5 mb-6">
+              <div className="grid sm:grid-cols-[auto_minmax(0,1fr)_auto] gap-x-6 gap-y-5 mb-6">
                 <a href="https://wa.me/17712017117" target="_blank" rel="noopener noreferrer" className="group">
                   <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
                     <span className="text-gold"><WhatsAppIcon size={12} /></span> WhatsApp
