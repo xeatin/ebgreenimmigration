@@ -594,11 +594,11 @@ const ContactSection = () => {
             <p className="text-gold font-body text-xs tracking-[0.32em] uppercase mb-5 font-semibold">
               {t(s.sectionLabel, lang)}
             </p>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-foreground leading-[1.05] tracking-tight">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-cream leading-[1.05] tracking-tight">
               Qual é o seu caminho<br />
               para o <span className="text-gold italic">Green Card?</span>
             </h2>
-            <p className="mt-5 text-muted-foreground text-base font-body leading-relaxed max-w-md">
+            <p className="mt-5 text-cream/70 text-base font-body leading-relaxed max-w-md">
               Nossa equipe analisa seu perfil e identifica a melhor estratégia para sua aprovação.
             </p>
 
