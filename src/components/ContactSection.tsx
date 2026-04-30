@@ -196,6 +196,39 @@ const ContactSection = () => {
     setErrors({});
     setIsSubmitting(true);
 
+    // Upload resume to Storage if present
+    let resumeUrl = "";
+    let resumeName = "";
+    if (formData.resume) {
+      try {
+        const ext = formData.resume.name.split(".").pop()?.toLowerCase() || "pdf";
+        const safeBase = `${formData.firstName}-${formData.lastName}`
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "") || "lead";
+        const path = `${new Date().toISOString().slice(0, 10)}/${safeBase}-${Date.now()}.${ext}`;
+        const { error: upErr } = await supabase.storage
+          .from("resumes")
+          .upload(path, formData.resume, {
+            contentType: formData.resume.type || "application/octet-stream",
+            upsert: false,
+          });
+        if (upErr) throw upErr;
+        const { data: pub } = supabase.storage.from("resumes").getPublicUrl(path);
+        resumeUrl = pub.publicUrl;
+        resumeName = formData.resume.name;
+      } catch (err) {
+        console.error("Resume upload failed:", err);
+        toast({
+          title: "Falha ao enviar currículo",
+          description: "Continuamos com o envio sem o anexo.",
+          variant: "destructive",
+        });
+      }
+    }
+
     const composedMessage = [
       formData.message,
       formData.countryOfBirth ? `País de nascimento: ${formData.countryOfBirth}` : "",
@@ -218,6 +251,8 @@ const ContactSection = () => {
         education: formData.education,
         experience: formData.experience,
         message: composedMessage,
+        resumeUrl,
+        resumeName,
       }),
     }).catch(() => {});
 
@@ -234,6 +269,8 @@ const ContactSection = () => {
           education: formData.education,
           experience: formData.experience,
           message: composedMessage,
+          resumeUrl,
+          resumeName,
         },
       });
 
