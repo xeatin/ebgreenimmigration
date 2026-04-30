@@ -696,9 +696,9 @@ const ContactSection = () => {
                           key={`${stp.n}-${active ? "a" : done ? "d" : "i"}`}
                           className={`w-7 h-7 rounded-full border-[1.5px] flex items-center justify-center text-[11px] font-body font-semibold transition-colors duration-300 ${
                             active
-                              ? "bg-gold border-gold text-black animate-pulse-gold"
+                              ? "border-gold bg-gold/15 text-gold animate-step-blink"
                               : done
-                                ? "bg-gold border-gold text-black animate-step-pop"
+                                ? "border-gold text-black animate-step-sweep bg-[length:200%_100%] bg-[linear-gradient(90deg,hsl(var(--gold))_50%,transparent_50%)]"
                                 : "bg-white border-border text-muted-foreground"
                           }`}
                         >
