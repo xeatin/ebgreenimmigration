@@ -619,7 +619,7 @@ const ContactSection = () => {
             </div>
 
             {/* Dark contact card */}
-            <div className="mt-6 rounded-xl bg-green-deep text-white p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] relative overflow-hidden">
+            <div className="mt-6 rounded-xl bg-green-deep text-white p-6 relative overflow-hidden">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
               <p className="font-display text-lg font-semibold mb-5">
                 Fale com a <span className="italic text-gold/95">Eb<span className="text-white">green</span></span>
