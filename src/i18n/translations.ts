@@ -143,15 +143,6 @@ export const translations = {
           es: "Procesos de residencia permanente a través de vínculos familiares, como cónyuges, hijos y otros familiares elegibles de ciudadanos americanos o residentes permanentes.",
         },
       },
-      {
-        title: { pt: "Consultoria Completa", en: "Full Consulting", es: "Consultoría Completa" },
-        subtitle: { pt: "Avaliação de Perfil", en: "Profile Assessment", es: "Evaluación de Perfil" },
-        description: {
-          pt: "Análise estratégica do seu perfil para identificar o melhor caminho imigratório com base nos critérios de elegibilidade.",
-          en: "Strategic analysis of your profile to identify the best immigration path based on eligibility criteria.",
-          es: "Análisis estratégico de tu perfil para identificar el mejor camino inmigratorio con base en los criterios de elegibilidad.",
-        },
-      },
     ],
   },
 
