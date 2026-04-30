@@ -20,8 +20,8 @@ const AboutSection = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="rounded-2xl overflow-hidden">
-              <img src={teamImg} alt="Equipe Ebgreen Immigration" className="w-full h-auto object-cover" loading="lazy" width={800} height={1000} />
+            <div className="rounded-2xl overflow-hidden max-w-md mx-auto">
+              <img src={teamImg} alt="Equipe Ebgreen Immigration" className="w-full h-auto object-cover" loading="lazy" width={800} height={600} />
             </div>
           </motion.div>
 
