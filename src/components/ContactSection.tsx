@@ -665,7 +665,7 @@ const ContactSection = () => {
             </div>
 
             {/* Step body */}
-            <div className="px-6 sm:px-8 py-7 min-h-[460px] flex-1">
+            <div className="px-6 sm:px-8 py-5 min-h-[360px] flex-1">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={step}
