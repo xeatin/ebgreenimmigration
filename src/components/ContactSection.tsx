@@ -624,7 +624,7 @@ const ContactSection = () => {
               <p className="font-display text-lg font-semibold mb-5">
                 Fale com a <span className="italic text-gold/95">Eb<span className="text-white">green</span></span>
               </p>
-              <div className="grid sm:grid-cols-[auto_1fr_auto] gap-x-6 gap-y-5 mb-6">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-5 mb-6">
                 <a href="https://wa.me/17712017117" target="_blank" rel="noopener noreferrer" className="group min-w-0">
                   <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
                     <span className="text-gold"><WhatsAppIcon size={12} /></span> WhatsApp
@@ -648,7 +648,7 @@ const ContactSection = () => {
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
                   <Clock size={12} className="text-gold" /> Atendimento
                 </div>
-                <p className="text-sm font-body text-white">Seg – Sex, 9:00 AM – 5:00 PM</p>
+                <p className="text-sm font-body text-white">Segunda – Sexta: 9:00 AM – 5:00 PM</p>
                 <p className="text-[11px] text-white/45 font-body mt-0.5">(Eastern Time)</p>
               </div>
             </div>
