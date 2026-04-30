@@ -3,10 +3,10 @@ import { FileText, Users, Briefcase, GraduationCap, Shield, Globe, ArrowRight, S
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 
-const icons = [Shield, FileText, Globe, Briefcase, GraduationCap, Users];
-const titles = ["EB-1A", "EB-2 NIW", "", "", "", ""];
-const subtitles = ["Extraordinary Ability", "National Interest Waiver", "EB-5, E-2", "H-1B, L-1, O-1", "", ""];
-const highlights = [true, true, false, false, false, false];
+const icons = [Shield, FileText, Globe, Briefcase, GraduationCap, Users, GraduationCap];
+const titles = ["EB-1A", "EB-2 NIW", "", "", "", "", ""];
+const subtitles = ["Extraordinary Ability", "National Interest Waiver", "EB-5, E-2", "H-1B, L-1, O-1", "", "", ""];
+const highlights = [true, true, false, false, false, false, false];
 
 const ServicesSection = () => {
   const { lang } = useLanguage();
