@@ -648,7 +648,7 @@ const ContactSection = () => {
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
                   <Clock size={12} className="text-gold" /> Atendimento
                 </div>
-                <p className="text-sm font-body text-white">Seg – Sex, 9:00 AM – 5:00 PM</p>
+                <p className="text-sm font-body text-white">Segunda – Sexta: 9:00 AM – 5:00 PM</p>
                 <p className="text-[11px] text-white/45 font-body mt-0.5">(Eastern Time)</p>
               </div>
             </div>
