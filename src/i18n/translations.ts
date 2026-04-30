@@ -223,9 +223,9 @@ export const translations = {
     titleHighlight: { pt: "mobilidade global", en: "global mobility", es: "movilidad global" },
     cardTitle: { pt: "EUA · Brasil · Europa", en: "USA · Brazil · Europe", es: "EE.UU. · Brasil · Europa" },
     cardDescription: {
-      pt: "Referência mundial em mobilidade global e direito imigratório.",
-      en: "World reference in global mobility and immigration law.",
-      es: "Referencia mundial en movilidad global y derecho migratorio.",
+      pt: "Atendimento internacional com acompanhamento personalizado em cada etapa.",
+      en: "International service with personalized support at every stage.",
+      es: "Atención internacional con acompañamiento personalizado en cada etapa.",
     },
     floatingCard: {
       pt: "Atendimento global, estratégia individualizada.",
