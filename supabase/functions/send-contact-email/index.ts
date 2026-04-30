@@ -15,6 +15,8 @@ const ContactSchema = z.object({
   education: z.string().max(50),
   experience: z.string().max(50).optional().default(''),
   message: z.string().max(5000).optional().default(''),
+  resumeUrl: z.string().url().max(2048).optional().default(''),
+  resumeName: z.string().max(255).optional().default(''),
 })
 
 Deno.serve(async (req) => {
@@ -33,7 +35,7 @@ Deno.serve(async (req) => {
       )
     }
 
-    const { source, firstName, lastName, email, phoneCode, phone, visa, education, experience, message } = parsed.data
+    const { source, firstName, lastName, email, phoneCode, phone, visa, education, experience, message, resumeUrl, resumeName } = parsed.data
 
     const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
     if (!RESEND_API_KEY) {
