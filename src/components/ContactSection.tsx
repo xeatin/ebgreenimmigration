@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { Mail, Send, Upload, Instagram, Clock, MapPin } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, Send, Instagram, Clock, MapPin, Lock, ChevronDown, ArrowRight, Check } from "lucide-react";
 
 const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -14,27 +14,114 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import ebgreenLogo from "@/assets/ebgreen-logo.svg";
 
 type FormErrors = Partial<Record<
-  "firstName" | "lastName" | "email" | "phone" | "visa" | "education" | "experience" | "privacy" | "message",
+  "firstName" | "lastName" | "email" | "phone" | "visa" | "education" | "achievements" |
+  "experience" | "countryOfBirth" | "timeline" | "privacy" | "message",
   string
 >>;
+
+const VISA_OPTIONS = [
+  { id: "eb1a-o1", label: "EB-1A / O-1", desc: "Habilidade extraordinária" },
+  { id: "eb2-niw", label: "EB-2 NIW", desc: "Interesse nacional" },
+  { id: "eb3", label: "EB-3", desc: "Profissional qualificado" },
+  { id: "eb5-e2", label: "EB-5 / E-2", desc: "Investidor" },
+  { id: "h1b-l1-others", label: "H-1B / L-1 / Outros", desc: "Trabalho temporário" },
+  { id: "f1", label: "F-1", desc: "Estudante" },
+  { id: "family-based", label: "Family-Based", desc: "Reunificação familiar" },
+  { id: "r1", label: "R-1", desc: "Religioso" },
+  { id: "nao-sei", label: "Não sei ainda", desc: "Quero orientação" },
+];
+
+const EDUCATION_OPTIONS = [
+  "Ensino Médio",
+  "Técnico e Tecnólogo",
+  "Nível Superior / Bacharelado",
+  "Pós-Graduação",
+  "Mestrado",
+  "Doutorado",
+  "Pós-Doutorado",
+];
+
+const ACHIEVEMENTS_OPTIONS = [
+  "Sim — publicações",
+  "Sim — prêmios",
+  "Sim — ambos",
+  "Não, mas tenho evidências",
+  "Ainda não",
+];
+
+const EXPERIENCE_OPTIONS = [
+  "Menos de 5 anos",
+  "De 5 a 10 anos",
+  "Mais de 10 anos",
+];
+
+const COUNTRY_GROUPS: { continent: string; countries: string[] }[] = [
+  {
+    continent: "América do Sul",
+    countries: ["Brasil", "Argentina", "Chile", "Colômbia", "Equador", "Paraguai", "Peru", "Uruguai", "Venezuela", "Bolívia"],
+  },
+  {
+    continent: "América do Norte e Central",
+    countries: ["Estados Unidos", "Canadá", "México", "Costa Rica", "Cuba", "Panamá", "República Dominicana"],
+  },
+  {
+    continent: "Europa",
+    countries: ["Portugal", "Espanha", "Itália", "França", "Alemanha", "Reino Unido", "Irlanda", "Suíça", "Países Baixos", "Bélgica"],
+  },
+  {
+    continent: "África",
+    countries: ["Angola", "Moçambique", "Cabo Verde", "África do Sul", "Nigéria", "Egito", "Marrocos"],
+  },
+  {
+    continent: "Ásia",
+    countries: ["China", "Índia", "Japão", "Coreia do Sul", "Filipinas", "Vietnã", "Tailândia", "Israel"],
+  },
+  {
+    continent: "Oceania",
+    countries: ["Austrália", "Nova Zelândia"],
+  },
+];
+
+const CURRENT_STATUS_OPTIONS = [
+  "Visto de Turista (B1/B2)",
+  "Estudante (F1/F2)",
+  "Green Card em processo",
+  "Outros",
+];
+
+const TIMELINE_OPTIONS = [
+  "O quanto antes",
+  "Em breve (1–3 meses)",
+  "Planejando (3–12 meses)",
+  "Ainda explorando",
+];
+
+const STEPS = [
+  { n: 1, label: "Objetivo" },
+  { n: 2, label: "Perfil" },
+  { n: 3, label: "Contato" },
+  { n: 4, label: "Análise" },
+];
 
 const ContactSection = () => {
   const { lang } = useLanguage();
   const { toast } = useToast();
   const s = translations.contact;
 
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
-    migrateTo: "", education: "", experience: "",
-    visa: "", message: "", privacy: false
+    visa: "",
+    education: "", achievements: "", experience: "", countryOfBirth: "",
+    message: "", currentStatus: "", timeline: "",
+    privacy: false,
   });
   const [errors, setErrors] = useState<FormErrors>({});
-
-  // A regra de filtragem (ensino médio / técnico+menos de 5 anos)
-  // agora é aplicada no servidor (edge function send-contact-email),
-  // garantindo o mesmo comportamento para o formulário e o botão WhatsApp.
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [disclaimerOpen, setDisclaimerOpen] = useState(true);
 
   const buildSchema = () =>
     z.object({
@@ -57,10 +144,52 @@ const ContactSection = () => {
       }),
     });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const validateStep = (current: number): boolean => {
+    const e: FormErrors = {};
+    if (current === 1) {
+      if (!formData.visa) e.visa = t(s.errors.visaRequired, lang);
+    }
+    if (current === 2) {
+      if (!formData.education) e.education = t(s.errors.educationRequired, lang);
+      if (!formData.achievements) e.achievements = t(s.errors.required, lang);
+      if (!formData.experience) e.experience = t(s.errors.experienceRequired, lang);
+      if (!formData.countryOfBirth) e.countryOfBirth = t(s.errors.required, lang);
+    }
+    if (current === 3) {
+      if (formData.firstName.trim().length < 2) e.firstName = t(s.errors.firstNameMin, lang);
+      if (formData.lastName.trim().length < 2) e.lastName = t(s.errors.lastNameMin, lang);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) e.email = t(s.errors.emailInvalid, lang);
+      if (!/^\d{6,20}$/.test(formData.phone.replace(/\D/g, ""))) e.phone = t(s.errors.phoneInvalid, lang);
+    }
+    if (current === 4) {
+      if (!formData.timeline) e.message = t(s.errors.required, lang);
+      if (!formData.privacy) e.privacy = t(s.errors.privacyRequired, lang);
+    }
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const handleNext = () => {
+    if (!validateStep(step)) {
+      toast({ title: t(s.validationTitle, lang), variant: "destructive" });
+      return;
+    }
+    setErrors({});
+    setStep((p) => Math.min(4, p + 1));
+  };
+
+  const handleBack = () => {
+    setErrors({});
+    setStep((p) => Math.max(1, p - 1));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validateStep(4)) {
+      toast({ title: t(s.validationTitle, lang), variant: "destructive" });
+      return;
+    }
 
     const schema = buildSchema();
     const parsed = schema.safeParse(formData);
@@ -77,16 +206,20 @@ const ContactSection = () => {
         message: f.message?.[0],
         privacy: f.privacy?.[0],
       });
-      toast({
-        title: t(s.validationTitle, lang),
-        variant: "destructive",
-      });
+      toast({ title: t(s.validationTitle, lang), variant: "destructive" });
       return;
     }
     setErrors({});
     setIsSubmitting(true);
 
-    // Fire-and-forget: envia direto ao webhook N8N (Kommo) em paralelo ao Supabase
+    const composedMessage = [
+      formData.message,
+      formData.countryOfBirth ? `País de nascimento: ${formData.countryOfBirth}` : "",
+      formData.achievements ? `Publicações/Prêmios: ${formData.achievements}` : "",
+      formData.currentStatus ? `Status atual: ${formData.currentStatus}` : "",
+      formData.timeline ? `Quando pretende iniciar: ${formData.timeline}` : "",
+    ].filter(Boolean).join("\n");
+
     fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -100,7 +233,7 @@ const ContactSection = () => {
         visa: formData.visa,
         education: formData.education,
         experience: formData.experience,
-        message: formData.message,
+        message: composedMessage,
       }),
     }).catch(() => {});
 
@@ -116,7 +249,7 @@ const ContactSection = () => {
           visa: formData.visa,
           education: formData.education,
           experience: formData.experience,
-          message: formData.message,
+          message: composedMessage,
         },
       });
 
@@ -139,59 +272,276 @@ const ContactSection = () => {
     });
     setFormData({
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
-      migrateTo: "", education: "", experience: "",
-      visa: "", message: "", privacy: false
+      visa: "",
+      education: "", achievements: "", experience: "", countryOfBirth: "",
+      message: "", currentStatus: "", timeline: "",
+      privacy: false,
     });
+    setStep(1);
     setIsSubmitting(false);
-  };
-
-  const [isTestingLead, setIsTestingLead] = useState(false);
-  const handleTestLead = async () => {
-    setIsTestingLead(true);
-    const stamp = Date.now();
-    try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: {
-          source: "website-main-form",
-          firstName: "Teste",
-          lastName: `Lead ${stamp}`,
-          email: `teste+${stamp}@ebgreenusa.com`,
-          phoneCode: "+55",
-          phone: "11999999999",
-          visa: "EB-1A",
-          education: "Bacharelado",
-          experience: "Mais de 10 anos",
-          message: `Lead de teste gerado pelo botão de validação (${new Date().toISOString()})`,
-        },
-      });
-      if (error) throw error;
-      const kommo = (data as any)?.kommo;
-      const leadId = kommo?.leadId;
-      console.log("[Test Lead] resposta completa:", data);
-      toast({
-        title: leadId ? "Lead enviado ao Kommo ✓" : "Lead processado",
-        description: leadId
-          ? `leadId: ${leadId} (status N8N: ${kommo?.status ?? "?"})`
-          : kommo?.skipped
-            ? "Envio ao Kommo foi pulado pelas regras de qualificação."
-            : `Sem leadId no retorno. Status N8N: ${kommo?.status ?? "?"}. Veja o console.`,
-      });
-    } catch (err: any) {
-      console.error("[Test Lead] erro:", err);
-      toast({
-        title: "Falha no lead de teste",
-        description: err?.message ?? "Erro desconhecido",
-        variant: "destructive",
-      });
-    } finally {
-      setIsTestingLead(false);
-    }
   };
 
   const inputClass = "w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring font-body text-sm";
   const inputErrorClass = "border-destructive focus:ring-destructive";
   const labelClass = "text-sm text-muted-foreground font-body mb-1.5 block";
   const errorClass = "text-xs text-destructive font-body mt-1";
+
+  /* ---------- Reusable building blocks ---------- */
+
+  const ChoiceCard = ({
+    selected, onClick, title, desc, className = "",
+  }: { selected: boolean; onClick: () => void; title: string; desc?: string; className?: string }) => (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`relative text-left p-4 rounded-xl border transition-all font-body ${
+        selected
+          ? "border-gold bg-gold/10 shadow-md"
+          : "border-border bg-background hover:border-gold/50 hover:bg-gold/5"
+      } ${className}`}
+    >
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <p className="font-display text-sm font-semibold text-foreground">{title}</p>
+          {desc && <p className="text-xs text-muted-foreground mt-1">{desc}</p>}
+        </div>
+        {selected && (
+          <span className="w-5 h-5 shrink-0 rounded-full bg-gold flex items-center justify-center">
+            <Check size={12} className="text-green-deep" strokeWidth={3} />
+          </span>
+        )}
+      </div>
+    </button>
+  );
+
+  const SelectField = ({
+    id, label, value, onChange, options, error, placeholder = "Selecione",
+  }: {
+    id: string; label: string; value: string; onChange: (v: string) => void;
+    options: string[] | { group: string; items: string[] }[]; error?: string; placeholder?: string;
+  }) => {
+    const isGrouped = Array.isArray(options) && options.length > 0 && typeof options[0] !== "string";
+    return (
+      <div>
+        <label className={labelClass} htmlFor={id}>{label}</label>
+        <select
+          id={id} value={value} onChange={(e) => onChange(e.target.value)}
+          className={`${inputClass} ${error ? inputErrorClass : ""}`}
+        >
+          <option value="">{placeholder}</option>
+          {isGrouped
+            ? (options as { group: string; items: string[] }[]).map((g) => (
+                <optgroup key={g.group} label={g.group}>
+                  {g.items.map((it) => <option key={it} value={it}>{it}</option>)}
+                </optgroup>
+              ))
+            : (options as string[]).map((it) => <option key={it} value={it}>{it}</option>)}
+        </select>
+        {error && <p className={errorClass}>{error}</p>}
+      </div>
+    );
+  };
+
+  /* ---------- Steps ---------- */
+
+  const Step1 = (
+    <div className="space-y-6">
+      <div>
+        <h3 className="font-display text-2xl font-bold text-foreground">
+          Pronto para iniciar sua <span className="text-gold italic">avaliação?</span>
+        </h3>
+        <p className="mt-2 text-sm text-muted-foreground font-body leading-relaxed">
+          Responda algumas perguntas rápidas e receba uma análise preliminar do seu perfil, com orientação clara sobre os caminhos migratórios mais adequados e os próximos passos.
+        </p>
+      </div>
+
+      <div>
+        <p className={labelClass}>Qual visto mais se aproxima do seu objetivo? *</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {VISA_OPTIONS.slice(0, 7).map((v) => (
+            <ChoiceCard
+              key={v.id}
+              selected={formData.visa === v.id}
+              onClick={() => setFormData({ ...formData, visa: v.id })}
+              title={v.label}
+              desc={v.desc}
+            />
+          ))}
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+          <ChoiceCard
+            selected={formData.visa === "r1"}
+            onClick={() => setFormData({ ...formData, visa: "r1" })}
+            title="R-1"
+            desc="Religioso"
+            className="md:col-span-2"
+          />
+          <ChoiceCard
+            selected={formData.visa === "nao-sei"}
+            onClick={() => setFormData({ ...formData, visa: "nao-sei" })}
+            title="Não sei ainda"
+            desc="Quero orientação"
+            className="md:col-span-2"
+          />
+        </div>
+        {errors.visa && <p className={errorClass}>{errors.visa}</p>}
+      </div>
+    </div>
+  );
+
+  const Step2 = (
+    <div className="space-y-5">
+      <div>
+        <h3 className="font-display text-2xl font-bold text-foreground">
+          Conte-nos sobre seu <span className="text-gold italic">perfil</span>
+        </h3>
+        <p className="mt-2 text-sm text-muted-foreground font-body">
+          Essas informações nos ajudam a identificar os caminhos migratórios mais adequados.
+        </p>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-5">
+        <SelectField
+          id="education" label="Escolaridade *" value={formData.education}
+          onChange={(v) => setFormData({ ...formData, education: v })}
+          options={EDUCATION_OPTIONS} error={errors.education}
+        />
+        <SelectField
+          id="experience" label="Experiência profissional *" value={formData.experience}
+          onChange={(v) => setFormData({ ...formData, experience: v })}
+          options={EXPERIENCE_OPTIONS} error={errors.experience}
+        />
+      </div>
+
+      <SelectField
+        id="achievements" label="Possui publicações ou prêmios na sua área? *"
+        value={formData.achievements}
+        onChange={(v) => setFormData({ ...formData, achievements: v })}
+        options={ACHIEVEMENTS_OPTIONS} error={errors.achievements}
+      />
+
+      <SelectField
+        id="countryOfBirth" label="País de nascimento *"
+        value={formData.countryOfBirth}
+        onChange={(v) => setFormData({ ...formData, countryOfBirth: v })}
+        options={COUNTRY_GROUPS.map((g) => ({ group: g.continent, items: g.countries }))}
+        error={errors.countryOfBirth}
+        placeholder="Selecione seu país"
+      />
+    </div>
+  );
+
+  const Step3 = (
+    <div className="space-y-5">
+      <div>
+        <h3 className="font-display text-2xl font-bold text-foreground">
+          Seus <span className="text-gold italic">dados de contato</span>
+        </h3>
+        <p className="mt-2 text-sm text-muted-foreground font-body">
+          Usaremos para enviar sua análise preliminar e dar continuidade ao atendimento.
+        </p>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label className={labelClass} htmlFor="firstName">Nome *</label>
+          <input id="firstName" type="text" value={formData.firstName}
+            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+            className={`${inputClass} ${errors.firstName ? inputErrorClass : ""}`} placeholder="Ex.: João" />
+          {errors.firstName && <p className={errorClass}>{errors.firstName}</p>}
+        </div>
+        <div>
+          <label className={labelClass} htmlFor="lastName">Sobrenome *</label>
+          <input id="lastName" type="text" value={formData.lastName}
+            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+            className={`${inputClass} ${errors.lastName ? inputErrorClass : ""}`} placeholder="Ex.: Silva" />
+          {errors.lastName && <p className={errorClass}>{errors.lastName}</p>}
+        </div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label className={labelClass} htmlFor="email">E-mail *</label>
+          <input id="email" type="email" value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            className={`${inputClass} ${errors.email ? inputErrorClass : ""}`} placeholder="voce@email.com" />
+          {errors.email && <p className={errorClass}>{errors.email}</p>}
+        </div>
+        <div>
+          <label className={labelClass}>Telefone *</label>
+          <div className={`flex items-center rounded-lg border bg-background focus-within:ring-2 focus-within:ring-ring ${errors.phone ? "border-destructive focus-within:ring-destructive" : "border-input"}`}>
+            <PhoneCodeSelector
+              value={formData.phoneCode}
+              onChange={(val) => setFormData({ ...formData, phoneCode: val })}
+            />
+            <div className="w-px h-6 bg-input shrink-0" />
+            <span className="px-2 text-sm text-foreground font-body shrink-0">{formData.phoneCode}</span>
+            <input type="tel" value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              className="flex-1 px-1 py-3 bg-transparent text-foreground focus:outline-none font-body text-sm" placeholder="11 99999 0000" />
+          </div>
+          {errors.phone && <p className={errorClass}>{errors.phone}</p>}
+        </div>
+      </div>
+    </div>
+  );
+
+  const Step4 = (
+    <div className="space-y-5">
+      <div>
+        <h3 className="font-display text-2xl font-bold text-foreground">
+          Análise <span className="text-gold italic">preliminar</span>
+        </h3>
+        <p className="mt-2 text-sm text-muted-foreground font-body">
+          Detalhes finais para personalizar sua avaliação.
+        </p>
+      </div>
+
+      <div>
+        <label className={labelClass} htmlFor="message">Conte-nos brevemente sobre seu objetivo (opcional)</label>
+        <textarea id="message" rows={3} value={formData.message}
+          maxLength={2000}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          className={`${inputClass} resize-none`}
+          placeholder="Ex.: Sou pesquisador na área de…" />
+      </div>
+
+      <SelectField
+        id="currentStatus" label="Status migratório atual (opcional)"
+        value={formData.currentStatus}
+        onChange={(v) => setFormData({ ...formData, currentStatus: v })}
+        options={CURRENT_STATUS_OPTIONS}
+        placeholder="Selecione (se aplicável)"
+      />
+
+      <div>
+        <p className={labelClass}>Quando pretende iniciar o processo? *</p>
+        <div className="grid grid-cols-2 gap-3">
+          {TIMELINE_OPTIONS.map((opt) => (
+            <ChoiceCard
+              key={opt}
+              selected={formData.timeline === opt}
+              onClick={() => setFormData({ ...formData, timeline: opt })}
+              title={opt}
+            />
+          ))}
+        </div>
+        {errors.message && !formData.timeline && <p className={errorClass}>Selecione uma opção.</p>}
+      </div>
+
+      <div>
+        <label className="flex items-start gap-2 cursor-pointer">
+          <input type="checkbox" checked={formData.privacy}
+            onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
+            className="w-4 h-4 mt-0.5 rounded border-input accent-gold" />
+          <span className="text-sm text-muted-foreground font-body">{t(s.privacy, lang)}</span>
+        </label>
+        {errors.privacy && <p className={errorClass}>{errors.privacy}</p>}
+      </div>
+    </div>
+  );
+
+  const stepContent = step === 1 ? Step1 : step === 2 ? Step2 : step === 3 ? Step3 : Step4;
 
   return (
     <section id="contato" className="py-24 bg-secondary">
@@ -214,6 +564,7 @@ const ContactSection = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-20 max-w-5xl mx-auto">
+          {/* Sidebar */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -259,173 +610,134 @@ const ContactSection = () => {
             </div>
           </motion.div>
 
+          {/* Multi-step form */}
           <motion.form
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             onSubmit={handleSubmit}
             noValidate
-            className="lg:col-span-3 bg-card rounded-xl p-8 border border-border shadow-lg space-y-5"
+            className="lg:col-span-3 bg-card rounded-xl border border-border shadow-lg overflow-hidden flex flex-col"
           >
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label className={labelClass} htmlFor="firstName">{t(s.firstName, lang)}</label>
-                <input id="firstName" type="text" value={formData.firstName}
-                  aria-invalid={!!errors.firstName}
-                  aria-describedby={errors.firstName ? "firstName-err" : undefined}
-                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                  className={`${inputClass} ${errors.firstName ? inputErrorClass : ""}`} placeholder="Ex John" />
-                {errors.firstName && <p id="firstName-err" className={errorClass}>{errors.firstName}</p>}
-              </div>
-              <div>
-                <label className={labelClass} htmlFor="lastName">{t(s.lastName, lang)}</label>
-                <input id="lastName" type="text" value={formData.lastName}
-                  aria-invalid={!!errors.lastName}
-                  aria-describedby={errors.lastName ? "lastName-err" : undefined}
-                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                  className={`${inputClass} ${errors.lastName ? inputErrorClass : ""}`} placeholder="Ex Doe" />
-                {errors.lastName && <p id="lastName-err" className={errorClass}>{errors.lastName}</p>}
-              </div>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label className={labelClass} htmlFor="email">{t(s.emailLabel, lang)}</label>
-                <input id="email" type="email" value={formData.email}
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? "email-err" : undefined}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className={`${inputClass} ${errors.email ? inputErrorClass : ""}`} placeholder="john@doe.com" />
-                {errors.email && <p id="email-err" className={errorClass}>{errors.email}</p>}
-              </div>
-              <div>
-                <label className={labelClass}>{t(s.phoneLabel, lang)}</label>
-                <div className={`flex items-center rounded-lg border bg-background focus-within:ring-2 focus-within:ring-ring ${errors.phone ? "border-destructive focus-within:ring-destructive" : "border-input"}`}>
-                  <PhoneCodeSelector
-                    value={formData.phoneCode}
-                    onChange={(val) => setFormData({ ...formData, phoneCode: val })}
-                  />
-                  <div className="w-px h-6 bg-input shrink-0" />
-                  <span className="px-2 text-sm text-foreground font-body shrink-0">{formData.phoneCode}</span>
-                  <input type="tel" value={formData.phone}
-                    aria-invalid={!!errors.phone}
-                    aria-describedby={errors.phone ? "phone-err" : undefined}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="flex-1 px-1 py-3 bg-transparent text-foreground focus:outline-none font-body text-sm" placeholder="300 400 5000" />
+            {/* Header */}
+            <div className="px-6 sm:px-8 pt-6 pb-5 border-b border-border">
+              <div className="flex items-center gap-3">
+                <img src={ebgreenLogo} alt="Ebgreen" className="h-9 w-auto" />
+                <div className="w-px h-8 bg-border" />
+                <div>
+                  <p className="text-[10px] text-muted-foreground font-body font-semibold tracking-[0.2em] uppercase">
+                    Avaliação
+                  </p>
+                  <p className="font-display text-sm font-semibold text-foreground">
+                    Análise Preliminar de Elegibilidade
+                  </p>
                 </div>
-                {errors.phone && <p id="phone-err" className={errorClass}>{errors.phone}</p>}
+              </div>
+
+              {/* Progress steps */}
+              <div className="mt-6 grid grid-cols-4 gap-2">
+                {STEPS.map((st) => {
+                  const active = step === st.n;
+                  const done = step > st.n;
+                  return (
+                    <div key={st.n} className="flex flex-col items-center gap-2">
+                      <div className="w-full flex items-center gap-2">
+                        <div
+                          className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-body font-bold shrink-0 transition-all ${
+                            active
+                              ? "bg-gold text-green-deep ring-2 ring-gold/30"
+                              : done
+                                ? "bg-gold/80 text-green-deep"
+                                : "bg-background border border-border text-muted-foreground"
+                          }`}
+                        >
+                          {done ? <Check size={14} strokeWidth={3} /> : st.n}
+                        </div>
+                        <div className={`flex-1 h-0.5 rounded-full ${done || active ? "bg-gold/60" : "bg-border"}`} />
+                      </div>
+                      <span className={`text-[11px] font-body text-center w-full ${active ? "text-foreground font-semibold" : "text-muted-foreground"}`}>
+                        {st.label}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label className={labelClass} htmlFor="visa">{t(s.visaType, lang)} *</label>
-                <select id="visa" value={formData.visa}
-                  aria-invalid={!!errors.visa}
-                  aria-describedby={errors.visa ? "visa-err" : undefined}
-                  onChange={(e) => setFormData({ ...formData, visa: e.target.value })}
-                  className={`${inputClass} ${errors.visa ? inputErrorClass : ""}`}>
-                  <option value="">{t(s.select, lang)}</option>
-                  <option value="eb1a">EB-1A</option>
-                  <option value="eb2-niw">EB-2 NIW</option>
-                  <option value="eb3">EB-3</option>
-                  <option value="eb4">EB-4</option>
-                  <option value="eb5">EB-5</option>
-                  <option value="cr1">CR-1</option>
-                  <option value="e2">E-2</option>
-                  <option value="f1-f2">F-1/F-2</option>
-                  <option value="l1a">L-1A</option>
-                  <option value="k1">K-1</option>
-                  <option value="o1">O-1</option>
-                  <option value="r1">R-1</option>
-                  <option value="family-based">Family-Based</option>
-                  <option value="aos">AOS</option>
-                  <option value="outros">Outros</option>
-                </select>
-                {errors.visa && <p id="visa-err" className={errorClass}>{errors.visa}</p>}
-              </div>
-              <div>
-                <label className={labelClass} htmlFor="education">{t(s.education, lang)}</label>
-                <select id="education" value={formData.education}
-                  aria-invalid={!!errors.education}
-                  aria-describedby={errors.education ? "education-err" : undefined}
-                  onChange={(e) => setFormData({ ...formData, education: e.target.value })}
-                  className={`${inputClass} ${errors.education ? inputErrorClass : ""}`}>
-                  <option value="">{t(s.select, lang)}</option>
-                  {Object.entries(s.educationOptions).map(([key, val]) => (
-                    <option key={key} value={key}>{t(val, lang)}</option>
-                  ))}
-                </select>
-                {errors.education && <p id="education-err" className={errorClass}>{errors.education}</p>}
-              </div>
+            {/* Step body */}
+            <div className="px-6 sm:px-8 py-7 min-h-[460px] flex-1">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={step}
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -12 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  {stepContent}
+                </motion.div>
+              </AnimatePresence>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label className={labelClass} htmlFor="experience">{t(s.experience, lang)}</label>
-                <select id="experience" value={formData.experience}
-                  aria-invalid={!!errors.experience}
-                  aria-describedby={errors.experience ? "experience-err" : undefined}
-                  onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                  className={`${inputClass} ${errors.experience ? inputErrorClass : ""}`}>
-                  <option value="">{t(s.select, lang)}</option>
-                  {Object.entries(s.experienceOptions).map(([key, val]) => (
-                    <option key={key} value={key}>{t(val, lang)}</option>
-                  ))}
-                </select>
-                {errors.experience && <p id="experience-err" className={errorClass}>{errors.experience}</p>}
+            {/* Actions */}
+            <div className="px-6 sm:px-8 pb-6 flex items-center justify-between gap-3">
+              {step > 1 ? (
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="text-sm font-body text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  ← Voltar
+                </button>
+              ) : <span />}
+
+              {step < 4 ? (
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="bg-gradient-gold text-green-deep px-6 py-3 rounded-lg font-bold text-sm font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
+                >
+                  Continuar avaliação <ArrowRight size={16} />
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-gradient-gold text-green-deep px-6 py-3 rounded-lg font-bold text-sm font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 disabled:opacity-60"
+                >
+                  {isSubmitting ? t(s.submitting, lang) : "Receber minha avaliação"}
+                  {!isSubmitting && <Send size={16} />}
+                </button>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="border-t border-border bg-background/40 px-6 sm:px-8 py-4 space-y-3">
+              <button
+                type="button"
+                onClick={() => setDisclaimerOpen((v) => !v)}
+                className="w-full flex items-center justify-between text-left"
+              >
+                <span className="text-xs font-body font-semibold text-foreground tracking-wide">
+                  Aviso de Elegibilidade
+                </span>
+                <ChevronDown
+                  size={14}
+                  className={`text-muted-foreground transition-transform ${disclaimerOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              {disclaimerOpen && (
+                <p className="text-[11px] leading-relaxed text-muted-foreground font-body">
+                  A análise considera seu histórico profissional, objetivos imigratórios, documentação disponível e requisitos legais aplicáveis. Essa avaliação tem como objetivo assegurar que cada caso seja desenvolvido com estratégia, transparência e elevado padrão técnico.
+                </p>
+              )}
+              <div className="flex items-center gap-2 pt-1">
+                <Lock size={12} className="text-gold shrink-0" />
+                <span className="text-[11px] text-muted-foreground font-body">
+                  Dados protegidos e análise confidencial
+                </span>
               </div>
-              <div>
-                <label className={labelClass}>{t(s.resume, lang)}</label>
-                <label className="flex items-center gap-2 px-4 py-3 rounded-lg border border-input bg-accent cursor-pointer hover:bg-accent/80 transition-colors">
-                  <Upload size={18} className="text-foreground shrink-0" />
-                  <span className="text-sm font-body text-foreground font-semibold">{t(s.selectFile, lang)}</span>
-                  <input type="file" accept=".pdf,.doc,.docx" className="hidden"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) toast({ title: file.name });
-                    }} />
-                </label>
-              </div>
             </div>
-
-            <div>
-              <label className={labelClass} htmlFor="message">{t(s.message, lang)}</label>
-              <textarea id="message" rows={2} value={formData.message}
-                maxLength={2000}
-                aria-invalid={!!errors.message}
-                aria-describedby={errors.message ? "message-err" : undefined}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className={`${inputClass} resize-none ${errors.message ? inputErrorClass : ""}`}
-                placeholder={t(s.messagePlaceholder, lang)} />
-              {errors.message && <p id="message-err" className={errorClass}>{errors.message}</p>}
-            </div>
-
-            <div>
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" checked={formData.privacy}
-                  aria-invalid={!!errors.privacy}
-                  onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
-                  className="w-4 h-4 rounded border-input accent-accent" />
-                <span className="text-sm text-muted-foreground font-body">{t(s.privacy, lang)}</span>
-              </label>
-              {errors.privacy && <p className={errorClass}>{errors.privacy}</p>}
-            </div>
-
-            <button type="submit" disabled={isSubmitting}
-              className="w-full bg-gradient-gold text-green-deep px-6 py-4 rounded-lg font-bold text-lg font-body hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 disabled:opacity-60">
-              {isSubmitting ? t(s.submitting, lang) : t(s.submit, lang)}
-              {!isSubmitting && <Send size={18} />}
-            </button>
-
-            <button
-              type="button"
-              onClick={handleTestLead}
-              disabled={isTestingLead}
-              className="w-full mt-2 border border-dashed border-muted-foreground/40 text-muted-foreground px-4 py-2 rounded-lg text-xs font-body hover:bg-muted/40 transition-colors disabled:opacity-60"
-            >
-              {isTestingLead ? "Enviando lead de teste..." : "🔧 Enviar lead de teste (validação Kommo)"}
-            </button>
           </motion.form>
         </div>
       </div>
