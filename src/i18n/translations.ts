@@ -137,6 +137,7 @@ export const translations = {
       },
       {
         title: { pt: "Green Card Familiar", en: "Family Green Card", es: "Green Card Familiar" },
+        subtitle: { pt: "Family-Based", en: "Family-Based", es: "Family-Based" },
         description: {
           pt: "Processos de residência permanente por meio de vínculos familiares, como cônjuges, filhos e outros familiares elegíveis de cidadãos americanos ou residentes permanentes.",
           en: "Permanent residence processes through family ties, such as spouses, children, and other eligible relatives of US citizens or permanent residents.",
