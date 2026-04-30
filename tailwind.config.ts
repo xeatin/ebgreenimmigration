@@ -100,11 +100,11 @@ export default {
         "pulse-gold": {
           "0%, 100%": {
             transform: "scale(1)",
-            boxShadow: "0 0 0 0 hsl(var(--gold) / 0.65)",
+            boxShadow: "0 0 0 0 hsl(var(--gold) / 0.35)",
           },
           "50%": {
-            transform: "scale(1.15)",
-            boxShadow: "0 0 0 10px hsl(var(--gold) / 0)",
+            transform: "scale(1.05)",
+            boxShadow: "0 0 0 5px hsl(var(--gold) / 0)",
           },
         },
         "step-pop": {
