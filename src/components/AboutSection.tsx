@@ -21,7 +21,7 @@ const AboutSection = () => {
             className="relative"
           >
             <div className="rounded-2xl overflow-hidden shadow-xl">
-              <img src={teamImg} alt="Escritório Ebgreen Immigration" className="w-full h-full object-cover aspect-[4/5]" loading="lazy" width={800} height={1000} />
+              <img src={teamImg} alt="Escritório Ebgreen Immigration" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" width={1200} height={900} />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-card rounded-xl p-4 shadow-xl border border-border max-w-[216px] text-center">
               <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-3">
