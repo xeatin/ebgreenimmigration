@@ -224,7 +224,7 @@ export const translations = {
     titleHighlight: { pt: "mobilidade global", en: "global mobility", es: "movilidad global" },
     cardTitle: { pt: "EUA · Brasil · Europa", en: "USA · Brazil · Europe", es: "EE.UU. · Brasil · Europa" },
     cardDescription: {
-      pt: "Atendimento internacional com acompanhamento personalizado em cada etapa.",
+      pt: "Atendimento internacional com acompanhamento personalizado em cada\u00A0etapa.",
       en: "International service with personalized support at every stage.",
       es: "Atención internacional con acompañamiento personalizado en cada etapa.",
     },
