@@ -15,6 +15,8 @@ const ContactSchema = z.object({
   education: z.string().max(50),
   experience: z.string().max(50).optional().default(''),
   message: z.string().max(5000).optional().default(''),
+  resumeUrl: z.string().url().max(2048).optional().default(''),
+  resumeName: z.string().max(255).optional().default(''),
 })
 
 Deno.serve(async (req) => {
@@ -33,7 +35,7 @@ Deno.serve(async (req) => {
       )
     }
 
-    const { source, firstName, lastName, email, phoneCode, phone, visa, education, experience, message } = parsed.data
+    const { source, firstName, lastName, email, phoneCode, phone, visa, education, experience, message, resumeUrl, resumeName } = parsed.data
 
     const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
     if (!RESEND_API_KEY) {
@@ -54,6 +56,7 @@ Deno.serve(async (req) => {
         <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Formação</td><td style="padding:8px;border:1px solid #ddd">${education}</td></tr>
         <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Experiência</td><td style="padding:8px;border:1px solid #ddd">${experience}</td></tr>
         <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Mensagem</td><td style="padding:8px;border:1px solid #ddd">${message || 'Nenhuma'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Currículo</td><td style="padding:8px;border:1px solid #ddd">${resumeUrl ? `<a href="${resumeUrl}" target="_blank" rel="noopener">${resumeName || 'Baixar currículo'}</a>` : 'Não enviado'}</td></tr>
       </table>
     `
 
@@ -100,6 +103,8 @@ Deno.serve(async (req) => {
             education,
             experience,
             message,
+            resumeUrl,
+            resumeName,
           }),
         })
           .then(async (r) => {
@@ -151,6 +156,8 @@ Deno.serve(async (req) => {
         education,
         experience,
         message,
+        resumeUrl,
+        resumeName,
       }),
     }).catch(() => {})
 
