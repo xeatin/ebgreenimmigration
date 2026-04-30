@@ -260,6 +260,7 @@ const ContactSection = () => {
       education: "", achievements: "", experience: "", countryOfBirth: "",
       message: "", currentStatus: "", timeline: "",
       privacy: false,
+      resume: null,
     });
     setStep(1);
     setIsSubmitting(false);
