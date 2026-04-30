@@ -552,7 +552,7 @@ const ContactSection = () => {
       }}>
         <span
           className={`w-[18px] h-[18px] mt-0.5 rounded border-[1.5px] flex items-center justify-center shrink-0 transition ${
-            formData.privacy ? "bg-gold border-gold" : "border-white/15 bg-[#12141B]"
+            formData.privacy ? "bg-gold border-gold" : "border-border bg-white"
           }`}
         >
           {formData.privacy && <Check size={11} strokeWidth={3} className="text-black" />}
@@ -563,7 +563,7 @@ const ContactSection = () => {
           onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
           className="sr-only"
         />
-        <span className="text-[12px] text-foreground/55 font-body leading-relaxed">
+        <span className="text-[12px] text-muted-foreground font-body leading-relaxed">
           {t(s.privacy, lang)}
         </span>
       </label>
