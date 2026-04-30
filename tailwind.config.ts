@@ -97,19 +97,17 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-8px)" },
         },
-        "step-blink": {
-          "0%, 100%": {
-            borderColor: "hsl(var(--gold))",
-            boxShadow: "0 0 0 0 hsl(var(--gold) / 0)",
-          },
-          "50%": {
-            borderColor: "hsl(var(--gold) / 0.55)",
-            boxShadow: "0 0 0 3px hsl(var(--gold) / 0.12)",
-          },
+        "ring-spin": {
+          "0%": { transform: "rotate(-90deg)" },
+          "100%": { transform: "rotate(270deg)" },
         },
-        "step-sweep": {
-          "0%": { backgroundPosition: "100% 0" },
-          "100%": { backgroundPosition: "0 0" },
+        "ring-draw": {
+          "0%": { strokeDashoffset: "75.4" },
+          "100%": { strokeDashoffset: "0" },
+        },
+        "check-fade": {
+          "0%": { opacity: "0", transform: "scale(0.6)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
         },
       },
       animation: {
@@ -118,8 +116,9 @@ export default {
         "fade-up": "fade-up 0.6s ease-out forwards",
         "count-up": "count-up 0.5s ease-out forwards",
         "bounce-slow": "bounce-slow 2s ease-in-out infinite",
-        "step-blink": "step-blink 1.8s ease-in-out infinite",
-        "step-sweep": "step-sweep 0.6s ease-out forwards",
+        "ring-spin": "ring-spin 3.5s linear infinite",
+        "ring-draw": "ring-draw 0.6s ease-out forwards",
+        "check-fade": "check-fade 0.35s 0.45s ease-out backwards",
       },
     },
   },
