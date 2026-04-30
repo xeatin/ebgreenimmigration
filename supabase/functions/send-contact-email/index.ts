@@ -103,6 +103,8 @@ Deno.serve(async (req) => {
             education,
             experience,
             message,
+            resumeUrl,
+            resumeName,
           }),
         })
           .then(async (r) => {
@@ -154,6 +156,8 @@ Deno.serve(async (req) => {
         education,
         experience,
         message,
+        resumeUrl,
+        resumeName,
       }),
     }).catch(() => {})
 
