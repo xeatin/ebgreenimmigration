@@ -277,13 +277,14 @@ const ContactSection = () => {
 
   const Step1 = (
     <div>
-      <h3 className="font-display text-[22px] sm:text-[24px] font-semibold text-white leading-tight mb-2">
+      <h3 className="font-display text-[22px] sm:text-[24px] font-semibold text-foreground leading-tight mb-2">
         Pronto para iniciar sua <span className="text-gold italic">avaliação?</span>
       </h3>
-      <p className="text-[13px] text-white/55 font-body font-light leading-relaxed mb-6 max-w-[62ch]">
+      <p className="text-[13px] text-muted-foreground font-body font-light leading-relaxed mb-6 max-w-[62ch]">
         Responda algumas perguntas rápidas e receba uma análise preliminar do seu perfil, com orientação clara sobre os caminhos migratórios mais adequados e os próximos passos.
       </p>
 
+      <p className={labelCls}>Qual visto mais se aproxima do seu objetivo? <span className={reqCls}>*</span></p>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
         {VISA_OPTIONS.map((v) => {
           const selected = formData.visa === v.id;
@@ -292,10 +293,10 @@ const ContactSection = () => {
               key={v.id}
               type="button"
               onClick={() => setFormData({ ...formData, visa: v.id })}
-              className={`relative text-left p-3 rounded-[10px] border transition-all bg-[#12141B] overflow-hidden group ${
+              className={`relative text-left p-3 rounded-[10px] border transition-all overflow-hidden group ${
                 selected
-                  ? "border-gold/70 bg-gold/[0.07]"
-                  : "border-white/8 hover:border-gold/40"
+                  ? "border-gold bg-gold/[0.06]"
+                  : "border-border bg-white hover:border-gold/50"
               }`}
             >
               <span
@@ -308,10 +309,10 @@ const ContactSection = () => {
                   <Check size={8} strokeWidth={3} className="text-black" />
                 </span>
               )}
-              <p className={`font-body font-semibold text-[12px] mb-0.5 leading-tight ${selected ? "text-[#E4BC78]" : "text-white"}`}>
+              <p className={`font-body font-semibold text-[12px] mb-0.5 leading-tight ${selected ? "text-foreground" : "text-foreground"}`}>
                 {v.label}
               </p>
-              <p className="text-[10px] text-white/40 leading-snug">{v.desc}</p>
+              <p className="text-[10px] text-muted-foreground leading-snug">{v.desc}</p>
             </button>
           );
         })}
@@ -319,10 +320,10 @@ const ContactSection = () => {
         <button
           type="button"
           onClick={() => setFormData({ ...formData, visa: "Não sei ainda" })}
-          className={`relative text-left p-3 rounded-[10px] border transition-all bg-[#12141B] col-span-2 md:col-span-4 overflow-hidden group ${
+          className={`relative text-left p-3 rounded-[10px] border transition-all col-span-2 md:col-span-2 overflow-hidden group ${
             formData.visa === "Não sei ainda"
-              ? "border-gold/70 bg-gold/[0.07]"
-              : "border-white/8 hover:border-gold/40"
+              ? "border-gold bg-gold/[0.06]"
+              : "border-border bg-white hover:border-gold/50"
           }`}
         >
           <span
@@ -335,10 +336,10 @@ const ContactSection = () => {
               <Check size={8} strokeWidth={3} className="text-black" />
             </span>
           )}
-          <p className={`font-body font-semibold text-[12px] mb-0.5 ${formData.visa === "Não sei ainda" ? "text-[#E4BC78]" : "text-white"}`}>
+          <p className="font-body font-semibold text-[12px] mb-0.5 text-foreground">
             Não sei ainda
           </p>
-          <p className="text-[10px] text-white/40">Quero descobrir a melhor opção para meu perfil</p>
+          <p className="text-[10px] text-muted-foreground">Quero orientação</p>
         </button>
       </div>
       {errors.visa && <p className={`${errCls} mt-2`}>{errors.visa}</p>}
