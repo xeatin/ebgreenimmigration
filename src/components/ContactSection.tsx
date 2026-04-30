@@ -22,11 +22,11 @@ type FormErrors = Partial<Record<
 >>;
 
 const VISA_OPTIONS = [
-  { id: "EB-1A / O-1", label: "EB-1A / O-1", desc: "Habilidade Extraordinária" },
+  { id: "EB-1A", label: "EB-1A", desc: "Habilidade Extraordinária" },
   { id: "EB-2 NIW", label: "EB-2 NIW", desc: "Profissionais qualificados e interesse nacional" },
   { id: "EB-3", label: "EB-3", desc: "Trabalho e oferta de emprego" },
   { id: "EB-5 / E-2 Investidor", label: "EB-5 / E-2", desc: "Investimento nos Estados Unidos" },
-  { id: "H-1B / L-1 / Outros Trabalho", label: "H-1B / L-1 / Outros", desc: "Vistos de Trabalho" },
+  { id: "H-1B / L-1 / O-1", label: "H-1B, L-1, O-1", desc: "Vistos de Trabalho" },
   { id: "F-1 Estudante", label: "F-1", desc: "Visto de Estudante" },
   { id: "Family-Based", label: "Family-Based", desc: "Patrocínio Familiar" },
   { id: "R-1 Religioso", label: "R-1", desc: "Trabalhador Religioso" },
