@@ -100,11 +100,11 @@ export default {
         "pulse-gold": {
           "0%, 100%": {
             transform: "scale(1)",
-            boxShadow: "0 0 0 0 hsl(var(--gold) / 0.65)",
+            boxShadow: "0 0 0 0 hsl(var(--gold) / 0.35)",
           },
           "50%": {
-            transform: "scale(1.15)",
-            boxShadow: "0 0 0 10px hsl(var(--gold) / 0)",
+            transform: "scale(1.05)",
+            boxShadow: "0 0 0 5px hsl(var(--gold) / 0)",
           },
         },
         "step-pop": {
@@ -119,7 +119,7 @@ export default {
         "fade-up": "fade-up 0.6s ease-out forwards",
         "count-up": "count-up 0.5s ease-out forwards",
         "bounce-slow": "bounce-slow 2s ease-in-out infinite",
-        "pulse-gold": "pulse-gold 1.6s ease-out infinite",
+        "pulse-gold": "pulse-gold 2.2s ease-in-out infinite",
         "step-pop": "step-pop 0.45s ease-out",
       },
     },
