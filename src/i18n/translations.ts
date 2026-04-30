@@ -223,14 +223,14 @@ export const translations = {
     titleHighlight: { pt: "mobilidade global", en: "global mobility", es: "movilidad global" },
     cardTitle: { pt: "EUA · Brasil · Europa", en: "USA · Brazil · Europe", es: "EE.UU. · Brasil · Europa" },
     cardDescription: {
-      pt: "Atuação internacional em imigração para os Estados Unidos.",
-      en: "International operations in immigration to the United States.",
-      es: "Actuación internacional en inmigración hacia los Estados Unidos.",
+      pt: "Referência mundial em mobilidade global e direito imigratório.",
+      en: "World reference in global mobility and immigration law.",
+      es: "Referencia mundial en movilidad global y derecho migratorio.",
     },
     floatingCard: {
-      pt: "Atuação internacional em imigração para os Estados Unidos.",
-      en: "International operations in immigration to the United States.",
-      es: "Actuación internacional en inmigración hacia los Estados Unidos.",
+      pt: "Atendimento global, estratégia individualizada.",
+      en: "Global service, individualized strategy.",
+      es: "Atención global, estrategia individualizada.",
     },
     paragraph1: {
       pt: "A <strong>Ebgreen Immigration</strong> é uma assessoria imigratória com atuação internacional, especializada em processos de Green Card por mérito profissional e outras estratégias migratórias para os Estados Unidos. Nossa abordagem combina análise individual do perfil, planejamento estratégico e preparação técnica do caso, com base nos critérios aplicáveis do USCIS.",
