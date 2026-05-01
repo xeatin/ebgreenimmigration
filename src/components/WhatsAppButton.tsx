@@ -206,6 +206,12 @@ type Step = "choose" | "client" | "lead";
 const buildWhatsAppUrl = (message: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
+const openWhatsAppInNewTab = (message: string) => {
+  const url = buildWhatsAppUrl(message);
+  const whatsappWindow = window.open(url, "_blank", "noopener,noreferrer");
+  if (whatsappWindow) whatsappWindow.opener = null;
+};
+
 const WhatsAppButton = () => {
   const { lang } = useLanguage();
   const c = copy[lang];
@@ -244,10 +250,9 @@ const WhatsAppButton = () => {
     if (clientErrors[key]) setClientErrors((prev) => ({ ...prev, [key]: undefined }));
   };
 
-  const handleLeadClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleLeadClick = () => {
     const parsed = leadSchema.safeParse(form);
     if (!parsed.success) {
-      e.preventDefault();
       const fe = parsed.error.flatten().fieldErrors;
       setErrors({
         fullName: fe.fullName?.[0],
@@ -264,6 +269,9 @@ const WhatsAppButton = () => {
     const parts = fullName.split(/\s+/);
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
+    const message = c.greet(fullName, email, visa, education);
+
+    openWhatsAppInNewTab(message);
 
     void supabase.functions.invoke("send-contact-email", {
         body: {
@@ -286,10 +294,9 @@ const WhatsAppButton = () => {
     }, 0);
   };
 
-  const handleClientClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClientClick = () => {
     const parsed = clientSchema.safeParse(client);
     if (!parsed.success) {
-      e.preventDefault();
       const fe = parsed.error.flatten().fieldErrors;
       setClientErrors({
         fullName: fe.fullName?.[0],
@@ -304,6 +311,8 @@ const WhatsAppButton = () => {
     const parts = fullName.split(/\s+/);
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
+
+    openWhatsAppInNewTab(c.clientGreet);
 
     void supabase.functions.invoke("send-contact-email", {
         body: {
@@ -417,13 +426,12 @@ const WhatsAppButton = () => {
                     {c.back}
                   </Button>
                   <Button
-                    asChild
+                    type="button"
                     disabled={submitting}
+                    onClick={handleClientClick}
                     className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
                   >
-                    <a href={buildWhatsAppUrl(c.clientGreet)} target="_blank" rel="noopener noreferrer" onClick={handleClientClick}>
                     {submitting ? c.sending : c.submit}
-                    </a>
                   </Button>
                 </div>
               </div>
@@ -507,13 +515,12 @@ const WhatsAppButton = () => {
                     {c.back}
                   </Button>
                   <Button
-                    asChild
+                    type="button"
                     disabled={submitting}
+                    onClick={handleLeadClick}
                     className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
                   >
-                    <a href={buildWhatsAppUrl(c.greet(form.fullName, form.email, form.visa, form.education))} target="_blank" rel="noopener noreferrer" onClick={handleLeadClick}>
                     {submitting ? c.sending : c.submit}
-                    </a>
                   </Button>
                 </div>
               </div>
