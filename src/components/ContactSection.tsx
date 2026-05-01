@@ -617,7 +617,7 @@ const ContactSection = () => {
             </button>
           </div>
         ) : (
-          <label className="flex items-center gap-2.5 px-3 py-2.5 rounded-md border border-dashed border-border bg-white hover:border-gold hover:bg-gold/5 transition cursor-pointer group">
+          <label className="flex items-center gap-2.5 px-3 py-2.5 rounded-md border border-dashed border-border bg-muted/40 hover:border-gold hover:bg-gold/5 transition cursor-pointer group">
             <Paperclip size={15} className="text-foreground/50 group-hover:text-gold transition shrink-0" />
             <span className="text-sm text-foreground/60 group-hover:text-foreground font-body transition">
               Selecione arquivo
