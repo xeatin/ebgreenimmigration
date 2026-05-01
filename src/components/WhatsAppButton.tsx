@@ -262,9 +262,6 @@ const WhatsAppButton = () => {
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
 
-    // Abre a aba IMEDIATAMENTE (gesto do usuário) para evitar bloqueio de pop-up
-    const popup = window.open("about:blank", "_blank", "noopener,noreferrer");
-
     try {
       await supabase.functions.invoke("send-contact-email", {
         body: {
@@ -290,11 +287,7 @@ const WhatsAppButton = () => {
     setOpen(false);
     resetAll();
 
-    if (popup) {
-      popup.location.href = url;
-    } else {
-      window.location.href = url;
-    }
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   const handleClientSubmit = async (e: React.FormEvent) => {
@@ -315,9 +308,6 @@ const WhatsAppButton = () => {
     const parts = fullName.split(/\s+/);
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
-
-    // Abre a aba IMEDIATAMENTE (gesto do usuário) para evitar bloqueio de pop-up
-    const popup = window.open("about:blank", "_blank", "noopener,noreferrer");
 
     try {
       await supabase.functions.invoke("send-contact-email", {
@@ -343,11 +333,7 @@ const WhatsAppButton = () => {
     setOpen(false);
     resetAll();
 
-    if (popup) {
-      popup.location.href = url;
-    } else {
-      window.location.href = url;
-    }
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   const req = <span className="text-destructive">*</span>;
