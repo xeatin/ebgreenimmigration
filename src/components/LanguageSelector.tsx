@@ -1,10 +1,10 @@
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { Language } from "@/i18n/translations";
 
-const languages: { code: Language; flag: string; label: string }[] = [
-  { code: "pt", flag: "🇧🇷", label: "PT" },
-  { code: "en", flag: "🇺🇸", label: "EN" },
-  { code: "es", flag: "🇪🇸", label: "ES" },
+const languages: { code: Language; country: string; label: string }[] = [
+  { code: "pt", country: "br", label: "PT" },
+  { code: "en", country: "us", label: "EN" },
+  { code: "es", country: "es", label: "ES" },
 ];
 
 const LanguageSelector = ({ darkMode = false }: { darkMode?: boolean }) => {
@@ -16,17 +16,23 @@ const LanguageSelector = ({ darkMode = false }: { darkMode?: boolean }) => {
         <button
           key={l.code}
           onClick={() => setLang(l.code)}
-          className={`flex items-center gap-1 px-2 py-1 rounded-md text-sm font-body transition-colors ${
+          aria-label={l.label}
+          className={`flex items-center justify-center p-1 rounded-md transition-all ${
             l.code === lang
               ? darkMode
-                ? "text-gold bg-green-deep/10"
-                : "text-gold bg-cream/10"
-              : darkMode
-                ? "text-green-deep/60 hover:text-gold hover:bg-green-deep/5"
-                : "text-cream/60 hover:text-gold hover:bg-cream/5"
+                ? "ring-2 ring-gold bg-green-deep/10"
+                : "ring-2 ring-gold bg-cream/10"
+              : "opacity-60 hover:opacity-100"
           }`}
         >
-          <span className="text-base">{l.flag}</span>
+          <img
+            src={`https://flagcdn.com/w40/${l.country}.png`}
+            srcSet={`https://flagcdn.com/w80/${l.country}.png 2x`}
+            width={24}
+            height={18}
+            alt={l.label}
+            className="rounded-sm object-cover w-6 h-[18px]"
+          />
         </button>
       ))}
     </div>
