@@ -935,7 +935,7 @@ const ContactSection = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="h-11 px-7 rounded-md bg-gold text-black font-body font-semibold text-[13px] tracking-[0.02em] hover:bg-[#E4BC78] active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center disabled:opacity-60"
+                    className="btn-highlight h-11 px-7 rounded-md bg-gold text-black font-body font-semibold text-[13px] tracking-[0.02em] hover:bg-[#E4BC78] active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center disabled:opacity-60"
                   >
                     {isSubmitting ? t(s.submitting, lang) : (
                       <>Receber minha avaliação <Send size={14} /></>
