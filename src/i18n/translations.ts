@@ -20,9 +20,9 @@ export const translations = {
   // Hero
   hero: {
     badge: {
-      pt: "89%+ Taxa de Aprovação nos Processos",
-      en: "89%+ Approval Rate on Cases",
-      es: "89%+ Tasa de Aprobación en los Procesos",
+      pt: "+89% Taxa de Aprovação nos Processos",
+      en: "+89% Approval Rate on Cases",
+      es: "+89% Tasa de Aprobación en los Procesos",
     },
     title1: { pt: "Conquiste seu", en: "Get your", es: "Conquiste su" },
     titleHighlight: { pt: "Green Card", en: "Green Card", es: "Green Card" },
