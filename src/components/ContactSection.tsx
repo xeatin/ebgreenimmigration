@@ -324,10 +324,10 @@ const ContactSection = () => {
   const Step1 = (
     <div>
       <h3 className="font-display text-[22px] sm:text-[24px] font-semibold text-foreground leading-tight mb-2">
-        Pronto para iniciar sua <span className="text-gold italic">avaliação?</span>
+        Quer saber se você é <span className="text-gold italic">elegível</span> para o Green Card?
       </h3>
       <p className="text-[13px] text-muted-foreground font-body font-light leading-relaxed mb-6 max-w-[62ch]">
-        Responda algumas perguntas rápidas e receba uma análise preliminar do seu perfil, com orientação clara sobre os caminhos migratórios mais adequados e os próximos passos.
+        Milhares de profissionais já conquistaram o Green Card sem saber que tinham elegibilidade. Leva menos de 2 minutos para descobrir o seu caminho.
       </p>
 
       <p className={labelCls}>Qual visto mais se aproxima do seu objetivo? <span className={reqCls}>*</span></p>
