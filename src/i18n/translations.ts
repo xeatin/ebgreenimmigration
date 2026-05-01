@@ -24,7 +24,7 @@ export const translations = {
       en: "89%+ Approval Rate on Cases",
       es: "89%+ Tasa de Aprobación en los Procesos",
     },
-    title1: { pt: "Conquiste seu", en: "Get your", es: "Conquista tu" },
+    title1: { pt: "Conquiste seu", en: "Get your", es: "Conquiste su" },
     titleHighlight: { pt: "Green Card", en: "Green Card", es: "Green Card" },
     title2: { pt: "com a estratégia certa", en: "with the right strategy", es: "con la estrategia correcta" },
     title3: { pt: "de quem realmente entende.", en: "from those who truly understand.", es: "de quienes realmente entienden." },
@@ -211,7 +211,7 @@ export const translations = {
         desc: {
           pt: "Residência permanente nos Estados Unidos. A EBGreen continua ao seu lado com suporte na chegada, adaptação e próximos passos da sua vida americana.",
           en: "Permanent residence in the United States. EBGreen stays by your side with support on arrival, adaptation, and next steps of your American life.",
-          es: "Residencia permanente en Estados Unidos. EBGreen sigue a tu lado con soporte en la llegada, adaptación y próximos pasos de tu vida americana.",
+          es: "Residencia permanente en Estados Unidos. EBGreen sigue a su lado con soporte en la llegada, adaptación y próximos pasos de su vida americana.",
         },
       },
     ],
@@ -379,7 +379,7 @@ export const translations = {
 
   // CTA
   cta: {
-    title1: { pt: "A conquista do seu", en: "Your", es: "La conquista de tu" },
+    title1: { pt: "A conquista do seu", en: "Your", es: "La conquista de su" },
     titleHighlight: { pt: "Green Card", en: "Green Card", es: "Green Card" },
     title2: { pt: "começa aqui", en: "journey starts here", es: "comienza aquí" },
     subtitle: {
