@@ -279,9 +279,11 @@ const WhatsAppButton = () => {
         },
       }).catch(() => undefined);
 
-    setSubmitting(false);
-    setOpen(false);
-    resetAll();
+    setTimeout(() => {
+      setSubmitting(false);
+      setOpen(false);
+      resetAll();
+    }, 0);
   };
 
   const handleClientClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -317,9 +319,11 @@ const WhatsAppButton = () => {
         },
       }).catch(() => undefined);
 
-    setSubmitting(false);
-    setOpen(false);
-    resetAll();
+    setTimeout(() => {
+      setSubmitting(false);
+      setOpen(false);
+      resetAll();
+    }, 0);
   };
 
   const req = <span className="text-destructive">*</span>;
