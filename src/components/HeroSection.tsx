@@ -80,7 +80,7 @@ const HeroSection = () => {
         >
           {[
             { number: "100%", label: t(s.stats.families, lang) },
-            { number: "89+", label: t(s.stats.success, lang) },
+            { number: "+89%", label: t(s.stats.success, lang) },
             { number: "10+", label: t(s.stats.experience, lang) },
             { number: "", label: t(s.stats.offices, lang), subtitle: t(s.stats.officesSubtitle, lang) },
           ].map((stat) => (
