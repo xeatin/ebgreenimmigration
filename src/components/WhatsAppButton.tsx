@@ -377,7 +377,7 @@ const WhatsAppButton = () => {
                 <DialogDescription className="font-body text-sm">{c.clientDesc}</DialogDescription>
               </DialogHeader>
 
-              <form onSubmit={handleClientSubmit} className="space-y-4">
+              <div className="space-y-4">
                 <div className="space-y-1.5">
                   <Label htmlFor="wa-client-name" className="font-body">{c.fullName} {req}</Label>
                   <Input
@@ -417,14 +417,16 @@ const WhatsAppButton = () => {
                     {c.back}
                   </Button>
                   <Button
-                    type="submit"
+                    asChild
                     disabled={submitting}
                     className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
                   >
+                    <a href={buildWhatsAppUrl(c.clientGreet)} target="_blank" rel="noopener noreferrer" onClick={handleClientClick}>
                     {submitting ? c.sending : c.submit}
+                    </a>
                   </Button>
                 </div>
-              </form>
+              </div>
             </>
           )}
 
@@ -435,7 +437,7 @@ const WhatsAppButton = () => {
                 <DialogDescription className="font-body text-sm">{c.desc}</DialogDescription>
               </DialogHeader>
 
-              <form onSubmit={handleLeadSubmit} className="space-y-4">
+              <div className="space-y-4">
                 <div className="space-y-1.5">
                   <Label htmlFor="wa-name" className="font-body">{c.fullName} {req}</Label>
                   <Input
@@ -505,14 +507,16 @@ const WhatsAppButton = () => {
                     {c.back}
                   </Button>
                   <Button
-                    type="submit"
+                    asChild
                     disabled={submitting}
                     className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
                   >
+                    <a href={buildWhatsAppUrl(c.greet(form.fullName, form.email, form.visa, form.education))} target="_blank" rel="noopener noreferrer" onClick={handleLeadClick}>
                     {submitting ? c.sending : c.submit}
+                    </a>
                   </Button>
                 </div>
-              </form>
+              </div>
             </>
           )}
         </DialogContent>
