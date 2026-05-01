@@ -20,11 +20,11 @@ export const translations = {
   // Hero
   hero: {
     badge: {
-      pt: "89+ Taxa de Aprovação nos Processos",
-      en: "89+ Approval Rate on Cases",
-      es: "89+ Tasa de Aprobación en los Procesos",
+      pt: "89%+ Taxa de Aprovação nos Processos",
+      en: "89%+ Approval Rate on Cases",
+      es: "89%+ Tasa de Aprobación en los Procesos",
     },
-    title1: { pt: "Conquiste seu", en: "Get your", es: "Conquista tu" },
+    title1: { pt: "Conquiste seu", en: "Get your", es: "Conquiste su" },
     titleHighlight: { pt: "Green Card", en: "Green Card", es: "Green Card" },
     title2: { pt: "com a estratégia certa", en: "with the right strategy", es: "con la estrategia correcta" },
     title3: { pt: "de quem realmente entende.", en: "from those who truly understand.", es: "de quienes realmente entienden." },
@@ -78,7 +78,7 @@ export const translations = {
         description: {
           pt: "Acompanhamento em tempo real do seu processo, com equipe bilíngue disponível para você.",
           en: "Real-time tracking of your case, with a bilingual team available for you.",
-          es: "Seguimiento en tiempo real de tu proceso, con equipo bilingüe disponible para ti.",
+          es: "Seguimiento en tiempo real de su proceso, con equipo bilingüe disponible para usted.",
         },
       },
     ],
@@ -107,7 +107,7 @@ export const translations = {
         description: {
           pt: "Green Card sem necessidade de oferta de emprego, voltado a profissionais qualificados com atuação relevante e impacto na sua área.",
           en: "Green Card without a job offer requirement, aimed at qualified professionals with relevant experience and impact in their field.",
-          es: "Green Card sin necesidad de oferta de empleo, dirigido a profesionales calificados con actuación relevante e impacto en su área.",
+          es: "Green Card sin necesidad de oferta de empleo, dirigido a profesionales calificados con trayectoria relevante e impacto en su área.",
         },
       },
       {
@@ -123,7 +123,7 @@ export const translations = {
         description: {
           pt: "Vistos para profissionais qualificados que desejam atuar legalmente nos Estados Unidos, com base em oferta de emprego e requisitos específicos da categoria.",
           en: "Visas for qualified professionals who want to work legally in the United States, based on job offers and category-specific requirements.",
-          es: "Visas para profesionales calificados que desean actuar legalmente en Estados Unidos, con base en oferta de empleo y requisitos específicos de la categoría.",
+          es: "Visas para profesionales calificados que desean trabajar legalmente en Estados Unidos, con base en oferta de empleo y requisitos específicos de la categoría.",
         },
       },
       {
@@ -163,7 +163,7 @@ export const translations = {
         desc: {
           pt: "Análise completa da sua elegibilidade e melhor estratégia migratória.",
           en: "Complete analysis of your eligibility and best immigration strategy.",
-          es: "Análisis completo de tu elegibilidad y mejor estrategia migratoria.",
+          es: "Análisis completo de su elegibilidad y mejor estrategia migratoria.",
         },
       },
       {
@@ -183,7 +183,7 @@ export const translations = {
         },
       },
       {
-        title: { pt: "Petição & Apresentação", en: "Petition & Filing", es: "Petición & Presentación" },
+        title: { pt: "Petição & Protocolo", en: "Petition & Filing", es: "Petición & Protocolo" },
         desc: {
           pt: "Submissão oficial ao USCIS com acompanhamento dedicado.",
           en: "Official submission to USCIS with dedicated follow-up.",
@@ -211,7 +211,7 @@ export const translations = {
         desc: {
           pt: "Residência permanente nos Estados Unidos. A EBGreen continua ao seu lado com suporte na chegada, adaptação e próximos passos da sua vida americana.",
           en: "Permanent residence in the United States. EBGreen stays by your side with support on arrival, adaptation, and next steps of your American life.",
-          es: "Residencia permanente en Estados Unidos. EBGreen sigue a tu lado con soporte en la llegada, adaptación y próximos pasos de tu vida americana.",
+          es: "Residencia permanente en Estados Unidos. EBGreen sigue a su lado con soporte en la llegada, adaptación y próximos pasos de su vida americana.",
         },
       },
     ],
@@ -379,7 +379,7 @@ export const translations = {
 
   // CTA
   cta: {
-    title1: { pt: "A conquista do seu", en: "Your", es: "La conquista de tu" },
+    title1: { pt: "A conquista do seu", en: "Your", es: "La conquista de su" },
     titleHighlight: { pt: "Green Card", en: "Green Card", es: "Green Card" },
     title2: { pt: "começa aqui", en: "journey starts here", es: "comienza aquí" },
     subtitle: {
