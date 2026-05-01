@@ -29,14 +29,29 @@ const leadSchema = z.object({
   education: z.string().trim().min(1, "Obrigatório").max(120),
 });
 
+const clientSchema = z.object({
+  fullName: z.string().trim().min(1, "Obrigatório").max(200),
+  phone: z.string().trim().min(6, "Telefone inválido").max(40),
+});
+
 type FormState = z.infer<typeof leadSchema>;
 type FormErrors = Partial<Record<keyof FormState, string>>;
+type ClientState = z.infer<typeof clientSchema>;
+type ClientErrors = Partial<Record<keyof ClientState, string>>;
 
 const copy = {
   pt: {
     title: "Antes de continuar no WhatsApp",
     desc: "Preencha os dados abaixo para que a BIA inicie seu atendimento com mais rapidez e precisão.",
+    chooseTitle: "Como podemos te ajudar?",
+    chooseDesc: "Selecione uma opção para continuar.",
+    isClient: "Sou cliente Ebgreen",
+    notClient: "Ainda não sou cliente",
+    back: "Voltar",
+    clientTitle: "Atendimento ao cliente",
+    clientDesc: "Confirme seu nome e telefone para abrirmos seu suporte no WhatsApp.",
     fullName: "Nome completo",
+    phone: "Telefone (com DDI/DDD)",
     email: "E-mail",
     visa: "Tipo de visto",
     education: "Formação acadêmica",
@@ -72,11 +87,20 @@ const copy = {
     aria: "Falar pelo WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
       `Olá, meu nome é ${n}.\n\nSeguem minhas informações:\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}\n\nGostaria de mais informações.`,
+    clientGreet: "Olá, sou cliente Ebgreen e preciso de suporte com meu processo.",
   },
   en: {
     title: "Before continuing on WhatsApp",
     desc: "Fill in quickly so BIA can start your service with context.",
+    chooseTitle: "How can we help you?",
+    chooseDesc: "Select an option to continue.",
+    isClient: "I'm an Ebgreen client",
+    notClient: "I'm not a client yet",
+    back: "Back",
+    clientTitle: "Client support",
+    clientDesc: "Confirm your name and phone to open your support on WhatsApp.",
     fullName: "Full name",
+    phone: "Phone (with country code)",
     email: "Email",
     visa: "Visa type",
     education: "Education",
@@ -112,11 +136,20 @@ const copy = {
     aria: "Chat on WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
       `Hello, my name is ${n}.\n\nHere is my information:\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}\n\nI would like more information.`,
+    clientGreet: "Hello, I'm an Ebgreen client and I need support with my case.",
   },
   es: {
     title: "Antes de continuar en WhatsApp",
     desc: "Complete rápidamente para que BIA inicie su atención con contexto.",
+    chooseTitle: "¿Cómo podemos ayudarle?",
+    chooseDesc: "Seleccione una opción para continuar.",
+    isClient: "Soy cliente Ebgreen",
+    notClient: "Aún no soy cliente",
+    back: "Volver",
+    clientTitle: "Atención al cliente",
+    clientDesc: "Confirme su nombre y teléfono para abrir su soporte en WhatsApp.",
     fullName: "Nombre completo",
+    phone: "Teléfono (con código de país)",
     email: "Correo electrónico",
     visa: "Tipo de visa",
     education: "Formación académica",
@@ -152,6 +185,7 @@ const copy = {
     aria: "Hablar por WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
       `Hola, mi nombre es ${n}.\n\nMis datos:\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}\n\nMe gustaría más información.`,
+    clientGreet: "Hola, soy cliente Ebgreen y necesito soporte con mi proceso.",
   },
 };
 
@@ -162,21 +196,52 @@ const initialForm: FormState = {
   education: "",
 };
 
+const initialClient: ClientState = {
+  fullName: "",
+  phone: "",
+};
+
+type Step = "choose" | "client" | "lead";
+
 const WhatsAppButton = () => {
   const { lang } = useLanguage();
   const c = copy[lang];
 
   const [open, setOpen] = useState(false);
+  const [step, setStep] = useState<Step>("choose");
   const [submitting, setSubmitting] = useState(false);
+
   const [form, setForm] = useState<FormState>(initialForm);
   const [errors, setErrors] = useState<FormErrors>({});
+
+  const [client, setClient] = useState<ClientState>(initialClient);
+  const [clientErrors, setClientErrors] = useState<ClientErrors>({});
+
+  const resetAll = () => {
+    setStep("choose");
+    setForm(initialForm);
+    setErrors({});
+    setClient(initialClient);
+    setClientErrors({});
+    setSubmitting(false);
+  };
+
+  const handleOpenChange = (v: boolean) => {
+    setOpen(v);
+    if (!v) resetAll();
+  };
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
     setForm((prev) => ({ ...prev, [key]: value }));
     if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const updateClient = <K extends keyof ClientState>(key: K, value: ClientState[K]) => {
+    setClient((prev) => ({ ...prev, [key]: value }));
+    if (clientErrors[key]) setClientErrors((prev) => ({ ...prev, [key]: undefined }));
+  };
+
+  const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = leadSchema.safeParse(form);
     if (!parsed.success) {
@@ -220,7 +285,53 @@ const WhatsAppButton = () => {
 
     setSubmitting(false);
     setOpen(false);
-    setForm(initialForm);
+    resetAll();
+
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const handleClientSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const parsed = clientSchema.safeParse(client);
+    if (!parsed.success) {
+      const fe = parsed.error.flatten().fieldErrors;
+      setClientErrors({
+        fullName: fe.fullName?.[0],
+        phone: fe.phone?.[0],
+      });
+      return;
+    }
+    setClientErrors({});
+    setSubmitting(true);
+
+    const { fullName, phone } = parsed.data;
+    const parts = fullName.split(/\s+/);
+    const firstName = parts[0] || fullName;
+    const lastName = parts.slice(1).join(" ");
+
+    try {
+      await supabase.functions.invoke("send-contact-email", {
+        body: {
+          source: "whatsapp-popup-client",
+          firstName,
+          lastName,
+          email: "",
+          phoneCode: "",
+          phone,
+          visa: "",
+          education: "",
+          message: "Cliente Ebgreen solicitou suporte via botão WhatsApp",
+        },
+      });
+    } catch {
+      // não bloqueia o redirect
+    }
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(c.clientGreet)}`;
+
+    setSubmitting(false);
+    setOpen(false);
+    resetAll();
 
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -240,82 +351,180 @@ const WhatsAppButton = () => {
         </svg>
       </button>
 
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="font-display text-xl">{c.title}</DialogTitle>
-            <DialogDescription className="font-body text-sm">{c.desc}</DialogDescription>
-          </DialogHeader>
+          {step === "choose" && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="font-display text-xl">{c.chooseTitle}</DialogTitle>
+                <DialogDescription className="font-body text-sm">{c.chooseDesc}</DialogDescription>
+              </DialogHeader>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-1.5">
-              <Label htmlFor="wa-name" className="font-body">{c.fullName} {req}</Label>
-              <Input
-                id="wa-name"
-                value={form.fullName}
-                onChange={(e) => update("fullName", e.target.value)}
-                maxLength={200}
-                autoComplete="name"
-                required
-                aria-invalid={!!errors.fullName}
-              />
-              {errors.fullName && <p className="text-xs text-destructive">{errors.fullName}</p>}
-            </div>
+              <div className="grid gap-3 pt-2">
+                <Button
+                  type="button"
+                  onClick={() => setStep("client")}
+                  className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold h-12"
+                >
+                  {c.isClient}
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setStep("lead")}
+                  className="w-full font-body font-semibold h-12"
+                >
+                  {c.notClient}
+                </Button>
+              </div>
+            </>
+          )}
 
-            <div className="space-y-1.5">
-              <Label htmlFor="wa-email" className="font-body">{c.email} {req}</Label>
-              <Input
-                id="wa-email"
-                type="email"
-                value={form.email}
-                onChange={(e) => update("email", e.target.value)}
-                maxLength={255}
-                autoComplete="email"
-                required
-                aria-invalid={!!errors.email}
-              />
-              {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
-            </div>
+          {step === "client" && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="font-display text-xl">{c.clientTitle}</DialogTitle>
+                <DialogDescription className="font-body text-sm">{c.clientDesc}</DialogDescription>
+              </DialogHeader>
 
-            <div className="space-y-1.5">
-              <Label htmlFor="wa-visa" className="font-body">{c.visa} {req}</Label>
-              <Select value={form.visa} onValueChange={(v) => update("visa", v)}>
-                <SelectTrigger id="wa-visa" aria-invalid={!!errors.visa}>
-                  <SelectValue placeholder={c.visaPlaceholder} />
-                </SelectTrigger>
-                <SelectContent>
-                  {c.visaOptions.map((o) => (
-                    <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.visa && <p className="text-xs text-destructive">{errors.visa}</p>}
-            </div>
+              <form onSubmit={handleClientSubmit} className="space-y-4">
+                <div className="space-y-1.5">
+                  <Label htmlFor="wa-client-name" className="font-body">{c.fullName} {req}</Label>
+                  <Input
+                    id="wa-client-name"
+                    value={client.fullName}
+                    onChange={(e) => updateClient("fullName", e.target.value)}
+                    maxLength={200}
+                    autoComplete="name"
+                    required
+                    aria-invalid={!!clientErrors.fullName}
+                  />
+                  {clientErrors.fullName && <p className="text-xs text-destructive">{clientErrors.fullName}</p>}
+                </div>
 
-            <div className="space-y-1.5">
-              <Label htmlFor="wa-edu" className="font-body">{c.education} {req}</Label>
-              <Select value={form.education} onValueChange={(v) => update("education", v)}>
-                <SelectTrigger id="wa-edu" aria-invalid={!!errors.education}>
-                  <SelectValue placeholder={c.eduPlaceholder} />
-                </SelectTrigger>
-                <SelectContent>
-                  {c.eduOptions.map((o) => (
-                    <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.education && <p className="text-xs text-destructive">{errors.education}</p>}
-            </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="wa-client-phone" className="font-body">{c.phone} {req}</Label>
+                  <Input
+                    id="wa-client-phone"
+                    type="tel"
+                    value={client.phone}
+                    onChange={(e) => updateClient("phone", e.target.value)}
+                    maxLength={40}
+                    autoComplete="tel"
+                    required
+                    aria-invalid={!!clientErrors.phone}
+                  />
+                  {clientErrors.phone && <p className="text-xs text-destructive">{clientErrors.phone}</p>}
+                </div>
 
+                <div className="flex gap-2 pt-1">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setStep("choose")}
+                    className="flex-1 font-body"
+                  >
+                    {c.back}
+                  </Button>
+                  <Button
+                    type="submit"
+                    disabled={submitting}
+                    className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
+                  >
+                    {submitting ? c.sending : c.submit}
+                  </Button>
+                </div>
+              </form>
+            </>
+          )}
 
-            <Button
-              type="submit"
-              disabled={submitting}
-              className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
-            >
-              {submitting ? c.sending : c.submit}
-            </Button>
-          </form>
+          {step === "lead" && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="font-display text-xl">{c.title}</DialogTitle>
+                <DialogDescription className="font-body text-sm">{c.desc}</DialogDescription>
+              </DialogHeader>
+
+              <form onSubmit={handleLeadSubmit} className="space-y-4">
+                <div className="space-y-1.5">
+                  <Label htmlFor="wa-name" className="font-body">{c.fullName} {req}</Label>
+                  <Input
+                    id="wa-name"
+                    value={form.fullName}
+                    onChange={(e) => update("fullName", e.target.value)}
+                    maxLength={200}
+                    autoComplete="name"
+                    required
+                    aria-invalid={!!errors.fullName}
+                  />
+                  {errors.fullName && <p className="text-xs text-destructive">{errors.fullName}</p>}
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label htmlFor="wa-email" className="font-body">{c.email} {req}</Label>
+                  <Input
+                    id="wa-email"
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => update("email", e.target.value)}
+                    maxLength={255}
+                    autoComplete="email"
+                    required
+                    aria-invalid={!!errors.email}
+                  />
+                  {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label htmlFor="wa-visa" className="font-body">{c.visa} {req}</Label>
+                  <Select value={form.visa} onValueChange={(v) => update("visa", v)}>
+                    <SelectTrigger id="wa-visa" aria-invalid={!!errors.visa}>
+                      <SelectValue placeholder={c.visaPlaceholder} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {c.visaOptions.map((o) => (
+                        <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.visa && <p className="text-xs text-destructive">{errors.visa}</p>}
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label htmlFor="wa-edu" className="font-body">{c.education} {req}</Label>
+                  <Select value={form.education} onValueChange={(v) => update("education", v)}>
+                    <SelectTrigger id="wa-edu" aria-invalid={!!errors.education}>
+                      <SelectValue placeholder={c.eduPlaceholder} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {c.eduOptions.map((o) => (
+                        <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.education && <p className="text-xs text-destructive">{errors.education}</p>}
+                </div>
+
+                <div className="flex gap-2 pt-1">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setStep("choose")}
+                    className="flex-1 font-body"
+                  >
+                    {c.back}
+                  </Button>
+                  <Button
+                    type="submit"
+                    disabled={submitting}
+                    className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
+                  >
+                    {submitting ? c.sending : c.submit}
+                  </Button>
+                </div>
+              </form>
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </>
