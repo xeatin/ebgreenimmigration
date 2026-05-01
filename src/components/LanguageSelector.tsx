@@ -29,7 +29,7 @@ const LanguageSelector = ({ darkMode = false }: { darkMode?: boolean }) => {
             width={22}
             height={16}
             alt={l.label}
-            className="rounded-sm object-cover w-[22px] h-4"
+            className="object-cover w-[22px] h-4"
           />
         </button>
       ))}
