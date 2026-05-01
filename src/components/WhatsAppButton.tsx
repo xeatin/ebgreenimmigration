@@ -330,7 +330,10 @@ const WhatsAppButton = () => {
       // não bloqueia o redirect
     }
 
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(c.clientGreet)}`;
+    const isMobileC = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const url = isMobileC
+      ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(c.clientGreet)}`
+      : `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(c.clientGreet)}`;
 
     setSubmitting(false);
     setOpen(false);
