@@ -167,7 +167,7 @@
     );
     background-size: 220% 100%;
     background-position: 120% 0;
-    animation: btn-sheen 6s ease-in-out infinite;
+    animation: btn-sheen 10s ease-in-out infinite;
     pointer-events: none;
     mix-blend-mode: overlay;
   }
