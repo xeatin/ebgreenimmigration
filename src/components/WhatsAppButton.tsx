@@ -207,20 +207,11 @@ const buildWhatsAppUrl = (message: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
 const openWhatsAppExternally = (url: string) => {
-  const popup = window.open(url, "_blank");
-  if (popup) {
-    popup.opener = null;
-    popup.focus();
-    return;
+  try {
+    window.top?.location.assign(url);
+  } catch {
+    window.location.assign(url);
   }
-
-  const link = document.createElement("a");
-  link.href = url;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
 };
 
 const WhatsAppButton = () => {
