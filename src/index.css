@@ -147,9 +147,47 @@
     }
   }
 
+  /* Highlight animado em botões — brilho dourado que varre a superfície */
+  .btn-highlight {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .btn-highlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 35%,
+      hsl(0 0% 100% / 0.55) 50%,
+      transparent 65%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    background-position: 120% 0;
+    animation: btn-sheen 3.2s ease-in-out infinite;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  @keyframes btn-sheen {
+    0%,
+    60%,
+    100% {
+      background-position: 120% 0;
+    }
+    30% {
+      background-position: -20% 0;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .shimmer-gold {
+    .shimmer-gold,
+    .btn-highlight::after {
       animation: none;
     }
   }
 }
+
