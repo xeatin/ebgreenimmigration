@@ -15,7 +15,7 @@ const ContactSchema = z.object({
   education: z.string().max(50),
   experience: z.string().max(50).optional().default(''),
   message: z.string().max(5000).optional().default(''),
-  resumeUrl: z.string().url().max(2048).optional().default(''),
+  resumeUrl: z.union([z.string().url().max(2048), z.literal('')]).optional().default(''),
   resumeName: z.string().max(255).optional().default(''),
 })
 
