@@ -695,7 +695,7 @@ const ContactSection = () => {
               para o <span className="text-gold italic">Green Card?</span>
             </h2>
             <p className="mt-5 text-muted-foreground text-base font-body leading-relaxed max-w-md">
-              Nossa equipe analisa seu perfil e identifica a melhor estratégia para sua aprovação.
+              Seu perfil pode ter mais potencial do que você imagina. Inicie uma avaliação gratuita e descubra possíveis caminhos migratórios para os Estados Unidos.
             </p>
 
             {/* Differentials card */}
