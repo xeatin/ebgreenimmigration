@@ -67,13 +67,9 @@ const CURRENT_STATUS_OPTIONS = [
   "Visto de Estudante (F1/F2)",
   "Visto de Trabalho (H1B/L1/O1)",
   "Visto de Investidor (E2/EB-5)",
-  "Visto de Intercâmbio (J1)",
   "Green Card em processo",
-  "Green Card aprovado",
-  "Cidadão americano",
   "Status irregular / fora de status",
   "Asilo / refúgio",
-  "DACA",
   "Outros",
 ];
 
