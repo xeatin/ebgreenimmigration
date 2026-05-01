@@ -116,4 +116,40 @@
   .bg-gradient-gold {
     background: linear-gradient(135deg, hsl(38 75% 55%), hsl(38 60% 72%));
   }
+
+  /* Shimmer dourado sutil — destaca palavra-chave sem perder sobriedade */
+  .shimmer-gold {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--gold)) 0%,
+      hsl(var(--gold)) 40%,
+      hsl(var(--gold-light)) 50%,
+      hsl(var(--gold)) 60%,
+      hsl(var(--gold)) 100%
+    );
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer-sweep 4.5s ease-in-out infinite;
+  }
+
+  @keyframes shimmer-sweep {
+    0%,
+    70%,
+    100% {
+      background-position: 100% 0;
+    }
+    35% {
+      background-position: -100% 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shimmer-gold {
+      animation: none;
+    }
+  }
 }
