@@ -62,9 +62,18 @@ const COUNTRY_GROUPS: { continent: string; countries: string[] }[] = [
 ];
 
 const CURRENT_STATUS_OPTIONS = [
+  "Ainda no Brasil / país de origem",
   "Visto de Turista (B1/B2)",
   "Visto de Estudante (F1/F2)",
+  "Visto de Trabalho (H1B/L1/O1)",
+  "Visto de Investidor (E2/EB-5)",
+  "Visto de Intercâmbio (J1)",
   "Green Card em processo",
+  "Green Card aprovado",
+  "Cidadão americano",
+  "Status irregular / fora de status",
+  "Asilo / refúgio",
+  "DACA",
   "Outros",
 ];
 
