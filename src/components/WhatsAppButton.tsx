@@ -203,6 +203,26 @@ const initialClient: ClientState = {
 
 type Step = "choose" | "client" | "lead";
 
+const buildWhatsAppUrl = (message: string) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+const openWhatsAppExternally = (url: string) => {
+  const popup = window.open(url, "_blank");
+  if (popup) {
+    popup.opener = null;
+    popup.focus();
+    return;
+  }
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+};
+
 const WhatsAppButton = () => {
   const { lang } = useLanguage();
   const c = copy[lang];
@@ -262,8 +282,7 @@ const WhatsAppButton = () => {
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
 
-    try {
-      await supabase.functions.invoke("send-contact-email", {
+    void supabase.functions.invoke("send-contact-email", {
         body: {
           source: "whatsapp-popup-form",
           firstName,
@@ -275,22 +294,16 @@ const WhatsAppButton = () => {
           education,
           message: "Lead via botão WhatsApp (pop-up)",
         },
-      });
-    } catch {
-      // não bloqueia o redirect
-    }
+      }).catch(() => undefined);
 
     const message = c.greet(fullName, email, visa, education);
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const url = isMobile
-      ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
-      : `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
+    const url = buildWhatsAppUrl(message);
 
     setSubmitting(false);
     setOpen(false);
     resetAll();
 
-    window.open(url, "_blank", "noopener,noreferrer");
+    openWhatsAppExternally(url);
   };
 
   const handleClientSubmit = async (e: React.FormEvent) => {
@@ -312,8 +325,7 @@ const WhatsAppButton = () => {
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
 
-    try {
-      await supabase.functions.invoke("send-contact-email", {
+    void supabase.functions.invoke("send-contact-email", {
         body: {
           source: "whatsapp-popup-client",
           firstName,
@@ -325,21 +337,15 @@ const WhatsAppButton = () => {
           education: "",
           message: "Cliente Ebgreen solicitou suporte via botão WhatsApp",
         },
-      });
-    } catch {
-      // não bloqueia o redirect
-    }
+      }).catch(() => undefined);
 
-    const isMobileC = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const url = isMobileC
-      ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(c.clientGreet)}`
-      : `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(c.clientGreet)}`;
+    const url = buildWhatsAppUrl(c.clientGreet);
 
     setSubmitting(false);
     setOpen(false);
     resetAll();
 
-    window.open(url, "_blank", "noopener,noreferrer");
+    openWhatsAppExternally(url);
   };
 
   const req = <span className="text-destructive">*</span>;
