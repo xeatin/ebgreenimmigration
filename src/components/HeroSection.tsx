@@ -58,7 +58,7 @@ const HeroSection = () => {
           >
             <a
               href="#contato"
-              className="inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity"
+              className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity"
             >
               {t(s.ctaPrimary, lang)}
               <ArrowRight size={20} />
