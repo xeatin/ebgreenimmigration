@@ -206,14 +206,6 @@ type Step = "choose" | "client" | "lead";
 const buildWhatsAppUrl = (message: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
-const openWhatsAppExternally = (url: string) => {
-  try {
-    window.top?.location.assign(url);
-  } catch {
-    window.location.assign(url);
-  }
-};
-
 const WhatsAppButton = () => {
   const { lang } = useLanguage();
   const c = copy[lang];
@@ -252,10 +244,10 @@ const WhatsAppButton = () => {
     if (clientErrors[key]) setClientErrors((prev) => ({ ...prev, [key]: undefined }));
   };
 
-  const handleLeadSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleLeadClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const parsed = leadSchema.safeParse(form);
     if (!parsed.success) {
+      e.preventDefault();
       const fe = parsed.error.flatten().fieldErrors;
       setErrors({
         fullName: fe.fullName?.[0],
@@ -287,20 +279,17 @@ const WhatsAppButton = () => {
         },
       }).catch(() => undefined);
 
-    const message = c.greet(fullName, email, visa, education);
-    const url = buildWhatsAppUrl(message);
-
-    setSubmitting(false);
-    setOpen(false);
-    resetAll();
-
-    openWhatsAppExternally(url);
+    setTimeout(() => {
+      setSubmitting(false);
+      setOpen(false);
+      resetAll();
+    }, 0);
   };
 
-  const handleClientSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleClientClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const parsed = clientSchema.safeParse(client);
     if (!parsed.success) {
+      e.preventDefault();
       const fe = parsed.error.flatten().fieldErrors;
       setClientErrors({
         fullName: fe.fullName?.[0],
@@ -330,13 +319,11 @@ const WhatsAppButton = () => {
         },
       }).catch(() => undefined);
 
-    const url = buildWhatsAppUrl(c.clientGreet);
-
-    setSubmitting(false);
-    setOpen(false);
-    resetAll();
-
-    openWhatsAppExternally(url);
+    setTimeout(() => {
+      setSubmitting(false);
+      setOpen(false);
+      resetAll();
+    }, 0);
   };
 
   const req = <span className="text-destructive">*</span>;
@@ -390,7 +377,7 @@ const WhatsAppButton = () => {
                 <DialogDescription className="font-body text-sm">{c.clientDesc}</DialogDescription>
               </DialogHeader>
 
-              <form onSubmit={handleClientSubmit} className="space-y-4">
+              <div className="space-y-4">
                 <div className="space-y-1.5">
                   <Label htmlFor="wa-client-name" className="font-body">{c.fullName} {req}</Label>
                   <Input
@@ -430,14 +417,16 @@ const WhatsAppButton = () => {
                     {c.back}
                   </Button>
                   <Button
-                    type="submit"
+                    asChild
                     disabled={submitting}
                     className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
                   >
+                    <a href={buildWhatsAppUrl(c.clientGreet)} target="_blank" rel="noopener noreferrer" onClick={handleClientClick}>
                     {submitting ? c.sending : c.submit}
+                    </a>
                   </Button>
                 </div>
-              </form>
+              </div>
             </>
           )}
 
@@ -448,7 +437,7 @@ const WhatsAppButton = () => {
                 <DialogDescription className="font-body text-sm">{c.desc}</DialogDescription>
               </DialogHeader>
 
-              <form onSubmit={handleLeadSubmit} className="space-y-4">
+              <div className="space-y-4">
                 <div className="space-y-1.5">
                   <Label htmlFor="wa-name" className="font-body">{c.fullName} {req}</Label>
                   <Input
@@ -518,14 +507,16 @@ const WhatsAppButton = () => {
                     {c.back}
                   </Button>
                   <Button
-                    type="submit"
+                    asChild
                     disabled={submitting}
                     className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
                   >
+                    <a href={buildWhatsAppUrl(c.greet(form.fullName, form.email, form.visa, form.education))} target="_blank" rel="noopener noreferrer" onClick={handleLeadClick}>
                     {submitting ? c.sending : c.submit}
+                    </a>
                   </Button>
                 </div>
-              </form>
+              </div>
             </>
           )}
         </DialogContent>
