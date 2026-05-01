@@ -19,9 +19,7 @@ const LanguageSelector = ({ darkMode = false }: { darkMode?: boolean }) => {
           aria-label={l.label}
           className={`flex items-center justify-center p-1 rounded-md transition-all ${
             l.code === lang
-              ? darkMode
-                ? "ring-2 ring-gold bg-green-deep/10"
-                : "ring-2 ring-gold bg-cream/10"
+              ? "opacity-100"
               : "opacity-60 hover:opacity-100"
           }`}
         >
