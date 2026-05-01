@@ -41,8 +41,8 @@ type ClientErrors = Partial<Record<keyof ClientState, string>>;
 
 const copy = {
   pt: {
-    title: "Antes de continuar no WhatsApp",
-    desc: "Preencha os dados abaixo para que a BIA inicie seu atendimento com mais rapidez e precisão.",
+    title: "Quer descobrir se você é elegível?",
+    desc: "Responda 4 perguntas rápidas e a BIA inicia agora a sua análise preliminar de elegibilidade para o visto americano.",
     chooseTitle: "Como podemos te ajudar?",
     chooseDesc: "Selecione uma opção para continuar.",
     isClient: "Sou cliente Ebgreen",
@@ -90,8 +90,8 @@ const copy = {
     clientGreet: "Olá, sou cliente Ebgreen e preciso de suporte com meu processo.",
   },
   en: {
-    title: "Before continuing on WhatsApp",
-    desc: "Fill in quickly so BIA can start your service with context.",
+    title: "Curious to know if you qualify?",
+    desc: "Answer 4 quick questions and BIA will start your preliminary U.S. visa eligibility analysis right away.",
     chooseTitle: "How can we help you?",
     chooseDesc: "Select an option to continue.",
     isClient: "I'm an Ebgreen client",
@@ -139,8 +139,8 @@ const copy = {
     clientGreet: "Hello, I'm an Ebgreen client and I need support with my case.",
   },
   es: {
-    title: "Antes de continuar en WhatsApp",
-    desc: "Complete rápidamente para que BIA inicie su atención con contexto.",
+    title: "¿Quiere descubrir si usted califica?",
+    desc: "Responda 4 preguntas rápidas y BIA iniciará ahora su análisis preliminar de elegibilidad para la visa americana.",
     chooseTitle: "¿Cómo podemos ayudarle?",
     chooseDesc: "Seleccione una opción para continuar.",
     isClient: "Soy cliente Ebgreen",
