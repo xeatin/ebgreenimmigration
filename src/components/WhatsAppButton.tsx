@@ -316,6 +316,9 @@ const WhatsAppButton = () => {
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
 
+    // Abre a aba IMEDIATAMENTE (gesto do usuário) para evitar bloqueio de pop-up
+    const popup = window.open("about:blank", "_blank", "noopener,noreferrer");
+
     try {
       await supabase.functions.invoke("send-contact-email", {
         body: {
@@ -340,7 +343,11 @@ const WhatsAppButton = () => {
     setOpen(false);
     resetAll();
 
-    window.open(url, "_blank", "noopener,noreferrer");
+    if (popup) {
+      popup.location.href = url;
+    } else {
+      window.location.href = url;
+    }
   };
 
   const req = <span className="text-destructive">*</span>;
