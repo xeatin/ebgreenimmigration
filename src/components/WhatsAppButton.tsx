@@ -208,8 +208,7 @@ const buildWhatsAppUrl = (message: string) =>
 
 const openWhatsAppInNewTab = (message: string) => {
   const url = buildWhatsAppUrl(message);
-  const whatsappWindow = window.open(url, "_blank", "noopener,noreferrer");
-  if (whatsappWindow) whatsappWindow.opener = null;
+  window.open(url, '_blank', 'noopener,noreferrer');
 };
 
 const WhatsAppButton = () => {
