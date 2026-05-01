@@ -206,11 +206,6 @@ type Step = "choose" | "client" | "lead";
 const buildWhatsAppUrl = (message: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
-const openWhatsAppInNewTab = (message: string) => {
-  const url = buildWhatsAppUrl(message);
-  window.open(url, '_blank', 'noopener,noreferrer');
-};
-
 const WhatsAppButton = () => {
   const { lang } = useLanguage();
   const c = copy[lang];
@@ -270,7 +265,7 @@ const WhatsAppButton = () => {
     const lastName = parts.slice(1).join(" ");
     const message = c.greet(fullName, email, visa, education);
 
-    openWhatsAppInNewTab(message);
+    window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer');
 
     void supabase.functions.invoke("send-contact-email", {
         body: {
@@ -311,7 +306,7 @@ const WhatsAppButton = () => {
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
 
-    openWhatsAppInNewTab(c.clientGreet);
+    window.open(buildWhatsAppUrl(c.clientGreet), '_blank', 'noopener,noreferrer');
 
     void supabase.functions.invoke("send-contact-email", {
         body: {
