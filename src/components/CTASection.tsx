@@ -28,21 +28,13 @@ const CTASection = () => {
             <p className="mt-4 text-primary-foreground/70 text-lg max-w-2xl mx-auto font-body">
               {t(s.subtitle, lang)}
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="mt-8 flex justify-center">
               <a
                 href="#contato"
                 className="inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity"
               >
                 {t(s.ctaPrimary, lang)}
                 <ArrowRight size={20} />
-              </a>
-              <a
-                href="https://wa.me/17712017117"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border border-primary-foreground/30 text-primary-foreground px-8 py-4 rounded-md font-semibold font-body hover:border-gold hover:text-gold transition-colors"
-              >
-                {t(s.ctaSecondary, lang)}
               </a>
             </div>
           </div>
