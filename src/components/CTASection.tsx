@@ -38,6 +38,8 @@ const CTASection = () => {
               </a>
               <a
                 href="https://wa.me/17712017117"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border border-primary-foreground/30 text-primary-foreground px-8 py-4 rounded-md font-semibold font-body hover:border-gold hover:text-gold transition-colors"
               >
                 {t(s.ctaSecondary, lang)}
