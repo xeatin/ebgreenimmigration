@@ -203,6 +203,7 @@ const initialForm: FormState = {
 const initialClient: ClientState = {
   fullName: "",
   phone: "",
+  visa: "",
 };
 
 type Step = "choose" | "client" | "lead";
