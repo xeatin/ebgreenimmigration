@@ -332,7 +332,7 @@ const ContactSection = () => {
         Quer saber se você é <span className="shimmer-gold italic font-semibold">elegível</span> para o Green Card?
       </h3>
       <p className="text-[13px] text-muted-foreground font-body font-light leading-relaxed mb-6 max-w-[62ch]">
-        Milhares de profissionais já conquistaram o Green Card sem saber que tinham elegibilidade. Leva menos de 2 minutos para descobrir o seu caminho.
+        Milhares de profissionais já conquistaram o Green Card sem saber que tinham elegibilidade. Leva menos de 1 minuto para descobrir o seu caminho.
       </p>
 
       <p className={labelCls}>Qual visto mais se aproxima do seu objetivo? <span className={reqCls}>*</span></p>
