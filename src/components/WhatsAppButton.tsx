@@ -137,8 +137,9 @@ const copy = {
     sending: "Sending...",
     aria: "Chat on WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
-      `Hello, my name is ${n}.\n\nHere is my information:\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}\n\nI would like more information.`,
-    clientGreet: "Hello, I'm an Ebgreen client and I need support with my case.",
+      `Hello, I would like more information.\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}`,
+    clientGreet: (n: string, p: string, v: string) =>
+      `Hello, I'm an Ebgreen client and I need support with my case.\n\nHere is my information:\nName: ${n}\nPhone: ${p}\nVisa type: ${v}`,
   },
   es: {
     title: "¿Quiere descubrir si usted califica?",
