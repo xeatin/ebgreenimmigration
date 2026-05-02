@@ -32,6 +32,7 @@ const leadSchema = z.object({
 const clientSchema = z.object({
   fullName: z.string().trim().min(1, "Obrigatório").max(200),
   phone: z.string().trim().min(6, "Telefone inválido").max(40),
+  visa: z.string().trim().min(1, "Obrigatório").max(80),
 });
 
 type FormState = z.infer<typeof leadSchema>;
@@ -86,8 +87,9 @@ const copy = {
     sending: "Enviando...",
     aria: "Falar pelo WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
-      `Olá, meu nome é ${n}.\n\nSeguem minhas informações:\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}\n\nGostaria de mais informações.`,
-    clientGreet: "Olá, sou cliente Ebgreen e preciso de suporte com meu processo.",
+      `Olá, gostaria de mais informações.\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}`,
+    clientGreet: (n: string, p: string, v: string) =>
+      `Olá, sou cliente Ebgreen e preciso de suporte com meu processo.\n\nSeguem minhas informações:\nNome: ${n}\nTelefone: ${p}\nTipo de visto: ${v}`,
   },
   en: {
     title: "Curious to know if you qualify?",
@@ -135,8 +137,9 @@ const copy = {
     sending: "Sending...",
     aria: "Chat on WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
-      `Hello, my name is ${n}.\n\nHere is my information:\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}\n\nI would like more information.`,
-    clientGreet: "Hello, I'm an Ebgreen client and I need support with my case.",
+      `Hello, I would like more information.\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}`,
+    clientGreet: (n: string, p: string, v: string) =>
+      `Hello, I'm an Ebgreen client and I need support with my case.\n\nHere is my information:\nName: ${n}\nPhone: ${p}\nVisa type: ${v}`,
   },
   es: {
     title: "¿Quiere descubrir si usted califica?",
@@ -184,8 +187,9 @@ const copy = {
     sending: "Enviando...",
     aria: "Hablar por WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
-      `Hola, mi nombre es ${n}.\n\nMis datos:\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}\n\nMe gustaría más información.`,
-    clientGreet: "Hola, soy cliente Ebgreen y necesito soporte con mi proceso.",
+      `Hola, me gustaría más información.\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}`,
+    clientGreet: (n: string, p: string, v: string) =>
+      `Hola, soy cliente Ebgreen y necesito soporte con mi proceso.\n\nMis datos:\nNombre: ${n}\nTeléfono: ${p}\nTipo de visa: ${v}`,
   },
 };
 
@@ -199,6 +203,7 @@ const initialForm: FormState = {
 const initialClient: ClientState = {
   fullName: "",
   phone: "",
+  visa: "",
 };
 
 type Step = "choose" | "client" | "lead";
@@ -295,18 +300,19 @@ const WhatsAppButton = () => {
       setClientErrors({
         fullName: fe.fullName?.[0],
         phone: fe.phone?.[0],
+        visa: fe.visa?.[0],
       });
       return;
     }
     setClientErrors({});
     setSubmitting(true);
 
-    const { fullName, phone } = parsed.data;
+    const { fullName, phone, visa } = parsed.data;
     const parts = fullName.split(/\s+/);
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
 
-    window.open(buildWhatsAppUrl(c.clientGreet), '_blank', 'noopener,noreferrer');
+    window.open(buildWhatsAppUrl(c.clientGreet(fullName, phone, visa)), '_blank', 'noopener,noreferrer');
 
     void supabase.functions.invoke("send-contact-email", {
         body: {
@@ -316,7 +322,7 @@ const WhatsAppButton = () => {
           email: "",
           phoneCode: "",
           phone,
-          visa: "",
+          visa,
           education: "",
           message: "Cliente Ebgreen solicitou suporte via botão WhatsApp",
         },
@@ -408,6 +414,21 @@ const WhatsAppButton = () => {
                     aria-invalid={!!clientErrors.phone}
                   />
                   {clientErrors.phone && <p className="text-xs text-destructive">{clientErrors.phone}</p>}
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label htmlFor="wa-client-visa" className="font-body">{c.visa} {req}</Label>
+                  <Select value={client.visa} onValueChange={(v) => updateClient("visa", v)}>
+                    <SelectTrigger id="wa-client-visa" aria-invalid={!!clientErrors.visa}>
+                      <SelectValue placeholder={c.visaPlaceholder} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {c.visaOptions.map((o) => (
+                        <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {clientErrors.visa && <p className="text-xs text-destructive">{clientErrors.visa}</p>}
                 </div>
 
                 <div className="flex gap-2 pt-1">
