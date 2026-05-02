@@ -32,6 +32,7 @@ const leadSchema = z.object({
 const clientSchema = z.object({
   fullName: z.string().trim().min(1, "Obrigatório").max(200),
   phone: z.string().trim().min(6, "Telefone inválido").max(40),
+  visa: z.string().trim().min(1, "Obrigatório").max(80),
 });
 
 type FormState = z.infer<typeof leadSchema>;
