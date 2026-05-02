@@ -300,18 +300,19 @@ const WhatsAppButton = () => {
       setClientErrors({
         fullName: fe.fullName?.[0],
         phone: fe.phone?.[0],
+        visa: fe.visa?.[0],
       });
       return;
     }
     setClientErrors({});
     setSubmitting(true);
 
-    const { fullName, phone } = parsed.data;
+    const { fullName, phone, visa } = parsed.data;
     const parts = fullName.split(/\s+/);
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
 
-    window.open(buildWhatsAppUrl(c.clientGreet), '_blank', 'noopener,noreferrer');
+    window.open(buildWhatsAppUrl(c.clientGreet(fullName, phone, visa)), '_blank', 'noopener,noreferrer');
 
     void supabase.functions.invoke("send-contact-email", {
         body: {
@@ -321,7 +322,7 @@ const WhatsAppButton = () => {
           email: "",
           phoneCode: "",
           phone,
-          visa: "",
+          visa,
           education: "",
           message: "Cliente Ebgreen solicitou suporte via botão WhatsApp",
         },
