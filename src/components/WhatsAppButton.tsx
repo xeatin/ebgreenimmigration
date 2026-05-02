@@ -87,7 +87,7 @@ const copy = {
     sending: "Enviando...",
     aria: "Falar pelo WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
-      `Olá, gostaria de mais informações.\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}`,
+      `Olá! Tenho interesse em migrar para os Estados Unidos e gostaria de uma avaliação gratuita.\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Olá, sou cliente Ebgreen e preciso de suporte com meu processo.\n\nSeguem minhas informações:\nNome: ${n}\nTelefone: ${p}\nTipo de visto: ${v}`,
   },
@@ -137,7 +137,7 @@ const copy = {
     sending: "Sending...",
     aria: "Chat on WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
-      `Hello, I would like more information.\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}`,
+      `Hello! I'm interested in migrating to the United States and would like a free assessment.\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Hello, I'm an Ebgreen client and I need support with my case.\n\nHere is my information:\nName: ${n}\nPhone: ${p}\nVisa type: ${v}`,
   },
@@ -187,7 +187,7 @@ const copy = {
     sending: "Enviando...",
     aria: "Hablar por WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
-      `Hola, me gustaría más información.\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}`,
+      `¡Hola! Tengo interés en migrar a los Estados Unidos y me gustaría una evaluación gratuita.\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Hola, soy cliente Ebgreen y necesito soporte con mi proceso.\n\nMis datos:\nNombre: ${n}\nTeléfono: ${p}\nTipo de visa: ${v}`,
   },
