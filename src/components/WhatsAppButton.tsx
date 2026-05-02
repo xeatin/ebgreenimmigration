@@ -187,8 +187,9 @@ const copy = {
     sending: "Enviando...",
     aria: "Hablar por WhatsApp",
     greet: (n: string, e: string, v: string, ed: string) =>
-      `Hola, mi nombre es ${n}.\n\nMis datos:\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}\n\nMe gustaría más información.`,
-    clientGreet: "Hola, soy cliente Ebgreen y necesito soporte con mi proceso.",
+      `Hola, me gustaría más información.\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}`,
+    clientGreet: (n: string, p: string, v: string) =>
+      `Hola, soy cliente Ebgreen y necesito soporte con mi proceso.\n\nMis datos:\nNombre: ${n}\nTeléfono: ${p}\nTipo de visa: ${v}`,
   },
 };
 
