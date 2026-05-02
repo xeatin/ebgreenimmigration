@@ -416,6 +416,21 @@ const WhatsAppButton = () => {
                   {clientErrors.phone && <p className="text-xs text-destructive">{clientErrors.phone}</p>}
                 </div>
 
+                <div className="space-y-1.5">
+                  <Label htmlFor="wa-client-visa" className="font-body">{c.visa} {req}</Label>
+                  <Select value={client.visa} onValueChange={(v) => updateClient("visa", v)}>
+                    <SelectTrigger id="wa-client-visa" aria-invalid={!!clientErrors.visa}>
+                      <SelectValue placeholder={c.visaPlaceholder} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {c.visaOptions.map((o) => (
+                        <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {clientErrors.visa && <p className="text-xs text-destructive">{clientErrors.visa}</p>}
+                </div>
+
                 <div className="flex gap-2 pt-1">
                   <Button
                     type="button"
