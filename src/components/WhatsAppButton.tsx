@@ -299,17 +299,18 @@ const WhatsAppButton = () => {
         email: fe.email?.[0],
         visa: fe.visa?.[0],
         education: fe.education?.[0],
+        experience: fe.experience?.[0],
       });
       return;
     }
     setErrors({});
     setSubmitting(true);
 
-    const { fullName, email, visa, education } = parsed.data;
+    const { fullName, email, visa, education, experience } = parsed.data;
     const parts = fullName.split(/\s+/);
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
-    const message = c.greet(fullName, email, visa, education);
+    const message = c.greet(fullName, email, visa, education, experience);
 
     window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer');
 
@@ -323,6 +324,7 @@ const WhatsAppButton = () => {
           phone: "",
           visa,
           education,
+          experience,
           message: "Lead via botão WhatsApp (pop-up)",
         },
       }).catch(() => undefined);
