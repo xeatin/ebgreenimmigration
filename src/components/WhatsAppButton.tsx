@@ -298,7 +298,9 @@ const WhatsAppButton = () => {
     const value = (params.get("whatsapp") || params.get("wa") || "").toLowerCase();
     const hash = window.location.hash.toLowerCase();
     const path = window.location.pathname.toLowerCase();
-    const isLeadPath = path === "/lead" || path.endsWith("/lead");
+    const isLeadPath =
+      path === "/lead" || path.endsWith("/lead") ||
+      path === "/form" || path.endsWith("/form");
     const trigger = !!value || hash === "#whatsapp" || hash === "#wa" || isLeadPath;
     if (!trigger) return;
 
