@@ -267,6 +267,7 @@ const WhatsAppButton = () => {
 
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<Step>("choose");
+  const [leadStep, setLeadStep] = useState<1 | 2>(1);
   const [submitting, setSubmitting] = useState(false);
 
   const [form, setForm] = useState<FormState>(initialForm);
@@ -277,6 +278,7 @@ const WhatsAppButton = () => {
 
   const resetAll = () => {
     setStep("choose");
+    setLeadStep(1);
     setForm(initialForm);
     setErrors({});
     setClient(initialClient);
