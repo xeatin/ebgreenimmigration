@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 import {
   Dialog,
@@ -238,6 +238,21 @@ const WhatsAppButton = () => {
     setOpen(v);
     if (!v) resetAll();
   };
+
+  // Deep-link: open WhatsApp form via URL (?whatsapp=1, ?wa=1, ?wa=lead, ?wa=client, or hash #whatsapp)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const value = (params.get("whatsapp") || params.get("wa") || "").toLowerCase();
+    const hash = window.location.hash.toLowerCase();
+    const trigger = !!value || hash === "#whatsapp" || hash === "#wa";
+    if (!trigger) return;
+
+    setOpen(true);
+    if (value === "client" || value === "cliente") setStep("client");
+    else if (value === "lead" || value === "form" || value === "formulario") setStep("lead");
+    else setStep("lead");
+  }, []);
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
     setForm((prev) => ({ ...prev, [key]: value }));
