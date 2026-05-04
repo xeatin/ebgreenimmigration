@@ -27,6 +27,7 @@ const leadSchema = z.object({
   email: z.string().trim().email("E-mail inválido").max(255),
   visa: z.string().trim().min(1, "Obrigatório").max(80),
   education: z.string().trim().min(1, "Obrigatório").max(120),
+  experience: z.string().trim().min(1, "Obrigatório").max(40),
 });
 
 const clientSchema = z.object({
@@ -198,6 +199,7 @@ const initialForm: FormState = {
   email: "",
   visa: "",
   education: "",
+  experience: "",
 };
 
 const initialClient: ClientState = {
