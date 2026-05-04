@@ -94,6 +94,15 @@ const copy = {
     submit: "Continuar para WhatsApp",
     sending: "Enviando...",
     aria: "Falar pelo WhatsApp",
+    next: "Continuar",
+    step1Title: "Conte sobre seu perfil",
+    step1Desc: "3 perguntas rápidas para uma avaliação preliminar.",
+    step2Title: "Quase lá!",
+    step2Desc: "Como podemos te enviar a análise?",
+    scorePending: "Preencha as 3 respostas para ver sua avaliação preliminar.",
+    scoreReady: "Avaliação preliminar do seu perfil",
+    scoreCta: "Continue para receber a análise completa no WhatsApp.",
+    progress: (n: number, t: number) => `Etapa ${n} de ${t}`,
     greet: (n: string, e: string, v: string, ed: string, ex: string) =>
       `Olá! Tenho interesse em migrar para os Estados Unidos e gostaria de uma avaliação gratuita.\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}\nExperiência profissional: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
@@ -151,6 +160,15 @@ const copy = {
     submit: "Continue to WhatsApp",
     sending: "Sending...",
     aria: "Chat on WhatsApp",
+    next: "Continue",
+    step1Title: "Tell us about your profile",
+    step1Desc: "3 quick questions for a preliminary assessment.",
+    step2Title: "Almost there!",
+    step2Desc: "How can we send your analysis?",
+    scorePending: "Answer the 3 questions to see your preliminary assessment.",
+    scoreReady: "Preliminary profile assessment",
+    scoreCta: "Continue to get your full analysis on WhatsApp.",
+    progress: (n: number, t: number) => `Step ${n} of ${t}`,
     greet: (n: string, e: string, v: string, ed: string, ex: string) =>
       `Hello! I'm interested in migrating to the United States and would like a free assessment.\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}\nProfessional experience: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
@@ -208,6 +226,15 @@ const copy = {
     submit: "Continuar a WhatsApp",
     sending: "Enviando...",
     aria: "Hablar por WhatsApp",
+    next: "Continuar",
+    step1Title: "Cuéntanos sobre tu perfil",
+    step1Desc: "3 preguntas rápidas para una evaluación preliminar.",
+    step2Title: "¡Casi listo!",
+    step2Desc: "¿Cómo podemos enviarte el análisis?",
+    scorePending: "Responde las 3 preguntas para ver tu evaluación preliminar.",
+    scoreReady: "Evaluación preliminar de tu perfil",
+    scoreCta: "Continúa para recibir el análisis completo en WhatsApp.",
+    progress: (n: number, t: number) => `Paso ${n} de ${t}`,
     greet: (n: string, e: string, v: string, ed: string, ex: string) =>
       `¡Hola! Tengo interés en migrar a los Estados Unidos y me gustaría una evaluación gratuita.\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}\nExperiencia profesional: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
@@ -240,6 +267,7 @@ const WhatsAppButton = () => {
 
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<Step>("choose");
+  const [leadStep, setLeadStep] = useState<1 | 2>(1);
   const [submitting, setSubmitting] = useState(false);
 
   const [form, setForm] = useState<FormState>(initialForm);
@@ -250,6 +278,7 @@ const WhatsAppButton = () => {
 
   const resetAll = () => {
     setStep("choose");
+    setLeadStep(1);
     setForm(initialForm);
     setErrors({});
     setClient(initialClient);
@@ -493,109 +522,219 @@ const WhatsAppButton = () => {
             </>
           )}
 
-          {step === "lead" && (
+          {step === "lead" && (() => {
+            const step1Filled = !!form.visa && !!form.education && !!form.experience;
+            // Simple preliminary score (0-5 stars)
+            let score = 0;
+            if (form.visa) {
+              const high = ["EB-1A", "EB-2 NIW", "O-1", "L-1A", "EB-5"];
+              score += high.includes(form.visa) ? 2 : 1;
+            }
+            if (form.education) {
+              const top = ["Doutorado", "PhD", "Doctorado", "Mestrado", "Master's", "Maestría", "Pós-graduação", "Postgraduate", "Posgrado"];
+              score += top.includes(form.education) ? 2 : 1;
+            }
+            if (form.experience) {
+              if (form.experience.startsWith("Mais") || form.experience.startsWith("More") || form.experience.startsWith("Más")) score += 1;
+              else if (form.experience.startsWith("De") || form.experience.startsWith("5")) score += 1;
+            }
+            const stars = Math.min(5, score);
+            const handleNext = () => {
+              const partial = {
+                visa: !form.visa ? "Obrigatório" : undefined,
+                education: !form.education ? "Obrigatório" : undefined,
+                experience: !form.experience ? "Obrigatório" : undefined,
+              };
+              if (partial.visa || partial.education || partial.experience) {
+                setErrors((prev) => ({ ...prev, ...partial }));
+                return;
+              }
+              setErrors({});
+              setLeadStep(2);
+            };
+            return (
             <>
               <DialogHeader>
-                <DialogTitle className="font-display text-xl">{c.title}</DialogTitle>
-                <DialogDescription className="font-body text-sm">{c.desc}</DialogDescription>
+                <DialogTitle className="font-display text-xl">
+                  {leadStep === 1 ? c.step1Title : c.step2Title}
+                </DialogTitle>
+                <DialogDescription className="font-body text-sm">
+                  {leadStep === 1 ? c.step1Desc : c.step2Desc}
+                </DialogDescription>
               </DialogHeader>
 
-              <div className="space-y-4">
-                <div className="space-y-1.5">
-                  <Label htmlFor="wa-name" className="font-body">{c.fullName} {req}</Label>
-                  <Input
-                    id="wa-name"
-                    value={form.fullName}
-                    onChange={(e) => update("fullName", e.target.value)}
-                    maxLength={200}
-                    autoComplete="name"
-                    required
-                    aria-invalid={!!errors.fullName}
+              {/* Progress */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] uppercase tracking-wider font-body text-foreground/50">
+                    {c.progress(leadStep, 2)}
+                  </span>
+                  <span className="text-[11px] font-body text-foreground/50">
+                    {leadStep === 1 ? "50%" : "100%"}
+                  </span>
+                </div>
+                <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gold transition-all duration-500 ease-out"
+                    style={{ width: leadStep === 1 ? "50%" : "100%" }}
                   />
-                  {errors.fullName && <p className="text-xs text-destructive">{errors.fullName}</p>}
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label htmlFor="wa-email" className="font-body">{c.email} {req}</Label>
-                  <Input
-                    id="wa-email"
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => update("email", e.target.value)}
-                    maxLength={255}
-                    autoComplete="email"
-                    required
-                    aria-invalid={!!errors.email}
-                  />
-                  {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label htmlFor="wa-visa" className="font-body">{c.visa} {req}</Label>
-                  <Select value={form.visa} onValueChange={(v) => update("visa", v)}>
-                    <SelectTrigger id="wa-visa" aria-invalid={!!errors.visa}>
-                      <SelectValue placeholder={c.visaPlaceholder} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {c.visaOptions.map((o) => (
-                        <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.visa && <p className="text-xs text-destructive">{errors.visa}</p>}
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label htmlFor="wa-edu" className="font-body">{c.education} {req}</Label>
-                  <Select value={form.education} onValueChange={(v) => update("education", v)}>
-                    <SelectTrigger id="wa-edu" aria-invalid={!!errors.education}>
-                      <SelectValue placeholder={c.eduPlaceholder} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {c.eduOptions.map((o) => (
-                        <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.education && <p className="text-xs text-destructive">{errors.education}</p>}
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label htmlFor="wa-exp" className="font-body">{c.experience} {req}</Label>
-                  <Select value={form.experience} onValueChange={(v) => update("experience", v)}>
-                    <SelectTrigger id="wa-exp" aria-invalid={!!errors.experience}>
-                      <SelectValue placeholder={c.expPlaceholder} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {c.expOptions.map((o) => (
-                        <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.experience && <p className="text-xs text-destructive">{errors.experience}</p>}
-                </div>
-
-                <div className="flex gap-2 pt-1">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setStep("choose")}
-                    className="flex-1 font-body"
-                  >
-                    {c.back}
-                  </Button>
-                  <Button
-                    type="button"
-                    disabled={submitting}
-                    onClick={handleLeadClick}
-                    className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
-                  >
-                    {submitting ? c.sending : c.submit}
-                  </Button>
                 </div>
               </div>
+
+              {leadStep === 1 && (
+                <div className="space-y-4 animate-fade-in">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="wa-visa" className="font-body">{c.visa} {req}</Label>
+                    <Select value={form.visa} onValueChange={(v) => update("visa", v)}>
+                      <SelectTrigger id="wa-visa" aria-invalid={!!errors.visa}>
+                        <SelectValue placeholder={c.visaPlaceholder} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {c.visaOptions.map((o) => (
+                          <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {errors.visa && <p className="text-xs text-destructive">{errors.visa}</p>}
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <Label htmlFor="wa-edu" className="font-body">{c.education} {req}</Label>
+                    <Select value={form.education} onValueChange={(v) => update("education", v)}>
+                      <SelectTrigger id="wa-edu" aria-invalid={!!errors.education}>
+                        <SelectValue placeholder={c.eduPlaceholder} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {c.eduOptions.map((o) => (
+                          <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {errors.education && <p className="text-xs text-destructive">{errors.education}</p>}
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <Label htmlFor="wa-exp" className="font-body">{c.experience} {req}</Label>
+                    <Select value={form.experience} onValueChange={(v) => update("experience", v)}>
+                      <SelectTrigger id="wa-exp" aria-invalid={!!errors.experience}>
+                        <SelectValue placeholder={c.expPlaceholder} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {c.expOptions.map((o) => (
+                          <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {errors.experience && <p className="text-xs text-destructive">{errors.experience}</p>}
+                  </div>
+
+                  {/* Score preview */}
+                  <div
+                    className={`rounded-md border p-3 transition-all duration-300 ${
+                      step1Filled
+                        ? "bg-gold/10 border-gold/40 animate-fade-in"
+                        : "bg-muted/40 border-border"
+                    }`}
+                  >
+                    {step1Filled ? (
+                      <>
+                        <p className="text-[11px] uppercase tracking-wider font-body text-foreground/60 mb-1">
+                          {c.scoreReady}
+                        </p>
+                        <div className="flex items-center gap-1 mb-1.5">
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <span
+                              key={i}
+                              className={`text-lg leading-none transition-colors ${
+                                i < stars ? "text-gold" : "text-foreground/20"
+                              }`}
+                            >
+                              ★
+                            </span>
+                          ))}
+                        </div>
+                        <p className="text-xs font-body text-foreground/70">{c.scoreCta}</p>
+                      </>
+                    ) : (
+                      <p className="text-xs font-body text-foreground/55">{c.scorePending}</p>
+                    )}
+                  </div>
+
+                  <div className="flex gap-2 pt-1">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setStep("choose")}
+                      className="flex-1 font-body"
+                    >
+                      {c.back}
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={handleNext}
+                      disabled={!step1Filled}
+                      className="flex-1 bg-gold hover:bg-gold/90 text-green-deep font-body font-semibold disabled:opacity-50"
+                    >
+                      {c.next}
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {leadStep === 2 && (
+                <div className="space-y-4 animate-fade-in">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="wa-name" className="font-body">{c.fullName} {req}</Label>
+                    <Input
+                      id="wa-name"
+                      value={form.fullName}
+                      onChange={(e) => update("fullName", e.target.value)}
+                      maxLength={200}
+                      autoComplete="name"
+                      required
+                      aria-invalid={!!errors.fullName}
+                    />
+                    {errors.fullName && <p className="text-xs text-destructive">{errors.fullName}</p>}
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <Label htmlFor="wa-email" className="font-body">{c.email} {req}</Label>
+                    <Input
+                      id="wa-email"
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => update("email", e.target.value)}
+                      maxLength={255}
+                      autoComplete="email"
+                      required
+                      aria-invalid={!!errors.email}
+                    />
+                    {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+                  </div>
+
+                  <div className="flex gap-2 pt-1">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setLeadStep(1)}
+                      className="flex-1 font-body"
+                    >
+                      {c.back}
+                    </Button>
+                    <Button
+                      type="button"
+                      disabled={submitting}
+                      onClick={handleLeadClick}
+                      className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
+                    >
+                      {submitting ? c.sending : c.submit}
+                    </Button>
+                  </div>
+                </div>
+              )}
             </>
-          )}
+            );
+          })()}
         </DialogContent>
       </Dialog>
     </>
