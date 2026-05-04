@@ -94,6 +94,15 @@ const copy = {
     submit: "Continuar para WhatsApp",
     sending: "Enviando...",
     aria: "Falar pelo WhatsApp",
+    next: "Continuar",
+    step1Title: "Conte sobre seu perfil",
+    step1Desc: "3 perguntas rápidas para uma avaliação preliminar.",
+    step2Title: "Quase lá!",
+    step2Desc: "Como podemos te enviar a análise?",
+    scorePending: "Preencha as 3 respostas para ver sua avaliação preliminar.",
+    scoreReady: "Avaliação preliminar do seu perfil",
+    scoreCta: "Continue para receber a análise completa no WhatsApp.",
+    progress: (n: number, t: number) => `Etapa ${n} de ${t}`,
     greet: (n: string, e: string, v: string, ed: string, ex: string) =>
       `Olá! Tenho interesse em migrar para os Estados Unidos e gostaria de uma avaliação gratuita.\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}\nExperiência profissional: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
