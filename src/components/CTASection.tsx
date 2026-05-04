@@ -22,7 +22,7 @@ const CTASection = () => {
           <div className="relative">
             <h2 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground leading-tight">
               {t(s.title1, lang)}{" "}
-              <span className="text-gradient-gold">{t(s.titleHighlight, lang)}</span>{" "}
+              <span className="shimmer-gold italic font-semibold drop-shadow-[0_0_18px_hsl(var(--gold)/0.55)]">{t(s.titleHighlight, lang)}</span>{" "}
               {t(s.title2, lang)}
             </h2>
             <p className="mt-4 text-primary-foreground/70 text-lg max-w-2xl mx-auto font-body">
