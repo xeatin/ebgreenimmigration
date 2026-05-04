@@ -170,7 +170,7 @@ const copy = {
     scoreCta: "Continue to get your full analysis on WhatsApp.",
     progress: (n: number, t: number) => `Step ${n} of ${t}`,
     greet: (n: string, e: string, v: string, ed: string, ex: string) =>
-      `Hello! I'm interested in migrating to the United States and would like a free assessment.\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}\nProfessional experience: ${ex}`,
+      `Hello! I came from Instagram and I'm interested in migrating to the United States.\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}\nProfessional experience: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Hello, I'm an Ebgreen client and I need support with my case.\n\nHere is my information:\nName: ${n}\nPhone: ${p}\nVisa type: ${v}`,
   },
@@ -236,7 +236,7 @@ const copy = {
     scoreCta: "Continúa para recibir el análisis completo en WhatsApp.",
     progress: (n: number, t: number) => `Paso ${n} de ${t}`,
     greet: (n: string, e: string, v: string, ed: string, ex: string) =>
-      `¡Hola! Tengo interés en migrar a los Estados Unidos y me gustaría una evaluación gratuita.\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}\nExperiencia profesional: ${ex}`,
+      `¡Hola! Vine por Instagram y tengo interés en migrar a los Estados Unidos.\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}\nExperiencia profesional: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Hola, soy cliente Ebgreen y necesito soporte con mi proceso.\n\nMis datos:\nNombre: ${n}\nTeléfono: ${p}\nTipo de visa: ${v}`,
   },
