@@ -119,6 +119,7 @@ const copy = {
     back: "Back",
     clientTitle: "Client support",
     clientDesc: "Confirm your name and phone to open your support on WhatsApp.",
+    clientOnlyWarning: "Note: this channel is exclusively for Ebgreen clients with an active case. If you are not a client yet, please go back and choose \"I'm not a client yet\".",
     fullName: "Full name",
     phone: "Phone (with country code)",
     email: "Email",
