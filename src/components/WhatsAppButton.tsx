@@ -461,6 +461,17 @@ const WhatsAppButton = () => {
               </DialogHeader>
 
               <div className="space-y-4">
+                <div
+                  role="alert"
+                  className="flex gap-2 rounded-md border border-gold/40 bg-gold/10 p-3 text-xs font-body text-foreground"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-gold">
+                    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+                    <line x1="12" y1="9" x2="12" y2="13" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                  </svg>
+                  <span>{c.clientOnlyWarning}</span>
+                </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="wa-client-name" className="font-body">{c.fullName} {req}</Label>
                   <Input
