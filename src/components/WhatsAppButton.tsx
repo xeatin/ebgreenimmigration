@@ -297,12 +297,13 @@ const WhatsAppButton = () => {
     const params = new URLSearchParams(window.location.search);
     const value = (params.get("whatsapp") || params.get("wa") || "").toLowerCase();
     const hash = window.location.hash.toLowerCase();
-    const trigger = !!value || hash === "#whatsapp" || hash === "#wa";
+    const path = window.location.pathname.toLowerCase();
+    const isLeadPath = path === "/lead" || path.endsWith("/lead");
+    const trigger = !!value || hash === "#whatsapp" || hash === "#wa" || isLeadPath;
     if (!trigger) return;
 
     setOpen(true);
     if (value === "client" || value === "cliente") setStep("client");
-    else if (value === "lead" || value === "form" || value === "formulario") setStep("lead");
     else setStep("lead");
   }, []);
 
