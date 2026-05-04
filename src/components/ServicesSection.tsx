@@ -52,9 +52,12 @@ const ServicesSection = () => {
             viewport={{ once: true }}
             className="relative md:col-span-2 lg:col-span-2"
           >
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 bg-gradient-gold text-green-deep text-xs font-bold font-body px-4 py-1 rounded-full flex items-center gap-1.5 whitespace-nowrap">
-              <Star size={12} className="fill-green-deep" />
-              {t(s.mostPopular, lang)}
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 whitespace-nowrap">
+              <span className="absolute inset-0 rounded-full bg-gold/60 animate-ping" aria-hidden="true" />
+              <span className="relative bg-gradient-gold text-green-deep text-xs font-bold font-body px-4 py-1 rounded-full flex items-center gap-1.5 shadow-[0_0_20px_hsl(var(--gold)/0.6)]">
+                <Star size={12} className="fill-green-deep" />
+                {t(s.mostPopular, lang)}
+              </span>
             </div>
             <div className="grid md:grid-cols-2 gap-4 border border-gold/30 rounded-xl p-3 pt-5 bg-gold/5 h-full">
               {highlightedServices.map((service, i) => (
