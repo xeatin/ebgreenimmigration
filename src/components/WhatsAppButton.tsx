@@ -27,6 +27,7 @@ const leadSchema = z.object({
   email: z.string().trim().email("E-mail inválido").max(255),
   visa: z.string().trim().min(1, "Obrigatório").max(80),
   education: z.string().trim().min(1, "Obrigatório").max(120),
+  experience: z.string().trim().min(1, "Obrigatório").max(40),
 });
 
 const clientSchema = z.object({
@@ -56,8 +57,10 @@ const copy = {
     email: "E-mail",
     visa: "Tipo de visto",
     education: "Formação acadêmica",
+    experience: "Experiência profissional",
     visaPlaceholder: "Selecione",
     eduPlaceholder: "Selecione",
+    expPlaceholder: "Selecione o tempo",
     visaOptions: [
       { value: "EB-1A", label: "EB-1A" },
       { value: "EB-2 NIW", label: "EB-2 NIW" },
@@ -83,11 +86,17 @@ const copy = {
       { value: "Mestrado", label: "Mestrado" },
       { value: "Doutorado", label: "Doutorado" },
     ],
+    expOptions: [
+      { value: "0-2 anos", label: "0–2 anos" },
+      { value: "3-5 anos", label: "3–5 anos" },
+      { value: "6-10 anos", label: "6–10 anos" },
+      { value: "10+ anos", label: "10+ anos" },
+    ],
     submit: "Continuar para WhatsApp",
     sending: "Enviando...",
     aria: "Falar pelo WhatsApp",
-    greet: (n: string, e: string, v: string, ed: string) =>
-      `Olá! Tenho interesse em migrar para os Estados Unidos e gostaria de uma avaliação gratuita.\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}`,
+    greet: (n: string, e: string, v: string, ed: string, ex: string) =>
+      `Olá! Tenho interesse em migrar para os Estados Unidos e gostaria de uma avaliação gratuita.\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}\nExperiência profissional: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Olá, sou cliente Ebgreen e preciso de suporte com meu processo.\n\nSeguem minhas informações:\nNome: ${n}\nTelefone: ${p}\nTipo de visto: ${v}`,
   },
@@ -106,8 +115,10 @@ const copy = {
     email: "Email",
     visa: "Visa type",
     education: "Education",
+    experience: "Professional experience",
     visaPlaceholder: "Select",
     eduPlaceholder: "Select",
+    expPlaceholder: "Select years",
     visaOptions: [
       { value: "EB-1A", label: "EB-1A" },
       { value: "EB-2 NIW", label: "EB-2 NIW" },
@@ -133,11 +144,17 @@ const copy = {
       { value: "Master's", label: "Master's Degree" },
       { value: "PhD", label: "PhD" },
     ],
+    expOptions: [
+      { value: "0-2 years", label: "0–2 years" },
+      { value: "3-5 years", label: "3–5 years" },
+      { value: "6-10 years", label: "6–10 years" },
+      { value: "10+ years", label: "10+ years" },
+    ],
     submit: "Continue to WhatsApp",
     sending: "Sending...",
     aria: "Chat on WhatsApp",
-    greet: (n: string, e: string, v: string, ed: string) =>
-      `Hello! I'm interested in migrating to the United States and would like a free assessment.\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}`,
+    greet: (n: string, e: string, v: string, ed: string, ex: string) =>
+      `Hello! I'm interested in migrating to the United States and would like a free assessment.\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}\nProfessional experience: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Hello, I'm an Ebgreen client and I need support with my case.\n\nHere is my information:\nName: ${n}\nPhone: ${p}\nVisa type: ${v}`,
   },
@@ -156,8 +173,10 @@ const copy = {
     email: "Correo electrónico",
     visa: "Tipo de visa",
     education: "Formación académica",
+    experience: "Experiencia profesional",
     visaPlaceholder: "Seleccione",
     eduPlaceholder: "Seleccione",
+    expPlaceholder: "Seleccione el tiempo",
     visaOptions: [
       { value: "EB-1A", label: "EB-1A" },
       { value: "EB-2 NIW", label: "EB-2 NIW" },
@@ -183,11 +202,17 @@ const copy = {
       { value: "Maestría", label: "Maestría" },
       { value: "Doctorado", label: "Doctorado" },
     ],
+    expOptions: [
+      { value: "0-2 años", label: "0–2 años" },
+      { value: "3-5 años", label: "3–5 años" },
+      { value: "6-10 años", label: "6–10 años" },
+      { value: "10+ años", label: "10+ años" },
+    ],
     submit: "Continuar a WhatsApp",
     sending: "Enviando...",
     aria: "Hablar por WhatsApp",
-    greet: (n: string, e: string, v: string, ed: string) =>
-      `¡Hola! Tengo interés en migrar a los Estados Unidos y me gustaría una evaluación gratuita.\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}`,
+    greet: (n: string, e: string, v: string, ed: string, ex: string) =>
+      `¡Hola! Tengo interés en migrar a los Estados Unidos y me gustaría una evaluación gratuita.\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}\nExperiencia profesional: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Hola, soy cliente Ebgreen y necesito soporte con mi proceso.\n\nMis datos:\nNombre: ${n}\nTeléfono: ${p}\nTipo de visa: ${v}`,
   },
@@ -198,6 +223,7 @@ const initialForm: FormState = {
   email: "",
   visa: "",
   education: "",
+  experience: "",
 };
 
 const initialClient: ClientState = {
@@ -273,17 +299,18 @@ const WhatsAppButton = () => {
         email: fe.email?.[0],
         visa: fe.visa?.[0],
         education: fe.education?.[0],
+        experience: fe.experience?.[0],
       });
       return;
     }
     setErrors({});
     setSubmitting(true);
 
-    const { fullName, email, visa, education } = parsed.data;
+    const { fullName, email, visa, education, experience } = parsed.data;
     const parts = fullName.split(/\s+/);
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
-    const message = c.greet(fullName, email, visa, education);
+    const message = c.greet(fullName, email, visa, education, experience);
 
     window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer');
 
@@ -297,6 +324,7 @@ const WhatsAppButton = () => {
           phone: "",
           visa,
           education,
+          experience,
           message: "Lead via botão WhatsApp (pop-up)",
         },
       }).catch(() => undefined);
@@ -533,6 +561,21 @@ const WhatsAppButton = () => {
                     </SelectContent>
                   </Select>
                   {errors.education && <p className="text-xs text-destructive">{errors.education}</p>}
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label htmlFor="wa-exp" className="font-body">{c.experience} {req}</Label>
+                  <Select value={form.experience} onValueChange={(v) => update("experience", v)}>
+                    <SelectTrigger id="wa-exp" aria-invalid={!!errors.experience}>
+                      <SelectValue placeholder={c.expPlaceholder} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {c.expOptions.map((o) => (
+                        <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.experience && <p className="text-xs text-destructive">{errors.experience}</p>}
                 </div>
 
                 <div className="flex gap-2 pt-1">
