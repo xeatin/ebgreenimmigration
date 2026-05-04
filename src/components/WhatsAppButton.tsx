@@ -104,7 +104,7 @@ const copy = {
     scoreCta: "Continue para receber a análise completa no WhatsApp.",
     progress: (n: number, t: number) => `Etapa ${n} de ${t}`,
     greet: (n: string, e: string, v: string, ed: string, ex: string) =>
-      `Olá! Tenho interesse em migrar para os Estados Unidos e gostaria de uma avaliação gratuita.\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}\nExperiência profissional: ${ex}`,
+      `Olá! Vim pelo Instagram e tenho interesse em migrar para os Estados Unidos.\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}\nExperiência profissional: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Olá, sou cliente Ebgreen e preciso de suporte com meu processo.\n\nSeguem minhas informações:\nNome: ${n}\nTelefone: ${p}\nTipo de visto: ${v}`,
   },
