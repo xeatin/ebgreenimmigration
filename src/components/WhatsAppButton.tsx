@@ -52,6 +52,7 @@ const copy = {
     back: "Voltar",
     clientTitle: "Atendimento ao cliente",
     clientDesc: "Confirme seu nome e telefone para abrirmos seu suporte no WhatsApp.",
+    clientOnlyWarning: "Atenção: este canal é exclusivo para clientes Ebgreen com processo ativo. Se você ainda não é cliente, volte e selecione \"Ainda não sou cliente\".",
     fullName: "Nome completo",
     phone: "Telefone (com DDI/DDD)",
     email: "E-mail",
@@ -118,6 +119,7 @@ const copy = {
     back: "Back",
     clientTitle: "Client support",
     clientDesc: "Confirm your name and phone to open your support on WhatsApp.",
+    clientOnlyWarning: "Note: this channel is exclusively for Ebgreen clients with an active case. If you are not a client yet, please go back and choose \"I'm not a client yet\".",
     fullName: "Full name",
     phone: "Phone (with country code)",
     email: "Email",
@@ -184,6 +186,7 @@ const copy = {
     back: "Volver",
     clientTitle: "Atención al cliente",
     clientDesc: "Confirme su nombre y teléfono para abrir su soporte en WhatsApp.",
+    clientOnlyWarning: "Atención: este canal es exclusivo para clientes Ebgreen con proceso activo. Si aún no es cliente, vuelva y seleccione \"Aún no soy cliente\".",
     fullName: "Nombre completo",
     phone: "Teléfono (con código de país)",
     email: "Correo electrónico",
@@ -458,6 +461,17 @@ const WhatsAppButton = () => {
               </DialogHeader>
 
               <div className="space-y-4">
+                <div
+                  role="alert"
+                  className="flex gap-2 rounded-md border border-gold/40 bg-gold/10 p-3 text-xs font-body text-foreground"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-gold">
+                    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+                    <line x1="12" y1="9" x2="12" y2="13" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                  </svg>
+                  <span>{c.clientOnlyWarning}</span>
+                </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="wa-client-name" className="font-body">{c.fullName} {req}</Label>
                   <Input
