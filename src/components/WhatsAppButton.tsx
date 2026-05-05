@@ -427,18 +427,18 @@ const WhatsAppButton = () => {
               <div className="grid gap-3 pt-2">
                 <Button
                   type="button"
-                  onClick={() => setStep("client")}
+                  onClick={() => setStep("lead")}
                   className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold h-12"
                 >
-                  {c.isClient}
+                  {c.notClient}
                 </Button>
                 <Button
                   type="button"
                   variant="outline"
-                  onClick={() => setStep("lead")}
+                  onClick={() => setStep("client")}
                   className="w-full font-body font-semibold h-12"
                 >
-                  {c.notClient}
+                  {c.isClient}
                 </Button>
               </div>
             </>
