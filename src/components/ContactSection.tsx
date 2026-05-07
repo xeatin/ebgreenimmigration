@@ -690,14 +690,7 @@ const ContactSection = () => {
 
   const Step4 = (
     <div>
-      <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
-        Contexto do <span className="text-gold italic">seu caso</span>
-      </h3>
-      <p className="text-[13px] text-foreground/55 font-body font-light mb-5">
-        Informações complementares para uma análise mais precisa do seu perfil.
-      </p>
-
-      {/* Sugestão preliminar baseada nas respostas */}
+      {/* Sugestão preliminar baseada nas suas respostas */}
       <AnimatePresence>
         {suggestions.length > 0 && (
           <motion.div
@@ -706,12 +699,13 @@ const ContactSection = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="mb-5 relative rounded-xl border border-gold/40 bg-gradient-to-br from-gold/[0.08] via-white to-white p-4 sm:p-5 overflow-hidden"
+            className="mb-5 relative rounded-xl border border-gold/40 bg-gradient-to-br from-gold/[0.08] via-white to-white p-4 sm:p-5 overflow-hidden shadow-[0_0_24px_rgba(0,0,0,0.04)]"
           >
             <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
+            <span className="absolute inset-0 rounded-xl ring-1 ring-inset ring-gold/20 animate-pulse pointer-events-none" />
             <div className="flex items-start gap-3">
-              <span className="w-9 h-9 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center text-gold shrink-0">
-                <Sparkles size={16} />
+              <span className="w-9 h-9 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center text-gold shrink-0 animate-pulse">
+                <Sparkles size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
               </span>
               <div className="min-w-0 flex-1">
                 <p className="text-[10px] tracking-[0.18em] uppercase font-body font-semibold text-gold mb-2">
