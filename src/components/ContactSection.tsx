@@ -212,7 +212,7 @@ const ContactSection = () => {
     }
     setErrors({});
     setStep((p) => {
-      const next = Math.min(4, p + 1);
+      const next = Math.min(3, p + 1);
       if (p === 2 && next === 3 && !formData.visa) {
         const sug = suggestVisa(formData);
         if (sug) setFormData((d) => ({ ...d, visa: sug.id }));
