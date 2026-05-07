@@ -503,7 +503,7 @@ const ContactSection = () => {
           style={selectBg}
         >
           <option value="" className="bg-white">Selecionar...</option>
-          {["CAU","COREN","CRA","CRC","CREA","CREFITO","CRF","CRM","CRN","CRO","CRP","Não tenho","OAB"].map((o) => (
+          {["Não tenho","CAU","COREN","CRA","CRC","CREA","CREFITO","CRF","CRM","CRN","CRO","CRP","OAB"].map((o) => (
             <option key={o} value={o} className="bg-white">{o}</option>
           ))}
         </select>
