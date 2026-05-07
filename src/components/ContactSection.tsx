@@ -81,11 +81,62 @@ const TIMELINE_OPTIONS = [
 ];
 
 const STEPS = [
-  { n: 1, label: "Objetivo" },
+  { n: 1, label: "Contato" },
   { n: 2, label: "Perfil" },
-  { n: 3, label: "Contato" },
+  { n: 3, label: "Objetivo" },
   { n: 4, label: "Análise" },
 ];
+
+// Heurística simples para sugerir visto baseado nas respostas do perfil
+const suggestVisa = (data: {
+  education: string;
+  achievements: string;
+  experience: string;
+  countryOfBirth: string;
+}): { id: string; label: string; reason: string } | null => {
+  const { education, achievements, experience } = data;
+  if (!education || !achievements || !experience) return null;
+
+  const hasAwards = /Sim/i.test(achievements);
+  const hasBoth = /ambos/i.test(achievements);
+  const senior = /Mais de 10/i.test(experience);
+  const mid = /5 a 10/i.test(experience);
+  const advanced = /(Mestrado|Doutorado|Pós-Doutorado|Pós-Graduação)/i.test(education);
+
+  if (hasBoth && senior) {
+    return {
+      id: "EB-1A",
+      label: "EB-1A — Habilidade Extraordinária",
+      reason: "Seu perfil sênior, com publicações e prêmios reconhecidos, é altamente compatível com o EB-1A.",
+    };
+  }
+  if (advanced && hasAwards) {
+    return {
+      id: "EB-2 NIW",
+      label: "EB-2 NIW — Interesse Nacional",
+      reason: "Sua formação avançada e evidências profissionais sustentam um forte caso de Interesse Nacional (NIW).",
+    };
+  }
+  if (senior || mid) {
+    return {
+      id: "H-1B / L-1 / O-1",
+      label: "Vistos de Trabalho — H-1B, L-1 ou O-1",
+      reason: "Sua experiência profissional consolidada favorece estratégias via vistos de trabalho qualificado.",
+    };
+  }
+  if (advanced) {
+    return {
+      id: "EB-2 NIW",
+      label: "EB-2 NIW — Interesse Nacional",
+      reason: "Sua formação avançada cria uma base sólida para um pedido de Interesse Nacional.",
+    };
+  }
+  return {
+    id: "EB-3",
+    label: "EB-3 — Trabalho Qualificado",
+    reason: "Seu perfil sugere um caminho viável via EB-3 com oferta de emprego qualificado.",
+  };
+};
 
 const ContactSection = () => {
   const { lang } = useLanguage();
