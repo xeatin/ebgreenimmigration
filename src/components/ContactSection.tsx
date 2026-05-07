@@ -665,20 +665,6 @@ const ContactSection = () => {
         </span>
       </div>
 
-      <div className="mb-4">
-        <label className={labelCls}>
-          Descreva brevemente sua situação atual <span className="text-foreground/40 normal-case font-light tracking-normal text-[10px] ml-1">(opcional)</span>
-        </label>
-        <textarea
-          value={formData.message}
-          maxLength={2000}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          rows={3}
-          placeholder="Ex: Sou médico com 8 anos de experiência, 3 publicações indexadas e recebi convite para hospital universitário nos EUA..."
-          className={`${inputBase} h-auto py-3 resize-y min-h-[88px] leading-relaxed`}
-        />
-      </div>
-
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
           <label className={labelCls}>
