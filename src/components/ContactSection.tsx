@@ -100,6 +100,7 @@ const suggestVisa = (data: {
   const hasBoth = /ambos/i.test(achievements);
   const senior = /Mais de 10/i.test(experience);
   const mid = /5 a 10/i.test(experience);
+  const hasExperience5plus = senior || mid;
 
   const isTecnico = education === "Técnico e Tecnólogo";
   const isBacharelado = education === "Nível Superior / Bacharelado";
