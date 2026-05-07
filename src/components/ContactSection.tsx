@@ -754,7 +754,12 @@ const ContactSection = () => {
       </div>
 
       <div className="mb-4">
-        <label className={labelCls}>Sei qual o meu visto:</label>
+        <div className="flex items-center gap-2 mb-1.5 animate-fade-in">
+          <span className="w-5 h-5 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center shrink-0">
+            <Info size={11} className="text-gold" />
+          </span>
+          <label className={`${labelCls} !mb-0`}>Sei qual o meu visto:</label>
+        </div>
         <select
           value={formData.knownVisa}
           onChange={(e) => setFormData({ ...formData, knownVisa: e.target.value })}
