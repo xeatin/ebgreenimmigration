@@ -176,7 +176,7 @@ const suggestVisa = (data: {
     id: "EB-3",
     label: "EB-3 — Trabalho Qualificado",
     reason: "Seu perfil sugere um caminho viável via EB-3 com oferta de emprego qualificado.",
-  };
+  }];
 };
 
 const ContactSection = () => {
