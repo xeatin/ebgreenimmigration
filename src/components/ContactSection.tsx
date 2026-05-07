@@ -96,6 +96,9 @@ const suggestVisa = (data: {
   const { education, achievements, experience } = data;
   if (!education || !achievements || !experience) return [];
 
+  // Ensino Médio → descartar, não sugerir nenhum visto
+  if (education === "Ensino Médio") return [];
+
   const hasAwards = /Sim/i.test(achievements);
   const hasPublications = /Sim/i.test(achievements);
   const hasBoth = /ambos/i.test(achievements);
