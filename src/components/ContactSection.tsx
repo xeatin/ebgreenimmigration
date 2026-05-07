@@ -503,12 +503,9 @@ const ContactSection = () => {
           style={selectBg}
         >
           <option value="" className="bg-white">Selecionar...</option>
-          <option value="Não tenho" className="bg-white">Não tenho</option>
-          <optgroup label="Conselhos Profissionais" className="bg-white">
-            {["CAU","COREN","CRA","CRC","CREA","CREFITO","CRF","CRM","CRN","CRO","CRP","OAB"].map((o) => (
-              <option key={o} value={o} className="bg-white">{o}</option>
-            ))}
-          </optgroup>
+          {["CAU","COREN","CRA","CRC","CREA","CREFITO","CRF","CRM","CRN","CRO","CRP","Não tenho","OAB"].map((o) => (
+            <option key={o} value={o} className="bg-white">{o}</option>
+          ))}
         </select>
       </div>
 
