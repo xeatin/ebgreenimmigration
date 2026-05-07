@@ -725,7 +725,7 @@ const ContactSection = () => {
                 <Sparkles size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] tracking-[0.18em] uppercase font-body font-semibold text-gold mb-2">
+                <p className="text-[12px] tracking-[0.18em] uppercase font-body font-semibold text-gold mb-2">
                   {suggestions.length > 1 ? "Sugestões preliminares baseadas nas suas respostas" : "Sugestão preliminar baseada nas suas respostas"}
                 </p>
                 <div className="space-y-3">
