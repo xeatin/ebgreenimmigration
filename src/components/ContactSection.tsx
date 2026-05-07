@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Send, Instagram, Lock, ChevronDown, ArrowRight, ArrowLeft, Check, ShieldCheck, Info, Award, Globe2, Target, Shield, Clock, Paperclip, X } from "lucide-react";
+import { Mail, Send, Instagram, Lock, ChevronDown, ArrowRight, ArrowLeft, Check, ShieldCheck, Info, Award, Globe2, Target, Shield, Clock, Paperclip, X, Sparkles } from "lucide-react";
 
 const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -81,11 +81,62 @@ const TIMELINE_OPTIONS = [
 ];
 
 const STEPS = [
-  { n: 1, label: "Objetivo" },
+  { n: 1, label: "Contato" },
   { n: 2, label: "Perfil" },
-  { n: 3, label: "Contato" },
+  { n: 3, label: "Objetivo" },
   { n: 4, label: "Análise" },
 ];
+
+// Heurística simples para sugerir visto baseado nas respostas do perfil
+const suggestVisa = (data: {
+  education: string;
+  achievements: string;
+  experience: string;
+  countryOfBirth: string;
+}): { id: string; label: string; reason: string } | null => {
+  const { education, achievements, experience } = data;
+  if (!education || !achievements || !experience) return null;
+
+  const hasAwards = /Sim/i.test(achievements);
+  const hasBoth = /ambos/i.test(achievements);
+  const senior = /Mais de 10/i.test(experience);
+  const mid = /5 a 10/i.test(experience);
+  const advanced = /(Mestrado|Doutorado|Pós-Doutorado|Pós-Graduação)/i.test(education);
+
+  if (hasBoth && senior) {
+    return {
+      id: "EB-1A",
+      label: "EB-1A — Habilidade Extraordinária",
+      reason: "Seu perfil sênior, com publicações e prêmios reconhecidos, é altamente compatível com o EB-1A.",
+    };
+  }
+  if (advanced && hasAwards) {
+    return {
+      id: "EB-2 NIW",
+      label: "EB-2 NIW — Interesse Nacional",
+      reason: "Sua formação avançada e evidências profissionais sustentam um forte caso de Interesse Nacional (NIW).",
+    };
+  }
+  if (senior || mid) {
+    return {
+      id: "H-1B / L-1 / O-1",
+      label: "Vistos de Trabalho — H-1B, L-1 ou O-1",
+      reason: "Sua experiência profissional consolidada favorece estratégias via vistos de trabalho qualificado.",
+    };
+  }
+  if (advanced) {
+    return {
+      id: "EB-2 NIW",
+      label: "EB-2 NIW — Interesse Nacional",
+      reason: "Sua formação avançada cria uma base sólida para um pedido de Interesse Nacional.",
+    };
+  }
+  return {
+    id: "EB-3",
+    label: "EB-3 — Trabalho Qualificado",
+    reason: "Seu perfil sugere um caminho viável via EB-3 com oferta de emprego qualificado.",
+  };
+};
 
 const ContactSection = () => {
   const { lang } = useLanguage();
@@ -136,7 +187,10 @@ const ContactSection = () => {
   const validateStep = (current: number): boolean => {
     const e: FormErrors = {};
     if (current === 1) {
-      if (!formData.visa) e.visa = t(s.errors.visaRequired, lang);
+      if (formData.firstName.trim().length < 2) e.firstName = t(s.errors.firstNameMin, lang);
+      if (formData.lastName.trim().length < 2) e.lastName = t(s.errors.lastNameMin, lang);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) e.email = t(s.errors.emailInvalid, lang);
+      if (!/^\d{6,20}$/.test(formData.phone.replace(/\D/g, ""))) e.phone = t(s.errors.phoneInvalid, lang);
     }
     if (current === 2) {
       if (!formData.education) e.education = t(s.errors.educationRequired, lang);
@@ -145,10 +199,7 @@ const ContactSection = () => {
       if (!formData.countryOfBirth) e.countryOfBirth = t(s.errors.required, lang);
     }
     if (current === 3) {
-      if (formData.firstName.trim().length < 2) e.firstName = t(s.errors.firstNameMin, lang);
-      if (formData.lastName.trim().length < 2) e.lastName = t(s.errors.lastNameMin, lang);
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) e.email = t(s.errors.emailInvalid, lang);
-      if (!/^\d{6,20}$/.test(formData.phone.replace(/\D/g, ""))) e.phone = t(s.errors.phoneInvalid, lang);
+      if (!formData.visa) e.visa = t(s.errors.visaRequired, lang);
     }
     if (current === 4) {
       if (!formData.timeline) e.message = t(s.errors.required, lang);
@@ -164,7 +215,14 @@ const ContactSection = () => {
       return;
     }
     setErrors({});
-    setStep((p) => Math.min(4, p + 1));
+    setStep((p) => {
+      const next = Math.min(4, p + 1);
+      if (p === 2 && next === 3 && !formData.visa) {
+        const sug = suggestVisa(formData);
+        if (sug) setFormData((d) => ({ ...d, visa: sug.id }));
+      }
+      return next;
+    });
   };
 
   const handleBack = () => {
@@ -672,7 +730,48 @@ const ContactSection = () => {
     </div>
   );
 
-  const stepContent = step === 1 ? Step1 : step === 2 ? Step2 : step === 3 ? Step3 : Step4;
+  const suggestion = suggestVisa(formData);
+
+  const Step2WithSuggestion = (
+    <div>
+      {Step2}
+      <AnimatePresence>
+        {suggestion && (
+          <motion.div
+            key={suggestion.id}
+            initial={{ opacity: 0, y: 10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="mt-6 relative rounded-xl border border-gold/40 bg-gradient-to-br from-gold/[0.08] via-white to-white p-4 sm:p-5 overflow-hidden"
+          >
+            <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
+            <div className="flex items-start gap-3">
+              <span className="w-9 h-9 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center text-gold shrink-0">
+                <Sparkles size={16} />
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] tracking-[0.18em] uppercase font-body font-semibold text-gold mb-1">
+                  Sugestão preliminar baseada nas suas respostas
+                </p>
+                <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1.5">
+                  {suggestion.label}
+                </p>
+                <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
+                  {suggestion.reason}
+                </p>
+                <p className="text-[11px] text-foreground/40 font-body italic mt-2">
+                  Esta sugestão é apenas indicativa. A análise final será feita por nossa equipe.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+
+  const stepContent = step === 1 ? Step3 : step === 2 ? Step2WithSuggestion : step === 3 ? Step1 : Step4;
 
   const DIFFERENTIALS = [
     { icon: Award, label: "Análise especializada" },
