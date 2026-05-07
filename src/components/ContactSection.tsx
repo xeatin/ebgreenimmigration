@@ -110,7 +110,7 @@ const suggestVisa = (data: {
     return [{
       id: "EB-3",
       label: "EB-3 — Trabalho Qualificado",
-      reason: "Aplica-se para Ensino Médio e Técnico ou Tecnólogo.\n\nPara perfis com Ensino Médio, o EB-3 é a via mais indicada. Porém, essa categoria requer uma oferta de emprego nos EUA, por meio de um empregador patrocinador (sponsor) que comprove a necessidade da contratação.",
+      reason: "Para perfis com Ensino Médio, o EB-3 pode ser a alternativa mais adequada. Contudo, é necessário uma oferta de emprego nos EUA, por meio de um empregador patrocinador (sponsor) que comprove a necessidade da contratação.",
     }];
   }
 
