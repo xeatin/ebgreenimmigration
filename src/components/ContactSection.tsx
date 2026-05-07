@@ -101,7 +101,15 @@ const suggestVisa = (data: {
   const senior = /Mais de 10/i.test(experience);
   const mid = /5 a 10/i.test(experience);
   const advanced = /(Mestrado|Doutorado|Pós-Doutorado|Pós-Graduação)/i.test(education);
+  const technical = /(Técnico|Tecnólogo)/i.test(education);
 
+  if (technical && (senior || mid)) {
+    return {
+      id: "EB-2 NIW",
+      label: "EB-2 NIW — Interesse Nacional",
+      reason: "Sua formação técnica/tecnológica aliada a uma sólida experiência profissional sustenta um caso de Interesse Nacional (NIW).",
+    };
+  }
   if (hasBoth && senior) {
     return {
       id: "EB-1A",
