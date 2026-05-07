@@ -496,19 +496,29 @@ const ContactSection = () => {
 
       <div className="mb-4">
         <label className={labelCls}>Licença Profissional</label>
-        <div className="grid grid-cols-3 gap-2.5">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
           {[
-            { v: "Sim", label: "Sim" },
-            { v: "Não", label: "Não" },
-            { v: "Não sei", label: "Não sei" },
+            "Não tenho",
+            "CAU",
+            "COREN",
+            "CRA",
+            "CRC",
+            "CREA",
+            "CREFITO",
+            "CRF",
+            "CRM",
+            "CRN",
+            "CRO",
+            "CRP",
+            "OAB",
           ].map((opt) => {
-            const selected = formData.license === opt.v;
+            const selected = formData.license === opt;
             return (
               <button
-                key={opt.v}
+                key={opt}
                 type="button"
-                onClick={() => setFormData({ ...formData, license: opt.v })}
-                className={`relative px-3 py-2.5 rounded-[10px] border text-[13px] font-body font-semibold transition-all overflow-hidden group ${
+                onClick={() => setFormData({ ...formData, license: opt })}
+                className={`relative px-3 py-2.5 rounded-[10px] border text-[12.5px] font-body font-semibold transition-all overflow-hidden group ${
                   selected
                     ? "border-gold bg-gold/[0.06] text-foreground"
                     : "border-border bg-white text-foreground/70 hover:border-gold/50"
@@ -524,7 +534,7 @@ const ContactSection = () => {
                     <Check size={8} strokeWidth={3} className="text-black" />
                   </span>
                 )}
-                {opt.label}
+                {opt}
               </button>
             );
           })}
