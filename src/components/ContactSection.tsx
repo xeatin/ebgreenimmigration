@@ -596,6 +596,8 @@ const ContactSection = () => {
     </div>
   );
 
+  const suggestion = suggestVisa(formData);
+
   const Step4 = (
     <div>
       <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
@@ -604,6 +606,41 @@ const ContactSection = () => {
       <p className="text-[13px] text-foreground/55 font-body font-light mb-5">
         Informações complementares para uma análise mais precisa do seu perfil.
       </p>
+
+      {/* Sugestão preliminar baseada nas respostas */}
+      <AnimatePresence>
+        {suggestion && (
+          <motion.div
+            key={suggestion.id}
+            initial={{ opacity: 0, y: 10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="mb-5 relative rounded-xl border border-gold/40 bg-gradient-to-br from-gold/[0.08] via-white to-white p-4 sm:p-5 overflow-hidden"
+          >
+            <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
+            <div className="flex items-start gap-3">
+              <span className="w-9 h-9 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center text-gold shrink-0">
+                <Sparkles size={16} />
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] tracking-[0.18em] uppercase font-body font-semibold text-gold mb-1">
+                  Sugestão preliminar baseada nas suas respostas
+                </p>
+                <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1.5">
+                  {suggestion.label}
+                </p>
+                <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
+                  {suggestion.reason}
+                </p>
+                <p className="text-[11px] text-foreground/40 font-body italic mt-2">
+                  Esta sugestão é apenas indicativa. A análise final será feita por nossa equipe.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25 mb-5">
         <ShieldCheck size={14} className="text-emerald-600 shrink-0" />
@@ -730,48 +767,7 @@ const ContactSection = () => {
     </div>
   );
 
-  const suggestion = suggestVisa(formData);
-
-  const Step2WithSuggestion = (
-    <div>
-      {Step2}
-      <AnimatePresence>
-        {suggestion && (
-          <motion.div
-            key={suggestion.id}
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="mt-6 relative rounded-xl border border-gold/40 bg-gradient-to-br from-gold/[0.08] via-white to-white p-4 sm:p-5 overflow-hidden"
-          >
-            <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
-            <div className="flex items-start gap-3">
-              <span className="w-9 h-9 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center text-gold shrink-0">
-                <Sparkles size={16} />
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="text-[10px] tracking-[0.18em] uppercase font-body font-semibold text-gold mb-1">
-                  Sugestão preliminar baseada nas suas respostas
-                </p>
-                <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1.5">
-                  {suggestion.label}
-                </p>
-                <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
-                  {suggestion.reason}
-                </p>
-                <p className="text-[11px] text-foreground/40 font-body italic mt-2">
-                  Esta sugestão é apenas indicativa. A análise final será feita por nossa equipe.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-
-  const stepContent = step === 1 ? Step3 : step === 2 ? Step2WithSuggestion : step === 3 ? Step1 : Step4;
+  const stepContent = step === 1 ? Step3 : step === 2 ? Step2 : step === 3 ? Step1 : Step4;
 
   const DIFFERENTIALS = [
     { icon: Award, label: "Análise especializada" },
