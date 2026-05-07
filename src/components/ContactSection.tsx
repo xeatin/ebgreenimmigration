@@ -583,11 +583,11 @@ const ContactSection = () => {
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelCls}>Licença Profissional</label>
+          <label className={labelCls}>Licença Profissional <span className={reqCls}>*</span></label>
           <select
             value={formData.license}
             onChange={(e) => setFormData({ ...formData, license: e.target.value })}
-            className={selectCls()}
+            className={selectCls(errors.license)}
             style={selectBg}
           >
             <option value="" className="bg-white">Selecionar...</option>
@@ -595,6 +595,7 @@ const ContactSection = () => {
               <option key={o} value={o} className="bg-white">{o}</option>
             ))}
           </select>
+          {errors.license && <p className={errCls}>{errors.license}</p>}
         </div>
         <div>
           <label className={labelCls}>Experiência Profissional <span className={reqCls}>*</span></label>
