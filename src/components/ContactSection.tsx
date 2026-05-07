@@ -229,7 +229,7 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateStep(4)) {
+    if (!validateStep(3)) {
       toast({ title: t(s.validationTitle, lang), variant: "destructive" });
       return;
     }
