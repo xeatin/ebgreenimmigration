@@ -80,6 +80,15 @@ const TIMELINE_OPTIONS = [
   "Ainda estou explorando opções",
 ];
 
+const KNOWN_VISA_OPTIONS = [
+  "Não sei",
+  "EB-5 / E-2 - Investimento nos Estados Unidos",
+  "H-1B, L-1, O-1 - Vistos de trabalho",
+  "F-1 - Visto de estudante",
+  "Family-Based - Patrocínio Familiar",
+  "R-1 - Trabalho Religioso",
+];
+
 const STEPS = [
   { n: 1, label: "Contato" },
   { n: 2, label: "Perfil" },
@@ -224,14 +233,14 @@ const ContactSection = () => {
     firstName: string; lastName: string; email: string; phoneCode: string; phone: string;
     visa: string;
     education: string; license: string; achievements: string; experience: string; countryOfBirth: string;
-    message: string; currentStatus: string; timeline: string;
+    message: string; currentStatus: string; timeline: string; knownVisa: string;
     privacy: boolean;
     resume: File | null;
   }>({
     firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
     visa: "",
     education: "", license: "", achievements: "", experience: "", countryOfBirth: "",
-    message: "", currentStatus: "", timeline: "",
+    message: "", currentStatus: "", timeline: "", knownVisa: "",
     privacy: false,
     resume: null,
   });
@@ -372,6 +381,7 @@ const ContactSection = () => {
       formData.license ? `Licença Profissional: ${formData.license}` : "",
       formData.currentStatus ? `Status atual: ${formData.currentStatus}` : "",
       formData.timeline ? `Quando pretende iniciar: ${formData.timeline}` : "",
+      formData.knownVisa ? `Sei qual o meu visto: ${formData.knownVisa}` : "",
     ].filter(Boolean).join("\n");
 
     fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
@@ -387,6 +397,7 @@ const ContactSection = () => {
         visa: formData.visa,
         education: formData.education,
         experience: formData.experience,
+        knownVisa: formData.knownVisa,
         message: composedMessage,
         resumeUrl,
         resumeName,
@@ -405,6 +416,7 @@ const ContactSection = () => {
           visa: formData.visa,
           education: formData.education,
           experience: formData.experience,
+          knownVisa: formData.knownVisa,
           message: composedMessage,
           resumeUrl,
           resumeName,
@@ -432,7 +444,7 @@ const ContactSection = () => {
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
       visa: "",
       education: "", license: "", achievements: "", experience: "", countryOfBirth: "",
-      message: "", currentStatus: "", timeline: "",
+      message: "", currentStatus: "", timeline: "", knownVisa: "",
       privacy: false,
       resume: null,
     });
@@ -737,6 +749,19 @@ const ContactSection = () => {
         <span className="text-[12px] text-emerald-700 font-body">
           Todas as informações são estritamente confidenciais e protegidas.
         </span>
+      </div>
+
+      <div className="mb-4">
+        <label className={labelCls}>Sei qual o meu visto:</label>
+        <select
+          value={formData.knownVisa}
+          onChange={(e) => setFormData({ ...formData, knownVisa: e.target.value })}
+          className={selectCls()}
+          style={selectBg}
+        >
+          <option value="" className="bg-white">Selecionar...</option>
+          {KNOWN_VISA_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
+        </select>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
