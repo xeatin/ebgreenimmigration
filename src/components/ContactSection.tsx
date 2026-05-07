@@ -178,7 +178,7 @@ const suggestVisa = (data: {
     return [{
       id: "EB-3",
       label: "EB-3 — Trabalho Qualificado",
-      reason: "Para o perfil técnico/tecnólogo com menos de 5 anos de experiência, o caminho mais indicado é o EB-3, que requer um patrocinador (sponsor) nos EUA.",
+      reason: "Para o perfil técnico/tecnólogo com menos de 5 anos de experiência, o EB-3 pode ser a alternativa mais adequada. Contudo, é necessário uma oferta de emprego nos EUA, por meio de um empregador patrocinador (sponsor) que comprove a necessidade da contratação.",
     }];
   }
   if (bachelor && (senior || mid)) {
