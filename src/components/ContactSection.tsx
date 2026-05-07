@@ -596,6 +596,8 @@ const ContactSection = () => {
     </div>
   );
 
+  const suggestion = suggestVisa(formData);
+
   const Step4 = (
     <div>
       <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
