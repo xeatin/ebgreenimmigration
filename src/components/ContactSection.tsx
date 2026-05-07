@@ -690,14 +690,7 @@ const ContactSection = () => {
 
   const Step4 = (
     <div>
-      <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
-        Contexto do <span className="text-gold italic">seu caso</span>
-      </h3>
-      <p className="text-[13px] text-foreground/55 font-body font-light mb-5">
-        Informações complementares para uma análise mais precisa do seu perfil.
-      </p>
-
-      {/* Sugestão preliminar baseada nas respostas */}
+      {/* Sugestão preliminar baseada nas suas respostas */}
       <AnimatePresence>
         {suggestions.length > 0 && (
           <motion.div
