@@ -96,8 +96,14 @@ const suggestVisa = (data: {
   const { education, achievements, experience } = data;
   if (!education || !achievements || !experience) return [];
 
-  // Ensino Médio → descartar, não sugerir nenhum visto
-  if (education === "Ensino Médio") return [];
+  // Ensino Médio → sugerir EB-3 (Trabalho Qualificado / Não Qualificado)
+  if (education === "Ensino Médio") {
+    return [{
+      id: "EB-3",
+      label: "EB-3 — Trabalho Qualificado",
+      reason: "Para perfis com Ensino Médio, o EB-3 é a via mais indicada: requer uma oferta de emprego nos EUA com patrocinador (sponsor) que comprove a necessidade do trabalhador.",
+    }];
+  }
 
   const hasAwards = /Sim/i.test(achievements);
   const hasPublications = /Sim/i.test(achievements);
@@ -561,13 +567,6 @@ const ContactSection = () => {
         </div>
       </div>
 
-      {formData.education === "Ensino Médio" && formData.achievements && formData.experience && formData.countryOfBirth && (
-        <div className="mb-4 rounded-md border border-destructive/30 bg-destructive/10 px-4 py-3">
-          <p className="text-[13px] font-body text-destructive">
-            Infelizmente, o perfil com Ensino Médio não atende os requisitos mínimos para os vistos de imigração por mérito. Nossa equipe pode orientar sobre outras opções.
-          </p>
-        </div>
-      )}
 
       <div className="mb-4">
         <label className={labelCls}>Licença Profissional</label>
@@ -1110,7 +1109,7 @@ const ContactSection = () => {
                   <button
                     type="button"
                     onClick={handleNext}
-                    disabled={step === 2 && formData.education === "Ensino Médio"}
+                    
                     className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:opacity-50"
                   >
                     Continuar avaliação <ArrowRight size={15} />
