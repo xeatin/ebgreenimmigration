@@ -123,8 +123,15 @@ const suggestVisa = (data: {
       label: "EB-1A e EB-2 NIW – Habilidade Extraordinária + Interesse Nacional",
       reason: "Seu doutorado com publicações abre caminho para os vistos EB-1A e EB-2 NIW.",
     }];
-  }
 
+  // Doutorado/Pós-Doutorado sem publicações → EB-2 NIW
+  if (isDoutorado || isPosDoutorado) {
+    return [{
+      id: "EB-2 NIW",
+      label: "EB-2 NIW — Interesse Nacional",
+      reason: "Sua formação de doutorado sustenta um forte caso de Interesse Nacional (NIW).",
+    }];
+  }
   if ((bachelor || postgrad) && postgrad) {
     return [{
       id: "EB-2 NIW",
