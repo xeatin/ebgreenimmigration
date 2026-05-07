@@ -726,7 +726,7 @@ const ContactSection = () => {
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="w-4 h-4 rounded-full bg-gold/20 border border-gold/50 flex items-center justify-center">
+                  <span className="w-4 h-4 rounded-full bg-gold/20 border border-gold/50 flex items-center justify-center animate-pulse shadow-[0_0_8px_rgba(212,175,55,0.35)]">
                     <Sparkles size={9} className="text-gold" />
                   </span>
                   <p className="text-[10px] tracking-[0.18em] uppercase font-body font-semibold text-gold">
