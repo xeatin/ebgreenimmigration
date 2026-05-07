@@ -16,7 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 type FormErrors = Partial<Record<
-  "firstName" | "lastName" | "email" | "phone" | "visa" | "education" | "achievements" |
+  "firstName" | "lastName" | "email" | "phone" | "visa" | "education" | "license" | "achievements" |
   "experience" | "countryOfBirth" | "timeline" | "privacy" | "message",
   string
 >>;
