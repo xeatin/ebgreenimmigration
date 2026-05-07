@@ -103,6 +103,15 @@ const suggestVisa = (data: {
   const advanced = /(Mestrado|Doutorado|Pós-Doutorado|Pós-Graduação)/i.test(education);
   const technical = /(Técnico|Tecnólogo)/i.test(education);
   const bachelor = /(Superior|Bacharelado)/i.test(education);
+  const postgrad = /(Pós-Graduação|Pos-Graduacao|Mestrado|Doutorado|Pós-Doutorado)/i.test(education);
+
+  if ((bachelor || postgrad) && postgrad) {
+    return {
+      id: "EB-2 NIW",
+      label: "EB-2 NIW — Interesse Nacional",
+      reason: "Sua formação superior com pós-graduação sustenta um forte caso de Interesse Nacional (NIW), independentemente do tempo de experiência.",
+    };
+  }
 
   if (technical && (senior || mid)) {
     return {
