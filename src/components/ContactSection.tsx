@@ -116,20 +116,13 @@ const suggestVisa = (data: {
   const doctorate = isDoutorado || isPosDoutorado;
   const advanced = isPosGrad || isMestrado || isDoutorado || isPosDoutorado;
 
-  // Doutorado + publicações/prêmios → mostrar EB-1A e EB-2 NIW
-  if (doctorate && hasAwards) {
-    return [
-      {
-        id: "EB-1A",
-        label: "EB-1A — Habilidade Extraordinária",
-        reason: "Seu doutorado combinado a publicações e/ou prêmios reconhecidos é altamente compatível com o EB-1A.",
-      },
-      {
-        id: "EB-2 NIW",
-        label: "EB-2 NIW — Interesse Nacional",
-        reason: "Sua formação de doutorado também sustenta um forte caso de Interesse Nacional (NIW).",
-      },
-    ];
+  // Doutorado/Pós-Doutorado + publicações → EB-1A e EB-2 NIW combinados
+  if ((isDoutorado || isPosDoutorado) && hasPublications) {
+    return [{
+      id: "EB-1A e EB-2 NIW",
+      label: "EB-1A e EB-2 NIW – Habilidade Extraordinária + Interesse Nacional",
+      reason: "Seu doutorado com publicações abre caminho para os vistos EB-1A e EB-2 NIW.",
+    }];
   }
 
   if ((bachelor || postgrad) && postgrad) {
