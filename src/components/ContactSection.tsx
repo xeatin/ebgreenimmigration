@@ -432,7 +432,7 @@ const ContactSection = () => {
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
       visa: "",
       education: "", license: "", achievements: "", experience: "", countryOfBirth: "",
-      message: "", currentStatus: "", timeline: "",
+      message: "", currentStatus: "", timeline: "", knownVisa: "",
       privacy: false,
       resume: null,
     });
