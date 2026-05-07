@@ -187,7 +187,10 @@ const ContactSection = () => {
   const validateStep = (current: number): boolean => {
     const e: FormErrors = {};
     if (current === 1) {
-      if (!formData.visa) e.visa = t(s.errors.visaRequired, lang);
+      if (formData.firstName.trim().length < 2) e.firstName = t(s.errors.firstNameMin, lang);
+      if (formData.lastName.trim().length < 2) e.lastName = t(s.errors.lastNameMin, lang);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) e.email = t(s.errors.emailInvalid, lang);
+      if (!/^\d{6,20}$/.test(formData.phone.replace(/\D/g, ""))) e.phone = t(s.errors.phoneInvalid, lang);
     }
     if (current === 2) {
       if (!formData.education) e.education = t(s.errors.educationRequired, lang);
@@ -196,10 +199,7 @@ const ContactSection = () => {
       if (!formData.countryOfBirth) e.countryOfBirth = t(s.errors.required, lang);
     }
     if (current === 3) {
-      if (formData.firstName.trim().length < 2) e.firstName = t(s.errors.firstNameMin, lang);
-      if (formData.lastName.trim().length < 2) e.lastName = t(s.errors.lastNameMin, lang);
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) e.email = t(s.errors.emailInvalid, lang);
-      if (!/^\d{6,20}$/.test(formData.phone.replace(/\D/g, ""))) e.phone = t(s.errors.phoneInvalid, lang);
+      if (!formData.visa) e.visa = t(s.errors.visaRequired, lang);
     }
     if (current === 4) {
       if (!formData.timeline) e.message = t(s.errors.required, lang);
