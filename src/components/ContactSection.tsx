@@ -83,8 +83,7 @@ const TIMELINE_OPTIONS = [
 const STEPS = [
   { n: 1, label: "Contato" },
   { n: 2, label: "Perfil" },
-  { n: 3, label: "Objetivo" },
-  { n: 4, label: "Análise" },
+  { n: 3, label: "Análise" },
 ];
 
 // Heurística simples para sugerir visto baseado nas respostas do perfil
@@ -199,9 +198,6 @@ const ContactSection = () => {
       if (!formData.countryOfBirth) e.countryOfBirth = t(s.errors.required, lang);
     }
     if (current === 3) {
-      if (!formData.visa) e.visa = t(s.errors.visaRequired, lang);
-    }
-    if (current === 4) {
       if (!formData.timeline) e.message = t(s.errors.required, lang);
       if (!formData.privacy) e.privacy = t(s.errors.privacyRequired, lang);
     }
@@ -216,7 +212,7 @@ const ContactSection = () => {
     }
     setErrors({});
     setStep((p) => {
-      const next = Math.min(4, p + 1);
+      const next = Math.min(3, p + 1);
       if (p === 2 && next === 3 && !formData.visa) {
         const sug = suggestVisa(formData);
         if (sug) setFormData((d) => ({ ...d, visa: sug.id }));
@@ -233,7 +229,7 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateStep(4)) {
+    if (!validateStep(3)) {
       toast({ title: t(s.validationTitle, lang), variant: "destructive" });
       return;
     }
@@ -769,7 +765,7 @@ const ContactSection = () => {
     </div>
   );
 
-  const stepContent = step === 1 ? Step3 : step === 2 ? Step2 : step === 3 ? Step1 : Step4;
+  const stepContent = step === 1 ? Step3 : step === 2 ? Step2 : Step4;
 
   const DIFFERENTIALS = [
     { icon: Award, label: "Análise especializada" },
@@ -1025,7 +1021,7 @@ const ContactSection = () => {
               )}
 
               <div className="ml-auto">
-                {step < 4 ? (
+                {step < 3 ? (
                   <button
                     type="button"
                     onClick={handleNext}
