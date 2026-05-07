@@ -666,36 +666,37 @@ const ContactSection = () => {
         </div>
       </div>
 
-      <div className="mb-4">
-        <label className={labelCls}>E-mail <span className={reqCls}>*</span></label>
-        <input
-          type="email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          placeholder="seu@email.com"
-          className={inputCls(errors.email)}
-        />
-        {errors.email && <p className={errCls}>{errors.email}</p>}
-      </div>
-
-      <div>
-        <label className={labelCls}>WhatsApp / Telefone <span className={reqCls}>*</span></label>
-        <div className={`flex items-center gap-2 rounded-md border bg-white transition focus-within:border-gold focus-within:ring-2 focus-within:ring-gold/20 ${errors.phone ? "border-red-500/60" : "border-border"}`}>
-          <PhoneCodeSelector
-            value={formData.phoneCode}
-            onChange={(val) => setFormData({ ...formData, phoneCode: val })}
-          />
-          <div className="w-px h-6 bg-border shrink-0" />
-          <span className="px-1 text-sm text-foreground font-body shrink-0">{formData.phoneCode}</span>
+      <div className="grid sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label className={labelCls}>E-mail <span className={reqCls}>*</span></label>
           <input
-            type="tel"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            placeholder="(00) 00000-0000"
-            className="flex-1 h-11 px-1 bg-transparent text-foreground placeholder:text-foreground/30 text-sm font-body outline-none"
+            type="email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            placeholder="seu@email.com"
+            className={inputCls(errors.email)}
           />
+          {errors.email && <p className={errCls}>{errors.email}</p>}
         </div>
-        {errors.phone && <p className={errCls}>{errors.phone}</p>}
+        <div>
+          <label className={labelCls}>WhatsApp / Telefone <span className={reqCls}>*</span></label>
+          <div className={`flex items-center gap-2 rounded-md border bg-white transition focus-within:border-gold focus-within:ring-2 focus-within:ring-gold/20 ${errors.phone ? "border-red-500/60" : "border-border"}`}>
+            <PhoneCodeSelector
+              value={formData.phoneCode}
+              onChange={(val) => setFormData({ ...formData, phoneCode: val })}
+            />
+            <div className="w-px h-6 bg-border shrink-0" />
+            <span className="px-1 text-sm text-foreground font-body shrink-0">{formData.phoneCode}</span>
+            <input
+              type="tel"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              placeholder="(00) 00000-0000"
+              className="flex-1 h-11 px-1 bg-transparent text-foreground placeholder:text-foreground/30 text-sm font-body outline-none"
+            />
+          </div>
+          {errors.phone && <p className={errCls}>{errors.phone}</p>}
+        </div>
       </div>
     </div>
   );
