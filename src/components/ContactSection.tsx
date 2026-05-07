@@ -397,6 +397,7 @@ const ContactSection = () => {
         visa: formData.visa,
         education: formData.education,
         experience: formData.experience,
+        knownVisa: formData.knownVisa,
         message: composedMessage,
         resumeUrl,
         resumeName,
