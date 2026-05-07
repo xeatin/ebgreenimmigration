@@ -80,6 +80,15 @@ const TIMELINE_OPTIONS = [
   "Ainda estou explorando opções",
 ];
 
+const KNOWN_VISA_OPTIONS = [
+  "Não sei",
+  "EB-5 / E-2 - Investimento nos Estados Unidos",
+  "H-1B, L-1, O-1 - Vistos de trabalho",
+  "F-1 - Visto de estudante",
+  "Family-Based - Patrocínio Familiar",
+  "R-1 - Trabalho Religioso",
+];
+
 const STEPS = [
   { n: 1, label: "Contato" },
   { n: 2, label: "Perfil" },
