@@ -92,9 +92,9 @@ const suggestVisa = (data: {
   achievements: string;
   experience: string;
   countryOfBirth: string;
-}): { id: string; label: string; reason: string } | null => {
+}): { id: string; label: string; reason: string }[] => {
   const { education, achievements, experience } = data;
-  if (!education || !achievements || !experience) return null;
+  if (!education || !achievements || !experience) return [];
 
   const hasAwards = /Sim/i.test(achievements);
   const hasBoth = /ambos/i.test(achievements);
@@ -104,58 +104,75 @@ const suggestVisa = (data: {
   const technical = /(Técnico|Tecnólogo)/i.test(education);
   const bachelor = /(Superior|Bacharelado)/i.test(education);
   const postgrad = /(Pós-Graduação|Pos-Graduacao|Mestrado|Doutorado|Pós-Doutorado)/i.test(education);
+  const doctorate = /(Doutorado|Pós-Doutorado)/i.test(education);
+
+  // Doutorado + publicações/prêmios → mostrar EB-1A e EB-2 NIW
+  if (doctorate && hasAwards) {
+    return [
+      {
+        id: "EB-1A",
+        label: "EB-1A — Habilidade Extraordinária",
+        reason: "Seu doutorado combinado a publicações e/ou prêmios reconhecidos é altamente compatível com o EB-1A.",
+      },
+      {
+        id: "EB-2 NIW",
+        label: "EB-2 NIW — Interesse Nacional",
+        reason: "Sua formação de doutorado também sustenta um forte caso de Interesse Nacional (NIW).",
+      },
+    ];
+  }
 
   if ((bachelor || postgrad) && postgrad) {
-    return {
+    return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW — Interesse Nacional",
       reason: "Sua formação superior com pós-graduação sustenta um forte caso de Interesse Nacional (NIW), independentemente do tempo de experiência.",
-    };
+    }];
   }
 
   if (technical && (senior || mid)) {
-    return {
+    return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW — Interesse Nacional",
       reason: "Sua formação técnica/tecnológica aliada a uma sólida experiência profissional sustenta um caso de Interesse Nacional (NIW).",
-    };
+    }];
   }
   if (bachelor && (senior || mid)) {
-    return {
+    return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW — Interesse Nacional",
       reason: "Sua formação superior aliada a uma sólida experiência profissional sustenta um forte caso de Interesse Nacional (NIW).",
-    };
+    }];
   }
   if (hasBoth && senior) {
-    return {
+    return [{
       id: "EB-1A",
       label: "EB-1A — Habilidade Extraordinária",
       reason: "Seu perfil sênior, com publicações e prêmios reconhecidos, é altamente compatível com o EB-1A.",
-    };
+    }];
   }
   if (advanced && hasAwards) {
-    return {
+    return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW — Interesse Nacional",
       reason: "Sua formação avançada e evidências profissionais sustentam um forte caso de Interesse Nacional (NIW).",
-    };
+    }];
   }
   if (senior || mid) {
-    return {
+    return [{
       id: "H-1B / L-1 / O-1",
       label: "Vistos de Trabalho — H-1B, L-1 ou O-1",
       reason: "Sua experiência profissional consolidada favorece estratégias via vistos de trabalho qualificado.",
-    };
+    }];
   }
   if (advanced) {
-    return {
+    return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW — Interesse Nacional",
       reason: "Sua formação avançada cria uma base sólida para um pedido de Interesse Nacional.",
-    };
+    }];
   }
-  return {
+  return [{
     id: "EB-3",
     label: "EB-3 — Trabalho Qualificado",
     reason: "Seu perfil sugere um caminho viável via EB-3 com oferta de emprego qualificado.",
