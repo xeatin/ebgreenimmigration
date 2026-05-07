@@ -650,7 +650,7 @@ const ContactSection = () => {
     </div>
   );
 
-  const suggestion = suggestVisa(formData);
+  const suggestions = suggestVisa(formData);
 
   const Step4 = (
     <div>
@@ -663,9 +663,9 @@ const ContactSection = () => {
 
       {/* Sugestão preliminar baseada nas respostas */}
       <AnimatePresence>
-        {suggestion && (
+        {suggestions.length > 0 && (
           <motion.div
-            key={suggestion.id}
+            key={suggestions.map((s) => s.id).join("-")}
             initial={{ opacity: 0, y: 10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6 }}
@@ -678,17 +678,23 @@ const ContactSection = () => {
                 <Sparkles size={16} />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] tracking-[0.18em] uppercase font-body font-semibold text-gold mb-1">
-                  Sugestão preliminar baseada nas suas respostas
+                <p className="text-[10px] tracking-[0.18em] uppercase font-body font-semibold text-gold mb-2">
+                  {suggestions.length > 1 ? "Sugestões preliminares baseadas nas suas respostas" : "Sugestão preliminar baseada nas suas respostas"}
                 </p>
-                <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1.5">
-                  {suggestion.label}
-                </p>
-                <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
-                  {suggestion.reason}
-                </p>
-                <p className="text-[11px] text-foreground/40 font-body italic mt-2">
-                  Esta sugestão é apenas indicativa. A análise final será feita por nossa equipe.
+                <div className="space-y-3">
+                  {suggestions.map((sug) => (
+                    <div key={sug.id}>
+                      <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1">
+                        {sug.label}
+                      </p>
+                      <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
+                        {sug.reason}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[11px] text-foreground/40 font-body italic mt-3">
+                  {suggestions.length > 1 ? "Estas sugestões são apenas indicativas. A análise final será feita por nossa equipe." : "Esta sugestão é apenas indicativa. A análise final será feita por nossa equipe."}
                 </p>
               </div>
             </div>
