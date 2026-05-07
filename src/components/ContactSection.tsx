@@ -147,14 +147,14 @@ const ContactSection = () => {
   const [formData, setFormData] = useState<{
     firstName: string; lastName: string; email: string; phoneCode: string; phone: string;
     visa: string;
-    education: string; achievements: string; experience: string; countryOfBirth: string;
+    education: string; license: string; achievements: string; experience: string; countryOfBirth: string;
     message: string; currentStatus: string; timeline: string;
     privacy: boolean;
     resume: File | null;
   }>({
     firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
     visa: "",
-    education: "", achievements: "", experience: "", countryOfBirth: "",
+    education: "", license: "", achievements: "", experience: "", countryOfBirth: "",
     message: "", currentStatus: "", timeline: "",
     privacy: false,
     resume: null,
@@ -296,6 +296,7 @@ const ContactSection = () => {
       formData.message,
       formData.countryOfBirth ? `País de nascimento: ${formData.countryOfBirth}` : "",
       formData.achievements ? `Publicações/Prêmios: ${formData.achievements}` : "",
+      formData.license ? `Licença Profissional: ${formData.license}` : "",
       formData.currentStatus ? `Status atual: ${formData.currentStatus}` : "",
       formData.timeline ? `Quando pretende iniciar: ${formData.timeline}` : "",
     ].filter(Boolean).join("\n");
@@ -357,7 +358,7 @@ const ContactSection = () => {
     setFormData({
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
       visa: "",
-      education: "", achievements: "", experience: "", countryOfBirth: "",
+      education: "", license: "", achievements: "", experience: "", countryOfBirth: "",
       message: "", currentStatus: "", timeline: "",
       privacy: false,
       resume: null,
@@ -490,6 +491,43 @@ const ContactSection = () => {
             {ACHIEVEMENTS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
           </select>
           {errors.achievements && <p className={errCls}>{errors.achievements}</p>}
+        </div>
+      </div>
+
+      <div className="mb-4">
+        <label className={labelCls}>Licença Profissional</label>
+        <div className="grid grid-cols-3 gap-2.5">
+          {[
+            { v: "Sim", label: "Sim" },
+            { v: "Não", label: "Não" },
+            { v: "Não sei", label: "Não sei" },
+          ].map((opt) => {
+            const selected = formData.license === opt.v;
+            return (
+              <button
+                key={opt.v}
+                type="button"
+                onClick={() => setFormData({ ...formData, license: opt.v })}
+                className={`relative px-3 py-2.5 rounded-[10px] border text-[13px] font-body font-semibold transition-all overflow-hidden group ${
+                  selected
+                    ? "border-gold bg-gold/[0.06] text-foreground"
+                    : "border-border bg-white text-foreground/70 hover:border-gold/50"
+                }`}
+              >
+                <span
+                  className={`absolute top-0 left-0 right-0 h-[2px] bg-gold origin-left transition-transform ${
+                    selected ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                />
+                {selected && (
+                  <span className="absolute top-1.5 right-1.5 w-3.5 h-3.5 rounded-full bg-gold flex items-center justify-center">
+                    <Check size={8} strokeWidth={3} className="text-black" />
+                  </span>
+                )}
+                {opt.label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
