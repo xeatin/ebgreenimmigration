@@ -97,6 +97,7 @@ const suggestVisa = (data: {
   if (!education || !achievements || !experience) return [];
 
   const hasAwards = /Sim/i.test(achievements);
+  const hasPublications = /Sim/i.test(achievements);
   const hasBoth = /ambos/i.test(achievements);
   const senior = /Mais de 10/i.test(experience);
   const mid = /5 a 10/i.test(experience);
