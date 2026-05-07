@@ -100,11 +100,19 @@ const suggestVisa = (data: {
   const hasBoth = /ambos/i.test(achievements);
   const senior = /Mais de 10/i.test(experience);
   const mid = /5 a 10/i.test(experience);
-  const advanced = /(Mestrado|Doutorado|Pós-Doutorado|Pós-Graduação)/i.test(education);
-  const technical = /(Técnico|Tecnólogo)/i.test(education);
-  const bachelor = /(Superior|Bacharelado)/i.test(education);
-  const postgrad = /(Pós-Graduação|Pos-Graduacao|Mestrado|Doutorado|Pós-Doutorado)/i.test(education);
-  const doctorate = /(Doutorado|Pós-Doutorado)/i.test(education);
+
+  const isTecnico = education === "Técnico e Tecnólogo";
+  const isBacharelado = education === "Nível Superior / Bacharelado";
+  const isPosGrad = education === "Pós-Graduação";
+  const isMestrado = education === "Mestrado";
+  const isDoutorado = education === "Doutorado";
+  const isPosDoutorado = education === "Pós-Doutorado";
+
+  const technical = isTecnico;
+  const bachelor = isBacharelado;
+  const postgrad = isPosGrad || isMestrado || isDoutorado || isPosDoutorado;
+  const doctorate = isDoutorado || isPosDoutorado;
+  const advanced = isPosGrad || isMestrado || isDoutorado || isPosDoutorado;
 
   // Doutorado + publicações/prêmios → mostrar EB-1A e EB-2 NIW
   if (doctorate && hasAwards) {
