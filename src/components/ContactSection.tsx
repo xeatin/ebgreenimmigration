@@ -279,6 +279,7 @@ const ContactSection = () => {
     }
     if (current === 2) {
       if (!formData.education) e.education = t(s.errors.educationRequired, lang);
+      if (!formData.license) e.license = t(s.errors.required, lang);
       if (!formData.achievements) e.achievements = t(s.errors.required, lang);
       if (!formData.experience) e.experience = t(s.errors.experienceRequired, lang);
       if (!formData.countryOfBirth) e.countryOfBirth = t(s.errors.required, lang);
