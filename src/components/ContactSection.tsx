@@ -198,9 +198,6 @@ const ContactSection = () => {
       if (!formData.countryOfBirth) e.countryOfBirth = t(s.errors.required, lang);
     }
     if (current === 3) {
-      if (!formData.visa) e.visa = t(s.errors.visaRequired, lang);
-    }
-    if (current === 4) {
       if (!formData.timeline) e.message = t(s.errors.required, lang);
       if (!formData.privacy) e.privacy = t(s.errors.privacyRequired, lang);
     }
