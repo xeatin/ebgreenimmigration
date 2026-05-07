@@ -1021,7 +1021,7 @@ const ContactSection = () => {
               )}
 
               <div className="ml-auto">
-                {step < 4 ? (
+                {step < 3 ? (
                   <button
                     type="button"
                     onClick={handleNext}
