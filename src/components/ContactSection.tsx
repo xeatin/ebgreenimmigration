@@ -748,6 +748,19 @@ const ContactSection = () => {
         </span>
       </div>
 
+      <div className="mb-4">
+        <label className={labelCls}>Sei qual o meu visto:</label>
+        <select
+          value={formData.knownVisa}
+          onChange={(e) => setFormData({ ...formData, knownVisa: e.target.value })}
+          className={selectCls()}
+          style={selectBg}
+        >
+          <option value="" className="bg-white">Selecionar...</option>
+          {KNOWN_VISA_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
+        </select>
+      </div>
+
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
           <label className={labelCls}>
