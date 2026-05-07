@@ -16,7 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 type FormErrors = Partial<Record<
-  "firstName" | "lastName" | "email" | "phone" | "visa" | "education" | "achievements" |
+  "firstName" | "lastName" | "email" | "phone" | "visa" | "education" | "license" | "achievements" |
   "experience" | "countryOfBirth" | "timeline" | "privacy" | "message",
   string
 >>;
@@ -279,6 +279,7 @@ const ContactSection = () => {
     }
     if (current === 2) {
       if (!formData.education) e.education = t(s.errors.educationRequired, lang);
+      if (!formData.license) e.license = t(s.errors.required, lang);
       if (!formData.achievements) e.achievements = t(s.errors.required, lang);
       if (!formData.experience) e.experience = t(s.errors.experienceRequired, lang);
       if (!formData.countryOfBirth) e.countryOfBirth = t(s.errors.required, lang);
@@ -582,11 +583,11 @@ const ContactSection = () => {
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelCls}>Licença Profissional</label>
+          <label className={labelCls}>Licença Profissional <span className={reqCls}>*</span></label>
           <select
             value={formData.license}
             onChange={(e) => setFormData({ ...formData, license: e.target.value })}
-            className={selectCls()}
+            className={selectCls(errors.license)}
             style={selectBg}
           >
             <option value="" className="bg-white">Selecionar...</option>
@@ -594,6 +595,7 @@ const ContactSection = () => {
               <option key={o} value={o} className="bg-white">{o}</option>
             ))}
           </select>
+          {errors.license && <p className={errCls}>{errors.license}</p>}
         </div>
         <div>
           <label className={labelCls}>Experiência Profissional <span className={reqCls}>*</span></label>
