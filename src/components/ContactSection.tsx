@@ -83,8 +83,7 @@ const TIMELINE_OPTIONS = [
 const STEPS = [
   { n: 1, label: "Contato" },
   { n: 2, label: "Perfil" },
-  { n: 3, label: "Objetivo" },
-  { n: 4, label: "Análise" },
+  { n: 3, label: "Análise" },
 ];
 
 // Heurística simples para sugerir visto baseado nas respostas do perfil
