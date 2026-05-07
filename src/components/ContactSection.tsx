@@ -635,7 +635,7 @@ const ContactSection = () => {
   const Step3 = (
     <div>
       <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
-        Descubra se você é elegível para o Green Card.
+        Descubra se você é elegível para o <span className="text-gold italic relative inline-block after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-gold after:bottom-0 after:left-0 after:origin-left after:scale-x-100">Green Card</span>.
       </h3>
       <p className="text-[13px] text-foreground/55 font-body font-light mb-6">
         Milhares de profissionais já conquistaram o Green Card sem saber que tinham elegibilidade. Leva menos de 1 minuto para descobrir o seu caminho.
