@@ -147,14 +147,14 @@ const ContactSection = () => {
   const [formData, setFormData] = useState<{
     firstName: string; lastName: string; email: string; phoneCode: string; phone: string;
     visa: string;
-    education: string; achievements: string; experience: string; countryOfBirth: string;
+    education: string; license: string; achievements: string; experience: string; countryOfBirth: string;
     message: string; currentStatus: string; timeline: string;
     privacy: boolean;
     resume: File | null;
   }>({
     firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
     visa: "",
-    education: "", achievements: "", experience: "", countryOfBirth: "",
+    education: "", license: "", achievements: "", experience: "", countryOfBirth: "",
     message: "", currentStatus: "", timeline: "",
     privacy: false,
     resume: null,
