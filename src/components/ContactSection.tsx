@@ -125,6 +125,14 @@ const suggestVisa = (data: {
     }];
   }
 
+  // Doutorado/Pós-Doutorado sem publicações → EB-2 NIW
+  if (isDoutorado || isPosDoutorado) {
+    return [{
+      id: "EB-2 NIW",
+      label: "EB-2 NIW — Interesse Nacional",
+      reason: "Sua formação de doutorado sustenta um forte caso de Interesse Nacional (NIW).",
+    }];
+  }
   if ((bachelor || postgrad) && postgrad) {
     return [{
       id: "EB-2 NIW",
