@@ -561,13 +561,10 @@ const ContactSection = () => {
         </div>
       </div>
 
-      {formData.education === "Ensino Médio" && (
+      {formData.education === "Ensino Médio" && formData.achievements && formData.experience && formData.countryOfBirth && (
         <div className="mb-4 rounded-md border border-destructive/30 bg-destructive/10 px-4 py-3">
-          <p className="text-[13px] font-body font-semibold text-destructive mb-0.5">
-            Perfil não elegível para análise
-          </p>
-          <p className="text-[12px] font-body text-destructive/80">
-            Os vistos de imigração que trabalhamos exigem, no mínimo, formação técnica/tecnológica ou superior. Recomendamos buscar outras alternativas para o seu caso.
+          <p className="text-[13px] font-body text-destructive">
+            Infelizmente, o perfil com Ensino Médio não atende os requisitos mínimos para os vistos de imigração por mérito. Nossa equipe pode orientar sobre outras opções.
           </p>
         </div>
       )}
