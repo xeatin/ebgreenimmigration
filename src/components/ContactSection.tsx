@@ -357,7 +357,7 @@ const ContactSection = () => {
     setFormData({
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
       visa: "",
-      education: "", achievements: "", experience: "", countryOfBirth: "",
+      education: "", license: "", achievements: "", experience: "", countryOfBirth: "",
       message: "", currentStatus: "", timeline: "",
       privacy: false,
       resume: null,
