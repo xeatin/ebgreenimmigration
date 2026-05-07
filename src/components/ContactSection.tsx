@@ -381,6 +381,7 @@ const ContactSection = () => {
       formData.license ? `Licença Profissional: ${formData.license}` : "",
       formData.currentStatus ? `Status atual: ${formData.currentStatus}` : "",
       formData.timeline ? `Quando pretende iniciar: ${formData.timeline}` : "",
+      formData.knownVisa ? `Sei qual o meu visto: ${formData.knownVisa}` : "",
     ].filter(Boolean).join("\n");
 
     fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
