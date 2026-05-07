@@ -224,7 +224,7 @@ const ContactSection = () => {
     firstName: string; lastName: string; email: string; phoneCode: string; phone: string;
     visa: string;
     education: string; license: string; achievements: string; experience: string; countryOfBirth: string;
-    message: string; currentStatus: string; timeline: string;
+    message: string; currentStatus: string; timeline: string; knownVisa: string;
     privacy: boolean;
     resume: File | null;
   }>({
