@@ -296,6 +296,7 @@ const ContactSection = () => {
       formData.message,
       formData.countryOfBirth ? `País de nascimento: ${formData.countryOfBirth}` : "",
       formData.achievements ? `Publicações/Prêmios: ${formData.achievements}` : "",
+      formData.license ? `Licença Profissional: ${formData.license}` : "",
       formData.currentStatus ? `Status atual: ${formData.currentStatus}` : "",
       formData.timeline ? `Quando pretende iniciar: ${formData.timeline}` : "",
     ].filter(Boolean).join("\n");
