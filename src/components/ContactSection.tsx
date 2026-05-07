@@ -580,22 +580,21 @@ const ContactSection = () => {
       </div>
 
 
-      <div className="mb-4">
-        <label className={labelCls}>Licença Profissional</label>
-        <select
-          value={formData.license}
-          onChange={(e) => setFormData({ ...formData, license: e.target.value })}
-          className={selectCls()}
-          style={selectBg}
-        >
-          <option value="" className="bg-white">Selecionar...</option>
-          {["Não tenho","CAU","COREN","CRA","CRC","CREA","CREFITO","CRF","CRM","CRN","CRO","CRP","OAB"].map((o) => (
-            <option key={o} value={o} className="bg-white">{o}</option>
-          ))}
-        </select>
-      </div>
-
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label className={labelCls}>Licença Profissional</label>
+          <select
+            value={formData.license}
+            onChange={(e) => setFormData({ ...formData, license: e.target.value })}
+            className={selectCls()}
+            style={selectBg}
+          >
+            <option value="" className="bg-white">Selecionar...</option>
+            {["Não tenho","CAU","COREN","CRA","CRC","CREA","CREFITO","CRF","CRM","CRN","CRO","CRP","OAB"].map((o) => (
+              <option key={o} value={o} className="bg-white">{o}</option>
+            ))}
+          </select>
+        </div>
         <div>
           <label className={labelCls}>Experiência Profissional <span className={reqCls}>*</span></label>
           <select
@@ -609,23 +608,24 @@ const ContactSection = () => {
           </select>
           {errors.experience && <p className={errCls}>{errors.experience}</p>}
         </div>
-        <div>
-          <label className={labelCls}>País de Nascimento <span className={reqCls}>*</span></label>
-          <select
-            value={formData.countryOfBirth}
-            onChange={(e) => setFormData({ ...formData, countryOfBirth: e.target.value })}
-            className={selectCls(errors.countryOfBirth)}
-            style={selectBg}
-          >
-            <option value="" className="bg-white">Selecionar país...</option>
-            {COUNTRY_GROUPS.map((g) => (
-              <optgroup key={g.continent} label={g.continent} className="bg-white">
-                {g.countries.map((c) => <option key={c} value={c} className="bg-white">{c}</option>)}
-              </optgroup>
-            ))}
-          </select>
-          {errors.countryOfBirth && <p className={errCls}>{errors.countryOfBirth}</p>}
-        </div>
+      </div>
+
+      <div className="mb-4">
+        <label className={labelCls}>País de Nascimento <span className={reqCls}>*</span></label>
+        <select
+          value={formData.countryOfBirth}
+          onChange={(e) => setFormData({ ...formData, countryOfBirth: e.target.value })}
+          className={selectCls(errors.countryOfBirth)}
+          style={selectBg}
+        >
+          <option value="" className="bg-white">Selecionar país...</option>
+          {COUNTRY_GROUPS.map((g) => (
+            <optgroup key={g.continent} label={g.continent} className="bg-white">
+              {g.countries.map((c) => <option key={c} value={c} className="bg-white">{c}</option>)}
+            </optgroup>
+          ))}
+        </select>
+        {errors.countryOfBirth && <p className={errCls}>{errors.countryOfBirth}</p>}
       </div>
     </div>
   );
