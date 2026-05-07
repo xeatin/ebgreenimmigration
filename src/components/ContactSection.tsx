@@ -725,14 +725,9 @@ const ContactSection = () => {
                 <Sparkles size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
               </span>
               <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="w-4 h-4 rounded-full bg-gold/20 border border-gold/50 flex items-center justify-center animate-pulse shadow-[0_0_8px_rgba(212,175,55,0.35)]">
-                    <Sparkles size={9} className="text-gold" />
-                  </span>
-                  <p className="text-[10px] tracking-[0.18em] uppercase font-body font-semibold text-gold">
-                    {suggestions.length > 1 ? "Sugestões preliminares baseadas nas suas respostas" : "Sugestão preliminar baseada nas suas respostas"}
-                  </p>
-                </div>
+                <p className="text-[10px] tracking-[0.18em] uppercase font-body font-semibold text-gold mb-2">
+                  {suggestions.length > 1 ? "Sugestões preliminares baseadas nas suas respostas" : "Sugestão preliminar baseada nas suas respostas"}
+                </p>
                 <div className="space-y-3">
                   {suggestions.map((sug) => (
                     <div key={sug.id}>
