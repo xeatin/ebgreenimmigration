@@ -561,6 +561,17 @@ const ContactSection = () => {
         </div>
       </div>
 
+      {formData.education === "Ensino Médio" && (
+        <div className="mb-4 rounded-md border border-destructive/30 bg-destructive/10 px-4 py-3">
+          <p className="text-[13px] font-body font-semibold text-destructive mb-0.5">
+            Perfil não elegível para análise
+          </p>
+          <p className="text-[12px] font-body text-destructive/80">
+            Os vistos de imigração que trabalhamos exigem, no mínimo, formação técnica/tecnológica ou superior. Recomendamos buscar outras alternativas para o seu caso.
+          </p>
+        </div>
+      )}
+
       <div className="mb-4">
         <label className={labelCls}>Licença Profissional</label>
         <select
@@ -1102,7 +1113,8 @@ const ContactSection = () => {
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)]"
+                    disabled={step === 2 && formData.education === "Ensino Médio"}
+                    className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:opacity-50"
                   >
                     Continuar avaliação <ArrowRight size={15} />
                   </button>
