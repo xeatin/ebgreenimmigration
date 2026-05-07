@@ -768,7 +768,7 @@ const ContactSection = () => {
     </div>
   );
 
-  const stepContent = step === 1 ? Step3 : step === 2 ? Step2 : step === 3 ? Step1 : Step4;
+  const stepContent = step === 1 ? Step3 : step === 2 ? Step2 : Step4;
 
   const DIFFERENTIALS = [
     { icon: Award, label: "Análise especializada" },
