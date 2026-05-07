@@ -136,12 +136,12 @@ const suggestVisa = (data: {
       reason: "Sua formação de doutorado sustenta um forte caso de Interesse Nacional (NIW).",
     }];
   }
-  // Mestrado + publicações → EB-1A e EB-2 NIW combinados
-  if (isMestrado && hasPublications) {
+  // Pós-Graduação/Mestrado + publicações → EB-1A e EB-2 NIW combinados
+  if ((isPosGrad || isMestrado) && hasPublications) {
     return [{
       id: "EB-1A e EB-2 NIW",
       label: "EB-1A e EB-2 NIW – Habilidade Extraordinária + Interesse Nacional",
-      reason: "Sua formação de mestrado com publicações sustenta um caso forte tanto para o EB-1A quanto para o EB-2 NIW.",
+      reason: "Sua formação avançada com publicações abre caminho para os vistos EB-1A e EB-2 NIW.",
     }];
   }
   if ((bachelor || postgrad) && postgrad) {
@@ -155,8 +155,8 @@ const suggestVisa = (data: {
   if (technical && (senior || mid)) {
     return [{
       id: "EB-2 NIW",
-      label: "EB-2 NIW — Interesse Nacional",
-      reason: "Sua formação técnica/tecnológica aliada a uma sólida experiência profissional sustenta um caso de Interesse Nacional (NIW).",
+      label: "EB-2 NIW – Interesse Nacional",
+      reason: "Sua formação técnica/tecnológica aliada a uma sólida experiência profissional sustenta um pedido de Interesse Nacional.",
     }];
   }
   if (technical && !hasExperience5plus) {
