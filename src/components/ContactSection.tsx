@@ -151,6 +151,13 @@ const suggestVisa = (data: {
       reason: "Sua formação técnica/tecnológica aliada a uma sólida experiência profissional sustenta um caso de Interesse Nacional (NIW).",
     }];
   }
+  if (technical && !hasExperience5plus) {
+    return [{
+      id: "EB-3",
+      label: "EB-3 — Trabalho Qualificado",
+      reason: "Para o perfil técnico/tecnólogo com menos de 5 anos de experiência, o caminho mais indicado é o EB-3, que requer um patrocinador (sponsor) nos EUA.",
+    }];
+  }
   if (bachelor && (senior || mid)) {
     return [{
       id: "EB-2 NIW",
