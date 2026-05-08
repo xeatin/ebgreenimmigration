@@ -59,7 +59,7 @@ const ServicesSection = () => {
                 {t(s.mostPopular, lang)}
               </span>
             </div>
-            <div className="grid md:grid-cols-2 gap-4 border border-gold/30 rounded-xl p-3 pt-5 bg-gold/5 h-full shadow-[0_0_24px_hsl(var(--brand-green)/0.12)] hover:shadow-[0_0_32px_hsl(var(--brand-green)/0.18)] transition-shadow">
+            <div className="grid md:grid-cols-2 gap-4 border border-gold/30 rounded-xl p-3 pt-5 bg-gold/5 h-full shadow-[0_0_24px_hsl(var(--brand-green)/0.12),0_0_60px_hsl(var(--brand-green)/0.06)] hover:shadow-[0_0_32px_hsl(var(--brand-green)/0.2),0_0_80px_hsl(var(--brand-green)/0.1)] transition-shadow">
               {highlightedServices.map((service, i) => (
                 <motion.div
                   key={i}
