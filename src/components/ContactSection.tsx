@@ -800,18 +800,20 @@ const ContactSection = () => {
         </div>
       </div>
 
-      <div className="mb-4">
-        <label className={labelCls}>Quando pretende iniciar? <span className={reqCls}>*</span></label>
-        <select
-          value={formData.timeline}
-          onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-          className={selectCls(!formData.timeline && errors.message ? "x" : undefined)}
-          style={selectBg}
-        >
-          <option value="" className="bg-white">Selecionar...</option>
-          {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
-        </select>
-        {errors.message && !formData.timeline && <p className={errCls}>Selecione quando pretende iniciar.</p>}
+      <div className="grid sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label className={labelCls}>Quando pretende iniciar? <span className={reqCls}>*</span></label>
+          <select
+            value={formData.timeline}
+            onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+            className={selectCls(!formData.timeline && errors.message ? "x" : undefined)}
+            style={selectBg}
+          >
+            <option value="" className="bg-white">Selecionar...</option>
+            {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
+          </select>
+          {errors.message && !formData.timeline && <p className={errCls}>Selecione quando pretende iniciar.</p>}
+        </div>
       </div>
 
       {/* Currículo */}
