@@ -17,7 +17,7 @@ import { useToast } from "@/hooks/use-toast";
 
 type FormErrors = Partial<Record<
   "firstName" | "lastName" | "email" | "phone" | "visa" | "education" | "license" | "achievements" |
-  "experience" | "countryOfBirth" | "timeline" | "privacy" | "message",
+  "experience" | "timeline" | "privacy" | "message",
   string
 >>;
 
@@ -99,7 +99,6 @@ const suggestVisa = (data: {
   education: string;
   achievements: string;
   experience: string;
-  countryOfBirth: string;
 }): { id: string; label: string; reason: string }[] => {
   const { education, achievements, experience } = data;
   if (!education || !achievements || !experience) return [];
@@ -239,14 +238,14 @@ const ContactSection = () => {
   const [formData, setFormData] = useState<{
     firstName: string; lastName: string; email: string; phoneCode: string; phone: string;
     visa: string;
-    education: string; license: string; achievements: string; experience: string; countryOfBirth: string;
+    education: string; license: string; achievements: string; experience: string;
     message: string; currentStatus: string; timeline: string; knownVisa: string;
     privacy: boolean;
     resume: File | null;
   }>({
     firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
     visa: "",
-    education: "", license: "", achievements: "", experience: "", countryOfBirth: "",
+    education: "", license: "", achievements: "", experience: "",
     message: "", currentStatus: "", timeline: "", knownVisa: "",
     privacy: false,
     resume: null,
@@ -289,7 +288,6 @@ const ContactSection = () => {
       if (!formData.license) e.license = t(s.errors.required, lang);
       if (!formData.achievements) e.achievements = t(s.errors.required, lang);
       if (!formData.experience) e.experience = t(s.errors.experienceRequired, lang);
-      if (!formData.countryOfBirth) e.countryOfBirth = t(s.errors.required, lang);
     }
     if (current === 3) {
       if (!formData.timeline) e.message = t(s.errors.required, lang);
@@ -384,7 +382,6 @@ const ContactSection = () => {
 
     const composedMessage = [
       formData.message,
-      formData.countryOfBirth ? `País de nascimento: ${formData.countryOfBirth}` : "",
       formData.achievements ? `Publicações/Prêmios: ${formData.achievements}` : "",
       formData.license ? `Licença Profissional: ${formData.license}` : "",
       formData.currentStatus ? `Status atual: ${formData.currentStatus}` : "",
@@ -451,7 +448,7 @@ const ContactSection = () => {
     setFormData({
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
       visa: "",
-      education: "", license: "", achievements: "", experience: "", countryOfBirth: "",
+      education: "", license: "", achievements: "", experience: "",
       message: "", currentStatus: "", timeline: "", knownVisa: "",
       privacy: false,
       resume: null,
@@ -616,26 +613,6 @@ const ContactSection = () => {
             {EXPERIENCE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
           </select>
           {errors.experience && <p className={errCls}>{errors.experience}</p>}
-        </div>
-      </div>
-
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div>
-          <label className={labelCls}>País de Nascimento <span className={reqCls}>*</span></label>
-          <select
-            value={formData.countryOfBirth}
-            onChange={(e) => setFormData({ ...formData, countryOfBirth: e.target.value })}
-            className={selectCls(errors.countryOfBirth)}
-            style={selectBg}
-          >
-            <option value="" className="bg-white">Selecionar país...</option>
-            {COUNTRY_GROUPS.map((g) => (
-              <optgroup key={g.continent} label={g.continent} className="bg-white">
-                {g.countries.map((c) => <option key={c} value={c} className="bg-white">{c}</option>)}
-              </optgroup>
-            ))}
-          </select>
-          {errors.countryOfBirth && <p className={errCls}>{errors.countryOfBirth}</p>}
         </div>
       </div>
     </div>
