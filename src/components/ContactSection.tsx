@@ -171,7 +171,7 @@ const suggestVisa = (data: {
     return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW – Interesse Nacional",
-      reason: "Sua formação técnica/tecnológica aliada a uma sólida experiência profissional sustenta um pedido de Interesse Nacional.",
+      reason: "Sua formação técnica/tecnológica, aliada a uma sólida experiência profissional, pode sustentar um pedido de EB-2 NIW com foco no Interesse Nacional. Essa categoria pode permitir a obtenção do Green Card.",
     }];
   }
   if (technical && !hasExperience5plus) {
@@ -185,7 +185,7 @@ const suggestVisa = (data: {
     return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW — Interesse Nacional",
-      reason: "Sua formação superior aliada a uma sólida experiência profissional sustenta um forte caso de Interesse Nacional (NIW).",
+      reason: "Sua formação superior, aliada a uma sólida experiência profissional, pode sustentar um forte caso de EB-2 NIW com foco no Interesse Nacional. Essa categoria pode permitir a obtenção do Green Card.",
     }];
   }
   if (hasBoth && senior) {
