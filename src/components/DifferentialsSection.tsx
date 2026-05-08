@@ -25,7 +25,7 @@ const DifferentialsSection = () => {
           <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
             {t(s.sectionTitle, lang)}
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-gold to-brand-green mx-auto mt-6 rounded-full" />
+          <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
