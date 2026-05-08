@@ -760,7 +760,7 @@ const ContactSection = () => {
       <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25 mb-5">
         <ShieldCheck size={14} className="text-emerald-600 shrink-0" />
         <span className="text-[12px] text-emerald-700 font-body">
-          Todas as informações são estritamente confidenciais e protegidas.
+          Quero uma avaliacao gratuita do meu perfil
         </span>
       </div>
 
