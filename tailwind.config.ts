@@ -58,6 +58,7 @@ export default {
         "green-deep": "hsl(var(--green-deep))",
         "green-medium": "hsl(var(--green-medium))",
         "green-light": "hsl(var(--green-light))",
+        "brand-green": "hsl(var(--brand-green))",
         cream: "hsl(var(--cream))",
         navy: "hsl(var(--navy))",
         sidebar: {
