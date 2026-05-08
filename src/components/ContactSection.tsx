@@ -134,12 +134,20 @@ const suggestVisa = (data: {
   const doctorate = isDoutorado || isPosDoutorado;
   const advanced = isPosGrad || isMestrado || isDoutorado || isPosDoutorado;
 
-  // Doutorado/Pós-Doutorado + publicações → EB-1A e EB-2 NIW combinados
-  if ((isDoutorado || isPosDoutorado) && hasPublications) {
+  // Doutorado + publicações → EB-1A e EB-2 NIW combinados
+  if (isDoutorado && hasPublications) {
     return [{
       id: "EB-1A e EB-2 NIW",
-      label: "EB-1A e EB-2 NIW – Habilidade Extraordinária + Interesse Nacional",
-      reason: "Seu doutorado com publicações abre caminho para os vistos EB-1A e EB-2 NIW.",
+      label: "EB-1A e EB-2 NIW – Habilidade Extraordinária",
+      reason: "Seu doutorado e suas publicações podem abrir caminhos estratégicos para o Green Card por meio do EB-1A ou do EB-2 NIW. Essas categorias são voltadas a profissionais com trajetória diferenciada, contribuições relevantes e potencial de impacto em sua área de atuação nos Estados Unidos.",
+    }];
+  }
+  // Pós-Doutorado + publicações → EB-1A e EB-2 NIW combinados
+  if (isPosDoutorado && hasPublications) {
+    return [{
+      id: "EB-1A e EB-2 NIW",
+      label: "EB-1A e EB-2 NIW – Habilidade Extraordinária",
+      reason: "Seu pós-doutorado e suas publicações podem abrir caminhos estratégicos para o Green Card por meio do EB-1A ou do EB-2 NIW. Essas categorias são voltadas a profissionais com trajetória diferenciada, contribuições relevantes e potencial de impacto em sua área de atuação nos Estados Unidos.",
     }];
   }
 
