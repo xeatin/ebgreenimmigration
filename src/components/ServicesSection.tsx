@@ -59,7 +59,7 @@ const ServicesSection = () => {
                 {t(s.mostPopular, lang)}
               </span>
             </div>
-            <div className="grid md:grid-cols-2 gap-4 border border-brand-green/60 rounded-xl p-3 pt-5 bg-gold/5 h-full shadow-[0_0_20px_hsl(var(--gold)/0.08)] hover:shadow-[0_0_30px_hsl(var(--gold)/0.12)] transition-shadow">
+            <div className="grid md:grid-cols-2 gap-4 border border-brand-green rounded-xl p-3 pt-5 bg-gold/5 h-full shadow-[0_0_20px_hsl(var(--gold)/0.08)] hover:shadow-[0_0_30px_hsl(var(--gold)/0.12)] transition-shadow">
               {highlightedServices.map((service, i) => (
                 <motion.div
                   key={i}
@@ -67,7 +67,7 @@ const ServicesSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="relative p-6 rounded-xl border border-brand-green/60 hover:border-brand-green bg-gold/10 transition-all group cursor-pointer hover:-translate-y-1"
+                  className="relative p-6 rounded-xl border border-brand-green hover:border-brand-green bg-gold/10 transition-all group cursor-pointer hover:-translate-y-1"
                 >
                   <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
                     <span className="bg-gold/20 text-gold text-[10px] font-bold font-body px-2 py-0.5 rounded-full border border-gold/30">
@@ -105,7 +105,7 @@ const ServicesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: (i + 2) * 0.08 }}
-              className="relative p-6 rounded-xl border-2 bg-cream/5 border-brand-green/60 hover:border-brand-green hover:shadow-[0_0_0_1px_hsl(var(--brand-green)/0.4)] transition-all group cursor-pointer hover:-translate-y-1"
+              className="relative p-6 rounded-xl border-2 bg-cream/5 border-brand-green hover:border-brand-green hover:shadow-[0_0_0_1px_hsl(var(--brand-green)/0.4)] transition-all group cursor-pointer hover:-translate-y-1"
             >
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-cream/10">
