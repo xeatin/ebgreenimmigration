@@ -75,8 +75,8 @@ const ServicesSection = () => {
                     </span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-gold/20">
-                      <service.icon className="text-gold" size={20} />
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-brand-green/20 ring-1 ring-brand-green/30">
+                      <service.icon className="text-brand-green" size={20} />
                     </div>
                     <div className="flex-1">
                       <h3 className="font-display text-lg font-semibold text-cream">{service.title}</h3>
@@ -84,7 +84,7 @@ const ServicesSection = () => {
                     </div>
                   </div>
                   <p className="text-cream/60 font-body mt-3 leading-relaxed text-sm">{service.description}</p>
-                  <div className="mt-3 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-3 flex items-center gap-1 text-brand-green text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
                     {t(s.learnMore, lang)} <ArrowRight size={14} />
                   </div>
                 </motion.div>
