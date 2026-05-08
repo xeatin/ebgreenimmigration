@@ -59,7 +59,7 @@ const ServicesSection = () => {
                 {t(s.mostPopular, lang)}
               </span>
             </div>
-            <div className="grid md:grid-cols-2 gap-4 border border-gold/30 rounded-xl p-3 pt-5 bg-gold/5 h-full shadow-[0_0_24px_hsl(var(--brand-green)/0.12),0_0_60px_hsl(var(--brand-green)/0.06)] hover:shadow-[0_0_32px_hsl(var(--brand-green)/0.2),0_0_80px_hsl(var(--brand-green)/0.1)] transition-shadow">
+            <div className="grid md:grid-cols-2 gap-4 border border-gold/30 rounded-xl p-3 pt-5 bg-gold/5 h-full shadow-[0_0_20px_hsl(var(--gold)/0.08)] hover:shadow-[0_0_30px_hsl(var(--gold)/0.12)] transition-shadow">
               {highlightedServices.map((service, i) => (
                 <motion.div
                   key={i}
@@ -67,16 +67,16 @@ const ServicesSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="relative p-6 rounded-xl border border-gold/30 hover:border-brand-green/70 bg-gradient-to-br from-gold/10 via-gold/5 to-brand-green/10 transition-all group cursor-pointer hover:-translate-y-1 hover:shadow-[0_0_16px_hsl(var(--brand-green)/0.2)]"
+                  className="relative p-6 rounded-xl border border-gold/30 hover:border-gold/60 bg-gold/10 transition-all group cursor-pointer hover:-translate-y-1"
                 >
                   <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="bg-brand-green/20 text-brand-green text-[10px] font-bold font-body px-2 py-0.5 rounded-full border border-brand-green/30">
+                    <span className="bg-gold/20 text-gold text-[10px] font-bold font-body px-2 py-0.5 rounded-full border border-gold/30">
                       TOP
                     </span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-brand-green/20 ring-1 ring-brand-green/30">
-                      <service.icon className="text-brand-green" size={20} />
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-gold/20">
+                      <service.icon className="text-gold" size={20} />
                     </div>
                     <div className="flex-1">
                       <h3 className={`font-display text-lg font-semibold text-cream relative inline-block ${(service.title.includes("EB-1A") || service.title.includes("EB-2")) ? 'drop-shadow-[0_0_5px_hsl(var(--brand-green)/0.35)]' : ''}`}>
@@ -89,7 +89,7 @@ const ServicesSection = () => {
                     </div>
                   </div>
                   <p className="text-cream/60 font-body mt-3 leading-relaxed text-sm">{service.description}</p>
-                  <div className="mt-3 flex items-center gap-1 text-brand-green text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-3 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
                     {t(s.learnMore, lang)} <ArrowRight size={14} />
                   </div>
                 </motion.div>
@@ -105,7 +105,7 @@ const ServicesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: (i + 2) * 0.08 }}
-              className="relative p-6 rounded-xl border-2 bg-cream/5 border-cream/10 hover:border-brand-green hover:shadow-[0_0_0_1px_hsl(var(--brand-green)/0.4)] transition-all group cursor-pointer hover:-translate-y-1"
+              className="relative p-6 rounded-xl border-2 bg-cream/5 border-cream/10 hover:border-gold/40 hover:shadow-[0_0_0_1px_hsl(var(--gold)/0.25)] transition-all group cursor-pointer hover:-translate-y-1"
             >
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-cream/10">
