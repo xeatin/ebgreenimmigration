@@ -59,7 +59,7 @@ const ServicesSection = () => {
                 {t(s.mostPopular, lang)}
               </span>
             </div>
-            <div className="grid md:grid-cols-2 gap-4 border border-gold/30 rounded-xl p-3 pt-5 bg-gold/5 h-full">
+            <div className="grid md:grid-cols-2 gap-4 border border-gold/30 rounded-xl p-3 pt-5 bg-gold/5 h-full shadow-[0_0_24px_hsl(var(--brand-green)/0.12)] hover:shadow-[0_0_32px_hsl(var(--brand-green)/0.18)] transition-shadow">
               {highlightedServices.map((service, i) => (
                 <motion.div
                   key={i}
@@ -67,8 +67,13 @@ const ServicesSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="relative p-6 rounded-xl border border-gold/30 hover:border-gold/60 bg-gold/10 transition-all group cursor-pointer hover:-translate-y-1"
+                  className="relative p-6 rounded-xl border border-gold/30 hover:border-brand-green/70 bg-gradient-to-br from-gold/10 via-gold/5 to-brand-green/10 transition-all group cursor-pointer hover:-translate-y-1 hover:shadow-[0_0_16px_hsl(var(--brand-green)/0.2)]"
                 >
+                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="bg-brand-green/20 text-brand-green text-[10px] font-bold font-body px-2 py-0.5 rounded-full border border-brand-green/30">
+                      TOP
+                    </span>
+                  </div>
                   <div className="flex items-start gap-3">
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-gold/20">
                       <service.icon className="text-gold" size={20} />
