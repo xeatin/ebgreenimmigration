@@ -65,7 +65,7 @@ const HeroSection = () => {
             </a>
             <a
               href="#servicos"
-              className="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream px-8 py-4 rounded-md font-semibold font-body hover:border-gold hover:text-gold transition-colors"
+              className="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream px-8 py-4 rounded-md font-semibold font-body hover:border-brand-green hover:text-brand-green transition-colors"
             >
               {t(s.ctaSecondary, lang)}
             </a>
