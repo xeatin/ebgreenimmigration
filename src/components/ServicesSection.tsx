@@ -67,10 +67,10 @@ const ServicesSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="relative p-6 rounded-xl border border-gold/30 hover:border-brand-green/70 bg-gradient-to-br from-gold/10 via-gold/5 to-brand-green/10 transition-all group cursor-pointer hover:-translate-y-1 hover:shadow-[0_0_16px_hsl(var(--brand-green)/0.2)]"
+                  className="relative p-6 rounded-xl border border-gold/30 hover:border-gold/60 bg-gold/10 transition-all group cursor-pointer hover:-translate-y-1"
                 >
                   <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="bg-brand-green/20 text-brand-green text-[10px] font-bold font-body px-2 py-0.5 rounded-full border border-brand-green/30">
+                    <span className="bg-gold/20 text-gold text-[10px] font-bold font-body px-2 py-0.5 rounded-full border border-gold/30">
                       TOP
                     </span>
                   </div>
