@@ -7,7 +7,7 @@ const Footer = () => {
   const s = translations.footer;
 
   return (
-    <footer className="bg-green-deep py-10">
+    <footer className="bg-footer-green py-10">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-8 md:gap-4">
           <div className="shrink-0 flex flex-col items-center">
