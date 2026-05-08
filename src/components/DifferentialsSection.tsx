@@ -43,7 +43,7 @@ const DifferentialsSection = () => {
                 <div className="w-16 h-16 bg-primary/5 border border-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
                   <Icon className="text-primary group-hover:text-primary-foreground transition-colors" size={28} />
                 </div>
-                <p className="font-display text-4xl font-bold text-gold mb-2">{stats[i]}</p>
+                <p className={`font-display text-4xl font-bold mb-2 ${stats[i] === "+89%" ? "text-brand-green" : "text-gold"}`}>{stats[i]}</p>
                 <h3 className="font-display text-lg font-semibold text-foreground mb-2">{t(item.title, lang)}</h3>
                 <p className="text-muted-foreground text-sm font-body leading-relaxed">{t(item.description, lang)}</p>
               </motion.div>
