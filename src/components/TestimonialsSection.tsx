@@ -208,7 +208,22 @@ const TestimonialsSection = () => {
                     </div>
                     <div>
                       <p className="font-display text-foreground font-semibold text-sm leading-tight">{item.name}</p>
-                      <p className="text-accent text-xs font-body">{t(item.category, lang)}</p>
+                      {(() => {
+                        const cat = t(item.category, lang);
+                        const m = cat.match(/^(.*?)(\s•\s)(Aprovad[oa]|Approved|Aprobad[oa]).*$/i);
+                        if (m) {
+                          return (
+                            <p className="text-xs font-body flex items-center gap-1.5 flex-wrap">
+                              <span className="text-accent">{m[1]}</span>
+                              <span className="inline-flex items-center gap-1 text-brand-green font-semibold uppercase tracking-wide">
+                                <span className="w-1.5 h-1.5 rounded-full bg-brand-green" />
+                                {cat.split('•')[1]?.trim()}
+                              </span>
+                            </p>
+                          );
+                        }
+                        return <p className="text-accent text-xs font-body">{cat}</p>;
+                      })()}
                     </div>
                   </div>
 

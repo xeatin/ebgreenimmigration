@@ -28,7 +28,7 @@ const ProcessSection = () => {
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg font-body">
             {t(s.sectionSubtitle, lang)}
           </p>
-          <div className="w-16 h-1 bg-gradient-gold mx-auto mt-6 rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-gold to-brand-green mx-auto mt-6 rounded-full" />
         </motion.div>
 
         <div className="flex flex-wrap justify-center gap-x-[2.55rem] gap-y-[2.975rem]">

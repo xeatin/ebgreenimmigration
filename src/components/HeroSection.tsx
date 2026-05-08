@@ -12,7 +12,7 @@ const HeroSection = () => {
     <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
       <div className="absolute inset-0">
         <img src={heroBg} alt="Profissionais em aeroporto internacional" className="w-full h-full object-cover" width={1920} height={1080} />
-        <div className="absolute inset-0 bg-hero-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-t from-green-deep via-green-deep/80 to-green-deep/40" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 pb-20 pt-40">
@@ -65,7 +65,7 @@ const HeroSection = () => {
             </a>
             <a
               href="#servicos"
-              className="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream px-8 py-4 rounded-md font-semibold font-body hover:border-gold hover:text-gold transition-colors"
+              className="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream px-8 py-4 rounded-md font-semibold font-body hover:border-brand-green hover:text-brand-green transition-colors"
             >
               {t(s.ctaSecondary, lang)}
             </a>
