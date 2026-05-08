@@ -79,7 +79,12 @@ const ServicesSection = () => {
                       <service.icon className="text-brand-green" size={20} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-display text-lg font-semibold text-cream">{service.title}</h3>
+                      <h3 className="font-display text-lg font-semibold text-cream relative inline-block">
+                        {service.title}
+                        {service.title.includes("EB-2") && (
+                          <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-brand-green rounded-full" />
+                        )}
+                      </h3>
                       <p className="text-gold/80 text-xs font-body mt-0.5">{service.subtitle}</p>
                     </div>
                   </div>
