@@ -53,7 +53,7 @@ const ServicesSection = () => {
             className="relative md:col-span-2 lg:col-span-2"
           >
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 whitespace-nowrap">
-              <span className="absolute inset-0 rounded-full bg-gold/30 animate-ping" style={{ animationDuration: '2s' }} aria-hidden="true" />
+              <span className="absolute inset-0 rounded-full bg-gold/25 animate-pulse" aria-hidden="true" />
               <span className="relative bg-gradient-gold text-green-deep text-xs font-bold font-body px-4 py-1 rounded-full flex items-center gap-1.5 shadow-[0_0_12px_hsl(var(--gold)/0.35)]">
                 <Star size={12} className="fill-green-deep" />
                 {t(s.mostPopular, lang)}
