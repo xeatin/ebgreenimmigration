@@ -12,7 +12,7 @@ const HeroSection = () => {
     <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
       <div className="absolute inset-0">
         <img src={heroBg} alt="Profissionais em aeroporto internacional" className="w-full h-full object-cover" width={1920} height={1080} />
-        <div className="absolute inset-0 bg-hero-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-t from-green-deep via-green-deep/80 to-green-deep/40" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 pb-20 pt-40">
