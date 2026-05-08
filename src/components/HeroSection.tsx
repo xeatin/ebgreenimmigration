@@ -86,7 +86,7 @@ const HeroSection = () => {
           ].map((stat) => (
             <div key={stat.label} className="text-center md:py-6 flex flex-col items-center justify-start">
               {stat.number ? (
-                <p className={`font-display text-3xl md:text-4xl font-bold ${stat.number === "+89%" ? "text-brand-green-light" : "text-gold"}`}>{stat.number}</p>
+                <p className="font-display text-3xl md:text-4xl font-bold text-gold">{stat.number}</p>
               ) : null}
               <p className={`text-sm mt-1 font-body leading-tight ${stat.number ? "text-cream/50" : "font-display text-lg md:text-xl font-bold text-gold mt-2"}`}>{stat.label}</p>
               {stat.subtitle && <p className="text-cream/40 text-xs mt-0.5 font-body">{stat.subtitle}</p>}
