@@ -81,7 +81,7 @@ const ServicesSection = () => {
                     <div className="flex-1">
                       <h3 className="font-display text-lg font-semibold text-cream relative inline-block">
                         {service.title}
-                        {service.title.includes("EB-2") && (
+                        {(service.title.includes("EB-1A") || service.title.includes("EB-2")) && (
                           <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-brand-green rounded-full" />
                         )}
                       </h3>
