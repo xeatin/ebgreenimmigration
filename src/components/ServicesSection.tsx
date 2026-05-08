@@ -105,7 +105,7 @@ const ServicesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: (i + 2) * 0.08 }}
-              className="relative p-6 rounded-xl border-2 bg-cream/5 border-cream/10 hover:border-brand-green hover:shadow-[0_0_0_1px_hsl(var(--brand-green)/0.4)] transition-all group cursor-pointer hover:-translate-y-1"
+              className="relative p-6 rounded-xl border-2 bg-cream/5 border-cream/10 hover:border-gold/40 hover:shadow-[0_0_0_1px_hsl(var(--gold)/0.25)] transition-all group cursor-pointer hover:-translate-y-1"
             >
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-cream/10">
