@@ -733,9 +733,9 @@ const ContactSection = () => {
         )}
       </AnimatePresence>
 
-      <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25 mb-5">
-        <ShieldCheck size={14} className="text-emerald-600 shrink-0" />
-        <span className="text-[12px] text-emerald-700 font-body">
+      <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-brand-green/[0.08] border border-brand-green/25 mb-5">
+        <ShieldCheck size={14} className="text-brand-green shrink-0" />
+        <span className="text-[12px] text-brand-green font-body">
           Avançar com minha avaliação gratuita
         </span>
       </div>
@@ -1027,7 +1027,7 @@ const ContactSection = () => {
                           )}
                           {/* number / check */}
                           {done ? (
-                            <span className="relative text-gold animate-check-fade">
+                            <span className="relative text-brand-green animate-check-fade">
                               <Check size={12} strokeWidth={3} />
                             </span>
                           ) : (
