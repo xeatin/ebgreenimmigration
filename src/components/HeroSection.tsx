@@ -58,6 +58,8 @@ const HeroSection = () => {
           >
             <a
               href="#contato"
+              data-cta-id="hero_primary_cta"
+              data-cta-location="hero"
               className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover"
             >
               {t(s.ctaPrimary, lang)}
@@ -65,6 +67,8 @@ const HeroSection = () => {
             </a>
             <a
               href="#servicos"
+              data-cta-id="hero_secondary_cta"
+              data-cta-location="hero"
               className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-eligibility-green text-cream hover:bg-eligibility-green/10 px-8 py-4 rounded-md font-semibold font-body transition-colors"
             >
               {t(s.ctaSecondary, lang)}
