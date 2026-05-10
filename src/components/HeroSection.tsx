@@ -11,7 +11,7 @@ const HeroSection = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Profissionais em aeroporto internacional" className="w-full h-full object-cover" width={1920} height={1080} />
+        <img src={heroBg} alt="Profissionais em aeroporto internacional" className="w-full h-full object-cover" width={1920} height={1080} loading="eager" fetchPriority="high" decoding="async" />
         <div className="absolute inset-0 bg-gradient-to-t from-green-deep via-green-deep/80 to-green-deep/40" />
       </div>
 
