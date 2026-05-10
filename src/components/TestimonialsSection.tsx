@@ -214,7 +214,7 @@ const TestimonialsSection = () => {
                         if (m) {
                           return (
                             <p className="text-xs font-body flex items-center gap-1.5 flex-wrap">
-                              <span className="text-accent">{m[1]}</span>
+                              <span className="text-brand-green font-semibold">{m[1]}</span>
                               <span className="inline-flex items-center gap-1 text-brand-green font-semibold uppercase tracking-wide">
                                 <span className="w-1.5 h-1.5 rounded-full bg-brand-green" />
                                 {cat.split('•')[1]?.trim()}
@@ -222,7 +222,7 @@ const TestimonialsSection = () => {
                             </p>
                           );
                         }
-                        return <p className="text-accent text-xs font-body">{cat}</p>;
+                        return <p className="text-brand-green text-xs font-body font-semibold">{cat}</p>;
                       })()}
                     </div>
                   </div>
