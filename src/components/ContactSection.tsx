@@ -855,7 +855,7 @@ const ContactSection = () => {
             <div className="mt-6 rounded-xl bg-green-deep text-white p-6 relative overflow-hidden">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
               <p className="font-display text-lg font-semibold mb-5">
-                Fale com a <span className="italic text-gold/95">Eb<span className="text-white">green</span></span>
+                Fale conosco
               </p>
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-5 mb-6">
                 <a href="https://wa.me/17712017117" target="_blank" rel="noopener noreferrer" className="group min-w-0">
