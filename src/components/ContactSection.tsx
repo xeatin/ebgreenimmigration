@@ -460,6 +460,7 @@ const ContactSection = () => {
         throw error || new Error(data?.error || "Erro ao enviar lead");
       }
     } catch (err) {
+      trackForm("form_error", { form_id: FORM_ID, visa_context: formData.visa, reason: "submit_failed" });
       toast({
         title: t(s.validationTitle, lang),
         description: "Não foi possível enviar o lead. Tente novamente.",
@@ -469,6 +470,8 @@ const ContactSection = () => {
       return;
     }
 
+    submittedRef.current = true;
+    trackForm("form_submit", { form_id: FORM_ID, visa_context: formData.visa });
     toast({
       title: t(s.successTitle, lang),
       description: t(s.successMsg, lang),
