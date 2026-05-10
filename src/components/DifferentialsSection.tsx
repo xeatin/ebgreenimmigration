@@ -38,7 +38,7 @@ const DifferentialsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="text-center group"
+                className="text-center group rounded-xl border border-transparent hover:border-brand-green/50 hover:shadow-[0_0_0_1px_hsl(var(--brand-green)/0.35)] transition-all"
               >
                 <div className="w-16 h-16 bg-primary/5 border border-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
                   <Icon className="text-primary group-hover:text-primary-foreground transition-colors" size={28} />
