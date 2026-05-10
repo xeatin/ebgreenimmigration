@@ -3,12 +3,10 @@ import { ArrowRight, Shield } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
-import { useAbVariant } from "@/hooks/useAbVariant";
 
 const HeroSection = () => {
   const { lang } = useLanguage();
   const s = translations.hero;
-  const ctaVariant = useAbVariant("hero_secondary_cta");
 
   return (
     <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
