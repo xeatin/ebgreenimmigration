@@ -752,23 +752,17 @@ const ContactSection = () => {
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <div className="flex items-center gap-2 mb-1.5 animate-fade-in">
-            <span className="w-5 h-5 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center shrink-0">
-              <Info size={11} className="text-gold" />
-            </span>
-            <label className={`${labelCls} !mb-0`}>
-              Sei qual o meu visto: <span className="text-foreground/40 normal-case font-light tracking-normal text-[10px] ml-1">(opcional)</span>
-            </label>
-          </div>
+          <label className={labelCls}>Quando pretende iniciar? <span className={reqCls}>*</span></label>
           <select
-            value={formData.knownVisa}
-            onChange={(e) => setFormData({ ...formData, knownVisa: e.target.value })}
-            className={selectCls()}
+            value={formData.timeline}
+            onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+            className={selectCls(!formData.timeline && errors.message ? "x" : undefined)}
             style={selectBg}
           >
             <option value="" className="bg-white">Selecionar...</option>
-            {KNOWN_VISA_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
+            {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
           </select>
+          {errors.message && !formData.timeline && <p className={errCls}>Selecione quando pretende iniciar.</p>}
         </div>
         <div>
           <label className={labelCls}>
@@ -783,22 +777,6 @@ const ContactSection = () => {
             <option value="" className="bg-white">Selecionar...</option>
             {CURRENT_STATUS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
           </select>
-        </div>
-      </div>
-
-      <div className="grid sm:grid-cols-2 gap-4 mb-4">
-        <div>
-          <label className={labelCls}>Quando pretende iniciar? <span className={reqCls}>*</span></label>
-          <select
-            value={formData.timeline}
-            onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-            className={selectCls(!formData.timeline && errors.message ? "x" : undefined)}
-            style={selectBg}
-          >
-            <option value="" className="bg-white">Selecionar...</option>
-            {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
-          </select>
-          {errors.message && !formData.timeline && <p className={errCls}>Selecione quando pretende iniciar.</p>}
         </div>
       </div>
 
