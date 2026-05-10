@@ -255,6 +255,27 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [disclaimerOpen, setDisclaimerOpen] = useState(false);
 
+  const startedRef = useRef(false);
+  const submittedRef = useRef(false);
+  const FORM_ID = "main_contact_form";
+
+  const markStart = (field: string) => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      trackForm("form_start", { form_id: FORM_ID, field });
+    }
+  };
+
+  useEffect(() => {
+    const onLeave = () => {
+      if (startedRef.current && !submittedRef.current) {
+        trackForm("form_abandon", { form_id: FORM_ID, form_step: step, visa_context: formData.visa });
+      }
+    };
+    window.addEventListener("pagehide", onLeave);
+    return () => window.removeEventListener("pagehide", onLeave);
+  }, [step, formData.visa]);
+
   const buildSchema = () =>
     z.object({
       firstName: z.string().trim().min(2, t(s.errors.firstNameMin, lang)).max(80),
