@@ -95,11 +95,6 @@ const ServicesSection = () => {
               </div>
             </div>
           </motion.div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
 
           {/* Other services */}
           {otherServices.map((service, i) => (
@@ -109,7 +104,7 @@ const ServicesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: (i + 2) * 0.08 }}
-              className="relative p-6 rounded-xl border-2 bg-cream/5 border-cream/10 hover:border-brand-green/50 hover:shadow-[0_0_0_1px_hsl(var(--brand-green)/0.35)] transition-all group cursor-pointer hover:-translate-y-1"
+              className="relative p-6 rounded-xl border-2 bg-cream/5 border-cream/10 hover:border-brand-green/50 hover:shadow-[0_0_0_1px_hsl(var(--brand-green)/0.35)] transition-all group cursor-pointer hover:-translate-y-1 flex flex-col"
             >
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-cream/10">
@@ -120,10 +115,13 @@ const ServicesSection = () => {
                   <p className="text-gold/80 text-xs font-body mt-0.5">{service.subtitle}</p>
                 </div>
               </div>
-              <p className="text-cream/60 font-body mt-3 leading-relaxed text-sm">{service.description}</p>
-              <div className="mt-3 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
-                {t(s.learnMore, lang)} <ArrowRight size={14} />
-              </div>
+              <p className="text-cream/60 font-body mt-3 leading-relaxed text-sm flex-1">{service.description}</p>
+              <a
+                href="#contato"
+                className="mt-4 w-full inline-flex items-center justify-center gap-1.5 bg-eligibility-green hover:bg-eligibility-green-hover text-white font-body font-semibold text-sm py-2.5 px-4 rounded-lg transition-colors"
+              >
+                {t(s.assessEligibility, lang)} <ArrowRight size={14} />
+              </a>
             </motion.div>
           ))}
         </div>
