@@ -230,7 +230,12 @@ const suggestVisa = (data: {
   }];
 };
 
-const ContactSection = () => {
+interface ContactSectionProps {
+  presetVisa?: string;
+  formIdSuffix?: string;
+}
+
+const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) => {
   const { lang } = useLanguage();
   const { toast } = useToast();
   const s = translations.contact;
@@ -245,7 +250,7 @@ const ContactSection = () => {
     resume: File | null;
   }>({
     firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
-    visa: "",
+    visa: presetVisa ?? "",
     education: "", license: "", achievements: "", experience: "",
     message: "", currentStatus: "", timeline: "", knownVisa: "",
     privacy: false,
@@ -257,7 +262,7 @@ const ContactSection = () => {
 
   const startedRef = useRef(false);
   const submittedRef = useRef(false);
-  const FORM_ID = "main_contact_form";
+  const FORM_ID = formIdSuffix ? `main_contact_form_${formIdSuffix}` : "main_contact_form";
 
   const markStart = (field: string) => {
     if (!startedRef.current) {
