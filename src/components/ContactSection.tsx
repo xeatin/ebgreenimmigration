@@ -934,7 +934,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 </div>
                 <div>
                   <p className="text-[9px] text-muted-foreground tracking-[0.18em] font-body uppercase font-semibold">
-                    Avaliação
+                    Avaliação Gratuita
                   </p>
                   <p className="font-display text-[15px] font-semibold text-foreground leading-tight">
                     Análise Preliminar de Elegibilidade
