@@ -23,7 +23,7 @@ const AboutSection = () => {
             <div className="rounded-2xl overflow-hidden">
               <img src={teamImg} alt="Equipe Ebgreen Immigration" className="w-full h-auto object-cover aspect-[800/790]" loading="lazy" width={800} height={790} />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-card rounded-xl p-4 shadow-xl border border-border max-w-[216px] text-center">
+            <div className="absolute -bottom-6 -left-6 bg-card rounded-xl p-4 shadow-card border border-border max-w-[216px] text-center">
               <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-3">
                 <ShieldCheck className="text-gold" size={20} />
               </div>
