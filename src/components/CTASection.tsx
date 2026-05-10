@@ -14,13 +14,13 @@ const CTASection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-primary rounded-2xl p-12 md:p-16 text-center relative overflow-hidden"
+          className="bg-primary rounded-2xl p-12 md:p-16 text-center relative overflow-hidden shadow-elevated"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
           
           <div className="relative">
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground leading-tight">
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground leading-[1.15] tracking-tight">
               {t(s.title1, lang)}{" "}
               <span className="shimmer-gold italic font-semibold">{t(s.titleHighlight, lang)}</span>{" "}
               {t(s.title2, lang)}
@@ -31,7 +31,7 @@ const CTASection = () => {
             <div className="mt-8 flex justify-center">
               <a
                 href="#contato"
-                className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity"
+                className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover"
               >
                 {t(s.ctaPrimary, lang)}
                 <ArrowRight size={20} />

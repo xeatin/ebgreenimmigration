@@ -31,7 +31,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="font-display text-4xl sm:text-5xl md:text-[3.5rem] lg:text-[4.2rem] font-bold text-cream leading-[1.1]"
+            className="font-display text-4xl sm:text-5xl md:text-[3.5rem] lg:text-[4.2rem] font-bold text-cream leading-[1.05] tracking-tight"
           >
             {t(s.title1, lang)}{" "}
             <span className="text-gradient-gold whitespace-nowrap">{t(s.titleHighlight, lang)}</span>
@@ -58,7 +58,7 @@ const HeroSection = () => {
           >
             <a
               href="#contato"
-              className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity"
+              className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover"
             >
               {t(s.ctaPrimary, lang)}
               <ArrowRight size={20} />
@@ -76,7 +76,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-cream/10 bg-cream/5 backdrop-blur-sm rounded-xl border border-cream/10 p-6 md:p-0"
+          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-cream/10 bg-cream/5 backdrop-blur-sm rounded-xl border border-cream/10 p-6 md:p-0 shadow-elevated"
         >
           {[
             { number: "100%", label: t(s.stats.families, lang) },
