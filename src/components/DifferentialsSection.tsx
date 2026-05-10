@@ -22,7 +22,7 @@ const DifferentialsSection = () => {
           className="text-center mb-16"
         >
           <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">{t(s.sectionLabel, lang)}</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground leading-[1.15] tracking-tight">
             {t(s.sectionTitle, lang)}
           </h2>
           <div className="w-16 h-1 bg-brand-green mx-auto mt-6 rounded-full" />
