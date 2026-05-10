@@ -199,7 +199,7 @@ const TestimonialsSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06 }}
-                  className="bg-card border border-border rounded-xl px-6 py-5 snap-start shrink-0 w-[320px] md:w-[380px] shadow-card hover:shadow-card-hover transition-shadow duration-300"
+                  className="bg-card border-2 border-border hover:border-brand-green/50 hover:shadow-[0_0_0_1px_hsl(var(--brand-green)/0.35)] rounded-xl px-6 py-5 snap-start shrink-0 w-[320px] md:w-[380px] transition-all cursor-pointer hover:-translate-y-1"
                   data-testimonials-scroll
                 >
                   <div className="flex items-center gap-3 mb-3">
