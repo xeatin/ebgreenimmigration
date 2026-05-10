@@ -46,6 +46,8 @@
     --cream: 45 30% 96%;
     --navy: 218 35% 13%;
     --brand-green: 145 100% 36%;
+    --eligibility-green: 145 63% 49%;
+    --eligibility-green-hover: 145 63% 42%;
 
     --shadow-card: 0 2px 8px hsl(220 20% 10% / 0.08);
     --shadow-card-hover: 0 6px 20px hsl(220 20% 10% / 0.12);
