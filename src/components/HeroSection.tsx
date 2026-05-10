@@ -3,15 +3,17 @@ import { ArrowRight, Shield } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
+import { useAbVariant } from "@/hooks/useAbVariant";
 
 const HeroSection = () => {
   const { lang } = useLanguage();
   const s = translations.hero;
+  const ctaVariant = useAbVariant("hero_secondary_cta");
 
   return (
     <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Profissionais em aeroporto internacional" className="w-full h-full object-cover" width={1920} height={1080} />
+        <img src={heroBg} alt="Profissionais em aeroporto internacional" className="w-full h-full object-cover" width={1920} height={1080} loading="eager" fetchPriority="high" decoding="async" />
         <div className="absolute inset-0 bg-gradient-to-t from-green-deep via-green-deep/80 to-green-deep/40" />
       </div>
 
@@ -65,7 +67,13 @@ const HeroSection = () => {
             </a>
             <a
               href="#servicos"
-              className="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream px-8 py-4 rounded-md font-semibold font-body hover:border-brand-green hover:text-brand-green transition-colors"
+              data-ab-experiment="hero_secondary_cta"
+              data-ab-variant={ctaVariant}
+              className={
+                ctaVariant === "B"
+                  ? "inline-flex items-center justify-center gap-2 bg-eligibility-green hover:bg-eligibility-green-hover text-white px-8 py-4 rounded-md font-semibold font-body transition-colors shadow-card"
+                  : "inline-flex items-center justify-center gap-2 bg-transparent border-2 border-eligibility-green text-cream hover:bg-eligibility-green/10 px-8 py-4 rounded-md font-semibold font-body transition-colors"
+              }
             >
               {t(s.ctaSecondary, lang)}
             </a>
