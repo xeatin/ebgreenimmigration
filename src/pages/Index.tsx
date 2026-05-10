@@ -10,6 +10,7 @@ import ContactSection from "@/components/ContactSection";
 
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import FloatingEligibilityForm from "@/components/FloatingEligibilityForm";
 import { useSeoMeta } from "@/hooks/useSeoMeta";
 
 const Index = () => {
