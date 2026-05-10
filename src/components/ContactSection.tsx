@@ -700,29 +700,29 @@ const ContactSection = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="mb-5 relative rounded-xl border border-gold/40 bg-gradient-to-br from-gold/[0.08] via-white to-white p-4 sm:p-5 shadow-[0_0_0_4px_hsl(var(--gold)/0.08),0_0_28px_hsl(var(--gold)/0.35),0_8px_30px_rgba(0,0,0,0.08)]"
+            className="mb-5 relative rounded-xl border border-brand-green/40 bg-gradient-to-br from-brand-green/[0.06] via-white to-white p-4 sm:p-5 shadow-[0_0_0_4px_hsl(var(--brand-green)/0.08),0_0_28px_hsl(var(--brand-green)/0.35),0_8px_30px_rgba(0,0,0,0.08)]"
           >
             {/* External pulsing halo */}
-            <span aria-hidden className="pointer-events-none absolute -inset-1.5 rounded-2xl ring-2 ring-gold/40 animate-ping opacity-60" style={{ animationDuration: '2.4s' }} />
-            <span aria-hidden className="pointer-events-none absolute -inset-3 rounded-2xl bg-gold/10 blur-2xl animate-pulse" />
+            <span aria-hidden className="pointer-events-none absolute -inset-1.5 rounded-2xl ring-2 ring-brand-green/40 animate-ping opacity-60" style={{ animationDuration: '2.4s' }} />
+            <span aria-hidden className="pointer-events-none absolute -inset-3 rounded-2xl bg-brand-green/10 blur-2xl animate-pulse" />
             {/* Floating attention badge outside the card */}
             <motion.span
               initial={{ opacity: 0, y: -6, scale: 0.8 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 0.15, type: "spring", stiffness: 300 }}
-              className="absolute -top-2.5 -right-2.5 z-10 flex items-center gap-1 bg-gradient-to-r from-gold to-gold-light text-green-deep text-[10px] font-bold font-body px-2.5 py-1 rounded-full shadow-[0_4px_14px_hsl(var(--gold)/0.5)] uppercase tracking-wider"
+              className="absolute -top-2.5 -right-2.5 z-10 flex items-center gap-1 bg-brand-green text-cream text-[10px] font-bold font-body px-2.5 py-1 rounded-full shadow-[0_4px_14px_hsl(var(--brand-green)/0.5)] uppercase tracking-wider"
             >
-              <Sparkles size={10} className="fill-green-deep" />
+              <Sparkles size={10} className="fill-cream" />
               Novo
             </motion.span>
-            <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent rounded-t-xl" />
-            <span className="absolute inset-0 rounded-xl ring-1 ring-inset ring-gold/20 animate-pulse pointer-events-none" />
+            <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-green to-transparent rounded-t-xl" />
+            <span className="absolute inset-0 rounded-xl ring-1 ring-inset ring-brand-green/20 animate-pulse pointer-events-none" />
             <div className="flex items-start gap-3">
-              <span className="w-9 h-9 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center text-gold shrink-0 animate-pulse">
+              <span className="w-9 h-9 rounded-full bg-brand-green/15 border border-brand-green/40 flex items-center justify-center text-brand-green shrink-0 animate-pulse">
                 <Sparkles size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-[12px] tracking-[0.18em] uppercase font-body font-semibold text-gold mb-2">
+                <p className="text-[12px] tracking-[0.18em] uppercase font-body font-semibold text-brand-green mb-2">
                   {suggestions.length > 1 ? "Análises preliminares baseadas nas suas respostas" : "Analise preliminar baseada nas suas respostas"}
                 </p>
                 <div className="space-y-3">
