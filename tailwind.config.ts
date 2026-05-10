@@ -59,6 +59,10 @@ export default {
         "green-medium": "hsl(var(--green-medium))",
         "green-light": "hsl(var(--green-light))",
         "brand-green": "hsl(var(--brand-green))",
+        "eligibility-green": {
+          DEFAULT: "hsl(var(--eligibility-green))",
+          hover: "hsl(var(--eligibility-green-hover))",
+        },
         cream: "hsl(var(--cream))",
         navy: "hsl(var(--navy))",
         sidebar: {
