@@ -124,7 +124,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
               {content.subtitle}
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="mt-10">
-              <a href="#lp-form" className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card">
+              <a href="#lp-form" data-cta-id="lp_hero_cta" data-cta-location="lp_hero" data-visa-context={content.visaId} className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card">
                 Avaliar Minha Elegibilidade <ArrowRight size={20} />
               </a>
             </motion.div>
@@ -213,6 +213,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
                   type="text"
                   placeholder="Nome completo *"
                   value={form.name}
+                  onFocus={() => handleFieldFocus("name")}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green"
                   required
@@ -221,6 +222,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
                   type="email"
                   placeholder="E-mail *"
                   value={form.email}
+                  onFocus={() => handleFieldFocus("email")}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green"
                   required
@@ -229,6 +231,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
                   type="tel"
                   placeholder="Telefone / WhatsApp *"
                   value={form.phone}
+                  onFocus={() => handleFieldFocus("phone")}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green"
                   required
@@ -236,6 +239,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
                 <textarea
                   placeholder="Conte um pouco sobre seu perfil (opcional)"
                   value={form.message}
+                  onFocus={() => handleFieldFocus("message")}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   rows={3}
                   className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green resize-none"
@@ -243,6 +247,9 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
                 <button
                   type="submit"
                   disabled={loading}
+                  data-cta-id="lp_form_submit"
+                  data-cta-location="lp_form"
+                  data-visa-context={content.visaId}
                   className="btn-highlight w-full bg-gradient-gold text-green-deep py-3.5 rounded-md font-bold font-body hover:opacity-90 transition-opacity disabled:opacity-60"
                 >
                   {loading ? "Enviando..." : `Quero avaliar meu ${content.visaId}`}
