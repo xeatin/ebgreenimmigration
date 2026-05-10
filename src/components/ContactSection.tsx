@@ -702,9 +702,6 @@ const ContactSection = () => {
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="mb-5 relative rounded-xl border border-brand-green/40 bg-gradient-to-br from-brand-green/[0.06] via-white to-white p-4 sm:p-5 shadow-[0_0_0_4px_hsl(var(--brand-green)/0.08),0_0_28px_hsl(var(--brand-green)/0.35),0_8px_30px_rgba(0,0,0,0.08)]"
           >
-            {/* External pulsing halo */}
-            <span aria-hidden className="pointer-events-none absolute -inset-1.5 rounded-2xl ring-2 ring-brand-green/40 animate-ping opacity-60" style={{ animationDuration: '2.4s' }} />
-            <span aria-hidden className="pointer-events-none absolute -inset-3 rounded-2xl bg-brand-green/10 blur-2xl animate-pulse" />
             {/* Floating attention badge outside the card */}
             <motion.span
               initial={{ opacity: 0, y: -6, scale: 0.8 }}
