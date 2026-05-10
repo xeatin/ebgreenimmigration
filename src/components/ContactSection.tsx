@@ -557,7 +557,7 @@ const ContactSection = () => {
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelCls}>Formação Acadêmica <span className={reqCls}>*</span></label>
+          <label className={`${labelCls} flex items-start min-h-[2.75rem]`}>Formação Acadêmica <span className={reqCls}>&nbsp;*</span></label>
           <select
             value={formData.education}
             onChange={(e) => setFormData({ ...formData, education: e.target.value })}
