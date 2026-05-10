@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, ShieldCheck, Star, Award } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck, Star, Award, type LucideIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -13,7 +13,7 @@ export type VisaLPContent = {
   title: string;
   titleHighlight: string;
   subtitle: string;
-  benefits: { icon: React.ComponentType<{ size?: number; className?: string }>; title: string; desc: string }[];
+  benefits: { icon: LucideIcon; title: string; desc: string }[];
   socialProof: { stat: string; label: string }[];
   testimonial: { quote: string; author: string; role: string };
   ctaTitle: string;
