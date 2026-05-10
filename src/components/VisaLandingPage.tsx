@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, ShieldCheck, Star, Award, type LucideIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollDepth, usePageEngagement } from "@/hooks/useAnalytics";
+import { trackForm } from "@/lib/analytics";
 
 export type VisaLPContent = {
   visaId: string;
@@ -26,6 +28,13 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const formId = `lp_${content.visaId}`;
+  const startedRef = useRef(false);
+  const submittedRef = useRef(false);
+
+  const pagePath = typeof window !== "undefined" ? window.location.pathname : `/visto-${content.visaId}`;
+  useScrollDepth(pagePath);
+  usePageEngagement(pagePath, content.visaId);
 
   useEffect(() => {
     document.title = content.seoTitle;
@@ -36,9 +45,31 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
     setMeta('meta[name="description"]', "content", content.seoDescription);
   }, [content]);
 
+  // Track form abandonment when user leaves with started but unfinished form
+  useEffect(() => {
+    const onLeave = () => {
+      if (startedRef.current && !submittedRef.current) {
+        trackForm("form_abandon", { form_id: formId, visa_context: content.visaId });
+      }
+    };
+    window.addEventListener("pagehide", onLeave);
+    return () => {
+      window.removeEventListener("pagehide", onLeave);
+      onLeave();
+    };
+  }, [formId, content.visaId]);
+
+  const handleFieldFocus = (field: string) => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      trackForm("form_start", { form_id: formId, visa_context: content.visaId, field });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.phone) {
+      trackForm("form_error", { form_id: formId, visa_context: content.visaId, reason: "missing_required" });
       toast({ title: "Preencha todos os campos obrigatórios", variant: "destructive" });
       return;
     }
@@ -58,9 +89,12 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
           message: form.message,
         }),
       });
+      submittedRef.current = true;
+      trackForm("form_submit", { form_id: formId, visa_context: content.visaId });
       toast({ title: "Recebemos seu contato!", description: "Em breve um especialista entrará em contato." });
       setForm({ name: "", email: "", phone: "", message: "" });
     } catch {
+      trackForm("form_error", { form_id: formId, visa_context: content.visaId, reason: "network" });
       toast({ title: "Erro no envio", description: "Tente novamente.", variant: "destructive" });
     } finally {
       setLoading(false);
