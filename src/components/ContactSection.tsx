@@ -1049,15 +1049,15 @@ const ContactSection = () => {
                 Dados protegidos e análise confidencial.
               </div>
 
-              {step > 1 && (
-                <button
-                  type="button"
-                  onClick={handleBack}
-                  className="h-11 px-4 rounded-md border border-border text-muted-foreground text-[13px] font-body hover:border-foreground/30 hover:text-foreground transition inline-flex items-center gap-1.5"
-                >
-                  <ArrowLeft size={14} /> Voltar
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={handleBack}
+                aria-hidden={step === 1}
+                tabIndex={step === 1 ? -1 : 0}
+                className={`h-11 px-4 rounded-md border border-border text-muted-foreground text-[13px] font-body hover:border-foreground/30 hover:text-foreground transition inline-flex items-center gap-1.5 ${step === 1 ? "invisible pointer-events-none" : ""}`}
+              >
+                <ArrowLeft size={14} /> Voltar
+              </button>
 
               <div className="ml-auto">
                 {step < 3 ? (
