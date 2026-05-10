@@ -908,6 +908,11 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             onSubmit={handleSubmit}
+            onFocusCapture={(e) => {
+              const t = e.target as HTMLElement;
+              const name = (t as HTMLInputElement).name || t.tagName.toLowerCase();
+              markStart(name);
+            }}
             noValidate
             className="relative bg-white rounded-2xl border border-border shadow-elevated overflow-hidden"
           >
