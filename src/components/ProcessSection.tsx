@@ -41,7 +41,7 @@ const ProcessSection = () => {
               transition={{ delay: i * 0.08 }}
               className="flex items-start gap-5 w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)]"
             >
-              <span className="font-display text-6xl font-bold text-gold/20 leading-none select-none shrink-0">
+              <span className="font-display text-6xl font-bold text-gold/40 leading-none select-none shrink-0">
                 {step.num}
               </span>
               <div className="pt-2">

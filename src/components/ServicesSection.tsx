@@ -52,48 +52,44 @@ const ServicesSection = () => {
             viewport={{ once: true }}
             className="relative md:col-span-2 lg:col-span-2"
           >
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 whitespace-nowrap">
-              <span className="absolute inset-0 rounded-full bg-gold/25 animate-pulse" aria-hidden="true" />
-              <span className="relative bg-gradient-gold text-green-deep text-xs font-bold font-body px-4 py-1 rounded-full flex items-center gap-1.5 shadow-[0_0_12px_hsl(var(--gold)/0.35)]">
-                <Star size={12} className="fill-green-deep" />
-                {t(s.mostPopular, lang)}
-              </span>
-            </div>
-            <div className="grid md:grid-cols-2 gap-4 border border-gold/30 rounded-xl p-3 pt-5 bg-gold/5 h-full shadow-[0_0_20px_hsl(var(--gold)/0.08)] hover:shadow-[0_0_30px_hsl(var(--brand-green)/0.18)] transition-shadow">
-              {highlightedServices.map((service, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  className="relative p-6 rounded-xl border border-gold/30 hover:border-brand-green/60 bg-gold/10 transition-all group cursor-pointer hover:-translate-y-1"
-                >
-                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="bg-gold/20 text-gold text-[10px] font-bold font-body px-2 py-0.5 rounded-full border border-gold/30">
-                      TOP
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-gold/20">
-                      <service.icon className="text-gold" size={20} />
+            <div className="border border-gold/30 rounded-xl p-4 pt-4 bg-gold/5 h-full shadow-[0_0_20px_hsl(var(--gold)/0.08)] hover:shadow-[0_0_30px_hsl(var(--brand-green)/0.18)] transition-shadow">
+              <div className="flex items-center justify-center mb-3">
+                <span className="bg-gradient-gold text-green-deep text-xs font-bold font-body px-3 py-1 rounded-full inline-flex items-center gap-1.5 shadow-[0_0_12px_hsl(var(--gold)/0.35)]">
+                  <Star size={12} className="fill-green-deep" />
+                  {t(s.mostPopular, lang)}
+                </span>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                {highlightedServices.map((service, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                    className="relative p-6 rounded-xl border border-gold/30 hover:border-brand-green/60 bg-gold/10 transition-all group cursor-pointer hover:-translate-y-1"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-gold/20">
+                        <service.icon className="text-gold" size={20} />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className={`font-display text-lg font-semibold text-cream relative inline-block ${(service.title.includes("EB-1A") || service.title.includes("EB-2")) ? 'drop-shadow-[0_0_5px_hsl(var(--brand-green)/0.35)]' : ''}`}>
+                          {service.title}
+                          {(service.title.includes("EB-1A") || service.title.includes("EB-2")) && (
+                            <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-brand-green rounded-full" />
+                          )}
+                        </h3>
+                        <p className="text-gold/80 text-xs font-body mt-0.5">{service.subtitle}</p>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className={`font-display text-lg font-semibold text-cream relative inline-block ${(service.title.includes("EB-1A") || service.title.includes("EB-2")) ? 'drop-shadow-[0_0_5px_hsl(var(--brand-green)/0.35)]' : ''}`}>
-                        {service.title}
-                        {(service.title.includes("EB-1A") || service.title.includes("EB-2")) && (
-                          <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-brand-green rounded-full" />
-                        )}
-                      </h3>
-                      <p className="text-gold/80 text-xs font-body mt-0.5">{service.subtitle}</p>
+                    <p className="text-cream/60 font-body mt-3 leading-relaxed text-sm">{service.description}</p>
+                    <div className="mt-3 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
+                      {t(s.learnMore, lang)} <ArrowRight size={14} />
                     </div>
-                  </div>
-                  <p className="text-cream/60 font-body mt-3 leading-relaxed text-sm">{service.description}</p>
-                  <div className="mt-3 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
-                    {t(s.learnMore, lang)} <ArrowRight size={14} />
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
 
