@@ -29,6 +29,7 @@ const Index = () => {
       
       <Footer />
       <WhatsAppButton />
+      <FloatingEligibilityForm />
     </div>
   );
 };
