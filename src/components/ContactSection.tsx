@@ -700,7 +700,7 @@ const ContactSection = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="mb-5 relative rounded-xl border border-brand-green/40 bg-gradient-to-br from-brand-green/[0.06] via-white to-white p-4 sm:p-5 shadow-[0_0_0_4px_hsl(var(--brand-green)/0.08),0_0_28px_hsl(var(--brand-green)/0.35),0_8px_30px_rgba(0,0,0,0.08)]"
+            className="mb-5 relative rounded-xl border border-brand-green/40 bg-gradient-to-br from-brand-green/[0.06] via-white to-white p-4 sm:p-5 shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
           >
             {/* Floating attention badge outside the card */}
             <motion.span
