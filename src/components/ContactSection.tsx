@@ -461,9 +461,9 @@ const ContactSection = () => {
   const labelCls = "block text-[11px] font-semibold text-foreground/55 tracking-[0.08em] uppercase mb-1.5 font-body";
   const reqCls = "text-gold";
   const inputBase =
-    "w-full h-11 px-3.5 bg-white border rounded-md text-foreground text-sm font-body placeholder:text-foreground/30 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/20";
+    "w-full h-12 px-3.5 bg-white border rounded-md text-foreground text-sm font-body placeholder:text-muted-foreground/60 outline-none transition-all duration-200 focus:border-gold focus:ring-2 focus:ring-gold/30 focus:shadow-card";
   const inputCls = (err?: string) =>
-    `${inputBase} ${err ? "border-red-500/60" : "border-border"}`;
+    `${inputBase} ${err ? "border-destructive/60 focus:ring-destructive/20" : "border-border"}`;
   const selectCls = (err?: string) =>
     `${inputCls(err)} appearance-none bg-no-repeat pr-9 cursor-pointer`;
   const selectBg = {
@@ -471,7 +471,7 @@ const ContactSection = () => {
       "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 5 4.5-5' stroke='%23C9963B' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E\")",
     backgroundPosition: "right 12px center",
   };
-  const errCls = "text-[11px] text-red-500 font-body mt-1";
+  const errCls = "text-[11px] text-destructive font-body mt-1.5";
 
   /* ---------- Step contents ---------- */
 
