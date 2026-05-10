@@ -570,7 +570,7 @@ const ContactSection = () => {
           {errors.education && <p className={errCls}>{errors.education}</p>}
         </div>
         <div>
-          <label className={labelCls}>Publicações, prêmios ou reconhecimentos? <span className={reqCls}>*</span></label>
+          <label className={labelCls}>Publicações e prêmios <span className={reqCls}>*</span></label>
           <select
             value={formData.achievements}
             onChange={(e) => setFormData({ ...formData, achievements: e.target.value })}
