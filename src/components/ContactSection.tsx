@@ -1001,7 +1001,7 @@ const ContactSection = () => {
             </div>
 
             {/* BODY */}
-            <div className="px-5 sm:px-7 pt-7 pb-4 min-h-[640px] sm:min-h-[680px]">
+            <div className="px-5 sm:px-7 pt-7 pb-4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={step}
