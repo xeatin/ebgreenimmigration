@@ -7,6 +7,26 @@ import { LanguageProvider } from "@/i18n/LanguageContext";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { VisaEb1a, VisaEb2Niw, VisaInvestidor, VisaTrabalho, VisaEstudante, VisaFamiliar } from "./pages/VisaPages.tsx";
+import { useGlobalCtaTracking } from "./hooks/useAnalytics";
+
+const AppRoutes = () => {
+  useGlobalCtaTracking();
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/quero-migrar-para-os-eua" element={<Index />} />
+        <Route path="/visto-eb1a" element={<VisaEb1a />} />
+        <Route path="/visto-eb2niw" element={<VisaEb2Niw />} />
+        <Route path="/visto-investidor" element={<VisaInvestidor />} />
+        <Route path="/visto-trabalho" element={<VisaTrabalho />} />
+        <Route path="/visto-estudante" element={<VisaEstudante />} />
+        <Route path="/visto-familiar" element={<VisaFamiliar />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 const queryClient = new QueryClient();
 
