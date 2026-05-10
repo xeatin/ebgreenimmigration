@@ -262,7 +262,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
 
   const startedRef = useRef(false);
   const submittedRef = useRef(false);
-  const FORM_ID = "main_contact_form";
+  const FORM_ID = formIdSuffix ? `main_contact_form_${formIdSuffix}` : "main_contact_form";
 
   const markStart = (field: string) => {
     if (!startedRef.current) {
