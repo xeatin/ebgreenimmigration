@@ -84,12 +84,9 @@ const ServicesSection = () => {
                       </div>
                     </div>
                     <p className="text-cream/60 font-body mt-3 leading-relaxed text-sm">{service.description}</p>
-                    <a
-                      href="#contato"
-                      className="mt-4 w-full inline-flex items-center justify-center gap-1.5 bg-eligibility-green hover:bg-eligibility-green-hover text-white font-body font-semibold text-sm py-2.5 px-4 rounded-lg transition-colors"
-                    >
-                      {t(s.assessEligibility, lang)} <ArrowRight size={14} />
-                    </a>
+                    <div className="mt-3 flex items-center gap-1 text-gold text-sm font-semibold font-body opacity-0 group-hover:opacity-100 transition-opacity">
+                      {t(s.learnMore, lang)} <ArrowRight size={14} />
+                    </div>
                   </motion.div>
                 ))}
               </div>
