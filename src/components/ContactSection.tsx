@@ -835,22 +835,6 @@ const ContactSection = () => {
               Seu perfil pode ter mais potencial do que você imagina. Inicie uma avaliação gratuita e descubra possíveis caminhos migratórios para os Estados Unidos.
             </p>
 
-            {/* Differentials card */}
-            <div className="mt-8 rounded-xl border border-border bg-white px-6 py-5 shadow-sm">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-                {DIFFERENTIALS.map(({ icon: Icon, label }) => (
-                  <div key={label} className="flex flex-col items-center text-center gap-2.5">
-                    <span className="w-10 h-10 rounded-full border border-gold/40 bg-gold/[0.06] flex items-center justify-center text-gold">
-                      <Icon size={17} strokeWidth={1.6} />
-                    </span>
-                    <p className="text-[11px] font-body font-medium text-foreground leading-snug">
-                      {label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             {/* Dark contact card */}
             <div className="mt-6 rounded-xl bg-green-deep text-white p-6 relative overflow-hidden">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
