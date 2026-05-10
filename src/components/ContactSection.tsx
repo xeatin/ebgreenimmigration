@@ -8,7 +8,8 @@ const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?
 );
 
 import PhoneCodeSelector from "./PhoneCodeSelector";
-import { useState, Fragment } from "react";
+import { useState, useRef, useEffect, Fragment } from "react";
+import { trackForm } from "@/lib/analytics";
 import { z } from "zod";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
@@ -254,6 +255,27 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [disclaimerOpen, setDisclaimerOpen] = useState(false);
 
+  const startedRef = useRef(false);
+  const submittedRef = useRef(false);
+  const FORM_ID = "main_contact_form";
+
+  const markStart = (field: string) => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      trackForm("form_start", { form_id: FORM_ID, field });
+    }
+  };
+
+  useEffect(() => {
+    const onLeave = () => {
+      if (startedRef.current && !submittedRef.current) {
+        trackForm("form_abandon", { form_id: FORM_ID, form_step: step, visa_context: formData.visa });
+      }
+    };
+    window.addEventListener("pagehide", onLeave);
+    return () => window.removeEventListener("pagehide", onLeave);
+  }, [step, formData.visa]);
+
   const buildSchema = () =>
     z.object({
       firstName: z.string().trim().min(2, t(s.errors.firstNameMin, lang)).max(80),
@@ -299,6 +321,7 @@ const ContactSection = () => {
 
   const handleNext = () => {
     if (!validateStep(step)) {
+      trackForm("form_error", { form_id: FORM_ID, form_step: step, reason: "validation" });
       toast({ title: t(s.validationTitle, lang), variant: "destructive" });
       return;
     }
@@ -309,13 +332,18 @@ const ContactSection = () => {
         const sug = suggestVisa(formData);
         if (sug.length) setFormData((d) => ({ ...d, visa: sug.map((s) => s.id).join(" + ") }));
       }
+      trackForm("form_step", { form_id: FORM_ID, form_step: next, visa_context: formData.visa });
       return next;
     });
   };
 
   const handleBack = () => {
     setErrors({});
-    setStep((p) => Math.max(1, p - 1));
+    setStep((p) => {
+      const prev = Math.max(1, p - 1);
+      trackForm("form_step", { form_id: FORM_ID, form_step: prev, visa_context: formData.visa });
+      return prev;
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -432,6 +460,7 @@ const ContactSection = () => {
         throw error || new Error(data?.error || "Erro ao enviar lead");
       }
     } catch (err) {
+      trackForm("form_error", { form_id: FORM_ID, visa_context: formData.visa, reason: "submit_failed" });
       toast({
         title: t(s.validationTitle, lang),
         description: "Não foi possível enviar o lead. Tente novamente.",
@@ -441,6 +470,8 @@ const ContactSection = () => {
       return;
     }
 
+    submittedRef.current = true;
+    trackForm("form_submit", { form_id: FORM_ID, visa_context: formData.visa });
     toast({
       title: t(s.successTitle, lang),
       description: t(s.successMsg, lang),
@@ -877,6 +908,11 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             onSubmit={handleSubmit}
+            onFocusCapture={(e) => {
+              const t = e.target as HTMLElement;
+              const name = (t as HTMLInputElement).name || t.tagName.toLowerCase();
+              markStart(name);
+            }}
             noValidate
             className="relative bg-white rounded-2xl border border-border shadow-elevated overflow-hidden"
           >

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, ShieldCheck, Star, Award, type LucideIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollDepth, usePageEngagement } from "@/hooks/useAnalytics";
+import { trackForm } from "@/lib/analytics";
 
 export type VisaLPContent = {
   visaId: string;
@@ -26,6 +28,13 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const formId = `lp_${content.visaId}`;
+  const startedRef = useRef(false);
+  const submittedRef = useRef(false);
+
+  const pagePath = typeof window !== "undefined" ? window.location.pathname : `/visto-${content.visaId}`;
+  useScrollDepth(pagePath);
+  usePageEngagement(pagePath, content.visaId);
 
   useEffect(() => {
     document.title = content.seoTitle;
@@ -36,9 +45,31 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
     setMeta('meta[name="description"]', "content", content.seoDescription);
   }, [content]);
 
+  // Track form abandonment when user leaves with started but unfinished form
+  useEffect(() => {
+    const onLeave = () => {
+      if (startedRef.current && !submittedRef.current) {
+        trackForm("form_abandon", { form_id: formId, visa_context: content.visaId });
+      }
+    };
+    window.addEventListener("pagehide", onLeave);
+    return () => {
+      window.removeEventListener("pagehide", onLeave);
+      onLeave();
+    };
+  }, [formId, content.visaId]);
+
+  const handleFieldFocus = (field: string) => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      trackForm("form_start", { form_id: formId, visa_context: content.visaId, field });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.phone) {
+      trackForm("form_error", { form_id: formId, visa_context: content.visaId, reason: "missing_required" });
       toast({ title: "Preencha todos os campos obrigatórios", variant: "destructive" });
       return;
     }
@@ -58,9 +89,12 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
           message: form.message,
         }),
       });
+      submittedRef.current = true;
+      trackForm("form_submit", { form_id: formId, visa_context: content.visaId });
       toast({ title: "Recebemos seu contato!", description: "Em breve um especialista entrará em contato." });
       setForm({ name: "", email: "", phone: "", message: "" });
     } catch {
+      trackForm("form_error", { form_id: formId, visa_context: content.visaId, reason: "network" });
       toast({ title: "Erro no envio", description: "Tente novamente.", variant: "destructive" });
     } finally {
       setLoading(false);
@@ -90,7 +124,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
               {content.subtitle}
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="mt-10">
-              <a href="#lp-form" className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card">
+              <a href="#lp-form" data-cta-id="lp_hero_cta" data-cta-location="lp_hero" data-visa-context={content.visaId} className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card">
                 Avaliar Minha Elegibilidade <ArrowRight size={20} />
               </a>
             </motion.div>
@@ -179,6 +213,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
                   type="text"
                   placeholder="Nome completo *"
                   value={form.name}
+                  onFocus={() => handleFieldFocus("name")}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green"
                   required
@@ -187,6 +222,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
                   type="email"
                   placeholder="E-mail *"
                   value={form.email}
+                  onFocus={() => handleFieldFocus("email")}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green"
                   required
@@ -195,6 +231,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
                   type="tel"
                   placeholder="Telefone / WhatsApp *"
                   value={form.phone}
+                  onFocus={() => handleFieldFocus("phone")}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green"
                   required
@@ -202,6 +239,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
                 <textarea
                   placeholder="Conte um pouco sobre seu perfil (opcional)"
                   value={form.message}
+                  onFocus={() => handleFieldFocus("message")}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   rows={3}
                   className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green resize-none"
@@ -209,6 +247,9 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
                 <button
                   type="submit"
                   disabled={loading}
+                  data-cta-id="lp_form_submit"
+                  data-cta-location="lp_form"
+                  data-visa-context={content.visaId}
                   className="btn-highlight w-full bg-gradient-gold text-green-deep py-3.5 rounded-md font-bold font-body hover:opacity-90 transition-opacity disabled:opacity-60"
                 >
                   {loading ? "Enviando..." : `Quero avaliar meu ${content.visaId}`}
