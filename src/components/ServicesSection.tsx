@@ -40,7 +40,7 @@ const ServicesSection = () => {
           <p className="mt-4 text-cream/60 max-w-2xl mx-auto text-lg font-body">
             {t(s.sectionSubtitle, lang)}
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-gold to-brand-green mx-auto mt-6 rounded-full" />
+          <div className="w-16 h-1 bg-brand-green mx-auto mt-6 rounded-full" />
         </motion.div>
 
         {/* All services in uniform grid */}
