@@ -95,6 +95,20 @@ export const translations = {
     },
     mostPopular: { pt: "MAIS PROCURADOS", en: "MOST POPULAR", es: "MÁS SOLICITADOS" },
     learnMore: { pt: "Saiba mais", en: "Learn more", es: "Saber más" },
+    assessEligibility: { pt: "Avaliar Elegibilidade", en: "Assess Eligibility", es: "Evaluar Elegibilidad" },
+    quickForm: {
+      title: { pt: "Avalie sua elegibilidade em 30 segundos", en: "Check your eligibility in 30 seconds", es: "Evalúe su elegibilidad en 30 segundos" },
+      subtitle: { pt: "Resposta rápida da nossa equipe.", en: "Quick reply from our team.", es: "Respuesta rápida de nuestro equipo." },
+      email: { pt: "Seu melhor e-mail", en: "Your best email", es: "Su mejor email" },
+      phone: { pt: "Telefone (WhatsApp)", en: "Phone (WhatsApp)", es: "Teléfono (WhatsApp)" },
+      visa: { pt: "Tipo de visto de interesse", en: "Visa type of interest", es: "Tipo de visa de interés" },
+      visaPlaceholder: { pt: "Selecione...", en: "Select...", es: "Seleccionar..." },
+      submit: { pt: "Avaliar Elegibilidade", en: "Assess Eligibility", es: "Evaluar Elegibilidad" },
+      sending: { pt: "Enviando...", en: "Sending...", es: "Enviando..." },
+      success: { pt: "Recebido! Em breve entraremos em contato.", en: "Received! We'll contact you soon.", es: "¡Recibido! Pronto le contactaremos." },
+      error: { pt: "Erro ao enviar. Tente novamente.", en: "Failed to send. Try again.", es: "Error al enviar. Intente de nuevo." },
+      close: { pt: "Fechar", en: "Close", es: "Cerrar" },
+    },
     items: [
       {
         description: {
