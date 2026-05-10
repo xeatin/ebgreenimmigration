@@ -1,13 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, ShieldCheck, Star, Award, type LucideIcon } from "lucide-react";
+import { ArrowRight, ShieldCheck, Star, Award, type LucideIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ContactSection from "@/components/ContactSection";
 import heroBg from "@/assets/hero-bg.jpg";
-import { useToast } from "@/hooks/use-toast";
 import { useScrollDepth, usePageEngagement } from "@/hooks/useAnalytics";
-import { trackForm } from "@/lib/analytics";
 
 export type VisaLPContent = {
   visaId: string;
@@ -24,82 +23,29 @@ export type VisaLPContent = {
   seoDescription: string;
 };
 
-const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
-  const { toast } = useToast();
-  const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
-  const formId = `lp_${content.visaId}`;
-  const startedRef = useRef(false);
-  const submittedRef = useRef(false);
+// Map LP visa IDs → values used by ContactSection's VISA_OPTIONS
+const VISA_PRESET_MAP: Record<string, string> = {
+  "EB-1A": "EB-1A",
+  "EB-2 NIW": "EB-2 NIW",
+  "EB-5": "EB-5 / E-2 Investidor",
+  "H-1B / L-1": "H-1B / L-1 / O-1",
+  "F-1": "F-1 Estudante",
+  "Family-Based": "Family-Based",
+};
 
+const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
   const pagePath = typeof window !== "undefined" ? window.location.pathname : `/visto-${content.visaId}`;
   useScrollDepth(pagePath);
   usePageEngagement(pagePath, content.visaId);
 
   useEffect(() => {
     document.title = content.seoTitle;
-    const setMeta = (selector: string, attr: string, value: string) => {
-      const el = document.head.querySelector(selector) as HTMLMetaElement | null;
-      if (el) el.setAttribute(attr, value);
-    };
-    setMeta('meta[name="description"]', "content", content.seoDescription);
+    const el = document.head.querySelector('meta[name="description"]') as HTMLMetaElement | null;
+    if (el) el.setAttribute("content", content.seoDescription);
   }, [content]);
 
-  // Track form abandonment when user leaves with started but unfinished form
-  useEffect(() => {
-    const onLeave = () => {
-      if (startedRef.current && !submittedRef.current) {
-        trackForm("form_abandon", { form_id: formId, visa_context: content.visaId });
-      }
-    };
-    window.addEventListener("pagehide", onLeave);
-    return () => {
-      window.removeEventListener("pagehide", onLeave);
-      onLeave();
-    };
-  }, [formId, content.visaId]);
-
-  const handleFieldFocus = (field: string) => {
-    if (!startedRef.current) {
-      startedRef.current = true;
-      trackForm("form_start", { form_id: formId, visa_context: content.visaId, field });
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.name || !form.email || !form.phone) {
-      trackForm("form_error", { form_id: formId, visa_context: content.visaId, reason: "missing_required" });
-      toast({ title: "Preencha todos os campos obrigatórios", variant: "destructive" });
-      return;
-    }
-    setLoading(true);
-    try {
-      await fetch("https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          source: `landing-page-${content.visaId}`,
-          firstName: form.name,
-          lastName: "",
-          email: form.email,
-          phoneCode: "",
-          phone: form.phone,
-          visa: content.visaId,
-          message: form.message,
-        }),
-      });
-      submittedRef.current = true;
-      trackForm("form_submit", { form_id: formId, visa_context: content.visaId });
-      toast({ title: "Recebemos seu contato!", description: "Em breve um especialista entrará em contato." });
-      setForm({ name: "", email: "", phone: "", message: "" });
-    } catch {
-      trackForm("form_error", { form_id: formId, visa_context: content.visaId, reason: "network" });
-      toast({ title: "Erro no envio", description: "Tente novamente.", variant: "destructive" });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const presetVisa = VISA_PRESET_MAP[content.visaId] ?? content.visaId;
+  const formIdSuffix = content.visaId.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
 
   return (
     <div className="min-h-screen">
@@ -124,7 +70,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
               {content.subtitle}
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="mt-10">
-              <a href="#lp-form" data-cta-id="lp_hero_cta" data-cta-location="lp_hero" data-visa-context={content.visaId} className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card">
+              <a href="#contato" data-cta-id="lp_hero_cta" data-cta-location="lp_hero" data-visa-context={content.visaId} className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card">
                 Avaliar Minha Elegibilidade <ArrowRight size={20} />
               </a>
             </motion.div>
@@ -187,81 +133,8 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
         </div>
       </section>
 
-      {/* CTA + Form */}
-      <section id="lp-form" className="py-20 bg-cream">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-green-deep leading-tight">
-                {content.ctaTitle}
-              </h2>
-              <p className="mt-4 font-body text-green-deep/70 text-lg leading-relaxed">{content.ctaDesc}</p>
-              <ul className="mt-6 space-y-3">
-                {["Análise individualizada do seu caso", "Atendimento em PT, EN e ES", "Equipe especializada nos EUA"].map((item) => (
-                  <li key={item} className="flex items-start gap-3 font-body text-green-deep/80">
-                    <Check size={20} className="text-eligibility-green shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-card p-8 border border-green-deep/10">
-              <h3 className="font-display text-2xl font-bold text-green-deep mb-1">Avaliação gratuita</h3>
-              <p className="font-body text-green-deep/60 text-sm mb-6">Resposta em até 24h.</p>
-              <div className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Nome completo *"
-                  value={form.name}
-                  onFocus={() => handleFieldFocus("name")}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green"
-                  required
-                />
-                <input
-                  type="email"
-                  placeholder="E-mail *"
-                  value={form.email}
-                  onFocus={() => handleFieldFocus("email")}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green"
-                  required
-                />
-                <input
-                  type="tel"
-                  placeholder="Telefone / WhatsApp *"
-                  value={form.phone}
-                  onFocus={() => handleFieldFocus("phone")}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green"
-                  required
-                />
-                <textarea
-                  placeholder="Conte um pouco sobre seu perfil (opcional)"
-                  value={form.message}
-                  onFocus={() => handleFieldFocus("message")}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  rows={3}
-                  className="w-full px-4 py-3 rounded-md border border-green-deep/20 font-body focus:outline-none focus:border-eligibility-green resize-none"
-                />
-                <button
-                  type="submit"
-                  disabled={loading}
-                  data-cta-id="lp_form_submit"
-                  data-cta-location="lp_form"
-                  data-visa-context={content.visaId}
-                  className="btn-highlight w-full bg-gradient-gold text-green-deep py-3.5 rounded-md font-bold font-body hover:opacity-90 transition-opacity disabled:opacity-60"
-                >
-                  {loading ? "Enviando..." : `Quero avaliar meu ${content.visaId}`}
-                </button>
-                <p className="text-xs text-green-deep/50 font-body text-center">
-                  Seus dados são confidenciais e não serão compartilhados.
-                </p>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
+      {/* Same multi-step contact form as homepage, with visa pre-selected */}
+      <ContactSection presetVisa={presetVisa} formIdSuffix={formIdSuffix} />
 
       <Footer />
       <WhatsAppButton />
