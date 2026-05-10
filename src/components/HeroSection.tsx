@@ -3,12 +3,10 @@ import { ArrowRight, Shield } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
-import { useAbVariant } from "@/hooks/useAbVariant";
 
 const HeroSection = () => {
   const { lang } = useLanguage();
   const s = translations.hero;
-  const ctaVariant = useAbVariant("hero_secondary_cta");
 
   return (
     <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
@@ -67,13 +65,7 @@ const HeroSection = () => {
             </a>
             <a
               href="#servicos"
-              data-ab-experiment="hero_secondary_cta"
-              data-ab-variant={ctaVariant}
-              className={
-                ctaVariant === "B"
-                  ? "inline-flex items-center justify-center gap-2 bg-eligibility-green hover:bg-eligibility-green-hover text-white px-8 py-4 rounded-md font-semibold font-body transition-colors shadow-card"
-                  : "inline-flex items-center justify-center gap-2 bg-transparent border-2 border-eligibility-green text-cream hover:bg-eligibility-green/10 px-8 py-4 rounded-md font-semibold font-body transition-colors"
-              }
+              className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-eligibility-green text-cream hover:bg-eligibility-green/10 px-8 py-4 rounded-md font-semibold font-body transition-colors"
             >
               {t(s.ctaSecondary, lang)}
             </a>
