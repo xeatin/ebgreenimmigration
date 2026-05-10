@@ -252,7 +252,7 @@ const ContactSection = () => {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [disclaimerOpen, setDisclaimerOpen] = useState(true);
+  const [disclaimerOpen, setDisclaimerOpen] = useState(false);
 
   const buildSchema = () =>
     z.object({
