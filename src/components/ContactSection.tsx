@@ -8,7 +8,8 @@ const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?
 );
 
 import PhoneCodeSelector from "./PhoneCodeSelector";
-import { useState, Fragment } from "react";
+import { useState, useRef, useEffect, Fragment } from "react";
+import { trackForm } from "@/lib/analytics";
 import { z } from "zod";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
