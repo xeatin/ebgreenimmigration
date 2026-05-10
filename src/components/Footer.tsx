@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-8 md:gap-4">
           <div className="shrink-0 flex flex-col items-center">
-            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-[68px] mb-2" />
+            <img src={ebgreenLogo} alt="Ebgreen Immigration" className="h-[68px] mb-2" loading="lazy" decoding="async" />
             <p className="text-gold font-display text-sm font-semibold tracking-wide">
               {t(s.slogan, lang)}
             </p>
