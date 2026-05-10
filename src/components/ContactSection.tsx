@@ -321,6 +321,7 @@ const ContactSection = () => {
 
   const handleNext = () => {
     if (!validateStep(step)) {
+      trackForm("form_error", { form_id: FORM_ID, form_step: step, reason: "validation" });
       toast({ title: t(s.validationTitle, lang), variant: "destructive" });
       return;
     }
@@ -331,13 +332,18 @@ const ContactSection = () => {
         const sug = suggestVisa(formData);
         if (sug.length) setFormData((d) => ({ ...d, visa: sug.map((s) => s.id).join(" + ") }));
       }
+      trackForm("form_step", { form_id: FORM_ID, form_step: next, visa_context: formData.visa });
       return next;
     });
   };
 
   const handleBack = () => {
     setErrors({});
-    setStep((p) => Math.max(1, p - 1));
+    setStep((p) => {
+      const prev = Math.max(1, p - 1);
+      trackForm("form_step", { form_id: FORM_ID, form_step: prev, visa_context: formData.visa });
+      return prev;
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
