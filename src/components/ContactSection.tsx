@@ -493,7 +493,7 @@ const ContactSection = () => {
               key={v.id}
               type="button"
               onClick={() => setFormData({ ...formData, visa: v.id })}
-              className={`relative text-left p-3 rounded-[10px] border transition-all overflow-hidden group ${
+              className={`relative text-left p-3 rounded-[10px] border transition-all overflow-hidden group shadow-card hover:shadow-card-hover ${
                 selected
                   ? "border-gold bg-gold/[0.06]"
                   : "border-border bg-white hover:border-gold/50"
@@ -520,7 +520,7 @@ const ContactSection = () => {
         <button
           type="button"
           onClick={() => setFormData({ ...formData, visa: "Não sei ainda" })}
-          className={`relative text-left p-3 rounded-[10px] border transition-all col-span-2 md:col-span-2 overflow-hidden group ${
+          className={`relative text-left p-3 rounded-[10px] border transition-all col-span-2 md:col-span-2 overflow-hidden group shadow-card hover:shadow-card-hover ${
             formData.visa === "Não sei ainda"
               ? "border-gold bg-gold/[0.06]"
               : "border-border bg-white hover:border-gold/50"
@@ -666,7 +666,7 @@ const ContactSection = () => {
         </div>
         <div>
           <label className={labelCls}>WhatsApp / Telefone <span className={reqCls}>*</span></label>
-          <div className={`flex items-center gap-2 rounded-md border bg-white transition focus-within:border-gold focus-within:ring-2 focus-within:ring-gold/20 ${errors.phone ? "border-red-500/60" : "border-border"}`}>
+          <div className={`flex items-center gap-2 rounded-md border bg-white transition-all duration-200 focus-within:border-gold focus-within:ring-2 focus-within:ring-gold/30 focus-within:shadow-card ${errors.phone ? "border-destructive/60" : "border-border"}`}>
             <PhoneCodeSelector
               value={formData.phoneCode}
               onChange={(val) => setFormData({ ...formData, phoneCode: val })}
@@ -678,7 +678,7 @@ const ContactSection = () => {
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               placeholder="(00) 00000-0000"
-              className="flex-1 h-11 px-1 bg-transparent text-foreground placeholder:text-foreground/30 text-sm font-body outline-none"
+              className="flex-1 h-12 px-1 bg-transparent text-foreground placeholder:text-muted-foreground/60 text-sm font-body outline-none"
             />
           </div>
           {errors.phone && <p className={errCls}>{errors.phone}</p>}
@@ -878,7 +878,7 @@ const ContactSection = () => {
             viewport={{ once: true }}
             onSubmit={handleSubmit}
             noValidate
-            className="relative bg-white rounded-2xl border border-border shadow-[0_30px_60px_-30px_rgba(15,17,23,0.25)] overflow-hidden"
+            className="relative bg-white rounded-2xl border border-border shadow-elevated overflow-hidden"
           >
             <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent z-10" />
 
