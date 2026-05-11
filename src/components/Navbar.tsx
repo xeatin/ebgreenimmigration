@@ -11,15 +11,16 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [overLight, setOverLight] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
   const { lang } = useLanguage();
 
   const navLinks = [
-    { label: t(translations.nav.home, lang), href: "#hero" },
-    { label: t(translations.nav.differentials, lang), href: "#diferenciais" },
-    { label: t(translations.nav.services, lang), href: "#servicos" },
-    { label: t(translations.nav.process, lang), href: "#processo" },
-    { label: t(translations.nav.about, lang), href: "#sobre" },
-    { label: t(translations.nav.contact, lang), href: "#contato" },
+    { label: t(translations.nav.home, lang), href: "#hero", id: "hero" },
+    { label: t(translations.nav.differentials, lang), href: "#diferenciais", id: "diferenciais" },
+    { label: t(translations.nav.services, lang), href: "#servicos", id: "servicos" },
+    { label: t(translations.nav.process, lang), href: "#processo", id: "processo" },
+    { label: t(translations.nav.about, lang), href: "#sobre", id: "sobre" },
+    { label: t(translations.nav.contact, lang), href: "#contato", id: "contato" },
   ];
 
   useEffect(() => {
@@ -50,6 +51,34 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", checkBackground);
   }, []);
 
+  useEffect(() => {
+    const sections = navLinks.map((l) => l.id).filter(Boolean);
+    const observers: IntersectionObserver[] = [];
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(id);
+            }
+          });
+        },
+        { threshold: 0.4, rootMargin: "-80px 0px -40% 0px" }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  const isActive = (id: string) => activeSection === id;
+
   return (
     <>
 
@@ -66,19 +95,29 @@ const Navbar = () => {
           </a>
 
           <div className="hidden lg:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`transition-colors text-sm font-medium font-body ${
-                  overLight && scrolled
-                    ? "text-green-deep/80 hover:text-gold"
-                    : "text-cream/70 hover:text-gold"
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const active = isActive(link.id);
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`relative transition-colors text-sm font-medium font-body ${
+                    overLight && scrolled
+                      ? active
+                        ? "text-eligibility-green"
+                        : "text-green-deep/80 hover:text-gold"
+                      : active
+                        ? "text-eligibility-green"
+                        : "text-cream/70 hover:text-gold"
+                  }`}
+                >
+                  {link.label}
+                  {active && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-eligibility-green rounded-full" />
+                  )}
+                </a>
+              );
+            })}
             <LanguageSelector darkMode={overLight && scrolled} />
             <a
               href="#contato"
@@ -105,16 +144,24 @@ const Navbar = () => {
               className="lg:hidden bg-green-deep overflow-hidden"
             >
               <div className="px-6 pb-6 flex flex-col gap-4">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="text-cream/70 hover:text-gold transition-colors text-sm font-medium font-body"
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {navLinks.map((link) => {
+                  const active = isActive(link.id);
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`transition-colors text-sm font-medium font-body ${
+                        active ? "text-eligibility-green" : "text-cream/70 hover:text-gold"
+                      }`}
+                    >
+                      {link.label}
+                      {active && (
+                        <span className="block w-8 h-0.5 bg-eligibility-green rounded-full mt-1" />
+                      )}
+                    </a>
+                  );
+                })}
                 <a
                   href="#contato"
                   onClick={() => setIsOpen(false)}
