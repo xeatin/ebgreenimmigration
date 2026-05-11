@@ -14,7 +14,7 @@ export const translations = {
     process: { pt: "Como Funciona", en: "How It Works", es: "Cómo Funciona" },
     about: { pt: "Sobre", en: "About", es: "Sobre" },
     contact: { pt: "Contato", en: "Contact", es: "Contacto" },
-    cta: { pt: "Consulta Gratuita", en: "Free Consultation", es: "Consulta Gratuita" },
+    cta: { pt: "Avaliação Gratuita", en: "Free Assessment", es: "Evaluación Gratuita" },
   },
 
   // Hero
@@ -33,7 +33,7 @@ export const translations = {
       en: "Specialists in EB-1A, EB-2 NIW, O-1, work and investment visas, and other immigration solutions. Individualized strategy, technical rigor, and a consistent track record of approvals.",
       es: "Especialistas en EB-1A, EB-2 NIW, O-1, visas de trabajo, inversión y otras soluciones migratorias. Estrategia individualizada, rigor técnico e historial consistente de aprobaciones.",
     },
-    ctaPrimary: { pt: "Avaliar Minha Elegibilidade", en: "Assess My Eligibility", es: "Evaluar Mi Elegibilidad" },
+    ctaPrimary: { pt: "Iniciar Minha Avaliação", en: "Start My Assessment", es: "Iniciar Mi Evaluación" },
     ctaSecondary: { pt: "Explorar Serviços", en: "Explore Services", es: "Explorar Servicios" },
     stats: {
       families: { pt: "Foco em Imigração", en: "Immigration Focus", es: "Enfoque en Inmigración" },
@@ -285,7 +285,7 @@ export const translations = {
     },
     phone: { pt: "Telefone", en: "Phone", es: "Teléfono" },
     email: { pt: "E-mail", en: "Email", es: "Correo" },
-    freeConsultation: { pt: "Consulta 100% Gratuita", en: "100% Free Consultation", es: "Consulta 100% Gratuita" },
+    freeConsultation: { pt: "Avaliação 100% Gratuita", en: "100% Free Assessment", es: "Evaluación 100% Gratuita" },
     sidebarTitle1: { pt: "Fale com a", en: "Talk to", es: "Hable con" },
     sidebarTitleHighlight: { pt: "Ebgreen", en: "Ebgreen", es: "Ebgreen" },
     sidebarSubtitle: {
@@ -387,7 +387,7 @@ export const translations = {
       en: "Don't wait any longer. Schedule a free consultation and discover the best path for you and your family in the United States.",
       es: "No espere más. Agende una consulta gratuita y descubra el mejor camino para usted y su familia en Estados Unidos.",
     },
-    ctaPrimary: { pt: "Agendar Consulta Gratuita", en: "Schedule Free Consultation", es: "Agendar Consulta Gratuita" },
+    ctaPrimary: { pt: "Iniciar Minha Avaliação", en: "Start My Assessment", es: "Iniciar Mi Evaluación" },
     ctaSecondary: { pt: "Falar pelo WhatsApp", en: "Chat on WhatsApp", es: "Hablar por WhatsApp" },
   },
 

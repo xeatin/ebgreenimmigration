@@ -755,7 +755,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 <Sparkles size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-[12px] tracking-[0.18em] uppercase font-body font-semibold text-brand-green mb-2">
+                <p className="text-[12px] tracking-[0.18em] uppercase font-body font-extralight text-brand-green mb-2">
                   {suggestions.length > 1 ? "Análises preliminares baseadas nas suas respostas" : "Analise preliminar baseada nas suas respostas"}
                 </p>
                 <div className="space-y-3">

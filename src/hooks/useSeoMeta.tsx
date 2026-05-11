@@ -14,30 +14,30 @@ const SEO_BY_LANG: Record<string, SeoConfig> = {
   pt: {
     title: "EBGreen Immigration | Green Card EB-1A, EB-2 NIW e Vistos para os EUA",
     description:
-      "Assessoria especializada em Green Card por mérito profissional. EB-1A, EB-2 NIW, O-1 e vistos de trabalho. Atendimento em português, inglês e espanhol. Consulta gratuita.",
+      "Assessoria especializada em Green Card por mérito profissional. EB-1A, EB-2 NIW, O-1 e vistos de trabalho. Atendimento em português, inglês e espanhol. Avaliação gratuita.",
     ogTitle: "EBGreen Immigration | Green Card EB-1A, EB-2 NIW e Vistos para os EUA",
     ogDescription:
-      "Assessoria especializada em Green Card por mérito profissional. EB-1A, EB-2 NIW, O-1 e vistos de trabalho. Atendimento em português, inglês e espanhol. Consulta gratuita.",
+      "Assessoria especializada em Green Card por mérito profissional. EB-1A, EB-2 NIW, O-1 e vistos de trabalho. Atendimento em português, inglês e espanhol. Avaliação gratuita.",
     ogLocale: "pt_BR",
     htmlLang: "pt-BR",
   },
   en: {
     title: "EBGreen Immigration | Green Card EB-1A, EB-2 NIW and US Visas",
     description:
-      "Expert immigration consulting for EB-1A, EB-2 NIW, O-1 and work visas. Individual strategy, 89%+ approval rate. Free consultation available.",
+      "Expert immigration consulting for EB-1A, EB-2 NIW, O-1 and work visas. Individual strategy, 89%+ approval rate. Free assessment available.",
     ogTitle: "EBGreen Immigration | Green Card Experts",
     ogDescription:
-      "Get your Green Card with the right strategy. Specialists in EB-1A, EB-2 NIW, O-1 and investor visas. Free consultation.",
+      "Get your Green Card with the right strategy. Specialists in EB-1A, EB-2 NIW, O-1 and investor visas. Free assessment.",
     ogLocale: "en_US",
     htmlLang: "en",
   },
   es: {
     title: "EBGreen Immigration | Green Card EB-1A, EB-2 NIW y Visas para EE.UU.",
     description:
-      "Asesoría especializada en Green Card por mérito profesional. EB-1A, EB-2 NIW, O-1 y visas de trabajo. Atención en español. Consulta gratuita.",
+      "Asesoría especializada en Green Card por mérito profesional. EB-1A, EB-2 NIW, O-1 y visas de trabajo. Atención en español. Evaluación gratuita.",
     ogTitle: "EBGreen Immigration | Expertos en Green Card",
     ogDescription:
-      "Consigue tu Green Card con la estrategia correcta. Especialistas en EB-1A, EB-2 NIW, O-1 y visas de inversor. Consulta gratuita.",
+      "Consigue tu Green Card con la estrategia correcta. Especialistas en EB-1A, EB-2 NIW, O-1 y visas de inversor. Evaluación gratuita.",
     ogLocale: "es_ES",
     htmlLang: "es",
   },
