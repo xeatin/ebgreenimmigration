@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import PhoneCodeSelector from "@/components/PhoneCodeSelector";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -24,8 +25,9 @@ const WHATSAPP_NUMBER = "17712017117";
 
 const leadSchema = z.object({
   fullName: z.string().trim().min(1, "Obrigatório").max(200),
+  phoneCode: z.string().trim().min(1, "Obrigatório").max(8),
+  phone: z.string().trim().min(6, "Telefone inválido").max(40),
   email: z.string().trim().email("E-mail inválido").max(255),
-  visa: z.string().trim().min(1, "Obrigatório").max(80),
   education: z.string().trim().min(1, "Obrigatório").max(120),
   experience: z.string().trim().min(1, "Obrigatório").max(40),
 });
@@ -44,7 +46,7 @@ type ClientErrors = Partial<Record<keyof ClientState, string>>;
 const copy = {
   pt: {
     title: "Quer descobrir se você é elegível?",
-    desc: "Responda 4 perguntas rápidas e a BIA inicia agora a sua análise preliminar de elegibilidade para o visto americano.",
+    desc: "Responda algumas perguntas rápidas e a BIA inicia agora a sua análise preliminar de elegibilidade para o visto americano.",
     chooseTitle: "Como podemos te ajudar?",
     chooseDesc: "Selecione uma opção para continuar.",
     isClient: "Sou cliente Ebgreen",
@@ -93,22 +95,19 @@ const copy = {
     sending: "Enviando...",
     aria: "Falar pelo WhatsApp",
     next: "Continuar",
-    step1Title: "Conte sobre seu perfil",
-    step1Desc: "3 perguntas rápidas para uma avaliação preliminar.",
-    step2Title: "Quase lá!",
-    step2Desc: "Como podemos te enviar a análise?",
-    scorePending: "Preencha as 3 respostas para ver sua avaliação preliminar.",
-    scoreReady: "Avaliação preliminar do seu perfil",
-    scoreCta: "Continue para receber a análise completa no WhatsApp.",
+    step1Title: "Seus dados de contato",
+    step1Desc: "Como podemos falar com você?",
+    step2Title: "Conte sobre seu perfil",
+    step2Desc: "Para uma avaliação preliminar.",
     progress: (n: number, t: number) => `Etapa ${n} de ${t}`,
-    greet: (n: string, e: string, v: string, ed: string, ex: string) =>
-      `Olá! Vim pelo Instagram e tenho interesse em migrar para os Estados Unidos.\n\nE-mail: ${e}\nTipo de visto: ${v}\nFormação acadêmica: ${ed}\nExperiência profissional: ${ex}`,
+    greet: (n: string, p: string, e: string, ed: string, ex: string) =>
+      `Olá! Vim pelo Instagram e tenho interesse em migrar para os Estados Unidos.\n\nNome: ${n}\nTelefone: ${p}\nE-mail: ${e}\nFormação acadêmica: ${ed}\nExperiência profissional: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Olá, sou cliente Ebgreen e preciso de suporte com meu processo.\n\nSeguem minhas informações:\nNome: ${n}\nTelefone: ${p}\nTipo de visto: ${v}`,
   },
   en: {
     title: "Curious to know if you qualify?",
-    desc: "Answer 4 quick questions and BIA will start your preliminary U.S. visa eligibility analysis right away.",
+    desc: "Answer a few quick questions and BIA will start your preliminary U.S. visa eligibility analysis right away.",
     chooseTitle: "How can we help you?",
     chooseDesc: "Select an option to continue.",
     isClient: "I'm an Ebgreen client",
@@ -157,22 +156,19 @@ const copy = {
     sending: "Sending...",
     aria: "Chat on WhatsApp",
     next: "Continue",
-    step1Title: "Tell us about your profile",
-    step1Desc: "3 quick questions for a preliminary assessment.",
-    step2Title: "Almost there!",
-    step2Desc: "How can we send your analysis?",
-    scorePending: "Answer the 3 questions to see your preliminary assessment.",
-    scoreReady: "Preliminary profile assessment",
-    scoreCta: "Continue to get your full analysis on WhatsApp.",
+    step1Title: "Your contact details",
+    step1Desc: "How can we reach you?",
+    step2Title: "Tell us about your profile",
+    step2Desc: "For a preliminary assessment.",
     progress: (n: number, t: number) => `Step ${n} of ${t}`,
-    greet: (n: string, e: string, v: string, ed: string, ex: string) =>
-      `Hello! I came from Instagram and I'm interested in migrating to the United States.\n\nEmail: ${e}\nVisa type: ${v}\nEducation: ${ed}\nProfessional experience: ${ex}`,
+    greet: (n: string, p: string, e: string, ed: string, ex: string) =>
+      `Hello! I came from Instagram and I'm interested in migrating to the United States.\n\nName: ${n}\nPhone: ${p}\nEmail: ${e}\nEducation: ${ed}\nProfessional experience: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Hello, I'm an Ebgreen client and I need support with my case.\n\nHere is my information:\nName: ${n}\nPhone: ${p}\nVisa type: ${v}`,
   },
   es: {
     title: "¿Quiere descubrir si usted califica?",
-    desc: "Responda 4 preguntas rápidas y BIA iniciará ahora su análisis preliminar de elegibilidad para la visa americana.",
+    desc: "Responda algunas preguntas rápidas y BIA iniciará ahora su análisis preliminar de elegibilidad para la visa americana.",
     chooseTitle: "¿Cómo podemos ayudarle?",
     chooseDesc: "Seleccione una opción para continuar.",
     isClient: "Soy cliente Ebgreen",
@@ -221,16 +217,13 @@ const copy = {
     sending: "Enviando...",
     aria: "Hablar por WhatsApp",
     next: "Continuar",
-    step1Title: "Cuéntanos sobre tu perfil",
-    step1Desc: "3 preguntas rápidas para una evaluación preliminar.",
-    step2Title: "¡Casi listo!",
-    step2Desc: "¿Cómo podemos enviarte el análisis?",
-    scorePending: "Responde las 3 preguntas para ver tu evaluación preliminar.",
-    scoreReady: "Evaluación preliminar de tu perfil",
-    scoreCta: "Continúa para recibir el análisis completo en WhatsApp.",
+    step1Title: "Sus datos de contacto",
+    step1Desc: "¿Cómo podemos contactarle?",
+    step2Title: "Cuéntanos sobre tu perfil",
+    step2Desc: "Para una evaluación preliminar.",
     progress: (n: number, t: number) => `Paso ${n} de ${t}`,
-    greet: (n: string, e: string, v: string, ed: string, ex: string) =>
-      `¡Hola! Vine por Instagram y tengo interés en migrar a los Estados Unidos.\n\nCorreo: ${e}\nTipo de visa: ${v}\nFormación académica: ${ed}\nExperiencia profesional: ${ex}`,
+    greet: (n: string, p: string, e: string, ed: string, ex: string) =>
+      `¡Hola! Vine por Instagram y tengo interés en migrar a los Estados Unidos.\n\nNombre: ${n}\nTeléfono: ${p}\nCorreo: ${e}\nFormación académica: ${ed}\nExperiencia profesional: ${ex}`,
     clientGreet: (n: string, p: string, v: string) =>
       `Hola, soy cliente Ebgreen y necesito soporte con mi proceso.\n\nMis datos:\nNombre: ${n}\nTeléfono: ${p}\nTipo de visa: ${v}`,
   },
@@ -238,8 +231,9 @@ const copy = {
 
 const initialForm: FormState = {
   fullName: "",
+  phoneCode: "+1",
+  phone: "",
   email: "",
-  visa: "",
   education: "",
   experience: "",
 };
@@ -318,8 +312,9 @@ const WhatsAppButton = () => {
       const fe = parsed.error.flatten().fieldErrors;
       setErrors({
         fullName: fe.fullName?.[0],
+        phoneCode: fe.phoneCode?.[0],
+        phone: fe.phone?.[0],
         email: fe.email?.[0],
-        visa: fe.visa?.[0],
         education: fe.education?.[0],
         experience: fe.experience?.[0],
       });
@@ -328,11 +323,12 @@ const WhatsAppButton = () => {
     setErrors({});
     setSubmitting(true);
 
-    const { fullName, email, visa, education, experience } = parsed.data;
+    const { fullName, phoneCode, phone, email, education, experience } = parsed.data;
     const parts = fullName.split(/\s+/);
     const firstName = parts[0] || fullName;
     const lastName = parts.slice(1).join(" ");
-    const message = c.greet(fullName, email, visa, education, experience);
+    const fullPhone = `${phoneCode} ${phone}`.trim();
+    const message = c.greet(fullName, fullPhone, email, education, experience);
 
     window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer');
 
@@ -342,9 +338,9 @@ const WhatsAppButton = () => {
           firstName,
           lastName,
           email,
-          phoneCode: "",
-          phone: "",
-          visa,
+          phoneCode,
+          phone,
+          visa: "",
           education,
           experience,
           message: "Lead via botão WhatsApp (pop-up)",
@@ -530,29 +526,14 @@ const WhatsAppButton = () => {
           )}
 
           {step === "lead" && (() => {
-            const step1Filled = !!form.visa && !!form.education && !!form.experience;
-            // Simple preliminary score (0-5 stars)
-            let score = 0;
-            if (form.visa) {
-              const high = ["EB-1A", "EB-2 NIW", "O-1", "L-1A", "EB-5"];
-              score += high.includes(form.visa) ? 2 : 1;
-            }
-            if (form.education) {
-              const top = ["Doutorado", "PhD", "Doctorado", "Mestrado", "Master's", "Maestría", "Pós-graduação", "Postgraduate", "Posgrado"];
-              score += top.includes(form.education) ? 2 : 1;
-            }
-            if (form.experience) {
-              if (form.experience.startsWith("Mais") || form.experience.startsWith("More") || form.experience.startsWith("Más")) score += 1;
-              else if (form.experience.startsWith("De") || form.experience.startsWith("5")) score += 1;
-            }
-            const stars = Math.min(5, score);
+            const step1Filled = !!form.fullName.trim() && !!form.phone.trim() && !!form.email.trim();
             const handleNext = () => {
-              const partial = {
-                visa: !form.visa ? "Obrigatório" : undefined,
-                education: !form.education ? "Obrigatório" : undefined,
-                experience: !form.experience ? "Obrigatório" : undefined,
+              const partial: FormErrors = {
+                fullName: !form.fullName.trim() ? "Obrigatório" : undefined,
+                phone: form.phone.trim().length < 6 ? "Telefone inválido" : undefined,
+                email: !/^\S+@\S+\.\S+$/.test(form.email.trim()) ? "E-mail inválido" : undefined,
               };
-              if (partial.visa || partial.education || partial.experience) {
+              if (partial.fullName || partial.phone || partial.email) {
                 setErrors((prev) => ({ ...prev, ...partial }));
                 return;
               }
@@ -591,20 +572,79 @@ const WhatsAppButton = () => {
               {leadStep === 1 && (
                 <div className="space-y-4 animate-fade-in">
                   <div className="space-y-1.5">
-                    <Label htmlFor="wa-visa" className="font-body">{c.visa} {req}</Label>
-                    <Select value={form.visa} onValueChange={(v) => update("visa", v)}>
-                      <SelectTrigger id="wa-visa" aria-invalid={!!errors.visa}>
-                        <SelectValue placeholder={c.visaPlaceholder} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {c.visaOptions.map((o) => (
-                          <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    {errors.visa && <p className="text-xs text-destructive">{errors.visa}</p>}
+                    <Label htmlFor="wa-name" className="font-body">{c.fullName} {req}</Label>
+                    <Input
+                      id="wa-name"
+                      value={form.fullName}
+                      onChange={(e) => update("fullName", e.target.value)}
+                      maxLength={200}
+                      autoComplete="name"
+                      required
+                      aria-invalid={!!errors.fullName}
+                    />
+                    {errors.fullName && <p className="text-xs text-destructive">{errors.fullName}</p>}
                   </div>
 
+                  <div className="space-y-1.5">
+                    <Label htmlFor="wa-phone" className="font-body">{c.phone} {req}</Label>
+                    <div className="flex items-stretch rounded-md border border-input bg-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background">
+                      <PhoneCodeSelector
+                        value={form.phoneCode}
+                        onChange={(v) => update("phoneCode", v)}
+                      />
+                      <Input
+                        id="wa-phone"
+                        type="tel"
+                        value={form.phone}
+                        onChange={(e) => update("phone", e.target.value)}
+                        maxLength={40}
+                        autoComplete="tel"
+                        required
+                        aria-invalid={!!errors.phone}
+                        className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0 rounded-l-none"
+                      />
+                    </div>
+                    {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <Label htmlFor="wa-email" className="font-body">{c.email} {req}</Label>
+                    <Input
+                      id="wa-email"
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => update("email", e.target.value)}
+                      maxLength={255}
+                      autoComplete="email"
+                      required
+                      aria-invalid={!!errors.email}
+                    />
+                    {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+                  </div>
+
+                  <div className="flex gap-2 pt-1">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setStep("choose")}
+                      className="flex-1 font-body"
+                    >
+                      {c.back}
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={handleNext}
+                      disabled={!step1Filled}
+                      className="flex-1 bg-gold hover:bg-gold/90 text-green-deep font-body font-semibold disabled:opacity-50"
+                    >
+                      {c.next}
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {leadStep === 2 && (
+                <div className="space-y-4 animate-fade-in">
                   <div className="space-y-1.5">
                     <Label htmlFor="wa-edu" className="font-body">{c.education} {req}</Label>
                     <Select value={form.education} onValueChange={(v) => update("education", v)}>
@@ -635,90 +675,6 @@ const WhatsAppButton = () => {
                     {errors.experience && <p className="text-xs text-destructive">{errors.experience}</p>}
                   </div>
 
-                  {/* Score preview */}
-                  <div
-                    className={`rounded-md border p-3 transition-all duration-300 ${
-                      step1Filled
-                        ? "bg-gold/10 border-gold/40 animate-fade-in"
-                        : "bg-muted/40 border-border"
-                    }`}
-                  >
-                    {step1Filled ? (
-                      <>
-                        <p className="text-[11px] uppercase tracking-wider font-body text-foreground/60 mb-1">
-                          {c.scoreReady}
-                        </p>
-                        <div className="flex items-center gap-1 mb-1.5">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <span
-                              key={i}
-                              className={`text-lg leading-none transition-colors ${
-                                i < stars ? "text-gold" : "text-foreground/20"
-                              }`}
-                            >
-                              ★
-                            </span>
-                          ))}
-                        </div>
-                        <p className="text-xs font-body text-foreground/70">{c.scoreCta}</p>
-                      </>
-                    ) : (
-                      <p className="text-xs font-body text-foreground/55">{c.scorePending}</p>
-                    )}
-                  </div>
-
-                  <div className="flex gap-2 pt-1">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => setStep("choose")}
-                      className="flex-1 font-body"
-                    >
-                      {c.back}
-                    </Button>
-                    <Button
-                      type="button"
-                      onClick={handleNext}
-                      disabled={!step1Filled}
-                      className="flex-1 bg-gold hover:bg-gold/90 text-green-deep font-body font-semibold disabled:opacity-50"
-                    >
-                      {c.next}
-                    </Button>
-                  </div>
-                </div>
-              )}
-
-              {leadStep === 2 && (
-                <div className="space-y-4 animate-fade-in">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="wa-name" className="font-body">{c.fullName} {req}</Label>
-                    <Input
-                      id="wa-name"
-                      value={form.fullName}
-                      onChange={(e) => update("fullName", e.target.value)}
-                      maxLength={200}
-                      autoComplete="name"
-                      required
-                      aria-invalid={!!errors.fullName}
-                    />
-                    {errors.fullName && <p className="text-xs text-destructive">{errors.fullName}</p>}
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <Label htmlFor="wa-email" className="font-body">{c.email} {req}</Label>
-                    <Input
-                      id="wa-email"
-                      type="email"
-                      value={form.email}
-                      onChange={(e) => update("email", e.target.value)}
-                      maxLength={255}
-                      autoComplete="email"
-                      required
-                      aria-invalid={!!errors.email}
-                    />
-                    {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
-                  </div>
-
                   <div className="flex gap-2 pt-1">
                     <Button
                       type="button"
@@ -730,9 +686,9 @@ const WhatsAppButton = () => {
                     </Button>
                     <Button
                       type="button"
-                      disabled={submitting}
+                      disabled={submitting || !form.education || !form.experience}
                       onClick={handleLeadClick}
-                      className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold"
+                      className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold disabled:opacity-50"
                     >
                       {submitting ? c.sending : c.submit}
                     </Button>
