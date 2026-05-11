@@ -890,7 +890,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             </div>
 
             {/* Dark contact card */}
-            <div className="mt-6 rounded-xl bg-green-deep text-white p-6 md:p-7 relative overflow-hidden">
+            <div className="mt-5 rounded-xl bg-green-deep text-white p-6 md:p-7 relative overflow-hidden">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
               <p className="font-display text-lg font-semibold">
                 Atendimento direto
