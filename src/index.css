@@ -115,6 +115,9 @@
     font-family: "Playfair Display", serif;
   }
 
+}
+
+@layer utilities {
   /* Microtipografia institucional — consistência com rodapé do formulário */
   .text-\[11px\] {
     line-height: 1.375;
@@ -127,9 +130,6 @@
   .text-sm {
     line-height: 1.6;
   }
-}
-
-@layer utilities {
   .text-gradient-gold {
     background: linear-gradient(135deg, hsl(38 75% 55%), hsl(38 60% 72%));
     -webkit-background-clip: text;
