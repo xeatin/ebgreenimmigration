@@ -890,27 +890,27 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             </div>
 
             {/* Dark contact card */}
-            <div className="mt-5 rounded-xl bg-green-deep text-white p-6 md:p-7 relative overflow-hidden">
+            <div className="mt-5 rounded-xl bg-green-deep text-white p-5 md:p-6 relative overflow-hidden">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
               <p className="font-display text-lg font-semibold">
                 Atendimento direto
               </p>
-              <div className="mt-4 mb-6 h-px w-full bg-white/10" />
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-5 mb-6">
+              <div className="mt-3 mb-5 h-px w-full bg-white/10" />
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-5">
                 <a href="https://wa.me/17712017117" target="_blank" rel="noopener noreferrer" className="group min-w-0">
-                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1 font-body">
                     <span className="text-gold"><WhatsAppIcon size={12} /></span> WhatsApp
                   </div>
                   <p className="text-sm font-body text-white group-hover:text-gold transition whitespace-nowrap">+1 (771) 201-7117</p>
                 </a>
                 <a href="mailto:info@ebgreenusa.com" className="group min-w-0">
-                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1 font-body">
                     <Mail size={12} className="text-gold" /> E-mail
                   </div>
                   <p className="text-sm font-body text-white group-hover:text-gold transition whitespace-nowrap">info@ebgreenusa.com</p>
                 </a>
                 <a href="https://instagram.com/ebgreenusa" target="_blank" rel="noopener noreferrer" className="group min-w-0">
-                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1 font-body">
                     <Instagram size={12} className="text-gold" /> Instagram
                   </div>
                   <p className="text-sm font-body text-white group-hover:text-gold transition whitespace-nowrap">@ebgreenusa</p>
