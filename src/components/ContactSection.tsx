@@ -872,7 +872,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             </p>
 
             {/* Institutional stats row */}
-            <div className="mt-8 grid grid-cols-3 gap-4 pb-7 border-b border-foreground/10">
+            <div className="mt-7 grid grid-cols-3 gap-4 pb-6 border-b border-foreground/10">
               <div>
                 <p className="font-body text-xs text-foreground font-medium leading-none">10+</p>
                 <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">Anos atuando</p>
@@ -890,7 +890,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             </div>
 
             {/* Dark contact card */}
-            <div className="mt-7 rounded-xl bg-green-deep text-white p-6 md:p-7 relative overflow-hidden">
+            <div className="mt-6 rounded-xl bg-green-deep text-white p-6 md:p-7 relative overflow-hidden">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
               <p className="font-display text-lg font-semibold">
                 Atendimento direto
