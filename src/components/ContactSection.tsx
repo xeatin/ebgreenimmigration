@@ -868,7 +868,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               para o <span className="text-gold italic">Green Card?</span>
             </h2>
             <p className="mt-5 text-muted-foreground text-base font-body leading-relaxed max-w-md">
-              Seu perfil pode ter mais potencial do que você imagina. Inicie uma avaliação gratuita e descubra possíveis caminhos migratórios para os Estados Unidos.
+              Em apenas 60 segundos, analisamos seu perfil gratuitamente. Inicie sua avaliação gratuita e descubra possíveis caminhos migratórios para os Estados Unidos.
             </p>
 
             {/* Dark contact card */}
