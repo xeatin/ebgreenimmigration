@@ -1055,72 +1055,52 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               </AnimatePresence>
             </div>
 
-            {/* ELIGIBILITY NOTICE */}
-            <div className="mx-5 sm:mx-7 mb-3 rounded-[10px] border border-brand-green/30 bg-brand-green/[0.04] overflow-hidden">
-              <button
-                type="button"
-                onClick={() => setDisclaimerOpen((v) => !v)}
-                className="w-full flex items-center gap-2.5 px-4 py-3 text-left"
-              >
-                <span className="w-5 h-5 rounded-full border-[1.5px] border-brand-green flex items-center justify-center shrink-0">
-                  <Info size={10} className="text-brand-green" />
-                </span>
-                <span className="flex-1 text-[11px] font-bold text-brand-green tracking-[0.14em] uppercase font-body">
-                  Aviso de Elegibilidade
-                </span>
-                <ChevronDown
-                  size={14}
-                  className={`text-muted-foreground transition-transform ${disclaimerOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-              {disclaimerOpen && (
-                <div className="px-4 pb-3.5">
-                  <p className="text-[12px] text-muted-foreground font-body font-light leading-[1.75]">
-                    A análise considera seu histórico profissional, objetivos imigratórios, documentação disponível e requisitos legais aplicáveis. Essa avaliação tem como objetivo assegurar que cada caso seja desenvolvido com estratégia, transparência e elevado padrão técnico.
-                  </p>
-                </div>
-              )}
-            </div>
-
             {/* FOOTER */}
-            <div className="bg-secondary/60 border-t border-border px-5 sm:px-7 py-3.5 flex items-center gap-3 flex-wrap">
-              <div className="flex items-center gap-2 text-[11px] text-muted-foreground font-body font-light shrink-0 whitespace-nowrap">
-                <Lock size={12} />
-                Dados protegidos e análise confidencial.
+            <div className="bg-secondary/60 border-t border-border px-5 sm:px-7 py-3.5">
+              <div className="flex items-center gap-3 flex-wrap">
+                <div className="flex items-center gap-2 text-[11px] text-muted-foreground font-body font-light shrink-0 whitespace-nowrap">
+                  <Lock size={12} />
+                  Dados protegidos · análise confidencial
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  aria-hidden={step === 1}
+                  tabIndex={step === 1 ? -1 : 0}
+                  className={`ml-auto h-11 px-4 rounded-md border border-border text-muted-foreground text-[13px] font-body hover:border-foreground/30 hover:text-foreground transition inline-flex items-center gap-1.5 ${step === 1 ? "invisible pointer-events-none ml-auto" : ""}`}
+                >
+                  <ArrowLeft size={14} /> Voltar
+                </button>
+
+                <div>
+                  {step < 3 ? (
+                    <button
+                      type="button"
+                      onClick={handleNext}
+                      className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:opacity-50"
+                    >
+                      Continuar avaliação <ArrowRight size={15} />
+                    </button>
+                  ) : (
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-60"
+                    >
+                      {isSubmitting ? t(s.submitting, lang) : (
+                        <>Receber minha avaliação <Send size={14} /></>
+                      )}
+                    </button>
+                  )}
+                </div>
               </div>
 
-              <button
-                type="button"
-                onClick={handleBack}
-                aria-hidden={step === 1}
-                tabIndex={step === 1 ? -1 : 0}
-                className={`ml-auto h-11 px-4 rounded-md border border-border text-muted-foreground text-[13px] font-body hover:border-foreground/30 hover:text-foreground transition inline-flex items-center gap-1.5 ${step === 1 ? "invisible pointer-events-none ml-auto" : ""}`}
-              >
-                <ArrowLeft size={14} /> Voltar
-              </button>
-
-              <div>
-                {step < 3 ? (
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    
-                    className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:opacity-50"
-                  >
-                    Continuar avaliação <ArrowRight size={15} />
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-60"
-                  >
-                    {isSubmitting ? t(s.submitting, lang) : (
-                      <>Receber minha avaliação <Send size={14} /></>
-                    )}
-                  </button>
-                )}
-              </div>
+              <p className="mt-3 text-[11px] text-muted-foreground font-body font-light leading-[1.6]">
+                Esta análise preliminar não constitui consulta jurídica individualizada nem substitui orientação legal formal. Ao prosseguir, você declara estar de acordo com a{" "}
+                <a href="#" className="text-brand-green underline hover:opacity-80">Política de Privacidade</a>{" "}
+                e os <a href="#" className="text-brand-green underline hover:opacity-80">Termos de Uso</a>.
+              </p>
             </div>
           </motion.form>
         </div>
