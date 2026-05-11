@@ -210,19 +210,20 @@ const TestimonialsSection = () => {
                       <p className="font-display text-foreground font-semibold text-sm leading-tight">{item.name}</p>
                       {(() => {
                         const cat = t(item.category, lang);
-                        const m = cat.match(/^(.*?)(\s•\s)(Aprovad[oa]|Approved|Aprobad[oa]).*$/i);
-                        if (m) {
-                          return (
-                            <p className="text-xs font-body flex items-center gap-1.5 flex-wrap">
-                              <span className="text-brand-green font-semibold">{m[1]}</span>
+                        const parts = cat.split('•').map((p) => p.trim()).filter(Boolean);
+                        const head = parts[0] ?? cat;
+                        const tail = parts.slice(1).join(' • ');
+                        return (
+                          <p className="text-xs font-body flex items-center gap-1.5 flex-wrap">
+                            <span className="text-brand-green font-semibold">{head}</span>
+                            {tail && (
                               <span className="inline-flex items-center gap-1 text-brand-green font-semibold uppercase tracking-wide">
                                 <span className="w-1.5 h-1.5 rounded-full bg-brand-green" />
-                                {cat.split('•')[1]?.trim()}
+                                {tail}
                               </span>
-                            </p>
-                          );
-                        }
-                        return <p className="text-brand-green text-xs font-body font-extralight">{cat}</p>;
+                            )}
+                          </p>
+                        );
                       })()}
                     </div>
                   </div>
