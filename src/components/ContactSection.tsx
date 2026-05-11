@@ -1058,7 +1058,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             {/* FOOTER */}
             <div className="bg-secondary/60 border-t border-border px-5 sm:px-7 py-3.5">
               <div className="flex items-center gap-3 flex-wrap">
-                <div className="flex items-center gap-2 text-[11px] text-foreground font-body font-light shrink-0 whitespace-nowrap">
+                <div className="flex items-center gap-2 text-[11px] text-foreground font-body font-light shrink-0 whitespace-nowrap leading-snug tracking-wide">
                   <span className="text-gold text-xs">🔒</span>
                   Dados protegidos · análise confidencial
                 </div>
