@@ -206,14 +206,6 @@ export const translations = {
           es: "Residencia permanente en Estados Unidos. EBGreen sigue a su lado con soporte en la llegada, adaptación y próximos pasos de su vida americana.",
         },
       },
-      {
-        title: { pt: "Green Card", en: "Green Card", es: "Green Card" },
-        desc: {
-          pt: "Residência permanente nos Estados Unidos. A EBGreen continua ao seu lado com suporte na chegada, adaptação e próximos passos da sua vida americana.",
-          en: "Permanent residence in the United States. EBGreen stays by your side with support on arrival, adaptation, and next steps of your American life.",
-          es: "Residencia permanente en Estados Unidos. EBGreen sigue a su lado con soporte en la llegada, adaptación y próximos pasos de su vida americana.",
-        },
-      },
     ],
   },
 
