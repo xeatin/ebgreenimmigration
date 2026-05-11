@@ -271,7 +271,7 @@ export const translations = {
     sectionTitleHighlight: { pt: "Green Card", en: "Green Card", es: "Green Card" },
     sectionTitle2: { pt: "para o", en: "to the", es: "hacia la" },
     sectionSubtitle: {
-      pt: "Seu perfil pode ter mais potencial do que você imagina. Inicie uma avaliação gratuita e descubra possíveis caminhos migratórios para os Estados Unidos.",
+      pt: "Em apenas 60 segundos, analisamos seu perfil gratuitamente. Inicie sua avaliação gratuita e descubra possíveis caminhos migratórios para os Estados Unidos.",
       en: "Your profile may have more potential than you think. Start a free assessment and discover possible immigration paths to the United States.",
       es: "Su perfil puede tener más potencial del que imagina. Inicie una evaluación gratuita y descubra posibles caminos migratorios hacia los Estados Unidos.",
     },
