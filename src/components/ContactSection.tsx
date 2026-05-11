@@ -874,15 +874,15 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             {/* Institutional stats row */}
             <div className="mt-8 grid grid-cols-3 gap-4 pb-7 border-b border-foreground/10">
               <div>
-                <p className="font-display text-4xl md:text-5xl text-foreground italic leading-none">10+</p>
+                <p className="font-display text-xs text-foreground italic leading-none">10+</p>
                 <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">Anos atuando</p>
               </div>
               <div>
-                <p className="font-display text-4xl md:text-5xl text-foreground italic leading-none">+89%</p>
+                <p className="font-display text-xs text-foreground italic leading-none">+89%</p>
                 <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">Aprovação NIW</p>
               </div>
               <div>
-                <p className="font-display text-4xl md:text-5xl text-foreground italic leading-none whitespace-nowrap">
+                <p className="font-display text-xs text-foreground italic leading-none whitespace-nowrap">
                   PT<span className="text-gold mx-1">·</span>EN<span className="text-gold mx-1">·</span>ES
                 </p>
                 <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">Atendimento</p>
