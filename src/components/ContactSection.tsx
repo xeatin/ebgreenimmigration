@@ -1098,8 +1098,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
 
               <p className="mt-3 text-[11px] text-muted-foreground font-body font-light leading-[1.6]">
                 Esta análise preliminar não constitui consulta jurídica individualizada nem substitui orientação legal formal. Ao prosseguir, você declara estar de acordo com a{" "}
-                <a href="#" className="text-brand-green underline hover:opacity-80">Política de Privacidade</a>{" "}
-                e os <a href="#" className="text-brand-green underline hover:opacity-80">Termos de Uso</a>.
+                <a href="#" className="text-foreground font-medium underline hover:opacity-80">Política de Privacidade</a>{" "}
+                e os <a href="#" className="text-foreground font-medium underline hover:opacity-80">Termos de Uso</a>.
               </p>
             </div>
           </motion.form>
