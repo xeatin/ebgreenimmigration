@@ -389,9 +389,9 @@ export const translations = {
     contactLabel: { pt: "Contato:", en: "Contact:", es: "Contacto:" },
     disclaimerTitle: { pt: "Aviso Legal:", en: "Disclaimer:", es: "Aviso Legal:" },
     disclaimerText: {
-      pt: "ebgreen Immigration é uma marca registrada nos Estados Unidos e em outros países. O uso não autorizado da marca é estritamente proibido.\nAs informações e serviços fornecidos neste site são apenas para fins informativos. Se você tiver alguma dúvida, entre em contato conosco em",
-      en: "ebgreen Immigration is a registered trademark in the United States and other countries. Unauthorized use of the trademark is strictly prohibited.\nThe information and services provided on this website are for informational purposes only. If you have any questions, please contact us at",
-      es: "ebgreen Immigration es una marca registrada en los Estados Unidos y otros países. El uso no autorizado de la marca está estrictamente prohibido.\nLa información y los servicios proporcionados en este sitio web son solo para fines informativos. Si tiene alguna pregunta, contáctenos en",
+      pt: "Ebgreen Immigration é uma marca registrada nos Estados Unidos e em outros países. O uso não autorizado da marca é estritamente proibido.\nAs informações neste site têm fins exclusivamente informativos e não constituem aconselhamento jurídico. Em caso de dúvidas, entre em contato conosco pelo e-mail",
+      en: "Ebgreen Immigration is a registered trademark in the United States and other countries. Unauthorized use of the trademark is strictly prohibited.\nThe information on this website is for informational purposes only and does not constitute legal advice. If you have any questions, please contact us at",
+      es: "Ebgreen Immigration es una marca registrada en los Estados Unidos y otros países. El uso no autorizado de la marca está estrictamente prohibido.\nLa información de este sitio web tiene fines exclusivamente informativos y no constituye asesoramiento jurídico. En caso de dudas, contáctenos por correo electrónico a",
     },
     privacy: { pt: "Política de Privacidade", en: "Privacy Policy", es: "Política de Privacidad" },
     terms: { pt: "Termos de Uso", en: "Terms of Use", es: "Términos de Uso" },
