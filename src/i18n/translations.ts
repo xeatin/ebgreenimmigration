@@ -29,9 +29,9 @@ export const translations = {
     title2: { pt: "com a estratégia certa", en: "with the right strategy", es: "con la estrategia correcta" },
     title3: { pt: "de quem realmente entende.", en: "from those who truly understand.", es: "de quienes realmente entienden." },
     subtitle: {
-      pt: "Especialistas em EB-1A, EB-2 NIW, O-1, Vistos de Trabalho e Investidor. Rigor técnico, estratégia individualizada e histórico consistente de aprovações.",
-      en: "Specialists in EB-1A, EB-2 NIW, O-1, Work and Investor Visas. Technical rigor, individualized strategy, and a consistent track record of approvals.",
-      es: "Especialistas en EB-1A, EB-2 NIW, O-1, Visas de Trabajo e Inversionista. Rigor técnico, estrategia individualizada e historial consistente de aprobaciones.",
+      pt: "Especialistas em EB-1A, EB-2 NIW, O-1, vistos de trabalho, investimento e outras soluções imigratórias. Estratégia individualizada, rigor técnico e histórico consistente de aprovações.",
+      en: "Specialists in EB-1A, EB-2 NIW, O-1, work and investment visas, and other immigration solutions. Individualized strategy, technical rigor, and a consistent track record of approvals.",
+      es: "Especialistas en EB-1A, EB-2 NIW, O-1, visas de trabajo, inversión y otras soluciones migratorias. Estrategia individualizada, rigor técnico e historial consistente de aprobaciones.",
     },
     ctaPrimary: { pt: "Avaliar Minha Elegibilidade", en: "Assess My Eligibility", es: "Evaluar Mi Elegibilidad" },
     ctaSecondary: { pt: "Explorar Serviços", en: "Explore Services", es: "Explorar Servicios" },
