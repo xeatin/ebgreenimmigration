@@ -375,7 +375,7 @@ export const translations = {
     titleHighlight: { pt: "Green Card", en: "Green Card", es: "Green Card" },
     title2: { pt: "começa aqui", en: "journey starts here", es: "comienza aquí" },
     subtitle: {
-      pt: "Não espere mais. Agende uma consulta gratuita e descubra qual o melhor caminho para você e sua família nos Estados Unidos.",
+      pt: "Não espere mais. Agende uma avaliação gratuita e descubra qual o melhor caminho para você e sua família nos Estados Unidos.",
       en: "Don't wait any longer. Schedule a free consultation and discover the best path for you and your family in the United States.",
       es: "No espere más. Agende una consulta gratuita y descubra el mejor camino para usted y su familia en Estados Unidos.",
     },
