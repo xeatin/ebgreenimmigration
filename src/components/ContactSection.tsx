@@ -890,12 +890,12 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             </div>
 
             {/* Dark contact card */}
-            <div className="mt-4 rounded-xl bg-green-deep text-white p-5 md:p-6 relative overflow-hidden">
+            <div className="mt-4 rounded-xl bg-green-deep text-white px-5 md:px-6 pt-[19px] md:pt-[23px] pb-5 md:pb-6 relative overflow-hidden">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
               <p className="font-display text-lg font-semibold">
                 Atendimento direto
               </p>
-              <div className="mt-3 mb-5 h-px w-full bg-white/10" />
+              <div className="mt-[11px] mb-[19px] h-px w-full bg-white/10" />
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-5">
                 <a href="https://wa.me/17712017117" target="_blank" rel="noopener noreferrer" className="group min-w-0">
                   <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1 font-body">
