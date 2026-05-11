@@ -871,12 +871,31 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               Em apenas 60 segundos, analisamos seu perfil gratuitamente. Inicie sua avaliação gratuita e descubra possíveis caminhos migratórios para os Estados Unidos.
             </p>
 
+            {/* Institutional stats row */}
+            <div className="mt-8 grid grid-cols-3 gap-4 pb-7 border-b border-foreground/10">
+              <div>
+                <p className="font-display text-3xl md:text-4xl text-foreground italic leading-none">10+</p>
+                <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-muted-foreground font-body">Anos atuando</p>
+              </div>
+              <div>
+                <p className="font-display text-3xl md:text-4xl text-foreground italic leading-none">+89%</p>
+                <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-muted-foreground font-body">Aprovação NIW</p>
+              </div>
+              <div>
+                <p className="font-display text-3xl md:text-4xl text-foreground italic leading-none whitespace-nowrap">
+                  PT<span className="text-gold mx-1">·</span>EN<span className="text-gold mx-1">·</span>ES
+                </p>
+                <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-muted-foreground font-body">Atendimento</p>
+              </div>
+            </div>
+
             {/* Dark contact card */}
-            <div className="mt-6 rounded-xl bg-green-deep text-white p-6 relative overflow-hidden">
+            <div className="mt-7 rounded-xl bg-green-deep text-white p-6 md:p-7 relative overflow-hidden">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
-              <p className="font-display text-lg font-semibold mb-5">
-                Fale conosco
+              <p className="font-display text-lg font-semibold">
+                Atendimento direto
               </p>
+              <div className="mt-4 mb-6 h-px w-full bg-white/10" />
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-5 mb-6">
                 <a href="https://wa.me/17712017117" target="_blank" rel="noopener noreferrer" className="group min-w-0">
                   <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
@@ -897,13 +916,9 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                   <p className="text-sm font-body text-white group-hover:text-gold transition whitespace-nowrap">@ebgreenusa</p>
                 </a>
               </div>
-              <div className="pt-5 border-t border-white/10">
-                <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] font-semibold text-white/45 mb-1.5 font-body">
-                  <Clock size={12} className="text-gold" /> Atendimento
-                </div>
-                <p className="text-sm font-body text-white">Segunda – Sexta: 9:00 AM – 5:00 PM</p>
-                <p className="text-[11px] text-white/45 font-body mt-0.5">(Eastern Time)</p>
-              </div>
+              <p className="text-sm font-body text-gold/90">
+                Segunda a sexta <span className="text-white/40 mx-1">·</span> 9:00–17:00 ET
+              </p>
             </div>
           </motion.div>
 
