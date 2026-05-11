@@ -71,7 +71,7 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="mt-10">
               <a href="#contato" data-cta-id="lp_hero_cta" data-cta-location="lp_hero" data-visa-context={content.visaId} className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card">
-                Avaliar Minha Elegibilidade <ArrowRight size={20} />
+                Iniciar Minha Avaliação <ArrowRight size={20} />
               </a>
             </motion.div>
           </div>

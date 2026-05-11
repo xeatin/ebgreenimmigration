@@ -17,7 +17,7 @@ const testimonials = [
   },
   {
     name: "Mariana Costa",
-    category: { pt: "H-1B • Profissional de TI", en: "H-1B • IT Professional", es: "H-1B • Profesional de TI" },
+    category: { pt: "H-1B • Profissional de TI  APROVADO EM 2025", en: "H-1B • IT Professional  APPROVED IN 2025", es: "H-1B • Profesional de TI  APROBADO EN 2025" },
     text: {
       pt: "Depois de anos tentando sozinha, decidi contratar a assessoria e foi a melhor decisão. O processo foi claro, transparente e muito mais rápido do que eu imaginava.",
       en: "After years of trying on my own, I decided to hire the advisory and it was the best decision. The process was clear, transparent, and much faster than I imagined.",
@@ -222,7 +222,7 @@ const TestimonialsSection = () => {
                             </p>
                           );
                         }
-                        return <p className="text-brand-green text-xs font-body font-semibold">{cat}</p>;
+                        return <p className="text-brand-green text-xs font-body font-extralight">{cat}</p>;
                       })()}
                     </div>
                   </div>
