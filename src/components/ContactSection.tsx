@@ -867,7 +867,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               Qual é o seu caminho<br />
               para o <span className="text-gold italic">Green Card?</span>
             </h2>
-            <p className="mt-5 text-muted-foreground text-base font-body leading-relaxed max-w-md">
+            <p className="mt-5 text-muted-foreground text-base font-body leading-relaxed max-w-md text-balance">
               Em apenas 60 segundos, analisamos seu perfil gratuitamente. Inicie sua avaliação gratuita e descubra possíveis caminhos migratórios para os Estados Unidos.
             </p>
 
