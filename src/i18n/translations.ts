@@ -199,15 +199,7 @@ export const translations = {
         },
       },
       {
-        title: { pt: "Aprovação", en: "Approval", es: "Aprobación" },
-        desc: {
-          pt: "Aprovação oficial pelo USCIS. Nossa equipe coordena a transição para o Adjustment of Status ou Consular Processing.",
-          en: "Official USCIS approval. Our team coordinates the transition to Adjustment of Status or Consular Processing.",
-          es: "Aprobación oficial por USCIS. Nuestro equipo coordina la transición al Adjustment of Status o Consular Processing.",
-        },
-      },
-      {
-        title: { pt: "Green Card", en: "Green Card", es: "Green Card" },
+        title: { pt: "Aprovação Green Card", en: "Green Card Approval", es: "Aprobación Green Card" },
         desc: {
           pt: "Residência permanente nos Estados Unidos. A EBGreen continua ao seu lado com suporte na chegada, adaptação e próximos passos da sua vida americana.",
           en: "Permanent residence in the United States. EBGreen stays by your side with support on arrival, adaptation, and next steps of your American life.",
