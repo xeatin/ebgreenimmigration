@@ -1041,16 +1041,16 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             </div>
 
             {/* ELIGIBILITY NOTICE */}
-            <div className="mx-5 sm:mx-7 mb-3 rounded-[10px] border border-gold/30 bg-gold/[0.04] overflow-hidden">
+            <div className="mx-5 sm:mx-7 mb-3 rounded-[10px] border border-brand-green/30 bg-brand-green/[0.04] overflow-hidden">
               <button
                 type="button"
                 onClick={() => setDisclaimerOpen((v) => !v)}
                 className="w-full flex items-center gap-2.5 px-4 py-3 text-left"
               >
-                <span className="w-5 h-5 rounded-full border-[1.5px] border-gold flex items-center justify-center shrink-0">
-                  <Info size={10} className="text-gold" />
+                <span className="w-5 h-5 rounded-full border-[1.5px] border-brand-green flex items-center justify-center shrink-0">
+                  <Info size={10} className="text-brand-green" />
                 </span>
-                <span className="flex-1 text-[11px] font-bold text-gold tracking-[0.14em] uppercase font-body">
+                <span className="flex-1 text-[11px] font-bold text-brand-green tracking-[0.14em] uppercase font-body">
                   Aviso de Elegibilidade
                 </span>
                 <ChevronDown
