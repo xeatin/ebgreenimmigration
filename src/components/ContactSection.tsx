@@ -657,7 +657,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const Step3 = (
     <div>
       <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
-        Descubra se você é elegível para o <span className="text-gold italic font-semibold drop-shadow-[0_0_8px_rgba(212,175,55,0.45)]">Green Card</span>.
+        Descubra se você é elegível para o <span className="text-gold italic font-semibold">Green Card</span>.
       </h3>
       <p className="text-[13px] text-foreground/55 font-body font-light mb-6">
         Milhares de profissionais já conquistaram o Green Card sem saber que tinham elegibilidade. Leva menos de 1 minuto para descobrir o seu caminho.
