@@ -526,12 +526,15 @@ const WhatsAppButton = () => {
           )}
 
           {step === "lead" && (() => {
-            const step1Filled = !!form.fullName.trim() && !!form.phone.trim() && !!form.email.trim();
+            const fullName = form.fullName ?? "";
+            const phone = form.phone ?? "";
+            const email = form.email ?? "";
+            const step1Filled = !!fullName.trim() && !!phone.trim() && !!email.trim();
             const handleNext = () => {
               const partial: FormErrors = {
-                fullName: !form.fullName.trim() ? "Obrigatório" : undefined,
-                phone: form.phone.trim().length < 6 ? "Telefone inválido" : undefined,
-                email: !/^\S+@\S+\.\S+$/.test(form.email.trim()) ? "E-mail inválido" : undefined,
+                fullName: !fullName.trim() ? "Obrigatório" : undefined,
+                phone: phone.trim().length < 6 ? "Telefone inválido" : undefined,
+                email: !/^\S+@\S+\.\S+$/.test(email.trim()) ? "E-mail inválido" : undefined,
               };
               if (partial.fullName || partial.phone || partial.email) {
                 setErrors((prev) => ({ ...prev, ...partial }));
