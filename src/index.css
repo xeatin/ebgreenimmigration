@@ -114,6 +114,19 @@
   h6 {
     font-family: "Playfair Display", serif;
   }
+
+  /* Microtipografia institucional — consistência com rodapé do formulário */
+  .text-\[11px\] {
+    line-height: 1.375;
+    letter-spacing: 0.025em;
+  }
+  .text-xs {
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+  }
+  .text-sm {
+    line-height: 1.6;
+  }
 }
 
 @layer utilities {
