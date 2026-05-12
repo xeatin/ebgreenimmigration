@@ -431,7 +431,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     try {
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: {
-          source: "website-main-form",
+          source: "website",
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
@@ -441,7 +441,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
           education: formData.education,
           experience: formData.experience,
           knownVisa: formData.knownVisa,
-          message: composedMessage,
+          message: `Olá! Tenho interesse em migrar para os Estados Unidos e gostaria de uma avaliação gratuita.\n\n${composedMessage}`.trim(),
           resumeUrl,
           resumeName,
         },
