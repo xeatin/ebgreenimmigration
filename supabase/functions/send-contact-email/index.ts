@@ -69,18 +69,35 @@ Deno.serve(async (req) => {
     const isTechnical = eduNormalized.includes('tecnico') || eduNormalized.includes('tecnólogo')
     const isLowExperience = expNormalized === 'menos de 5 anos' || expNormalized.includes('menos de 5')
     const skipKommo = isHighSchool || (isTechnical && isLowExperience)
+    const qualification = skipKommo ? 'low' : 'qualified'
+    const qualificationReason = isHighSchool
+      ? 'Ensino Médio'
+      : (isTechnical && isLowExperience)
+        ? 'Técnico/Tecnólogo com menos de 5 anos de experiência'
+        : 'Atende aos critérios mínimos de qualificação'
 
     // Notify N8N webhook (Kommo). We await so we can return leadId to the client.
-    let kommo: { skipped: boolean; status?: number; leadId?: string | number; body?: unknown; error?: string } = { skipped: skipKommo }
+    let kommo: { skipped: boolean; status?: number; leadId?: string | number; body?: unknown; error?: string; reason?: string } = { skipped: skipKommo, reason: qualificationReason }
     const n8nPromise = skipKommo
-      ? Promise.resolve(console.log('N8N webhook skipped:', { isHighSchool, isTechnical, isLowExperience }))
+      ? Promise.resolve(console.log('N8N webhook skipped:', { isHighSchool, isTechnical, isLowExperience, reason: qualificationReason }))
       : fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            // Origem do lead (CRM/Kommo usa para identificar o canal exato)
             source,
             formSource: source,
             leadSource: source,
+            origin: source,
+            channel: source,
+            // Mensagem composta enviada pelo formulário
+            message,
+            note: message,
+            comments: message,
+            // Qualificação
+            qualification,
+            qualificationReason,
+            // Dados do contato
             firstName,
             lastName,
             email,
@@ -89,7 +106,6 @@ Deno.serve(async (req) => {
             visa,
             education,
             experience,
-            message,
             resumeUrl,
             resumeName,
           }),
