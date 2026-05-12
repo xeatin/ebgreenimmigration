@@ -150,13 +150,13 @@ Deno.serve(async (req) => {
 
     if (!res.ok) {
       return new Response(
-        JSON.stringify({ success: false, status: res.status, resend: result, kommo }),
+        JSON.stringify({ success: false, status: res.status, resend: result, kommo, qualification, qualificationReason }),
         { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
 
     return new Response(
-      JSON.stringify({ success: true, resend: result, kommo }),
+      JSON.stringify({ success: true, resend: result, kommo, qualification, qualificationReason }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )
   } catch (error) {
