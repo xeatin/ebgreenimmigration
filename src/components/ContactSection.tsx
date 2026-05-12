@@ -426,6 +426,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     // que aplica o filtro de qualificação (pula leads de baixa qualificação).
     // Não chamar o webhook diretamente daqui para não burlar o filtro.
 
+    let qualification: 'low' | 'qualified' = 'qualified';
+    let qualificationReason = '';
     try {
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: {
@@ -448,6 +450,11 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       if (error || data?.success === false) {
         throw error || new Error(data?.error || "Erro ao enviar lead");
       }
+
+      qualification = data?.qualification === 'low' ? 'low' : 'qualified';
+      qualificationReason = data?.qualificationReason || '';
+      // Log interno (não exibido ao usuário)
+      console.info('[lead] qualification:', qualification, '| reason:', qualificationReason, '| kommo:', data?.kommo);
     } catch (err) {
       trackForm("form_error", { form_id: FORM_ID, visa_context: formData.visa, reason: "submit_failed" });
       toast({
@@ -460,11 +467,18 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     }
 
     submittedRef.current = true;
-    trackForm("form_submit", { form_id: FORM_ID, visa_context: formData.visa });
-    toast({
-      title: t(s.successTitle, lang),
-      description: t(s.successMsg, lang),
-    });
+    trackForm("form_submit", { form_id: FORM_ID, visa_context: formData.visa, reason: qualification });
+    if (qualification === 'low') {
+      toast({
+        title: "Recebemos o seu contato!",
+        description: "Nossa equipe analisará o seu perfil com atenção e retornará em breve com as melhores orientações para o seu caso.",
+      });
+    } else {
+      toast({
+        title: t(s.successTitle, lang),
+        description: t(s.successMsg, lang),
+      });
+    }
     setFormData({
       firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
       visa: "",
