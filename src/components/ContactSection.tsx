@@ -467,7 +467,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     }
 
     submittedRef.current = true;
-    trackForm("form_submit", { form_id: FORM_ID, visa_context: formData.visa, qualification });
+    trackForm("form_submit", { form_id: FORM_ID, visa_context: formData.visa, reason: qualification });
     if (qualification === 'low') {
       toast({
         title: "Recebemos o seu contato!",
