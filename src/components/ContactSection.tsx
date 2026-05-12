@@ -422,25 +422,9 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       formData.knownVisa ? `Sei qual o meu visto: ${formData.knownVisa}` : "",
     ].filter(Boolean).join("\n");
 
-    fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        source: 'website-main-form',
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phoneCode: formData.phoneCode,
-        phone: formData.phone,
-        visa: formData.visa,
-        education: formData.education,
-        experience: formData.experience,
-        knownVisa: formData.knownVisa,
-        message: composedMessage,
-        resumeUrl,
-        resumeName,
-      }),
-    }).catch(() => {});
+    // N8N/Kommo é disparado dentro da edge function `send-contact-email`,
+    // que aplica o filtro de qualificação (pula leads de baixa qualificação).
+    // Não chamar o webhook diretamente daqui para não burlar o filtro.
 
     try {
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
