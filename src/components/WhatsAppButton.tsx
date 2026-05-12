@@ -345,7 +345,11 @@ const WhatsAppButton = () => {
           experience,
           message: "Lead via botão WhatsApp (pop-up)",
         },
-      }).catch(() => undefined);
+      })
+        .then(({ data }) => {
+          console.info('[lead/whatsapp-popup] qualification:', data?.qualification, '| reason:', data?.qualificationReason, '| kommo:', data?.kommo);
+        })
+        .catch(() => undefined);
 
     setTimeout(() => {
       setSubmitting(false);
