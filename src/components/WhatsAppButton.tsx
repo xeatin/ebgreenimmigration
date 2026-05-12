@@ -334,7 +334,7 @@ const WhatsAppButton = () => {
 
     void supabase.functions.invoke("send-contact-email", {
         body: {
-          source: "whatsapp-popup-form",
+          source: "whatsapp_new_lead",
           firstName,
           lastName,
           email,
@@ -343,7 +343,7 @@ const WhatsAppButton = () => {
           visa: "",
           education,
           experience,
-          message: "Lead via botão WhatsApp (pop-up)",
+          message: "Olá! Tenho interesse em migrar para os Estados Unidos e gostaria de uma avaliação gratuita.",
         },
       })
         .then(({ data }) => {
@@ -381,7 +381,7 @@ const WhatsAppButton = () => {
 
     void supabase.functions.invoke("send-contact-email", {
         body: {
-          source: "whatsapp-popup-client",
+          source: "whatsapp_existing_customer",
           firstName,
           lastName,
           email: "",
@@ -389,7 +389,7 @@ const WhatsAppButton = () => {
           phone,
           visa,
           education: "",
-          message: "Cliente Ebgreen solicitou suporte via botão WhatsApp",
+          message: "Olá, já sou cliente Ebgreen, e gostaria de atendimento.",
         },
       }).catch(() => undefined);
 
