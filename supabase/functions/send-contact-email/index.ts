@@ -61,26 +61,13 @@ Deno.serve(async (req) => {
     `
 
     // Skip N8N (Kommo) for low-qualification leads:
-    //  - Ensino Médio / High School / Secundaria
+    //  - Ensino Médio
     //  - Técnico ou Tecnólogo com menos de 5 anos de experiência
     const eduNormalized = (education || '').trim().toLowerCase()
     const expNormalized = (experience || '').trim().toLowerCase()
-    const isHighSchool =
-      eduNormalized === 'ensino-medio' ||
-      eduNormalized === 'ensino medio' ||
-      eduNormalized === 'ensino médio' ||
-      eduNormalized === 'high school' ||
-      eduNormalized === 'secundaria'
-    const isTechnical =
-      eduNormalized === 'tecnico' ||
-      eduNormalized === 'técnico' ||
-      eduNormalized === 'tecnologo' ||
-      eduNormalized === 'tecnólogo' ||
-      eduNormalized === 'technical'
-    const isLowExperience =
-      expNormalized === 'menos-5' ||
-      expNormalized.includes('menos de 5') ||
-      expNormalized.includes('less than 5')
+    const isHighSchool = eduNormalized === 'ensino médio'
+    const isTechnical = eduNormalized.includes('tecnico') || eduNormalized.includes('tecnólogo')
+    const isLowExperience = expNormalized === 'menos de 5 anos' || expNormalized.includes('menos de 5')
     const skipKommo = isHighSchool || (isTechnical && isLowExperience)
 
     // Notify N8N webhook (Kommo). We await so we can return leadId to the client.
@@ -140,26 +127,6 @@ Deno.serve(async (req) => {
     const result = await res.text()
     console.log('Resend response status:', res.status)
     console.log('Resend response body:', result)
-
-    // Fire-and-forget server-side webhook to N8N (Kommo)
-    fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        source,
-        firstName,
-        lastName,
-        email,
-        phoneCode,
-        phone,
-        visa,
-        education,
-        experience,
-        message,
-        resumeUrl,
-        resumeName,
-      }),
-    }).catch(() => {})
 
     // Ensure the N8N call completes (or fails) before the function shuts down,
     // but never let it affect the response to the user.
