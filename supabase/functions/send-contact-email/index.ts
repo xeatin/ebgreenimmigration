@@ -61,26 +61,13 @@ Deno.serve(async (req) => {
     `
 
     // Skip N8N (Kommo) for low-qualification leads:
-    //  - Ensino Médio / High School / Secundaria
+    //  - Ensino Médio
     //  - Técnico ou Tecnólogo com menos de 5 anos de experiência
     const eduNormalized = (education || '').trim().toLowerCase()
     const expNormalized = (experience || '').trim().toLowerCase()
-    const isHighSchool =
-      eduNormalized === 'ensino-medio' ||
-      eduNormalized === 'ensino medio' ||
-      eduNormalized === 'ensino médio' ||
-      eduNormalized === 'high school' ||
-      eduNormalized === 'secundaria'
-    const isTechnical =
-      eduNormalized === 'tecnico' ||
-      eduNormalized === 'técnico' ||
-      eduNormalized === 'tecnologo' ||
-      eduNormalized === 'tecnólogo' ||
-      eduNormalized === 'technical'
-    const isLowExperience =
-      expNormalized === 'menos-5' ||
-      expNormalized.includes('menos de 5') ||
-      expNormalized.includes('less than 5')
+    const isHighSchool = eduNormalized === 'ensino médio'
+    const isTechnical = eduNormalized.includes('tecnico') || eduNormalized.includes('tecnólogo')
+    const isLowExperience = expNormalized === 'menos de 5 anos' || expNormalized.includes('menos de 5')
     const skipKommo = isHighSchool || (isTechnical && isLowExperience)
 
     // Notify N8N webhook (Kommo). We await so we can return leadId to the client.
