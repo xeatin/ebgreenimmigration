@@ -46,14 +46,6 @@ const blogPosts: BlogPost[] = [
 
 const Blog = () => {
   const { lang } = useLanguage();
-  const [activeCategory, setActiveCategory] = useState<string>("Todos");
-
-  const categories = ["Todos", "EB-1A", "EB-2 NIW", "EB-3", "EB-5", "E-2", "F-1", "R-1", "Visto O-1", "Green Card", "Vida nos EUA"];
-
-  const filteredPosts = useMemo(() => {
-    const list = activeCategory === "Todos" ? blogPosts : blogPosts.filter(p => p.categoria === activeCategory);
-    return [...list].reverse();
-  }, [activeCategory]);
 
   return (
     <div className="min-h-screen bg-green-deep">
