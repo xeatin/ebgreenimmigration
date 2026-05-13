@@ -129,7 +129,7 @@ const Blog = () => {
                   </p>
 
                   <div className="flex items-center gap-4 mb-5">
-                    <span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold font-body bg-green-deep/80 border border-gold/30 text-gold">
+                    <span className="inline-block px-3 py-1 rounded-sm text-[11px] font-semibold font-body bg-green-deep/80 border border-gold/30 text-gold">
                       {post.data}
                     </span>
                   </div>
