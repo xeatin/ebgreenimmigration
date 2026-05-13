@@ -93,23 +93,6 @@ const Blog = () => {
       {/* Blog Grid */}
       <section className="pt-8 pb-20 bg-green-deep">
         <div className="container mx-auto px-6">
-          {/* Category Filters */}
-          <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-12">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-sm text-xs md:text-sm font-body font-semibold transition-all duration-200 ${
-                  activeCategory === cat
-                    ? "bg-gradient-gold text-green-deep shadow-card"
-                    : "bg-green-medium text-cream/70 hover:text-cream hover:bg-green-medium/70 border border-cream/10"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
           <motion.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
