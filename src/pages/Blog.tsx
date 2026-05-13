@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -46,6 +47,14 @@ const blogPosts: BlogPost[] = [
 
 const Blog = () => {
   const { lang } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState<string>("Todos");
+
+  const categories = ["Todos", "EB-1A", "EB-2 NIW", "EB-3", "EB-5", "E-2", "F-1", "R-1", "Visto O-1", "Green Card", "Vida nos EUA"];
+
+  const filteredPosts = useMemo(() => {
+    const list = activeCategory === "Todos" ? blogPosts : blogPosts.filter(p => p.categoria === activeCategory);
+    return [...list].reverse();
+  }, [activeCategory]);
 
   return (
     <div className="min-h-screen bg-green-deep">
@@ -93,11 +102,28 @@ const Blog = () => {
       {/* Blog Grid */}
       <section className="pt-8 pb-20 bg-green-deep">
         <div className="container mx-auto px-6">
+          {/* Category Filters */}
+          <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-12">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2 rounded-sm text-xs md:text-sm font-body font-semibold transition-all duration-200 ${
+                  activeCategory === cat
+                    ? "bg-gradient-gold text-green-deep shadow-card"
+                    : "bg-green-medium text-cream/70 hover:text-cream hover:bg-green-medium/70 border border-cream/10"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
           <motion.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {[...blogPosts].reverse().map((post, index) => (
+            {filteredPosts.map((post, index) => (
               <motion.article
                 key={post.id}
                 layout
@@ -143,7 +169,7 @@ const Blog = () => {
             ))}
           </motion.div>
 
-          {blogPosts.length === 0 && (
+          {filteredPosts.length === 0 && (
             <div className="text-center py-20">
               <p className="font-body text-cream/50 text-lg">
                 Nenhum artigo encontrado nesta categoria.
