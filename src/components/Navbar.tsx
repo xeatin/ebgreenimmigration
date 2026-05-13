@@ -133,7 +133,7 @@ const Navbar = () => {
             })}
             <LanguageSelector darkMode={overLight && scrolled} />
             <a
-              href="#contato"
+              href={isHomePage ? "#contato" : "/#contato"}
               className="btn-highlight bg-gradient-gold text-green-deep px-6 py-2.5 rounded-md text-sm font-bold font-body hover:opacity-90 transition-opacity ml-2"
             >
               {t(translations.nav.cta, lang)}
