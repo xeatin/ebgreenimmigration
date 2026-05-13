@@ -53,7 +53,7 @@ const Blog = () => {
       <Navbar />
 
       {/* Hero */}
-      <section id="hero" className="relative pt-28 pb-16 overflow-hidden bg-gradient-to-b from-green-deep via-green-medium to-green-deep">
+      <section id="hero" className="relative pt-32 pb-16 overflow-hidden bg-gradient-to-b from-green-deep via-green-medium to-green-deep">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 20% 30%, hsl(var(--gold) / 0.4) 0%, transparent 55%)" }} />
         </div>
@@ -62,16 +62,31 @@ const Blog = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-4xl"
+            className="max-w-5xl"
           >
-            <h1 className="font-display text-4xl sm:text-5xl md:text-[3.5rem] lg:text-[4.2rem] font-bold text-cream leading-[1.05] tracking-tight">
-              Blog <span className="text-gradient-gold">Ebgreen</span>
-              <br />
-              Immigration
-            </h1>
-            <p className="mt-6 text-cream/70 text-lg md:text-xl max-w-2xl font-body leading-relaxed">
-              Guias, estratégias e insights para sua jornada ao Green Card.
-            </p>
+            <div className="relative flex flex-col md:flex-row items-start md:items-end gap-10 border-b border-gold/30 pb-12">
+              <div className="flex-1">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="h-px w-12 bg-gold"></span>
+                  <span className="font-body text-gold text-[11px] tracking-[0.4em] font-semibold uppercase">
+                    Perspectivas Jurídicas
+                  </span>
+                </div>
+                <h1 className="font-display font-medium text-cream leading-[0.92] tracking-tight text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem]">
+                  Blog <span className="text-gradient-gold">Ebgreen</span>
+                  <br />
+                  Immigration
+                </h1>
+              </div>
+
+              <div className="md:w-1/3 flex flex-col gap-6">
+                <p className="font-body text-cream/60 text-sm md:text-base leading-relaxed border-l border-gold pl-6">
+                  Guias, estratégias e insights para sua jornada ao Green Card. Conteúdo curado por quem domina a imigração para os EUA.
+                </p>
+              </div>
+
+              <div className="hidden md:block absolute -top-4 -right-4 w-24 h-24 border-t border-r border-gold/20"></div>
+            </div>
           </motion.div>
         </div>
       </section>
