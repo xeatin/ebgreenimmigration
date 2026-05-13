@@ -176,7 +176,7 @@ const Navbar = () => {
                   );
                 })}
                 <a
-                  href="#contato"
+                  href={isHomePage ? "#contato" : "/#contato"}
                   onClick={() => setIsOpen(false)}
                   className="btn-highlight bg-gradient-gold text-green-deep px-6 py-2.5 rounded-md text-sm font-bold font-body text-center"
                 >
