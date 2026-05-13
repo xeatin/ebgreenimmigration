@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import Blog from "./pages/Blog.tsx";
 import { VisaEb1a, VisaEb2Niw } from "./pages/VisaPages.tsx";
 import { useGlobalCtaTracking } from "./hooks/useAnalytics";
 
