@@ -63,11 +63,13 @@ Deno.serve(async (req) => {
     // Skip N8N (Kommo) for low-qualification leads:
     //  - Ensino Médio
     //  - Técnico ou Tecnólogo com menos de 5 anos de experiência
-    const eduNormalized = (education || '').trim().toLowerCase()
-    const expNormalized = (experience || '').trim().toLowerCase()
-    const isHighSchool = eduNormalized === 'ensino médio'
-    const isTechnical = eduNormalized.includes('tecnico') || eduNormalized.includes('tecnólogo')
-    const isLowExperience = expNormalized === 'menos de 5 anos' || expNormalized.includes('menos de 5')
+    // Normaliza removendo acentos para evitar falsos negativos ("Ensino Medio" vs "Ensino Médio")
+    const stripAccents = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    const eduNormalized = stripAccents((education || '').trim().toLowerCase())
+    const expNormalized = stripAccents((experience || '').trim().toLowerCase())
+    const isHighSchool = eduNormalized.includes('ensino medio') || eduNormalized === 'high school'
+    const isTechnical = eduNormalized.includes('tecnico') || eduNormalized.includes('tecnologo')
+    const isLowExperience = expNormalized.includes('menos de 5')
     const skipKommo = isHighSchool || (isTechnical && isLowExperience)
     const qualification = skipKommo ? 'low' : 'qualified'
     const qualificationReason = isHighSchool
