@@ -128,8 +128,10 @@ const Blog = () => {
                     {post.excerpt}
                   </p>
 
-                  <div className="flex items-center gap-4 text-cream/40 text-xs font-body mb-5">
-                    <span>{post.data}</span>
+                  <div className="flex items-center gap-4 mb-5">
+                    <span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold font-body bg-green-deep/80 border border-gold/30 text-gold">
+                      {post.data}
+                    </span>
                   </div>
 
                   <button className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-6 py-3 rounded-md font-bold text-sm font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover w-full group/btn">
