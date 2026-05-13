@@ -69,7 +69,7 @@ const Blog = () => {
                 <div className="flex items-center gap-4 mb-6">
                   <span className="h-px w-12 bg-gold"></span>
                   <span className="font-body text-gold text-[11px] tracking-[0.4em] font-semibold uppercase">
-                    Perspectivas Jurídicas
+                    Estratégias Migratórias
                   </span>
                 </div>
                 <h1 className="font-display font-medium text-cream leading-[0.92] tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
