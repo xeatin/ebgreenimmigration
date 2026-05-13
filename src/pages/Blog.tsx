@@ -105,7 +105,7 @@ const Blog = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.04 }}
-                className="group bg-green-medium rounded-lg overflow-hidden border border-cream/10 hover:border-gold/60 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col"
+                className="group bg-green-medium rounded-lg overflow-hidden border border-cream/10 hover:border-eligibility-green/60 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col"
               >
                 <div className="relative h-52 overflow-hidden">
                   <img
