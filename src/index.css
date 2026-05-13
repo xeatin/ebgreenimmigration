@@ -142,9 +142,6 @@
   .bg-gradient-gold {
     background: linear-gradient(135deg, hsl(38 75% 55%), hsl(38 60% 72%));
   }
-  .bg-gradient-green {
-    background: linear-gradient(135deg, hsl(var(--brand-green)), hsl(145 63% 49%));
-  }
 
   /* Shimmer dourado sutil — destaca palavra-chave sem perder sobriedade */
   .shimmer-gold {
