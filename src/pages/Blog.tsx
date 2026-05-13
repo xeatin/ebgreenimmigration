@@ -131,10 +131,6 @@ const Blog = () => {
 
                   <div className="flex items-center gap-4 text-cream/40 text-xs font-body mb-5">
                     <span>{post.data}</span>
-                    <span className="flex items-center gap-1">
-                      <Clock size={12} />
-                      {post.leitura}
-                    </span>
                   </div>
 
                   <button className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-6 py-3 rounded-md font-bold text-sm font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover w-full group/btn">
