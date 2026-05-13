@@ -114,7 +114,7 @@ const Blog = () => {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-green-deep via-green-deep/30 to-transparent" />
-                  <span className="absolute top-4 left-4 inline-block px-3 py-1 rounded-full text-[11px] font-semibold font-body bg-gradient-gold text-green-deep shadow-card">
+                  <span className="absolute top-4 left-4 inline-block px-3 py-1 rounded-sm text-[11px] font-semibold font-body bg-gradient-gold text-green-deep shadow-card">
                     {post.categoria}
                   </span>
                 </div>
