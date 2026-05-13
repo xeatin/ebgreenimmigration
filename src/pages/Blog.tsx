@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Clock, ArrowRight } from "lucide-react";
+import { Clock, ArrowRight, Shield } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -47,14 +47,6 @@ const blogPosts: BlogPost[] = [
 
 const categorias = ["Todos", "EB-2 NIW", "EB-1A", "Visto O-1", "Green Card", "Vida nos EUA"];
 
-const categoryColors: Record<string, string> = {
-  "EB-2 NIW": "bg-green-700 text-white",
-  "EB-1A": "bg-blue-700 text-white",
-  "Visto O-1": "bg-purple-700 text-white",
-  "Green Card": "bg-yellow-600 text-white",
-  "Vida nos EUA": "bg-orange-600 text-white",
-};
-
 const Blog = () => {
   const [activeFilter, setActiveFilter] = useState("Todos");
   const { lang } = useLanguage();
@@ -65,54 +57,63 @@ const Blog = () => {
   }, [activeFilter]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-green-deep">
       <Navbar />
 
       {/* Hero */}
-      <section id="hero" className="relative pt-32 pb-20 overflow-hidden" style={{ background: "linear-gradient(135deg, #0a2e1a 0%, #0f4a2a 50%, #0a2e1a 100%)" }}>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #d4a017 0%, transparent 50%)", backgroundSize: "800px 800px" }} />
+      <section id="hero" className="relative pt-40 pb-24 overflow-hidden bg-gradient-to-b from-green-deep via-green-medium to-green-deep">
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 20% 30%, hsl(var(--gold) / 0.4) 0%, transparent 55%)" }} />
         </div>
         <div className="relative z-10 container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
+            className="max-w-4xl"
           >
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Blog Ebgreen Immigration
+            <div className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm border border-cream/20 rounded-full px-4 py-2 mb-8">
+              <Shield size={14} className="text-gold" />
+              <span className="text-cream/90 font-body text-sm">Insights & Estratégias</span>
+            </div>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-[3.5rem] lg:text-[4.2rem] font-bold text-cream leading-[1.05] tracking-tight">
+              Blog <span className="text-gradient-gold">Ebgreen</span>
+              <br />
+              Immigration
             </h1>
-            <p className="text-white/70 text-lg md:text-xl font-body leading-relaxed">
-              Guias, estrategias e insights para sua jornada ao Green Card
+            <p className="mt-6 text-cream/70 text-lg md:text-xl max-w-2xl font-body leading-relaxed">
+              Guias, estratégias e insights para sua jornada ao Green Card.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Filters */}
-      <section className="py-8 bg-cream border-b border-green-deep/10">
+      <section className="py-8 bg-green-medium border-y border-cream/10">
         <div className="container mx-auto px-6">
           <div className="flex flex-wrap gap-3 justify-center">
-            {categorias.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium font-body transition-all duration-300 ${
-                  activeFilter === cat
-                    ? "text-white shadow-lg scale-105"
-                    : "bg-white text-green-deep/80 hover:text-green-deep border border-green-deep/15 hover:border-[#d4a017]/50"
-                } ${activeFilter === cat ? "bg-[#0a2e1a] border-[#0a2e1a]" : ""}`}
-              >
-                {cat}
-              </button>
-            ))}
+            {categorias.map((cat) => {
+              const active = activeFilter === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveFilter(cat)}
+                  className={`px-5 py-2.5 rounded-full text-sm font-medium font-body transition-all duration-300 border ${
+                    active
+                      ? "bg-gradient-gold text-green-deep border-transparent shadow-card"
+                      : "bg-cream/5 text-cream/80 border-cream/15 hover:text-gold hover:border-gold/50"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Blog Grid */}
-      <section className="py-16 bg-cream">
+      <section className="py-20 bg-green-deep">
         <div className="container mx-auto px-6">
           <motion.div
             layout
@@ -124,10 +125,9 @@ const Blog = () => {
                 layout
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group bg-white rounded-xl overflow-hidden border border-transparent hover:border-[#d4a017] transition-all duration-300 hover:shadow-xl"
+                transition={{ duration: 0.4, delay: index * 0.04 }}
+                className="group bg-green-medium rounded-lg overflow-hidden border border-cream/10 hover:border-gold/60 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col"
               >
-                {/* Image */}
                 <div className="relative h-52 overflow-hidden">
                   <img
                     src={post.imagem}
@@ -135,28 +135,22 @@ const Blog = () => {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-green-deep/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  {/* Badge */}
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3 ${categoryColors[post.categoria] || "bg-gray-600 text-white"}`}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-green-deep via-green-deep/30 to-transparent" />
+                  <span className="absolute top-4 left-4 inline-block px-3 py-1 rounded-full text-[11px] font-semibold font-body bg-gradient-gold text-green-deep shadow-card">
                     {post.categoria}
                   </span>
+                </div>
 
-                  {/* Title */}
-                  <h2 className="font-display text-lg font-bold text-green-deep mb-2 leading-snug group-hover:text-[#0a2e1a] transition-colors">
+                <div className="p-6 flex flex-col flex-1">
+                  <h2 className="font-display text-xl font-bold text-cream mb-3 leading-snug group-hover:text-gold transition-colors">
                     {post.titulo}
                   </h2>
 
-                  {/* Excerpt */}
-                  <p className="font-body text-green-deep/60 text-sm leading-relaxed mb-4 line-clamp-2">
+                  <p className="font-body text-cream/60 text-sm leading-relaxed mb-5 line-clamp-3 flex-1">
                     {post.excerpt}
                   </p>
 
-                  {/* Meta */}
-                  <div className="flex items-center gap-4 text-green-deep/40 text-xs font-body mb-5">
+                  <div className="flex items-center gap-4 text-cream/40 text-xs font-body mb-5">
                     <span>{post.data}</span>
                     <span className="flex items-center gap-1">
                       <Clock size={12} />
@@ -164,8 +158,7 @@ const Blog = () => {
                     </span>
                   </div>
 
-                  {/* CTA */}
-                  <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0a2e1a] text-white text-sm font-semibold font-body rounded-md hover:bg-[#145c32] transition-colors group/btn">
+                  <button className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-6 py-3 rounded-md font-bold text-sm font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover w-full group/btn">
                     Ler Artigo
                     <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-1" />
                   </button>
@@ -176,7 +169,7 @@ const Blog = () => {
 
           {filteredPosts.length === 0 && (
             <div className="text-center py-20">
-              <p className="font-body text-green-deep/50 text-lg">
+              <p className="font-body text-cream/50 text-lg">
                 Nenhum artigo encontrado nesta categoria.
               </p>
             </div>
@@ -185,7 +178,7 @@ const Blog = () => {
       </section>
 
       {/* CTA Section */}
-      <section id="contato" className="py-20" style={{ background: "linear-gradient(135deg, #0a2e1a 0%, #0f4a2a 100%)" }}>
+      <section className="py-20 bg-gradient-to-b from-green-deep to-green-medium border-t border-cream/10">
         <div className="container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -193,15 +186,15 @@ const Blog = () => {
             viewport={{ once: true }}
             className="max-w-2xl mx-auto"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
-              Pronto para iniciar sua jornada?
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-cream mb-4">
+              Pronto para iniciar sua <span className="text-gradient-gold">jornada</span>?
             </h2>
-            <p className="text-white/70 font-body text-lg mb-8">
+            <p className="text-cream/70 font-body text-lg mb-8">
               Agende uma avaliação gratuita e descubra o melhor caminho para o seu Green Card.
             </p>
             <a
-              href="/"
-              className="btn-highlight inline-flex items-center gap-2 bg-gradient-to-r from-[#d4a017] to-[#e8c766] text-[#0a2e1a] px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-lg"
+              href="/#contato"
+              className="btn-highlight inline-flex items-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover"
             >
               {t(translations.nav.cta, lang)}
               <ArrowRight size={20} />
