@@ -52,7 +52,7 @@ const Blog = () => {
       <Navbar />
 
       {/* Hero */}
-      <section id="hero" className="relative pt-32 pb-16 overflow-hidden bg-gradient-to-b from-green-deep via-green-medium to-green-deep">
+      <section id="hero" className="relative pt-32 pb-6 overflow-hidden bg-gradient-to-b from-green-deep via-green-medium to-green-deep">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 20% 30%, hsl(var(--gold) / 0.4) 0%, transparent 55%)" }} />
         </div>
@@ -91,7 +91,7 @@ const Blog = () => {
       </section>
 
       {/* Blog Grid */}
-      <section className="py-20 bg-green-deep">
+      <section className="pt-8 pb-20 bg-green-deep">
         <div className="container mx-auto px-6">
           <motion.div
             layout
