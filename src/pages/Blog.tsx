@@ -169,7 +169,7 @@ const Blog = () => {
             ))}
           </motion.div>
 
-          {blogPosts.length === 0 && (
+          {filteredPosts.length === 0 && (
             <div className="text-center py-20">
               <p className="font-body text-cream/50 text-lg">
                 Nenhum artigo encontrado nesta categoria.
