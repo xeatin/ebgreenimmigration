@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Clock, ArrowRight, Shield } from "lucide-react";
+import { Clock, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -45,23 +45,15 @@ const blogPosts: BlogPost[] = [
   {id:25, titulo:"2026: Por que Este e o Melhor Ano para Iniciar seu Processo", categoria:"Green Card", data:"25 mar 2026", leitura:"7 min", imagem:"https://images.unsplash.com/photo-1488998427799-e3362cec87c3?w=600&q=80&fit=crop", excerpt:"Mudancas nas politicas imigratórias e novas oportunidades tornam 2026 um momento estrategico para agir e iniciar seu Green Card."},
 ];
 
-const categorias = ["Todos", "EB-2 NIW", "EB-1A", "Visto O-1", "Green Card", "Vida nos EUA"];
-
 const Blog = () => {
-  const [activeFilter, setActiveFilter] = useState("Todos");
   const { lang } = useLanguage();
-
-  const filteredPosts = useMemo(() => {
-    if (activeFilter === "Todos") return blogPosts;
-    return blogPosts.filter((p) => p.categoria === activeFilter);
-  }, [activeFilter]);
 
   return (
     <div className="min-h-screen bg-green-deep">
       <Navbar />
 
       {/* Hero */}
-      <section id="hero" className="relative pt-40 pb-24 overflow-hidden bg-gradient-to-b from-green-deep via-green-medium to-green-deep">
+      <section id="hero" className="relative pt-28 pb-16 overflow-hidden bg-gradient-to-b from-green-deep via-green-medium to-green-deep">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 20% 30%, hsl(var(--gold) / 0.4) 0%, transparent 55%)" }} />
         </div>
@@ -72,10 +64,6 @@ const Blog = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl"
           >
-            <div className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm border border-cream/20 rounded-full px-4 py-2 mb-8">
-              <Shield size={14} className="text-gold" />
-              <span className="text-cream/90 font-body text-sm">Insights & Estratégias</span>
-            </div>
             <h1 className="font-display text-4xl sm:text-5xl md:text-[3.5rem] lg:text-[4.2rem] font-bold text-cream leading-[1.05] tracking-tight">
               Blog <span className="text-gradient-gold">Ebgreen</span>
               <br />
@@ -88,30 +76,6 @@ const Blog = () => {
         </div>
       </section>
 
-      {/* Filters */}
-      <section className="py-8 bg-green-medium border-y border-cream/10">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-wrap gap-3 justify-center">
-            {categorias.map((cat) => {
-              const active = activeFilter === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setActiveFilter(cat)}
-                  className={`px-5 py-2.5 rounded-full text-sm font-medium font-body transition-all duration-300 border ${
-                    active
-                      ? "bg-gradient-gold text-green-deep border-transparent shadow-card"
-                      : "bg-cream/5 text-cream/80 border-cream/15 hover:text-gold hover:border-gold/50"
-                  }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* Blog Grid */}
       <section className="py-20 bg-green-deep">
         <div className="container mx-auto px-6">
@@ -119,7 +83,7 @@ const Blog = () => {
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {filteredPosts.map((post, index) => (
+            {blogPosts.map((post, index) => (
               <motion.article
                 key={post.id}
                 layout
@@ -167,7 +131,7 @@ const Blog = () => {
             ))}
           </motion.div>
 
-          {filteredPosts.length === 0 && (
+          {blogPosts.length === 0 && (
             <div className="text-center py-20">
               <p className="font-body text-cream/50 text-lg">
                 Nenhum artigo encontrado nesta categoria.
