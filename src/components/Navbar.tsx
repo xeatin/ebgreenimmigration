@@ -14,17 +14,25 @@ const Navbar = () => {
   const [overLight, setOverLight] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const { lang } = useLanguage();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/" || location.pathname === "/quero-migrar-para-os-eua";
 
   const navLinks = [
-    { label: t(translations.nav.home, lang), href: "#hero", id: "hero" },
-    { label: t(translations.nav.differentials, lang), href: "#diferenciais", id: "diferenciais" },
-    { label: t(translations.nav.services, lang), href: "#servicos", id: "servicos" },
-    { label: t(translations.nav.process, lang), href: "#processo", id: "processo" },
-    { label: t(translations.nav.about, lang), href: "#sobre", id: "sobre" },
-    { label: t(translations.nav.contact, lang), href: "#contato", id: "contato" },
+    { label: t(translations.nav.home, lang), href: isHomePage ? "#hero" : "/#hero", id: "hero" },
+    { label: t(translations.nav.differentials, lang), href: isHomePage ? "#diferenciais" : "/#diferenciais", id: "diferenciais" },
+    { label: t(translations.nav.services, lang), href: isHomePage ? "#servicos" : "/#servicos", id: "servicos" },
+    { label: t(translations.nav.process, lang), href: isHomePage ? "#processo" : "/#processo", id: "processo" },
+    { label: t(translations.nav.about, lang), href: isHomePage ? "#sobre" : "/#sobre", id: "sobre" },
+    { label: "Blog", href: "/blog", id: "blog" },
+    { label: t(translations.nav.contact, lang), href: isHomePage ? "#contato" : "/#contato", id: "contato" },
   ];
 
   useEffect(() => {
+    if (!isHomePage) {
+      setScrolled(true);
+      setOverLight(false);
+      return;
+    }
     const lightSectionIds = ["diferenciais", "processo", "sobre", "depoimentos", "contato"];
 
     const checkBackground = () => {
@@ -50,10 +58,11 @@ const Navbar = () => {
     window.addEventListener("scroll", checkBackground);
     checkBackground();
     return () => window.removeEventListener("scroll", checkBackground);
-  }, []);
+  }, [isHomePage]);
 
   useEffect(() => {
-    const sections = navLinks.map((l) => l.id).filter(Boolean);
+    if (!isHomePage) return;
+    const sections = navLinks.map((l) => l.id).filter((id) => id !== "blog");
     const observers: IntersectionObserver[] = [];
 
     sections.forEach((id) => {
@@ -76,9 +85,12 @@ const Navbar = () => {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [isHomePage, navLinks]);
 
-  const isActive = (id: string) => activeSection === id;
+  const isActive = (id: string) => {
+    if (id === "blog") return location.pathname === "/blog";
+    return isHomePage && activeSection === id;
+  };
 
   return (
     <>
