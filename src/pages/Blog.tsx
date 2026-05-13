@@ -83,7 +83,7 @@ const Blog = () => {
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {filteredPosts.map((post, index) => (
+            {blogPosts.map((post, index) => (
               <motion.article
                 key={post.id}
                 layout
@@ -131,7 +131,7 @@ const Blog = () => {
             ))}
           </motion.div>
 
-          {filteredPosts.length === 0 && (
+          {blogPosts.length === 0 && (
             <div className="text-center py-20">
               <p className="font-body text-cream/50 text-lg">
                 Nenhum artigo encontrado nesta categoria.
