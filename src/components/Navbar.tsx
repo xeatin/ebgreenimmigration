@@ -103,7 +103,7 @@ const Navbar = () => {
           : "bg-transparent"
       }`}>
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#hero" className="flex items-center">
+          <a href={isHomePage ? "#hero" : "/"} className="flex items-center">
             <img src={overLight && scrolled ? ebgreenLogo : ebgreenLogoNegative} alt="Ebgreen Immigration" className="h-[75px] transition-all duration-300" />
           </a>
 
