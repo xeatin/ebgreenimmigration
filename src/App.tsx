@@ -20,6 +20,7 @@ const AppRoutes = () => {
       <Route path="/quero-migrar-para-os-eua" element={<Index />} />
       <Route path="/visto-eb1a" element={<VisaEb1a />} />
       <Route path="/visto-eb2niw" element={<VisaEb2Niw />} />
+      <Route path="/blog" element={<Blog />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>
