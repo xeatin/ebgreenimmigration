@@ -72,7 +72,7 @@ const Blog = () => {
                     Perspectivas Jurídicas
                   </span>
                 </div>
-                <h1 className="font-display font-medium text-cream leading-[0.92] tracking-tight text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem]">
+                <h1 className="font-display font-medium text-cream leading-[0.92] tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
                   Blog <span className="text-gradient-gold">Ebgreen</span>
                   <br />
                   Immigration
@@ -81,7 +81,7 @@ const Blog = () => {
 
               <div className="md:w-1/3 flex flex-col gap-6">
                 <p className="font-body text-cream/60 text-sm md:text-base leading-relaxed border-l border-gold pl-6">
-                  Guias, estratégias e insights para sua jornada ao Green Card. Conteúdo curado por quem domina a imigração para os EUA.
+                  Conteúdos estratégicos para quem deseja entender os caminhos para viver e trabalhar legalmente nos Estados Unidos.
                 </p>
               </div>
 
