@@ -71,10 +71,10 @@ const Blog = () => {
                     Estratégias Migratórias
                   </span>
                 </div>
-                <h1 className="font-display font-medium text-cream leading-[0.92] tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-                  Blog <span className="text-gradient-gold">Ebgreen</span>
+                <h1 className="font-display font-medium text-cream leading-[0.95] tracking-tight text-4xl sm:text-5xl md:text-6xl">
+                  Blog
                   <br />
-                  Immigration
+                  Caminhos para o <span className="text-gradient-gold">Green Card</span>
                 </h1>
               </div>
 
