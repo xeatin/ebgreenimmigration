@@ -1,6 +1,5 @@
-import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Clock, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
