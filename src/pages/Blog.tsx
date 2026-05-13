@@ -91,7 +91,7 @@ const Blog = () => {
       </section>
 
       {/* Blog Grid */}
-      <section className="py-20 bg-green-deep">
+      <section className="pt-8 pb-20 bg-green-deep">
         <div className="container mx-auto px-6">
           <motion.div
             layout
