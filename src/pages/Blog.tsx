@@ -81,7 +81,7 @@ const Blog = () => {
 
               <div className="md:w-1/3 flex flex-col gap-6">
                 <p className="font-body text-cream/60 text-sm md:text-base leading-relaxed border-l border-gold pl-6">
-                  Conteúdos estratégicos para quem deseja entender os caminhos para viver e trabalhar legalmente nos Estados Unidos.
+                  Guias, estratégias e insights para sua jornada ao Green Card. Conteúdo curado por quem domina a imigração para os EUA.
                 </p>
               </div>
 
