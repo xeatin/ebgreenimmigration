@@ -105,7 +105,7 @@ const Blog = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.04 }}
-                className="group bg-green-medium rounded-lg overflow-hidden border border-cream/10 hover:border-gold/60 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col"
+                className="group bg-green-medium rounded-lg overflow-hidden border border-cream/10 hover:border-brand-green/60 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col"
               >
                 <div className="relative h-52 overflow-hidden">
                   <img
@@ -115,13 +115,13 @@ const Blog = () => {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-green-deep via-green-deep/30 to-transparent" />
-                  <span className="absolute top-4 left-4 inline-block px-3 py-1 rounded-full text-[11px] font-semibold font-body bg-gradient-gold text-green-deep shadow-card">
+                  <span className="absolute top-4 left-4 inline-block px-3 py-1 rounded-full text-[11px] font-semibold font-body bg-gradient-green text-green-deep shadow-card">
                     {post.categoria}
                   </span>
                 </div>
 
                 <div className="p-6 flex flex-col flex-1">
-                  <h2 className="font-display text-xl font-bold text-cream mb-3 leading-snug group-hover:text-gold transition-colors">
+                  <h2 className="font-display text-xl font-bold text-cream mb-3 leading-snug group-hover:text-brand-green transition-colors">
                     {post.titulo}
                   </h2>
 
@@ -137,7 +137,7 @@ const Blog = () => {
                     </span>
                   </div>
 
-                  <button className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-6 py-3 rounded-md font-bold text-sm font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover w-full group/btn">
+                  <button className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-green text-green-deep px-6 py-3 rounded-md font-bold text-sm font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover w-full group/btn">
                     Ler Artigo
                     <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-1" />
                   </button>
