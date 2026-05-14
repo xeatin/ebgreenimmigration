@@ -7,6 +7,7 @@ import { LanguageProvider } from "@/i18n/LanguageContext";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Blog from "./pages/Blog.tsx";
+import BlogPost from "./pages/BlogPost.tsx";
 import Noticias from "./pages/Noticias.tsx";
 import { VisaEb1a, VisaEb2Niw } from "./pages/VisaPages.tsx";
 import { useGlobalCtaTracking } from "./hooks/useAnalytics";
@@ -22,6 +23,7 @@ const AppRoutes = () => {
       <Route path="/visto-eb1a" element={<VisaEb1a />} />
       <Route path="/visto-eb2niw" element={<VisaEb2Niw />} />
       <Route path="/blog" element={<Blog />} />
+      <Route path="/blog/:slug" element={<BlogPost />} />
       <Route path="/noticias" element={<Noticias />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
