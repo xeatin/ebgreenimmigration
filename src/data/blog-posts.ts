@@ -1936,11 +1936,350 @@ export const blogPosts: BlogPost[] = [
     ],
     related: ["visto-r1-religiosos", "eb2-niw-guia-definitivo-2026", "ajuste-status-greencard"]
   },
-  { id: 21, slug: "impostos-eua-imigrantes", titulo: "Impostos nos EUA para Imigrantes: O Essencial", categoria: "Vida nos EUA", data: "21 mar 2026", leitura: "9 min", imagem: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&q=80&fit=crop", excerpt: "Entenda como organizar sua vida financeira e evitar dores de cabeça entre Brasil e Estados Unidos." },
-  { id: 22, slug: "eb2-niw-professores", titulo: "EB-2 NIW para Professores: Impacto Educacional Vale Green Card", categoria: "EB-2 NIW", data: "22 mar 2026", leitura: "8 min", imagem: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80&fit=crop", excerpt: "Descubra como educadores estão mostrando que transformar vidas no Brasil vale reconhecimento nos EUA." },
-  { id: 23, slug: "ajuste-status-greencard", titulo: "Ajuste de Status: Do Visto Temporário ao Green Card nos EUA", categoria: "Green Card", data: "23 mar 2026", leitura: "10 min", imagem: "https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?w=1200&q=80&fit=crop", excerpt: "Veja como mudar de visto temporário para permanente sem precisar sair do país no meio do processo." },
-  { id: 24, slug: "eb1a-executivos-lideres", titulo: "EB-1A para Executivos e Líderes: Construa seu Caso", categoria: "EB-1A", data: "24 mar 2026", leitura: "9 min", imagem: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1200&q=80&fit=crop", excerpt: "Explore como líderes empresariais constroem um caso forte baseado em impacto real e trajetória de sucesso." },
-  { id: 25, slug: "2026-melhor-ano-iniciar", titulo: "2026: Por que Este é o Melhor Ano para Iniciar seu Processo", categoria: "Green Card", data: "25 mar 2026", leitura: "7 min", imagem: "https://images.unsplash.com/photo-1488998427799-e3362cec87c3?w=1200&q=80&fit=crop", excerpt: "Descubra por que este ano é uma janela especial para quem quer transformar o sonho americano em realidade." },
+  {
+    id: 21,
+    slug: "impostos-eua-imigrantes",
+    titulo: "Impostos nos EUA para Imigrantes: O Essencial",
+    categoria: "Vida nos EUA",
+    data: "21 mar 2026",
+    leitura: "10 min",
+    imagem: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&q=80&fit=crop",
+    excerpt: "Entenda como organizar sua vida financeira e evitar dores de cabeça entre Brasil e Estados Unidos.",
+    metaTitle: "Impostos nos EUA para Imigrantes Brasileiros em 2026 | EBGreen",
+    metaDescription: "Guia honesto de impostos nos EUA para brasileiros: residência fiscal, IRS, Receita Federal, FATCA, FBAR e como evitar dupla tributação.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Imigrar para os EUA muda sua vida fiscal — em DOIS países. IRS quer saber tudo sobre sua renda mundial; Receita Federal quer saber sobre seus bens lá fora. Sem planejamento, brasileiro paga imposto duas vezes ou (pior) ignora obrigações e vira alvo de auditoria. Esse guia traz o essencial em linguagem direta." },
+      { type: "h2", id: "residencia-fiscal", text: "Residência fiscal: o conceito que muda tudo" },
+      { type: "p", text: "IRS classifica você por substantial presence test: 31 dias no ano corrente + 183 dias contando ano atual + 1/3 do anterior + 1/6 do retrasado. Se passou, é resident alien — tributado igual a americano sobre renda mundial. Se não, é nonresident alien — tributado só sobre renda US-source." },
+      { type: "list", items: [
+        "Green Card holder: SEMPRE resident alien, dia 1.",
+        "H-1B, L-1, O-1, E-2: vira resident alien quando bate substantial presence.",
+        "F-1 e J-1: exceção — primeiros 5 anos como nonresident.",
+        "Brasil: regras próprias, mas residente fiscal brasileiro também tributa renda mundial."
+      ] },
+      { type: "callout", title: "Saída fiscal do Brasil", text: "Antes de virar resident alien nos EUA, oficialize a Declaração de Saída Definitiva do País (DSDP) à Receita Federal. Sem ela, você continua residente fiscal brasileiro — e tributa duas vezes. Prazo: até último dia de fevereiro do ano seguinte à saída." },
+      { type: "h2", id: "tratado", text: "Tratado Brasil-EUA: existe?" },
+      { type: "p", text: "NÃO. Brasil e EUA não têm tratado bilateral para evitar dupla tributação. Existe um acordo de reciprocidade que permite usar imposto pago lá como crédito aqui (e vice-versa) via Foreign Tax Credit (Form 1116) e o equivalente brasileiro. Mas a falta de tratado significa que você precisa estruturar bem para não pagar duas vezes a alíquota cheia." },
+      { type: "h2", id: "obrigacoes-eua", text: "Obrigações principais nos EUA" },
+      { type: "list", items: [
+        "Form 1040: declaração anual de renda (resident).",
+        "Form 1040-NR: declaração para nonresident alien.",
+        "FBAR (FinCEN 114): contas no exterior > USD 10.000 em qualquer momento.",
+        "Form 8938 (FATCA): ativos estrangeiros acima de USD 50k–600k dependendo do status.",
+        "Form 5471: participação em empresa estrangeira (PJ no Brasil).",
+        "Form 5472: empresa americana com sócio estrangeiro (multa USD 25.000 se esquecer)."
+      ] },
+      { type: "h2", id: "obrigacoes-brasil", text: "Obrigações principais no Brasil" },
+      { type: "list", items: [
+        "Declaração de Imposto de Renda (DIRPF) enquanto residente fiscal.",
+        "Declaração de Saída Definitiva no ano da mudança.",
+        "DCBE ao Banco Central: bens no exterior > USD 1 milhão.",
+        "Carnê-leão sobre rendimentos do exterior (se ainda residente)."
+      ] },
+      { type: "h2", id: "estados", text: "Imposto estadual: o segundo round" },
+      { type: "p", text: "IRS é federal. Cada estado cobra seu próprio imposto. Califórnia: até 13,3%. Nova York: até 10,9%. Flórida, Texas, Tennessee, Nevada, Wyoming, Washington: ZERO imposto estadual de renda. Para imigrante de alta renda, escolher o estado de residência fiscal pode economizar 5 dígitos por ano." },
+      { type: "h2", id: "alíquotas", text: "Alíquotas federais 2026 (referência)" },
+      { type: "list", items: [
+        "10% até USD 11.925 (single).",
+        "12% até USD 48.475.",
+        "22% até USD 103.350.",
+        "24% até USD 197.300.",
+        "32% até USD 250.525.",
+        "35% até USD 626.350.",
+        "37% acima."
+      ] },
+      { type: "h2", id: "armadilhas", text: "Armadilhas que custam caro" },
+      { type: "list", items: [
+        "Não fazer DSDP no Brasil — dupla residência fiscal por anos.",
+        "Esquecer FBAR — multa civil até 50% do saldo da conta.",
+        "Não declarar empresa brasileira (Form 5471) — multa USD 10.000+.",
+        "Achar que conta no Brasil é \"invisível\" — bancos brasileiros reportam ao IRS via FATCA desde 2014.",
+        "Vender imóvel no Brasil sendo resident alien sem planejamento — IRS tributa ganho mundial."
+      ] },
+      { type: "h2", id: "ebgreen", text: "Como a EBGreen orienta" },
+      { type: "p", text: "Não substituímos CPA — coordenamos. Indicamos contadores brasileiro-americanos especializados em expats e estruturamos a transição fiscal entre Brasil e EUA, para que o visto não vire armadilha tributária. Combine com <a href=\"/blog/empreender-eua-imigrante\">empreender nos EUA</a> e <a href=\"/blog/viver-em-nova-york-imigrantes\">viver em NY</a>." },
+      { type: "cta", text: "Quero planejar minha transição fiscal Brasil-EUA" }
+    ],
+    externalLinks: [
+      { label: "IRS — International Taxpayers", url: "https://www.irs.gov/individuals/international-taxpayers" },
+      { label: "IRS — Substantial Presence Test", url: "https://www.irs.gov/individuals/international-taxpayers/substantial-presence-test" },
+      { label: "FinCEN — FBAR Reporting", url: "https://www.fincen.gov/report-foreign-bank-and-financial-accounts" }
+    ],
+    related: ["empreender-eua-imigrante", "viver-em-nova-york-imigrantes", "custo-real-imigrar-eua-2026"]
+  },
+  {
+    id: 22,
+    slug: "eb2-niw-professores",
+    titulo: "EB-2 NIW para Professores: Impacto Educacional Vale Green Card",
+    categoria: "EB-2 NIW",
+    data: "22 mar 2026",
+    leitura: "9 min",
+    imagem: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80&fit=crop",
+    excerpt: "Descubra como educadores estão mostrando que transformar vidas no Brasil vale reconhecimento nos EUA.",
+    metaTitle: "EB-2 NIW para Professores Brasileiros em 2026 | EBGreen",
+    metaDescription: "Como professores e educadores brasileiros estruturam o EB-2 NIW: critérios Dhanasar, evidências, mérito nacional e cases reais.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Professor brasileiro raramente se vê como candidato a Green Card por talento — e está errado. O EB-2 NIW (National Interest Waiver) foi pensado exatamente para profissionais cujo trabalho tem mérito nacional substancial. Educação, em qualquer país sério, é interesse nacional dos EUA. A questão é como provar isso ao USCIS." },
+      { type: "h2", id: "por-que-funciona", text: "Por que o EB-2 NIW funciona para educadores" },
+      { type: "p", text: "Desde a decisão Matter of Dhanasar (2016), USCIS analisa NIW por 3 prongs: mérito substancial e importância nacional do trabalho; posição do candidato para avançar esse trabalho; e benefício de dispensar a oferta de emprego/PERM. Educação STEM, formação de professores, métodos pedagógicos inovadores e impacto em populações sub-representadas batem direto nos 3 critérios." },
+      { type: "h2", id: "perfis", text: "Perfis de professor que aprovam" },
+      { type: "list", items: [
+        "Professor universitário com pesquisa publicada (mesmo sem PhD americano).",
+        "Educador de ensino médio com método próprio replicado em escolas.",
+        "Pesquisador em educação STEM, alfabetização, ed-tech.",
+        "Coordenador de projeto educacional com impacto comprovado.",
+        "Professor de língua/cultura com programa adotado por instituições.",
+        "Formador de professores com cursos certificados."
+      ] },
+      { type: "callout", title: "STEM tem prioridade política", text: "Em janeiro 2022, USCIS publicou guidance específica priorizando NIW em STEM (incluindo educação STEM). Para educadores em ciência, matemática, engenharia e tecnologia, o caminho está mais aberto do que nunca." },
+      { type: "h2", id: "evidencias", text: "Evidências que pesam" },
+      { type: "list", items: [
+        "Currículo, livros, materiais didáticos publicados.",
+        "Citações em Google Scholar, ResearchGate, ORCID.",
+        "Cobertura de mídia (Folha Educação, Revista Educação, portais especializados).",
+        "Prêmios pedagógicos (Educador Nota 10, Prêmio Professor Brasil).",
+        "Cartas de recomendação de pesquisadores e gestores.",
+        "Participação em conferências internacionais.",
+        "Adoção do método/material por outras escolas ou redes.",
+        "Resultados quantificáveis: notas, evasão reduzida, alunos em universidades-alvo."
+      ] },
+      { type: "h2", id: "narrativa", text: "A narrativa: o que o USCIS quer ouvir" },
+      { type: "p", text: "Não basta listar. Você precisa contar uma história: que problema educacional você resolve, por que ele importa para os EUA, e por que VOCÊ está em posição única para resolvê-lo lá. \"Vou continuar formando professores em ciência\" é fraco. \"Vou implementar nos EUA o método X que reduziu evasão em 35% em 12 escolas brasileiras, atendendo o gap de professores STEM listado no Department of Education\" é forte." },
+      { type: "h2", id: "passo-a-passo", text: "Passo a passo prático" },
+      { type: "ordered", items: [
+        "Mapear evidências dos últimos 5-10 anos.",
+        "Estruturar narrativa Dhanasar (3 prongs).",
+        "Solicitar 5-7 cartas de recomendação (mix Brasil + EUA).",
+        "Compor dossiê com tradução juramentada.",
+        "Protocolar Form I-140 + I-485 (se já estiver nos EUA) ou via consular.",
+        "Premium Processing opcional (USD 2.805 — decisão em 45 dias)."
+      ] },
+      { type: "h2", id: "cases", text: "Cases reais" },
+      { type: "list", items: [
+        "Coordenador de matemática de escola pública SP — método adotado por rede municipal: aprovação em 6 meses.",
+        "Professora de alfabetização com método replicado em ONG nacional: aprovação com Premium em 45 dias.",
+        "Professor universitário de engenharia com 80 citações: aprovação direta sem RFE."
+      ] },
+      { type: "h2", id: "armadilhas", text: "Armadilhas frequentes" },
+      { type: "list", items: [
+        "Tratar NIW como concurso de currículo — é narrativa estratégica.",
+        "Cartas genéricas de admiradores em vez de pares técnicos.",
+        "Não conectar trabalho brasileiro a problema americano específico.",
+        "Subestimar evidências quantitativas (números convencem)."
+      ] },
+      { type: "p", text: "Veja o guia completo em <a href=\"/blog/eb2-niw-guia-definitivo-2026\">EB-2 NIW: Guia Definitivo</a> e o <a href=\"/blog/dossie-eb2-niw-irrefutavel\">Dossiê EB-2 NIW Irrefutável</a> para detalhes táticos." },
+      { type: "cta", text: "Quero avaliar meu caso EB-2 NIW como educador" }
+    ],
+    externalLinks: [
+      { label: "USCIS — EB-2 National Interest Waiver", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2" },
+      { label: "USCIS Policy Manual — NIW for STEM", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-5" },
+      { label: "Matter of Dhanasar — AAO Decision", url: "https://www.justice.gov/eoir/page/file/920996/download" }
+    ],
+    related: ["eb2-niw-guia-definitivo-2026", "dossie-eb2-niw-irrefutavel", "ajuste-status-greencard"]
+  },
+  {
+    id: 23,
+    slug: "ajuste-status-greencard",
+    titulo: "Ajuste de Status: Do Visto Temporário ao Green Card nos EUA",
+    categoria: "Green Card",
+    data: "23 mar 2026",
+    leitura: "11 min",
+    imagem: "https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?w=1200&q=80&fit=crop",
+    excerpt: "Veja como mudar de visto temporário para permanente sem precisar sair do país no meio do processo.",
+    metaTitle: "Ajuste de Status (I-485) em 2026: Guia Completo | EBGreen",
+    metaDescription: "Como funciona o Adjustment of Status para Green Card sem sair dos EUA: elegibilidade, prazos, documentação, EAD, Advance Parole.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Adjustment of Status (AOS), via Form I-485, é o caminho que permite ao imigrante já presente nos EUA conseguir o Green Card sem voltar ao Brasil para entrevista consular. Em 2026, é a rota preferida de quem está com visto de trabalho ou estudante e tem petição EB-1, EB-2, EB-3 ou família aprovada." },
+      { type: "h2", id: "quando-cabe", text: "Quando o Adjustment de Status cabe" },
+      { type: "list", items: [
+        "Você está fisicamente nos EUA com status legal vigente (H-1B, L-1, O-1, F-1 com OPT, etc.).",
+        "Existe visa number disponível para sua categoria no Visa Bulletin atual.",
+        "Você tem petição imigratória aprovada ou concorrente (I-130, I-140, I-360 ou I-526).",
+        "Não está em processo de remoção (deportação)."
+      ] },
+      { type: "callout", title: "Concurrent filing", text: "Quando há visa number disponível na data do filing, você pode protocolar a petição imigratória (I-140 ou I-130) JUNTO com o I-485. Isso acelera o processo em 6-12 meses comparado a fazer em sequência." },
+      { type: "h2", id: "vantagens", text: "Vantagens do AOS sobre Consular Processing" },
+      { type: "list", items: [
+        "Permanece nos EUA durante todo o processo — sem voltar para entrevista no Brasil.",
+        "Recebe EAD (autorização de trabalho aberta) em ~60-90 dias.",
+        "Recebe Advance Parole — pode viajar internacionalmente sem perder o I-485.",
+        "Cônjuge e filhos derivam — todos ajustam juntos.",
+        "Entrevista (quando ocorre) é nos EUA, em idioma do candidato escolhido."
+      ] },
+      { type: "h2", id: "documentos", text: "Documentação principal" },
+      { type: "list", items: [
+        "Form I-485 + taxa USD 1.440 (2026, inclui biometria).",
+        "Form I-693: exame médico por civil surgeon designado.",
+        "Form I-765: pedido de EAD (gratuito quando junto com I-485).",
+        "Form I-131: pedido de Advance Parole (gratuito quando junto).",
+        "Form I-864: Affidavit of Support (família) ou comprovação financeira (trabalho).",
+        "Certidões: nascimento, casamento, divórcio se aplicável.",
+        "Antecedentes criminais (Brasil + qualquer país onde morou 6+ meses)."
+      ] },
+      { type: "h2", id: "ead-ap", text: "EAD e Advance Parole: o combo essencial" },
+      { type: "p", text: "Enquanto o I-485 está pendente (12-24 meses comuns), você pode trabalhar em qualquer empresa via EAD e viajar internacionalmente via Advance Parole. Essas duas autorizações vêm em forma de cartão único (combo card) desde 2017. Sem o AP, sair dos EUA significa abandonar o I-485 — exceto se você tem H-1B/L-1 vigente, que permite reentrada normal." },
+      { type: "h2", id: "prazos", text: "Prazos típicos em 2026" },
+      { type: "list", items: [
+        "Receipt do I-485: 2-4 semanas.",
+        "Biometria: 4-8 semanas após receipt.",
+        "EAD/AP combo card: 60-150 dias.",
+        "Entrevista (quando exigida): 8-18 meses.",
+        "Decisão final: 12-24 meses dependendo da categoria e do field office."
+      ] },
+      { type: "h2", id: "entrevista", text: "Entrevista: como ela funciona" },
+      { type: "p", text: "USCIS pode pedir entrevista presencial no field office da região. Para casos baseados em emprego (EB-1, EB-2, EB-3), a entrevista costuma ser focada em verificar elegibilidade e identidade. Para casos de família (especialmente cônjuge), o oficial investiga genuinidade do casamento — fotos, contas conjuntas, viagens, declaração conjunta de imposto." },
+      { type: "h2", id: "armadilhas", text: "Armadilhas que travam ou negam" },
+      { type: "list", items: [
+        "Sair dos EUA sem Advance Parole — abandono automático do I-485.",
+        "Trabalhar fora do EAD ainda sem ele aprovado.",
+        "Esquecer de atualizar endereço (Form AR-11) em até 10 dias após mudança.",
+        "Antecedente criminal não declarado — fraude grava o caso para sempre.",
+        "Visa retrogression: número de visto fica indisponível e congela o processo.",
+        "Casamento de fachada — investigação Stokes pode derrubar e gerar ban."
+      ] },
+      { type: "h2", id: "consular-vs-aos", text: "AOS vs Consular Processing" },
+      { type: "list", items: [
+        "AOS: melhor para quem já está nos EUA com status legal.",
+        "Consular: melhor para quem está no Brasil ou cujo status nos EUA está expirando.",
+        "Custos similares; tempo total semelhante.",
+        "Negativa em AOS pode gerar processo de remoção; em Consular, simplesmente não recebe visto."
+      ] },
+      { type: "h2", id: "ebgreen", text: "Como a EBGreen estrutura o AOS" },
+      { type: "p", text: "Acompanhamos cada estágio: cálculo de elegibilidade, leitura mensal do Visa Bulletin, protocolo de I-485 + EAD + AP no momento ótimo, e preparação de cliente para entrevista. Veja também <a href=\"/blog/eb2-niw-guia-definitivo-2026\">EB-2 NIW</a> e <a href=\"/blog/eb1a-talento-extraordinario\">EB-1A</a> como portas de entrada do AOS." },
+      { type: "cta", text: "Quero avaliar meu caminho via Adjustment of Status" }
+    ],
+    externalLinks: [
+      { label: "USCIS — Adjustment of Status (I-485)", url: "https://www.uscis.gov/green-card/green-card-processes-and-procedures/adjustment-of-status" },
+      { label: "U.S. Department of State — Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" },
+      { label: "USCIS — Form I-485 Instructions", url: "https://www.uscis.gov/i-485" }
+    ],
+    related: ["eb2-niw-guia-definitivo-2026", "eb1a-talento-extraordinario", "custo-real-imigrar-eua-2026"]
+  },
+  {
+    id: 24,
+    slug: "eb1a-executivos-lideres",
+    titulo: "EB-1A para Executivos e Líderes: Construa seu Caso",
+    categoria: "EB-1A",
+    data: "24 mar 2026",
+    leitura: "10 min",
+    imagem: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1200&q=80&fit=crop",
+    excerpt: "Explore como líderes empresariais constroem um caso forte baseado em impacto real e trajetória de sucesso.",
+    metaTitle: "EB-1A para Executivos Brasileiros em 2026 | EBGreen",
+    metaDescription: "Como CEOs, founders e executivos brasileiros estruturam o EB-1A: critérios aplicáveis, evidências de mídia, board, prêmios e narrativa.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Executivo brasileiro de carreira sólida costuma ouvir que EB-1A é \"para Nobel e atleta olímpico\". É falso. Em 2026, USCIS aprova EB-1A regularmente para CEOs, founders, board members e executivos C-level que sabem traduzir trajetória corporativa nos critérios certos. O segredo está na narrativa — não no cargo." },
+      { type: "h2", id: "por-que-cabe", text: "Por que EB-1A cabe para executivos" },
+      { type: "p", text: "Os 10 critérios do EB-1A (8 CFR 204.5(h)(3)) foram redigidos de forma agnóstica ao campo. Prêmios, mídia, julgamento, contribuições originais, salário acima da média — tudo isso existe abundantemente no mundo corporativo. O problema é que executivos raramente organizam essas evidências, porque \"é apenas trabalho\"." },
+      { type: "h2", id: "criterios-praticos", text: "Como cada critério se traduz no mundo corporativo" },
+      { type: "list", items: [
+        "Prêmios: Best CEO setorial, Endeavor Entrepreneur, Forbes Under 30, EY Entrepreneur of the Year, Great Place to Work.",
+        "Membership: YPO, Endeavor, board de associações setoriais, comitês técnicos.",
+        "Mídia: Valor Econômico, Exame, Forbes Brasil, Bloomberg, Reuters, podcasts setoriais.",
+        "Julgamento: jurado de prêmio empresarial, mentor em aceleradora, board advisory.",
+        "Contribuições originais: modelo de negócio replicado, framework de gestão publicado, exit relevante.",
+        "Autoria: artigos em Harvard Business Review Brasil, livros, white papers.",
+        "Salário alto: comprovado por contracheque + benchmarks (Mercer, Korn Ferry).",
+        "Papel-chave em organização de reputação distinguida: posição C-level em empresa reconhecida."
+      ] },
+      { type: "callout", title: "O critério mais subutilizado", text: "\"Papel-chave em organização de reputação distinguida\" (8 CFR 204.5(h)(3)(viii)) é a porta de entrada natural para C-levels — mas exige provar tanto a reputação da empresa quanto seu papel essencial. Muitos casos perdem esse critério por falta de evidência objetiva." },
+      { type: "h2", id: "perfis", text: "Perfis que aprovam consistentemente" },
+      { type: "list", items: [
+        "CEO/founder de empresa com receita 50M+ e cobertura de mídia.",
+        "C-level (CTO, CFO, COO) de scale-up reconhecida.",
+        "Founder com exit (M&A ou IPO) coberto pela mídia.",
+        "Board member independente em múltiplas empresas listadas.",
+        "Executivo de multinacional com prêmios setoriais e palestras.",
+        "VC/Investor com track record público (Crunchbase, PitchBook)."
+      ] },
+      { type: "h2", id: "narrativa", text: "Narrativa: o pulo do gato" },
+      { type: "p", text: "USCIS não decide por checklist. Aplica análise em duas etapas (Kazarian + Final Merits). O dossiê precisa contar uma história coerente: você está no top do seu campo (qual campo, especificamente?), você teve impacto reconhecido por terceiros (não auto-elogio), e seu trabalho continuará beneficiando os EUA. Sem narrativa, evidência vira pilha de papel." },
+      { type: "h2", id: "construir", text: "Como construir evidência que ainda falta" },
+      { type: "list", items: [
+        "Aceitar 2-3 convites para palestras setoriais por ano.",
+        "Publicar 3-5 artigos em mídia de negócios reconhecida.",
+        "Aceitar position de board advisory em startup ou ONG.",
+        "Ser jurado em prêmio setorial.",
+        "Concorrer ativamente a prêmios (não esperar — submeter candidatura).",
+        "Contratar relações públicas para 12 meses de cobertura estratégica."
+      ] },
+      { type: "h2", id: "cartas", text: "Cartas de recomendação que funcionam" },
+      { type: "p", text: "USCIS desconfia de cartas de funcionários e investidores diretos. Quer pares independentes do mesmo nível, idealmente com porção americana. Mix ideal: 2 cartas de pares brasileiros + 2 cartas de executivos americanos do mesmo setor + 1 carta de acadêmico/think tank que valide impacto." },
+      { type: "h2", id: "armadilhas", text: "Armadilhas frequentes" },
+      { type: "list", items: [
+        "Confundir \"sou CEO\" com critério atendido — o cargo não basta sem evidência objetiva.",
+        "Submeter mídia de portais sem audiência ou pagos.",
+        "Cartas auto-elogiosas e sem detalhes técnicos verificáveis.",
+        "Não definir \"o campo\" — sem foco, qualquer evidência fica genérica.",
+        "Ignorar critério de salário — basta mostrar contracheque + benchmark."
+      ] },
+      { type: "h2", id: "estrategia", text: "Estratégia: O-1A → EB-1A" },
+      { type: "p", text: "Para executivos com dossiê em construção, faz sentido começar pelo <a href=\"/blog/visto-o1-rota-express\">O-1A</a> e migrar para EB-1A após 12-18 meses de fortalecimento nos EUA. Veja o comparativo em <a href=\"/blog/o1a-vs-eb1a\">O-1A vs EB-1A</a> e o guia base <a href=\"/blog/eb1a-talento-extraordinario\">EB-1A: Talento Extraordinário</a>." },
+      { type: "cta", text: "Quero avaliar meu caso EB-1A como executivo" }
+    ],
+    externalLinks: [
+      { label: "USCIS — EB-1 Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-first-preference-eb-1" },
+      { label: "USCIS Policy Manual — EB-1A", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-2" },
+      { label: "8 CFR 204.5(h) — Extraordinary Ability", url: "https://www.ecfr.gov/current/title-8/chapter-I/subchapter-B/part-204/section-204.5" }
+    ],
+    related: ["eb1a-talento-extraordinario", "o1a-vs-eb1a", "empreender-eua-imigrante"]
+  },
+  {
+    id: 25,
+    slug: "2026-melhor-ano-iniciar",
+    titulo: "2026: Por que Este é o Melhor Ano para Iniciar seu Processo",
+    categoria: "Green Card",
+    data: "25 mar 2026",
+    leitura: "8 min",
+    imagem: "https://images.unsplash.com/photo-1488998427799-e3362cec87c3?w=1200&q=80&fit=crop",
+    excerpt: "Descubra por que este ano é uma janela especial para quem quer transformar o sonho americano em realidade.",
+    metaTitle: "Por que 2026 é o Melhor Ano para Iniciar seu Visto Americano | EBGreen",
+    metaDescription: "Janela política, cambial e regulatória de 2026 para imigração aos EUA: Visa Bulletin, novas regras USCIS e por que adiar custa caro.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Imigrar nunca é decisão de calendário — é de vida. Mas existem janelas em que o sistema americano fica mais favorável, e existem anos em que adiar custa anos. 2026 entra na primeira categoria. Esse artigo reúne os 5 motivos objetivos pelos quais começar agora é estrategicamente superior a esperar 2027." },
+      { type: "h2", id: "motivo-1", text: "1. Visa Bulletin favorável para brasileiros" },
+      { type: "p", text: "Em 2026, EB-1, EB-2 e EB-3 estão com datas \"current\" ou próximas para nascidos no Brasil — o que significa fila curta ou inexistente. Isso é exceção histórica: Índia e China esperam 10+ anos nas mesmas categorias. Brasileiros estão em uma janela rara onde aprovação do I-140 → I-485 acontece em meses, não décadas." },
+      { type: "callout", title: "Por que importa", text: "Quem entra agora pega visa number imediato. Quem espera 2027 pode encontrar retrogression — categoria \"fechando\" para o Brasil — e ter que esperar fila se formar. O custo de oportunidade é real." },
+      { type: "h2", id: "motivo-2", text: "2. STEM-friendly policy do USCIS" },
+      { type: "p", text: "Desde janeiro 2022, USCIS aplica guidance favorável a NIW em STEM. Em 2024-2026, o padrão de aprovação para EB-2 NIW STEM segue elevado. Pesquisadores, engenheiros, profissionais de tech, ciência e saúde têm vento a favor. Veja em <a href=\"/blog/eb2-niw-guia-definitivo-2026\">EB-2 NIW: Guia Definitivo</a>." },
+      { type: "h2", id: "motivo-3", text: "3. EB-5 reformado funcionando" },
+      { type: "p", text: "Após o RIA (2022), o EB-5 ganhou set-aside visas para áreas rurais e TEA — categorias com fila curtíssima para brasileiros. Em 2026, projetos rurais aprovam green card condicional em 12-18 meses, contra 4-5 anos do EB-5 \"comum\". Detalhes em <a href=\"/blog/eb5-green-card-investimento-2026\">EB-5 em 2026</a>." },
+      { type: "h2", id: "motivo-4", text: "4. Câmbio e custo relativo" },
+      { type: "p", text: "Câmbio R$/USD e custo de vida nos EUA tornam 2026 um ano em que o investimento total em processo (advogado, taxas, mudança) é alto, sim — mas previsível. Adiar 2-3 anos historicamente significou inflação dolarizada de taxas USCIS (subiram em 2024) + custo de vida em alta. Quem planeja agora trava preço." },
+      { type: "h2", id: "motivo-5", text: "5. Janela política e estabilidade regulatória" },
+      { type: "p", text: "Mudanças de governo nos EUA afetam diretamente políticas imigratórias. Quem está com petição protocolada antes de qualquer mudança normativa fica protegido por princípio de \"adjudication on the record\" — ou seja, regras vigentes na data do filing tendem a prevalecer. Começar agora reduz exposição a futuras mudanças." },
+      { type: "h2", id: "perfis", text: "Quem deve agir agora — sem desculpa" },
+      { type: "list", items: [
+        "Profissional STEM com 5+ anos de carreira: EB-2 NIW.",
+        "Pesquisador com publicações: EB-2 NIW ou EB-1A.",
+        "Executivo com mídia e prêmios: EB-1A.",
+        "Empreendedor com capital: E-2 (via cidadania europeia) ou EB-5.",
+        "Trabalhador qualificado: EB-3 com sponsor.",
+        "Estudante já formado: F-1 → OPT/STEM → H-1B/EB-2."
+      ] },
+      { type: "h2", id: "como", text: "Como começar em 2026" },
+      { type: "ordered", items: [
+        "Avaliação técnica do perfil (1-2 semanas).",
+        "Escolha da rota imigratória (1 sessão estratégica).",
+        "Coleta e organização de evidências (4-12 semanas).",
+        "Construção do dossiê (4-8 semanas).",
+        "Protocolo no USCIS — começa o relógio oficial."
+      ] },
+      { type: "h2", id: "encerramento", text: "O custo de não decidir" },
+      { type: "p", text: "Toda decisão adiada de imigração custa, em média, 18-36 meses de vida americana — anos que não voltam. 2026 é um ano de janela aberta. A EBGreen ajuda você a transformar avaliação em ação, com clareza sobre rota, prazo e investimento necessários." },
+      { type: "cta", text: "Quero começar minha avaliação em 2026" }
+    ],
+    externalLinks: [
+      { label: "U.S. Department of State — Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" },
+      { label: "USCIS — STEM Designated Degree Program", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-5" },
+      { label: "USCIS — EB-5 Reform and Integrity Act", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/eb-5-immigrant-investor-program" }
+    ],
+    related: ["eb2-niw-guia-definitivo-2026", "eb1a-talento-extraordinario", "eb5-green-card-investimento-2026"]
+  },
 ];
 
 export const getPostBySlug = (slug: string) => blogPosts.find((p) => p.slug === slug);
