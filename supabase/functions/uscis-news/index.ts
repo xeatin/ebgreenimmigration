@@ -45,10 +45,22 @@ function decodeEntities(str: string): string {
 function unwrapBingUrl(link: string): string {
   try {
     const u = new URL(link);
+    if (u.hostname.includes("news.google.com")) return "";
     const real = u.searchParams.get("url");
-    return real ?? link;
+    if (real) return real;
+    if (u.hostname.includes("bing.com")) return "";
+    return link;
   } catch {
     return link;
+  }
+}
+
+function isBlockedNewsUrl(link: string): boolean {
+  try {
+    const hostname = new URL(link).hostname.replace(/^www\./, "");
+    return hostname === "news.google.com" || hostname.endsWith(".news.google.com") || hostname.endsWith("bing.com");
+  } catch {
+    return true;
   }
 }
 
@@ -102,7 +114,9 @@ Deno.serve(async (req) => {
       )
     );
 
-    const all = responses.flatMap(parseRss).filter((i) => i.link && i.title);
+    const all = responses
+      .flatMap(parseRss)
+      .filter((i) => i.link && i.title && !isBlockedNewsUrl(i.link));
 
     // Deduplicate by link
     const seen = new Set<string>();
@@ -127,7 +141,7 @@ Deno.serve(async (req) => {
       headers: {
         ...corsHeaders,
         "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=1800",
+        "Cache-Control": "no-store, max-age=0",
       },
     });
   } catch (err) {
