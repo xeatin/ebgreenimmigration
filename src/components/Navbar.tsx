@@ -24,6 +24,7 @@ const Navbar = () => {
     { label: t(translations.nav.process, lang), href: isHomePage ? "#processo" : "/#processo", id: "processo" },
     { label: t(translations.nav.about, lang), href: isHomePage ? "#sobre" : "/#sobre", id: "sobre" },
     { label: "Blog", href: "/blog", id: "blog" },
+    { label: t(translations.nav.news, lang), href: "/noticias", id: "noticias" },
     { label: t(translations.nav.contact, lang), href: isHomePage ? "#contato" : "/#contato", id: "contato" },
   ];
 
@@ -89,6 +90,7 @@ const Navbar = () => {
 
   const isActive = (id: string) => {
     if (id === "blog") return location.pathname === "/blog";
+    if (id === "noticias") return location.pathname === "/noticias";
     return isHomePage && activeSection === id;
   };
 

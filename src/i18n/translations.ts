@@ -13,6 +13,7 @@ export const translations = {
     services: { pt: "Serviços", en: "Services", es: "Servicios" },
     process: { pt: "Como Funciona", en: "How It Works", es: "Cómo Funciona" },
     about: { pt: "Sobre", en: "About", es: "Sobre" },
+    news: { pt: "Notícias", en: "News", es: "Noticias" },
     contact: { pt: "Contato", en: "Contact", es: "Contacto" },
     cta: { pt: "Avaliação Gratuita", en: "Free Assessment", es: "Evaluación Gratuita" },
   },
