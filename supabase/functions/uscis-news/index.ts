@@ -6,7 +6,7 @@ const corsHeaders = {
 };
 
 const FEED_URL =
-  "https://news.google.com/rss/search?q=USCIS+OR+%22US+immigration%22+OR+%22green+card%22+when:14d&hl=en-US&gl=US&ceid=US:en";
+  "https://news.google.com/rss/search?q=(USCIS+OR+%22imigra%C3%A7%C3%A3o+americana%22+OR+%22green+card%22+OR+%22visto+americano%22)+when:14d&hl=pt-BR&gl=BR&ceid=BR:pt";
 
 interface NewsItem {
   title: string;
