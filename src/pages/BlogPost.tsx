@@ -194,10 +194,10 @@ const BlogPost = () => {
                 {post.excerpt}
               </p>
 
-              <div className="w-20 h-px bg-gold mb-5" />
+              <div className="w-20 h-px bg-gold mb-3" />
 
               {post.author && (
-                <p className="font-display italic text-cream text-base md:text-lg mb-1">
+                <p className="font-display italic text-cream text-sm md:text-base mb-1">
                   Escrito por <span className="font-semibold not-italic">{post.author}</span>
                 </p>
               )}
