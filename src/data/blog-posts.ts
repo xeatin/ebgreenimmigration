@@ -6,7 +6,7 @@
 export type ArticleBlock =
   | { type: "p"; text: string }
   | { type: "h2"; text: string; id: string }
-  | { type: "h3"; text: string }
+  | { type: "h3"; text: string; id?: string }
   | { type: "list"; items: string[] }
   | { type: "ordered"; items: string[] }
   | { type: "quote"; text: string; author?: string }
@@ -1258,11 +1258,347 @@ export const blogPosts: BlogPost[] = [
     ],
     related: ["opt-stem-extension", "visto-o1-rota-express", "eb2-niw-guia-definitivo-2026"]
   },
-  { id: 10, slug: "visto-r1-religiosos", titulo: "Visto R-1: Trabalhadores Religiosos e o Caminho para o Green Card", categoria: "R-1", data: "10 mar 2026", leitura: "7 min", imagem: "https://images.unsplash.com/photo-1438032005730-c779502df39b?w=1200&q=80&fit=crop", excerpt: "Conheça como líderes de fé estão vivendo sua missão e construindo comunidade nos Estados Unidos hoje." },
-  { id: 11, slug: "e2-vs-eb5-investidor", titulo: "E-2 vs EB-5: Qual Visto de Investidor é Certo para Você?", categoria: "E-2", data: "11 mar 2026", leitura: "9 min", imagem: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&q=80&fit=crop", excerpt: "Veja lado a lado duas formas de investir e descubra qual combina mais com seus planos de futuro." },
-  { id: 12, slug: "viver-em-nova-york-imigrantes", titulo: "Viver em Nova York: Guia Real para Imigrantes Brasileiros", categoria: "Vida nos EUA", data: "12 mar 2026", leitura: "13 min", imagem: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1200&q=80&fit=crop", excerpt: "Explore custos reais, bairros acolhedores e dicas práticas para começar com pé direito na cidade." },
-  { id: 13, slug: "o1a-vs-eb1a", titulo: "O-1A vs EB-1A: Qual Caminho Escolher para Sua Carreira?", categoria: "EB-1A", data: "13 mar 2026", leitura: "8 min", imagem: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80&fit=crop", excerpt: "Descubra qual caminho valoriza mais seu talento e acelera sua carreira no mercado americano." },
-  { id: 14, slug: "empreender-eua-imigrante", titulo: "Como Empreender nos EUA sendo Imigrante Brasileiro", categoria: "Green Card", data: "14 mar 2026", leitura: "11 min", imagem: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80&fit=crop", excerpt: "Veja como brasileiros criam empresas de sucesso e estruturam a vida financeira em território novo." },
+  {
+    id: 10,
+    slug: "visto-r1-religiosos",
+    titulo: "Visto R-1: Trabalhadores Religiosos e o Caminho para o Green Card",
+    categoria: "R-1",
+    data: "10 mar 2026",
+    leitura: "9 min",
+    imagem: "https://images.unsplash.com/photo-1438032005730-c779502df39b?w=1200&q=80&fit=crop",
+    excerpt: "Conheça como líderes de fé estão vivendo sua missão e construindo comunidade nos Estados Unidos hoje.",
+    metaTitle: "Visto R-1 em 2026: Guia Completo para Trabalhadores Religiosos | EBGreen",
+    metaDescription: "Como funciona o visto R-1: requisitos, organização patrocinadora, prazos, salário e o caminho do R-1 para o Green Card EB-4.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "O visto R-1 é a porta de entrada legítima para pastores, padres, missionários, ministros de música, líderes de juventude e outros trabalhadores religiosos que querem servir nos Estados Unidos com vínculo formal a uma organização de fé. Em 2026, ele continua sendo subutilizado por brasileiros — em parte por desconhecimento, em parte por mitos sobre o processo." },
+      { type: "h2", id: "o-que-e", text: "O que é o R-1" },
+      { type: "p", text: "O R-1 é um visto temporário de trabalho para indivíduos que vêm aos EUA exercer função religiosa em uma organização sem fins lucrativos reconhecida pelo IRS como religious organization (geralmente sob 501(c)(3)). É concedido inicialmente por até 30 meses, renovável por mais 30 meses — total de 5 anos." },
+      { type: "h2", id: "requisitos", text: "Requisitos centrais" },
+      { type: "list", items: [
+        "Pertencer há pelo menos 2 anos a uma denominação religiosa de boa-fé com presença legítima nos EUA.",
+        "Ter oferta concreta de trabalho de organização religiosa americana qualificada.",
+        "Trabalhar em função propriamente religiosa (ministro ordenado ou ocupação religiosa tradicional).",
+        "Atuar em tempo integral (mínimo 20h/semana segundo o USCIS) com remuneração ou suporte comprovado.",
+        "Não pretender residência permanente já no R-1 (intenção dupla limitada)."
+      ] },
+      { type: "callout", title: "Atenção ao termo \"denominação\"", text: "USCIS exige consistência teológica — não basta ser cristão genérico. A organização nos EUA e a comunidade de origem no Brasil precisam compartilhar credo, governança e prática religiosa comparáveis." },
+      { type: "h2", id: "passo-a-passo", text: "Passo a passo do processo" },
+      { type: "ordered", items: [
+        "Organização americana prepara e protocola o Form I-129 com suplemento R.",
+        "USCIS pode realizar visita de verificação no local da organização (site visit).",
+        "Aprovado o I-129, o candidato agenda entrevista no consulado (DS-160).",
+        "Entrevista com documentação religiosa, pessoal e da organização.",
+        "Concedido o R-1, viagem aos EUA e início do trabalho ministerial."
+      ] },
+      { type: "h2", id: "documentos", text: "Documentos essenciais" },
+      { type: "list", items: [
+        "Carta de chamado da organização americana detalhando função, salário e duração.",
+        "Comprovação de status 501(c)(3) ou equivalente da organização.",
+        "Prova dos 2 anos de membership na denominação (cartas pastorais, certidões).",
+        "Credenciais ministeriais: ordenação, diploma teológico, histórico ministerial.",
+        "Comprovação de capacidade financeira da organização para pagar o trabalhador."
+      ] },
+      { type: "h2", id: "salario", text: "Salário e sustento" },
+      { type: "p", text: "O R-1 admite duas formas de remuneração: salário convencional ou suporte não-monetário (moradia, alimentação, transporte) com valor de mercado documentado. Voluntariado puro não qualifica — precisa haver compensação demonstrável." },
+      { type: "h2", id: "para-greencard", text: "Do R-1 para o Green Card (EB-4)" },
+      { type: "p", text: "Após pelo menos 2 anos contínuos de trabalho religioso nos EUA (incluindo o tempo no R-1), o trabalhador pode pleitear residência permanente via categoria EB-4 (special immigrant religious worker). É um caminho legítimo, e detalhamos passo a passo no artigo <a href=\"/blog/r1-para-greencard\">R-1 para Green Card</a>." },
+      { type: "h2", id: "armadilhas", text: "Armadilhas comuns" },
+      { type: "list", items: [
+        "Organização patrocinadora pequena demais ou recém-criada — gera site visit problemática.",
+        "Função descrita de forma genérica (\"ajudar na igreja\") em vez de específica.",
+        "Documentação ministerial fraca do Brasil.",
+        "Tentar usar R-1 como atalho para morar nos EUA sem real vocação religiosa."
+      ] },
+      { type: "h2", id: "vale", text: "Vale a pena em 2026?" },
+      { type: "p", text: "Para quem tem chamado real e organização parceira nos EUA, o R-1 é um dos caminhos mais elegantes do sistema imigratório — com transição clara para o Green Card. A EBGreen estrutura tanto o lado da organização patrocinadora quanto a documentação do candidato." },
+      { type: "cta", text: "Quero avaliar meu caso R-1" }
+    ],
+    externalLinks: [
+      { label: "USCIS — R-1 Temporary Religious Workers", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/r-1-temporary-nonimmigrant-religious-workers" },
+      { label: "USCIS — EB-4 Religious Workers", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-fourth-preference-eb-4/special-immigrant-religious-workers" },
+      { label: "U.S. Department of State — Religious Worker Visa", url: "https://travel.state.gov/content/travel/en/us-visas/employment/religious-worker-visa.html" }
+    ],
+    related: ["r1-para-greencard", "eb2-niw-guia-definitivo-2026", "custo-real-imigrar-eua-2026"]
+  },
+  {
+    id: 11,
+    slug: "e2-vs-eb5-investidor",
+    titulo: "E-2 vs EB-5: Qual Visto de Investidor é Certo para Você?",
+    categoria: "E-2",
+    data: "11 mar 2026",
+    leitura: "10 min",
+    imagem: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&q=80&fit=crop",
+    excerpt: "Veja lado a lado duas formas de investir e descubra qual combina mais com seus planos de futuro.",
+    metaTitle: "E-2 vs EB-5 em 2026: Comparativo Completo de Vistos de Investidor | EBGreen",
+    metaDescription: "Compare E-2 e EB-5 lado a lado: investimento mínimo, prazo, residência permanente, riscos e qual escolher para morar nos EUA.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Investidor brasileiro que quer morar nos Estados Unidos tem dois caminhos clássicos: o visto E-2 (tratado de comércio) e o EB-5 (Green Card por investimento). Ambos exigem capital, mas resolvem problemas diferentes. Escolher errado custa anos — e às vezes o próprio investimento." },
+      { type: "h2", id: "comparativo-rapido", text: "Comparativo rápido" },
+      { type: "list", items: [
+        "E-2: visto temporário renovável por tempo indeterminado, NÃO dá Green Card.",
+        "EB-5: caminho direto para residência permanente para o investidor e família.",
+        "E-2: investimento \"substancial\" (sem mínimo legal — prática: USD 100k+).",
+        "EB-5: USD 800.000 (TEA) ou USD 1.050.000 (área comum) em 2026.",
+        "E-2: aprovação em 2-6 meses; EB-5: 24-60 meses dependendo do consulado."
+      ] },
+      { type: "h2", id: "e2-detalhe", text: "Visto E-2 em detalhe" },
+      { type: "p", text: "O E-2 é baseado em tratado bilateral. O Brasil <strong>não</strong> tem tratado com os EUA — o que significa que brasileiros precisam primeiro obter cidadania de um país elegível (Portugal, Granada, Turquia, etc.) antes de aplicar. Veja detalhes no artigo <a href=\"/blog/visto-e2-investir-morar-eua\">Visto E-2: Como Investir e Morar nos EUA</a>." },
+      { type: "list", items: [
+        "Investimento ativo em negócio operacional (não passivo).",
+        "Negócio precisa gerar empregos para americanos (não pode ser \"marginal\").",
+        "Cônjuge recebe autorização de trabalho aberta (EAD).",
+        "Filhos até 21 anos como dependentes — perdem status ao completar 21.",
+        "Sem caminho automático para Green Card."
+      ] },
+      { type: "h2", id: "eb5-detalhe", text: "EB-5 em detalhe" },
+      { type: "p", text: "O EB-5 é o Green Card por investimento. Reformado em 2022 (RIA), trouxe set-aside visas para áreas rurais e de alto desemprego (TEA), reduzindo fila para brasileiros. Veja no artigo <a href=\"/blog/eb5-green-card-investimento-2026\">EB-5: Green Card por Investimento em 2026</a>." },
+      { type: "list", items: [
+        "USD 800.000 em projeto Regional Center (TEA) ou USD 1.050.000 em projeto direto.",
+        "Investimento precisa criar/preservar 10 empregos full-time.",
+        "Green Card condicional por 2 anos, depois removendo condição → permanente.",
+        "Aplica-se a investidor, cônjuge e filhos solteiros menores de 21.",
+        "Caminho para cidadania americana após 5 anos."
+      ] },
+      { type: "h2", id: "qual-escolher", text: "Qual escolher?" },
+      { type: "callout", title: "Resumo prático", text: "Quer morar nos EUA rapidamente, sem precisar de Green Card agora? E-2 (com cidadania europeia). Quer Green Card de fato, com investimento estruturado e passivo via Regional Center? EB-5." },
+      { type: "list", items: [
+        "Empreendedor operador, capital USD 150k–500k → E-2 (se elegível).",
+        "Investidor passivo, capital USD 800k+, busca Green Card → EB-5.",
+        "Família com filhos chegando aos 21 → EB-5 trava o status.",
+        "Quer testar mercado americano antes de comprometer Green Card → E-2 primeiro, EB-5 depois."
+      ] },
+      { type: "h2", id: "riscos", text: "Riscos que ninguém conta" },
+      { type: "list", items: [
+        "E-2: se o negócio fechar, o visto cai junto — sem rede de proteção.",
+        "EB-5: projetos Regional Center variam muito em qualidade; auditoria do projeto é obrigatória.",
+        "EB-5: se o projeto não criar os 10 empregos, Green Card permanente é negado.",
+        "Ambos: USCIS investiga origem dos fundos — todo dólar precisa ser rastreável e legal."
+      ] },
+      { type: "h2", id: "ebgreen", text: "Como decidir com a EBGreen" },
+      { type: "p", text: "Investidor sério não escolhe visto pelo preço — escolhe pelo objetivo de vida. A EBGreen avalia perfil familiar, horizonte de tempo, tolerância a risco e fontes de capital antes de recomendar uma rota. Em vários casos, a melhor estratégia combina E-2 no curto prazo com EB-5 no médio prazo." },
+      { type: "cta", text: "Quero avaliar E-2 ou EB-5 para meu caso" }
+    ],
+    externalLinks: [
+      { label: "USCIS — E-2 Treaty Investors", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/e-2-treaty-investors" },
+      { label: "USCIS — EB-5 Immigrant Investor Program", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/eb-5-immigrant-investor-program" },
+      { label: "U.S. Department of State — Treaty Countries", url: "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fees/treaty.html" }
+    ],
+    related: ["visto-e2-investir-morar-eua", "eb5-green-card-investimento-2026", "custo-real-imigrar-eua-2026"]
+  },
+  {
+    id: 12,
+    slug: "viver-em-nova-york-imigrantes",
+    titulo: "Viver em Nova York: Guia Real para Imigrantes Brasileiros",
+    categoria: "Vida nos EUA",
+    data: "12 mar 2026",
+    leitura: "13 min",
+    imagem: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1200&q=80&fit=crop",
+    excerpt: "Explore custos reais, bairros acolhedores e dicas práticas para começar com pé direito na cidade.",
+    metaTitle: "Viver em Nova York em 2026: Custos, Bairros e Dicas para Brasileiros | EBGreen",
+    metaDescription: "Guia honesto de Nova York para imigrantes brasileiros: aluguel, escolas, transporte, bairros melhores e como começar sem desperdiçar dinheiro.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Nova York é uma cidade de extremos. É a porta mais cosmopolita dos EUA e, ao mesmo tempo, uma das mais caras do mundo. Para o brasileiro recém-chegado, a diferença entre uma transição tranquila e um pesadelo financeiro está em três decisões: bairro, escola e plano de saúde." },
+      { type: "h2", id: "custo-real", text: "Custo real de morar em NY em 2026" },
+      { type: "list", items: [
+        "Aluguel 1-bedroom em Manhattan: USD 4.000–6.500/mês.",
+        "Aluguel 1-bedroom em Brooklyn (Park Slope, Williamsburg): USD 3.200–4.800/mês.",
+        "Aluguel 2-bedroom em Astoria/Queens: USD 2.800–3.800/mês.",
+        "Aluguel em Newark/Jersey City (commute fácil): USD 2.200–3.500/mês.",
+        "Mercado para casal: USD 800–1.200/mês.",
+        "MetroCard mensal: USD 132.",
+        "Plano de saúde família (mercado privado): USD 1.800–3.500/mês."
+      ] },
+      { type: "callout", title: "Conta de fim de mês", text: "Família de 4 com vida de classe média em NY consome facilmente USD 12.000–18.000/mês. Salário-alvo realista para ter qualidade de vida: USD 200k+ household, ou estratégia explícita de moradia em New Jersey." },
+      { type: "h2", id: "bairros", text: "Bairros mais escolhidos por brasileiros" },
+      { type: "list", items: [
+        "Astoria (Queens) — diversidade, comida boa, metrô N/W direto para Manhattan.",
+        "Long Island City — moderna, vista de Manhattan, prédios novos, preço melhor que Manhattan.",
+        "Park Slope (Brooklyn) — famílias, escolas públicas excelentes, vibe de bairro.",
+        "Forest Hills (Queens) — silenciosa, casas de fato, escola pública forte.",
+        "Hoboken/Jersey City (NJ) — economia de 30-40% no aluguel, PATH train para Manhattan."
+      ] },
+      { type: "h2", id: "escolas", text: "Escolas: pública, charter ou privada?" },
+      { type: "p", text: "NY tem uma das melhores redes públicas dos EUA — mas a qualidade varia drasticamente por escola, não por bairro. Use o site do <a href=\"https://www.schools.nyc.gov\" target=\"_blank\" rel=\"noopener\">NYC DOE</a> e o GreatSchools.org para checar nota da escola específica antes de fechar contrato de aluguel." },
+      { type: "list", items: [
+        "Pública gratuita: ótimas em Park Slope, Forest Hills, partes de Manhattan.",
+        "Charter (pública gratuita por sorteio): Success Academy é referência.",
+        "Privada laica: USD 45.000–65.000/ano por filho.",
+        "Privada bilíngue (português): poucas opções, lista de espera."
+      ] },
+      { type: "h2", id: "transporte", text: "Transporte e estilo de vida" },
+      { type: "p", text: "NY é a única cidade dos EUA onde NÃO ter carro é vantagem. Metrô (subway) opera 24h, é caótico mas funcional. Carro é estorvo — estacionamento mensal: USD 400–700. Ubers caros: orçamente USD 200–500/mês se for habitual." },
+      { type: "h2", id: "saude", text: "Saúde nos EUA — cuidado especial em NY" },
+      { type: "p", text: "Hospital em Manhattan sem seguro = falência. Antes de pisar em solo americano, contrate plano. Detalhamos opções no artigo <a href=\"/blog/saude-eua-imigrantes\">Saúde nos EUA para imigrantes</a>." },
+      { type: "h2", id: "comunidade", text: "Comunidade brasileira" },
+      { type: "list", items: [
+        "Astoria e Newark concentram brasileiros há décadas.",
+        "Igrejas brasileiras (católicas e evangélicas) em Queens e Newark.",
+        "Mercados brasileiros: Brazil Plaza (NJ), Buzios (Astoria).",
+        "Consulado-Geral em Manhattan — agende serviços online com antecedência."
+      ] },
+      { type: "h2", id: "primeiros-90", text: "Os primeiros 90 dias: roteiro" },
+      { type: "ordered", items: [
+        "Solicitar SSN ao chegar (se elegível pelo visto).",
+        "Abrir conta bancária (Chase, Bank of America aceitam passaporte + visto + ITIN).",
+        "Tirar driver's license / state ID (mesmo sem dirigir, é ID essencial).",
+        "Contratar plano de saúde imediatamente.",
+        "Matricular filhos na escola (DOE faz matrícula a qualquer época do ano).",
+        "Construir histórico de crédito — secured card é o ponto de partida.",
+        "Registrar-se no consulado brasileiro."
+      ] },
+      { type: "h2", id: "vale", text: "Nova York vale a pena?" },
+      { type: "p", text: "Para quem busca carreira em finanças, mídia, arte, tech ou medicina, Nova York continua imbatível. Para famílias com perfil mais conservador ou que valorizam casa própria com quintal, a Flórida, Texas e Carolina do Norte costumam fazer mais sentido. A EBGreen ajuda a alinhar visto com cidade — porque escolher errado custa caro." },
+      { type: "cta", text: "Quero planejar minha mudança para os EUA" }
+    ],
+    externalLinks: [
+      { label: "NYC Department of Education", url: "https://www.schools.nyc.gov/" },
+      { label: "MTA — Subway and Bus", url: "https://new.mta.info/" },
+      { label: "Consulado-Geral do Brasil em Nova York", url: "https://novayork.itamaraty.gov.br/" }
+    ],
+    related: ["saude-eua-imigrantes", "impostos-eua-imigrantes", "custo-real-imigrar-eua-2026"]
+  },
+  {
+    id: 13,
+    slug: "o1a-vs-eb1a",
+    titulo: "O-1A vs EB-1A: Qual Caminho Escolher para Sua Carreira?",
+    categoria: "EB-1A",
+    data: "13 mar 2026",
+    leitura: "9 min",
+    imagem: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80&fit=crop",
+    excerpt: "Descubra qual caminho valoriza mais seu talento e acelera sua carreira no mercado americano.",
+    metaTitle: "O-1A vs EB-1A em 2026: Qual Visto Escolher para Talentos Extraordinários | EBGreen",
+    metaDescription: "Comparativo entre O-1A (visto temporário) e EB-1A (Green Card): requisitos, prazos, custos e estratégia de transição entre os dois.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Talento extraordinário tem dois caminhos para os EUA: O-1A (visto temporário) e EB-1A (Green Card direto). Os critérios são parecidos — mas o nível de prova, o prazo e o resultado final são bem diferentes. Escolher o caminho certo pode economizar 2 anos." },
+      { type: "h2", id: "comparativo", text: "Comparativo direto" },
+      { type: "list", items: [
+        "O-1A: visto temporário, 3 anos renováveis indefinidamente.",
+        "EB-1A: Green Card permanente, com cidadania após 5 anos.",
+        "O-1A: precisa de empregador ou agente patrocinador.",
+        "EB-1A: self-petition — você mesmo aplica, sem precisar de empregador.",
+        "O-1A: aprovação em 2-4 meses (com Premium Processing, 15 dias).",
+        "EB-1A: aprovação em 8-18 meses sem fila para brasileiros em 2026."
+      ] },
+      { type: "h2", id: "criterios", text: "Os 8 (e 10) critérios" },
+      { type: "p", text: "O-1A pede que você atenda 3 dos 8 critérios; EB-1A pede 3 dos 10 critérios. Embora se sobreponham bastante, o EB-1A tem nível de evidência mais alto: USCIS aplica análise em duas etapas (Kazarian) — primeiro confere se você cumpre os critérios, depois faz \"final merits determination\" sobre se de fato você está no topo do seu campo." },
+      { type: "h3", id: "criterios-comuns", text: "Critérios que aparecem em ambos" },
+      { type: "list", items: [
+        "Prêmios reconhecidos nacional ou internacionalmente.",
+        "Membership em associações que exigem realizações de destaque.",
+        "Material publicado sobre você em mídia profissional ou geral.",
+        "Atuação como juiz/avaliador do trabalho de outros.",
+        "Contribuições originais de significância no campo.",
+        "Autoria de artigos em revistas profissionais.",
+        "Salário ou remuneração significativamente acima da média.",
+        "Sucesso comercial em artes (quando aplicável)."
+      ] },
+      { type: "callout", title: "A grande diferença", text: "O-1A é \"você se destaca\". EB-1A é \"você está no top 1% do mundo\". O mesmo dossiê pode ser aprovado no O-1A e negado no EB-1A — não pela falta de critérios, mas pelo \"final merits\"." },
+      { type: "h2", id: "estrategia", text: "Estratégia: O-1A primeiro, EB-1A depois?" },
+      { type: "p", text: "Sim — para muitos perfis, é a rota mais eficiente. Você entra nos EUA via O-1A em 3-4 meses, começa a construir mais evidências (citações, prêmios americanos, mídia) e aplica EB-1A com dossiê fortalecido 12-24 meses depois. Veja casos reais no artigo <a href=\"/blog/eb1a-talento-extraordinario\">EB-1A: Visto de Talento Extraordinário</a>." },
+      { type: "h2", id: "quem-deve", text: "Quem deve aplicar EB-1A direto" },
+      { type: "list", items: [
+        "Pesquisador com 100+ citações independentes em base como Scopus/Google Scholar.",
+        "Executivo C-level com cobertura de mídia (Valor, Forbes Brasil, etc.).",
+        "Atleta ou artista com prêmios de relevância nacional/internacional.",
+        "Empreendedor com exit comprovado, prêmios setoriais e mídia."
+      ] },
+      { type: "h2", id: "quem-deve-o1", text: "Quem deve começar pelo O-1A" },
+      { type: "list", items: [
+        "Profissional sólido mas com mídia/citação limitada.",
+        "Quem precisa entrar nos EUA rapidamente (oferta de trabalho, prazo de evento).",
+        "Artistas e atletas em começo de carreira nos EUA.",
+        "Founder com investimento já feito em startup nos EUA."
+      ] },
+      { type: "h2", id: "custos", text: "Custos comparados" },
+      { type: "list", items: [
+        "O-1A: taxas USCIS USD 530 + Premium USD 2.805 (opcional) + advogado USD 6k–15k.",
+        "EB-1A: taxas USCIS USD 1.225 + Premium USD 2.805 + advogado USD 12k–25k."
+      ] },
+      { type: "h2", id: "ebgreen", text: "Como a EBGreen escolhe a rota" },
+      { type: "p", text: "Fazemos uma avaliação técnica do dossiê com base nos critérios objetivos e na jurisprudência recente do AAO (Administrative Appeals Office). Se o caso é EB-1A direto, vamos direto. Se faltam 12-18 meses de fortalecimento, começamos no O-1A com plano explícito de migração." },
+      { type: "cta", text: "Quero avaliar O-1A ou EB-1A no meu caso" }
+    ],
+    externalLinks: [
+      { label: "USCIS — O-1 Individuals with Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/o-1-visa-individuals-with-extraordinary-ability-or-achievement" },
+      { label: "USCIS — EB-1 Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-first-preference-eb-1" },
+      { label: "USCIS Policy Manual — EB-1A", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-2" }
+    ],
+    related: ["eb1a-talento-extraordinario", "visto-o1-rota-express", "dossie-eb2-niw-irrefutavel"]
+  },
+  {
+    id: 14,
+    slug: "empreender-eua-imigrante",
+    titulo: "Como Empreender nos EUA sendo Imigrante Brasileiro",
+    categoria: "Green Card",
+    data: "14 mar 2026",
+    leitura: "12 min",
+    imagem: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80&fit=crop",
+    excerpt: "Veja como brasileiros criam empresas de sucesso e estruturam a vida financeira em território novo.",
+    metaTitle: "Como Empreender nos EUA Sendo Brasileiro em 2026 | EBGreen",
+    metaDescription: "Guia completo para brasileiros que querem empreender nos EUA: visto certo, tipo de empresa (LLC vs C-Corp), impostos, banco e mitos que custam caro.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Empreender nos EUA sendo brasileiro é mais simples do que dizem — e mais arriscado do que parece. Abrir uma empresa leva dias. Operar dentro da lei imigratória, ter conta bancária funcional e construir negócio que sustente um visto leva planejamento. Esse guia traz o caminho real, sem mitos." },
+      { type: "h2", id: "primeira-pergunta", text: "Primeira pergunta: você precisa morar nos EUA?" },
+      { type: "p", text: "Brasileiros podem ser donos 100% de empresa americana (LLC ou C-Corp) sem morar lá. O que NÃO podem é trabalhar fisicamente nessa empresa em solo americano sem visto adequado. Confundir isso é a primeira armadilha." },
+      { type: "list", items: [
+        "Quero apenas operar negócio remoto (e-commerce, SaaS, consultoria) → não precisa visto.",
+        "Quero estar nos EUA participando do dia a dia → precisa visto de trabalho.",
+        "Quero abrir empresa para sustentar visto de moradia → precisa estrutura específica."
+      ] },
+      { type: "h2", id: "vistos", text: "Vistos para empreendedores brasileiros" },
+      { type: "list", items: [
+        "E-2 (com cidadania de país elegível): investimento ativo, renovável indefinidamente.",
+        "L-1A: transferência de executivo de empresa brasileira para subsidiária americana.",
+        "O-1A: founder com reconhecimento internacional comprovado.",
+        "EB-2 NIW: empreendedor cujo negócio tem mérito nacional substancial.",
+        "EB-1A: founder com prêmios, mídia e impacto excepcional.",
+        "EB-5: investimento de USD 800k+ em projeto qualificado."
+      ] },
+      { type: "p", text: "Para os caminhos via L-1A e EB-2 NIW, veja respectivamente os artigos <a href=\"/blog/visto-e2-investir-morar-eua\">Visto E-2</a> e <a href=\"/blog/eb2-niw-guia-definitivo-2026\">EB-2 NIW</a>." },
+      { type: "h2", id: "llc-ou-ccorp", text: "LLC ou C-Corp?" },
+      { type: "callout", title: "Regra prática", text: "Vai levantar capital de venture capital? C-Corp em Delaware. Negócio próprio, e-commerce, consultoria, imobiliário? LLC. A escolha errada cria dor de cabeça tributária e impede investimento." },
+      { type: "list", items: [
+        "LLC: simples, tributação pass-through, sem dupla tributação no nível federal.",
+        "C-Corp Delaware: padrão para startups com VC, dupla tributação mas estrutura escalável.",
+        "S-Corp: NÃO disponível para non-resident aliens.",
+        "Sole proprietorship: NÃO recomendado — sem proteção patrimonial."
+      ] },
+      { type: "h2", id: "passos-praticos", text: "Passos práticos para abrir e operar" },
+      { type: "ordered", items: [
+        "Escolher estado (Delaware, Wyoming, Florida ou Texas são os mais comuns).",
+        "Abrir entidade (custo USD 100–500 + agente registrado USD 100–300/ano).",
+        "Solicitar EIN (gratuito direto no IRS — leva 1 dia se aplicar via fax).",
+        "Abrir conta bancária americana (Mercury, Relay e Wise para non-residents; Chase exige presença física).",
+        "Configurar contabilidade (QuickBooks ou Xero) desde o dia 1.",
+        "Contratar CPA brasileiro-americano para evitar erros de IRS e Receita Federal.",
+        "Estruturar contratos com foro nos EUA e cláusulas de arbitragem."
+      ] },
+      { type: "h2", id: "impostos", text: "Impostos: a parte que ninguém te conta" },
+      { type: "p", text: "Brasileiro com empresa nos EUA tem obrigações em DOIS países. IRS quer Form 5472 + 1120 anualmente (multa por não entregar: USD 25.000). Receita Federal quer declaração de bens no exterior + DCBE no Banco Central se aplicável. Veja detalhes no artigo <a href=\"/blog/impostos-eua-imigrantes\">Impostos nos EUA para imigrantes</a>." },
+      { type: "h2", id: "armadilhas", text: "Armadilhas frequentes" },
+      { type: "list", items: [
+        "Operar com visto de turista (B1/B2) — é trabalho ilegal e barra futuros vistos.",
+        "Esquecer Form 5472 — multa pesada e quase automática.",
+        "Misturar contas pessoais e empresariais — quebra proteção da LLC.",
+        "Abrir empresa em estado errado pelo benefício tributário e operar em outro — paga em ambos.",
+        "Não documentar entrada de capital — gera problema de origem dos fundos no visto."
+      ] },
+      { type: "h2", id: "ebgreen", text: "Como a EBGreen estrutura empreendedores" },
+      { type: "p", text: "Empresa serve estratégia imigratória, não o contrário. Estruturamos a entidade certa, no estado certo, com o visto compatível e com governança que sustenta a aplicação no USCIS. Empresa improvisada vira motivo de RFE (Request for Evidence) e às vezes de negativa." },
+      { type: "cta", text: "Quero estruturar minha empresa nos EUA" }
+    ],
+    externalLinks: [
+      { label: "IRS — International Taxpayers", url: "https://www.irs.gov/individuals/international-taxpayers" },
+      { label: "U.S. Small Business Administration", url: "https://www.sba.gov/" },
+      { label: "Delaware Division of Corporations", url: "https://corp.delaware.gov/" }
+    ],
+    related: ["visto-e2-investir-morar-eua", "eb5-green-card-investimento-2026", "impostos-eua-imigrantes"]
+  },
   { id: 15, slug: "opt-stem-extension", titulo: "OPT e STEM Extension: Ganhe Experiência Profissional nos EUA Após se Formar", categoria: "F-1", data: "15 mar 2026", leitura: "8 min", imagem: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80&fit=crop", excerpt: "Descubra como ter até 12 meses de experiência profissional nos EUA ainda com seu visto de estudante." },
   { id: 17, slug: "eb1a-atletas-artistas", titulo: "EB-1A para Atletas e Artistas Brasileiros: Cases Reais", categoria: "EB-1A", data: "17 mar 2026", leitura: "9 min", imagem: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&fit=crop", excerpt: "Veja histórias reais de brasileiros que usaram seu talento para construir vida nova nos Estados Unidos." },
   { id: 18, slug: "saude-eua-imigrantes", titulo: "Saúde nos EUA: Como se Proteger como Imigrante", categoria: "Vida nos EUA", data: "18 mar 2026", leitura: "10 min", imagem: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&q=80&fit=crop", excerpt: "Descubra como se proteger e encontrar planos que fazem sentido para quem está começando do zero." },
