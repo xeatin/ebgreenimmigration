@@ -50,7 +50,7 @@ const copy = {
     chooseTitle: "Como podemos te ajudar?",
     chooseDesc: "Selecione uma opção para continuar.",
     isClient: "Sou cliente Ebgreen",
-    notClient: "Ainda não sou cliente",
+    notClient: "Quero falar com um especialista",
     back: "Voltar",
     clientTitle: "Atendimento ao cliente",
     clientDesc: "Confirme seu nome e telefone para abrirmos seu suporte no WhatsApp.",
