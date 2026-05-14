@@ -6,7 +6,7 @@ const corsHeaders = {
 };
 
 const FEED_URL =
-  "https://news.google.com/rss/search?q=USCIS+OR+%22US+immigration%22+OR+%22green+card%22+when:14d&hl=en-US&gl=US&ceid=US:en";
+  "https://news.google.com/rss/search?q=(USCIS+OR+%22imigra%C3%A7%C3%A3o+americana%22+OR+%22green+card%22+OR+%22visto+americano%22)+when:14d&hl=pt-BR&gl=BR&ceid=BR:pt";
 
 interface NewsItem {
   title: string;
@@ -35,13 +35,21 @@ function parseRss(xml: string): NewsItem[] {
   let match;
   while ((match = itemRegex.exec(xml)) !== null) {
     const block = match[1];
-    const get = (tag: string) => {
+    const getRaw = (tag: string) => {
       const r = new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`).exec(block);
-      return r ? decodeEntities(r[1]) : "";
+      return r ? r[1] : "";
     };
+    const get = (tag: string) => decodeEntities(getRaw(tag));
+
+    // Try to extract the real source link from the description's first <a href="...">
+    const descRaw = getRaw("description").replace(/<!\[CDATA\[(.*?)\]\]>/gs, "$1");
+    const hrefMatch = /<a[^>]+href=["']([^"']+)["']/i.exec(descRaw);
+    const fallbackLink = get("link");
+    const link = hrefMatch ? hrefMatch[1].replace(/&amp;/g, "&") : fallbackLink;
+
     items.push({
       title: get("title"),
-      link: get("link"),
+      link,
       pubDate: get("pubDate"),
       description: get("description"),
       source: get("source"),
