@@ -86,11 +86,6 @@ const Blog = () => {
                       <span className="absolute top-4 left-4 inline-block px-3 py-1 rounded-sm text-[11px] font-semibold font-body bg-gradient-gold text-green-deep shadow-card">
                         {post.categoria}
                       </span>
-                      {hasContent && (
-                        <span className="absolute top-4 right-4 inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[10px] font-semibold font-body bg-eligibility-green/90 text-cream uppercase tracking-wider">
-                          Novo
-                        </span>
-                      )}
                     </div>
 
                     <div className="p-6 flex flex-col flex-1">
