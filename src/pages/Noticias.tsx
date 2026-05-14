@@ -35,9 +35,9 @@ const copy = {
   },
   retry: { pt: "Tentar novamente", en: "Try again", es: "Intentar de nuevo" },
   ctaTitle: {
-    pt: "Quer entender como essas mudanças afetam seu caso?",
-    en: "Want to know how these changes affect your case?",
-    es: "¿Quieres saber cómo estos cambios afectan tu caso?",
+    pt: "Seu caminho para o Green Card pode depender da estratégia certa.",
+    en: "Your path to the Green Card may depend on the right strategy.",
+    es: "Tu camino hacia la Green Card puede depender de la estrategia correcta.",
   },
   ctaButton: {
     pt: "Quero falar com um especialista",
