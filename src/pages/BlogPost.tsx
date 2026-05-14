@@ -150,53 +150,65 @@ const BlogPost = () => {
         style={{ width: `${progress}%` }}
       />
 
-      {/* Hero */}
-      <header className="pt-28 md:pt-32 pb-10 bg-green-deep relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{ backgroundImage: "radial-gradient(circle at 80% 20%, hsl(var(--gold) / 0.35) 0%, transparent 55%)" }}
-        />
-        <div className="container mx-auto px-6 max-w-3xl relative">
+      {/* Hero — compact split: photo left, text right (Law Firm Premium) */}
+      <header className="pt-28 md:pt-32 pb-10 bg-[hsl(40_25%_97%)]">
+        <div className="container mx-auto px-6 max-w-6xl">
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-cream/70 hover:text-gold font-body text-sm transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-green-deep/60 hover:text-eligibility-green font-body text-sm transition-colors mb-8"
           >
             <ArrowLeft size={16} />
             Voltar para o blog
           </Link>
 
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <span className="inline-block px-3 py-1 rounded-sm text-[11px] font-semibold font-body bg-gradient-gold text-green-deep mb-5">
-              {post.categoria}
-            </span>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 md:gap-12 items-center"
+          >
+            {/* Photo */}
+            <div className="relative overflow-hidden shadow-xl aspect-[4/3] md:aspect-[5/4]">
+              <img
+                src={post.imagem}
+                alt={post.titulo}
+                className="w-full h-full object-cover"
+              />
+            </div>
 
-            <h1 className="font-display text-3xl md:text-4xl lg:text-[2.75rem] text-cream leading-[1.15] tracking-tight mb-6">
-              {post.titulo}
-            </h1>
+            {/* Text */}
+            <div>
+              <p className="font-body text-[11px] md:text-xs font-bold uppercase tracking-[0.25em] text-gold mb-5">
+                {post.categoria}
+              </p>
 
-            <p className="font-body text-cream/75 text-lg leading-relaxed mb-6 max-w-2xl">
-              {post.excerpt}
-            </p>
+              <h1 className="font-body font-bold uppercase text-green-deep text-[1.75rem] md:text-4xl lg:text-[2.6rem] leading-[1.1] tracking-tight mb-5">
+                {post.titulo}
+              </h1>
 
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-cream/60 font-body text-sm">
-              {post.author && <span>Por <span className="text-cream">{post.author}</span></span>}
-              <span className="inline-flex items-center gap-1.5">
-                <Calendar size={14} /> {post.data}
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Clock size={14} /> {post.leitura} de leitura
-              </span>
+              <p className="font-body text-foreground/70 text-base md:text-[15px] leading-relaxed mb-6 max-w-xl">
+                {post.excerpt}
+              </p>
+
+              <div className="w-20 h-px bg-gold mb-5" />
+
+              {post.author && (
+                <p className="font-display italic text-green-deep text-base md:text-lg mb-1">
+                  Escrito por <span className="font-semibold not-italic">{post.author}</span>
+                </p>
+              )}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-green-deep/55 font-body text-xs md:text-sm">
+                <span className="inline-flex items-center gap-1.5">
+                  <Calendar size={13} /> {post.data}
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Clock size={13} /> {post.leitura} de leitura
+                </span>
+              </div>
             </div>
           </motion.div>
         </div>
       </header>
-
-      {/* Featured image */}
-      <div className="container mx-auto px-6 max-w-4xl -mt-6">
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[16/8]">
-          <img src={post.imagem} alt={post.titulo} className="w-full h-full object-cover" />
-        </div>
-      </div>
 
       {/* Body */}
       <article className="container mx-auto px-6 py-12 md:py-16">
