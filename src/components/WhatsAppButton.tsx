@@ -296,6 +296,16 @@ const WhatsAppButton = () => {
     else setStep("lead");
   }, []);
 
+  // Custom event: allow other components to open the WhatsApp lead form directly
+  useEffect(() => {
+    const openLead = () => {
+      setOpen(true);
+      setStep("lead");
+    };
+    window.addEventListener("open-whatsapp-lead", openLead);
+    return () => window.removeEventListener("open-whatsapp-lead", openLead);
+  }, []);
+
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
     setForm((prev) => ({ ...prev, [key]: value }));
     if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
