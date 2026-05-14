@@ -809,11 +809,455 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ===== Lote restante (sem conteúdo completo ainda) =====
-  { id: 2, slug: "dossie-eb2-niw-irrefutavel", titulo: "Como Montar um Dossiê EB-2 NIW Irrefutável", categoria: "EB-2 NIW", data: "02 mar 2026", leitura: "10 min", imagem: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80&fit=crop", excerpt: "Veja como organizar sua trajetória de forma clara para mostrar o impacto que você já cria no Brasil." },
-  { id: 6, slug: "eb3-trabalhadores-qualificados", titulo: "EB-3: Green Card para Trabalhadores Qualificados e Não Qualificados", categoria: "EB-3", data: "06 mar 2026", leitura: "9 min", imagem: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=80&fit=crop", excerpt: "Entenda como brasileiros de diferentes formações estão construindo vida nova nos Estados Unidos hoje." },
-  { id: 7, slug: "visto-e2-investir-morar-eua", titulo: "Visto E-2: Como Brasileiros Podem Investir e Morar nos EUA", categoria: "E-2", data: "07 mar 2026", leitura: "10 min", imagem: "https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=1200&q=80&fit=crop", excerpt: "Explore como empreendedores brasileiros transformam ideias em negócios reais vivendo nos Estados Unidos." },
-  { id: 8, slug: "eb3-unskilled-patrocinador", titulo: "EB-3 Unskilled Workers: Como Conseguir Patrocinador nos EUA", categoria: "EB-3", data: "08 mar 2026", leitura: "8 min", imagem: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&fit=crop", excerpt: "Veja como brasileiros estão encontrando empregadores que valorizam trabalho honesto e apoiam o sonho americano." },
-  { id: 9, slug: "visto-f1-estudar-eua", titulo: "Visto F-1: Como Estudar nos EUA e Viver a Experiência Universitária", categoria: "F-1", data: "09 mar 2026", leitura: "8 min", imagem: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80&fit=crop", excerpt: "Descubra como é estudar em uma universidade americana e mergulhar em uma experiência acadêmica transformadora." },
+  {
+    id: 2,
+    slug: "dossie-eb2-niw-irrefutavel",
+    titulo: "Como Montar um Dossiê EB-2 NIW Irrefutável",
+    categoria: "EB-2 NIW",
+    data: "02 mar 2026",
+    leitura: "10 min",
+    imagem: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80&fit=crop",
+    excerpt:
+      "Não é sobre escrever bonito — é sobre evidência amarrada em narrativa. O passo a passo do dossiê que o USCIS aprova.",
+    metaTitle: "Dossiê EB-2 NIW: Como Montar um Caso Aprovado | EBGreen",
+    metaDescription:
+      "Estrutura completa do dossiê EB-2 NIW: evidências por critério Dhanasar, cartas de recomendação, plano nacional e erros que derrubam casos.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Dossiê de EB-2 NIW não é uma pilha de diplomas. É uma narrativa estruturada em torno de três perguntas que o oficial do USCIS faz no momento que abre o seu processo: o trabalho dela tem mérito e importância nacional? Ela está bem posicionada para continuar entregando isso? Faz sentido o governo dispensar a oferta de emprego no caso dela?" },
+      { type: "p", text: "Quem responde essas três perguntas com clareza, evidência e fluxo lógico, é aprovado. Quem entrega diploma, currículo e cartas soltas, recebe RFE — ou negativa." },
+      { type: "h2", id: "estrutura", text: "A estrutura de um dossiê que funciona" },
+      { type: "p", text: "Existem variações, mas todo dossiê forte tem os mesmos blocos. A diferença está na qualidade de cada um." },
+      { type: "ordered", items: [
+        "Carta de petição (cover letter): a peça-mestre que conecta tudo.",
+        "Tabela de evidência por critério Dhanasar.",
+        "Cartas de recomendação (5 a 8, mescla de independentes e diretas).",
+        "Plano de continuidade nos EUA (endeavor plan).",
+        "Pacote de evidências objetivas — diplomas, prêmios, métricas, mídia.",
+        "Currículo profissional formatado para o oficial (não o seu LinkedIn)."
+      ] },
+      { type: "h2", id: "carta-peticao", text: "1. Carta de petição: a peça-mestre" },
+      { type: "p", text: "É o documento mais importante do dossiê. É ela que costura sua trajetória aos três critérios do <a href=\"/blog/eb2-niw-guia-definitivo-2026\">Matter of Dhanasar</a>. Bem feita, ela conduz o leitor à conclusão que você quer." },
+      { type: "p", text: "Estrutura recomendada:" },
+      { type: "list", items: [
+        "Sumário executivo de 1 página.",
+        "Quem é o peticionário (formação, trajetória, posição atual).",
+        "Critério 1 — mérito substancial e importância nacional, com dados.",
+        "Critério 2 — posicionamento, com prova de execução.",
+        "Critério 3 — porque dispensar a oferta de emprego beneficia os EUA.",
+        "Conclusão objetiva."
+      ] },
+      { type: "callout", title: "Tom da carta", text: "Profissional, factual, sem adjetivos exagerados. \"Líder reconhecido mundialmente\" enfraquece. \"Citado em 217 publicações revisadas por pares\" fortalece." },
+      { type: "h2", id: "tabela-evidencia", text: "2. Tabela de evidência por critério" },
+      { type: "p", text: "Esse é o atalho que a maioria não usa. Uma tabela cruzando cada critério Dhanasar com a evidência específica (com referência ao número da exhibit) faz o trabalho do oficial. Quanto mais você facilita a leitura, melhor o resultado." },
+      { type: "h2", id: "cartas", text: "3. Cartas de recomendação que provam" },
+      { type: "p", text: "O número mágico é entre 5 e 8. Menos parece pouco. Mais cansa o oficial. A composição importa mais que a quantidade." },
+      { type: "h3", text: "Cartas independentes (60%)" },
+      { type: "p", text: "Vêm de pessoas que não trabalharam diretamente com você, mas conhecem seu impacto. São as mais valiosas, porque mostram alcance fora do seu círculo direto. Idealmente, líderes americanos da sua área." },
+      { type: "h3", text: "Cartas diretas (40%)" },
+      { type: "p", text: "De ex-chefes, sócios, colaboradores, clientes. Trazem prova operacional do que você entregou." },
+      { type: "callout", title: "Erro fatal", text: "Cartas com a mesma estrutura, escritas pelo próprio candidato e só assinadas pelo recomendante. O USCIS percebe — e pune. Cada carta precisa ter voz própria, exemplos próprios e ângulo próprio." },
+      { type: "h2", id: "plano-continuidade", text: "4. Plano de continuidade nos EUA" },
+      { type: "p", text: "É o documento que mais separa casos aprovados de negados em 2026. Não basta dizer \"pretendo continuar trabalhando na minha área\". O oficial quer ver:" },
+      { type: "list", items: [
+        "Quais cidades ou empresas você pretende atuar e por quê.",
+        "Cartas de interesse de empresas, hospitais, universidades ou clientes americanos.",
+        "Projetos já em andamento ou conversas avançadas.",
+        "Estrutura jurídica (LLC criada, plano de negócio se aplicável).",
+        "Alinhamento com prioridades nacionais americanas — saúde, segurança, tecnologia, sustentabilidade."
+      ] },
+      { type: "h2", id: "evidencias", text: "5. Pacote de evidências objetivas" },
+      { type: "p", text: "Tudo numerado, organizado em exhibits, com índice no início. Inclua:" },
+      { type: "list", items: [
+        "Diplomas e históricos com tradução juramentada.",
+        "Avaliação de equivalência acadêmica (EUA reconhece através de credential evaluators).",
+        "Publicações com print da página, link e contagem de citações.",
+        "Patentes registradas com número e órgão.",
+        "Prêmios com regulamento e relevância explicada.",
+        "Mídia: prints, links, datas, alcance estimado.",
+        "Métricas de impacto: receita gerada, empregos criados, vidas atendidas, vidas salvas."
+      ] },
+      { type: "h2", id: "curriculo", text: "6. Currículo no formato certo" },
+      { type: "p", text: "O CV do dossiê não é seu currículo de busca de emprego. Ele é técnico, denso, com cabeçalhos por categoria (formação, atuação profissional, publicações, palestras, prêmios, atuação como julgador, mídia). Cada item com data e referência cruzada à exhibit." },
+      { type: "h2", id: "submissao", text: "Como submeter" },
+      { type: "p", text: "Em 2026, a submissão eletrônica via myUSCIS está disponível para I-140 EB-2 NIW. Independente do canal, mantenha:" },
+      { type: "list", items: [
+        "Sumário executivo de 1 página no topo.",
+        "Índice navegável (exhibits 1, 2, 3...).",
+        "PDF único, marcadores funcionais.",
+        "Backup completo guardado pelo peticionário."
+      ] },
+      { type: "h2", id: "rfe", text: "E se vier RFE?" },
+      { type: "p", text: "Request for Evidence não é negativa. É uma chance de reforçar pontos específicos que o oficial considerou fracos. Casos bem montados que recebem RFE costumam ser aprovados após a resposta — desde que a resposta seja cirúrgica, não defensiva." },
+      { type: "quote", text: "Dossiê forte é dossiê em que cada parágrafo serve a uma decisão. Tudo que não ajuda a aprovar, atrapalha." },
+      { type: "h2", id: "erros", text: "Erros que matam dossiês bons" },
+      { type: "list", items: [
+        "Foco no candidato, não no impacto.",
+        "Cartas todas iguais, escritas pelo candidato.",
+        "Plano de continuidade vago.",
+        "Misturar evidência forte com evidência fraca — a fraca contamina a forte.",
+        "Ignorar tradução juramentada de documentos brasileiros.",
+        "Não ter equivalência acadêmica formal."
+      ] },
+      { type: "p", text: "Se você ainda não tem clareza se seu material atual já sustenta um dossiê, a EBGreen faz uma análise gratuita do seu perfil antes de qualquer recomendação." },
+      { type: "cta", text: "Quero análise do meu material EB-2 NIW" }
+    ],
+    externalLinks: [
+      { label: "USCIS — Petitioning for EB-2 NIW", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2" },
+      { label: "USCIS Policy Manual — National Interest Waiver", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-5" },
+      { label: "Matter of Dhanasar", url: "https://www.justice.gov/eoir/page/file/920996/download" }
+    ],
+    related: ["eb2-niw-guia-definitivo-2026", "eb2-niw-professores", "eb1a-talento-extraordinario"]
+  },
+
+  {
+    id: 6,
+    slug: "eb3-trabalhadores-qualificados",
+    titulo: "EB-3: Green Card para Trabalhadores Qualificados e Não Qualificados",
+    categoria: "EB-3",
+    data: "06 mar 2026",
+    leitura: "9 min",
+    imagem: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=80&fit=crop",
+    excerpt:
+      "A rota mais democrática para o Green Card. Quem se qualifica, como achar patrocinador e qual a fila real em 2026.",
+    metaTitle: "EB-3 em 2026: Guia Completo do Green Card por Trabalho | EBGreen",
+    metaDescription:
+      "EB-3 para brasileiros: subcategorias, PERM, prazos atuais, custos e como encontrar empregador americano que patrocine.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "O EB-3 é a categoria de Green Card baseada em emprego mais usada do mundo. Ela cobre desde profissionais com diploma até trabalhadores sem qualificação formal. Para o brasileiro médio, é o caminho mais democrático — e também o mais demorado. Em 2026, entender a fila e a estratégia faz toda a diferença." },
+      { type: "h2", id: "subcategorias", text: "As três subcategorias do EB-3" },
+      { type: "ordered", items: [
+        "Skilled Workers: vagas que exigem no mínimo 2 anos de experiência ou treinamento.",
+        "Professionals: vagas que exigem diploma de graduação americano (ou equivalente brasileiro reconhecido).",
+        "Other Workers (unskilled): vagas que exigem menos de 2 anos de experiência."
+      ] },
+      { type: "p", text: "A subcategoria Other Workers tem fila própria, normalmente mais longa. Veja o detalhamento dela no artigo <a href=\"/blog/eb3-unskilled-patrocinador\">EB-3 Unskilled: como conseguir patrocinador</a>." },
+      { type: "h2", id: "como-funciona", text: "Como funciona o processo" },
+      { type: "ordered", items: [
+        "Empregador americano oferece a vaga e inicia o PERM (Labor Certification) no Department of Labor.",
+        "Após PERM aprovado, empregador peticiona I-140.",
+        "Após I-140 aprovada, candidato faz ajuste de status (I-485) ou processo consular (DS-260).",
+        "Green Card aprovado, validade de 10 anos."
+      ] },
+      { type: "callout", title: "PERM é a etapa decisiva", text: "O empregador precisa provar ao governo americano que recrutou no mercado local e não encontrou candidatos qualificados. Sem PERM bem feito, não há EB-3." },
+      { type: "h2", id: "fila-2026", text: "Como está a fila em 2026" },
+      { type: "p", text: "Brasileiros não estão no chargeability India ou China, o que é uma vantagem grande. Mesmo assim, a fila do EB-3 vem se movendo de forma irregular. As datas de prioridade no Visa Bulletin oscilam mensalmente — consulte a versão atualizada antes de planejar." },
+      { type: "list", items: [
+        "Skilled / Professionals: fila razoável para brasileiros, em torno de 2 a 3 anos do PERM ao Green Card.",
+        "Other Workers: fila tipicamente mais longa, podendo passar de 4 a 6 anos."
+      ] },
+      { type: "h2", id: "perfis", text: "Perfis brasileiros que se qualificam" },
+      { type: "list", items: [
+        "Enfermeiros, fisioterapeutas, técnicos de saúde com formação reconhecida.",
+        "Engenheiros, arquitetos, programadores com diploma de graduação.",
+        "Cozinheiros, soldadores, eletricistas, mecânicos com experiência comprovada.",
+        "Profissionais de hospitalidade, limpeza pesada, agricultura — em geral via Other Workers."
+      ] },
+      { type: "h2", id: "patrocinador", text: "Como encontrar empregador patrocinador" },
+      { type: "list", items: [
+        "Plataformas especializadas em vagas com sponsorship (MyVisaJobs, H1BData).",
+        "Agências de recrutamento focadas em healthcare e hospitality.",
+        "LinkedIn com filtro por empresas que historicamente patrocinam vistos.",
+        "Indicação direta — networking ainda é o caminho mais rápido.",
+        "Programas de visto institucional em redes hospitalares e hoteleiras."
+      ] },
+      { type: "h2", id: "custos", text: "Custos típicos" },
+      { type: "list", items: [
+        "PERM (custo do empregador, não do candidato): USD 4.000 a 8.000.",
+        "I-140 (do empregador): USD 715 + Asylum Program Fee.",
+        "I-485 / DS-260 (candidato): USD 1.440 ou USD 345 + USD 220.",
+        "Premium processing I-140: USD 2.805 (opcional).",
+        "Honorários: variam por estrutura."
+      ] },
+      { type: "p", text: "Veja o orçamento completo de imigrar em <a href=\"/blog/custo-real-imigrar-eua-2026\">Custo Real de Imigrar para os EUA em 2026</a>." },
+      { type: "h2", id: "vantagens", text: "Por que o EB-3 segue relevante" },
+      { type: "list", items: [
+        "Não exige reconhecimento extraordinário (EB-1A) nem dossiê narrativo (EB-2 NIW).",
+        "Cobre profissões manuais e técnicas que outras rotas excluem.",
+        "Green Card permanente para o titular, cônjuge e filhos solteiros menores de 21.",
+        "Sem necessidade de capital próprio."
+      ] },
+      { type: "h2", id: "armadilhas", text: "Armadilhas do EB-3" },
+      { type: "list", items: [
+        "Empregadores fraudulentos cobrando do candidato pelo PERM.",
+        "Cartas de oferta vagas, sem salário ou descrição realista.",
+        "Não validar credibilidade da empresa antes de assinar.",
+        "Acreditar em prazos curtos prometidos por intermediários."
+      ] },
+      { type: "callout", title: "Sinal de alerta", text: "Empregador legítimo não cobra do candidato pelos custos do PERM. A lei americana proíbe. Se cobrarem, fuja." },
+      { type: "p", text: "A EBGreen avalia gratuitamente seu perfil e ajuda a entender qual subcategoria do EB-3 — ou se outra rota — combina mais com você." },
+      { type: "cta", text: "Quero avaliar meu caso para EB-3" }
+    ],
+    externalLinks: [
+      { label: "USCIS — EB-3 Employment-Based Third Preference", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-third-preference-eb-3" },
+      { label: "DOL — PERM Labor Certification", url: "https://www.dol.gov/agencies/eta/foreign-labor/programs/permanent" },
+      { label: "Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" }
+    ],
+    related: ["eb3-unskilled-patrocinador", "custo-real-imigrar-eua-2026", "ajuste-status-greencard"]
+  },
+
+  {
+    id: 7,
+    slug: "visto-e2-investir-morar-eua",
+    titulo: "Visto E-2: Como Brasileiros Podem Investir e Morar nos EUA",
+    categoria: "E-2",
+    data: "07 mar 2026",
+    leitura: "10 min",
+    imagem: "https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=1200&q=80&fit=crop",
+    excerpt:
+      "O visto de investidor mais flexível do sistema americano. Quanto investir, que tipo de negócio funciona e por que o E-2 não dá Green Card.",
+    metaTitle: "Visto E-2 para Brasileiros em 2026: Guia Completo | EBGreen",
+    metaDescription:
+      "Visto E-2 explicado: regras, valores reais de investimento, melhores tipos de negócio e como brasileiros usam o E-2 como porta de entrada nos EUA.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "O E-2 é o visto de investidor mais usado nos Estados Unidos. Ele é renovável indefinidamente, permite que cônjuge trabalhe livremente em qualquer empresa, e exige investimento bem menor que o EB-5. Em troca, ele tem uma característica que muita gente descobre tarde: <strong>E-2 não é Green Card e não vira Green Card sozinho</strong>." },
+      { type: "p", text: "Saber usar o E-2 como porta de entrada — e não como destino final — é o que separa quem se estabelece dos que ficam em loop de renovação para sempre." },
+      { type: "h2", id: "tratado", text: "Brasil tem direito ao E-2?" },
+      { type: "p", text: "<strong>Sim. Desde 25 de julho de 2019</strong>, brasileiros passaram a poder solicitar o E-2 graças ao tratado de comércio entre Brasil e Estados Unidos. Antes disso, o E-2 estava fora de alcance do passaporte brasileiro." },
+      { type: "h2", id: "como-funciona", text: "Como funciona o E-2" },
+      { type: "p", text: "O candidato investe um valor substancial em um negócio nos EUA — próprio ou em sociedade — e dirige esse negócio. O visto inicial costuma vir por 2 a 5 anos, renovável." },
+      { type: "list", items: [
+        "Cônjuge recebe E-2 dependente e pode trabalhar em qualquer empresa.",
+        "Filhos solteiros menores de 21 estudam livremente.",
+        "Renovação ilimitada enquanto o negócio estiver ativo e lucrando.",
+        "Permite morar nos EUA com flexibilidade total."
+      ] },
+      { type: "h2", id: "quanto-investir", text: "Quanto investir, na prática" },
+      { type: "p", text: "Não existe valor mínimo oficial. O USCIS exige que o investimento seja \"substancial\" e \"proporcional ao tipo de negócio\". Na prática:" },
+      { type: "list", items: [
+        "Negócios de serviço (consultoria, tech, agência): a partir de USD 100.000.",
+        "Restaurantes, food service, varejo pequeno: USD 150.000 a 350.000.",
+        "Franquia média ou hotelaria: USD 300.000 a 800.000.",
+        "Operações industriais: USD 500.000+."
+      ] },
+      { type: "callout", title: "Regra do bom senso", text: "Investimento muito baixo levanta suspeita; muito alto e mal estruturado também. O segredo é proporcionalidade entre capital, plano de negócio e capacidade de gerar empregos." },
+      { type: "h2", id: "negocios", text: "Negócios que funcionam bem para E-2" },
+      { type: "list", items: [
+        "Franquias estabelecidas (subway, marriott, fitness, automotivo).",
+        "Restaurantes e food trucks com plano operacional sólido.",
+        "Agências digitais, consultorias, tech.",
+        "Pequenos hotéis e pousadas em destinos turísticos.",
+        "E-commerce com operação física (warehouse + equipe).",
+        "Serviços profissionais — clínicas, escolas, academias."
+      ] },
+      { type: "h2", id: "passo-a-passo", text: "Passo a passo do processo" },
+      { type: "ordered", items: [
+        "Definição do negócio e estruturação jurídica (LLC ou Corp nos EUA).",
+        "Aporte de capital com fonte lícita comprovada.",
+        "Compra de equipamentos, espaço, contratação inicial.",
+        "Plano de negócio detalhado com projeção de 5 anos.",
+        "Submissão do DS-160 + DS-156E na embaixada americana.",
+        "Entrevista consular.",
+        "Aprovação e entrada nos EUA com vistos da família."
+      ] },
+      { type: "h2", id: "e2-vs-eb5", text: "E-2 vs. EB-5: o dilema do investidor" },
+      { type: "p", text: "Esse é o ponto crítico. O E-2 é mais barato, rápido e flexível — mas não dá Green Card. O EB-5 custa muito mais, mas dá residência permanente. Veja o comparativo aprofundado em <a href=\"/blog/e2-vs-eb5-investidor\">E-2 vs EB-5</a> e o guia de <a href=\"/blog/eb5-green-card-investimento-2026\">EB-5 em 2026</a>." },
+      { type: "h2", id: "ponte-greencard", text: "Como o E-2 vira ponte para o Green Card" },
+      { type: "p", text: "Caminhos comuns de transição usados por empreendedores brasileiros:" },
+      { type: "list", items: [
+        "E-2 → EB-2 NIW: o negócio cresce e gera evidência de impacto.",
+        "E-2 → EB-1C: se o empreendedor lidera operação que se expande para multinacional.",
+        "E-2 → EB-5: aumentar o investimento e converter em Green Card.",
+        "E-2 → EB-3: receber proposta como executivo e entrar via emprego."
+      ] },
+      { type: "h2", id: "armadilhas", text: "Armadilhas comuns" },
+      { type: "list", items: [
+        "Comprar negócio sem due diligence financeira.",
+        "Subdimensionar capital de giro — operação morre no 2º ano.",
+        "Confundir E-2 com Green Card.",
+        "Não preparar a transição desde o início.",
+        "Aporte feito por terceiros (proibido — o capital tem que ser do investidor)."
+      ] },
+      { type: "h2", id: "tempos-custos", text: "Tempos e custos típicos" },
+      { type: "list", items: [
+        "Entrevista consular: agendamento em 1 a 4 meses.",
+        "Aprovação: válida por 2 a 5 anos, renovável.",
+        "Taxa MRV: USD 315.",
+        "Estruturação do negócio + plano: USD 8.000 a 25.000.",
+        "Honorários de assessoria de visto: USD 6.000 a 12.000."
+      ] },
+      { type: "p", text: "A EBGreen ajuda a entender se o E-2 é o caminho certo — ou se outra rota mais aderente ao seu perfil entrega o que você procura." },
+      { type: "cta", text: "Quero avaliar meu caso para E-2" }
+    ],
+    externalLinks: [
+      { label: "USCIS — E-2 Treaty Investors", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/e-2-treaty-investors" },
+      { label: "U.S. Department of State — E-2 Visa", url: "https://travel.state.gov/content/travel/en/us-visas/employment/treaty.html" },
+      { label: "Tratado Brasil-EUA E-1/E-2", url: "https://br.usembassy.gov/visas/treaty-trader-e-1-and-treaty-investor-e-2-visas/" }
+    ],
+    related: ["e2-vs-eb5-investidor", "eb5-green-card-investimento-2026", "empreender-eua-imigrante"]
+  },
+
+  {
+    id: 8,
+    slug: "eb3-unskilled-patrocinador",
+    titulo: "EB-3 Unskilled Workers: Como Conseguir Patrocinador nos EUA",
+    categoria: "EB-3",
+    data: "08 mar 2026",
+    leitura: "8 min",
+    imagem: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&fit=crop",
+    excerpt:
+      "O caminho real do EB-3 sem diploma: setores que contratam, como evitar fraude e quanto tempo a fila leva em 2026.",
+    metaTitle: "EB-3 Unskilled em 2026: Como Encontrar Patrocinador Legítimo | EBGreen",
+    metaDescription:
+      "Guia honesto do EB-3 Other Workers: setores que contratam, sinais de fraude, tempo de fila e o passo a passo do processo.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "O EB-3 Other Workers — também conhecido como EB-3 unskilled — é a única rota legítima de Green Card para brasileiros sem diploma de graduação e sem capital de investidor. Em troca, é uma rota longa, com fila historicamente lenta, e infelizmente também é o terreno preferido de intermediários fraudulentos. Este artigo te ajuda a entender o caminho real." },
+      { type: "h2", id: "o-que-e", text: "O que é o EB-3 Other Workers" },
+      { type: "p", text: "É a subcategoria do EB-3 para vagas que exigem menos de 2 anos de experiência ou treinamento. Foi pensada para preencher posições que o mercado americano não consegue suprir com mão de obra local." },
+      { type: "p", text: "Para entender o EB-3 como um todo, leia primeiro <a href=\"/blog/eb3-trabalhadores-qualificados\">EB-3: Green Card para Trabalhadores Qualificados e Não Qualificados</a>." },
+      { type: "h2", id: "setores", text: "Setores que de fato contratam via EB-3 unskilled" },
+      { type: "list", items: [
+        "Hospitalidade: housekeeping, food service, atendimento.",
+        "Frigoríficos e processamento de alimentos.",
+        "Limpeza pesada comercial e industrial.",
+        "Agricultura e horticultura.",
+        "Cuidadores em casas de repouso e long-term care.",
+        "Jardinagem e landscaping em escala."
+      ] },
+      { type: "callout", title: "Realidade do mercado", text: "São empregos com salários reais entre USD 14 e USD 22/h em 2026, dependendo da região. O Green Card vem como benefício de longo prazo — a remuneração imediata costuma ser equivalente ao mercado local." },
+      { type: "h2", id: "fila", text: "A fila do EB-3 unskilled em 2026" },
+      { type: "p", text: "Diferente do EB-3 Skilled e Professionals, o Other Workers tem fila própria e tipicamente mais longa. As datas de prioridade no Visa Bulletin oscilam mensalmente. É realista projetar entre 4 e 7 anos do PERM ao Green Card para brasileiros." },
+      { type: "p", text: "Por causa disso, muitos candidatos optam por entrar nos EUA com outro visto válido (turismo, estudante) durante a espera, mas <strong>nunca trabalham</strong> antes da autorização. Trabalhar sem permissão derruba todo o processo." },
+      { type: "h2", id: "como-funciona", text: "Como funciona o processo" },
+      { type: "ordered", items: [
+        "Empregador americano abre vaga e inicia PERM no DOL.",
+        "PERM aprovado: empregador peticiona I-140.",
+        "I-140 aprovada: candidato aguarda data de prioridade ficar atual.",
+        "Data atual: ajuste de status (se nos EUA) ou processo consular (se no Brasil).",
+        "Green Card emitido."
+      ] },
+      { type: "h2", id: "patrocinador-legitimo", text: "Como identificar patrocinador legítimo" },
+      { type: "list", items: [
+        "Empresa real, com endereço físico verificável e operação comprovada.",
+        "Histórico anterior de patrocínios bem-sucedidos (consulte MyVisaJobs).",
+        "Contrato de trabalho com salário compatível com o prevailing wage da região.",
+        "Não cobra do candidato pelos custos do PERM.",
+        "Comunicação direta com RH ou advogado oficial — sem intermediários estranhos."
+      ] },
+      { type: "callout", title: "Bandeira vermelha", text: "Se cobrarem do candidato pelos custos do PERM, é fraude. A lei americana proíbe expressamente. Empregador legítimo paga essa etapa." },
+      { type: "h2", id: "fraudes", text: "As fraudes mais comuns nesse mercado" },
+      { type: "list", items: [
+        "\"Pacotes\" de USD 30.000 a 80.000 cobrados do candidato como \"taxa de patrocínio\".",
+        "Empresas fantasmas criadas só para emitir oferta de trabalho.",
+        "Vagas que nunca existirão de verdade.",
+        "Promessa de Green Card em prazos impossíveis (\"em 6 meses\").",
+        "Documentos falsos de PERM ou I-140."
+      ] },
+      { type: "p", text: "Toda promessa fora do que está no Visa Bulletin oficial precisa ser tratada como suspeita." },
+      { type: "h2", id: "custos-reais", text: "Custos reais do candidato" },
+      { type: "list", items: [
+        "I-485 / DS-260 (etapa do candidato): USD 1.440 ou USD 345 + USD 220.",
+        "Exame médico: USD 200 a 500.",
+        "Honorários de assessoria: variáveis.",
+        "Tradução juramentada: USD 800 a 1.500.",
+        "Mudança e estabelecimento: ver <a href=\"/blog/custo-real-imigrar-eua-2026\">orçamento completo</a>."
+      ] },
+      { type: "h2", id: "vale-a-pena", text: "Vale a pena?" },
+      { type: "p", text: "Vale para quem tem perfil compatível, paciência para a fila e disposição para trabalhar duro nos primeiros anos. Para a maioria das famílias brasileiras que se enquadram, o EB-3 unskilled é a única rota legítima de Green Card sem diploma e sem capital — e por isso continua sendo procurado." },
+      { type: "p", text: "A EBGreen avalia gratuitamente seu perfil, identifica patrocinadores legítimos e mostra cenários reais antes de qualquer recomendação." },
+      { type: "cta", text: "Quero avaliar meu caso para EB-3 unskilled" }
+    ],
+    externalLinks: [
+      { label: "USCIS — EB-3 Other Workers", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-third-preference-eb-3" },
+      { label: "DOL — PERM Process", url: "https://www.dol.gov/agencies/eta/foreign-labor/programs/permanent" },
+      { label: "Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" }
+    ],
+    related: ["eb3-trabalhadores-qualificados", "custo-real-imigrar-eua-2026", "ajuste-status-greencard"]
+  },
+
+  {
+    id: 9,
+    slug: "visto-f1-estudar-eua",
+    titulo: "Visto F-1: Como Estudar nos EUA e Viver a Experiência Universitária",
+    categoria: "F-1",
+    data: "09 mar 2026",
+    leitura: "8 min",
+    imagem: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80&fit=crop",
+    excerpt:
+      "Mais que estudar — uma porta inteligente para morar, trabalhar e construir trajetória nos Estados Unidos.",
+    metaTitle: "Visto F-1 em 2026: Estudar nos EUA e Construir Carreira | EBGreen",
+    metaDescription:
+      "Tudo sobre o visto F-1: como aplicar, comprovação financeira, OPT, STEM extension e o caminho do estudante ao Green Card.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "O F-1 é o visto de estudante. Em 2026, ele continua sendo uma das portas mais inteligentes para o sonho americano — não só pelo diploma, mas pelo que vem depois: até 3 anos de autorização de trabalho via OPT/STEM, transição para visto de trabalho ou Green Card, e tempo para construir reputação nos EUA." },
+      { type: "h2", id: "como-funciona", text: "Como funciona o F-1" },
+      { type: "p", text: "Você precisa ser admitido em uma escola, college ou universidade americana certificada pelo SEVP (Student and Exchange Visitor Program). A escola emite o formulário I-20, que é o que abre seu pedido de visto na embaixada." },
+      { type: "list", items: [
+        "Cobre cursos acadêmicos, técnicos e de idioma (com regras específicas).",
+        "Permite trabalho on-campus de até 20h/semana durante o semestre.",
+        "Permite trabalho off-campus via CPT (durante o curso) e OPT (após formado).",
+        "Cônjuge e filhos solteiros menores de 21 vêm como F-2 dependentes."
+      ] },
+      { type: "h2", id: "passo-a-passo", text: "Passo a passo do processo" },
+      { type: "ordered", items: [
+        "Escolher escola certificada pelo SEVP.",
+        "Ser aceito formalmente — receber o I-20.",
+        "Pagar a taxa SEVIS (USD 350 em 2026).",
+        "Preencher o DS-160 e pagar a taxa MRV (USD 185).",
+        "Agendar entrevista no consulado americano.",
+        "Comparecer com documentação completa.",
+        "Aprovado: viagem aos EUA até 30 dias antes do início do curso."
+      ] },
+      { type: "h2", id: "documentos", text: "Documentos para a entrevista" },
+      { type: "list", items: [
+        "I-20 original assinado.",
+        "DS-160 confirmado.",
+        "Comprovante de pagamento da taxa SEVIS.",
+        "Comprovação financeira (próprio, família, sponsor ou bolsa).",
+        "Histórico escolar / diplomas anteriores.",
+        "Carta da escola, opcional mas recomendada.",
+        "Comprovantes de vínculo com o Brasil (intenção de retornar)."
+      ] },
+      { type: "callout", title: "Comprovação financeira", text: "É o ponto mais subestimado. O consulado quer ver capacidade comprovada de bancar mensalidades + custo de vida pelos primeiros 12 meses, sem necessidade de trabalhar. Estimativa realista: USD 35.000 a 80.000/ano dependendo da instituição." },
+      { type: "h2", id: "trabalho", text: "F-1 e trabalho: o que pode e o que não pode" },
+      { type: "list", items: [
+        "On-campus: liberado até 20h/semana durante o semestre, full-time nas férias.",
+        "CPT (Curricular Practical Training): trabalho relacionado ao curso, durante o curso, com autorização da escola.",
+        "OPT (Optional Practical Training): até 12 meses após formado, na área de estudo.",
+        "STEM Extension: +24 meses para graduados em áreas STEM (total de 36 meses)."
+      ] },
+      { type: "p", text: "O OPT/STEM é o ponto-chave para quem quer transição. Veja em detalhe no artigo <a href=\"/blog/opt-stem-extension\">OPT e STEM Extension</a>." },
+      { type: "h2", id: "transicoes", text: "Do F-1 para visto de trabalho ou Green Card" },
+      { type: "p", text: "Caminhos mais comuns:" },
+      { type: "list", items: [
+        "F-1 → H-1B: empregador patrocina visto de trabalho via lottery.",
+        "F-1 → O-1: para perfis com reconhecimento extraordinário (mais comum em pesquisa, arte, esportes).",
+        "F-1 → EB-2 NIW: pesquisadores e profissionais com impacto comprovado.",
+        "F-1 → EB-1A: para perfis excepcionais.",
+        "F-1 → casamento com cidadão americano (caminho legítimo, mas não recomendado como estratégia)."
+      ] },
+      { type: "h2", id: "custos", text: "Custos típicos do F-1" },
+      { type: "list", items: [
+        "Mensalidade: varia muito (community college a partir de USD 8.000/ano; universidades privadas USD 50.000+).",
+        "Custo de vida: USD 1.200 a 3.500/mês conforme cidade.",
+        "Taxa SEVIS: USD 350.",
+        "Taxa MRV: USD 185.",
+        "Plano de saúde estudantil: USD 1.500 a 4.000/ano."
+      ] },
+      { type: "h2", id: "armadilhas", text: "Armadilhas mais comuns" },
+      { type: "list", items: [
+        "Escolher escola sem reputação só pelo preço — desvaloriza diploma e dificulta OPT.",
+        "Trabalhar fora das regras (CPT/OPT) — perda imediata do status.",
+        "Subestimar a comprovação financeira na entrevista.",
+        "Não planejar transição F-1 → trabalho desde o primeiro semestre.",
+        "Confundir F-1 com green card — F-1 não dá residência permanente automaticamente."
+      ] },
+      { type: "h2", id: "vale", text: "Vale a pena em 2026?" },
+      { type: "p", text: "Para quem tem perfil acadêmico, jovem ou em transição de carreira, o F-1 ainda é uma das portas mais elegantes para os Estados Unidos. Permite tempo, networking e flexibilidade que outros vistos não oferecem." },
+      { type: "p", text: "A EBGreen ajuda a planejar a jornada completa — da escolha da escola à transição para o visto definitivo." },
+      { type: "cta", text: "Quero planejar meu F-1 com estratégia" }
+    ],
+    externalLinks: [
+      { label: "USCIS — Students and Exchange Visitors", url: "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors" },
+      { label: "Study in the States — DHS", url: "https://studyinthestates.dhs.gov/" },
+      { label: "U.S. Department of State — Student Visa", url: "https://travel.state.gov/content/travel/en/us-visas/study/student-visa.html" }
+    ],
+    related: ["opt-stem-extension", "visto-o1-rota-express", "eb2-niw-guia-definitivo-2026"]
+  },
   { id: 10, slug: "visto-r1-religiosos", titulo: "Visto R-1: Trabalhadores Religiosos e o Caminho para o Green Card", categoria: "R-1", data: "10 mar 2026", leitura: "7 min", imagem: "https://images.unsplash.com/photo-1438032005730-c779502df39b?w=1200&q=80&fit=crop", excerpt: "Conheça como líderes de fé estão vivendo sua missão e construindo comunidade nos Estados Unidos hoje." },
   { id: 11, slug: "e2-vs-eb5-investidor", titulo: "E-2 vs EB-5: Qual Visto de Investidor é Certo para Você?", categoria: "E-2", data: "11 mar 2026", leitura: "9 min", imagem: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&q=80&fit=crop", excerpt: "Veja lado a lado duas formas de investir e descubra qual combina mais com seus planos de futuro." },
   { id: 12, slug: "viver-em-nova-york-imigrantes", titulo: "Viver em Nova York: Guia Real para Imigrantes Brasileiros", categoria: "Vida nos EUA", data: "12 mar 2026", leitura: "13 min", imagem: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1200&q=80&fit=crop", excerpt: "Explore custos reais, bairros acolhedores e dicas práticas para começar com pé direito na cidade." },
