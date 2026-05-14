@@ -12,6 +12,7 @@ type NewsItem = {
   link: string;
   pubDate: string;
   description: string;
+  source?: string;
 };
 
 const copy = {
@@ -21,9 +22,9 @@ const copy = {
     es: "Últimas Noticias de Inmigración Americana",
   },
   subtitle: {
-    pt: "Fonte oficial: USCIS — Atualizado automaticamente",
-    en: "Official source: USCIS — Auto-updated",
-    es: "Fuente oficial: USCIS — Actualizado automáticamente",
+    pt: "Agregador de notícias sobre imigração americana — atualizado automaticamente",
+    en: "U.S. immigration news aggregator — auto-updated",
+    es: "Agregador de noticias de inmigración americana — actualizado automáticamente",
   },
   readMore: { pt: "Ler completa", en: "Read more", es: "Leer completa" },
   loading: { pt: "Carregando notícias...", en: "Loading news...", es: "Cargando noticias..." },

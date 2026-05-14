@@ -5,13 +5,15 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const FEED_URL = "https://www.uscis.gov/news/rss-feed/59";
+const FEED_URL =
+  "https://news.google.com/rss/search?q=USCIS+OR+%22US+immigration%22+OR+%22green+card%22+when:14d&hl=en-US&gl=US&ceid=US:en";
 
 interface NewsItem {
   title: string;
   link: string;
   pubDate: string;
   description: string;
+  source: string;
 }
 
 function decodeEntities(str: string): string {
@@ -42,6 +44,7 @@ function parseRss(xml: string): NewsItem[] {
       link: get("link"),
       pubDate: get("pubDate"),
       description: get("description"),
+      source: get("source"),
     });
   }
   return items;
