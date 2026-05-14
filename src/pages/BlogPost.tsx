@@ -151,7 +151,7 @@ const BlogPost = () => {
       />
 
       {/* Hero — dark compact split: photo left, text right */}
-      <header className="pt-28 md:pt-32 pb-12 md:pb-16 bg-green-deep relative overflow-hidden">
+      <header className="pt-24 md:pt-28 pb-8 md:pb-10 bg-green-deep relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-30 pointer-events-none"
           style={{ backgroundImage: "radial-gradient(circle at 80% 20%, hsl(var(--gold) / 0.35) 0%, transparent 55%)" }}
