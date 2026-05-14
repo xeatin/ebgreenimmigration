@@ -186,7 +186,7 @@ const BlogPost = () => {
                 {post.categoria}
               </p>
 
-              <h1 className="font-body font-bold uppercase text-cream text-[1.75rem] md:text-4xl lg:text-[2.6rem] leading-[1.1] tracking-tight mb-5">
+              <h1 className="font-display font-medium text-cream leading-[1.05] tracking-tight text-3xl md:text-4xl lg:text-5xl mb-5">
                 {post.titulo}
               </h1>
 
