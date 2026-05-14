@@ -163,10 +163,10 @@ const Blog = () => {
             className="max-w-2xl mx-auto"
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream mb-4">
-              Pronto para iniciar sua <span className="text-gradient-gold">jornada</span>?
+              Seu <span className="text-gradient-gold">Green Card</span> pode começar com uma análise gratuita.
             </h2>
             <p className="text-cream/70 font-body text-lg mb-8">
-              Agende uma avaliação gratuita e descubra o melhor caminho para o seu Green Card.
+              Fale agora com um dos nossos especialistas e descubra os caminhos mais adequados para o seu perfil.
             </p>
             <a
               href="/#contato"
