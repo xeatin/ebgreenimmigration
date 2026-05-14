@@ -182,15 +182,15 @@ const BlogPost = () => {
 
             {/* Text */}
             <div>
-              <p className="font-body text-[11px] md:text-xs font-bold uppercase tracking-[0.25em] text-gold mb-5">
+              <p className="font-body text-[11px] md:text-xs font-bold uppercase tracking-[0.25em] text-gold mb-3">
                 {post.categoria}
               </p>
 
-              <h1 className="font-display font-medium text-cream leading-[1.05] tracking-tight text-3xl md:text-4xl lg:text-5xl mb-5">
+              <h1 className="font-display font-medium text-cream leading-[1.05] tracking-tight text-3xl md:text-4xl lg:text-[2.75rem] mb-3">
                 {post.titulo}
               </h1>
 
-              <p className="font-body text-cream/75 text-base md:text-[15px] leading-relaxed mb-6 max-w-xl">
+              <p className="font-body text-cream/75 text-sm md:text-[14px] leading-relaxed mb-4 max-w-xl">
                 {post.excerpt}
               </p>
 
