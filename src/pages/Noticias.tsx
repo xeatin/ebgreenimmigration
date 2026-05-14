@@ -168,7 +168,7 @@ const Noticias = () => {
             <button
               type="button"
               onClick={() => window.dispatchEvent(new CustomEvent("open-whatsapp-lead"))}
-              className="mt-6 bg-gradient-gold text-green-deep px-8 py-3 rounded-md font-bold font-body hover:opacity-90 transition-opacity"
+              className="btn-highlight inline-flex items-center gap-2 mt-6 bg-gradient-gold text-green-deep px-8 py-3 rounded-md font-bold font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover"
             >
               {copy.ctaButton[lang]}
             </button>
