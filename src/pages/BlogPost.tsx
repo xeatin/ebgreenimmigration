@@ -203,9 +203,6 @@ const BlogPost = () => {
               )}
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-cream/60 font-body text-xs md:text-sm">
                 <span className="inline-flex items-center gap-1.5">
-                  <Calendar size={13} /> {post.data}
-                </span>
-                <span className="inline-flex items-center gap-1.5">
                   <Clock size={13} /> {post.leitura} de leitura
                 </span>
               </div>
