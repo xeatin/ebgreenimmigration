@@ -172,7 +172,7 @@ const copy = {
     chooseTitle: "¿Cómo podemos ayudarle?",
     chooseDesc: "Seleccione una opción para continuar.",
     isClient: "Soy cliente Ebgreen",
-    notClient: "Aún no soy cliente",
+    notClient: "Quiero hablar con un especialista",
     back: "Volver",
     clientTitle: "Atención al cliente",
     clientDesc: "Confirme su nombre y teléfono para abrir su soporte en WhatsApp.",
