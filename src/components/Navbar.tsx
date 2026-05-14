@@ -176,13 +176,16 @@ const Navbar = () => {
                     </a>
                   );
                 })}
-                <a
-                  href={isHomePage ? "#contato" : "/#contato"}
-                  onClick={() => setIsOpen(false)}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsOpen(false);
+                    window.dispatchEvent(new CustomEvent("open-whatsapp-lead"));
+                  }}
                   className="btn-highlight bg-gradient-gold text-green-deep px-6 py-2.5 rounded-md text-sm font-bold font-body text-center"
                 >
                   {t(translations.nav.cta, lang)}
-                </a>
+                </button>
               </div>
             </motion.div>
           )}
