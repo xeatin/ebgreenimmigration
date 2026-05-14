@@ -150,18 +150,13 @@ const Noticias = () => {
                           {item.description}
                         </p>
                       )}
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 mt-4 text-gold font-body font-semibold text-sm hover:underline"
-                      >
+                      <span className="inline-flex items-center gap-1.5 mt-4 text-gold font-body font-semibold text-sm">
                         {copy.readMore[lang]}
                         <ExternalLink size={14} />
-                      </a>
+                      </span>
                     </div>
                   </div>
-                </motion.article>
+                </motion.a>
               ))}
             </div>
           )}
