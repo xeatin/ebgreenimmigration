@@ -6,7 +6,7 @@
 export type ArticleBlock =
   | { type: "p"; text: string }
   | { type: "h2"; text: string; id: string }
-  | { type: "h3"; text: string }
+  | { type: "h3"; text: string; id?: string }
   | { type: "list"; items: string[] }
   | { type: "ordered"; items: string[] }
   | { type: "quote"; text: string; author?: string }
