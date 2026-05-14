@@ -29,37 +29,45 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    if (!isHomePage) {
-      setScrolled(true);
-      setOverLight(false);
-      return;
-    }
-    const lightSectionIds = ["diferenciais", "processo", "sobre", "depoimentos", "contato"];
-
     const checkBackground = () => {
       setScrolled(window.scrollY > 50);
       const navHeight = 80;
-      const checkPoint = window.scrollY + navHeight;
 
-      let isOverLightSection = false;
-      for (const id of lightSectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.offsetTop;
-          const bottom = top + el.offsetHeight;
-          if (checkPoint >= top && checkPoint < bottom) {
-            isOverLightSection = true;
-            break;
-          }
-        }
+      // Probe the element directly under the navbar to detect light vs dark backgrounds
+      const probeY = navHeight + 4;
+      const probeX = Math.min(window.innerWidth - 20, Math.max(20, window.innerWidth / 2));
+      const stack = document.elementsFromPoint(probeX, probeY);
+
+      const parseRgb = (s: string): [number, number, number, number] | null => {
+        const m = s.match(/rgba?\(([^)]+)\)/);
+        if (!m) return null;
+        const parts = m[1].split(",").map((p) => parseFloat(p.trim()));
+        return [parts[0] || 0, parts[1] || 0, parts[2] || 0, parts[3] ?? 1];
+      };
+
+      let isLight = false;
+      for (const el of stack) {
+        const bg = getComputedStyle(el as HTMLElement).backgroundColor;
+        const rgb = parseRgb(bg);
+        if (!rgb || rgb[3] === 0) continue;
+        const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255;
+        isLight = luminance > 0.6;
+        break;
       }
-      setOverLight(isOverLightSection);
+      setOverLight(isLight);
     };
 
-    window.addEventListener("scroll", checkBackground);
+    window.addEventListener("scroll", checkBackground, { passive: true });
+    window.addEventListener("resize", checkBackground);
+    // Run after paint so target elements exist
+    const t = setTimeout(checkBackground, 50);
     checkBackground();
-    return () => window.removeEventListener("scroll", checkBackground);
-  }, [isHomePage]);
+    return () => {
+      window.removeEventListener("scroll", checkBackground);
+      window.removeEventListener("resize", checkBackground);
+      clearTimeout(t);
+    };
+  }, [isHomePage, location.pathname]);
 
   useEffect(() => {
     if (!isHomePage) return;
