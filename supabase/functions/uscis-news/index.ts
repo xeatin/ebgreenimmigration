@@ -58,6 +58,27 @@ function parseRss(xml: string): NewsItem[] {
   return items;
 }
 
+// Decode the base64-encoded protobuf inside Google News article URLs
+// to recover the original publisher URL. Falls back to the input on failure.
+function resolveGoogleNewsUrl(gUrl: string): string {
+  try {
+    const m = /\/articles\/([^?\/]+)/.exec(gUrl);
+    if (!m) return gUrl;
+    let b64 = m[1].replace(/-/g, "+").replace(/_/g, "/");
+    while (b64.length % 4) b64 += "=";
+    const bin = atob(b64);
+    // Look for an http(s):// substring inside the decoded protobuf payload
+    const urlMatch = /https?:\/\/[^\x00-\x1f"<>\\^`{|}\s]+/.exec(bin);
+    if (urlMatch) {
+      // Trim trailing protobuf garbage (length-prefixed strings often have non-url bytes after)
+      return urlMatch[0].replace(/[^\w\d\-._~:/?#\[\]@!$&'()*+,;=%]+$/, "");
+    }
+    return gUrl;
+  } catch {
+    return gUrl;
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -67,12 +88,15 @@ Deno.serve(async (req) => {
         "User-Agent":
           "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
         "Accept": "application/rss+xml, application/xml, text/xml, */*",
-        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
       },
     });
     if (!res.ok) throw new Error(`Feed returned ${res.status}`);
     const xml = await res.text();
-    const items = parseRss(xml).slice(0, 15);
+    const items = parseRss(xml).slice(0, 15).map((it) => ({
+      ...it,
+      link: it.link.includes("news.google.com") ? resolveGoogleNewsUrl(it.link) : it.link,
+    }));
 
     return new Response(JSON.stringify({ items, fetchedAt: new Date().toISOString() }), {
       headers: {
