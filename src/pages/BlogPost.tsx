@@ -15,7 +15,7 @@ const Block = ({ block }: { block: ArticleBlock }) => {
   switch (block.type) {
     case "p":
       return (
-        <p className="text-[17px] md:text-lg leading-[1.85] text-green-deep/85 font-body mb-6 [&_a]:text-green-deep [&_a]:font-semibold [&_a]:underline [&_a]:decoration-gold [&_a]:underline-offset-4 [&_a:hover]:text-gold">
+        <p className="text-[17px] md:text-lg leading-[1.85] text-green-deep/85 font-body mb-6 [&_a]:text-green-deep [&_a]:font-semibold [&_a]:underline [&_a]:decoration-gold [&_a]:underline-offset-4 [&_a:hover]:text-gold-dark [&_a:hover]:decoration-gold-dark">
           {renderInline(block.text)}
         </p>
       );
