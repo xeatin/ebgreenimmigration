@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Clock, Calendar, ExternalLink, ChevronUp } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, ExternalLink, ChevronUp, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { getPostBySlug, blogPosts, type ArticleBlock } from "@/data/blog-posts";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations, t } from "@/i18n/translations";
+import { useTranslatedPost } from "@/hooks/useTranslatedPost";
 
 const renderInline = (text: string) => (
   <span dangerouslySetInnerHTML={{ __html: text }} />
