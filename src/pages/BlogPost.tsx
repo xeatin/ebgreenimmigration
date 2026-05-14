@@ -172,11 +172,11 @@ const BlogPost = () => {
             className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 md:gap-12 items-center"
           >
             {/* Photo */}
-            <div className="relative overflow-hidden shadow-2xl aspect-[4/3] md:aspect-[16/10]">
+            <div className="group relative overflow-hidden shadow-2xl aspect-[4/3] md:aspect-[16/10] rounded-lg border border-cream/10 hover:border-eligibility-green/60 transition-colors duration-300">
               <img
                 src={post.imagem}
                 alt={post.titulo}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 
