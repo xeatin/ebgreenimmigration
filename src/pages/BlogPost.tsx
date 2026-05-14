@@ -150,53 +150,76 @@ const BlogPost = () => {
         style={{ width: `${progress}%` }}
       />
 
-      {/* Hero */}
-      <header className="pt-28 md:pt-32 pb-10 bg-green-deep relative overflow-hidden">
+      {/* Hero — D4U-3 Law Firm Premium (black) */}
+      <header className="pt-28 md:pt-32 pb-12 md:pb-16 bg-[#0a0a0a] relative overflow-hidden">
         <div
-          className="absolute inset-0 opacity-30"
-          style={{ backgroundImage: "radial-gradient(circle at 80% 20%, hsl(var(--gold) / 0.35) 0%, transparent 55%)" }}
+          className="absolute inset-0 opacity-[0.18] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(circle at 85% 15%, hsl(var(--gold) / 0.55) 0%, transparent 50%)" }}
         />
-        <div className="container mx-auto px-6 max-w-3xl relative">
+        <div className="container mx-auto px-6 max-w-7xl relative">
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-cream/70 hover:text-gold font-body text-sm transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-cream/60 hover:text-gold font-body text-sm transition-colors mb-10"
           >
             <ArrowLeft size={16} />
             Voltar para o blog
           </Link>
 
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <span className="inline-block px-3 py-1 rounded-sm text-[11px] font-semibold font-body bg-gradient-gold text-green-deep mb-5">
-              {post.categoria}
-            </span>
-
-            <h1 className="font-display text-3xl md:text-4xl lg:text-[2.75rem] text-cream leading-[1.15] tracking-tight mb-6">
-              {post.titulo}
-            </h1>
-
-            <p className="font-body text-cream/75 text-lg leading-relaxed mb-6 max-w-2xl">
-              {post.excerpt}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-cream/60 font-body text-sm">
-              {post.author && <span>Por <span className="text-cream">{post.author}</span></span>}
-              <span className="inline-flex items-center gap-1.5">
-                <Calendar size={14} /> {post.data}
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <span className="inline-block font-body text-[11px] font-bold tracking-[0.28em] text-gold uppercase mb-6">
+                {post.categoria}
               </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Clock size={14} /> {post.leitura} de leitura
-              </span>
-            </div>
-          </motion.div>
+
+              <h1 className="font-display text-3xl md:text-5xl lg:text-[3.25rem] text-cream leading-[1.1] tracking-tight mb-7">
+                {post.titulo}
+              </h1>
+
+              <div className="w-16 h-px bg-gold mb-7" />
+
+              <p className="font-body text-cream/75 text-lg leading-relaxed mb-8 max-w-xl">
+                {post.excerpt}
+              </p>
+
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-cream/55 font-body text-sm">
+                {post.author && (
+                  <span className="italic">
+                    Por <span className="text-cream not-italic">{post.author}</span>
+                  </span>
+                )}
+                {post.author && <span className="text-cream/30">·</span>}
+                <span className="inline-flex items-center gap-1.5">
+                  <Calendar size={14} /> {post.data}
+                </span>
+                <span className="text-cream/30">·</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Clock size={14} /> {post.leitura} de leitura
+                </span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="relative"
+            >
+              <div className="absolute -inset-3 bg-gold/10 rounded-sm blur-xl pointer-events-none" />
+              <div className="relative aspect-[4/5] lg:aspect-[5/6] overflow-hidden shadow-2xl ring-1 ring-gold/20">
+                <img
+                  src={post.imagem}
+                  alt={post.titulo}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </header>
-
-      {/* Featured image */}
-      <div className="container mx-auto px-6 max-w-4xl -mt-6">
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[16/8]">
-          <img src={post.imagem} alt={post.titulo} className="w-full h-full object-cover" />
-        </div>
-      </div>
 
       {/* Body */}
       <article className="container mx-auto px-6 py-12 md:py-16">
