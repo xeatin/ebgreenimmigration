@@ -50,7 +50,7 @@ const copy = {
     chooseTitle: "Como podemos te ajudar?",
     chooseDesc: "Selecione uma opção para continuar.",
     isClient: "Sou cliente Ebgreen",
-    notClient: "Ainda não sou cliente",
+    notClient: "Quero falar com um especialista",
     back: "Voltar",
     clientTitle: "Atendimento ao cliente",
     clientDesc: "Confirme seu nome e telefone para abrirmos seu suporte no WhatsApp.",
@@ -111,7 +111,7 @@ const copy = {
     chooseTitle: "How can we help you?",
     chooseDesc: "Select an option to continue.",
     isClient: "I'm an Ebgreen client",
-    notClient: "I'm not a client yet",
+    notClient: "I want to talk to a specialist",
     back: "Back",
     clientTitle: "Client support",
     clientDesc: "Confirm your name and phone to open your support on WhatsApp.",
@@ -172,7 +172,7 @@ const copy = {
     chooseTitle: "¿Cómo podemos ayudarle?",
     chooseDesc: "Seleccione una opción para continuar.",
     isClient: "Soy cliente Ebgreen",
-    notClient: "Aún no soy cliente",
+    notClient: "Quiero hablar con un especialista",
     back: "Volver",
     clientTitle: "Atención al cliente",
     clientDesc: "Confirme su nombre y teléfono para abrir su soporte en WhatsApp.",
@@ -294,6 +294,16 @@ const WhatsAppButton = () => {
     setOpen(true);
     if (value === "client" || value === "cliente") setStep("client");
     else setStep("lead");
+  }, []);
+
+  // Custom event: allow other components to open the WhatsApp lead form directly
+  useEffect(() => {
+    const openLead = () => {
+      setOpen(true);
+      setStep("lead");
+    };
+    window.addEventListener("open-whatsapp-lead", openLead);
+    return () => window.removeEventListener("open-whatsapp-lead", openLead);
   }, []);
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {

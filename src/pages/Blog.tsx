@@ -168,13 +168,14 @@ const Blog = () => {
             <p className="text-cream/70 font-body text-lg mb-8">
               Fale agora com um dos nossos especialistas e descubra os caminhos mais adequados para o seu perfil.
             </p>
-            <a
-              href="/#contato"
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-whatsapp-lead"))}
               className="btn-highlight inline-flex items-center gap-2 bg-gradient-gold text-green-deep px-8 py-4 rounded-md font-bold text-lg font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover"
             >
               {t(translations.nav.cta, lang)}
               <ArrowRight size={20} />
-            </a>
+            </button>
           </motion.div>
         </div>
       </section>
