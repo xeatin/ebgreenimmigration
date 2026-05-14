@@ -105,7 +105,9 @@ const Block = ({ block }: { block: ArticleBlock }) => {
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = useMemo(() => (slug ? getPostBySlug(slug) : undefined), [slug]);
+  const { lang } = useLanguage();
+  const sourcePost = useMemo(() => (slug ? getPostBySlug(slug) : undefined), [slug]);
+  const { post, loading } = useTranslatedPost(sourcePost, lang);
   const [progress, setProgress] = useState(0);
   const [showTop, setShowTop] = useState(false);
 
@@ -133,7 +135,8 @@ const BlogPost = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (!sourcePost) return <Navigate to="/blog" replace />;
+  if (!post) return null;
 
   const headings = (post.content ?? []).filter(
     (b): b is Extract<ArticleBlock, { type: "h2" }> => b.type === "h2"
@@ -165,8 +168,15 @@ const BlogPost = () => {
             className="inline-flex items-center gap-2 text-cream/70 hover:text-gold font-body text-sm transition-colors mb-8"
           >
             <ArrowLeft size={16} />
-            Voltar para o blog
+            {t(translations.post.back, lang)}
           </Link>
+
+          {loading && lang !== "pt" && (
+            <div className="absolute top-6 right-6 inline-flex items-center gap-2 text-cream/60 font-body text-xs">
+              <Loader2 className="animate-spin" size={12} />
+              {t(translations.post.translating, lang)}
+            </div>
+          )}
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
