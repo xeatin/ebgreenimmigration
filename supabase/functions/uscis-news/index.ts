@@ -36,7 +36,7 @@ function parseRss(xml: string): NewsItem[] {
   while ((match = itemRegex.exec(xml)) !== null) {
     const block = match[1];
     const get = (tag: string) => {
-      const r = new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`).exec(block);
+      const r = new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`).exec(block);
       return r ? decodeEntities(r[1]) : "";
     };
     items.push({
