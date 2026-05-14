@@ -123,12 +123,16 @@ const Noticias = () => {
           {!loading && !error && (
             <div className="space-y-5">
               {items.map((item, i) => (
-                <motion.article
+                <motion.a
                   key={item.link}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05 }}
-                  className="bg-white rounded-xl border-l-4 border-gold shadow-sm hover:shadow-md transition-shadow p-6"
+                  whileTap={{ scale: 0.98 }}
+                  className="block bg-white rounded-xl border-l-4 border-gold shadow-sm p-6 cursor-pointer transition-all duration-200 hover:border-eligibility-green hover:shadow-[0_8px_24px_-8px_hsl(var(--eligibility-green)/0.45)] active:bg-eligibility-green/10 active:border-eligibility-green focus:outline-none focus-visible:ring-2 focus-visible:ring-eligibility-green"
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold/15 text-gold flex items-center justify-center">
