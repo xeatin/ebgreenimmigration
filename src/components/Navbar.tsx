@@ -132,12 +132,13 @@ const Navbar = () => {
               );
             })}
             <LanguageSelector darkMode={overLight && scrolled} />
-            <a
-              href={isHomePage ? "#contato" : "/#contato"}
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-whatsapp-lead"))}
               className="btn-highlight bg-gradient-gold text-green-deep px-6 py-2.5 rounded-md text-sm font-bold font-body hover:opacity-90 transition-opacity ml-2"
             >
               {t(translations.nav.cta, lang)}
-            </a>
+            </button>
           </div>
 
           <div className="flex items-center gap-3 lg:hidden">
