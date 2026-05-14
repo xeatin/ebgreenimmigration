@@ -4,14 +4,19 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Focused on USCIS and US visa/immigration news from American sources,
+// including Congress, legislation and policy updates.
 const QUERIES = [
-  '"imigração americana"',
-  '"green card"',
-  '"visto americano"',
   "USCIS",
+  '"US visa" policy',
+  '"immigration law" Congress',
+  '"green card" USCIS',
+  '"visa bulletin"',
+  '"immigration bill" Congress',
 ];
 const FEED_URLS = QUERIES.map(
-  (q) => `https://www.bing.com/news/search?q=${encodeURIComponent(q)}&format=rss`
+  (q) =>
+    `https://www.bing.com/news/search?q=${encodeURIComponent(q)}&format=rss&setlang=en-US&cc=US`
 );
 
 interface NewsItem {
