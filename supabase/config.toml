@@ -1,1 +1,3 @@
 project_id = "zkktyrxdkugkdhaiqxkv"
+[functions.uscis-news]
+verify_jwt = false
