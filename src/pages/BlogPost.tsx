@@ -141,7 +141,7 @@ const BlogPost = () => {
     .filter(Boolean);
 
   return (
-    <div className="min-h-screen bg-[hsl(40_25%_97%)]">
+    <div className="min-h-screen bg-cream">
       <Navbar />
 
       {/* Reading progress bar */}
@@ -292,7 +292,7 @@ const BlogPost = () => {
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (
-        <section className="bg-green-deep/[0.04] border-t border-green-deep/10 py-16">
+        <section className="bg-cream border-t border-green-deep/10 py-16">
           <div className="container mx-auto px-6 max-w-6xl">
             <h2 className="font-display text-2xl md:text-3xl text-green-deep mb-8">
               Continue lendo
