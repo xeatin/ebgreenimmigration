@@ -1599,11 +1599,343 @@ export const blogPosts: BlogPost[] = [
     ],
     related: ["visto-e2-investir-morar-eua", "eb5-green-card-investimento-2026", "impostos-eua-imigrantes"]
   },
-  { id: 15, slug: "opt-stem-extension", titulo: "OPT e STEM Extension: Ganhe Experiência Profissional nos EUA Após se Formar", categoria: "F-1", data: "15 mar 2026", leitura: "8 min", imagem: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80&fit=crop", excerpt: "Descubra como ter até 12 meses de experiência profissional nos EUA ainda com seu visto de estudante." },
-  { id: 17, slug: "eb1a-atletas-artistas", titulo: "EB-1A para Atletas e Artistas Brasileiros: Cases Reais", categoria: "EB-1A", data: "17 mar 2026", leitura: "9 min", imagem: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&fit=crop", excerpt: "Veja histórias reais de brasileiros que usaram seu talento para construir vida nova nos Estados Unidos." },
-  { id: 18, slug: "saude-eua-imigrantes", titulo: "Saúde nos EUA: Como se Proteger como Imigrante", categoria: "Vida nos EUA", data: "18 mar 2026", leitura: "10 min", imagem: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&q=80&fit=crop", excerpt: "Descubra como se proteger e encontrar planos que fazem sentido para quem está começando do zero." },
-  { id: 19, slug: "o1b-artistas", titulo: "Visto O-1B para Artistas: Reconhecimento que Abre Portas", categoria: "Visto O-1", data: "19 mar 2026", leitura: "8 min", imagem: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&q=80&fit=crop", excerpt: "Explore como artistas brasileiros mostram seu trabalho ao mundo e conquistam espaço na cena americana." },
-  { id: 20, slug: "r1-para-greencard", titulo: "R-1 para Green Card: O Caminho do Visto Religioso para a Residência", categoria: "R-1", data: "20 mar 2026", leitura: "8 min", imagem: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80&fit=crop", excerpt: "Veja como trabalhadores de fé abrem caminho para residência permanente com propósito e dedicação." },
+  {
+    id: 15,
+    slug: "opt-stem-extension",
+    titulo: "OPT e STEM Extension: Ganhe Experiência Profissional nos EUA Após se Formar",
+    categoria: "F-1",
+    data: "15 mar 2026",
+    leitura: "9 min",
+    imagem: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80&fit=crop",
+    excerpt: "Descubra como ter até 36 meses de experiência profissional nos EUA ainda com seu visto de estudante.",
+    metaTitle: "OPT e STEM Extension em 2026: Guia Completo para Estudantes Brasileiros | EBGreen",
+    metaDescription: "Como funciona OPT e STEM Extension: prazos, elegibilidade, empregos qualificados e como transformar em visto de trabalho ou Green Card.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "OPT (Optional Practical Training) e STEM Extension são, juntos, o maior ativo escondido do visto F-1. Eles dão até 36 meses de autorização de trabalho legal nos EUA — tempo suficiente para construir carreira, conseguir patrocínio H-1B ou montar dossiê de EB-2 NIW. Quem ignora esse caminho desperdiça anos." },
+      { type: "h2", id: "o-que-e-opt", text: "O que é o OPT" },
+      { type: "p", text: "O OPT é uma autorização de trabalho de 12 meses concedida pelo USCIS a estudantes F-1 graduados, dentro da área de estudo. Pode ser usado antes (pre-completion) ou depois (post-completion) da formatura. Quase todos optam pela versão post-completion." },
+      { type: "list", items: [
+        "12 meses por nível acadêmico (bacharelado, mestrado, doutorado).",
+        "Trabalho precisa ser na área do diploma.",
+        "Empregador pode ser qualquer empresa americana — sem necessidade de patrocínio.",
+        "Self-employment é permitido com regras específicas.",
+        "Período máximo de 90 dias sem emprego durante o OPT regular."
+      ] },
+      { type: "h2", id: "stem", text: "STEM Extension: +24 meses" },
+      { type: "p", text: "Se seu diploma é em uma área STEM (Science, Technology, Engineering, Mathematics) listada pelo DHS, você pode estender o OPT por mais 24 meses — totalizando 36 meses. Em 2026, a lista STEM inclui ciência da computação, engenharias, dados, biotecnologia, atuária, neurociência, entre outras." },
+      { type: "callout", title: "Empregador qualificado", text: "Para STEM Extension, o empregador precisa estar inscrito no E-Verify e fornecer plano formal de treinamento (Form I-983). Freelancer e self-employment NÃO qualificam para STEM." },
+      { type: "h2", id: "passo-a-passo", text: "Passo a passo do OPT" },
+      { type: "ordered", items: [
+        "Solicitar à DSO da escola um novo I-20 com recomendação de OPT.",
+        "Protocolar Form I-765 ao USCIS com taxa de USD 470 (2026).",
+        "Aguardar EAD card (Employment Authorization Document) — 60-90 dias.",
+        "Começar trabalho apenas após EAD aprovado e data de início.",
+        "Reportar empregador à DSO em até 10 dias do início.",
+        "Para STEM: aplicar até 90 dias antes do fim do OPT regular."
+      ] },
+      { type: "h2", id: "transicao", text: "Do OPT/STEM para visto de trabalho ou Green Card" },
+      { type: "list", items: [
+        "OPT → H-1B via lottery (cap-subject) — caminho mais comum.",
+        "STEM dá 3 chances de lottery H-1B (3 anos de extensão).",
+        "OPT → O-1A se construir reconhecimento (publicações, prêmios).",
+        "OPT → EB-2 NIW se trabalho tiver mérito nacional comprovado.",
+        "OPT → casamento com cidadão (caminho legítimo, não estratégia)."
+      ] },
+      { type: "p", text: "Veja também o artigo principal sobre o <a href=\"/blog/visto-f1-estudar-eua\">visto F-1</a> e o comparativo <a href=\"/blog/o1a-vs-eb1a\">O-1A vs EB-1A</a> para quem quer construir caso de talento extraordinário durante o OPT." },
+      { type: "h2", id: "armadilhas", text: "Armadilhas comuns" },
+      { type: "list", items: [
+        "Aplicar OPT tarde demais — janela é de 90 dias antes a 60 dias depois da formatura.",
+        "Trabalhar fora da área do diploma — caracteriza violação de status.",
+        "Não reportar mudança de empregador à DSO — perda de status silenciosa.",
+        "Esquecer Form I-983 no STEM — cancela extensão.",
+        "Acumular 90+ dias sem emprego no OPT regular — perda de status."
+      ] },
+      { type: "h2", id: "estrategia", text: "Estratégia inteligente" },
+      { type: "p", text: "Quem faz F-1 bem feito não trata o OPT como brinde — trata como rampa para visto definitivo. Nos primeiros 6 meses do OPT, já se planeja H-1B (lottery em março), patrocínio EB-2/EB-3 ou início de dossiê EB-1A/EB-2 NIW. A EBGreen ajuda a costurar essa transição desde o último ano de faculdade." },
+      { type: "cta", text: "Quero planejar minha transição OPT → visto definitivo" }
+    ],
+    externalLinks: [
+      { label: "USCIS — Optional Practical Training (OPT)", url: "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-opt-for-f-1-students" },
+      { label: "USCIS — STEM OPT Extension", url: "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/stem-opt" },
+      { label: "DHS STEM Designated Degree Program List", url: "https://www.ice.gov/sites/default/files/documents/stem-list.pdf" }
+    ],
+    related: ["visto-f1-estudar-eua", "o1a-vs-eb1a", "eb2-niw-guia-definitivo-2026"]
+  },
+  {
+    id: 17,
+    slug: "eb1a-atletas-artistas",
+    titulo: "EB-1A para Atletas e Artistas Brasileiros: Cases Reais",
+    categoria: "EB-1A",
+    data: "17 mar 2026",
+    leitura: "10 min",
+    imagem: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&fit=crop",
+    excerpt: "Veja como brasileiros do esporte e da arte usaram seu talento para construir vida nova nos Estados Unidos.",
+    metaTitle: "EB-1A para Atletas e Artistas Brasileiros em 2026 | EBGreen",
+    metaDescription: "Como atletas e artistas brasileiros estruturam o EB-1A: critérios específicos, evidências, cases reais e estratégia de aprovação.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "EB-1A é o Green Card de talento extraordinário — e historicamente foi pensado para perfis exatamente como atletas profissionais e artistas com reconhecimento internacional. Em 2026, o USCIS continua aprovando esses casos de forma consistente quando o dossiê fala a linguagem certa: prêmios, mídia, julgamento técnico e impacto." },
+      { type: "h2", id: "por-que-funciona", text: "Por que EB-1A funciona bem para atletas e artistas" },
+      { type: "p", text: "Diferente de pesquisadores e executivos, atletas e artistas têm evidências naturalmente espetaculares: pódios, capas de revista, contratos de patrocínio, transmissões. O desafio não é gerar evidência — é organizá-la em torno dos critérios objetivos do USCIS." },
+      { type: "h2", id: "criterios-praticos", text: "Como cada critério se traduz" },
+      { type: "list", items: [
+        "Prêmios: medalhas em campeonatos nacionais/internacionais, indicações Grammy/Latin Grammy, prêmios setoriais (APCA, Prêmio da Música Brasileira).",
+        "Membership: federações esportivas, sindicatos como Ordem dos Músicos, associações por convite.",
+        "Mídia: matérias em Globo Esporte, Folha, ESPN, Rolling Stone, Billboard.",
+        "Julgamento: ser jurado de competição, ser revisor de festival, treinar/avaliar outros atletas.",
+        "Contribuições originais: técnica de treino criada, escola de arte fundada, repertório que virou referência.",
+        "Salário alto: contrato com clube, cachê de show, renda de royalties.",
+        "Sucesso comercial nas artes: bilheteria, streams no Spotify, vendas de álbum."
+      ] },
+      { type: "callout", title: "Detalhe técnico", text: "Para artistas, o USCIS aceita o critério extra de \"sucesso comercial em artes\" (8 CFR 204.5(h)(3)(x)). Spotify streams, bilheteria de turnê e cachês são evidências válidas — desde que apresentadas com contexto comparativo." },
+      { type: "h2", id: "cases", text: "Tipos de casos que aprovamos" },
+      { type: "h3", id: "atleta", text: "Atleta de modalidade olímpica" },
+      { type: "p", text: "Lutador de jiu-jitsu com títulos mundiais IBJJF, faixa preta, alunos campeões e contrato com academia americana. Dossiê fechado em 60 dias, aprovação em 5 meses sem RFE." },
+      { type: "h3", id: "musico", text: "Músico instrumentista" },
+      { type: "p", text: "Pianista de jazz brasileiro com 3 álbuns no Spotify (200k+ ouvintes/mês), residência em festival europeu, prêmio APCA, entrevistas em Folha e El País. Aprovação em 7 meses." },
+      { type: "h3", id: "treinador", text: "Treinador esportivo" },
+      { type: "p", text: "Técnico de natação com atletas em Pan-Americano, certificação World Aquatics e artigos técnicos publicados. Aprovação via critério de julgamento + contribuições originais." },
+      { type: "h2", id: "construir-evidencia", text: "Como construir evidência se ela ainda não existe" },
+      { type: "list", items: [
+        "Buscar cobertura de mídia ativa — releases para jornalistas especializados.",
+        "Aceitar convites para palestras, masterclasses, banca de jurados.",
+        "Documentar números de impacto (streams, alunos formados, vitórias).",
+        "Publicar artigo técnico em revista de federação ou universidade.",
+        "Construir cartas de recomendação de pares reconhecidos no campo."
+      ] },
+      { type: "h2", id: "armadilhas", text: "Armadilhas mais frequentes" },
+      { type: "list", items: [
+        "Submeter mídia genérica (entrevistas em portais sem audiência).",
+        "Confundir prêmios locais com prêmios de relevância nacional.",
+        "Cartas de recomendação genéricas e pessoais — USCIS quer pares técnicos.",
+        "Faltar plano de continuidade do trabalho nos EUA (intenção de continuar atuando)."
+      ] },
+      { type: "h2", id: "ebgreen", text: "Como a EBGreen monta o caso" },
+      { type: "p", text: "Trabalhamos lado a lado com agentes, técnicos, produtores e empresários para extrair as evidências corretas. Cruzamos com a jurisprudência recente do AAO em casos de atletas e artistas e estruturamos um dossiê narrado para passar tanto na fase de critérios quanto no final merits. Veja também o artigo geral sobre <a href=\"/blog/eb1a-talento-extraordinario\">EB-1A</a>." },
+      { type: "cta", text: "Quero avaliar meu caso EB-1A como atleta ou artista" }
+    ],
+    externalLinks: [
+      { label: "USCIS Policy Manual — Extraordinary Ability", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-2" },
+      { label: "USCIS — EB-1 Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-first-preference-eb-1" },
+      { label: "8 CFR 204.5(h) — Extraordinary Ability", url: "https://www.ecfr.gov/current/title-8/chapter-I/subchapter-B/part-204/section-204.5" }
+    ],
+    related: ["eb1a-talento-extraordinario", "o1a-vs-eb1a", "visto-o1-rota-express"]
+  },
+  {
+    id: 18,
+    slug: "saude-eua-imigrantes",
+    titulo: "Saúde nos EUA: Como se Proteger como Imigrante",
+    categoria: "Vida nos EUA",
+    data: "18 mar 2026",
+    leitura: "11 min",
+    imagem: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&q=80&fit=crop",
+    excerpt: "Descubra como se proteger e encontrar planos que fazem sentido para quem está começando do zero.",
+    metaTitle: "Plano de Saúde nos EUA para Imigrantes em 2026 | EBGreen",
+    metaDescription: "Guia honesto de saúde nos EUA para imigrantes brasileiros: tipos de plano, custos, marketplace, Medicaid e o que evitar nos primeiros meses.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Saúde é o item que mais quebra brasileiro recém-chegado nos EUA. Uma noite de pronto-socorro sem seguro: USD 8.000–25.000. Um parto: USD 20.000–60.000. Cirurgia comum: USD 50.000+. Não é exagero — é tabela. A boa notícia: existe estrutura legítima para se proteger desde o dia 1." },
+      { type: "h2", id: "como-funciona", text: "Como funciona o sistema de saúde americano" },
+      { type: "p", text: "Não há sistema único. A maioria dos americanos tem plano via empregador (employer-sponsored). Quem não tem usa o ACA Marketplace (Healthcare.gov). Os mais pobres têm Medicaid. Os 65+ têm Medicare. Imigrante recém-chegado geralmente fica fora dessas redes — daí a necessidade de plano específico." },
+      { type: "h2", id: "tipos-de-plano", text: "Tipos de plano para imigrantes" },
+      { type: "list", items: [
+        "Visitor insurance (curto prazo): cobre 5 dias a 12 meses. Bom para chegada e turistas.",
+        "ACA Marketplace: para residentes permanentes, asylees, refugiados e alguns visitantes legais.",
+        "Employer plan: padrão-ouro — empregador paga 60-80% do prêmio.",
+        "Medicaid: renda baixa, depende do estado e status migratório.",
+        "Plano internacional brasileiro válido nos EUA: limitado, ler letras miúdas."
+      ] },
+      { type: "callout", title: "ACA: quem tem direito", text: "Visto de trabalho (H-1B, L-1, O-1, E-2), Green Card, asilo e refúgio dão direito ao Marketplace. Visto de turista NÃO. F-1 geralmente compra plano da escola. Cada estado opera regras próprias — Califórnia e Nova York são mais inclusivos." },
+      { type: "h2", id: "custos", text: "Custos reais em 2026" },
+      { type: "list", items: [
+        "Visitor insurance família 4 pessoas: USD 250–600/mês.",
+        "ACA família 4, plano Silver: USD 1.400–2.800/mês (sem subsídio).",
+        "Employer plan família: USD 400–1.200/mês (parte do empregado).",
+        "Plano de estudante (F-1): USD 1.500–4.000/ano.",
+        "Co-pay típico: USD 30–80 por consulta após franquia."
+      ] },
+      { type: "h2", id: "rede", text: "Entender HMO, PPO, EPO" },
+      { type: "list", items: [
+        "HMO: barato, mas só atende dentro da rede e exige referral do médico de família.",
+        "PPO: mais caro, escolhe qualquer médico, melhor para quem viaja muito.",
+        "EPO: meio termo — rede fechada, sem referral.",
+        "POS: híbrido, raro em alguns estados."
+      ] },
+      { type: "h2", id: "medicamentos", text: "Medicamentos: a outra conta" },
+      { type: "p", text: "Remédios nos EUA são caros — mas quase todo plano tem cobertura via formulary. Use GoodRx (cupons) para reduzir até 80% no balcão. Importar do Brasil é arriscado: alfândega confisca, e em caso controlado pode gerar problema imigratório." },
+      { type: "h2", id: "primeiros-meses", text: "Os primeiros 90 dias: o que fazer" },
+      { type: "ordered", items: [
+        "Antes de embarcar: contratar visitor insurance para os primeiros 30-60 dias.",
+        "Ao chegar: pedir SSN (se elegível) — abre acesso a planos formais.",
+        "Receber primeiro paycheck: revisar plano do empregador no qualifying event window (30 dias).",
+        "Sem empregador: avaliar Marketplace dentro do special enrollment period (60 dias após mudar para os EUA).",
+        "Família com filhos: checar elegibilidade ao CHIP (cobertura infantil estadual)."
+      ] },
+      { type: "h2", id: "armadilhas", text: "Armadilhas comuns" },
+      { type: "list", items: [
+        "Confiar em cartão de crédito \"com seguro internacional\" para morada — não cobre.",
+        "Comprar plano sem checar rede de hospitais perto de casa.",
+        "Subestimar franquia (deductible) — USD 5.000+ por ano é comum.",
+        "Não reportar pre-existing condition — pode anular cobertura.",
+        "Ir ao ER por questões simples — usar urgent care (10x mais barato)."
+      ] },
+      { type: "h2", id: "ebgreen", text: "Como a EBGreen orienta" },
+      { type: "p", text: "Saúde é parte da estratégia de mudança. Antes de embarcar, mapeamos elegibilidade ao Marketplace pelo seu visto, simulamos custos e conectamos a brokers especializados em imigrantes. Combine com os artigos sobre <a href=\"/blog/viver-em-nova-york-imigrantes\">vida em Nova York</a> e <a href=\"/blog/impostos-eua-imigrantes\">impostos nos EUA</a>." },
+      { type: "cta", text: "Quero planejar saúde antes de mudar para os EUA" }
+    ],
+    externalLinks: [
+      { label: "Healthcare.gov — Marketplace", url: "https://www.healthcare.gov/" },
+      { label: "Healthcare.gov — Immigrants Coverage", url: "https://www.healthcare.gov/immigrants/coverage/" },
+      { label: "Medicaid.gov — Eligibility", url: "https://www.medicaid.gov/medicaid/eligibility/" }
+    ],
+    related: ["viver-em-nova-york-imigrantes", "impostos-eua-imigrantes", "custo-real-imigrar-eua-2026"]
+  },
+  {
+    id: 19,
+    slug: "o1b-artistas",
+    titulo: "Visto O-1B para Artistas: Reconhecimento que Abre Portas",
+    categoria: "Visto O-1",
+    data: "19 mar 2026",
+    leitura: "9 min",
+    imagem: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&q=80&fit=crop",
+    excerpt: "Explore como artistas brasileiros mostram seu trabalho ao mundo e conquistam espaço na cena americana.",
+    metaTitle: "Visto O-1B em 2026: Guia para Artistas Brasileiros nos EUA | EBGreen",
+    metaDescription: "Como funciona o O-1B para artistas: critérios, agente vs empregador, evidências, custos e como migrar para EB-1A depois.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "O O-1B é o visto temporário para artistas com habilidade extraordinária nas artes ou conquista extraordinária no cinema/TV. Em 2026, ele continua sendo o caminho mais elegante para músicos, atores, dançarinos, cineastas, fotógrafos, designers e artistas plásticos brasileiros que querem trabalhar legalmente nos EUA — sem precisar de Green Card imediato." },
+      { type: "h2", id: "o1a-vs-o1b", text: "O-1A vs O-1B: a diferença" },
+      { type: "list", items: [
+        "O-1A: ciência, educação, negócios, esportes — exige \"extraordinary ability\".",
+        "O-1B Artes: padrão um pouco mais baixo — \"distinction\" (proeminência).",
+        "O-1B Cinema/TV: padrão alto — \"extraordinary achievement\".",
+        "O-1B Artes admite mais flexibilidade interpretativa do USCIS.",
+        "Ambos: 3 anos iniciais, renovação anual indefinidamente."
+      ] },
+      { type: "h2", id: "criterios", text: "Critérios do O-1B Artes" },
+      { type: "p", text: "Você precisa atender 3 dos 6 critérios (ou ter prêmio único e altamente reconhecido como Oscar, Grammy, Emmy, Director's Guild Award). Os critérios:" },
+      { type: "list", items: [
+        "Performance/papel principal em produções de reputação distinguida.",
+        "Reconhecimento crítico em mídia importante.",
+        "Sucesso comercial ou crítico significativo.",
+        "Reconhecimento por organizações, críticos, governos, especialistas.",
+        "Salário alto comparado a outros no campo.",
+        "Performance em eventos de reputação distinguida."
+      ] },
+      { type: "callout", title: "Vantagem do O-1B", text: "USCIS aceita evidência \"comparável\" — se um critério não se aplica perfeitamente, você pode substituir por evidência equivalente. Isso dá flexibilidade que o O-1A não tem." },
+      { type: "h2", id: "agente", text: "Agente vs empregador" },
+      { type: "p", text: "Diferente de outros vistos, O-1B aceita patrocínio de agente (não só empregador). Isso significa que artista freelancer pode entrar legalmente — o agente coordena bookings, shows, gravações com múltiplos contratantes." },
+      { type: "list", items: [
+        "Empregador: contrato fixo com uma empresa (gravadora, teatro, estúdio).",
+        "Agente como empregador: representa o artista junto a múltiplos contratantes.",
+        "US-based agent: precisa ter autoridade contratual real, não fictícia.",
+        "Itinerário detalhado: USCIS exige cronograma de eventos/projetos por todo o período do visto."
+      ] },
+      { type: "h2", id: "documentos", text: "Documentação típica" },
+      { type: "list", items: [
+        "Form I-129 com suplemento O.",
+        "Carta de consulta de sindicato relevante (SAG-AFTRA, AFM, AGMA).",
+        "Cartas de recomendação de pares reconhecidos.",
+        "Evidência dos critérios (matérias, contratos, prêmios, cachês).",
+        "Itinerário com datas, locais e contratantes.",
+        "Contrato com empregador ou agente."
+      ] },
+      { type: "h2", id: "consulta-sindicato", text: "A consulta sindical (peer review)" },
+      { type: "p", text: "Antes de aprovar o O-1B, USCIS exige \"advisory opinion\" de sindicato relevante. SAG-AFTRA para atores, AFM para músicos, AGMA para cantores eruditos e bailarinos. Sem essa carta (ou justificativa de que sindicato não existe), aprovação é improvável." },
+      { type: "h2", id: "para-eb1a", text: "Do O-1B para EB-1A" },
+      { type: "p", text: "Estratégia clássica: entrar no O-1B, construir 18-24 meses de evidência americana (festivais, prêmios, mídia, performances) e migrar para EB-1A com dossiê fortalecido. Veja o comparativo no artigo <a href=\"/blog/o1a-vs-eb1a\">O-1A vs EB-1A</a> e cases práticos em <a href=\"/blog/eb1a-atletas-artistas\">EB-1A para atletas e artistas</a>." },
+      { type: "h2", id: "custos", text: "Custos típicos" },
+      { type: "list", items: [
+        "USCIS I-129: USD 530.",
+        "Premium Processing (15 dias): USD 2.805.",
+        "Advogado especializado: USD 6.000–12.000.",
+        "Consulta sindical: USD 250–500.",
+        "Total realista: USD 9.000–15.000."
+      ] },
+      { type: "h2", id: "armadilhas", text: "Armadilhas que derrubam casos" },
+      { type: "list", items: [
+        "Dossiê com mídia genérica (blogs sem audiência).",
+        "Cartas pessoais de admiradores em vez de pares técnicos.",
+        "Itinerário vago — \"vai fazer shows pelos EUA\" sem datas concretas.",
+        "Agente sem capacidade real de coordenar contratos.",
+        "Falta de evidência de cobertura crítica em mídia americana ou internacional."
+      ] },
+      { type: "cta", text: "Quero avaliar meu caso O-1B" }
+    ],
+    externalLinks: [
+      { label: "USCIS — O-1B Extraordinary Ability in the Arts", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/o-1-visa-individuals-with-extraordinary-ability-or-achievement" },
+      { label: "USCIS Policy Manual — O Classification", url: "https://www.uscis.gov/policy-manual/volume-2-part-m" },
+      { label: "8 CFR 214.2(o) — O Nonimmigrant", url: "https://www.ecfr.gov/current/title-8/chapter-I/subchapter-B/part-214/section-214.2#p-214.2(o)" }
+    ],
+    related: ["visto-o1-rota-express", "eb1a-atletas-artistas", "o1a-vs-eb1a"]
+  },
+  {
+    id: 20,
+    slug: "r1-para-greencard",
+    titulo: "R-1 para Green Card: O Caminho do Visto Religioso para a Residência",
+    categoria: "R-1",
+    data: "20 mar 2026",
+    leitura: "9 min",
+    imagem: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80&fit=crop",
+    excerpt: "Veja como trabalhadores de fé abrem caminho para residência permanente com propósito e dedicação.",
+    metaTitle: "R-1 para Green Card EB-4 em 2026: Guia Completo | EBGreen",
+    metaDescription: "Como migrar do visto R-1 para Green Card via EB-4 (Special Immigrant Religious Worker): requisitos, prazos, documentação e armadilhas.",
+    author: "Equipe EBGreen",
+    content: [
+      { type: "p", text: "Trabalhador religioso com R-1 tem um caminho previsível — porém técnico — para o Green Card: a categoria EB-4 (Special Immigrant Religious Worker). Diferente de outras rotas, o EB-4 foi criado especificamente para ministros e trabalhadores religiosos. Em 2026, o programa segue ativo, com regras estáveis pós-INA Section 203(b)(4)." },
+      { type: "h2", id: "quem-pode", text: "Quem qualifica para o EB-4" },
+      { type: "list", items: [
+        "Ministros ordenados de denominação religiosa de boa-fé.",
+        "Trabalhadores em ocupação religiosa (educadores religiosos, missionários, líderes de música litúrgica).",
+        "Pelo menos 2 anos contínuos de trabalho religioso imediatamente antes da petição.",
+        "Trabalho remunerado ou com sustento documentado.",
+        "Organização patrocinadora qualificada como 501(c)(3) (ou equivalente)."
+      ] },
+      { type: "callout", title: "Os 2 anos contam", text: "O trabalho religioso dos 2 anos pode ter ocorrido no Brasil, nos EUA, ou misturado — desde que contínuo. Tempo no R-1 conta. Voluntariado puro NÃO conta — precisa haver compensação documentada (salário ou suporte equivalente)." },
+      { type: "h2", id: "ministro-vs-trabalhador", text: "Ministro vs trabalhador religioso" },
+      { type: "p", text: "Ministros (pastores, padres, rabinos, imãs ordenados) têm caminho mais simples. Trabalhadores não-ministros (educadores religiosos, líderes de música, missionários leigos) precisam comprovar que a função é \"propriamente religiosa\" e tradicionalmente desempenhada por pessoa religiosa — não administrativa." },
+      { type: "h2", id: "passo-a-passo", text: "Passo a passo do EB-4" },
+      { type: "ordered", items: [
+        "Organização americana protocola Form I-360 ao USCIS.",
+        "USCIS pode realizar site visit à organização (rotina).",
+        "Após aprovação do I-360, candidato pode aplicar Adjustment of Status (I-485) se já estiver nos EUA.",
+        "Ou Consular Processing pelo NVC se estiver no Brasil.",
+        "Aprovação final → Green Card permanente (sem condicionalidade)."
+      ] },
+      { type: "h2", id: "documentos", text: "Documentação central" },
+      { type: "list", items: [
+        "Comprovação dos 2 anos de trabalho religioso (cartas, contracheques, declarações).",
+        "Carta detalhada da organização patrocinadora descrevendo função, salário, duração.",
+        "Prova de status 501(c)(3) atual e histórico de funcionamento.",
+        "Demonstrativos financeiros da organização (capacidade de pagar).",
+        "Credenciais ministeriais e histórico de denominação.",
+        "Cartas de membros, líderes seniores e congregação."
+      ] },
+      { type: "h2", id: "tempo-fila", text: "Tempo de processo e fila" },
+      { type: "p", text: "I-360 leva 6-12 meses. Adjustment of Status, mais 8-14 meses. EB-4 tem visto disponível na maioria dos meses para brasileiros em 2026 — mas o Visa Bulletin do State Department oscila. Estratégia: protocolar I-360 cedo, monitorar bulletin mensalmente." },
+      { type: "h2", id: "trabalhador-nao-ministro", text: "Cuidado especial: non-minister sunset" },
+      { type: "callout", title: "Atenção legislativa", text: "A categoria de \"non-minister religious worker\" do EB-4 já foi alvo de sunset clause no Congresso e historicamente é renovada de tempos em tempos. Em 2026 está ativa, mas planeje com margem — quem é ministro ordenado tem mais segurança jurídica de longo prazo." },
+      { type: "h2", id: "armadilhas", text: "Armadilhas frequentes" },
+      { type: "list", items: [
+        "Documentação dos 2 anos imprecisa — datas com gap quebram a continuidade.",
+        "Função descrita de forma administrativa em vez de religiosa.",
+        "Organização patrocinadora pequena demais — site visit derruba.",
+        "Salário muito abaixo do mercado — USCIS questiona genuinidade.",
+        "Não casar com o R-1 vigente — perda de status durante o I-485."
+      ] },
+      { type: "h2", id: "estrategia", text: "Estratégia recomendada" },
+      { type: "p", text: "O caminho ideal começa antes do R-1: estruturar a organização patrocinadora e a função desde o início pensando no EB-4 futuro. Isso evita refazer documentação e fortalece o histórico de 2 anos. Veja o artigo principal <a href=\"/blog/visto-r1-religiosos\">Visto R-1</a> para entender a porta de entrada." },
+      { type: "p", text: "A EBGreen estrutura tanto o lado da organização (compliance 501(c)(3), governança, documentação financeira) quanto o lado do candidato (credenciais, narrativa ministerial, cartas)." },
+      { type: "cta", text: "Quero avaliar meu caminho R-1 → EB-4" }
+    ],
+    externalLinks: [
+      { label: "USCIS — EB-4 Special Immigrant Religious Workers", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-fourth-preference-eb-4/special-immigrant-religious-workers" },
+      { label: "USCIS Policy Manual — Religious Workers", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-3" },
+      { label: "U.S. Department of State — Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" }
+    ],
+    related: ["visto-r1-religiosos", "eb2-niw-guia-definitivo-2026", "ajuste-status-greencard"]
+  },
   { id: 21, slug: "impostos-eua-imigrantes", titulo: "Impostos nos EUA para Imigrantes: O Essencial", categoria: "Vida nos EUA", data: "21 mar 2026", leitura: "9 min", imagem: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&q=80&fit=crop", excerpt: "Entenda como organizar sua vida financeira e evitar dores de cabeça entre Brasil e Estados Unidos." },
   { id: 22, slug: "eb2-niw-professores", titulo: "EB-2 NIW para Professores: Impacto Educacional Vale Green Card", categoria: "EB-2 NIW", data: "22 mar 2026", leitura: "8 min", imagem: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80&fit=crop", excerpt: "Descubra como educadores estão mostrando que transformar vidas no Brasil vale reconhecimento nos EUA." },
   { id: 23, slug: "ajuste-status-greencard", titulo: "Ajuste de Status: Do Visto Temporário ao Green Card nos EUA", categoria: "Green Card", data: "23 mar 2026", leitura: "10 min", imagem: "https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?w=1200&q=80&fit=crop", excerpt: "Veja como mudar de visto temporário para permanente sem precisar sair do país no meio do processo." },
