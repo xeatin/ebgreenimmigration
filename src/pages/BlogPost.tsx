@@ -15,7 +15,7 @@ const Block = ({ block }: { block: ArticleBlock }) => {
   switch (block.type) {
     case "p":
       return (
-        <p className="text-[17px] md:text-lg leading-[1.85] text-green-deep/85 font-body mb-6 [&_a]:text-green-deep [&_a]:font-semibold [&_a]:underline [&_a]:decoration-gold [&_a]:underline-offset-4 [&_a:hover]:text-gold">
+        <p className="text-[17px] md:text-lg leading-[1.85] text-green-deep/85 font-body mb-6 [&_a]:text-green-deep [&_a]:font-semibold [&_a]:underline [&_a]:decoration-gold [&_a]:underline-offset-4 [&_a:hover]:text-gold-dark [&_a:hover]:decoration-gold-dark">
           {renderInline(block.text)}
         </p>
       );
@@ -229,7 +229,7 @@ const BlogPost = () => {
                     <li key={h.id}>
                       <a
                         href={`#${h.id}`}
-                        className="block text-sm text-green-deep/70 font-body hover:text-gold transition-colors leading-snug"
+                        className="block text-sm text-green-deep/70 font-body hover:text-gold-dark transition-colors leading-snug"
                       >
                         {h.text}
                       </a>
@@ -254,7 +254,7 @@ const BlogPost = () => {
                 </p>
                 <Link
                   to="/blog"
-                  className="inline-flex items-center gap-2 mt-8 text-green-deep font-bold font-body hover:text-gold transition-colors"
+                  className="inline-flex items-center gap-2 mt-8 text-green-deep font-bold font-body hover:text-gold-dark transition-colors"
                 >
                   <ArrowLeft size={16} /> Voltar para o blog
                 </Link>
@@ -274,7 +274,7 @@ const BlogPost = () => {
                         href={l.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-start gap-2 text-green-deep font-body text-sm hover:text-gold transition-colors"
+                        className="inline-flex items-start gap-2 text-green-deep font-body text-sm hover:text-gold-dark transition-colors"
                       >
                         <ExternalLink size={14} className="mt-1 flex-shrink-0" />
                         <span className="underline underline-offset-4">{l.label}</span>
@@ -308,10 +308,10 @@ const BlogPost = () => {
                     <img src={rp.imagem} alt={rp.titulo} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   </div>
                   <div className="p-5">
-                    <span className="inline-block text-[10px] font-semibold font-body text-gold uppercase tracking-[0.2em] mb-2">
+                    <span className="inline-block text-[10px] font-semibold font-body text-gold-dark uppercase tracking-[0.2em] mb-2">
                       {rp.categoria}
                     </span>
-                    <h3 className="font-display text-lg text-green-deep leading-snug group-hover:text-gold transition-colors">
+                    <h3 className="font-display text-lg text-green-deep leading-snug group-hover:text-gold-dark transition-colors">
                       {rp.titulo}
                     </h3>
                   </div>
