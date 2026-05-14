@@ -15,7 +15,7 @@ const Block = ({ block }: { block: ArticleBlock }) => {
   switch (block.type) {
     case "p":
       return (
-        <p className="text-[17px] md:text-lg leading-[1.85] text-foreground/85 font-body mb-6 [&_a]:text-eligibility-green [&_a]:font-semibold [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-gold">
+        <p className="text-[17px] md:text-lg leading-[1.85] text-green-deep/85 font-body mb-6 [&_a]:text-green-deep [&_a]:font-semibold [&_a]:underline [&_a]:decoration-gold [&_a]:underline-offset-4 [&_a:hover]:text-gold">
           {renderInline(block.text)}
         </p>
       );
@@ -36,7 +36,7 @@ const Block = ({ block }: { block: ArticleBlock }) => {
       );
     case "list":
       return (
-        <ul className="space-y-2.5 mb-6 font-body text-[17px] md:text-lg text-foreground/85 leading-[1.7]">
+        <ul className="space-y-2.5 mb-6 font-body text-[17px] md:text-lg text-green-deep/85 leading-[1.7]">
           {block.items.map((item, i) => (
             <li key={i} className="pl-6 relative">
               <span className="absolute left-0 top-[0.7em] w-2 h-2 bg-gold rounded-full" />
@@ -47,7 +47,7 @@ const Block = ({ block }: { block: ArticleBlock }) => {
       );
     case "ordered":
       return (
-        <ol className="space-y-3 mb-6 font-body text-[17px] md:text-lg text-foreground/85 leading-[1.7] list-none counter-reset-item">
+        <ol className="space-y-3 mb-6 font-body text-[17px] md:text-lg text-green-deep/85 leading-[1.7] list-none counter-reset-item">
           {block.items.map((item, i) => (
             <li key={i} className="pl-12 relative">
               <span className="absolute left-0 top-0 w-8 h-8 rounded-full bg-green-deep text-cream flex items-center justify-center font-display font-bold text-sm">
@@ -73,11 +73,11 @@ const Block = ({ block }: { block: ArticleBlock }) => {
       );
     case "callout":
       return (
-        <aside className="my-8 p-6 bg-eligibility-green/8 border-l-4 border-eligibility-green rounded-r-lg">
-          <p className="font-display text-base font-bold text-eligibility-green uppercase tracking-wider mb-2">
+        <aside className="my-8 p-6 bg-gold/10 border-l-4 border-gold rounded-r-lg">
+          <p className="font-display text-base font-bold text-green-deep uppercase tracking-wider mb-2">
             {block.title}
           </p>
-          <p className="font-body text-[17px] text-foreground/85 leading-[1.7]">
+          <p className="font-body text-[17px] text-green-deep/85 leading-[1.7]">
             {renderInline(block.text)}
           </p>
         </aside>
@@ -229,7 +229,7 @@ const BlogPost = () => {
                     <li key={h.id}>
                       <a
                         href={`#${h.id}`}
-                        className="block text-sm text-green-deep/70 font-body hover:text-eligibility-green transition-colors leading-snug"
+                        className="block text-sm text-green-deep/70 font-body hover:text-gold transition-colors leading-snug"
                       >
                         {h.text}
                       </a>
@@ -254,7 +254,7 @@ const BlogPost = () => {
                 </p>
                 <Link
                   to="/blog"
-                  className="inline-flex items-center gap-2 mt-8 text-eligibility-green font-bold font-body hover:text-gold"
+                  className="inline-flex items-center gap-2 mt-8 text-green-deep font-bold font-body hover:text-gold transition-colors"
                 >
                   <ArrowLeft size={16} /> Voltar para o blog
                 </Link>
@@ -274,7 +274,7 @@ const BlogPost = () => {
                         href={l.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-start gap-2 text-eligibility-green font-body text-sm hover:text-gold transition-colors"
+                        className="inline-flex items-start gap-2 text-green-deep font-body text-sm hover:text-gold transition-colors"
                       >
                         <ExternalLink size={14} className="mt-1 flex-shrink-0" />
                         <span className="underline underline-offset-4">{l.label}</span>
@@ -302,16 +302,16 @@ const BlogPost = () => {
                 <Link
                   key={rp.slug}
                   to={`/blog/${rp.slug}`}
-                  className="group bg-white rounded-xl overflow-hidden border border-green-deep/10 hover:border-eligibility-green/50 hover:shadow-xl transition-all duration-300"
+                  className="group bg-white/70 backdrop-blur-sm rounded-xl overflow-hidden border border-green-deep/10 hover:border-gold/60 hover:shadow-xl transition-all duration-300"
                 >
                   <div className="aspect-[16/9] overflow-hidden">
                     <img src={rp.imagem} alt={rp.titulo} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   </div>
                   <div className="p-5">
-                    <span className="inline-block text-[10px] font-semibold font-body text-eligibility-green uppercase tracking-wider mb-2">
+                    <span className="inline-block text-[10px] font-semibold font-body text-gold uppercase tracking-[0.2em] mb-2">
                       {rp.categoria}
                     </span>
-                    <h3 className="font-display text-lg text-green-deep leading-snug group-hover:text-eligibility-green transition-colors">
+                    <h3 className="font-display text-lg text-green-deep leading-snug group-hover:text-gold transition-colors">
                       {rp.titulo}
                     </h3>
                   </div>
@@ -328,7 +328,7 @@ const BlogPost = () => {
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Voltar ao topo"
-          className="fixed bottom-24 right-6 w-11 h-11 rounded-full bg-green-deep text-cream shadow-lg flex items-center justify-center hover:bg-eligibility-green transition-colors z-40"
+          className="fixed bottom-24 right-6 w-11 h-11 rounded-full bg-green-deep text-gold shadow-lg flex items-center justify-center hover:bg-gold hover:text-green-deep transition-colors z-40"
         >
           <ChevronUp size={20} />
         </button>
