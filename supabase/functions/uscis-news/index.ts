@@ -1,12 +1,18 @@
-// USCIS News RSS proxy — fetches the official feed and returns parsed JSON
-// No auth required; verify_jwt is disabled in supabase/config.toml
+// US Immigration news proxy — uses Bing News RSS for direct publisher URLs
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const FEED_URL =
-  "https://news.google.com/rss/search?q=(USCIS+OR+%22imigra%C3%A7%C3%A3o+americana%22+OR+%22green+card%22+OR+%22visto+americano%22)+when:14d&hl=pt-BR&gl=BR&ceid=BR:pt";
+const QUERIES = [
+  '"imigração americana"',
+  '"green card"',
+  '"visto americano"',
+  "USCIS",
+];
+const FEED_URLS = QUERIES.map(
+  (q) => `https://www.bing.com/news/search?q=${encodeURIComponent(q)}&format=rss`
+);
 
 interface NewsItem {
   title: string;
@@ -24,9 +30,29 @@ function decodeEntities(str: string): string {
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
     .replace(/&nbsp;/g, " ")
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(parseInt(n, 10)))
     .replace(/<[^>]+>/g, "")
     .trim();
+}
+
+function unwrapBingUrl(link: string): string {
+  try {
+    const u = new URL(link);
+    const real = u.searchParams.get("url");
+    return real ?? link;
+  } catch {
+    return link;
+  }
+}
+
+function hostFromUrl(link: string): string {
+  try {
+    return new URL(link).hostname.replace(/^www\./, "");
+  } catch {
+    return "";
+  }
 }
 
 function parseRss(xml: string): NewsItem[] {
@@ -35,24 +61,18 @@ function parseRss(xml: string): NewsItem[] {
   let match;
   while ((match = itemRegex.exec(xml)) !== null) {
     const block = match[1];
-    const getRaw = (tag: string) => {
+    const get = (tag: string) => {
       const r = new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`).exec(block);
-      return r ? r[1] : "";
+      return r ? decodeEntities(r[1]) : "";
     };
-    const get = (tag: string) => decodeEntities(getRaw(tag));
-
-    // Try to extract the real source link from the description's first <a href="...">
-    const descRaw = getRaw("description").replace(/<!\[CDATA\[(.*?)\]\]>/gs, "$1");
-    const hrefMatch = /<a[^>]+href=["']([^"']+)["']/i.exec(descRaw);
-    const fallbackLink = get("link");
-    const link = hrefMatch ? hrefMatch[1].replace(/&amp;/g, "&") : fallbackLink;
-
+    const rawLink = get("link");
+    const link = unwrapBingUrl(rawLink);
     items.push({
       title: get("title"),
       link,
       pubDate: get("pubDate"),
       description: get("description"),
-      source: get("source"),
+      source: hostFromUrl(link),
     });
   }
   return items;
@@ -62,23 +82,47 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const res = await fetch(FEED_URL, {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-        "Accept": "application/rss+xml, application/xml, text/xml, */*",
-        "Accept-Language": "en-US,en;q=0.9",
-      },
+    const responses = await Promise.all(
+      FEED_URLS.map((url) =>
+        fetch(url, {
+          headers: {
+            "User-Agent":
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+            "Accept": "application/rss+xml, application/xml, text/xml, */*",
+            "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
+          },
+        })
+          .then((r) => (r.ok ? r.text() : ""))
+          .catch(() => "")
+      )
+    );
+
+    const all = responses.flatMap(parseRss).filter((i) => i.link && i.title);
+
+    // Deduplicate by link
+    const seen = new Set<string>();
+    const unique = all.filter((i) => {
+      if (seen.has(i.link)) return false;
+      seen.add(i.link);
+      return true;
     });
-    if (!res.ok) throw new Error(`Feed returned ${res.status}`);
-    const xml = await res.text();
-    const items = parseRss(xml).slice(0, 15);
+
+    // Sort by pubDate desc
+    unique.sort((a, b) => {
+      const da = new Date(a.pubDate).getTime() || 0;
+      const db = new Date(b.pubDate).getTime() || 0;
+      return db - da;
+    });
+
+    const items = unique.slice(0, 15);
+
+    if (items.length === 0) throw new Error("No items returned from upstream feeds");
 
     return new Response(JSON.stringify({ items, fetchedAt: new Date().toISOString() }), {
       headers: {
         ...corsHeaders,
         "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=1800", // 30 min cache
+        "Cache-Control": "public, max-age=1800",
       },
     });
   } catch (err) {
@@ -89,3 +133,4 @@ Deno.serve(async (req) => {
     );
   }
 });
+
