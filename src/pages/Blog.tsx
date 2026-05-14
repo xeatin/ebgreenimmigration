@@ -61,50 +61,64 @@ const Blog = () => {
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {[...blogPosts].reverse().map((post, index) => (
-              <motion.article
-                key={post.id}
-                layout
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.04 }}
-                className="group bg-green-medium rounded-lg overflow-hidden border border-cream/10 hover:border-eligibility-green/60 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col"
-              >
-                <div className="relative h-52 overflow-hidden">
-                  <img
-                    src={post.imagem}
-                    alt={post.titulo}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-green-deep via-green-deep/30 to-transparent" />
-                  <span className="absolute top-4 left-4 inline-block px-3 py-1 rounded-sm text-[11px] font-semibold font-body bg-gradient-gold text-green-deep shadow-card">
-                    {post.categoria}
-                  </span>
-                </div>
+            {[...blogPosts].reverse().map((post, index) => {
+              const hasContent = !!post.content;
+              return (
+                <motion.div
+                  key={post.id}
+                  layout
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.04 }}
+                >
+                  <Link
+                    to={`/blog/${post.slug}`}
+                    className="group block bg-green-medium rounded-lg overflow-hidden border border-cream/10 hover:border-eligibility-green/60 shadow-card hover:shadow-card-hover transition-all duration-300 h-full flex flex-col"
+                  >
+                    <div className="relative h-52 overflow-hidden">
+                      <img
+                        src={post.imagem}
+                        alt={post.titulo}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-green-deep via-green-deep/30 to-transparent" />
+                      <span className="absolute top-4 left-4 inline-block px-3 py-1 rounded-sm text-[11px] font-semibold font-body bg-gradient-gold text-green-deep shadow-card">
+                        {post.categoria}
+                      </span>
+                      {hasContent && (
+                        <span className="absolute top-4 right-4 inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[10px] font-semibold font-body bg-eligibility-green/90 text-cream uppercase tracking-wider">
+                          Novo
+                        </span>
+                      )}
+                    </div>
 
-                <div className="p-6 flex flex-col flex-1">
-                  <h2 className="font-display text-xl font-bold text-cream mb-3 leading-snug group-hover:text-gold transition-colors">
-                    {post.titulo}
-                  </h2>
+                    <div className="p-6 flex flex-col flex-1">
+                      <h2 className="font-display text-xl font-bold text-cream mb-3 leading-snug group-hover:text-gold transition-colors">
+                        {post.titulo}
+                      </h2>
 
-                  <p className="font-body text-cream/60 text-sm leading-relaxed mb-5 line-clamp-3 flex-1">
-                    {post.excerpt}
-                  </p>
+                      <p className="font-body text-cream/60 text-sm leading-relaxed mb-5 line-clamp-3 flex-1">
+                        {post.excerpt}
+                      </p>
 
-                  <div className="flex items-center gap-4 mb-5">
-                    <span className="inline-block px-3 py-1 rounded-sm text-[11px] font-semibold font-body bg-green-deep/80 text-cream">
-                      {post.data}
-                    </span>
-                  </div>
+                      <div className="flex items-center gap-3 mb-5 text-[11px] font-body text-cream/60">
+                        <span>{post.data}</span>
+                        <span className="opacity-40">·</span>
+                        <span className="inline-flex items-center gap-1">
+                          <Clock size={11} /> {post.leitura}
+                        </span>
+                      </div>
 
-                  <button className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-6 py-3 rounded-md font-bold text-sm font-body hover:opacity-90 transition-opacity shadow-card hover:shadow-card-hover w-full group/btn">
-                    Ler Artigo
-                    <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-1" />
-                  </button>
-                </div>
-              </motion.article>
-            ))}
+                      <span className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-6 py-3 rounded-md font-bold text-sm font-body group-hover:opacity-90 transition-opacity shadow-card group-hover:shadow-card-hover w-full">
+                        Ler Artigo
+                        <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           {blogPosts.length === 0 && (
