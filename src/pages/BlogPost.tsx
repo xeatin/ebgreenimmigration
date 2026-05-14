@@ -151,7 +151,7 @@ const BlogPost = () => {
       />
 
       {/* Hero — dark compact split: photo left, text right */}
-      <header className="pt-28 md:pt-32 pb-12 md:pb-16 bg-green-deep relative overflow-hidden">
+      <header className="pt-24 md:pt-28 pb-8 md:pb-10 bg-green-deep relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-30 pointer-events-none"
           style={{ backgroundImage: "radial-gradient(circle at 80% 20%, hsl(var(--gold) / 0.35) 0%, transparent 55%)" }}
@@ -172,7 +172,7 @@ const BlogPost = () => {
             className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 md:gap-12 items-center"
           >
             {/* Photo */}
-            <div className="relative overflow-hidden shadow-2xl aspect-[4/3] md:aspect-[5/4]">
+            <div className="relative overflow-hidden shadow-2xl aspect-[4/3] md:aspect-[16/10]">
               <img
                 src={post.imagem}
                 alt={post.titulo}
