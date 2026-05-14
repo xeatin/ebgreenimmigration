@@ -150,50 +150,52 @@ const BlogPost = () => {
         style={{ width: `${progress}%` }}
       />
 
-      {/* Hero */}
-      <header className="pt-28 md:pt-32 pb-10 bg-green-deep relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{ backgroundImage: "radial-gradient(circle at 80% 20%, hsl(var(--gold) / 0.35) 0%, transparent 55%)" }}
-        />
-        <div className="container mx-auto px-6 max-w-3xl relative">
+      {/* Hero — Law Firm Premium */}
+      <header className="pt-28 md:pt-32 pb-12 md:pb-16 bg-[hsl(40_30%_95%)] relative overflow-hidden border-b border-green-deep/10">
+        <div className="container mx-auto px-6 max-w-4xl relative">
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-cream/70 hover:text-gold font-body text-sm transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-green-deep/60 hover:text-eligibility-green font-body text-sm transition-colors mb-10"
           >
             <ArrowLeft size={16} />
             Voltar para o blog
           </Link>
 
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <span className="inline-block px-3 py-1 rounded-sm text-[11px] font-semibold font-body bg-gradient-gold text-green-deep mb-5">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <span className="inline-block font-body text-[11px] md:text-xs font-bold tracking-[0.32em] uppercase text-gold mb-7">
               {post.categoria}
             </span>
 
-            <h1 className="font-display text-3xl md:text-4xl lg:text-[2.75rem] text-cream leading-[1.15] tracking-tight mb-6">
+            <h1 className="font-display text-3xl md:text-5xl lg:text-[3.25rem] text-green-deep leading-[1.1] tracking-tight uppercase max-w-3xl mx-auto mb-8">
               {post.titulo}
             </h1>
 
-            <p className="font-body text-cream/75 text-lg leading-relaxed mb-6 max-w-2xl">
+            <div className="flex justify-center mb-8">
+              <span className="block w-16 h-px bg-gold" />
+            </div>
+
+            <p className="font-body text-green-deep/75 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
               {post.excerpt}
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-cream/60 font-body text-sm">
-              {post.author && <span>Por <span className="text-cream">{post.author}</span></span>}
-              <span className="inline-flex items-center gap-1.5">
-                <Calendar size={14} /> {post.data}
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Clock size={14} /> {post.leitura} de leitura
-              </span>
+            <div className="font-display italic text-green-deep/70 text-sm md:text-base">
+              {post.author && <>Escrito por <span className="text-green-deep">{post.author}</span> · </>}
+              <span className="not-italic font-body tracking-wide">{post.data}</span>
+              <span className="not-italic font-body"> · </span>
+              <span className="not-italic font-body tracking-wide">{post.leitura} de leitura</span>
             </div>
           </motion.div>
         </div>
       </header>
 
       {/* Featured image */}
-      <div className="container mx-auto px-6 max-w-4xl -mt-6">
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[16/8]">
+      <div className="container mx-auto px-6 max-w-4xl mt-10 md:mt-12">
+        <div className="relative overflow-hidden shadow-elevated aspect-[16/8]">
           <img src={post.imagem} alt={post.titulo} className="w-full h-full object-cover" />
         </div>
       </div>
