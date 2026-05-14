@@ -139,7 +139,7 @@ const Noticias = () => {
                         {item.title}
                       </h2>
                       <p className="text-xs text-green-deep/60 font-body mt-1 uppercase tracking-wider">
-                        {formatDate(item.pubDate, lang)} · USCIS
+                        {formatDate(item.pubDate, lang)}{item.source ? ` · ${item.source}` : ""}
                       </p>
                       {item.description && (
                         <p className="text-green-deep/75 font-body text-sm mt-3 line-clamp-3">
