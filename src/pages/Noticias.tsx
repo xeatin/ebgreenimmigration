@@ -22,9 +22,9 @@ const copy = {
     es: "Últimas Noticias de Inmigración Americana",
   },
   subtitle: {
-    pt: "Agregador de notícias sobre imigração americana — atualizado automaticamente",
-    en: "U.S. immigration news aggregator — auto-updated",
-    es: "Agregador de noticias de inmigración americana — actualizado automáticamente",
+    pt: "Fique por dentro das principais notícias, mudanças e atualizações sobre imigração americana em um só lugar.",
+    en: "Stay up to date with the main news, changes and updates on U.S. immigration — all in one place.",
+    es: "Mantente al día con las principales noticias, cambios y actualizaciones sobre inmigración americana en un solo lugar.",
   },
   readMore: { pt: "Ler completa", en: "Read more", es: "Leer completa" },
   loading: { pt: "Carregando notícias...", en: "Loading news...", es: "Cargando noticias..." },
