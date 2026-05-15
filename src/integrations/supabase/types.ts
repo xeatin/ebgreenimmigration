@@ -14,27 +14,7 @@ export type Database = {
   }
   public: {
     Tables: {
-      post_translations: {
-        Row: {
-          cache_key: string
-          created_at: string
-          data: Json
-          lang: string
-        }
-        Insert: {
-          cache_key: string
-          created_at?: string
-          data: Json
-          lang: string
-        }
-        Update: {
-          cache_key?: string
-          created_at?: string
-          data?: Json
-          lang?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never

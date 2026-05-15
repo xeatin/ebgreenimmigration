@@ -1,14 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Clock, ExternalLink, ChevronUp, Loader2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Calendar, ExternalLink, ChevronUp } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { getPostBySlug, blogPosts, type ArticleBlock } from "@/data/blog-posts";
-import { useLanguage } from "@/i18n/LanguageContext";
-import { translations, t } from "@/i18n/translations";
-import { useTranslatedPost } from "@/hooks/useTranslatedPost";
 
 const renderInline = (text: string) => (
   <span dangerouslySetInnerHTML={{ __html: text }} />
@@ -105,9 +102,7 @@ const Block = ({ block }: { block: ArticleBlock }) => {
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { lang } = useLanguage();
-  const sourcePost = useMemo(() => (slug ? getPostBySlug(slug) : undefined), [slug]);
-  const { post, loading } = useTranslatedPost(sourcePost, lang);
+  const post = useMemo(() => (slug ? getPostBySlug(slug) : undefined), [slug]);
   const [progress, setProgress] = useState(0);
   const [showTop, setShowTop] = useState(false);
 
@@ -135,8 +130,7 @@ const BlogPost = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (!sourcePost) return <Navigate to="/blog" replace />;
-  if (!post) return null;
+  if (!post) return <Navigate to="/blog" replace />;
 
   const headings = (post.content ?? []).filter(
     (b): b is Extract<ArticleBlock, { type: "h2" }> => b.type === "h2"
@@ -168,15 +162,8 @@ const BlogPost = () => {
             className="inline-flex items-center gap-2 text-cream/70 hover:text-gold font-body text-sm transition-colors mb-8"
           >
             <ArrowLeft size={16} />
-            {t(translations.post.back, lang)}
+            Voltar para o blog
           </Link>
-
-          {loading && lang !== "pt" && (
-            <div className="absolute top-6 right-6 inline-flex items-center gap-2 text-cream/60 font-body text-xs">
-              <Loader2 className="animate-spin" size={12} />
-              {t(translations.post.translating, lang)}
-            </div>
-          )}
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -185,11 +172,11 @@ const BlogPost = () => {
             className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 md:gap-12 items-center"
           >
             {/* Photo */}
-            <div className="group relative overflow-hidden shadow-2xl aspect-[4/3] md:aspect-[16/10] rounded-lg border border-cream/10 hover:border-eligibility-green/60 transition-colors duration-300">
+            <div className="relative overflow-hidden shadow-2xl aspect-[4/3] md:aspect-[16/10]">
               <img
                 src={post.imagem}
                 alt={post.titulo}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover"
               />
             </div>
 
@@ -211,12 +198,12 @@ const BlogPost = () => {
 
               {post.author && (
                 <p className="font-display italic text-cream text-sm md:text-base mb-1">
-                  {t(translations.post.writtenBy, lang)} <span className="font-semibold not-italic">{post.author}</span>
+                  Escrito por <span className="font-semibold not-italic">{post.author}</span>
                 </p>
               )}
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-cream/60 font-body text-xs md:text-sm">
                 <span className="inline-flex items-center gap-1.5">
-                  <Clock size={13} /> {post.leitura} {t(translations.post.readingTime, lang)}
+                  <Clock size={13} /> {post.leitura} de leitura
                 </span>
               </div>
             </div>
@@ -232,7 +219,7 @@ const BlogPost = () => {
             {headings.length > 0 && (
               <nav className="sticky top-28 pr-6">
                 <p className="font-display text-xs uppercase tracking-[0.2em] text-green-deep/50 mb-4">
-                  {t(translations.post.inThisArticle, lang)}
+                  Neste artigo
                 </p>
                 <ul className="space-y-2.5 border-l border-green-deep/15 pl-4">
                   {headings.map((h) => (
@@ -257,16 +244,16 @@ const BlogPost = () => {
             ) : (
               <div className="py-20 text-center">
                 <p className="font-body text-green-deep/70 text-lg mb-2">
-                  {t(translations.post.finishing1, lang)}
+                  Este artigo está sendo finalizado.
                 </p>
                 <p className="font-body text-green-deep/50 text-sm">
-                  {t(translations.post.finishing2, lang)}
+                  Em breve disponibilizaremos o conteúdo completo aqui.
                 </p>
                 <Link
                   to="/blog"
                   className="inline-flex items-center gap-2 mt-8 text-green-deep font-bold font-body hover:text-gold-dark transition-colors"
                 >
-                  <ArrowLeft size={16} /> {t(translations.post.back, lang)}
+                  <ArrowLeft size={16} /> Voltar para o blog
                 </Link>
               </div>
             )}
@@ -275,7 +262,7 @@ const BlogPost = () => {
             {post.externalLinks && post.externalLinks.length > 0 && (
               <section className="mt-14 pt-10 border-t border-green-deep/10">
                 <p className="font-display text-xs uppercase tracking-[0.2em] text-green-deep/50 mb-4">
-                  {t(translations.post.sources, lang)}
+                  Fontes oficiais
                 </p>
                 <ul className="space-y-2">
                   {post.externalLinks.map((l) => (
@@ -305,7 +292,7 @@ const BlogPost = () => {
         <section className="bg-cream border-t border-green-deep/10 py-16">
           <div className="container mx-auto px-6 max-w-6xl">
             <h2 className="font-display text-2xl md:text-3xl text-green-deep mb-8">
-              {t(translations.post.keepReading, lang)}
+              Continue lendo
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedPosts.map((rp) => rp && (
@@ -337,7 +324,7 @@ const BlogPost = () => {
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label={t(translations.post.backToTop, lang)}
+          aria-label="Voltar ao topo"
           className="fixed bottom-24 right-6 w-11 h-11 rounded-full bg-green-deep text-gold shadow-lg flex items-center justify-center hover:bg-gold hover:text-green-deep transition-colors z-40"
         >
           <ChevronUp size={20} />

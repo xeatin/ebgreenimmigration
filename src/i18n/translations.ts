@@ -398,65 +398,6 @@ export const translations = {
     terms: { pt: "Termos de Uso", en: "Terms of Use", es: "Términos de Uso" },
     rights: { pt: "Todos os direitos reservados.", en: "All rights reserved.", es: "Todos los derechos reservados." },
   },
-
-  // Blog (listing page)
-  blog: {
-    eyebrow: {
-      pt: "Estratégias Migratórias",
-      en: "Immigration Strategies",
-      es: "Estrategias Migratorias",
-    },
-    titleLine1: { pt: "Caminhos para o", en: "Paths to the", es: "Caminos hacia la" },
-    titleHighlight: { pt: "Green Card", en: "Green Card", es: "Green Card" },
-    intro: {
-      pt: "Conteúdos estratégicos para quem deseja entender os caminhos para viver e trabalhar legalmente nos Estados Unidos.",
-      en: "Strategic content for those who want to understand the paths to legally live and work in the United States.",
-      es: "Contenidos estratégicos para quienes desean entender los caminos para vivir y trabajar legalmente en los Estados Unidos.",
-    },
-    readArticle: { pt: "Ler Artigo", en: "Read Article", es: "Leer Artículo" },
-    empty: {
-      pt: "Nenhum artigo encontrado nesta categoria.",
-      en: "No articles found in this category.",
-      es: "Ningún artículo encontrado en esta categoría.",
-    },
-    ctaTitle1: { pt: "Seu", en: "Your", es: "Su" },
-    ctaTitle2: {
-      pt: "pode começar com uma análise gratuita.",
-      en: "can start with a free assessment.",
-      es: "puede comenzar con un análisis gratuito.",
-    },
-    ctaText: {
-      pt: "Fale agora com um dos nossos especialistas e descubra os caminhos mais adequados para o seu perfil.",
-      en: "Talk now with one of our specialists and discover the best paths for your profile.",
-      es: "Hable ahora con uno de nuestros especialistas y descubra los caminos más adecuados para su perfil.",
-    },
-  },
-
-  // Blog post (article page)
-  post: {
-    back: { pt: "Voltar para o blog", en: "Back to blog", es: "Volver al blog" },
-    inThisArticle: { pt: "Neste artigo", en: "In this article", es: "En este artículo" },
-    writtenBy: { pt: "Escrito por", en: "Written by", es: "Escrito por" },
-    readingTime: { pt: "de leitura", en: "read", es: "de lectura" },
-    sources: { pt: "Fontes oficiais", en: "Official sources", es: "Fuentes oficiales" },
-    keepReading: { pt: "Continue lendo", en: "Keep reading", es: "Seguir leyendo" },
-    backToTop: { pt: "Voltar ao topo", en: "Back to top", es: "Volver arriba" },
-    finishing1: {
-      pt: "Este artigo está sendo finalizado.",
-      en: "This article is being finalized.",
-      es: "Este artículo se está finalizando.",
-    },
-    finishing2: {
-      pt: "Em breve disponibilizaremos o conteúdo completo aqui.",
-      en: "We will publish the full content here soon.",
-      es: "Pronto publicaremos el contenido completo aquí.",
-    },
-    translating: {
-      pt: "Carregando…",
-      en: "Translating…",
-      es: "Traduciendo…",
-    },
-  },
 } as const;
 
 export function t(obj: Record<Language, string>, lang: Language): string {
