@@ -109,6 +109,7 @@ const formatDate = (raw: string, lang: "pt" | "en" | "es") => {
 
 const Noticias = () => {
   const { lang } = useLanguage();
+  const [rawItems, setRawItems] = useState<NewsItem[]>([]);
   const [items, setItems] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -120,7 +121,9 @@ const Noticias = () => {
     try {
       const { data, error } = await supabase.functions.invoke("uscis-news");
       if (error) throw error;
-      setItems(data?.items ?? []);
+      const fetched: NewsItem[] = data?.items ?? [];
+      setRawItems(fetched);
+      setItems(fetched);
     } catch (e) {
       console.error(e);
       setError(copy.error[lang]);
@@ -144,6 +147,45 @@ const Noticias = () => {
     loadBulletin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Translate news items when language changes (skip English / no items)
+  useEffect(() => {
+    if (!rawItems.length) return;
+    if (lang === "en") {
+      setItems(rawItems);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const payload = rawItems.map((i, idx) => ({
+          id: String(idx),
+          title: i.title,
+          description: i.description,
+        }));
+        const { data, error } = await supabase.functions.invoke("translate-news", {
+          body: { items: payload, target: lang },
+        });
+        if (error) throw error;
+        if (cancelled || !data?.items) return;
+        const byId = new Map<string, { title: string; description: string }>(
+          data.items.map((t: { id: string; title: string; description: string }) => [t.id, t])
+        );
+        setItems(
+          rawItems.map((i, idx) => {
+            const t = byId.get(String(idx));
+            return t ? { ...i, title: t.title, description: t.description } : i;
+          })
+        );
+      } catch (e) {
+        console.error("translate-news error", e);
+        if (!cancelled) setItems(rawItems);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [lang, rawItems]);
 
   // Only show sub-items that match the SAME month/year of the master bulletin
   const bulletinMonthRe = bulletin
