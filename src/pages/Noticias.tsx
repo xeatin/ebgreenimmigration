@@ -235,49 +235,7 @@ const Noticias = () => {
 
           {!loading && !error && (
             <div className="space-y-5">
-              {/* Featured first item */}
-              {featured && (
-                <motion.a
-                  key={featured.link}
-                  href={featured.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  whileTap={{ scale: 0.99 }}
-                  className="block relative bg-white rounded-2xl border-2 border-eligibility-green shadow-[0_15px_40px_-15px_hsl(var(--eligibility-green)/0.4)] p-8 cursor-pointer transition-all duration-200 hover:shadow-[0_20px_50px_-15px_hsl(var(--eligibility-green)/0.55)]"
-                >
-                  <span className="absolute -top-3 left-6 inline-flex items-center gap-1.5 bg-eligibility-green text-cream px-3 py-1 rounded-full text-xs font-bold font-body uppercase tracking-wider">
-                    <Star size={12} className="fill-cream" />
-                    {copy.featured[lang]}
-                  </span>
-                  <div className="flex items-start gap-5">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-eligibility-green/15 text-eligibility-green flex items-center justify-center">
-                      <MapPin size={22} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h2 className="font-display text-2xl md:text-3xl text-green-deep leading-snug">
-                        {featured.title}
-                      </h2>
-                      <p className="text-xs text-green-deep/60 font-body mt-2 uppercase tracking-wider">
-                        {formatDate(featured.pubDate, lang)}{featured.source ? ` · ${featured.source}` : ""}
-                      </p>
-                      {featured.description && (
-                        <p className="text-green-deep/80 font-body text-base mt-4 line-clamp-4">
-                          {featured.description}
-                        </p>
-                      )}
-                      <span className="inline-flex items-center gap-1.5 mt-5 text-eligibility-green font-body font-bold text-sm">
-                        {copy.readMore[lang]}
-                        <ExternalLink size={14} />
-                      </span>
-                    </div>
-                  </div>
-                </motion.a>
-              )}
-
-              {/* Rest */}
-              {rest.map((item, i) => (
+              {items.map((item, i) => (
                 <motion.a
                   key={item.link}
                   href={item.link}
