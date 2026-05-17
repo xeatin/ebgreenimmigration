@@ -169,43 +169,46 @@ const Noticias = () => {
 
       <section className="py-16">
         <div className="container mx-auto px-6 max-w-4xl">
-          {/* Visa Bulletin featured card */}
+          {/* Visa Bulletin — same layout as news cards, with DESTAQUE sticker */}
           <motion.a
             href={bulletin?.url ?? "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html"}
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            className="group block mb-10 rounded-2xl overflow-hidden bg-gradient-to-br from-green-deep to-green-deep/90 border border-gold/40 shadow-[0_20px_50px_-20px_hsl(var(--green-deep)/0.6)] hover:shadow-[0_25px_60px_-15px_hsl(var(--gold)/0.45)] transition-all"
+            className="block relative bg-white rounded-xl border-l-4 border-gold shadow-sm p-6 mb-10 mt-3 cursor-pointer transition-all duration-200 hover:border-eligibility-green hover:shadow-[0_8px_24px_-8px_hsl(var(--eligibility-green)/0.45)] focus:outline-none focus-visible:ring-2 focus-visible:ring-eligibility-green"
           >
-            <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
-              <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-gold text-green-deep flex items-center justify-center shadow-md">
-                <FileText size={26} />
+            <span className="absolute -top-3 left-6 inline-flex items-center gap-1.5 bg-eligibility-green text-cream px-3 py-1 rounded-full text-xs font-bold font-body uppercase tracking-wider">
+              <Star size={12} className="fill-cream" />
+              {copy.featured[lang]}
+            </span>
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold/15 text-gold flex items-center justify-center">
+                <FileText size={18} />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-gold font-body text-xs uppercase tracking-[0.18em] font-bold">
-                  {copy.bulletinEyebrow[lang]}
-                </p>
-                <h2 className="font-display text-2xl md:text-3xl text-cream mt-2 leading-tight">
+                <h2 className="font-display text-xl md:text-2xl text-green-deep leading-snug">
                   {copy.bulletinTitle[lang]}
                   {bulletin && (
-                    <span className="block text-gold mt-1">
-                      {MONTH_LABELS[bulletin.month]?.[lang] ?? bulletin.month} {bulletin.year}
-                    </span>
+                    <>
+                      {" — "}
+                      <span className="text-gold">
+                        {MONTH_LABELS[bulletin.month]?.[lang] ?? bulletin.month} {bulletin.year}
+                      </span>
+                    </>
                   )}
                 </h2>
-                <p className="text-cream/80 font-body text-sm md:text-base mt-3 leading-relaxed">
+                <p className="text-xs text-green-deep/60 font-body mt-1 uppercase tracking-wider">
+                  {copy.bulletinEyebrow[lang]}
+                  {bulletin ? ` · ${copy.bulletinSource[lang].replace(/^.*?:\s*/, "")}` : ""}
+                </p>
+                <p className="text-green-deep/75 font-body text-sm mt-3 line-clamp-3">
                   {copy.bulletinDesc[lang]}
                 </p>
-                <div className="mt-5 flex flex-wrap items-center gap-4">
-                  <span className="inline-flex items-center gap-2 bg-gradient-gold text-green-deep px-5 py-2.5 rounded-md font-bold font-body text-sm group-hover:opacity-90 transition-opacity">
-                    {copy.bulletinCta[lang]}
-                    <ExternalLink size={14} />
-                  </span>
-                  <span className="text-cream/50 text-xs font-body uppercase tracking-wider">
-                    {bulletin ? copy.bulletinSource[lang] : copy.bulletinLoading[lang]}
-                  </span>
-                </div>
+                <span className="inline-flex items-center gap-1.5 mt-4 text-gold font-body font-semibold text-sm">
+                  {copy.bulletinCta[lang]}
+                  <ExternalLink size={14} />
+                </span>
               </div>
             </div>
           </motion.a>
