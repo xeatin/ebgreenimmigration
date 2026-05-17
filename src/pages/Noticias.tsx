@@ -145,8 +145,15 @@ const Noticias = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const bulletinRelated = items.filter((i) => /visa\s*bulletin/i.test(i.title));
-  const otherNews = items.filter((i) => !/visa\s*bulletin/i.test(i.title));
+  // Only show sub-items that match the SAME month/year of the master bulletin
+  const bulletinMonthRe = bulletin
+    ? new RegExp(`visa\\s*bulletin[^\\n]*\\b${bulletin.month}\\b[^\\n]*\\b${bulletin.year}\\b|\\b${bulletin.month}\\s+${bulletin.year}\\b[^\\n]*visa\\s*bulletin`, "i")
+    : null;
+  const isBulletinNews = (title: string) => /visa\s*bulletin/i.test(title);
+  const bulletinRelated = bulletin
+    ? items.filter((i) => bulletinMonthRe!.test(i.title))
+    : [];
+  const otherNews = items.filter((i) => !isBulletinNews(i.title));
 
   return (
     <div className="min-h-screen bg-cream">
