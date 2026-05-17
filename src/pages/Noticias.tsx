@@ -145,8 +145,15 @@ const Noticias = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const bulletinRelated = items.filter((i) => /visa\s*bulletin/i.test(i.title));
-  const otherNews = items.filter((i) => !/visa\s*bulletin/i.test(i.title));
+  // Only show sub-items that match the SAME month/year of the master bulletin
+  const bulletinMonthRe = bulletin
+    ? new RegExp(`visa\\s*bulletin[^\\n]*\\b${bulletin.month}\\b[^\\n]*\\b${bulletin.year}\\b|\\b${bulletin.month}\\s+${bulletin.year}\\b[^\\n]*visa\\s*bulletin`, "i")
+    : null;
+  const isBulletinNews = (title: string) => /visa\s*bulletin/i.test(title);
+  const bulletinRelated = bulletin
+    ? items.filter((i) => bulletinMonthRe!.test(i.title))
+    : [];
+  const otherNews = items.filter((i) => !isBulletinNews(i.title));
 
   return (
     <div className="min-h-screen bg-cream">
@@ -214,33 +221,41 @@ const Noticias = () => {
           </motion.a>
 
           {bulletinRelated.length > 0 && (
-            <div className="-mt-6 mb-10 ml-4 md:ml-8 pl-6 border-l-2 border-gold/40 space-y-2">
-              <p className="text-xs text-green-deep/60 font-body uppercase tracking-wider font-bold">
+            <div className="-mt-6 mb-10 ml-6 md:ml-12 relative">
+              {/* connector line */}
+              <div className="absolute left-0 top-0 bottom-4 w-px bg-gradient-to-b from-gold/60 via-gold/30 to-transparent" />
+              <p className="pl-6 mb-3 text-[11px] text-green-deep/60 font-body uppercase tracking-[0.18em] font-bold">
                 {lang === "pt"
-                  ? "Análises e atualizações relacionadas"
+                  ? `Análises sobre o Visa Bulletin de ${MONTH_LABELS[bulletin!.month]?.[lang] ?? bulletin!.month} ${bulletin!.year}`
                   : lang === "es"
-                  ? "Análisis y actualizaciones relacionadas"
-                  : "Related analyses and updates"}
+                  ? `Análisis sobre el Visa Bulletin de ${MONTH_LABELS[bulletin!.month]?.[lang] ?? bulletin!.month} ${bulletin!.year}`
+                  : `Analyses on the ${MONTH_LABELS[bulletin!.month]?.[lang] ?? bulletin!.month} ${bulletin!.year} Visa Bulletin`}
               </p>
-              {bulletinRelated.map((item) => (
-                <a
-                  key={item.link}
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-start gap-2 text-green-deep hover:text-eligibility-green transition-colors"
-                >
-                  <ExternalLink size={14} className="mt-1 flex-shrink-0 text-gold group-hover:text-eligibility-green" />
-                  <span className="font-body text-sm leading-snug">
-                    {item.title}
-                    {item.source && (
-                      <span className="text-green-deep/50 text-xs ml-2 uppercase tracking-wider">
-                        · {item.source}
+              <div className="space-y-2">
+                {bulletinRelated.map((item) => (
+                  <a
+                    key={item.link}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex items-start gap-3 pl-6 pr-4 py-3 rounded-lg bg-white/60 hover:bg-white border border-transparent hover:border-gold/40 hover:shadow-sm transition-all"
+                  >
+                    {/* horizontal tick from the trunk */}
+                    <span className="absolute left-0 top-1/2 w-5 h-px bg-gold/40 group-hover:bg-eligibility-green/60 transition-colors" />
+                    <span className="mt-0.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-gold group-hover:bg-eligibility-green transition-colors" />
+                    <span className="flex-1 min-w-0">
+                      <span className="font-body text-sm leading-snug text-green-deep group-hover:text-eligibility-green transition-colors block">
+                        {item.title}
                       </span>
-                    )}
-                  </span>
-                </a>
-              ))}
+                      <span className="mt-1 flex items-center gap-2 text-[11px] text-green-deep/55 font-body uppercase tracking-wider">
+                        {formatDate(item.pubDate, lang)}
+                        {item.source && <span>· {item.source}</span>}
+                      </span>
+                    </span>
+                    <ExternalLink size={14} className="mt-1 flex-shrink-0 text-green-deep/40 group-hover:text-eligibility-green transition-colors" />
+                  </a>
+                ))}
+              </div>
             </div>
           )}
 
