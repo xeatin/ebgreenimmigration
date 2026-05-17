@@ -145,8 +145,8 @@ const Noticias = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const featured = items[0];
-  const rest = items.slice(1);
+  const bulletinRelated = items.filter((i) => /visa\s*bulletin/i.test(i.title));
+  const otherNews = items.filter((i) => !/visa\s*bulletin/i.test(i.title));
 
   return (
     <div className="min-h-screen bg-cream">
@@ -213,6 +213,37 @@ const Noticias = () => {
             </div>
           </motion.a>
 
+          {bulletinRelated.length > 0 && (
+            <div className="-mt-6 mb-10 ml-4 md:ml-8 pl-6 border-l-2 border-gold/40 space-y-2">
+              <p className="text-xs text-green-deep/60 font-body uppercase tracking-wider font-bold">
+                {lang === "pt"
+                  ? "Análises e atualizações relacionadas"
+                  : lang === "es"
+                  ? "Análisis y actualizaciones relacionadas"
+                  : "Related analyses and updates"}
+              </p>
+              {bulletinRelated.map((item) => (
+                <a
+                  key={item.link}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-2 text-green-deep hover:text-eligibility-green transition-colors"
+                >
+                  <ExternalLink size={14} className="mt-1 flex-shrink-0 text-gold group-hover:text-eligibility-green" />
+                  <span className="font-body text-sm leading-snug">
+                    {item.title}
+                    {item.source && (
+                      <span className="text-green-deep/50 text-xs ml-2 uppercase tracking-wider">
+                        · {item.source}
+                      </span>
+                    )}
+                  </span>
+                </a>
+              ))}
+            </div>
+          )}
+
           {loading && (
             <div className="flex items-center justify-center py-20 text-green-deep/70">
               <Loader2 className="animate-spin mr-3" />
@@ -235,7 +266,7 @@ const Noticias = () => {
 
           {!loading && !error && (
             <div className="space-y-5">
-              {items.map((item, i) => (
+              {otherNews.map((item, i) => (
                 <motion.a
                   key={item.link}
                   href={item.link}
