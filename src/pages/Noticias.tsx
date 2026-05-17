@@ -235,7 +235,7 @@ const Noticias = () => {
 
           {!loading && !error && (
             <div className="space-y-5">
-              {items.map((item, i) => (
+              {otherNews.map((item, i) => (
                 <motion.a
                   key={item.link}
                   href={item.link}
