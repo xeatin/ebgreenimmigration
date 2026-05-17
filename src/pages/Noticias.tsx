@@ -188,14 +188,21 @@ const Noticias = () => {
   }, [lang, rawItems]);
 
   // Only show sub-items that match the SAME month/year of the master bulletin
+  // Filter on raw (English) titles since bulletin.month is English; then map to translated items by index
   const bulletinMonthRe = bulletin
     ? new RegExp(`visa\\s*bulletin[^\\n]*\\b${bulletin.month}\\b[^\\n]*\\b${bulletin.year}\\b|\\b${bulletin.month}\\s+${bulletin.year}\\b[^\\n]*visa\\s*bulletin`, "i")
     : null;
   const isBulletinNews = (title: string) => /visa\s*bulletin/i.test(title);
   const bulletinRelated = bulletin
-    ? items.filter((i) => bulletinMonthRe!.test(i.title))
+    ? rawItems
+        .map((raw, idx) => ({ raw, item: items[idx] ?? raw }))
+        .filter(({ raw }) => bulletinMonthRe!.test(raw.title))
+        .map(({ item }) => item)
     : [];
-  const otherNews = items.filter((i) => !isBulletinNews(i.title));
+  const otherNews = rawItems
+    .map((raw, idx) => ({ raw, item: items[idx] ?? raw }))
+    .filter(({ raw }) => !isBulletinNews(raw.title))
+    .map(({ item }) => item);
 
   return (
     <div className="min-h-screen bg-cream">
