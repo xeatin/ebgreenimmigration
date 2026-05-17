@@ -145,8 +145,8 @@ const Noticias = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const featured = items[0];
-  const rest = items.slice(1);
+  const bulletinRelated = items.filter((i) => /visa\s*bulletin/i.test(i.title));
+  const otherNews = items.filter((i) => !/visa\s*bulletin/i.test(i.title));
 
   return (
     <div className="min-h-screen bg-cream">
