@@ -4,3 +4,6 @@ verify_jwt = false
 
 [functions.visa-bulletin]
 verify_jwt = false
+
+[functions.translate-news]
+verify_jwt = false
