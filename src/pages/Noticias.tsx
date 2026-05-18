@@ -187,18 +187,12 @@ const Noticias = () => {
     };
   }, [lang, rawItems]);
 
-  // Only show sub-items that match the SAME month/year of the master bulletin
-  // Filter on raw (English) titles since bulletin.month is English; then map to translated items by index
-  const bulletinMonthRe = bulletin
-    ? new RegExp(`visa\\s*bulletin[^\\n]*\\b${bulletin.month}\\b[^\\n]*\\b${bulletin.year}\\b|\\b${bulletin.month}\\s+${bulletin.year}\\b[^\\n]*visa\\s*bulletin`, "i")
-    : null;
+  // Show ALL Visa Bulletin-related news as sub-items under the master card
   const isBulletinNews = (title: string) => /visa\s*bulletin/i.test(title);
-  const bulletinRelated = bulletin
-    ? rawItems
-        .map((raw, idx) => ({ raw, item: items[idx] ?? raw }))
-        .filter(({ raw }) => bulletinMonthRe!.test(raw.title))
-        .map(({ item }) => item)
-    : [];
+  const bulletinRelated = rawItems
+    .map((raw, idx) => ({ raw, item: items[idx] ?? raw }))
+    .filter(({ raw }) => isBulletinNews(raw.title))
+    .map(({ item }) => item);
   const otherNews = rawItems
     .map((raw, idx) => ({ raw, item: items[idx] ?? raw }))
     .filter(({ raw }) => !isBulletinNews(raw.title))
@@ -275,10 +269,10 @@ const Noticias = () => {
               <div className="absolute left-0 top-0 bottom-4 w-px bg-gradient-to-b from-gold/60 via-gold/30 to-transparent" />
               <p className="pl-6 mb-3 text-[11px] text-green-deep/60 font-body uppercase tracking-[0.18em] font-bold">
                 {lang === "pt"
-                  ? `Análises sobre o Visa Bulletin de ${MONTH_LABELS[bulletin!.month]?.[lang] ?? bulletin!.month} ${bulletin!.year}`
+                  ? "Análises sobre o Visa Bulletin"
                   : lang === "es"
-                  ? `Análisis sobre el Visa Bulletin de ${MONTH_LABELS[bulletin!.month]?.[lang] ?? bulletin!.month} ${bulletin!.year}`
-                  : `Analyses on the ${MONTH_LABELS[bulletin!.month]?.[lang] ?? bulletin!.month} ${bulletin!.year} Visa Bulletin`}
+                  ? "Análisis sobre el Visa Bulletin"
+                  : "Analyses on the Visa Bulletin"}
               </p>
               <div className="space-y-2">
                 {bulletinRelated.map((item) => (
