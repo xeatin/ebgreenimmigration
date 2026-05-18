@@ -846,28 +846,28 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               {t(s.sectionLabel, lang)}
             </p>
             <h2 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-foreground leading-[1.05] tracking-tight">
-              Qual é o seu caminho<br />
-              para o <span className="text-gold italic">Green Card?</span>
+              {t(s.form.heroTitle1, lang)}<br />
+              {t(s.form.heroTitle2, lang)} <span className="text-gold italic">{t(s.form.heroTitleHighlight, lang)}</span>
             </h2>
             <p className="mt-5 text-muted-foreground text-base font-body leading-relaxed text-justify">
-              Em apenas 60 segundos, analisamos seu perfil gratuitamente. Inicie sua avaliação gratuita e descubra possíveis caminhos migratórios para os Estados Unidos.
+              {t(s.sectionSubtitle, lang)}
             </p>
 
             {/* Institutional stats row */}
             <div className="mt-7 grid grid-cols-3 gap-4 pb-5 border-b border-foreground/10">
               <div>
                 <p className="font-body text-xs text-foreground font-medium leading-none">10+</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">Anos atuando</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">{t(s.form.stats10y, lang)}</p>
               </div>
               <div>
                 <p className="font-body text-xs text-foreground font-medium leading-none">+89%</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">Aprovação NIW</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">{t(s.form.statsApproval, lang)}</p>
               </div>
               <div>
                 <p className="font-body text-xs text-foreground font-medium leading-none whitespace-nowrap">
                   PT<span className="text-gold mx-1">·</span>EN<span className="text-gold mx-1">·</span>ES
                 </p>
-                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">Atendimento</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">{t(s.form.statsService, lang)}</p>
               </div>
             </div>
 
@@ -875,7 +875,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             <div className="mt-4 rounded-xl bg-green-deep text-white px-5 md:px-6 pt-[19px] md:pt-[23px] pb-5 md:pb-6 relative overflow-hidden">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
               <p className="font-display text-lg font-semibold">
-                Atendimento direto
+                {t(s.form.directContact, lang)}
               </p>
               <div className="mt-[11px] mb-[19px] h-px w-full bg-white/10" />
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-5">
@@ -899,7 +899,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 </a>
               </div>
               <p className="text-sm font-body text-gold/90">
-                Segunda a sexta <span className="text-white/40 mx-1">·</span> 9:00–17:00 ET
+                {t(s.form.mondayFriday, lang)} <span className="text-white/40 mx-1">·</span> 9:00–17:00 ET
               </p>
             </div>
           </motion.div>
@@ -931,10 +931,10 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 </div>
                 <div>
                   <p className="text-[9px] text-muted-foreground tracking-[0.18em] font-body uppercase font-semibold">
-                    Avaliação Gratuita
+                    {t(s.form.freeEvalBadge, lang)}
                   </p>
                   <p className="font-display text-[15px] font-semibold text-foreground leading-tight">
-                    Análise Preliminar de Elegibilidade
+                    {t(s.form.formTitle, lang)}
                   </p>
                 </div>
               </div>
@@ -1042,7 +1042,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               <div className="flex items-center gap-3 flex-wrap">
                 <div className="flex items-center gap-2 text-[11px] text-foreground font-body font-light shrink-0 whitespace-nowrap leading-snug tracking-wide">
                   <span className="text-gold text-xs">🔒</span>
-                  Dados protegidos · análise confidencial
+                  {t(s.form.protected, lang)}
                 </div>
 
                 <button
@@ -1052,7 +1052,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                   tabIndex={step === 1 ? -1 : 0}
                   className={`ml-auto h-11 px-4 rounded-md border border-border text-muted-foreground text-[13px] font-body hover:border-foreground/30 hover:text-foreground transition inline-flex items-center gap-1.5 ${step === 1 ? "invisible pointer-events-none ml-auto" : ""}`}
                 >
-                  <ArrowLeft size={14} /> Voltar
+                  <ArrowLeft size={14} /> {t(s.form.back, lang)}
                 </button>
 
                 <div>
@@ -1062,7 +1062,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                       onClick={handleNext}
                       className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:opacity-50"
                     >
-                      Continuar avaliação <ArrowRight size={15} />
+                      {t(s.form.continue, lang)} <ArrowRight size={15} />
                     </button>
                   ) : (
                     <button
@@ -1071,7 +1071,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                       className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-60"
                     >
                       {isSubmitting ? t(s.submitting, lang) : (
-                        <>Receber minha avaliação <Send size={14} /></>
+                        <>{t(s.form.submitCta, lang)} <Send size={14} /></>
                       )}
                     </button>
                   )}
@@ -1079,9 +1079,9 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               </div>
 
               <p className="mt-6 mb-2 text-[11px] text-muted-foreground font-body font-light leading-[1.6]">
-                Esta análise preliminar não constitui consulta jurídica individualizada nem substitui orientação legal formal. Ao prosseguir, você declara estar de acordo com a{" "}
-                <a href="#" className="text-foreground font-medium underline hover:opacity-80">Política de Privacidade</a>{" "}
-                e os <a href="#" className="text-foreground font-medium underline hover:opacity-80">Termos de Uso</a>.
+                {t(s.form.legalNotice, lang)}{" "}
+                <a href="#" className="text-foreground font-medium underline hover:opacity-80">{t(translations.footer.privacy, lang)}</a>{" "}
+                {t(s.form.and, lang)} <a href="#" className="text-foreground font-medium underline hover:opacity-80">{t(s.form.termsOfUse, lang)}</a>.
               </p>
             </div>
           </motion.form>
