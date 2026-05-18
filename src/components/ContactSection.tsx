@@ -728,7 +728,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               className="absolute -top-2.5 -right-2.5 z-10 flex items-center gap-1 bg-brand-green text-cream text-[10px] font-bold font-body px-2.5 py-1 rounded-full shadow-[0_4px_14px_hsl(var(--brand-green)/0.5)] uppercase tracking-wider"
             >
               <Sparkles size={10} className="fill-cream" />
-              Sua análise
+              {t(s.form.yourAnalysis, lang)}
             </motion.span>
             <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-green to-transparent rounded-t-xl" />
             <span className="absolute inset-0 rounded-xl ring-1 ring-inset ring-brand-green/20 animate-pulse pointer-events-none" />
@@ -738,7 +738,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               </span>
               <div className="min-w-0 flex-1">
                 <p className="text-[12px] tracking-[0.18em] uppercase font-body font-extralight text-brand-green mb-2">
-                  {suggestions.length > 1 ? "Análises preliminares baseadas nas suas respostas" : "Analise preliminar baseada nas suas respostas"}
+                  {suggestions.length > 1 ? t(s.form.analysisLabelMulti, lang) : t(s.form.analysisLabel, lang)}
                 </p>
                 <div className="space-y-3">
                   {suggestions.map((sug) => (
@@ -753,7 +753,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                   ))}
                 </div>
                 <p className="text-[11px] text-foreground/40 font-body italic mt-3">
-                  {suggestions.length > 1 ? "Estas sugestões são apenas indicativas. A análise final será feita por nossa equipe." : "Esta sugestão é apenas indicativa. A análise final será feita por nossa equipe."}
+                  {suggestions.length > 1 ? t(s.form.analysisDisclaimerMulti, lang) : t(s.form.analysisDisclaimer, lang)}
                 </p>
               </div>
             </div>
@@ -764,27 +764,27 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25 mb-5">
         <ShieldCheck size={14} className="text-emerald-600 shrink-0" />
         <span className="text-[12px] text-emerald-700 font-body">
-          Avançar com minha avaliação gratuita
+          {t(s.form.advanceBadge, lang)}
         </span>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelCls}>Quando pretende iniciar? <span className={reqCls}>*</span></label>
+          <label className={labelCls}>{t(s.form.labelTimeline, lang)} <span className={reqCls}>*</span></label>
           <select
             value={formData.timeline}
             onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
             className={selectCls(!formData.timeline && errors.message ? "x" : undefined)}
             style={selectBg}
           >
-            <option value="" className="bg-white">Selecionar...</option>
-            {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
+            {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.timelineList, o)}</option>)}
           </select>
-          {errors.message && !formData.timeline && <p className={errCls}>Selecione quando pretende iniciar.</p>}
+          {errors.message && !formData.timeline && <p className={errCls}>{t(s.form.timelineError, lang)}</p>}
         </div>
         <div>
           <label className={labelCls}>
-            Status atual <span className="text-foreground/40 normal-case font-light tracking-normal text-[10px] ml-1">(opcional)</span>
+            {t(s.form.labelCurrentStatus, lang)} <span className="text-foreground/40 normal-case font-light tracking-normal text-[10px] ml-1">{t(s.form.optional, lang)}</span>
           </label>
           <select
             value={formData.currentStatus}
@@ -792,8 +792,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             className={selectCls()}
             style={selectBg}
           >
-            <option value="" className="bg-white">Selecionar...</option>
-            {CURRENT_STATUS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
+            {CURRENT_STATUS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.statusList, o)}</option>)}
           </select>
         </div>
       </div>
