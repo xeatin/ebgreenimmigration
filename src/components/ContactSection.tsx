@@ -216,6 +216,12 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const { lang } = useLanguage();
   const { toast } = useToast();
   const s = translations.contact;
+  const STEPS = [
+    { n: 1, label: t(s.form.stepContact, lang) },
+    { n: 2, label: t(s.form.stepProfile, lang) },
+    { n: 3, label: t(s.form.stepAnalysis, lang) },
+  ];
+  const trOpt = (group: any, key: string) => (group?.[key] ? t(group[key], lang) : key);
 
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<{
