@@ -23,14 +23,14 @@ type FormErrors = Partial<Record<
 >>;
 
 const VISA_OPTIONS = [
-  { id: "EB-1A", label: "EB-1A", desc: "Habilidade Extraordinária" },
-  { id: "EB-2 NIW", label: "EB-2 NIW", desc: "Profissionais qualificados e interesse nacional" },
-  { id: "EB-3", label: "EB-3", desc: "Trabalho e oferta de emprego" },
-  { id: "EB-5 / E-2 Investidor", label: "EB-5 / E-2", desc: "Investimento nos Estados Unidos" },
-  { id: "H-1B / L-1 / O-1", label: "H-1B, L-1, O-1", desc: "Vistos de Trabalho" },
-  { id: "F-1 Estudante", label: "F-1", desc: "Visto de Estudante" },
-  { id: "Family-Based", label: "Family-Based", desc: "Patrocínio Familiar" },
-  { id: "R-1 Religioso", label: "R-1", desc: "Trabalhador Religioso" },
+  { id: "EB-1A", label: "EB-1A" },
+  { id: "EB-2 NIW", label: "EB-2 NIW" },
+  { id: "EB-3", label: "EB-3" },
+  { id: "EB-5 / E-2 Investidor", label: "EB-5 / E-2" },
+  { id: "H-1B / L-1 / O-1", label: "H-1B, L-1, O-1" },
+  { id: "F-1 Estudante", label: "F-1" },
+  { id: "Family-Based", label: "Family-Based" },
+  { id: "R-1 Religioso", label: "R-1" },
 ];
 
 const EDUCATION_OPTIONS = [
@@ -53,15 +53,6 @@ const ACHIEVEMENTS_OPTIONS = [
 
 const EXPERIENCE_OPTIONS = ["Menos de 5 anos", "De 5 a 10 anos", "Mais de 10 anos"];
 
-const COUNTRY_GROUPS: { continent: string; countries: string[] }[] = [
-  { continent: "América do Sul", countries: ["🇧🇷 Brasil", "🇦🇷 Argentina", "🇨🇱 Chile", "🇨🇴 Colômbia", "🇪🇨 Equador", "🇵🇾 Paraguai", "🇵🇪 Peru", "🇺🇾 Uruguai", "🇻🇪 Venezuela", "🇧🇴 Bolívia"] },
-  { continent: "América do Norte e Central", countries: ["🇺🇸 Estados Unidos", "🇨🇦 Canadá", "🇲🇽 México", "🇨🇷 Costa Rica", "🇨🇺 Cuba", "🇵🇦 Panamá", "🇩🇴 República Dominicana"] },
-  { continent: "Europa", countries: ["🇵🇹 Portugal", "🇪🇸 Espanha", "🇮🇹 Itália", "🇫🇷 França", "🇩🇪 Alemanha", "🇬🇧 Reino Unido", "🇮🇪 Irlanda", "🇨🇭 Suíça", "🇳🇱 Países Baixos", "🇧🇪 Bélgica"] },
-  { continent: "África", countries: ["🇦🇴 Angola", "🇲🇿 Moçambique", "🇨🇻 Cabo Verde", "🇿🇦 África do Sul", "🇳🇬 Nigéria", "🇪🇬 Egito", "🇲🇦 Marrocos"] },
-  { continent: "Ásia", countries: ["🇨🇳 China", "🇮🇳 Índia", "🇯🇵 Japão", "🇰🇷 Coreia do Sul", "🇵🇭 Filipinas", "🇻🇳 Vietnã", "🇹🇭 Tailândia", "🇮🇱 Israel"] },
-  { continent: "Oceania", countries: ["🇦🇺 Austrália", "🇳🇿 Nova Zelândia"] },
-];
-
 const CURRENT_STATUS_OPTIONS = [
   "Ainda no Brasil / país de origem",
   "Visto de Turista (B1/B2)",
@@ -79,20 +70,6 @@ const TIMELINE_OPTIONS = [
   "Em breve (1–3 meses)",
   "Planejando (3–12 meses)",
   "Ainda estou explorando opções",
-];
-
-const KNOWN_VISA_OPTIONS = [
-  "EB-5 / E-2 - Investimento nos Estados Unidos",
-  "H-1B, L-1, O-1 - Vistos de trabalho",
-  "F-1 - Visto de estudante",
-  "Family-Based - Patrocínio Familiar",
-  "R-1 - Trabalho Religioso",
-];
-
-const STEPS = [
-  { n: 1, label: "Contato" },
-  { n: 2, label: "Perfil" },
-  { n: 3, label: "Análise" },
 ];
 
 // Heurística simples para sugerir visto baseado nas respostas do perfil
@@ -239,6 +216,12 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const { lang } = useLanguage();
   const { toast } = useToast();
   const s = translations.contact;
+  const STEPS = [
+    { n: 1, label: t(s.form.stepContact, lang) },
+    { n: 2, label: t(s.form.stepProfile, lang) },
+    { n: 3, label: t(s.form.stepAnalysis, lang) },
+  ];
+  const trOpt = (group: any, key: string) => (group?.[key] ? t(group[key], lang) : key);
 
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<{
@@ -406,8 +389,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       } catch (err) {
         console.error("Resume upload failed:", err);
         toast({
-          title: "Falha ao enviar currículo",
-          description: "Continuamos com o envio sem o anexo.",
+          title: t(s.form.resumeFailTitle, lang),
+          description: t(s.form.resumeFailDesc, lang),
           variant: "destructive",
         });
       }
@@ -441,7 +424,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
           education: formData.education,
           experience: formData.experience,
           knownVisa: formData.knownVisa,
-          message: `Olá! Tenho interesse em migrar para os Estados Unidos e gostaria de uma avaliação gratuita.\n\n${composedMessage}`.trim(),
+          message: `${t(s.form.defaultMessage, lang)}\n\n${composedMessage}`.trim(),
           resumeUrl,
           resumeName,
         },
@@ -459,7 +442,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       trackForm("form_error", { form_id: FORM_ID, visa_context: formData.visa, reason: "submit_failed" });
       toast({
         title: t(s.validationTitle, lang),
-        description: "Não foi possível enviar o lead. Tente novamente.",
+        description: t(s.form.submitFailDesc, lang),
         variant: "destructive",
       });
       setIsSubmitting(false);
@@ -470,8 +453,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     trackForm("form_submit", { form_id: FORM_ID, visa_context: formData.visa, reason: qualification });
     if (qualification === 'low') {
       toast({
-        title: "Recebemos o seu contato!",
-        description: "Nossa equipe analisará o seu perfil com atenção e retornará em breve com as melhores orientações para o seu caso.",
+        title: t(s.form.successLowTitle, lang),
+        description: t(s.form.successLowDesc, lang),
       });
     } else {
       toast({
@@ -512,16 +495,17 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const Step1 = (
     <div>
       <h3 className="font-display text-[22px] sm:text-[24px] font-semibold text-foreground leading-tight mb-2">
-        Descubra se você é elegível para o <span className="shimmer-gold italic font-semibold">Green Card</span>.
+        {t(s.form.step1TitleA, lang)} <span className="shimmer-gold italic font-semibold">Green Card</span>.
       </h3>
       <p className="text-[13px] text-muted-foreground font-body font-light leading-relaxed mb-6 max-w-[62ch]">
-        Milhares de profissionais já conquistaram o Green Card sem saber que tinham elegibilidade. Leva menos de 1 minuto para descobrir o seu caminho.
+        {t(s.form.step1Sub, lang)}
       </p>
 
-      <p className={labelCls}>Qual visto mais se aproxima do seu objetivo? <span className={reqCls}>*</span></p>
+      <p className={labelCls}>{t(s.form.step1Question, lang)} <span className={reqCls}>*</span></p>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
         {VISA_OPTIONS.map((v) => {
           const selected = formData.visa === v.id;
+          const desc = (s.visaDesc as any)[v.id] ? t((s.visaDesc as any)[v.id], lang) : "";
           return (
             <button
               key={v.id}
@@ -546,7 +530,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               <p className={`font-body font-semibold text-[12px] mb-0.5 leading-tight ${selected ? "text-foreground" : "text-foreground"}`}>
                 {v.label}
               </p>
-              <p className="text-[10px] text-muted-foreground leading-snug">{v.desc}</p>
+              <p className="text-[10px] text-muted-foreground leading-snug">{desc}</p>
             </button>
           );
         })}
@@ -571,9 +555,9 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             </span>
           )}
           <p className="font-body font-semibold text-[12px] mb-0.5 text-foreground">
-            Não sei ainda
+            {t(s.form.dontKnow, lang)}
           </p>
-          <p className="text-[10px] text-muted-foreground">Quero orientação</p>
+          <p className="text-[10px] text-muted-foreground">{t(s.form.dontKnowDesc, lang)}</p>
         </button>
       </div>
       {errors.visa && <p className={`${errCls} mt-2`}>{errors.visa}</p>}
@@ -583,36 +567,36 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const Step2 = (
     <div>
       <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
-        Seu <span className="text-gold italic">perfil profissional</span>
+        {t(s.form.step2TitleA, lang)} <span className="text-gold italic">{t(s.form.step2TitleB, lang)}</span>
       </h3>
       <p className="text-[13px] text-foreground/55 font-body font-light mb-6">
-        Essas informações ajudam nossa equipe a avaliar sua elegibilidade antes da consulta.
+        {t(s.form.step2Sub, lang)}
       </p>
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelCls}>Formação Acadêmica <span className={reqCls}>*</span></label>
+          <label className={labelCls}>{t(s.form.labelEducation, lang)} <span className={reqCls}>*</span></label>
           <select
             value={formData.education}
             onChange={(e) => setFormData({ ...formData, education: e.target.value })}
             className={selectCls(errors.education)}
             style={selectBg}
           >
-            <option value="" className="bg-white">Selecionar...</option>
-            {EDUCATION_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
+            {EDUCATION_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.educationList, o)}</option>)}
           </select>
           {errors.education && <p className={errCls}>{errors.education}</p>}
         </div>
         <div>
-          <label className={labelCls}>Publicações e prêmios <span className={reqCls}>*</span></label>
+          <label className={labelCls}>{t(s.form.labelAchievements, lang)} <span className={reqCls}>*</span></label>
           <select
             value={formData.achievements}
             onChange={(e) => setFormData({ ...formData, achievements: e.target.value })}
             className={selectCls(errors.achievements)}
             style={selectBg}
           >
-            <option value="" className="bg-white">Selecionar...</option>
-            {ACHIEVEMENTS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
+            {ACHIEVEMENTS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.achievementsList, o)}</option>)}
           </select>
           {errors.achievements && <p className={errCls}>{errors.achievements}</p>}
         </div>
@@ -621,30 +605,30 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelCls}>Licença Profissional <span className={reqCls}>*</span></label>
+          <label className={labelCls}>{t(s.form.labelLicense, lang)} <span className={reqCls}>*</span></label>
           <select
             value={formData.license}
             onChange={(e) => setFormData({ ...formData, license: e.target.value })}
             className={selectCls(errors.license)}
             style={selectBg}
           >
-            <option value="" className="bg-white">Selecionar...</option>
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
             {["Não tenho","CAU","COREN","CRA","CRC","CREA","CREFITO","CRF","CRM","CRN","CRO","CRP","OAB"].map((o) => (
-              <option key={o} value={o} className="bg-white">{o}</option>
+              <option key={o} value={o} className="bg-white">{o === "Não tenho" ? t(s.form.noLicense, lang) : o}</option>
             ))}
           </select>
           {errors.license && <p className={errCls}>{errors.license}</p>}
         </div>
         <div>
-          <label className={labelCls}>Experiência Profissional <span className={reqCls}>*</span></label>
+          <label className={labelCls}>{t(s.form.labelExperience, lang)} <span className={reqCls}>*</span></label>
           <select
             value={formData.experience}
             onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
             className={selectCls(errors.experience)}
             style={selectBg}
           >
-            <option value="" className="bg-white">Selecionar...</option>
-            {EXPERIENCE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
+            {EXPERIENCE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.experienceList, o)}</option>)}
           </select>
           {errors.experience && <p className={errCls}>{errors.experience}</p>}
         </div>
@@ -655,31 +639,31 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const Step3 = (
     <div>
       <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
-        Descubra se você é elegível para o <span className="text-gold italic font-semibold">Green Card</span>.
+        {t(s.form.step1TitleA, lang)} <span className="text-gold italic font-semibold">Green Card</span>.
       </h3>
       <p className="text-[13px] text-foreground/55 font-body font-light mb-6">
-        Milhares de profissionais já conquistaram o Green Card sem saber que tinham elegibilidade. Leva menos de 1 minuto para descobrir o seu caminho.
+        {t(s.form.step1Sub, lang)}
       </p>
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelCls}>Nome <span className={reqCls}>*</span></label>
+          <label className={labelCls}>{t(s.form.labelFirstName, lang)} <span className={reqCls}>*</span></label>
           <input
             type="text"
             value={formData.firstName}
             onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-            placeholder="Ex: João"
+            placeholder={t(s.form.placeholderFirstName, lang)}
             className={inputCls(errors.firstName)}
           />
           {errors.firstName && <p className={errCls}>{errors.firstName}</p>}
         </div>
         <div>
-          <label className={labelCls}>Sobrenome <span className={reqCls}>*</span></label>
+          <label className={labelCls}>{t(s.form.labelLastName, lang)} <span className={reqCls}>*</span></label>
           <input
             type="text"
             value={formData.lastName}
             onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-            placeholder="Ex: Silva"
+            placeholder={t(s.form.placeholderLastName, lang)}
             className={inputCls(errors.lastName)}
           />
           {errors.lastName && <p className={errCls}>{errors.lastName}</p>}
@@ -688,18 +672,18 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelCls}>E-mail <span className={reqCls}>*</span></label>
+          <label className={labelCls}>{t(s.form.labelEmail, lang)} <span className={reqCls}>*</span></label>
           <input
             type="email"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            placeholder="seu@email.com"
+            placeholder={t(s.form.placeholderEmail, lang)}
             className={inputCls(errors.email)}
           />
           {errors.email && <p className={errCls}>{errors.email}</p>}
         </div>
         <div>
-          <label className={labelCls}>WhatsApp / Telefone <span className={reqCls}>*</span></label>
+          <label className={labelCls}>{t(s.form.labelPhone, lang)} <span className={reqCls}>*</span></label>
           <div className={`flex items-center gap-2 rounded-md border bg-white transition-all duration-200 focus-within:border-gold focus-within:ring-2 focus-within:ring-gold/30 focus-within:shadow-card ${errors.phone ? "border-destructive/60" : "border-border"}`}>
             <PhoneCodeSelector
               value={formData.phoneCode}
@@ -711,7 +695,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               type="tel"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              placeholder="(00) 00000-0000"
+              placeholder={t(s.form.placeholderPhone, lang)}
               className="flex-1 h-12 px-1 bg-transparent text-foreground placeholder:text-muted-foreground/60 text-sm font-body outline-none"
             />
           </div>
@@ -744,7 +728,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               className="absolute -top-2.5 -right-2.5 z-10 flex items-center gap-1 bg-brand-green text-cream text-[10px] font-bold font-body px-2.5 py-1 rounded-full shadow-[0_4px_14px_hsl(var(--brand-green)/0.5)] uppercase tracking-wider"
             >
               <Sparkles size={10} className="fill-cream" />
-              Sua análise
+              {t(s.form.yourAnalysis, lang)}
             </motion.span>
             <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-green to-transparent rounded-t-xl" />
             <span className="absolute inset-0 rounded-xl ring-1 ring-inset ring-brand-green/20 animate-pulse pointer-events-none" />
@@ -754,7 +738,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               </span>
               <div className="min-w-0 flex-1">
                 <p className="text-[12px] tracking-[0.18em] uppercase font-body font-extralight text-brand-green mb-2">
-                  {suggestions.length > 1 ? "Análises preliminares baseadas nas suas respostas" : "Analise preliminar baseada nas suas respostas"}
+                  {suggestions.length > 1 ? t(s.form.analysisLabelMulti, lang) : t(s.form.analysisLabel, lang)}
                 </p>
                 <div className="space-y-3">
                   {suggestions.map((sug) => (
@@ -769,7 +753,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                   ))}
                 </div>
                 <p className="text-[11px] text-foreground/40 font-body italic mt-3">
-                  {suggestions.length > 1 ? "Estas sugestões são apenas indicativas. A análise final será feita por nossa equipe." : "Esta sugestão é apenas indicativa. A análise final será feita por nossa equipe."}
+                  {suggestions.length > 1 ? t(s.form.analysisDisclaimerMulti, lang) : t(s.form.analysisDisclaimer, lang)}
                 </p>
               </div>
             </div>
@@ -780,27 +764,27 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25 mb-5">
         <ShieldCheck size={14} className="text-emerald-600 shrink-0" />
         <span className="text-[12px] text-emerald-700 font-body">
-          Avançar com minha avaliação gratuita
+          {t(s.form.advanceBadge, lang)}
         </span>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelCls}>Quando pretende iniciar? <span className={reqCls}>*</span></label>
+          <label className={labelCls}>{t(s.form.labelTimeline, lang)} <span className={reqCls}>*</span></label>
           <select
             value={formData.timeline}
             onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
             className={selectCls(!formData.timeline && errors.message ? "x" : undefined)}
             style={selectBg}
           >
-            <option value="" className="bg-white">Selecionar...</option>
-            {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
+            {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.timelineList, o)}</option>)}
           </select>
-          {errors.message && !formData.timeline && <p className={errCls}>Selecione quando pretende iniciar.</p>}
+          {errors.message && !formData.timeline && <p className={errCls}>{t(s.form.timelineError, lang)}</p>}
         </div>
         <div>
           <label className={labelCls}>
-            Status atual <span className="text-foreground/40 normal-case font-light tracking-normal text-[10px] ml-1">(opcional)</span>
+            {t(s.form.labelCurrentStatus, lang)} <span className="text-foreground/40 normal-case font-light tracking-normal text-[10px] ml-1">{t(s.form.optional, lang)}</span>
           </label>
           <select
             value={formData.currentStatus}
@@ -808,8 +792,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             className={selectCls()}
             style={selectBg}
           >
-            <option value="" className="bg-white">Selecionar...</option>
-            {CURRENT_STATUS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{o}</option>)}
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
+            {CURRENT_STATUS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.statusList, o)}</option>)}
           </select>
         </div>
       </div>
@@ -862,28 +846,28 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               {t(s.sectionLabel, lang)}
             </p>
             <h2 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-foreground leading-[1.05] tracking-tight">
-              Qual é o seu caminho<br />
-              para o <span className="text-gold italic">Green Card?</span>
+              {t(s.form.heroTitle1, lang)}<br />
+              {t(s.form.heroTitle2, lang)} <span className="text-gold italic">{t(s.form.heroTitleHighlight, lang)}</span>
             </h2>
             <p className="mt-5 text-muted-foreground text-base font-body leading-relaxed text-justify">
-              Em apenas 60 segundos, analisamos seu perfil gratuitamente. Inicie sua avaliação gratuita e descubra possíveis caminhos migratórios para os Estados Unidos.
+              {t(s.sectionSubtitle, lang)}
             </p>
 
             {/* Institutional stats row */}
             <div className="mt-7 grid grid-cols-3 gap-4 pb-5 border-b border-foreground/10">
               <div>
                 <p className="font-body text-xs text-foreground font-medium leading-none">10+</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">Anos atuando</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">{t(s.form.stats10y, lang)}</p>
               </div>
               <div>
                 <p className="font-body text-xs text-foreground font-medium leading-none">+89%</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">Aprovação NIW</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">{t(s.form.statsApproval, lang)}</p>
               </div>
               <div>
                 <p className="font-body text-xs text-foreground font-medium leading-none whitespace-nowrap">
                   PT<span className="text-gold mx-1">·</span>EN<span className="text-gold mx-1">·</span>ES
                 </p>
-                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">Atendimento</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">{t(s.form.statsService, lang)}</p>
               </div>
             </div>
 
@@ -891,7 +875,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             <div className="mt-4 rounded-xl bg-green-deep text-white px-5 md:px-6 pt-[19px] md:pt-[23px] pb-5 md:pb-6 relative overflow-hidden">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
               <p className="font-display text-lg font-semibold">
-                Atendimento direto
+                {t(s.form.directContact, lang)}
               </p>
               <div className="mt-[11px] mb-[19px] h-px w-full bg-white/10" />
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-5">
@@ -915,7 +899,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 </a>
               </div>
               <p className="text-sm font-body text-gold/90">
-                Segunda a sexta <span className="text-white/40 mx-1">·</span> 9:00–17:00 ET
+                {t(s.form.mondayFriday, lang)} <span className="text-white/40 mx-1">·</span> 9:00–17:00 ET
               </p>
             </div>
           </motion.div>
@@ -947,10 +931,10 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 </div>
                 <div>
                   <p className="text-[9px] text-muted-foreground tracking-[0.18em] font-body uppercase font-semibold">
-                    Avaliação Gratuita
+                    {t(s.form.freeEvalBadge, lang)}
                   </p>
                   <p className="font-display text-[15px] font-semibold text-foreground leading-tight">
-                    Análise Preliminar de Elegibilidade
+                    {t(s.form.formTitle, lang)}
                   </p>
                 </div>
               </div>
@@ -1058,7 +1042,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               <div className="flex items-center gap-3 flex-wrap">
                 <div className="flex items-center gap-2 text-[11px] text-foreground font-body font-light shrink-0 whitespace-nowrap leading-snug tracking-wide">
                   <span className="text-gold text-xs">🔒</span>
-                  Dados protegidos · análise confidencial
+                  {t(s.form.protected, lang)}
                 </div>
 
                 <button
@@ -1068,7 +1052,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                   tabIndex={step === 1 ? -1 : 0}
                   className={`ml-auto h-11 px-4 rounded-md border border-border text-muted-foreground text-[13px] font-body hover:border-foreground/30 hover:text-foreground transition inline-flex items-center gap-1.5 ${step === 1 ? "invisible pointer-events-none ml-auto" : ""}`}
                 >
-                  <ArrowLeft size={14} /> Voltar
+                  <ArrowLeft size={14} /> {t(s.form.back, lang)}
                 </button>
 
                 <div>
@@ -1078,7 +1062,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                       onClick={handleNext}
                       className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:opacity-50"
                     >
-                      Continuar avaliação <ArrowRight size={15} />
+                      {t(s.form.continue, lang)} <ArrowRight size={15} />
                     </button>
                   ) : (
                     <button
@@ -1087,7 +1071,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                       className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-60"
                     >
                       {isSubmitting ? t(s.submitting, lang) : (
-                        <>Receber minha avaliação <Send size={14} /></>
+                        <>{t(s.form.submitCta, lang)} <Send size={14} /></>
                       )}
                     </button>
                   )}
@@ -1095,9 +1079,9 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               </div>
 
               <p className="mt-6 mb-2 text-[11px] text-muted-foreground font-body font-light leading-[1.6]">
-                Esta análise preliminar não constitui consulta jurídica individualizada nem substitui orientação legal formal. Ao prosseguir, você declara estar de acordo com a{" "}
-                <a href="#" className="text-foreground font-medium underline hover:opacity-80">Política de Privacidade</a>{" "}
-                e os <a href="#" className="text-foreground font-medium underline hover:opacity-80">Termos de Uso</a>.
+                {t(s.form.legalNotice, lang)}{" "}
+                <a href="#" className="text-foreground font-medium underline hover:opacity-80">{t(translations.footer.privacy, lang)}</a>{" "}
+                {t(s.form.and, lang)} <a href="#" className="text-foreground font-medium underline hover:opacity-80">{t(s.form.termsOfUse, lang)}</a>.
               </p>
             </div>
           </motion.form>
