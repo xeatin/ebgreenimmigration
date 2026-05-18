@@ -23,14 +23,14 @@ type FormErrors = Partial<Record<
 >>;
 
 const VISA_OPTIONS = [
-  { id: "EB-1A", label: "EB-1A", desc: "Habilidade Extraordinária" },
-  { id: "EB-2 NIW", label: "EB-2 NIW", desc: "Profissionais qualificados e interesse nacional" },
-  { id: "EB-3", label: "EB-3", desc: "Trabalho e oferta de emprego" },
-  { id: "EB-5 / E-2 Investidor", label: "EB-5 / E-2", desc: "Investimento nos Estados Unidos" },
-  { id: "H-1B / L-1 / O-1", label: "H-1B, L-1, O-1", desc: "Vistos de Trabalho" },
-  { id: "F-1 Estudante", label: "F-1", desc: "Visto de Estudante" },
-  { id: "Family-Based", label: "Family-Based", desc: "Patrocínio Familiar" },
-  { id: "R-1 Religioso", label: "R-1", desc: "Trabalhador Religioso" },
+  { id: "EB-1A", label: "EB-1A" },
+  { id: "EB-2 NIW", label: "EB-2 NIW" },
+  { id: "EB-3", label: "EB-3" },
+  { id: "EB-5 / E-2 Investidor", label: "EB-5 / E-2" },
+  { id: "H-1B / L-1 / O-1", label: "H-1B, L-1, O-1" },
+  { id: "F-1 Estudante", label: "F-1" },
+  { id: "Family-Based", label: "Family-Based" },
+  { id: "R-1 Religioso", label: "R-1" },
 ];
 
 const EDUCATION_OPTIONS = [
@@ -53,15 +53,6 @@ const ACHIEVEMENTS_OPTIONS = [
 
 const EXPERIENCE_OPTIONS = ["Menos de 5 anos", "De 5 a 10 anos", "Mais de 10 anos"];
 
-const COUNTRY_GROUPS: { continent: string; countries: string[] }[] = [
-  { continent: "América do Sul", countries: ["🇧🇷 Brasil", "🇦🇷 Argentina", "🇨🇱 Chile", "🇨🇴 Colômbia", "🇪🇨 Equador", "🇵🇾 Paraguai", "🇵🇪 Peru", "🇺🇾 Uruguai", "🇻🇪 Venezuela", "🇧🇴 Bolívia"] },
-  { continent: "América do Norte e Central", countries: ["🇺🇸 Estados Unidos", "🇨🇦 Canadá", "🇲🇽 México", "🇨🇷 Costa Rica", "🇨🇺 Cuba", "🇵🇦 Panamá", "🇩🇴 República Dominicana"] },
-  { continent: "Europa", countries: ["🇵🇹 Portugal", "🇪🇸 Espanha", "🇮🇹 Itália", "🇫🇷 França", "🇩🇪 Alemanha", "🇬🇧 Reino Unido", "🇮🇪 Irlanda", "🇨🇭 Suíça", "🇳🇱 Países Baixos", "🇧🇪 Bélgica"] },
-  { continent: "África", countries: ["🇦🇴 Angola", "🇲🇿 Moçambique", "🇨🇻 Cabo Verde", "🇿🇦 África do Sul", "🇳🇬 Nigéria", "🇪🇬 Egito", "🇲🇦 Marrocos"] },
-  { continent: "Ásia", countries: ["🇨🇳 China", "🇮🇳 Índia", "🇯🇵 Japão", "🇰🇷 Coreia do Sul", "🇵🇭 Filipinas", "🇻🇳 Vietnã", "🇹🇭 Tailândia", "🇮🇱 Israel"] },
-  { continent: "Oceania", countries: ["🇦🇺 Austrália", "🇳🇿 Nova Zelândia"] },
-];
-
 const CURRENT_STATUS_OPTIONS = [
   "Ainda no Brasil / país de origem",
   "Visto de Turista (B1/B2)",
@@ -79,20 +70,6 @@ const TIMELINE_OPTIONS = [
   "Em breve (1–3 meses)",
   "Planejando (3–12 meses)",
   "Ainda estou explorando opções",
-];
-
-const KNOWN_VISA_OPTIONS = [
-  "EB-5 / E-2 - Investimento nos Estados Unidos",
-  "H-1B, L-1, O-1 - Vistos de trabalho",
-  "F-1 - Visto de estudante",
-  "Family-Based - Patrocínio Familiar",
-  "R-1 - Trabalho Religioso",
-];
-
-const STEPS = [
-  { n: 1, label: "Contato" },
-  { n: 2, label: "Perfil" },
-  { n: 3, label: "Análise" },
 ];
 
 // Heurística simples para sugerir visto baseado nas respostas do perfil
