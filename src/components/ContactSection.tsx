@@ -761,42 +761,6 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         </div>
         <div>
           <label className={labelCls}>{t(s.form.labelPhone, lang)} <span className={reqCls}>*</span></label>
-          <input
-            type="text"
-            value={formData.firstName}
-            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-            placeholder="Ex: João"
-            className={inputCls(errors.firstName)}
-          />
-          {errors.firstName && <p className={errCls}>{errors.firstName}</p>}
-        </div>
-        <div>
-          <label className={labelCls}>Sobrenome <span className={reqCls}>*</span></label>
-          <input
-            type="text"
-            value={formData.lastName}
-            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-            placeholder="Ex: Silva"
-            className={inputCls(errors.lastName)}
-          />
-          {errors.lastName && <p className={errCls}>{errors.lastName}</p>}
-        </div>
-      </div>
-
-      <div className="grid sm:grid-cols-2 gap-4 mb-4">
-        <div>
-          <label className={labelCls}>E-mail <span className={reqCls}>*</span></label>
-          <input
-            type="email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            placeholder="seu@email.com"
-            className={inputCls(errors.email)}
-          />
-          {errors.email && <p className={errCls}>{errors.email}</p>}
-        </div>
-        <div>
-          <label className={labelCls}>WhatsApp / Telefone <span className={reqCls}>*</span></label>
           <div className={`flex items-center gap-2 rounded-md border bg-white transition-all duration-200 focus-within:border-gold focus-within:ring-2 focus-within:ring-gold/30 focus-within:shadow-card ${errors.phone ? "border-destructive/60" : "border-border"}`}>
             <PhoneCodeSelector
               value={formData.phoneCode}
@@ -808,7 +772,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               type="tel"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              placeholder="(00) 00000-0000"
+              placeholder={t(s.form.placeholderPhone, lang)}
               className="flex-1 h-12 px-1 bg-transparent text-foreground placeholder:text-muted-foreground/60 text-sm font-body outline-none"
             />
           </div>
