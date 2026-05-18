@@ -489,16 +489,17 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const Step1 = (
     <div>
       <h3 className="font-display text-[22px] sm:text-[24px] font-semibold text-foreground leading-tight mb-2">
-        Descubra se você é elegível para o <span className="shimmer-gold italic font-semibold">Green Card</span>.
+        {t(s.form.step1TitleA, lang)} <span className="shimmer-gold italic font-semibold">Green Card</span>.
       </h3>
       <p className="text-[13px] text-muted-foreground font-body font-light leading-relaxed mb-6 max-w-[62ch]">
-        Milhares de profissionais já conquistaram o Green Card sem saber que tinham elegibilidade. Leva menos de 1 minuto para descobrir o seu caminho.
+        {t(s.form.step1Sub, lang)}
       </p>
 
-      <p className={labelCls}>Qual visto mais se aproxima do seu objetivo? <span className={reqCls}>*</span></p>
+      <p className={labelCls}>{t(s.form.step1Question, lang)} <span className={reqCls}>*</span></p>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
         {VISA_OPTIONS.map((v) => {
           const selected = formData.visa === v.id;
+          const desc = (s.visaDesc as any)[v.id] ? t((s.visaDesc as any)[v.id], lang) : "";
           return (
             <button
               key={v.id}
@@ -523,7 +524,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               <p className={`font-body font-semibold text-[12px] mb-0.5 leading-tight ${selected ? "text-foreground" : "text-foreground"}`}>
                 {v.label}
               </p>
-              <p className="text-[10px] text-muted-foreground leading-snug">{v.desc}</p>
+              <p className="text-[10px] text-muted-foreground leading-snug">{desc}</p>
             </button>
           );
         })}
@@ -548,9 +549,9 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             </span>
           )}
           <p className="font-body font-semibold text-[12px] mb-0.5 text-foreground">
-            Não sei ainda
+            {t(s.form.dontKnow, lang)}
           </p>
-          <p className="text-[10px] text-muted-foreground">Quero orientação</p>
+          <p className="text-[10px] text-muted-foreground">{t(s.form.dontKnowDesc, lang)}</p>
         </button>
       </div>
       {errors.visa && <p className={`${errCls} mt-2`}>{errors.visa}</p>}
