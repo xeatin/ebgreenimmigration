@@ -641,13 +641,126 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
         Descubra se você é elegível para o <span className="text-gold italic font-semibold">Green Card</span>.
       </h3>
+  const Step2 = (
+    <div>
+      <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
+        {t(s.form.step2TitleA, lang)} <span className="text-gold italic">{t(s.form.step2TitleB, lang)}</span>
+      </h3>
       <p className="text-[13px] text-foreground/55 font-body font-light mb-6">
-        Milhares de profissionais já conquistaram o Green Card sem saber que tinham elegibilidade. Leva menos de 1 minuto para descobrir o seu caminho.
+        {t(s.form.step2Sub, lang)}
       </p>
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelCls}>Nome <span className={reqCls}>*</span></label>
+          <label className={labelCls}>{t(s.form.labelEducation, lang)} <span className={reqCls}>*</span></label>
+          <select
+            value={formData.education}
+            onChange={(e) => setFormData({ ...formData, education: e.target.value })}
+            className={selectCls(errors.education)}
+            style={selectBg}
+          >
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
+            {EDUCATION_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.educationList, o)}</option>)}
+          </select>
+          {errors.education && <p className={errCls}>{errors.education}</p>}
+        </div>
+        <div>
+          <label className={labelCls}>{t(s.form.labelAchievements, lang)} <span className={reqCls}>*</span></label>
+          <select
+            value={formData.achievements}
+            onChange={(e) => setFormData({ ...formData, achievements: e.target.value })}
+            className={selectCls(errors.achievements)}
+            style={selectBg}
+          >
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
+            {ACHIEVEMENTS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.achievementsList, o)}</option>)}
+          </select>
+          {errors.achievements && <p className={errCls}>{errors.achievements}</p>}
+        </div>
+      </div>
+
+
+      <div className="grid sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label className={labelCls}>{t(s.form.labelLicense, lang)} <span className={reqCls}>*</span></label>
+          <select
+            value={formData.license}
+            onChange={(e) => setFormData({ ...formData, license: e.target.value })}
+            className={selectCls(errors.license)}
+            style={selectBg}
+          >
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
+            {["Não tenho","CAU","COREN","CRA","CRC","CREA","CREFITO","CRF","CRM","CRN","CRO","CRP","OAB"].map((o) => (
+              <option key={o} value={o} className="bg-white">{o === "Não tenho" ? t(s.form.noLicense, lang) : o}</option>
+            ))}
+          </select>
+          {errors.license && <p className={errCls}>{errors.license}</p>}
+        </div>
+        <div>
+          <label className={labelCls}>{t(s.form.labelExperience, lang)} <span className={reqCls}>*</span></label>
+          <select
+            value={formData.experience}
+            onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+            className={selectCls(errors.experience)}
+            style={selectBg}
+          >
+            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
+            {EXPERIENCE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.experienceList, o)}</option>)}
+          </select>
+          {errors.experience && <p className={errCls}>{errors.experience}</p>}
+        </div>
+      </div>
+    </div>
+  );
+
+  const Step3 = (
+    <div>
+      <h3 className="font-display text-[22px] font-semibold text-foreground leading-tight mb-1.5">
+        {t(s.form.step1TitleA, lang)} <span className="text-gold italic font-semibold">Green Card</span>.
+      </h3>
+      <p className="text-[13px] text-foreground/55 font-body font-light mb-6">
+        {t(s.form.step1Sub, lang)}
+      </p>
+
+      <div className="grid sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label className={labelCls}>{t(s.form.labelFirstName, lang)} <span className={reqCls}>*</span></label>
+          <input
+            type="text"
+            value={formData.firstName}
+            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+            placeholder={t(s.form.placeholderFirstName, lang)}
+            className={inputCls(errors.firstName)}
+          />
+          {errors.firstName && <p className={errCls}>{errors.firstName}</p>}
+        </div>
+        <div>
+          <label className={labelCls}>{t(s.form.labelLastName, lang)} <span className={reqCls}>*</span></label>
+          <input
+            type="text"
+            value={formData.lastName}
+            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+            placeholder={t(s.form.placeholderLastName, lang)}
+            className={inputCls(errors.lastName)}
+          />
+          {errors.lastName && <p className={errCls}>{errors.lastName}</p>}
+        </div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label className={labelCls}>{t(s.form.labelEmail, lang)} <span className={reqCls}>*</span></label>
+          <input
+            type="email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            placeholder={t(s.form.placeholderEmail, lang)}
+            className={inputCls(errors.email)}
+          />
+          {errors.email && <p className={errCls}>{errors.email}</p>}
+        </div>
+        <div>
+          <label className={labelCls}>{t(s.form.labelPhone, lang)} <span className={reqCls}>*</span></label>
           <input
             type="text"
             value={formData.firstName}
