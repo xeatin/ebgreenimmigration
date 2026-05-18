@@ -389,8 +389,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       } catch (err) {
         console.error("Resume upload failed:", err);
         toast({
-          title: "Falha ao enviar currículo",
-          description: "Continuamos com o envio sem o anexo.",
+          title: t(s.form.resumeFailTitle, lang),
+          description: t(s.form.resumeFailDesc, lang),
           variant: "destructive",
         });
       }
@@ -424,7 +424,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
           education: formData.education,
           experience: formData.experience,
           knownVisa: formData.knownVisa,
-          message: `Olá! Tenho interesse em migrar para os Estados Unidos e gostaria de uma avaliação gratuita.\n\n${composedMessage}`.trim(),
+          message: `${t(s.form.defaultMessage, lang)}\n\n${composedMessage}`.trim(),
           resumeUrl,
           resumeName,
         },
@@ -442,7 +442,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       trackForm("form_error", { form_id: FORM_ID, visa_context: formData.visa, reason: "submit_failed" });
       toast({
         title: t(s.validationTitle, lang),
-        description: "Não foi possível enviar o lead. Tente novamente.",
+        description: t(s.form.submitFailDesc, lang),
         variant: "destructive",
       });
       setIsSubmitting(false);
@@ -453,8 +453,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     trackForm("form_submit", { form_id: FORM_ID, visa_context: formData.visa, reason: qualification });
     if (qualification === 'low') {
       toast({
-        title: "Recebemos o seu contato!",
-        description: "Nossa equipe analisará o seu perfil com atenção e retornará em breve com as melhores orientações para o seu caso.",
+        title: t(s.form.successLowTitle, lang),
+        description: t(s.form.successLowDesc, lang),
       });
     } else {
       toast({
