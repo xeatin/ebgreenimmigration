@@ -10,6 +10,7 @@ import { blogPosts } from "@/data/blog-posts";
 
 const Blog = () => {
   const { lang } = useLanguage();
+  const s = translations.blog;
 
   return (
     <div className="min-h-screen bg-green-deep">
