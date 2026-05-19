@@ -248,16 +248,16 @@ const BlogPost = () => {
             ) : (
               <div className="py-20 text-center">
                 <p className="font-body text-green-deep/70 text-lg mb-2">
-                  Este artigo está sendo finalizado.
+                  {t(s.finishing, lang)}
                 </p>
                 <p className="font-body text-green-deep/50 text-sm">
-                  Em breve disponibilizaremos o conteúdo completo aqui.
+                  {t(s.finishingSub, lang)}
                 </p>
                 <Link
                   to="/blog"
                   className="inline-flex items-center gap-2 mt-8 text-green-deep font-bold font-body hover:text-gold-dark transition-colors"
                 >
-                  <ArrowLeft size={16} /> Voltar para o blog
+                  <ArrowLeft size={16} /> {t(s.backToBlog, lang)}
                 </Link>
               </div>
             )}
