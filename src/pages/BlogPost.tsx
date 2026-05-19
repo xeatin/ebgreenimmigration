@@ -103,6 +103,8 @@ const Block = ({ block }: { block: ArticleBlock }) => {
 };
 
 const BlogPost = () => {
+  const { lang } = useLanguage();
+  const s = translations.blog;
   const { slug } = useParams<{ slug: string }>();
   const post = useMemo(() => (slug ? getPostBySlug(slug) : undefined), [slug]);
   const [progress, setProgress] = useState(0);
