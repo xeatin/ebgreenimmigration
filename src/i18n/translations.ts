@@ -509,6 +509,36 @@ export const translations = {
     ctaSecondary: { pt: "Falar pelo WhatsApp", en: "Chat on WhatsApp", es: "Hablar por WhatsApp" },
   },
 
+  // Blog
+  blog: {
+    eyebrow: { pt: "Estratégias Migratórias", en: "Immigration Strategies", es: "Estrategias Migratorias" },
+    titleLine1: { pt: "Caminhos para o", en: "Paths to the", es: "Caminos hacia el" },
+    titleLine2: { pt: "Green Card", en: "Green Card", es: "Green Card" },
+    intro: {
+      pt: "Conteúdos estratégicos para quem deseja entender os caminhos para viver e trabalhar legalmente nos Estados Unidos.",
+      en: "Strategic content for those who want to understand the paths to live and work legally in the United States.",
+      es: "Contenidos estratégicos para quienes desean entender los caminos para vivir y trabajar legalmente en los Estados Unidos.",
+    },
+    readArticle: { pt: "Ler Artigo", en: "Read Article", es: "Leer Artículo" },
+    empty: { pt: "Nenhum artigo encontrado nesta categoria.", en: "No articles found in this category.", es: "No se encontraron artículos en esta categoría." },
+    ctaTitle1: { pt: "Seu", en: "Your", es: "Su" },
+    ctaTitle2: { pt: "pode começar com uma análise gratuita.", en: "can start with a free assessment.", es: "puede comenzar con un análisis gratuito." },
+    ctaSubtitle: {
+      pt: "Fale agora com um dos nossos especialistas e descubra os caminhos mais adequados para o seu perfil.",
+      en: "Talk now to one of our specialists and discover the paths best suited to your profile.",
+      es: "Hable ahora con uno de nuestros especialistas y descubra los caminos más adecuados para su perfil.",
+    },
+    backToBlog: { pt: "Voltar para o blog", en: "Back to blog", es: "Volver al blog" },
+    inThisArticle: { pt: "Neste artigo", en: "In this article", es: "En este artículo" },
+    officialSources: { pt: "Fontes oficiais", en: "Official sources", es: "Fuentes oficiales" },
+    keepReading: { pt: "Continue lendo", en: "Keep reading", es: "Seguir leyendo" },
+    backToTop: { pt: "Voltar ao topo", en: "Back to top", es: "Volver arriba" },
+    writtenBy: { pt: "Escrito por", en: "Written by", es: "Escrito por" },
+    readTime: { pt: "de leitura", en: "read", es: "de lectura" },
+    finishing: { pt: "Este artigo está sendo finalizado.", en: "This article is being finalized.", es: "Este artículo se está finalizando." },
+    finishingSub: { pt: "Em breve disponibilizaremos o conteúdo completo aqui.", en: "We will make the full content available here soon.", es: "Pronto pondremos el contenido completo aquí." },
+  },
+
   // Footer
   footer: {
     slogan: { pt: "Respeito, Resposta e Resultados", en: "Respect, Response and Results", es: "Respeto, Respuesta y Resultados" },

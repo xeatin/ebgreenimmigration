@@ -6,6 +6,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { getPostBySlug, blogPosts, type ArticleBlock } from "@/data/blog-posts";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations, t } from "@/i18n/translations";
 
 const renderInline = (text: string) => (
   <span dangerouslySetInnerHTML={{ __html: text }} />
@@ -101,6 +103,8 @@ const Block = ({ block }: { block: ArticleBlock }) => {
 };
 
 const BlogPost = () => {
+  const { lang } = useLanguage();
+  const s = translations.blog;
   const { slug } = useParams<{ slug: string }>();
   const post = useMemo(() => (slug ? getPostBySlug(slug) : undefined), [slug]);
   const [progress, setProgress] = useState(0);
@@ -162,7 +166,7 @@ const BlogPost = () => {
             className="inline-flex items-center gap-2 text-cream/70 hover:text-gold font-body text-sm transition-colors mb-8"
           >
             <ArrowLeft size={16} />
-            Voltar para o blog
+            {t(s.backToBlog, lang)}
           </Link>
 
           <motion.div
@@ -198,12 +202,12 @@ const BlogPost = () => {
 
               {post.author && (
                 <p className="font-display italic text-cream text-sm md:text-base mb-1">
-                  Escrito por <span className="font-semibold not-italic">{post.author}</span>
+                  {t(s.writtenBy, lang)} <span className="font-semibold not-italic">{post.author}</span>
                 </p>
               )}
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-cream/60 font-body text-xs md:text-sm">
                 <span className="inline-flex items-center gap-1.5">
-                  <Clock size={13} /> {post.leitura} de leitura
+                  <Clock size={13} /> {post.leitura} {t(s.readTime, lang)}
                 </span>
               </div>
             </div>
@@ -219,7 +223,7 @@ const BlogPost = () => {
             {headings.length > 0 && (
               <nav className="sticky top-28 pr-6">
                 <p className="font-display text-xs uppercase tracking-[0.2em] text-green-deep/50 mb-4">
-                  Neste artigo
+                  {t(s.inThisArticle, lang)}
                 </p>
                 <ul className="space-y-2.5 border-l border-green-deep/15 pl-4">
                   {headings.map((h) => (
@@ -244,16 +248,16 @@ const BlogPost = () => {
             ) : (
               <div className="py-20 text-center">
                 <p className="font-body text-green-deep/70 text-lg mb-2">
-                  Este artigo está sendo finalizado.
+                  {t(s.finishing, lang)}
                 </p>
                 <p className="font-body text-green-deep/50 text-sm">
-                  Em breve disponibilizaremos o conteúdo completo aqui.
+                  {t(s.finishingSub, lang)}
                 </p>
                 <Link
                   to="/blog"
                   className="inline-flex items-center gap-2 mt-8 text-green-deep font-bold font-body hover:text-gold-dark transition-colors"
                 >
-                  <ArrowLeft size={16} /> Voltar para o blog
+                  <ArrowLeft size={16} /> {t(s.backToBlog, lang)}
                 </Link>
               </div>
             )}
@@ -262,7 +266,7 @@ const BlogPost = () => {
             {post.externalLinks && post.externalLinks.length > 0 && (
               <section className="mt-14 pt-10 border-t border-green-deep/10">
                 <p className="font-display text-xs uppercase tracking-[0.2em] text-green-deep/50 mb-4">
-                  Fontes oficiais
+                  {t(s.officialSources, lang)}
                 </p>
                 <ul className="space-y-2">
                   {post.externalLinks.map((l) => (
@@ -292,7 +296,7 @@ const BlogPost = () => {
         <section className="bg-cream border-t border-green-deep/10 py-16">
           <div className="container mx-auto px-6 max-w-6xl">
             <h2 className="font-display text-2xl md:text-3xl text-green-deep mb-8">
-              Continue lendo
+              {t(s.keepReading, lang)}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedPosts.map((rp) => rp && (
@@ -324,7 +328,7 @@ const BlogPost = () => {
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Voltar ao topo"
+          aria-label={t(s.backToTop, lang)}
           className="fixed bottom-24 right-6 w-11 h-11 rounded-full bg-green-deep text-gold shadow-lg flex items-center justify-center hover:bg-gold hover:text-green-deep transition-colors z-40"
         >
           <ChevronUp size={20} />

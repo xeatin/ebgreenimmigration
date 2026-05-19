@@ -10,6 +10,7 @@ import { blogPosts } from "@/data/blog-posts";
 
 const Blog = () => {
   const { lang } = useLanguage();
+  const s = translations.blog;
 
   return (
     <div className="min-h-screen bg-green-deep">
@@ -32,19 +33,19 @@ const Blog = () => {
                 <div className="flex items-center gap-4 mb-6">
                   <span className="h-px w-12 bg-gold"></span>
                   <span className="font-body text-gold text-[11px] tracking-[0.4em] font-semibold uppercase">
-                    Estratégias Migratórias
+                    {t(s.eyebrow, lang)}
                   </span>
                 </div>
                 <h1 className="font-display font-medium text-cream leading-[0.95] tracking-tight text-4xl sm:text-5xl md:text-6xl">
-                  Caminhos para o
+                  {t(s.titleLine1, lang)}
                   <br />
-                  <span className="text-gradient-gold">Green Card</span>
+                  <span className="text-gradient-gold">{t(s.titleLine2, lang)}</span>
                 </h1>
               </div>
 
               <div className="md:w-1/3 flex flex-col gap-6">
                 <p className="font-body text-cream/60 text-sm md:text-base leading-relaxed border-l border-gold pl-6">
-                  Conteúdos estratégicos para quem deseja entender os caminhos para viver e trabalhar legalmente nos Estados Unidos.
+                  {t(s.intro, lang)}
                 </p>
               </div>
 
@@ -106,7 +107,7 @@ const Blog = () => {
                       </div>
 
                       <span className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-6 py-3 rounded-md font-bold text-sm font-body group-hover:opacity-90 transition-opacity shadow-card group-hover:shadow-card-hover w-full">
-                        Ler Artigo
+                        {t(s.readArticle, lang)}
                         <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                       </span>
                     </div>
@@ -119,7 +120,7 @@ const Blog = () => {
           {blogPosts.length === 0 && (
             <div className="text-center py-20">
               <p className="font-body text-cream/50 text-lg">
-                Nenhum artigo encontrado nesta categoria.
+                {t(s.empty, lang)}
               </p>
             </div>
           )}
@@ -136,10 +137,10 @@ const Blog = () => {
             className="max-w-2xl mx-auto"
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream mb-4">
-              Seu <span className="text-gradient-gold">Green Card</span> pode começar com uma análise gratuita.
+              {t(s.ctaTitle1, lang)} <span className="text-gradient-gold">{t(s.titleLine2, lang)}</span> {t(s.ctaTitle2, lang)}
             </h2>
             <p className="text-cream/70 font-body text-lg mb-8">
-              Fale agora com um dos nossos especialistas e descubra os caminhos mais adequados para o seu perfil.
+              {t(s.ctaSubtitle, lang)}
             </p>
             <button
               type="button"
