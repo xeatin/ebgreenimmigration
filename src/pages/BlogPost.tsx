@@ -296,7 +296,7 @@ const BlogPost = () => {
         <section className="bg-cream border-t border-green-deep/10 py-16">
           <div className="container mx-auto px-6 max-w-6xl">
             <h2 className="font-display text-2xl md:text-3xl text-green-deep mb-8">
-              Continue lendo
+              {t(s.keepReading, lang)}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedPosts.map((rp) => rp && (
