@@ -107,7 +107,7 @@ const Blog = () => {
                       </div>
 
                       <span className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-6 py-3 rounded-md font-bold text-sm font-body group-hover:opacity-90 transition-opacity shadow-card group-hover:shadow-card-hover w-full">
-                        Ler Artigo
+                        {t(s.readArticle, lang)}
                         <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                       </span>
                     </div>
@@ -120,7 +120,7 @@ const Blog = () => {
           {blogPosts.length === 0 && (
             <div className="text-center py-20">
               <p className="font-body text-cream/50 text-lg">
-                Nenhum artigo encontrado nesta categoria.
+                {t(s.empty, lang)}
               </p>
             </div>
           )}
@@ -137,10 +137,10 @@ const Blog = () => {
             className="max-w-2xl mx-auto"
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream mb-4">
-              Seu <span className="text-gradient-gold">Green Card</span> pode começar com uma análise gratuita.
+              {t(s.ctaTitle1, lang)} <span className="text-gradient-gold">{t(s.titleLine2, lang)}</span> {t(s.ctaTitle2, lang)}
             </h2>
             <p className="text-cream/70 font-body text-lg mb-8">
-              Fale agora com um dos nossos especialistas e descubra os caminhos mais adequados para o seu perfil.
+              {t(s.ctaSubtitle, lang)}
             </p>
             <button
               type="button"
