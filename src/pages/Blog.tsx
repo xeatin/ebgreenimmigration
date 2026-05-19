@@ -33,19 +33,19 @@ const Blog = () => {
                 <div className="flex items-center gap-4 mb-6">
                   <span className="h-px w-12 bg-gold"></span>
                   <span className="font-body text-gold text-[11px] tracking-[0.4em] font-semibold uppercase">
-                    Estratégias Migratórias
+                    {t(s.eyebrow, lang)}
                   </span>
                 </div>
                 <h1 className="font-display font-medium text-cream leading-[0.95] tracking-tight text-4xl sm:text-5xl md:text-6xl">
-                  Caminhos para o
+                  {t(s.titleLine1, lang)}
                   <br />
-                  <span className="text-gradient-gold">Green Card</span>
+                  <span className="text-gradient-gold">{t(s.titleLine2, lang)}</span>
                 </h1>
               </div>
 
               <div className="md:w-1/3 flex flex-col gap-6">
                 <p className="font-body text-cream/60 text-sm md:text-base leading-relaxed border-l border-gold pl-6">
-                  Conteúdos estratégicos para quem deseja entender os caminhos para viver e trabalhar legalmente nos Estados Unidos.
+                  {t(s.intro, lang)}
                 </p>
               </div>
 
