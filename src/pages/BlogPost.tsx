@@ -166,7 +166,7 @@ const BlogPost = () => {
             className="inline-flex items-center gap-2 text-cream/70 hover:text-gold font-body text-sm transition-colors mb-8"
           >
             <ArrowLeft size={16} />
-            Voltar para o blog
+            {t(s.backToBlog, lang)}
           </Link>
 
           <motion.div
