@@ -202,12 +202,12 @@ const BlogPost = () => {
 
               {post.author && (
                 <p className="font-display italic text-cream text-sm md:text-base mb-1">
-                  Escrito por <span className="font-semibold not-italic">{post.author}</span>
+                  {t(s.writtenBy, lang)} <span className="font-semibold not-italic">{post.author}</span>
                 </p>
               )}
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-cream/60 font-body text-xs md:text-sm">
                 <span className="inline-flex items-center gap-1.5">
-                  <Clock size={13} /> {post.leitura} de leitura
+                  <Clock size={13} /> {post.leitura} {t(s.readTime, lang)}
                 </span>
               </div>
             </div>
