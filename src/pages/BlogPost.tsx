@@ -223,7 +223,7 @@ const BlogPost = () => {
             {headings.length > 0 && (
               <nav className="sticky top-28 pr-6">
                 <p className="font-display text-xs uppercase tracking-[0.2em] text-green-deep/50 mb-4">
-                  Neste artigo
+                  {t(s.inThisArticle, lang)}
                 </p>
                 <ul className="space-y-2.5 border-l border-green-deep/15 pl-4">
                   {headings.map((h) => (
