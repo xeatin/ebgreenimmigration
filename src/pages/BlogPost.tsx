@@ -328,7 +328,7 @@ const BlogPost = () => {
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Voltar ao topo"
+          aria-label={t(s.backToTop, lang)}
           className="fixed bottom-24 right-6 w-11 h-11 rounded-full bg-green-deep text-gold shadow-lg flex items-center justify-center hover:bg-gold hover:text-green-deep transition-colors z-40"
         >
           <ChevronUp size={20} />
