@@ -8,6 +8,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { getPostBySlug, blogPosts, type ArticleBlock } from "@/data/blog-posts";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
+import { useBlogTexts } from "@/hooks/useBlogTranslation";
 
 const renderInline = (text: string) => (
   <span dangerouslySetInnerHTML={{ __html: text }} />
