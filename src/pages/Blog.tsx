@@ -72,8 +72,11 @@ const Blog = () => {
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {[...blogPosts].reverse().map((post, index) => {
+            {ordered.map((post, index) => {
               const hasContent = !!post.content;
+              const titulo = translated[index * 3] ?? post.titulo;
+              const excerpt = translated[index * 3 + 1] ?? post.excerpt;
+              const categoria = translated[index * 3 + 2] ?? post.categoria;
               return (
                 <motion.div
                   key={post.id}
