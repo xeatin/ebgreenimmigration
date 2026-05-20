@@ -264,8 +264,8 @@ const BlogPost = () => {
             {/* Photo */}
             <div className="relative overflow-hidden shadow-2xl aspect-[4/3] md:aspect-[16/10]">
               <img
-                src={post.imagem}
-                alt={post.titulo}
+                src={tPost.imagem}
+                alt={tPost.titulo}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -273,27 +273,27 @@ const BlogPost = () => {
             {/* Text */}
             <div>
               <p className="font-body text-[11px] md:text-xs font-bold uppercase tracking-[0.25em] text-gold mb-3">
-                {post.categoria}
+                {tPost.categoria}
               </p>
 
               <h1 className="font-display font-medium text-cream leading-[1.05] tracking-tight text-3xl md:text-4xl lg:text-[2.75rem] mb-3">
-                {post.titulo}
+                {tPost.titulo}
               </h1>
 
               <p className="font-body text-cream/75 text-sm md:text-[14px] leading-relaxed mb-4 max-w-xl">
-                {post.excerpt}
+                {tPost.excerpt}
               </p>
 
               <div className="w-20 h-px bg-gold mb-3" />
 
-              {post.author && (
+              {tPost.author && (
                 <p className="font-display italic text-cream text-sm md:text-base mb-1">
-                  {t(s.writtenBy, lang)} <span className="font-semibold not-italic">{post.author}</span>
+                  {t(s.writtenBy, lang)} <span className="font-semibold not-italic">{tPost.author}</span>
                 </p>
               )}
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-cream/60 font-body text-xs md:text-sm">
                 <span className="inline-flex items-center gap-1.5">
-                  <Clock size={13} /> {post.leitura} {t(s.readTime, lang)}
+                  <Clock size={13} /> {tPost.leitura} {t(s.readTime, lang)}
                 </span>
               </div>
             </div>
