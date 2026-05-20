@@ -329,8 +329,8 @@ const BlogPost = () => {
 
           {/* Article content */}
           <div className="min-w-0">
-            {post.content ? (
-              post.content.map((block, i) => <Block key={i} block={block} />)
+            {tPost.content ? (
+              tPost.content.map((block, i) => <Block key={i} block={block} />)
             ) : (
               <div className="py-20 text-center">
                 <p className="font-body text-green-deep/70 text-lg mb-2">
@@ -349,13 +349,13 @@ const BlogPost = () => {
             )}
 
             {/* External authoritative links */}
-            {post.externalLinks && post.externalLinks.length > 0 && (
+            {tPost.externalLinks && tPost.externalLinks.length > 0 && (
               <section className="mt-14 pt-10 border-t border-green-deep/10">
                 <p className="font-display text-xs uppercase tracking-[0.2em] text-green-deep/50 mb-4">
                   {t(s.officialSources, lang)}
                 </p>
                 <ul className="space-y-2">
-                  {post.externalLinks.map((l) => (
+                  {tPost.externalLinks.map((l) => (
                     <li key={l.url}>
                       <a
                         href={l.url}
