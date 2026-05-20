@@ -92,23 +92,23 @@ const Blog = () => {
                     <div className="relative h-52 overflow-hidden">
                       <img
                         src={post.imagem}
-                        alt={post.titulo}
+                        alt={titulo}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-green-deep via-green-deep/30 to-transparent" />
                       <span className="absolute top-4 left-4 inline-block px-3 py-1 rounded-sm text-[11px] font-semibold font-body bg-gradient-gold text-green-deep shadow-card">
-                        {post.categoria}
+                        {categoria}
                       </span>
                     </div>
 
                     <div className="p-6 flex flex-col flex-1">
                       <h2 className="font-display text-xl font-bold text-cream mb-3 leading-snug group-hover:text-gold transition-colors">
-                        {post.titulo}
+                        {titulo}
                       </h2>
 
                       <p className="font-body text-cream/60 text-sm leading-relaxed mb-5 line-clamp-3 flex-1">
-                        {post.excerpt}
+                        {excerpt}
                       </p>
 
                       <div className="flex items-center gap-3 mb-5 text-[11px] font-body text-cream/60">
