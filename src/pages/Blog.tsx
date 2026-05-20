@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,10 +8,19 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 import { blogPosts } from "@/data/blog-posts";
+import { useBlogTexts } from "@/hooks/useBlogTranslation";
 
 const Blog = () => {
   const { lang } = useLanguage();
   const s = translations.blog;
+
+  const ordered = useMemo(() => [...blogPosts].reverse(), []);
+  const sourceTexts = useMemo(
+    () => ordered.flatMap((p) => [p.titulo, p.excerpt, p.categoria]),
+    [ordered],
+  );
+  const { texts: translated } = useBlogTexts(sourceTexts);
+
 
   return (
     <div className="min-h-screen bg-green-deep">
