@@ -7,3 +7,6 @@ verify_jwt = false
 
 [functions.translate-news]
 verify_jwt = false
+
+[functions.translate-blog]
+verify_jwt = false
