@@ -111,6 +111,94 @@ const BlogPost = () => {
   const [progress, setProgress] = useState(0);
   const [showTop, setShowTop] = useState(false);
 
+  // Flatten every translatable string from the post (and related posts) into
+  // a single array so the hook can translate + cache them in one call.
+  const relatedPostsRaw = useMemo(
+    () =>
+      (post?.related ?? [])
+        .map((sl) => blogPosts.find((p) => p.slug === sl))
+        .filter((p): p is NonNullable<typeof p> => Boolean(p)),
+    [post],
+  );
+
+  const sourceTexts = useMemo(() => {
+    if (!post) return [] as string[];
+    const arr: string[] = [post.titulo, post.excerpt, post.categoria];
+    (post.content ?? []).forEach((b) => {
+      switch (b.type) {
+        case "p":
+        case "h2":
+        case "h3":
+        case "cta":
+          arr.push(b.text);
+          break;
+        case "list":
+        case "ordered":
+          b.items.forEach((it) => arr.push(it));
+          break;
+        case "quote":
+          arr.push(b.text);
+          if (b.author) arr.push(b.author);
+          break;
+        case "callout":
+          arr.push(b.title);
+          arr.push(b.text);
+          break;
+      }
+    });
+    (post.externalLinks ?? []).forEach((l) => arr.push(l.label));
+    relatedPostsRaw.forEach((rp) => {
+      arr.push(rp.titulo);
+      arr.push(rp.categoria);
+    });
+    return arr;
+  }, [post, relatedPostsRaw]);
+
+  const { texts: translated } = useBlogTexts(sourceTexts);
+
+  // Rebuild a translated copy of the post mirroring the source order above.
+  const tPost = useMemo(() => {
+    if (!post) return post;
+    let i = 0;
+    const take = () => translated[i++] ?? sourceTexts[i - 1];
+    const titulo = take();
+    const excerpt = take();
+    const categoria = take();
+    const content: ArticleBlock[] | undefined = post.content?.map((b) => {
+      switch (b.type) {
+        case "p":
+          return { ...b, text: take() };
+        case "h2":
+          return { ...b, text: take() };
+        case "h3":
+          return { ...b, text: take() };
+        case "cta":
+          return { ...b, text: take() };
+        case "list":
+          return { ...b, items: b.items.map(() => take()) };
+        case "ordered":
+          return { ...b, items: b.items.map(() => take()) };
+        case "quote":
+          return { ...b, text: take(), author: b.author ? take() : undefined };
+        case "callout":
+          return { ...b, title: take(), text: take() };
+        default:
+          return b;
+      }
+    });
+    const externalLinks = post.externalLinks?.map((l) => ({ ...l, label: take() }));
+    return { ...post, titulo, excerpt, categoria, content, externalLinks };
+  }, [post, translated, sourceTexts]);
+
+  const relatedPosts = useMemo(() => {
+    let i = sourceTexts.length - relatedPostsRaw.length * 2;
+    return relatedPostsRaw.map((rp) => {
+      const titulo = translated[i++] ?? rp.titulo;
+      const categoria = translated[i++] ?? rp.categoria;
+      return { ...rp, titulo, categoria };
+    });
+  }, [relatedPostsRaw, translated, sourceTexts]);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, [slug]);
@@ -135,15 +223,12 @@ const BlogPost = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (!post || !tPost) return <Navigate to="/blog" replace />;
 
-  const headings = (post.content ?? []).filter(
+  const headings = (tPost.content ?? []).filter(
     (b): b is Extract<ArticleBlock, { type: "h2" }> => b.type === "h2"
   );
 
-  const relatedPosts = (post.related ?? [])
-    .map((s) => blogPosts.find((p) => p.slug === s))
-    .filter(Boolean);
 
   return (
     <div className="min-h-screen bg-cream">
