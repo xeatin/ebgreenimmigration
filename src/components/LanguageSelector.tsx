@@ -30,10 +30,10 @@ const LanguageSelector = ({ darkMode = false }: { darkMode?: boolean }) => {
             <img
               src={`https://flagcdn.com/w80/${l.country}.png`}
               srcSet={`https://flagcdn.com/w160/${l.country}.png 2x`}
-              width={20}
-              height={20}
+              width={24}
+              height={16}
               alt={l.label}
-              className="object-cover w-5 h-5 rounded-full ring-1 ring-white/20"
+              className="object-cover w-6 h-4 rounded-sm ring-1 ring-white/20"
             />
           </button>
         );
