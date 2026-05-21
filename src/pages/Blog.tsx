@@ -16,7 +16,7 @@ const Blog = () => {
 
   const ordered = useMemo(() => [...blogPosts].reverse(), []);
   const sourceTexts = useMemo(
-    () => ordered.flatMap((p) => [p.titulo, p.excerpt, p.categoria]),
+    () => ordered.flatMap((p) => [p.titulo, p.excerpt, p.categoria, p.data, p.leitura]),
     [ordered],
   );
   const { texts: translated } = useBlogTexts(sourceTexts);
@@ -74,9 +74,12 @@ const Blog = () => {
           >
             {ordered.map((post, index) => {
               const hasContent = !!post.content;
-              const titulo = translated[index * 3] ?? post.titulo;
-              const excerpt = translated[index * 3 + 1] ?? post.excerpt;
-              const categoria = translated[index * 3 + 2] ?? post.categoria;
+              const base = index * 5;
+              const titulo = translated[base] ?? post.titulo;
+              const excerpt = translated[base + 1] ?? post.excerpt;
+              const categoria = translated[base + 2] ?? post.categoria;
+              const data = translated[base + 3] ?? post.data;
+              const leitura = translated[base + 4] ?? post.leitura;
               return (
                 <motion.div
                   key={post.id}
@@ -112,12 +115,13 @@ const Blog = () => {
                       </p>
 
                       <div className="flex items-center gap-3 mb-5 text-[11px] font-body text-cream/60">
-                        <span>{post.data}</span>
+                        <span>{data}</span>
                         <span className="opacity-40">·</span>
                         <span className="inline-flex items-center gap-1">
-                          <Clock size={11} /> {post.leitura}
+                          <Clock size={11} /> {leitura}
                         </span>
                       </div>
+
 
                       <span className="btn-highlight inline-flex items-center justify-center gap-2 bg-gradient-gold text-green-deep px-6 py-3 rounded-md font-bold text-sm font-body group-hover:opacity-90 transition-opacity shadow-card group-hover:shadow-card-hover w-full">
                         {t(s.readArticle, lang)}

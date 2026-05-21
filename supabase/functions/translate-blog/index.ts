@@ -37,7 +37,7 @@ Deno.serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `You translate U.S. immigration blog content from Portuguese to ${langName}. Keep proper nouns and visa names (USCIS, EB-1A, EB-2 NIW, Visa Bulletin, Green Card, H-1B, O-1, etc.) in English. Preserve any HTML tags (<a>, <strong>, <em>) exactly. Be faithful and natural, journalistic tone. Return ONLY a valid JSON array of objects {id, text}, no markdown, no commentary.`,
+            content: `You translate U.S. immigration blog content from Portuguese to ${langName}. Keep proper nouns and visa names (USCIS, EB-1A, EB-2 NIW, Visa Bulletin, Green Card, H-1B, O-1, etc.) in English. Preserve any HTML tags (<a>, <strong>, <em>) exactly. For short date strings like "01 abr 2026", convert to the natural format of ${langName} (e.g. English: "Apr 1, 2026"; Spanish: "1 abr 2026"). For reading-time strings like "8 min", translate the unit naturally ("8 min" stays, but "5 min de leitura" → English "5 min read", Spanish "5 min de lectura"). Be faithful and natural, journalistic tone. Return ONLY a valid JSON array of objects {id, text}, no markdown, no commentary.`,
           },
           {
             role: "user",
