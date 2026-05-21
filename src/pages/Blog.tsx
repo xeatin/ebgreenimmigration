@@ -16,7 +16,7 @@ const Blog = () => {
 
   const ordered = useMemo(() => [...blogPosts].reverse(), []);
   const sourceTexts = useMemo(
-    () => ordered.flatMap((p) => [p.titulo, p.excerpt, p.categoria]),
+    () => ordered.flatMap((p) => [p.titulo, p.excerpt, p.categoria, p.data, p.leitura]),
     [ordered],
   );
   const { texts: translated } = useBlogTexts(sourceTexts);
