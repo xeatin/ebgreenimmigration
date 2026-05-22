@@ -81,5 +81,7 @@ export function useBlogTexts(texts: string[]): { texts: string[]; loading: boole
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang, texts.join("\u0001")]);
 
-  return { texts: out, loading };
+  // When lang is PT, always return the original Portuguese source synchronously,
+  // bypassing any stale `out` state left over from a previous language.
+  return { texts: lang === "pt" ? texts : out, loading };
 }
