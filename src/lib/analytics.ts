@@ -4,6 +4,18 @@
 declare global {
   interface Window {
     dataLayer: Record<string, unknown>[];
+    fbq?: {
+      (
+        action: "track" | "trackCustom" | "trackSingle" | "trackSingleCustom",
+        eventOrPixel: string,
+        eventOrParams?: string | Record<string, unknown>,
+        paramsOrOpts?: Record<string, unknown>,
+        opts?: { eventID?: string },
+      ): void;
+      loaded?: boolean;
+      version?: string;
+      queue?: unknown[];
+    };
   }
 }
 
@@ -15,11 +27,54 @@ const dl = () => {
 
 export type AnalyticsParams = Record<string, string | number | boolean | undefined | null>;
 
+const cleanParams = (params: AnalyticsParams = {}) =>
+  Object.fromEntries(Object.entries(params).filter(([, value]) => value !== undefined && value !== null));
+
 export const track = (event: string, params: AnalyticsParams = {}) => {
   const layer = dl();
   if (!layer) return;
   layer.push({ event, ...params, ts: Date.now() });
 };
+
+const trackMeta = (
+  action: "track" | "trackCustom",
+  event: string,
+  params: AnalyticsParams = {},
+  eventId?: string,
+) => {
+  if (typeof window === "undefined" || typeof window.fbq !== "function") return;
+  const payload = cleanParams(params);
+  const opts = eventId ? { eventID: eventId } : undefined;
+  if (Object.keys(payload).length > 0) {
+    if (opts) window.fbq(action, event, payload, opts);
+    else window.fbq(action, event, payload);
+    return;
+  }
+  if (opts) window.fbq(action, event, undefined, opts);
+  else window.fbq(action, event);
+};
+
+/**
+ * Fire Meta Lead with optional `event_id` for CAPI deduplication.
+ * Also pushes a parallel dataLayer event so GTM / GA4 can react to the same
+ * conversion with the same id (useful for cross-platform debugging).
+ */
+export const trackMetaLead = (
+  params: AnalyticsParams = {},
+  options: { eventId?: string } = {},
+) => {
+  const { eventId } = options;
+  trackMeta("track", "Lead", params, eventId);
+  if (eventId) {
+    track("meta_lead", { ...params, event_id: eventId });
+  }
+};
+
+export const trackMetaCustom = (
+  event: string,
+  params: AnalyticsParams = {},
+  options: { eventId?: string } = {},
+) => trackMeta("trackCustom", event, params, options.eventId);
 
 // CTA click
 export const trackCtaClick = (params: {

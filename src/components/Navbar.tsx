@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
@@ -17,7 +17,7 @@ const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/" || location.pathname === "/quero-migrar-para-os-eua";
 
-  const navLinks = [
+  const navLinks = useMemo(() => [
     { label: t(translations.nav.home, lang), href: isHomePage ? "#hero" : "/#hero", id: "hero" },
     { label: t(translations.nav.differentials, lang), href: isHomePage ? "#diferenciais" : "/#diferenciais", id: "diferenciais" },
     { label: t(translations.nav.services, lang), href: isHomePage ? "#servicos" : "/#servicos", id: "servicos" },
@@ -26,7 +26,7 @@ const Navbar = () => {
     { label: "Blog", href: "/blog", id: "blog" },
     { label: t(translations.nav.news, lang), href: "/noticias", id: "noticias" },
     { label: t(translations.nav.contact, lang), href: isHomePage ? "#contato" : "/#contato", id: "contato" },
-  ];
+  ], [isHomePage, lang]);
 
   useEffect(() => {
     const checkBackground = () => {

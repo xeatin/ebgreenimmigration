@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { FileText, Users, Briefcase, GraduationCap, Shield, Globe, ArrowRight, Star } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { translations, t } from "@/i18n/translations";
+import { translations, t, type Language } from "@/i18n/translations";
 
 const icons = [Shield, FileText, Globe, Briefcase, GraduationCap, Users];
 const titles = ["EB-1A", "EB-2 NIW", "", "", "", ""];
@@ -11,11 +11,16 @@ const highlights = [true, true, false, false, false, false];
 const ServicesSection = () => {
   const { lang } = useLanguage();
   const s = translations.services;
+  type ServiceTranslationItem = {
+    title?: Record<Language, string>;
+    subtitle?: Record<Language, string>;
+    description: Record<Language, string>;
+  };
 
-  const services = s.items.map((item, i) => ({
+  const services = (s.items as ServiceTranslationItem[]).map((item, i) => ({
     icon: icons[i],
-    title: (item as any).title ? t((item as any).title, lang) : titles[i],
-    subtitle: (item as any).subtitle ? t((item as any).subtitle, lang) : subtitles[i],
+    title: item.title ? t(item.title, lang) : titles[i],
+    subtitle: item.subtitle ? t(item.subtitle, lang) : subtitles[i],
     description: t(item.description, lang),
     highlight: highlights[i],
   }));

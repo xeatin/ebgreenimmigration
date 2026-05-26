@@ -4,6 +4,36 @@ const corsHeaders = {
 }
 import { z } from 'npm:zod@3.25.76'
 
+// Attribution payload sent from the client (UTMs + click IDs + landing context).
+// All fields optional — we never block a lead on missing tracking data.
+const AttributionSchema = z.object({
+  utm_source: z.string().max(500).optional(),
+  utm_medium: z.string().max(500).optional(),
+  utm_campaign: z.string().max(500).optional(),
+  utm_term: z.string().max(500).optional(),
+  utm_content: z.string().max(500).optional(),
+  fbclid: z.string().max(500).optional(),
+  gclid: z.string().max(500).optional(),
+  gbraid: z.string().max(500).optional(),
+  wbraid: z.string().max(500).optional(),
+  msclkid: z.string().max(500).optional(),
+  ttclid: z.string().max(500).optional(),
+  landing_page: z.string().max(2048).optional(),
+  referrer: z.string().max(2048).optional(),
+}).partial().optional()
+
+// SHA-256 hex strings produced by the client per Meta CAPI Advanced Matching spec.
+const HashedUserDataSchema = z.object({
+  em: z.string().length(64).optional(),
+  ph: z.string().length(64).optional(),
+  fn: z.string().length(64).optional(),
+  ln: z.string().length(64).optional(),
+  ct: z.string().length(64).optional(),
+  st: z.string().length(64).optional(),
+  zp: z.string().length(64).optional(),
+  country: z.string().length(64).optional(),
+}).partial().optional()
+
 const ContactSchema = z.object({
   source: z.string().max(80).optional().default('website'),
   firstName: z.string().min(1).max(100),
@@ -17,7 +47,36 @@ const ContactSchema = z.object({
   message: z.string().max(5000).optional().default(''),
   resumeUrl: z.union([z.string().url().max(2048), z.literal('')]).optional().default(''),
   resumeName: z.string().max(255).optional().default(''),
+  // --- Tracking (all optional — graceful degradation if missing) ---
+  event_id: z.string().max(100).optional(),
+  event_source_url: z.string().max(2048).optional(),
+  user_agent: z.string().max(1000).optional(),
+  attribution: AttributionSchema,
+  user_data_hashed: HashedUserDataSchema,
 })
+
+const extractLeadId = (payload: unknown): string | number | undefined => {
+  if (Array.isArray(payload)) {
+    const first = payload[0]
+    return first && typeof first === 'object' && 'id' in first
+      ? (first as { id?: string | number }).id
+      : undefined
+  }
+
+  if (!payload || typeof payload !== 'object') {
+    return undefined
+  }
+
+  const record = payload as {
+    leadId?: string | number
+    lead_id?: string | number
+    id?: string | number
+    lead?: { id?: string | number }
+    data?: { id?: string | number }
+  }
+
+  return record.leadId ?? record.lead_id ?? record.id ?? record.lead?.id ?? record.data?.id
+}
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -35,7 +94,18 @@ Deno.serve(async (req) => {
       )
     }
 
-    const { source, firstName, lastName, email, phoneCode, phone, visa, education, experience, message, resumeUrl, resumeName } = parsed.data
+    const {
+      source, firstName, lastName, email, phoneCode, phone, visa, education, experience,
+      message, resumeUrl, resumeName,
+      event_id, event_source_url, user_agent, attribution, user_data_hashed,
+    } = parsed.data
+
+    // Client IP (best-effort; Supabase Edge runtime exposes the original via these headers)
+    const client_ip =
+      req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      req.headers.get('cf-connecting-ip') ||
+      req.headers.get('x-real-ip') ||
+      undefined
 
     const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
     if (!RESEND_API_KEY) {
@@ -110,17 +180,41 @@ Deno.serve(async (req) => {
             experience,
             resumeUrl,
             resumeName,
+            // --- Tracking (consumido pelo n8n e gravado em campos customizados do Kommo) ---
+            // Pixel↔CAPI dedupe key (mesmo id que o navegador disparou em fbq Lead)
+            event_id,
+            event_source_url,
+            user_agent,
+            client_ip,
+            // UTMs + click IDs (atribuição)
+            utm_source: attribution?.utm_source,
+            utm_medium: attribution?.utm_medium,
+            utm_campaign: attribution?.utm_campaign,
+            utm_term: attribution?.utm_term,
+            utm_content: attribution?.utm_content,
+            fbclid: attribution?.fbclid,
+            gclid: attribution?.gclid,
+            gbraid: attribution?.gbraid,
+            wbraid: attribution?.wbraid,
+            msclkid: attribution?.msclkid,
+            ttclid: attribution?.ttclid,
+            landing_page: attribution?.landing_page,
+            referrer: attribution?.referrer,
+            // User data hasheada (pronta pra Meta CAPI Advanced Matching)
+            user_data_hashed,
           }),
         })
           .then(async (r) => {
             console.log('N8N webhook status:', r.status)
             const txt = await r.text().catch(() => '')
             console.log('N8N webhook body:', txt)
-            let parsed: any = txt
-            try { parsed = JSON.parse(txt) } catch (_) {}
-            const leadId =
-              parsed?.leadId ?? parsed?.lead_id ?? parsed?.id ??
-              parsed?.lead?.id ?? parsed?.data?.id ?? parsed?.[0]?.id
+            let parsed: unknown = txt
+            try {
+              parsed = JSON.parse(txt)
+            } catch {
+              parsed = txt
+            }
+            const leadId = extractLeadId(parsed)
             kommo = { skipped: false, status: r.status, leadId, body: parsed }
           })
           .catch((err) => {

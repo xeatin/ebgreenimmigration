@@ -9,10 +9,12 @@ const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?
 
 import PhoneCodeSelector from "./PhoneCodeSelector";
 import { useState, useRef, useEffect, Fragment } from "react";
-import { trackForm } from "@/lib/analytics";
+import { trackForm, trackMetaCustom, trackMetaLead } from "@/lib/analytics";
+import { getAttribution, attributionPayload } from "@/lib/tracking/attribution";
+import { newEventId, hashUserData } from "@/lib/tracking/event-id";
 import { z } from "zod";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { translations, t } from "@/i18n/translations";
+import { translations, t, type Language } from "@/i18n/translations";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -71,6 +73,37 @@ const TIMELINE_OPTIONS = [
   "Planejando (3–12 meses)",
   "Ainda estou explorando opções",
 ];
+
+const TRACKING_WEBHOOK_URL =
+  import.meta.env.VITE_N8N_WEBHOOK_URL ||
+  "https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead-tracking-v1";
+
+const normalizeQualificationValue = (value: string) =>
+  value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+
+const getLeadQualification = (education: string, experience: string) => {
+  const normalizedEducation = normalizeQualificationValue(education);
+  const normalizedExperience = normalizeQualificationValue(experience);
+  const isHighSchool = normalizedEducation.includes("ensino medio") || normalizedEducation === "high school";
+  const isTechnical = normalizedEducation.includes("tecnico") || normalizedEducation.includes("tecnologo");
+  const isLowExperience = normalizedExperience.includes("menos de 5");
+
+  if (isHighSchool) {
+    return { status: "low" as const, reason: "Ensino Médio" };
+  }
+
+  if (isTechnical && isLowExperience) {
+    return {
+      status: "low" as const,
+      reason: "Técnico/Tecnólogo com menos de 5 anos de experiência",
+    };
+  }
+
+  return {
+    status: "qualified" as const,
+    reason: "Atende aos critérios mínimos de qualificação",
+  };
+};
 
 // Heurística simples para sugerir visto baseado nas respostas do perfil
 const suggestVisa = (data: {
@@ -216,12 +249,16 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const { lang } = useLanguage();
   const { toast } = useToast();
   const s = translations.contact;
+  type TranslatedGroup = Record<string, Record<Language, string> | undefined>;
   const STEPS = [
     { n: 1, label: t(s.form.stepContact, lang) },
     { n: 2, label: t(s.form.stepProfile, lang) },
     { n: 3, label: t(s.form.stepAnalysis, lang) },
   ];
-  const trOpt = (group: any, key: string) => (group?.[key] ? t(group[key], lang) : key);
+  const trOpt = (group: TranslatedGroup | undefined, key: string) => {
+    const value = group?.[key];
+    return value ? t(value, lang) : key;
+  };
 
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<{
@@ -262,7 +299,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     };
     window.addEventListener("pagehide", onLeave);
     return () => window.removeEventListener("pagehide", onLeave);
-  }, [step, formData.visa]);
+  }, [FORM_ID, step, formData.visa]);
 
   const buildSchema = () =>
     z.object({
@@ -331,6 +368,16 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       const prev = Math.max(1, p - 1);
       trackForm("form_step", { form_id: FORM_ID, form_step: prev, visa_context: formData.visa });
       return prev;
+    });
+  };
+
+  const handleFinalCtaClick = () => {
+    if (isSubmitting) return;
+    trackMetaCustom("assessment_final_cta_click", {
+      form_id: FORM_ID,
+      form_step: step,
+      visa_context: formData.visa,
+      cta_text: t(s.form.submitCta, lang),
     });
   };
 
@@ -405,39 +452,94 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       formData.knownVisa ? `Sei qual o meu visto: ${formData.knownVisa}` : "",
     ].filter(Boolean).join("\n");
 
-    // N8N/Kommo é disparado dentro da edge function `send-contact-email`,
-    // que aplica o filtro de qualificação (pula leads de baixa qualificação).
-    // Não chamar o webhook diretamente daqui para não burlar o filtro.
+    // Attribution + event_id para deduplicação Pixel ↔ CAPI
+    const attribution = attributionPayload(getAttribution());
+    const eventId = newEventId();
+    const userData = await hashUserData({
+      email: formData.email,
+      phone: formData.phone,
+      phoneCode: formData.phoneCode,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      country: "br",
+    });
 
-    let qualification: 'low' | 'qualified' = 'qualified';
-    let qualificationReason = '';
+    const submissionPayload = {
+      source: "website",
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phoneCode: formData.phoneCode,
+      phone: formData.phone,
+      visa: formData.visa,
+      education: formData.education,
+      experience: formData.experience,
+      knownVisa: formData.knownVisa,
+      message: `${t(s.form.defaultMessage, lang)}\n\n${composedMessage}`.trim(),
+      resumeUrl,
+      resumeName,
+      event_id: eventId,
+      event_source_url: typeof window !== "undefined" ? window.location.href : undefined,
+      user_agent: typeof navigator !== "undefined" ? navigator.userAgent : undefined,
+      attribution,
+      user_data_hashed: userData,
+    };
+
+    let qualification: 'low' | 'qualified' = getLeadQualification(
+      formData.education,
+      formData.experience,
+    ).status;
+    let qualificationReason = getLeadQualification(
+      formData.education,
+      formData.experience,
+    ).reason;
+
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: {
-          source: "website",
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          phoneCode: formData.phoneCode,
-          phone: formData.phone,
-          visa: formData.visa,
-          education: formData.education,
-          experience: formData.experience,
-          knownVisa: formData.knownVisa,
-          message: `${t(s.form.defaultMessage, lang)}\n\n${composedMessage}`.trim(),
-          resumeUrl,
-          resumeName,
-        },
-      });
+      if (qualification === "qualified") {
+        const response = await fetch(TRACKING_WEBHOOK_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(submissionPayload),
+        });
 
-      if (error || data?.success === false) {
-        throw error || new Error(data?.error || "Erro ao enviar lead");
+        const responseText = await response.text();
+        let data: unknown = null;
+        try {
+          data = JSON.parse(responseText);
+        } catch {
+          data = responseText;
+        }
+
+        const failed = !response.ok
+          || (typeof data === "object"
+            && data !== null
+            && "success" in data
+            && (data as { success?: boolean }).success === false);
+
+        if (failed) {
+          throw new Error(
+            typeof data === "object" && data !== null && "error" in data
+              ? String((data as { error?: string }).error || "Erro ao enviar lead")
+              : "Erro ao enviar lead",
+          );
+        }
+
+        console.info("[lead] qualification:", qualification, "| reason:", qualificationReason, "| trackingWebhook:", data);
+      } else {
+        const { data, error } = await supabase.functions.invoke("send-contact-email", {
+          body: submissionPayload,
+        });
+
+        if (error || data?.success === false) {
+          throw error || new Error(data?.error || "Erro ao enviar lead");
+        }
+
+        qualification = data?.qualification === "low" ? "low" : qualification;
+        qualificationReason = data?.qualificationReason || qualificationReason;
+        console.info("[lead] qualification:", qualification, "| reason:", qualificationReason, "| kommo:", data?.kommo);
       }
-
-      qualification = data?.qualification === 'low' ? 'low' : 'qualified';
-      qualificationReason = data?.qualificationReason || '';
-      // Log interno (não exibido ao usuário)
-      console.info('[lead] qualification:', qualification, '| reason:', qualificationReason, '| kommo:', data?.kommo);
     } catch (err) {
       trackForm("form_error", { form_id: FORM_ID, visa_context: formData.visa, reason: "submit_failed" });
       toast({
@@ -451,6 +553,24 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
 
     submittedRef.current = true;
     trackForm("form_submit", { form_id: FORM_ID, visa_context: formData.visa, reason: qualification });
+    trackMetaLead(
+      {
+        content_name: FORM_ID,
+        content_category: "lead_form",
+        status: qualification,
+        visa_context: formData.visa,
+      },
+      { eventId },
+    );
+    trackMetaCustom(
+      "assessment_form_submit",
+      {
+        form_id: FORM_ID,
+        status: qualification,
+        visa_context: formData.visa,
+      },
+      { eventId },
+    );
     if (qualification === 'low') {
       toast({
         title: t(s.form.successLowTitle, lang),
@@ -505,7 +625,9 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
         {VISA_OPTIONS.map((v) => {
           const selected = formData.visa === v.id;
-          const desc = (s.visaDesc as any)[v.id] ? t((s.visaDesc as any)[v.id], lang) : "";
+          const visaDescriptions = s.visaDesc as TranslatedGroup | undefined;
+          const visaDescription = visaDescriptions?.[v.id];
+          const desc = visaDescription ? t(visaDescription, lang) : "";
           return (
             <button
               key={v.id}
@@ -1067,6 +1189,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                   ) : (
                     <button
                       type="submit"
+                      onClick={handleFinalCtaClick}
                       disabled={isSubmitting}
                       className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-60"
                     >
