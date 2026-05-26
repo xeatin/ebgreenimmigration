@@ -17,7 +17,7 @@ const ServicesSection = () => {
     description: Record<Language, string>;
   };
 
-  const services = (s.items as ServiceTranslationItem[]).map((item, i) => ({
+  const services = (s.items as readonly ServiceTranslationItem[]).map((item, i) => ({
     icon: icons[i],
     title: item.title ? t(item.title, lang) : titles[i],
     subtitle: item.subtitle ? t(item.subtitle, lang) : subtitles[i],
