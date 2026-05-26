@@ -49,6 +49,26 @@ const ATTRIBUTION_KEYS: (keyof Attribution)[] = [
   "ttclid",
 ];
 
+const normalizeSource = (value?: string) =>
+  (value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+
+const sanitizeAttribution = (attr: Attribution): Attribution => {
+  const next: Attribution = { ...attr };
+  const normalizedSource = normalizeSource(attr.utm_source);
+
+  if (["meta", "facebook", "instagram"].includes(normalizedSource)) {
+    delete next.gclid;
+    delete next.gbraid;
+    delete next.wbraid;
+  }
+
+  if (normalizedSource === "google") {
+    delete next.fbclid;
+  }
+
+  return next;
+};
+
 const safeStorage = () => {
   if (typeof window === "undefined") return null;
   try {
@@ -73,7 +93,12 @@ const readStored = (): Attribution | null => {
       ls.removeItem(STORAGE_KEY);
       return null;
     }
-    return parsed;
+    const sanitized = sanitizeAttribution(parsed);
+    const serialized = JSON.stringify(sanitized);
+    if (serialized !== raw) {
+      ls.setItem(STORAGE_KEY, serialized);
+    }
+    return sanitized;
   } catch {
     return null;
   }
@@ -116,14 +141,23 @@ export const initAttribution = (): Attribution => {
   if (!hasFreshTouch && stored) return stored;
 
   // New touch (or first ever visit)
-  const next: Attribution = {
-    ...(stored ?? {}),
-    ...(hasFreshTouch ? fromUrl : {}),
-    first_touch_at: stored?.first_touch_at ?? now,
-    last_touch_at: now,
-    landing_page: stored?.landing_page ?? window.location.pathname + window.location.search,
-    referrer: stored?.referrer ?? (document.referrer || undefined),
-  };
+  const next: Attribution = sanitizeAttribution(
+    hasFreshTouch
+      ? {
+          ...fromUrl,
+          first_touch_at: stored?.first_touch_at ?? now,
+          last_touch_at: now,
+          landing_page: window.location.pathname + window.location.search,
+          referrer: document.referrer || undefined,
+        }
+      : {
+          ...(stored ?? {}),
+          first_touch_at: stored?.first_touch_at ?? now,
+          last_touch_at: now,
+          landing_page: stored?.landing_page ?? window.location.pathname + window.location.search,
+          referrer: stored?.referrer ?? (document.referrer || undefined),
+        },
+  );
 
   writeStored(next);
   return next;

@@ -108,12 +108,12 @@ const getLeadQualification = (education: string, experience: string) => {
 const getLeadSourceLabel = (attribution: ReturnType<typeof attributionPayload>) => {
   const normalizedSource = normalizeQualificationValue(attribution.utm_source || "");
 
-  if (normalizedSource === "google" || attribution.gclid) {
-    return "Google Ads";
-  }
-
   if (["meta", "facebook", "instagram"].includes(normalizedSource) || attribution.fbclid) {
     return "Meta Ads";
+  }
+
+  if (normalizedSource === "google" || attribution.gclid || attribution.gbraid || attribution.wbraid) {
+    return "Google Ads";
   }
 
   if (normalizedSource === "linkedin") {
