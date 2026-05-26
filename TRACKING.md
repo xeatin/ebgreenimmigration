@@ -3,8 +3,8 @@
 Single source of truth for how leads/conversions flow from the site → Kommo CRM → ad platforms (Meta, GA4, Google Ads).
 
 > **Status:** Runtime path ready for publication from the site repo.
-> Qualified leads now go browser → n8n tracking webhook directly.
-> Low-qualification leads still go through the Supabase Edge Function so they are notified by email and skipped in CRM.
+> Qualified leads go browser → n8n → Kommo for full tracking, then browser → Supabase for an email-only owner notification that is forced to skip CRM.
+> Low-qualification leads go browser → Supabase for owner email only and are skipped in CRM.
 
 ---
 
@@ -21,11 +21,12 @@ Single source of truth for how leads/conversions flow from the site → Kommo CR
    │    • SHA-256 hash PII (email, phone, name)
    │    • fbq('track','Lead', {...}, {eventID})    ← Meta Pixel (client)
    │    • dataLayer.push({event:'meta_lead', ...}) ← GTM → GA4
-   │    • qualify lead in-browser
-   │    • qualified → POST to /webhook/website-form-lead-tracking-v1
-   │    • low qualification → POST to send-contact-email Edge Function
+       │    • qualify lead in-browser
+       │    • qualified → POST to /webhook/website-form-lead-tracking-v1
+       │    • qualified → POST email-only notification to send-contact-email
+       │    • low qualification → POST to send-contact-email Edge Function
    └──────┬───────┘
-          │ qualified
+          │ qualified CRM path
           ▼
    ┌──────────────────────────┐
    │  n8n (srv1283251)        │
@@ -40,19 +41,19 @@ Single source of truth for how leads/conversions flow from the site → Kommo CR
    │ • Writes tracking note   │
    │ • Applies IA/source tags │
    └──────┬───────────────────┘
-          │ low qualification
+          │ qualified email notification + low leads
           ▼
    ┌──────────────────────────┐
    │ Supabase Edge Function   │
    │ /send-contact-email      │
    │                          │
-   │ • Validates payload (zod)
-   │ • Captures client_ip from headers
-   │ • Decides qualification (low / qualified)
-   │ • Sends notification email via Resend
-   │ • Skips CRM when qualification = low
+   │ • Sends owner email via  │
+   │   Resend                 │
+   │ • Skips CRM when low     │
+   │ • Also skips CRM for     │
+   │   qualified notification │
+   │   payloads               │
    └──────┬───────────────────┘
-          │ current compatibility path still exists for the deployed Edge Function
           ▼ (Kommo stage changes via automation)
    ┌──────────────────────────┐
    │ Phase 3: track-conversion │
@@ -73,6 +74,7 @@ Single source of truth for how leads/conversions flow from the site → Kommo CR
 | 1 | `event_id` + PII hashing helpers | ✅ Done | — |
 | 1 | Pixel Lead with `eventID` (ready for dedupe) | ✅ Done | — |
 | 1 | Browser-qualified submit goes direct to n8n tracking v1 | ✅ Done | — |
+| 1 | Owner email notification preserved through Supabase email-only call | ✅ Done | — |
 | 1 | Low-qualification fallback via Edge Function + Resend | ✅ Done | — |
 | 2 | GTM container audit + GA4 config tag | 🟡 Pending | GTM access for `tivgowork@gmail.com` |
 | 2 | n8n flow updated to save new fields in Kommo | ✅ Done | — |
@@ -136,8 +138,8 @@ After creating, fetch their IDs once via `GET /api/v4/leads/custom_fields` and m
 | `src/lib/tracking/attribution.ts` | URL → localStorage attribution capture |
 | `src/lib/tracking/event-id.ts` | UUID generator + SHA-256 PII hashing |
 | `src/lib/analytics.ts` | dataLayer + fbq wrappers (supports eventID) |
-| `src/components/ContactSection.tsx` | Main lead form — calls all of the above on submit |
-| `supabase/functions/send-contact-email/index.ts` | Current fallback path for low-qualification leads + email notification |
+| `src/components/ContactSection.tsx` | Main lead form — qualified to n8n tracking + email-only notification, low to Supabase email |
+| `supabase/functions/send-contact-email/index.ts` | Owner email notification via Resend + low-lead CRM skip |
 | `CRM/` | Kommo automation scripts (separate folder) |
 
 ---
@@ -148,7 +150,7 @@ After creating, fetch their IDs once via `GET /api/v4/leads/custom_fields` and m
 2. DevTools console: `JSON.parse(localStorage.getItem('ebg_attribution_v1'))` → should show the captured values
 3. Fill and submit the contact form with a qualified profile
 4. Network tab → look at the request to `website-form-lead-tracking-v1`. Body should include `event_id`, `attribution`, `user_data_hashed`
-5. Repeat with a low-qualification profile and confirm the request goes to `send-contact-email`
+5. Confirm a second `send-contact-email` request is made for the owner notification and returns `kommo.skipped = true`
 6. Facebook Pixel Helper extension → should show Lead event with an `eventID` attribute
 7. Meta Events Manager → Test Events (`TEST36612`) → Lead should appear with the same event_id
 

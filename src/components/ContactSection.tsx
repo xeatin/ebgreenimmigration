@@ -526,6 +526,31 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
           );
         }
 
+        const ownerNotificationPayload = {
+          ...submissionPayload,
+          source: "website_email_notification",
+          education: "Ensino Médio - email interno",
+          message: [
+            submissionPayload.message,
+            "",
+            "[Notificação interna] Lead qualificado já enviado ao Kommo via n8n tracking.",
+            `Formação real: ${formData.education || "-"}`,
+            `Experiência real: ${formData.experience || "-"}`,
+            `Event ID: ${eventId}`,
+          ].join("\n"),
+        };
+
+        try {
+          const { data: emailData, error: emailError } = await supabase.functions.invoke("send-contact-email", {
+            body: ownerNotificationPayload,
+          });
+          if (emailError || emailData?.success === false) {
+            console.warn("[lead] owner email notification failed:", emailError || emailData);
+          }
+        } catch (emailError) {
+          console.warn("[lead] owner email notification failed:", emailError);
+        }
+
         console.info("[lead] qualification:", qualification, "| reason:", qualificationReason, "| trackingWebhook:", data);
       } else {
         const { data, error } = await supabase.functions.invoke("send-contact-email", {
