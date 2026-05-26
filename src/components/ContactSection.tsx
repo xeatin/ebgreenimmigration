@@ -105,6 +105,32 @@ const getLeadQualification = (education: string, experience: string) => {
   };
 };
 
+const getLeadSourceLabel = (attribution: ReturnType<typeof attributionPayload>) => {
+  const normalizedSource = normalizeQualificationValue(attribution.utm_source || "");
+
+  if (normalizedSource === "google" || attribution.gclid) {
+    return "Google Ads";
+  }
+
+  if (["meta", "facebook", "instagram"].includes(normalizedSource) || attribution.fbclid) {
+    return "Meta Ads";
+  }
+
+  if (normalizedSource === "linkedin") {
+    return "LinkedIn";
+  }
+
+  if (["organic", "organico"].includes(normalizedSource)) {
+    return "Orgânico";
+  }
+
+  if (normalizedSource === "indicacao") {
+    return "Indicação";
+  }
+
+  return "Website";
+};
+
 // Heurística simples para sugerir visto baseado nas respostas do perfil
 const suggestVisa = (data: {
   education: string;
@@ -454,6 +480,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
 
     // Attribution + event_id para deduplicação Pixel ↔ CAPI
     const attribution = attributionPayload(getAttribution());
+    const leadSourceLabel = getLeadSourceLabel(attribution);
     const eventId = newEventId();
     const userData = await hashUserData({
       email: formData.email,
@@ -528,7 +555,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
 
         const ownerNotificationPayload = {
           ...submissionPayload,
-          source: "website_email_notification",
+          source: leadSourceLabel,
           education: "Ensino Médio - email interno",
           message: [
             submissionPayload.message,
@@ -554,7 +581,10 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         console.info("[lead] qualification:", qualification, "| reason:", qualificationReason, "| trackingWebhook:", data);
       } else {
         const { data, error } = await supabase.functions.invoke("send-contact-email", {
-          body: submissionPayload,
+          body: {
+            ...submissionPayload,
+            source: leadSourceLabel,
+          },
         });
 
         if (error || data?.success === false) {
