@@ -28,7 +28,7 @@ const DifferentialsSection = () => {
           <div className="w-16 h-1 bg-brand-green mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {s.items.map((item, i) => {
             const Icon = icons[i];
             return (
@@ -38,7 +38,7 @@ const DifferentialsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="text-center group"
+                className="text-center group p-6 rounded-xl border-2 border-border hover:border-brand-green/50 hover:shadow-[0_0_0_1px_hsl(var(--brand-green)/0.35)] bg-card transition-all cursor-pointer hover:-translate-y-1"
               >
                 <div className="w-16 h-16 bg-primary/5 border border-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:border-brand-green/60 group-hover:shadow-[0_0_0_1px_hsl(var(--brand-green)/0.4),0_8px_24px_-8px_hsl(var(--brand-green)/0.45)] transition-all duration-300">
                   <Icon className="text-primary" size={28} />
