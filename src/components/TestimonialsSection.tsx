@@ -207,7 +207,7 @@ const TestimonialsSection = () => {
                       <span className="text-white font-display font-bold text-sm">{initials}</span>
                     </div>
                     <div>
-                      <p className="font-display text-foreground font-semibold text-sm leading-tight">{item.name}</p>
+                      <p className="font-display text-gold font-semibold text-sm leading-tight">{item.name}</p>
                       {(() => {
                         const cat = t(item.category, lang);
                         const parts = cat.split('•').map((p) => p.trim()).filter(Boolean);
