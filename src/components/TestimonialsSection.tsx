@@ -156,10 +156,10 @@ const TestimonialsSection = () => {
           className="text-center mb-10"
         >
           <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">{t(s.sectionLabel, lang)}</p>
-          <h2 className="font-display text-3xl md:text-4xl font-black text-foreground leading-tight tracking-tight">
+          <h2 className="font-display text-3xl md:text-4xl font-black text-gold leading-tight tracking-tight">
             {t(s.title1, lang)}
             <br />
-            <em className="text-accent not-italic font-black">
+            <em className="text-gold not-italic font-black">
               {t(s.titleHighlight, lang)}
             </em>
           </h2>
