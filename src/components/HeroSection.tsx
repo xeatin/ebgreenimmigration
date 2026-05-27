@@ -90,9 +90,9 @@ const HeroSection = () => {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="text-center py-6 px-4 flex flex-col items-center justify-start rounded-lg border border-transparent hover:border-brand-green/50 hover:bg-brand-green/5 hover:shadow-[inset_0_0_0_1px_hsl(var(--brand-green)/0.35)] hover:scale-105 transition-all duration-300 cursor-default"
+              className="group text-center py-6 px-4 flex flex-col items-center justify-start rounded-lg border border-transparent hover:border-brand-green/50 hover:bg-brand-green/5 hover:shadow-[inset_0_0_0_1px_hsl(var(--brand-green)/0.35)] transition-all duration-300 cursor-default"
             >
-              <p className="font-display text-3xl md:text-4xl font-bold text-gold">{stat.number}</p>
+              <p className="font-display text-3xl md:text-4xl font-bold text-gold group-hover:scale-110 transition-transform duration-300">{stat.number}</p>
               <p className="text-sm mt-1 font-body leading-tight text-cream/50">{stat.label}</p>
               {stat.subtitle && <p className="text-cream/40 text-xs mt-0.5 font-body">{stat.subtitle}</p>}
             </div>
