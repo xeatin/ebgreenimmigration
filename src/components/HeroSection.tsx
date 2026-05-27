@@ -80,7 +80,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 p-4 rounded-2xl bg-cream/5 backdrop-blur-sm border border-cream/10 shadow-elevated"
+          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
         >
           {[
             { number: "100%", label: t(s.stats.families, lang) },
@@ -90,13 +90,13 @@ const HeroSection = () => {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="group relative text-center py-6 px-4 flex flex-col items-center justify-start rounded-xl cursor-default transition-all duration-500 hover:-translate-y-2 hover:bg-gradient-to-b hover:from-cream/10 hover:to-transparent hover:shadow-[0_20px_40px_-15px_hsl(var(--gold)/0.25)]"
+              className="group relative text-center py-6 px-4 flex flex-col items-center justify-start rounded-xl cursor-default bg-cream/5 backdrop-blur-sm border border-cream/10 transition-all duration-500 hover:-translate-y-2 hover:bg-gradient-to-b hover:from-brand-green/10 hover:to-transparent hover:shadow-[0_20px_40px_-15px_hsl(var(--brand-green)/0.25)]"
             >
-              <div className="pointer-events-none absolute inset-0 rounded-xl border border-cream/5 group-hover:border-gold/40 transition-colors duration-500" />
-              <p className="font-display text-3xl md:text-4xl font-bold text-gold drop-shadow-sm group-hover:scale-110 transition-transform duration-500">{stat.number}</p>
+              <div className="pointer-events-none absolute inset-0 rounded-xl border border-cream/5 group-hover:border-brand-green/40 transition-colors duration-500" />
+              <p className="font-display text-3xl md:text-4xl font-bold text-brand-green drop-shadow-sm group-hover:scale-110 transition-transform duration-500">{stat.number}</p>
               <p className="text-sm mt-1 font-body leading-tight text-cream/50 group-hover:text-cream/80 transition-colors duration-500">{stat.label}</p>
               {stat.subtitle && <p className="text-cream/40 text-xs mt-0.5 font-body">{stat.subtitle}</p>}
-              <div className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gold group-hover:w-12 transition-all duration-500" />
+              <div className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-brand-green group-hover:w-12 transition-all duration-500" />
             </div>
           ))}
         </motion.div>
