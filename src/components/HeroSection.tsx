@@ -80,7 +80,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-cream/10 bg-cream/5 backdrop-blur-sm rounded-xl border border-cream/10 p-2 md:p-0 shadow-elevated overflow-hidden"
         >
           {[
             { number: "100%", label: t(s.stats.families, lang) },
@@ -90,7 +90,7 @@ const HeroSection = () => {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="group text-center p-6 flex flex-col items-center justify-start bg-cream/5 backdrop-blur-sm rounded-xl border-2 border-cream/10 hover:border-brand-green/50 hover:shadow-[0_0_0_1px_hsl(var(--brand-green)/0.35)] hover:-translate-y-1 transition-all duration-300 cursor-default"
+              className="text-center py-6 px-4 flex flex-col items-center justify-start rounded-lg border border-transparent hover:border-brand-green/50 hover:bg-brand-green/5 hover:shadow-[inset_0_0_0_1px_hsl(var(--brand-green)/0.35)] transition-all duration-300 cursor-default"
             >
               <p className="font-display text-3xl md:text-4xl font-bold text-gold">{stat.number}</p>
               <p className="text-sm mt-1 font-body leading-tight text-cream/50">{stat.label}</p>
