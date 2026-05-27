@@ -37,12 +37,8 @@ const HeroSection = () => {
             <span className="text-gradient-gold whitespace-nowrap">{t(s.titleHighlight, lang)}</span>
             <br />
             {t(s.title2, lang)}
-            {t(s.title3, lang) && (
-              <>
-                <br />
-                {t(s.title3, lang)}
-              </>
-            )}
+            <br />
+            {t(s.title3, lang)}
           </motion.h1>
 
           <motion.p
