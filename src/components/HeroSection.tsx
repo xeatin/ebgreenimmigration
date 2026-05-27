@@ -21,7 +21,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm border border-cream/20 rounded-full px-4 py-2 mb-8"
+            className="inline-flex items-center gap-2 bg-cream/10 backdrop-blur-sm border border-cream/20 rounded-full px-4 py-2 mb-8 group hover:border-brand-green/50 hover:bg-brand-green/5 hover:shadow-[inset_0_0_0_1px_hsl(var(--brand-green)/0.35)] transition-all duration-300 cursor-default"
           >
             <Shield size={14} className="text-gold" />
             <span className="text-cream/90 font-body text-sm">{t(s.badge, lang)}</span>

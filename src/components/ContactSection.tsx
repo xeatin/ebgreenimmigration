@@ -1049,7 +1049,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             </div>
 
             {/* Dark contact card */}
-            <div className="mt-4 rounded-xl bg-green-deep text-white px-5 md:px-6 pt-[19px] md:pt-[23px] pb-5 md:pb-6 relative overflow-hidden">
+            <div className="mt-4 rounded-xl bg-green-deep text-white px-5 md:px-6 pt-[19px] md:pt-[23px] pb-5 md:pb-6 relative overflow-hidden border border-transparent hover:border-brand-green/50 hover:shadow-[inset_0_0_0_1px_hsl(var(--brand-green)/0.35)] transition-all duration-300 group">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
               <p className="font-display text-lg font-semibold">
                 {t(s.form.directContact, lang)}
