@@ -48,7 +48,7 @@ const AboutSection = () => {
             <p className="text-muted-foreground text-lg leading-relaxed font-body" dangerouslySetInnerHTML={{ __html: t(s.paragraph1, lang) }} />
             <p className="mt-4 text-muted-foreground text-lg leading-relaxed font-body">{t(s.paragraph2, lang)}</p>
 
-            <ul className="mt-8 space-y-3">
+            <ul className="mt-8 space-y-[0.675rem]">
               {s.bullets.map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <Shield className="text-gold shrink-0 mt-0.5" size={18} />
