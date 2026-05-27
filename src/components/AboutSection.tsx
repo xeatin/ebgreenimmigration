@@ -39,7 +39,7 @@ const AboutSection = () => {
             viewport={{ once: true }}
           >
             <p className="text-gold font-body text-sm tracking-[0.3em] uppercase mb-3 font-semibold">{t(s.sectionLabel, lang)}</p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-gold leading-[1.15] tracking-tight">
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground leading-[1.15] tracking-tight">
               {t(s.title1, lang)}{" "}
               <span className="text-gradient-gold">{t(s.titleHighlight, lang)}</span>
             </h2>

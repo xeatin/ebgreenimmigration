@@ -31,7 +31,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="font-display text-4xl sm:text-5xl md:text-[3.2rem] lg:text-[3.8rem] font-bold text-gold leading-[1.08] tracking-tight"
+            className="font-display text-4xl sm:text-5xl md:text-[3.2rem] lg:text-[3.8rem] font-bold text-cream leading-[1.08] tracking-tight"
           >
             {t(s.title1, lang)}{" "}
             <span className="text-gold whitespace-nowrap">{t(s.titleHighlight, lang)}</span>
