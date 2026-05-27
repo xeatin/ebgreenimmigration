@@ -95,7 +95,7 @@ const HeroSection = () => {
               <p className="font-display text-3xl md:text-4xl font-bold text-gold group-hover:scale-110 transition-transform duration-300">{stat.number}</p>
               <p className="relative inline-block text-sm mt-1 font-body leading-tight text-cream/50">
                 {stat.label}
-                <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-brand-green origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-brand-green rounded-full" />
               </p>
               {stat.subtitle && <p className="text-cream/40 text-xs mt-0.5 font-body">{stat.subtitle}</p>}
             </div>
