@@ -44,7 +44,7 @@ const DifferentialsSection = () => {
                   <Icon className="text-primary" size={28} />
                 </div>
                 <p className="font-display text-4xl font-bold text-gold mb-2">{stats[i]}</p>
-                <h3 className="font-display text-lg font-semibold text-gold mb-2">{t(item.title, lang)}</h3>
+                <h3 className="font-display text-lg font-semibold text-foreground mb-2">{t(item.title, lang)}</h3>
                 <p className="text-muted-foreground text-sm font-body leading-relaxed">{t(item.description, lang)}</p>
               </motion.div>
             );

@@ -45,7 +45,7 @@ const ProcessSection = () => {
                 {step.num}
               </span>
               <div className="pt-2">
-                <h3 className="font-display text-lg font-bold text-gold mb-1">{step.title}</h3>
+                <h3 className="font-display text-lg font-bold text-foreground mb-1">{step.title}</h3>
                 <p className="text-muted-foreground font-body text-sm leading-relaxed">{step.desc}</p>
               </div>
             </motion.div>
