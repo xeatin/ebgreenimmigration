@@ -93,10 +93,7 @@ const HeroSection = () => {
               className="group text-center py-6 px-4 flex flex-col items-center justify-start rounded-lg border border-transparent hover:border-brand-green/50 hover:bg-brand-green/5 hover:shadow-[inset_0_0_0_1px_hsl(var(--brand-green)/0.35)] transition-all duration-300 cursor-default"
             >
               <p className="font-display text-3xl md:text-4xl font-bold text-gold group-hover:scale-110 transition-transform duration-300">{stat.number}</p>
-              <p className="relative inline-block text-sm mt-1 font-body leading-tight text-cream/50">
-                {stat.label}
-                <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-brand-green rounded-full" />
-              </p>
+              <p className="text-sm mt-1 font-body leading-tight text-cream/50">{stat.label}</p>
               {stat.subtitle && <p className="text-cream/40 text-xs mt-0.5 font-body">{stat.subtitle}</p>}
             </div>
           ))}
