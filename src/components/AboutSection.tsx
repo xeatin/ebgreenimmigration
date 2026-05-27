@@ -27,7 +27,7 @@ const AboutSection = () => {
               <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-3">
                 <ShieldCheck className="text-gold" size={20} />
               </div>
-              <p className="font-display text-base font-bold text-foreground leading-none">{t(s.cardTitle, lang)}</p>
+              <p className="font-display text-base font-bold text-gold leading-none">{t(s.cardTitle, lang)}</p>
               <div className="w-full h-px bg-border my-2" />
               <p className="text-muted-foreground text-sm font-body leading-relaxed">{t(s.cardDescription, lang)}</p>
             </div>

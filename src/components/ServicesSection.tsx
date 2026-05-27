@@ -79,7 +79,7 @@ const ServicesSection = () => {
                         <service.icon className="text-gold" size={20} />
                       </div>
                       <div className="flex-1">
-                        <h3 className={`font-display text-lg font-semibold text-cream relative inline-block ${(service.title.includes("EB-1A") || service.title.includes("EB-2")) ? 'drop-shadow-[0_0_5px_hsl(var(--brand-green)/0.35)]' : ''}`}>
+                        <h3 className={`font-display text-lg font-semibold text-gold relative inline-block ${(service.title.includes("EB-1A") || service.title.includes("EB-2")) ? 'drop-shadow-[0_0_5px_hsl(var(--brand-green)/0.35)]' : ''}`}>
                           {service.title}
                           {(service.title.includes("EB-1A") || service.title.includes("EB-2")) && (
                             <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-brand-green rounded-full" />
@@ -113,7 +113,7 @@ const ServicesSection = () => {
                   <service.icon className="text-cream/70" size={20} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-display text-lg font-semibold text-cream">{service.title}</h3>
+                  <h3 className="font-display text-lg font-semibold text-gold">{service.title}</h3>
                   <p className="text-gold/80 text-xs font-body mt-0.5">{service.subtitle}</p>
                 </div>
               </div>
