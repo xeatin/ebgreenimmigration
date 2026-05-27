@@ -1022,7 +1022,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             <p className="text-gold font-body text-xs tracking-[0.32em] uppercase mb-5 font-semibold">
               {t(s.sectionLabel, lang)}
             </p>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-foreground leading-[1.05] tracking-tight">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-gold leading-[1.05] tracking-tight">
               {t(s.form.heroTitle1, lang)}<br />
               {t(s.form.heroTitle2, lang)}{t(s.form.heroTitleHighlight, lang) && <> <span className="text-gold italic">{t(s.form.heroTitleHighlight, lang)}</span></>}
             </h2>
