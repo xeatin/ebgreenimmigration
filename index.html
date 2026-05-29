@@ -10,26 +10,15 @@
     <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
     <link rel="dns-prefetch" href="https://www.facebook.com" />
 
-    <!-- Google Tag Manager (GTM-N2BG96B5) — deferred via requestIdleCallback for better LCP -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ML3ZYWM8BM"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-      (function () {
-        var load = function () {
-          var f = document.getElementsByTagName('script')[0];
-          var j = document.createElement('script');
-          j.async = true;
-          j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-N2BG96B5';
-          f.parentNode.insertBefore(j, f);
-        };
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(load, { timeout: 3000 });
-        } else {
-          window.addEventListener('load', function () { setTimeout(load, 1500); });
-        }
-      })();
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-ML3ZYWM8BM');
     </script>
-    <!-- End Google Tag Manager (GTM-N2BG96B5) -->
 
     <!-- Meta Pixel Code -->
     <script>
@@ -128,10 +117,6 @@
 </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) GTM-N2BG96B5 -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N2BG96B5"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) GTM-N2BG96B5 -->
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=989361967125949&ev=PageView&noscript=1"
     /></noscript>

@@ -3,7 +3,12 @@
 
 declare global {
   interface Window {
-    dataLayer: Record<string, unknown>[];
+    dataLayer: unknown[];
+    gtag?: (
+      command: "js" | "config" | "event",
+      target: string | Date,
+      params?: Record<string, unknown>,
+    ) => void;
     fbq?: {
       (
         action: "track" | "trackCustom" | "trackSingle" | "trackSingleCustom",
@@ -31,9 +36,14 @@ const cleanParams = (params: AnalyticsParams = {}) =>
   Object.fromEntries(Object.entries(params).filter(([, value]) => value !== undefined && value !== null));
 
 export const track = (event: string, params: AnalyticsParams = {}) => {
+  const cleaned = cleanParams(params);
   const layer = dl();
-  if (!layer) return;
-  layer.push({ event, ...params, ts: Date.now() });
+  if (layer) {
+    layer.push({ event, ...cleaned, ts: Date.now() });
+  }
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", event, cleaned);
+  }
 };
 
 const trackMeta = (
@@ -65,6 +75,9 @@ export const trackMetaLead = (
 ) => {
   const { eventId } = options;
   trackMeta("track", "Lead", params, eventId);
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", "generate_lead", cleanParams({ ...params, event_id: eventId }));
+  }
   if (eventId) {
     track("meta_lead", { ...params, event_id: eventId });
   }
