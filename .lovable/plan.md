@@ -1,14 +1,15 @@
 ## Objetivo
+
 Aplicar consistência tipográfica (mesma cadência do rodapé do formulário) aos textos pequenos do site — sem alterar títulos (Playfair) nem corpo principal.
 
 ## Regra de estilo (refinamento institucional)
 
-| Tamanho | line-height | tracking | Aplicação |
-|---|---|---|---|
-| **11px** (meta, badges, micro-labels) | `leading-snug` (1.375) | `tracking-wide` (+0.025em) | Selos, "Dados protegidos", labels de formulário pequenos |
-| **12–13px** (`text-xs`) | `leading-snug` | `tracking-wide` | Captions, helper texts, footer institucional |
-| **14–15px** (`text-sm`) | `leading-relaxed` (1.625) | `tracking-normal` | Descrições curtas em cards |
-| **16px+** corpo | `leading-relaxed` | `tracking-normal` | Sem mudança |
+| Tamanho                               | line-height               | tracking                   | Aplicação                                                |
+| ------------------------------------- | ------------------------- | -------------------------- | -------------------------------------------------------- |
+| **11px** (meta, badges, micro-labels) | `leading-snug` (1.375)    | `tracking-wide` (+0.025em) | Selos, "Dados protegidos", labels de formulário pequenos |
+| **12–13px** (`text-xs`)               | `leading-snug`            | `tracking-wide`            | Captions, helper texts, footer institucional             |
+| **14–15px** (`text-sm`)               | `leading-relaxed` (1.625) | `tracking-normal`          | Descrições curtas em cards                               |
+| **16px+** corpo                       | `leading-relaxed`         | `tracking-normal`          | Sem mudança                                              |
 
 Títulos Playfair: **sem alteração** (mantém presença editorial).
 
@@ -28,6 +29,7 @@ Aplicar nos componentes públicos (não nos `ui/` shadcn — esses são primitiv
 10. `src/components/WhatsAppButton.tsx` — tooltip
 
 ## O que NÃO muda
+
 - Tamanhos (`text-[11px]`, `text-xs`, `text-sm`) permanecem
 - Cores e pesos atuais
 - Títulos Playfair (h1, h2, h3)
@@ -35,4 +37,5 @@ Aplicar nos componentes públicos (não nos `ui/` shadcn — esses são primitiv
 - Botões CTA principais
 
 ## Resultado esperado
+
 Microtipografia mais respirada e refinada, alinhada ao padrão institucional do rodapé do formulário, sem reflows perceptíveis no layout.
