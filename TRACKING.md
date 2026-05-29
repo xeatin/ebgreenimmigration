@@ -96,7 +96,7 @@ Stored where?
 | `GA4_MEASUREMENT_ID` | Public, in `.env` of site | `G-ML3ZYWM8BM` |
 | `GA4_API_SECRET` | Supabase secret (Phase 3) | `44ogGgRbRaKwAgg0IN6XUw` (to be moved to Supabase) |
 | `GTM_CONTAINER_ID` | `index.html` | `GTM-N2BG96B5` |
-| `META_PIXEL_ID` | `index.html` | `2277686873020759` |
+| `META_PIXEL_ID` | `index.html` | `989361967125949` |
 | Supabase service role | Supabase Dashboard | ❌ Pending client access |
 | Supabase access token | Personal | ❌ Pending |
 | Google Ads OAuth | — | ⏳ Phase 3 (optional now) |

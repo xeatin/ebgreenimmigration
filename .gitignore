@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+hostinger-upload
+ebgreen-hostinger-upload.zip
 .env
 *.local
 .env.local
