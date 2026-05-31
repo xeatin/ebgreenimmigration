@@ -9,7 +9,7 @@ const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?
 
 import PhoneCodeSelector from "./PhoneCodeSelector";
 import { useState, useRef, useEffect, Fragment } from "react";
-import { trackForm, trackMetaCustom, trackMetaLead } from "@/lib/analytics";
+import { trackForm, trackMetaCustom, trackMetaLead, trackGoogleAdsLead } from "@/lib/analytics";
 import { getAttribution, attributionPayload } from "@/lib/tracking/attribution";
 import { newEventId, hashUserData } from "@/lib/tracking/event-id";
 import { z } from "zod";
@@ -642,6 +642,18 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       },
       { eventId },
     );
+    trackGoogleAdsLead({
+      eventId,
+      value: 1,
+      currency: "USD",
+      userDataHashed: {
+        em: userData.em,
+        ph: userData.ph,
+        fn: userData.fn,
+        ln: userData.ln,
+        country: userData.country,
+      },
+    });
     if (qualification === 'low') {
       toast({
         title: t(s.form.successLowTitle, lang),

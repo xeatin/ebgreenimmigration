@@ -89,6 +89,40 @@ export const trackMetaCustom = (
   options: { eventId?: string } = {},
 ) => trackMeta("trackCustom", event, params, options.eventId);
 
+const GOOGLE_ADS_LEAD_SEND_TO = "AW-17856877793/ebT-COCyq6AcEOGp6cJC";
+
+export const trackGoogleAdsLead = (
+  params: {
+    eventId?: string;
+    value?: number;
+    currency?: string;
+    userDataHashed?: {
+      em?: string;
+      ph?: string;
+      fn?: string;
+      ln?: string;
+      country?: string;
+    };
+  } = {},
+) => {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+
+  if (params.userDataHashed) {
+    window.gtag("set", "user_data", cleanParams(params.userDataHashed));
+  }
+
+  window.gtag(
+    "event",
+    "conversion",
+    cleanParams({
+      send_to: GOOGLE_ADS_LEAD_SEND_TO,
+      value: params.value,
+      currency: params.currency,
+      transaction_id: params.eventId,
+    }),
+  );
+};
+
 // CTA click
 export const trackCtaClick = (params: {
   cta_id: string;
