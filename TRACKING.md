@@ -93,7 +93,7 @@ Stored where?
 | `META_CAPI_ACCESS_TOKEN` | `CRM/.env` | ✅ Present |
 | `KOMMO_SUBDOMAIN` + `KOMMO_ACCESS_TOKEN` | `CRM/.env` | ✅ Present |
 | `META_TEST_EVENT_CODE` | Hardcode in dev, env var in prod | `TEST36612` (dev only) |
-| `GA4_MEASUREMENT_ID` | Public, in `.env` of site | `G-ML3ZYWM8BM` |
+| `GA4_MEASUREMENT_ID` | Public, in `.env` of site | `G-E95KQSN0BH` |
 | `GA4_API_SECRET` | Supabase secret (Phase 3) | `44ogGgRbRaKwAgg0IN6XUw` (to be moved to Supabase) |
 | `GTM_CONTAINER_ID` | `index.html` | `GTM-N2BG96B5` |
 | `META_PIXEL_ID` | `index.html` | `989361967125949` |
@@ -162,7 +162,7 @@ If all 7 pass, Phase 1 is healthy.
 
 1. **Get GTM access** (`tivgowork@gmail.com` invite to `GTM-N2BG96B5`)
 2. Audit existing tags in `GTM-N2BG96B5` — identify and remove any Meta Pixel `Lead` tag that would duplicate the code-fired event
-3. Add GA4 config tag (`G-ML3ZYWM8BM`) + custom event triggers for `meta_lead`, `form_submit`, `cta_click`, `scroll_depth`
+3. Add GA4 config tag (`G-E95KQSN0BH`) + custom event triggers for `meta_lead`, `form_submit`, `cta_click`, `scroll_depth`
 4. Create the Kommo custom fields listed above + grab their IDs
 5. Update n8n flow to write the new fields into Kommo
 6. Wait for Supabase access → deploy `track-conversion` Edge Function (Meta CAPI + GA4 MP)

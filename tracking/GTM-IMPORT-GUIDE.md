@@ -6,7 +6,7 @@
 
 | Recurso | Quantidade | Status |
 |---|---|---|
-| GA4 Configuration tag | 1 | ✅ Ativa (G-ML3ZYWM8BM) |
+| GA4 Configuration tag | 1 | ✅ Ativa (G-E95KQSN0BH) |
 | GA4 Event tags | 5 | ✅ Ativas (generate_lead, form_submit, cta_click, scroll, page_engagement) |
 | Google Ads Conversion tag | 1 | ⏸️ Pausada (você ativa depois de criar a conversão no Google Ads) |
 | Custom Event Triggers | 5 | ✅ Ativos |
@@ -42,7 +42,7 @@
 
 ### 3. Após importar — verificações
 
-1. **Tags → "GA4 Configuration"** → confirme que o `Measurement ID` está como `G-ML3ZYWM8BM`. Se não, edite.
+1. **Tags → "GA4 Configuration"** → confirme que o `Measurement ID` está como `G-E95KQSN0BH`. Se não, edite.
 2. **Tags → "Google Ads — Conversion (Lead)"** → essa está **pausada** intencionalmente. Quando você criar a conversão no Google Ads:
    - Edite a tag → substitua `PREENCHA_AW-XXXXXXX` e `PREENCHA_LABEL` pelos valores reais
    - Tire do pause (⋮ → Resume)

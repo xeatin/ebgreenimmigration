@@ -42,7 +42,7 @@
         "name": "GA4 Configuration",
         "type": "googtag",
         "parameter": [
-          { "type": "TEMPLATE", "key": "tagId", "value": "G-ML3ZYWM8BM" },
+          { "type": "TEMPLATE", "key": "tagId", "value": "G-E95KQSN0BH" },
           {
             "type": "LIST",
             "key": "configSettingsTable",

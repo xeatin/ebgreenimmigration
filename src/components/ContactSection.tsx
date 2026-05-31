@@ -78,6 +78,21 @@ const TRACKING_WEBHOOK_URL =
   import.meta.env.VITE_N8N_WEBHOOK_URL ||
   "https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead-tracking-v1";
 
+const getCookieValue = (name: string) => {
+  if (typeof document === "undefined") return "";
+  return document.cookie
+    .split(";")
+    .map((entry) => entry.trim())
+    .find((entry) => entry.startsWith(`${name}=`))
+    ?.slice(name.length + 1) || "";
+};
+
+const getGaClientId = () => {
+  const gaCookie = getCookieValue("_ga");
+  const parts = gaCookie.split(".");
+  return parts.length >= 4 ? `${parts[2]}.${parts[3]}` : gaCookie;
+};
+
 const normalizeQualificationValue = (value: string) =>
   value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 
@@ -508,6 +523,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       event_id: eventId,
       event_source_url: typeof window !== "undefined" ? window.location.href : undefined,
       user_agent: typeof navigator !== "undefined" ? navigator.userAgent : undefined,
+      ga_client_id: getGaClientId(),
       attribution,
       user_data_hashed: userData,
     };
