@@ -12,6 +12,14 @@
 
 const STORAGE_KEY = "ebg_attribution_v1";
 const TTL_MS = 90 * 24 * 60 * 60 * 1000; // 90 days
+const MAX_TOUCHPOINTS = 10; // keep the last N campaign touches only
+
+export interface Touchpoint {
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  at: number;
+}
 
 export interface Attribution {
   // Standard UTMs
@@ -33,6 +41,8 @@ export interface Attribution {
   // Bookkeeping
   first_touch_at?: number;
   last_touch_at?: number;
+  // Ordered history of campaign touches (oldest → newest, capped)
+  touchpoints?: Touchpoint[];
 }
 
 const ATTRIBUTION_KEYS: (keyof Attribution)[] = [
@@ -140,6 +150,20 @@ export const initAttribution = (): Attribution => {
   // No URL params and we have a valid stored attribution → keep it as-is
   if (!hasFreshTouch && stored) return stored;
 
+  // Append a touchpoint for each fresh campaign click, capped to the last N.
+  const touchpoints = [...(stored?.touchpoints ?? [])];
+  if (hasFreshTouch) {
+    touchpoints.push({
+      utm_source: fromUrl.utm_source,
+      utm_medium: fromUrl.utm_medium,
+      utm_campaign: fromUrl.utm_campaign,
+      at: now,
+    });
+    if (touchpoints.length > MAX_TOUCHPOINTS) {
+      touchpoints.splice(0, touchpoints.length - MAX_TOUCHPOINTS);
+    }
+  }
+
   // New touch (or first ever visit)
   const next: Attribution = sanitizeAttribution(
     hasFreshTouch
@@ -149,6 +173,7 @@ export const initAttribution = (): Attribution => {
           last_touch_at: now,
           landing_page: window.location.pathname + window.location.search,
           referrer: document.referrer || undefined,
+          touchpoints,
         }
       : {
           ...(stored ?? {}),
@@ -156,6 +181,7 @@ export const initAttribution = (): Attribution => {
           last_touch_at: now,
           landing_page: stored?.landing_page ?? window.location.pathname + window.location.search,
           referrer: stored?.referrer ?? (document.referrer || undefined),
+          touchpoints,
         },
   );
 
@@ -185,5 +211,6 @@ export const attributionPayload = (attr: Attribution = getAttribution()) => {
   }
   if (attr.landing_page) out.landing_page = attr.landing_page;
   if (attr.referrer) out.referrer = attr.referrer;
+  if (attr.touchpoints?.length) out.touchpoint_count = String(attr.touchpoints.length);
   return out;
 };

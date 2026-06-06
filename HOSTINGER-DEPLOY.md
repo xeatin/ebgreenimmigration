@@ -1,5 +1,9 @@
 # Deploy na Hostinger
 
+> **Nota operacional:** o fluxo atual de produção está sendo publicado via **Lovable**.
+> Este documento fica como **fallback manual** caso seja necessário subir o build direto
+> na infraestrutura da Hostinger.
+
 Use apenas os arquivos já gerados para produção.
 
 ## O que subir

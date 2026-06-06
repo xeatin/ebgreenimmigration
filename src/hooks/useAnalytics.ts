@@ -1,5 +1,23 @@
 import { useEffect, useRef } from "react";
-import { trackScrollDepth, trackEngagement, trackCtaClick } from "@/lib/analytics";
+import { trackScrollDepth, trackEngagement, trackCtaClick, trackMetaViewContent } from "@/lib/analytics";
+
+/**
+ * Fires Meta `ViewContent` once per mount for a high-value content page.
+ * Used on visa pages as a pre-lead intent signal.
+ */
+export const useViewContent = (params: {
+  content_name: string;
+  content_category?: string;
+  visa_context?: string;
+}) => {
+  const { content_name, content_category, visa_context } = params;
+  const firedRef = useRef(false);
+  useEffect(() => {
+    if (firedRef.current) return;
+    firedRef.current = true;
+    trackMetaViewContent({ content_name, content_category, visa_context });
+  }, [content_name, content_category, visa_context]);
+};
 
 /** Tracks scroll depth milestones (25/50/75/100) once per mount. */
 export const useScrollDepth = (page?: string) => {

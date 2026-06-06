@@ -5,13 +5,13 @@ declare global {
   interface Window {
     dataLayer: unknown[];
     gtag?: (
-      command: "js" | "config" | "event",
+      command: "js" | "config" | "event" | "set",
       target: string | Date,
       params?: Record<string, unknown>,
     ) => void;
     fbq?: {
       (
-        action: "track" | "trackCustom" | "trackSingle" | "trackSingleCustom",
+        action: "track" | "trackCustom" | "trackSingle" | "trackSingleCustom" | "init" | "set",
         eventOrPixel: string,
         eventOrParams?: string | Record<string, unknown>,
         paramsOrOpts?: Record<string, unknown>,
@@ -64,16 +64,46 @@ const trackMeta = (
   else window.fbq(action, event);
 };
 
+// Same pixel id initialized in index.html. Used to refresh manual Advanced
+// Matching data once PII is available at form submit time.
+const META_PIXEL_ID = "989361967125949";
+
+/**
+ * Hashed (SHA-256) user data for Meta Advanced Matching. Keys follow Meta's
+ * spec (em, ph, fn, ln, ct, st, zp, country) — same shape as `HashedUserData`
+ * produced by `hashUserData()` in tracking/event-id.ts.
+ */
+export type MetaAdvancedMatch = Partial<
+  Record<"em" | "ph" | "fn" | "ln" | "ct" | "st" | "zp" | "country", string>
+>;
+
+/**
+ * Apply manual Advanced Matching by re-initializing the pixel with hashed user
+ * data. Meta detects the SHA-256 hashes and attaches them to subsequent events
+ * fired from this pixel (no re-hashing on their side). Safe no-op when fbq is
+ * unavailable or there is no data to send.
+ */
+const applyMetaAdvancedMatch = (userDataHashed?: MetaAdvancedMatch) => {
+  if (!userDataHashed) return;
+  if (typeof window === "undefined" || typeof window.fbq !== "function") return;
+  const am = cleanParams(userDataHashed);
+  if (Object.keys(am).length === 0) return;
+  window.fbq("init", META_PIXEL_ID, am);
+};
+
 /**
  * Fire Meta Lead with optional `event_id` for CAPI deduplication.
+ * When `userDataHashed` is provided, manual Advanced Matching is applied first
+ * so the Lead carries the hashed PII (improves match quality / dedupe).
  * Also pushes a parallel dataLayer event so GTM / GA4 can react to the same
  * conversion with the same id (useful for cross-platform debugging).
  */
 export const trackMetaLead = (
   params: AnalyticsParams = {},
-  options: { eventId?: string } = {},
+  options: { eventId?: string; userDataHashed?: MetaAdvancedMatch } = {},
 ) => {
-  const { eventId } = options;
+  const { eventId, userDataHashed } = options;
+  applyMetaAdvancedMatch(userDataHashed);
   trackMeta("track", "Lead", params, eventId);
   if (typeof window !== "undefined" && typeof window.gtag === "function") {
     window.gtag("event", "generate_lead", cleanParams({ ...params, event_id: eventId }));
@@ -88,6 +118,22 @@ export const trackMetaCustom = (
   params: AnalyticsParams = {},
   options: { eventId?: string } = {},
 ) => trackMeta("trackCustom", event, params, options.eventId);
+
+/**
+ * Fire Meta `ViewContent` — a pre-lead intent signal for high-value pages
+ * (e.g. visa content). Mirrors to dataLayer so GA4/GTM can react too.
+ */
+export const trackMetaViewContent = (
+  params: {
+    content_name: string;
+    content_category?: string;
+    visa_context?: string;
+  },
+  options: { eventId?: string } = {},
+) => {
+  trackMeta("track", "ViewContent", params, options.eventId);
+  track("view_content", { ...params, event_id: options.eventId });
+};
 
 const GOOGLE_ADS_LEAD_SEND_TO = "AW-17856877793/ebT-COCyq6AcEOGp6cJC";
 

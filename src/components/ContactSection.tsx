@@ -631,7 +631,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         status: qualification,
         visa_context: formData.visa,
       },
-      { eventId },
+      { eventId, userDataHashed: userData },
     );
     trackMetaCustom(
       "assessment_form_submit",

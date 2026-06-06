@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ContactSection from "@/components/ContactSection";
 import heroBg from "@/assets/hero-bg.jpg";
-import { useScrollDepth, usePageEngagement } from "@/hooks/useAnalytics";
+import { useScrollDepth, usePageEngagement, useViewContent } from "@/hooks/useAnalytics";
 
 export type VisaLPContent = {
   visaId: string;
@@ -37,6 +37,11 @@ const VisaLandingPage = ({ content }: { content: VisaLPContent }) => {
   const pagePath = typeof window !== "undefined" ? window.location.pathname : `/visto-${content.visaId}`;
   useScrollDepth(pagePath);
   usePageEngagement(pagePath, content.visaId);
+  useViewContent({
+    content_name: `visa_${content.visaId}`,
+    content_category: "visa_page",
+    visa_context: content.visaId,
+  });
 
   useEffect(() => {
     document.title = content.seoTitle;
