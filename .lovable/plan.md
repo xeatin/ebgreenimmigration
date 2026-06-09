@@ -31,7 +31,7 @@ Aplicar nos componentes públicos (não nos `ui/` shadcn — esses são primitiv
 ## O que NÃO muda
 
 - Tamanhos (`text-[11px]`, `text-xs`, `text-sm`) permanecem
-- Cores e pesos atuais
+- Cores e pesos atual
 - Títulos Playfair (h1, h2, h3)
 - Componentes `ui/` shadcn
 - Botões CTA principais
