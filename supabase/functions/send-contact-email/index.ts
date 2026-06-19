@@ -101,6 +101,7 @@ Deno.serve(async (req) => {
       source, firstName, lastName, email, phoneCode, phone, visa, education, experience,
       message, resumeUrl: resumeUrlInput, resumePath, resumeName,
       event_id, event_source_url, user_agent, attribution, user_data_hashed,
+      skipKommo: skipKommoFlag,
     } = parsed.data
 
     // Client IP (best-effort; Supabase Edge runtime exposes the original via these headers)
