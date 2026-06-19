@@ -895,7 +895,6 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               onChange={(val) => setFormData({ ...formData, phoneCode: val })}
             />
             <div className="w-px h-6 bg-border shrink-0" />
-            <span className="px-1 text-sm text-foreground font-body shrink-0">{formData.phoneCode}</span>
             <input
               type="tel"
               value={formData.phone}
