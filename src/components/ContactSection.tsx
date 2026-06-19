@@ -915,9 +915,28 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             <div className="w-px h-6 bg-border shrink-0" />
             <input
               type="tel"
+              inputMode="numeric"
               value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              placeholder={t(s.form.placeholderPhone, lang)}
+              onChange={(e) => {
+                const digits = e.target.value.replace(/\D/g, "");
+                let masked = digits;
+                if (formData.phoneCode === "+55") {
+                  const d = digits.slice(0, 11);
+                  if (d.length <= 2) masked = d.length ? `(${d}` : "";
+                  else if (d.length <= 6) masked = `(${d.slice(0, 2)}) ${d.slice(2)}`;
+                  else if (d.length <= 10) masked = `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+                  else masked = `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+                } else if (formData.phoneCode === "+1") {
+                  const d = digits.slice(0, 10);
+                  if (d.length <= 3) masked = d.length ? `(${d}` : "";
+                  else if (d.length <= 6) masked = `(${d.slice(0, 3)}) ${d.slice(3)}`;
+                  else masked = `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
+                } else {
+                  masked = digits.slice(0, 15);
+                }
+                setFormData({ ...formData, phone: masked });
+              }}
+              placeholder={formData.phoneCode === "+55" ? "(11) 98765-4321" : formData.phoneCode === "+1" ? "(771) 201-7117" : t(s.form.placeholderPhone, lang)}
               className="flex-1 h-12 px-1 bg-transparent text-foreground placeholder:text-muted-foreground/60 text-sm font-body outline-none"
             />
           </div>
