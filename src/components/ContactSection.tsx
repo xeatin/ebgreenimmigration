@@ -681,7 +681,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const labelCls = "block text-[11px] font-semibold text-foreground/55 tracking-[0.08em] uppercase mb-1.5 font-body";
   const reqCls = "text-gold";
   const inputBase =
-    "w-full h-12 px-3.5 bg-white border rounded-md text-foreground text-sm font-body placeholder:text-muted-foreground/60 outline-none transition-all duration-200 focus:border-gold focus:ring-2 focus:ring-gold/30 focus:shadow-card";
+    "w-full h-12 px-3.5 bg-white border rounded-md text-foreground text-sm font-body placeholder:text-muted-foreground/60 outline-none transition-all duration-200 focus:border-brand-green focus:ring-2 focus:ring-brand-green/30 focus:shadow-card";
   const inputCls = (err?: string) =>
     `${inputBase} ${err ? "border-destructive/60 focus:ring-destructive/20" : "border-border"}`;
   const selectCls = (err?: string) =>
@@ -889,7 +889,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         </div>
         <div>
           <label className={labelCls}>{t(s.form.labelPhone, lang)} <span className={reqCls}>*</span></label>
-          <div className={`flex items-center gap-2 rounded-md border bg-white transition-all duration-200 focus-within:border-gold focus-within:ring-2 focus-within:ring-gold/30 focus-within:shadow-card ${errors.phone ? "border-destructive/60" : "border-border"}`}>
+          <div className={`flex items-center gap-2 rounded-md border bg-white transition-all duration-200 focus-within:border-brand-green focus-within:ring-2 focus-within:ring-brand-green/30 focus-within:shadow-card ${errors.phone ? "border-destructive/60" : "border-border"}`}>
             <PhoneCodeSelector
               value={formData.phoneCode}
               onChange={(val) => setFormData({ ...formData, phoneCode: val })}
@@ -1076,7 +1076,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             </div>
 
             {/* Dark contact card */}
-            <div className="mt-4 rounded-xl bg-green-deep text-white px-5 md:px-6 pt-[19px] md:pt-[23px] pb-5 md:pb-6 relative overflow-hidden border border-transparent hover:border-brand-green/50 hover:shadow-[inset_0_0_0_1px_hsl(var(--brand-green)/0.35)] transition-all duration-300 group">
+            <div className="mt-4 rounded-xl bg-green-deep text-white px-5 md:px-6 pt-[19px] md:pt-[23px] pb-5 md:pb-6 relative overflow-hidden border border-transparent hover:border-brand-green/65 hover:shadow-[inset_0_0_0_1px_hsl(var(--brand-green)/0.50)] transition-all duration-300 group">
               <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
               <p className="font-display text-lg font-semibold">
                 {t(s.form.directContact, lang)}
