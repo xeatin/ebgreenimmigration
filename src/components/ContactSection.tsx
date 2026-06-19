@@ -681,7 +681,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const labelCls = "block text-[11px] font-semibold text-foreground/55 tracking-[0.08em] uppercase mb-1.5 font-body";
   const reqCls = "text-gold";
   const inputBase =
-    "w-full h-12 px-3.5 bg-white border rounded-md text-foreground text-sm font-body placeholder:text-muted-foreground/60 outline-none transition-all duration-200 focus:border-gold focus:ring-2 focus:ring-gold/30 focus:shadow-card";
+    "w-full h-12 px-3.5 bg-white border rounded-md text-foreground text-sm font-body placeholder:text-muted-foreground/60 outline-none transition-all duration-200 focus:border-brand-green focus:ring-2 focus:ring-brand-green/30 focus:shadow-card";
   const inputCls = (err?: string) =>
     `${inputBase} ${err ? "border-destructive/60 focus:ring-destructive/20" : "border-border"}`;
   const selectCls = (err?: string) =>
