@@ -47,6 +47,7 @@ const ContactSchema = z.object({
   experience: z.string().max(50).optional().default(''),
   message: z.string().max(5000).optional().default(''),
   resumeUrl: z.union([z.string().url().max(2048), z.literal('')]).optional().default(''),
+  resumePath: z.string().max(512).optional().default(''),
   resumeName: z.string().max(255).optional().default(''),
   // --- Tracking (all optional — graceful degradation if missing) ---
   event_id: z.string().max(100).optional(),
