@@ -382,7 +382,13 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       if (formData.firstName.trim().length < 2) e.firstName = t(s.errors.firstNameMin, lang);
       if (formData.lastName.trim().length < 2) e.lastName = t(s.errors.lastNameMin, lang);
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) e.email = t(s.errors.emailInvalid, lang);
-      if (!/^\d{6,20}$/.test(formData.phone.replace(/\D/g, ""))) e.phone = t(s.errors.phoneInvalid, lang);
+      const digits = formData.phone.replace(/\D/g, "");
+      if (formData.phoneCode === "+55") {
+        const validBr = /^[1-9][1-9]\d{8,9}$/.test(digits) && (digits.length === 10 || digits.length === 11);
+        if (!validBr) e.phone = t(s.errors.phoneBrInvalid, lang);
+      } else if (!/^\d{6,20}$/.test(digits)) {
+        e.phone = t(s.errors.phoneInvalid, lang);
+      }
     }
     if (current === 2) {
       if (!formData.education) e.education = t(s.errors.educationRequired, lang);
