@@ -519,7 +519,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       experience: formData.experience,
       knownVisa: formData.knownVisa,
       message: `${t(s.form.defaultMessage, lang)}\n\n${composedMessage}`.trim(),
-      resumeUrl,
+      resumePath,
       resumeName,
       event_id: eventId,
       event_source_url: typeof window !== "undefined" ? window.location.href : undefined,
