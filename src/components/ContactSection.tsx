@@ -573,13 +573,11 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         const ownerNotificationPayload = {
           ...submissionPayload,
           source: leadSourceLabel,
-          education: "Ensino Médio - email interno",
+          skipKommo: true,
           message: [
             submissionPayload.message,
             "",
             "[Notificação interna] Lead qualificado já enviado ao Kommo via n8n tracking.",
-            `Formação real: ${formData.education || "-"}`,
-            `Experiência real: ${formData.experience || "-"}`,
             `Event ID: ${eventId}`,
           ].join("\n"),
         };
