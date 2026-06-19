@@ -168,13 +168,15 @@ Deno.serve(async (req) => {
     const isHighSchool = eduNormalized.includes('ensino medio') || eduNormalized === 'high school'
     const isTechnical = eduNormalized.includes('tecnico') || eduNormalized.includes('tecnologo')
     const isLowExperience = expNormalized.includes('menos de 5')
-    const skipKommo = isHighSchool || (isTechnical && isLowExperience)
+    const skipKommo = skipKommoFlag || isHighSchool || (isTechnical && isLowExperience)
     const qualification = skipKommo ? 'low' : 'qualified'
-    const qualificationReason = isHighSchool
-      ? 'Ensino Médio'
-      : (isTechnical && isLowExperience)
-        ? 'Técnico/Tecnólogo com menos de 5 anos de experiência'
-        : 'Atende aos critérios mínimos de qualificação'
+    const qualificationReason = skipKommoFlag
+      ? 'Notificação interna (lead já enviado ao Kommo via tracking)'
+      : isHighSchool
+        ? 'Ensino Médio'
+        : (isTechnical && isLowExperience)
+          ? 'Técnico/Tecnólogo com menos de 5 anos de experiência'
+          : 'Atende aos critérios mínimos de qualificação'
 
     // Notify N8N webhook (Kommo). We await so we can return leadId to the client.
     let kommo: { skipped: boolean; status?: number; leadId?: string | number; body?: unknown; error?: string; reason?: string } = { skipped: skipKommo, reason: qualificationReason }
