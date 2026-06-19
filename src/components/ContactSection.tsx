@@ -513,6 +513,22 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       formData.knownVisa ? `Sei qual o meu visto: ${formData.knownVisa}` : "",
     ].filter(Boolean).join("\n");
 
+    // Sanitiza nome: evita duplicação quando o usuário digita o nome completo
+    // em ambos os campos (ex: firstName="Williams" + lastName="Williams da Silva"
+    // → lastName="da Silva"). Mesma lógica aplicada no edge function.
+    const collapseSpaces = (s: string) => (s || "").replace(/\s+/g, " ").trim();
+    const sanitizedFirstName = collapseSpaces(formData.firstName);
+    let sanitizedLastName = collapseSpaces(formData.lastName);
+    if (sanitizedFirstName && sanitizedLastName) {
+      const fnLower = sanitizedFirstName.toLowerCase();
+      const lnLower = sanitizedLastName.toLowerCase();
+      if (lnLower.startsWith(fnLower + " ")) {
+        sanitizedLastName = sanitizedLastName.slice(sanitizedFirstName.length).trim();
+      } else if (lnLower === fnLower) {
+        sanitizedLastName = "";
+      }
+    }
+
     // Attribution + event_id para deduplicação Pixel ↔ CAPI
     const attribution = attributionPayload(getAttribution());
     const leadSourceLabel = getLeadSourceLabel(attribution);
@@ -521,15 +537,15 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       email: formData.email,
       phone: formData.phone,
       phoneCode: formData.phoneCode,
-      firstName: formData.firstName,
-      lastName: formData.lastName,
+      firstName: sanitizedFirstName,
+      lastName: sanitizedLastName,
       country: "br",
     });
 
     const submissionPayload = {
       source: "website",
-      firstName: formData.firstName,
-      lastName: formData.lastName,
+      firstName: sanitizedFirstName,
+      lastName: sanitizedLastName,
       email: formData.email,
       phoneCode: formData.phoneCode,
       phone: formData.phone,
