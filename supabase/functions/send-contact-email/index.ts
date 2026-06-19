@@ -98,11 +98,31 @@ Deno.serve(async (req) => {
     }
 
     const {
-      source, firstName, lastName, email, phoneCode, phone, visa, education, experience,
+      source, firstName: firstNameRaw, lastName: lastNameRaw, email, phoneCode, phone, visa, education, experience,
       message, resumeUrl: resumeUrlInput, resumePath, resumeName,
       event_id, event_source_url, user_agent, attribution, user_data_hashed,
       skipKommo: skipKommoFlag,
     } = parsed.data
+
+    // Sanitiza nome: evita duplicação quando o usuário digita o nome completo
+    // em ambos os campos (ex: firstName="Williams", lastName="Williams da Silva"
+    // → "Williams da Silva"). Também colapsa espaços e remove acidentais
+    // espaços/duplicações case-insensitive.
+    const collapseSpaces = (s: string) => s.replace(/\s+/g, ' ').trim()
+    const firstName = collapseSpaces(firstNameRaw || '')
+    let lastName = collapseSpaces(lastNameRaw || '')
+    if (firstName && lastName) {
+      const fnLower = firstName.toLowerCase()
+      const lnLower = lastName.toLowerCase()
+      // Caso 1: sobrenome começa com o primeiro nome seguido de espaço
+      if (lnLower.startsWith(fnLower + ' ')) {
+        lastName = lastName.slice(firstName.length).trim()
+      }
+      // Caso 2: sobrenome é exatamente igual ao primeiro nome
+      else if (lnLower === fnLower) {
+        lastName = ''
+      }
+    }
 
     // Client IP (best-effort; Supabase Edge runtime exposes the original via these headers)
     const client_ip =
