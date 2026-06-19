@@ -55,6 +55,7 @@ const ContactSchema = z.object({
   user_agent: z.string().max(1000).optional(),
   attribution: AttributionSchema,
   user_data_hashed: HashedUserDataSchema,
+  skipKommo: z.boolean().optional().default(false),
 })
 
 const extractLeadId = (payload: unknown): string | number | undefined => {
@@ -100,6 +101,7 @@ Deno.serve(async (req) => {
       source, firstName, lastName, email, phoneCode, phone, visa, education, experience,
       message, resumeUrl: resumeUrlInput, resumePath, resumeName,
       event_id, event_source_url, user_agent, attribution, user_data_hashed,
+      skipKommo: skipKommoFlag,
     } = parsed.data
 
     // Client IP (best-effort; Supabase Edge runtime exposes the original via these headers)
@@ -166,13 +168,15 @@ Deno.serve(async (req) => {
     const isHighSchool = eduNormalized.includes('ensino medio') || eduNormalized === 'high school'
     const isTechnical = eduNormalized.includes('tecnico') || eduNormalized.includes('tecnologo')
     const isLowExperience = expNormalized.includes('menos de 5')
-    const skipKommo = isHighSchool || (isTechnical && isLowExperience)
+    const skipKommo = skipKommoFlag || isHighSchool || (isTechnical && isLowExperience)
     const qualification = skipKommo ? 'low' : 'qualified'
-    const qualificationReason = isHighSchool
-      ? 'Ensino Médio'
-      : (isTechnical && isLowExperience)
-        ? 'Técnico/Tecnólogo com menos de 5 anos de experiência'
-        : 'Atende aos critérios mínimos de qualificação'
+    const qualificationReason = skipKommoFlag
+      ? 'Notificação interna (lead já enviado ao Kommo via tracking)'
+      : isHighSchool
+        ? 'Ensino Médio'
+        : (isTechnical && isLowExperience)
+          ? 'Técnico/Tecnólogo com menos de 5 anos de experiência'
+          : 'Atende aos critérios mínimos de qualificação'
 
     // Notify N8N webhook (Kommo). We await so we can return leadId to the client.
     let kommo: { skipped: boolean; status?: number; leadId?: string | number; body?: unknown; error?: string; reason?: string } = { skipped: skipKommo, reason: qualificationReason }
