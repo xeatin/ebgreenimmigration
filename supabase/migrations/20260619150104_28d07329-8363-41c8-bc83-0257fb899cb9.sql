@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Resumes readable by direct path" ON storage.objects;

@@ -3,6 +3,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 }
 import { z } from 'npm:zod@3.25.76'
+import { createClient } from 'npm:@supabase/supabase-js@2'
 
 // Attribution payload sent from the client (UTMs + click IDs + landing context).
 // All fields optional — we never block a lead on missing tracking data.
@@ -46,6 +47,7 @@ const ContactSchema = z.object({
   experience: z.string().max(50).optional().default(''),
   message: z.string().max(5000).optional().default(''),
   resumeUrl: z.union([z.string().url().max(2048), z.literal('')]).optional().default(''),
+  resumePath: z.string().max(512).optional().default(''),
   resumeName: z.string().max(255).optional().default(''),
   // --- Tracking (all optional — graceful degradation if missing) ---
   event_id: z.string().max(100).optional(),
@@ -96,7 +98,7 @@ Deno.serve(async (req) => {
 
     const {
       source, firstName, lastName, email, phoneCode, phone, visa, education, experience,
-      message, resumeUrl, resumeName,
+      message, resumeUrl: resumeUrlInput, resumePath, resumeName,
       event_id, event_source_url, user_agent, attribution, user_data_hashed,
     } = parsed.data
 
@@ -113,6 +115,30 @@ Deno.serve(async (req) => {
         JSON.stringify({ error: 'Email service not configured' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
+    }
+
+    // Generate a signed download URL for the resume (the 'resumes' bucket is
+    // private — public URLs no longer work). Valid for 30 days, which is more
+    // than enough for the sales team to review the lead.
+    let resumeUrl = resumeUrlInput
+    if (resumePath) {
+      try {
+        const SUPABASE_URL = Deno.env.get('SUPABASE_URL') ?? ''
+        const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+        if (SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY) {
+          const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
+          const { data: signed, error: signErr } = await admin.storage
+            .from('resumes')
+            .createSignedUrl(resumePath, 60 * 60 * 24 * 30)
+          if (signErr) {
+            console.error('Failed to sign resume URL:', signErr)
+          } else if (signed?.signedUrl) {
+            resumeUrl = signed.signedUrl
+          }
+        }
+      } catch (err) {
+        console.error('Resume signing error:', err)
+      }
     }
 
     const emailHtml = `
