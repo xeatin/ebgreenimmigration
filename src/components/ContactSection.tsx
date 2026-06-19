@@ -451,8 +451,10 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     setErrors({});
     setIsSubmitting(true);
 
-    // Upload resume to Storage if present
-    let resumeUrl = "";
+    // Upload resume to Storage if present. The bucket is private — we send the
+    // storage path to the edge function, which generates a signed download URL
+    // server-side (so resume files are never publicly enumerable).
+    let resumePath = "";
     let resumeName = "";
     if (formData.resume) {
       try {
@@ -471,8 +473,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             upsert: false,
           });
         if (upErr) throw upErr;
-        const { data: pub } = supabase.storage.from("resumes").getPublicUrl(path);
-        resumeUrl = pub.publicUrl;
+        resumePath = path;
         resumeName = formData.resume.name;
       } catch (err) {
         console.error("Resume upload failed:", err);
