@@ -55,6 +55,7 @@ const ContactSchema = z.object({
   user_agent: z.string().max(1000).optional(),
   attribution: AttributionSchema,
   user_data_hashed: HashedUserDataSchema,
+  skipKommo: z.boolean().optional().default(false),
 })
 
 const extractLeadId = (payload: unknown): string | number | undefined => {
