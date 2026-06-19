@@ -889,7 +889,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         </div>
         <div>
           <label className={labelCls}>{t(s.form.labelPhone, lang)} <span className={reqCls}>*</span></label>
-          <div className={`flex items-center gap-2 rounded-md border bg-white transition-all duration-200 focus-within:border-gold focus-within:ring-2 focus-within:ring-gold/30 focus-within:shadow-card ${errors.phone ? "border-destructive/60" : "border-border"}`}>
+          <div className={`flex items-center gap-2 rounded-md border bg-white transition-all duration-200 focus-within:border-brand-green focus-within:ring-2 focus-within:ring-brand-green/30 focus-within:shadow-card ${errors.phone ? "border-destructive/60" : "border-border"}`}>
             <PhoneCodeSelector
               value={formData.phoneCode}
               onChange={(val) => setFormData({ ...formData, phoneCode: val })}
