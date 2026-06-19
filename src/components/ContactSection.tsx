@@ -351,9 +351,22 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         .string()
         .trim()
         .min(1, t(s.errors.required, lang))
-        .refine((v) => /^\d{6,20}$/.test(v.replace(/\D/g, "")), {
-          message: t(s.errors.phoneInvalid, lang),
-        }),
+        .refine(
+          (v) => {
+            const digits = v.replace(/\D/g, "");
+            if (formData.phoneCode === "+55") {
+              // Brazilian: DDD (2 digits, 1-9) + 8 or 9 digit number; mobile starts with 9
+              return /^[1-9][1-9]\d{8,9}$/.test(digits) && (digits.length === 10 || digits.length === 11);
+            }
+            return /^\d{6,20}$/.test(digits);
+          },
+          {
+            message:
+              formData.phoneCode === "+55"
+                ? t(s.errors.phoneBrInvalid, lang)
+                : t(s.errors.phoneInvalid, lang),
+          },
+        ),
       visa: z.string().min(1, t(s.errors.visaRequired, lang)),
       education: z.string().min(1, t(s.errors.educationRequired, lang)),
       experience: z.string().min(1, t(s.errors.experienceRequired, lang)),
