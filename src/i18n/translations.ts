@@ -332,6 +332,11 @@ export const translations = {
         en: "Invalid phone (digits only, min 6)",
         es: "Teléfono inválido (solo dígitos, mínimo 6)",
       },
+      phoneBrInvalid: {
+        pt: "Telefone brasileiro inválido — inclua o DDD (ex: 11 98765-4321)",
+        en: "Invalid Brazilian phone — include area code (DDD, e.g. 11 98765-4321)",
+        es: "Teléfono brasileño inválido — incluya el DDD (ej: 11 98765-4321)",
+      },
       educationRequired: { pt: "Selecione sua formação", en: "Select your education", es: "Seleccione su formación" },
       experienceRequired: { pt: "Selecione sua experiência", en: "Select your experience", es: "Seleccione su experiencia" },
       visaRequired: { pt: "Selecione o tipo de visto", en: "Select the visa type", es: "Seleccione el tipo de visa" },
