@@ -221,7 +221,7 @@ const suggestVisa = (data: {
     return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW — Interesse Nacional",
-      reason: "Sua formação superior com pós-graduação sustenta um forte caso de Interesse Nacional (NIW), independentemente do tempo de experiência.",
+      reason: "Sua formação superior com pós-graduação sustenta um forte caso de Interesse Nacional (NIW). Essa categoria é voltada a profissionais com trajetória diferenciada, contribuições relevantes e potencial de impacto em sua área de atuação nos Estados Unidos.",
     }];
   }
 
