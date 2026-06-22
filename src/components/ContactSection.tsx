@@ -162,7 +162,7 @@ const suggestVisa = (data: {
     return [{
       id: "EB-3",
       label: "EB-3 — Trabalho Qualificado",
-      reason: "Para perfis com Ensino Médio, o EB-3 pode ser a alternativa mais adequada. Contudo, é necessário uma oferta de emprego nos EUA, por meio de um empregador patrocinador (sponsor) que comprove a necessidade da contratação.",
+      reason: "Para perfis iguais ao seu, existe um caminho excelente para o seu Green Card: a categoria EB-3 (Trabalho Qualificado / Skilled Worker).\n\nO EB-3 é uma das vias mais sólidas para profissionais com ensino médio ou formação técnica, mas possui um requisito fundamental: a necessidade de uma oferta de emprego permanente nos EUA.\n\nIsso significa que você precisa de um empregador americano (sponsor) que queira contratá-lo e comprove ao governo americano a necessidade da sua mão de obra.\n\nA boa notícia? Se você já tem um sponsor (ou está em negociação com uma empresa americana), a Ebgreen pode cuidar de tudo para você!",
     }];
   }
 
@@ -238,7 +238,7 @@ const suggestVisa = (data: {
     return [{
       id: "EB-3",
       label: "EB-3 — Trabalho Qualificado",
-      reason: "Para o perfil técnico/tecnólogo com menos de 5 anos de experiência, o EB-3 pode ser a alternativa mais adequada. Contudo, é necessário uma oferta de emprego nos EUA, por meio de um empregador patrocinador (sponsor) que comprove a necessidade da contratação.",
+      reason: "Para perfis iguais ao seu, existe um caminho excelente para o seu Green Card: a categoria EB-3 (Trabalho Qualificado / Skilled Worker).\n\nO EB-3 é uma das vias mais sólidas para profissionais com ensino médio ou formação técnica, mas possui um requisito fundamental: a necessidade de uma oferta de emprego permanente nos EUA.\n\nIsso significa que você precisa de um empregador americano (sponsor) que queira contratá-lo e comprove ao governo americano a necessidade da sua mão de obra.\n\nA boa notícia? Se você já tem um sponsor (ou está em negociação com uma empresa americana), a Ebgreen pode cuidar de tudo para você!",
     }];
   }
   if (bachelor && (senior || mid)) {
@@ -279,7 +279,7 @@ const suggestVisa = (data: {
   return [{
     id: "EB-3",
     label: "EB-3 — Trabalho Qualificado",
-    reason: "Seu perfil sugere um caminho viável via EB-3 com oferta de emprego qualificado.",
+    reason: "Para perfis iguais ao seu, existe um caminho excelente para o seu Green Card: a categoria EB-3 (Trabalho Qualificado / Skilled Worker).\n\nO EB-3 é uma das vias mais sólidas para profissionais com ensino médio ou formação técnica, mas possui um requisito fundamental: a necessidade de uma oferta de emprego permanente nos EUA.\n\nIsso significa que você precisa de um empregador americano (sponsor) que queira contratá-lo e comprove ao governo americano a necessidade da sua mão de obra.\n\nA boa notícia? Se você já tem um sponsor (ou está em negociação com uma empresa americana), a Ebgreen pode cuidar de tudo para você!",
   }];
 };
 
@@ -1005,7 +1005,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                       <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1">
                         {sug.label}
                       </p>
-                      <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
+                      <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed whitespace-pre-wrap">
                         {sug.reason}
                       </p>
                     </div>
