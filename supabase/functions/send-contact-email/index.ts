@@ -180,28 +180,29 @@ Deno.serve(async (req) => {
 
     // Skip N8N (Kommo) for low-qualification leads:
     //  - Ensino Médio
-    //  - Técnico ou Tecnólogo com menos de 5 anos de experiência
+    //  - Técnico ou Tecnólogo com 10 anos ou menos de experiência
     // Normaliza removendo acentos para evitar falsos negativos ("Ensino Medio" vs "Ensino Médio")
     const stripAccents = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     const eduNormalized = stripAccents((education || '').trim().toLowerCase())
     const expNormalized = stripAccents((experience || '').trim().toLowerCase())
     const isHighSchool = eduNormalized.includes('ensino medio') || eduNormalized === 'high school'
     const isTechnical = eduNormalized.includes('tecnico') || eduNormalized.includes('tecnologo')
-    const isLowExperience = expNormalized.includes('menos de 5')
-    const skipKommo = skipKommoFlag || isHighSchool || (isTechnical && isLowExperience)
+    // Técnico/Tecnólogo só qualifica com MAIS de 10 anos (alinhado ao gate da Bia/AGENDAMENTO).
+    const isTechnicalSenior = expNormalized.includes('mais de 10')
+    const skipKommo = skipKommoFlag || isHighSchool || (isTechnical && !isTechnicalSenior)
     const qualification = skipKommo ? 'low' : 'qualified'
     const qualificationReason = skipKommoFlag
       ? 'Notificação interna (lead já enviado ao Kommo via tracking)'
       : isHighSchool
         ? 'Ensino Médio'
-        : (isTechnical && isLowExperience)
-          ? 'Técnico/Tecnólogo com menos de 5 anos de experiência'
+        : (isTechnical && !isTechnicalSenior)
+          ? 'Técnico/Tecnólogo com 10 anos ou menos de experiência'
           : 'Atende aos critérios mínimos de qualificação'
 
     // Notify N8N webhook (Kommo). We await so we can return leadId to the client.
     let kommo: { skipped: boolean; status?: number; leadId?: string | number; body?: unknown; error?: string; reason?: string } = { skipped: skipKommo, reason: qualificationReason }
     const n8nPromise = skipKommo
-      ? Promise.resolve(console.log('N8N webhook skipped:', { isHighSchool, isTechnical, isLowExperience, reason: qualificationReason }))
+      ? Promise.resolve(console.log('N8N webhook skipped:', { isHighSchool, isTechnical, isTechnicalSenior, reason: qualificationReason }))
       : fetch('https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

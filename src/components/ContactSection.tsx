@@ -101,16 +101,18 @@ const getLeadQualification = (education: string, experience: string) => {
   const normalizedExperience = normalizeQualificationValue(experience);
   const isHighSchool = normalizedEducation.includes("ensino medio") || normalizedEducation === "high school";
   const isTechnical = normalizedEducation.includes("tecnico") || normalizedEducation.includes("tecnologo");
-  const isLowExperience = normalizedExperience.includes("menos de 5");
+  // Técnico/Tecnólogo só qualifica com MAIS de 10 anos de experiência (alinhado ao
+  // gate determinístico da Bia/AGENDAMENTO). 10 anos ou menos → não qualifica.
+  const isTechnicalSenior = normalizedExperience.includes("mais de 10");
 
   if (isHighSchool) {
     return { status: "low" as const, reason: "Ensino Médio" };
   }
 
-  if (isTechnical && isLowExperience) {
+  if (isTechnical && !isTechnicalSenior) {
     return {
       status: "low" as const,
-      reason: "Técnico/Tecnólogo com menos de 5 anos de experiência",
+      reason: "Técnico/Tecnólogo com 10 anos ou menos de experiência",
     };
   }
 
