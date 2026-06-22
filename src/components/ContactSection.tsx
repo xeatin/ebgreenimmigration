@@ -1005,7 +1005,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                       <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1">
                         {sug.label}
                       </p>
-                      <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
+                      <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed whitespace-pre-wrap">
                         {sug.reason}
                       </p>
                     </div>
