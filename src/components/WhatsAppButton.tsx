@@ -411,7 +411,7 @@ const WhatsAppButton = () => {
   };
 
   const handleClientClick = () => {
-    const parsed = clientSchema.safeParse(client);
+    const parsed = buildClientSchema(lang).safeParse(client);
     if (!parsed.success) {
       const fe = parsed.error.flatten().fieldErrors;
       setClientErrors({
