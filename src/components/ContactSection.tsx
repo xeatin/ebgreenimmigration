@@ -17,6 +17,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t, type Language } from "@/i18n/translations";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { openCalendlyPopup } from "@/lib/calendly";
 
 type FormErrors = Partial<Record<
   "firstName" | "lastName" | "email" | "phone" | "visa" | "education" | "license" | "achievements" |
