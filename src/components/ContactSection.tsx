@@ -844,7 +844,12 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             style={selectBg}
           >
             <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
-            {EDUCATION_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.educationList, o)}</option>)}
+            <optgroup label={t(s.form.groupAcademic, lang)} className="bg-white">
+              {EDUCATION_ACADEMIC_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.educationList, o)}</option>)}
+            </optgroup>
+            <optgroup label={t(s.form.groupVisaTypes, lang)} className="bg-white">
+              {EDUCATION_VISA_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.educationList, o)}</option>)}
+            </optgroup>
           </select>
           {errors.education && <p className={errCls}>{errors.education}</p>}
         </div>
