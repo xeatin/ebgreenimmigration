@@ -359,7 +359,7 @@ const WhatsAppButton = () => {
   };
 
   const handleLeadClick = () => {
-    const parsed = leadSchema.safeParse(form);
+    const parsed = buildLeadSchema(lang).safeParse(form);
     if (!parsed.success) {
       const fe = parsed.error.flatten().fieldErrors;
       setErrors({
