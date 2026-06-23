@@ -400,8 +400,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       if (!formData.experience) e.experience = t(s.errors.experienceRequired, lang);
     }
     if (current === 3) {
-      if (!formData.timeline) e.message = t(s.errors.required, lang);
-      if (!formData.privacy) e.privacy = t(s.errors.privacyRequired, lang);
+      // Step 3 agora é apenas análise + agendamento via Calendly.
+      // Sem campos obrigatórios — o Calendly captura o restante.
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -1049,64 +1049,20 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         )}
       </AnimatePresence>
 
-      <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25 mb-5">
+      <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25 mt-1">
         <ShieldCheck size={14} className="text-emerald-600 shrink-0" />
         <span className="text-[12px] text-emerald-700 font-body">
           {t(s.form.advanceBadge, lang)}
         </span>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4 mb-4">
-        <div>
-          <label className={labelCls}>{t(s.form.labelTimeline, lang)} <span className={reqCls}>*</span></label>
-          <select
-            value={formData.timeline}
-            onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-            className={selectCls(!formData.timeline && errors.message ? "x" : undefined)}
-            style={selectBg}
-          >
-            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
-            {TIMELINE_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.timelineList, o)}</option>)}
-          </select>
-          {errors.message && !formData.timeline && <p className={errCls}>{t(s.form.timelineError, lang)}</p>}
-        </div>
-        <div>
-          <label className={labelCls}>
-            {t(s.form.labelCurrentStatus, lang)} <span className="text-foreground/40 normal-case font-light tracking-normal text-[10px] ml-1">{t(s.form.optional, lang)}</span>
-          </label>
-          <select
-            value={formData.currentStatus}
-            onChange={(e) => setFormData({ ...formData, currentStatus: e.target.value })}
-            className={selectCls()}
-            style={selectBg}
-          >
-            <option value="" className="bg-white">{t(s.form.selectPlaceholder, lang)}</option>
-            {CURRENT_STATUS_OPTIONS.map((o) => <option key={o} value={o} className="bg-white">{trOpt(s.statusList, o)}</option>)}
-          </select>
-        </div>
-      </div>
-
-      <label className="flex items-start gap-2.5 cursor-pointer group" onClick={(e) => {
-        if ((e.target as HTMLElement).tagName === "A") e.stopPropagation();
-      }}>
-        <span
-          className={`w-[18px] h-[18px] mt-0.5 rounded border-[1.5px] flex items-center justify-center shrink-0 transition ${
-            formData.privacy ? "bg-gold border-gold" : "border-border bg-white"
-          }`}
-        >
-          {formData.privacy && <Check size={11} strokeWidth={3} className="text-black" />}
-        </span>
-        <input
-          type="checkbox"
-          checked={formData.privacy}
-          onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
-          className="sr-only"
-        />
-        <span className="text-[12px] text-muted-foreground font-body leading-relaxed">
-          {t(s.privacy, lang)}
-        </span>
-      </label>
-      {errors.privacy && <p className={errCls}>{errors.privacy}</p>}
+      <p className="mt-4 text-[11px] text-muted-foreground font-body font-light leading-relaxed">
+        Ao agendar, você concorda com nossa{" "}
+        <a href="#" className="text-foreground font-medium underline hover:opacity-80">
+          {t(translations.footer.privacy, lang)}
+        </a>
+        . Seus dados são tratados com confidencialidade e enviados diretamente à nossa equipe de especialistas.
+      </p>
     </div>
   );
 
@@ -1344,24 +1300,13 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 </button>
 
                 <div>
-                  {step < 3 ? (
+                  {step < 3 && (
                     <button
                       type="button"
                       onClick={handleNext}
                       className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:opacity-50"
                     >
                       {t(s.form.continue, lang)} <ArrowRight size={15} />
-                    </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      onClick={handleFinalCtaClick}
-                      disabled={isSubmitting}
-                      className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-60"
-                    >
-                      {isSubmitting ? t(s.submitting, lang) : (
-                        <>{t(s.form.submitCta, lang)} <Send size={14} /></>
-                      )}
                     </button>
                   )}
                 </div>
