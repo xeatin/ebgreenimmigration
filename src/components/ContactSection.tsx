@@ -44,6 +44,7 @@ const EDUCATION_OPTIONS = [
   "Mestrado",
   "Doutorado",
   "Pós-Doutorado",
+  "Investimentos",
 ];
 
 const ACHIEVEMENTS_OPTIONS = [
@@ -158,18 +159,27 @@ const suggestVisa = (data: {
   const { education, achievements, experience } = data;
   if (!education || !achievements || !experience) return [];
 
+  const EB3_REASON = "Para perfis iguais ao seu, existe um caminho excelente para o seu Green Card: a categoria <strong>EB-3</strong>, que pode abranger tanto <strong>trabalhadores qualificados (Skilled Workers)</strong> quanto <strong>trabalhadores não qualificados (Unskilled / Other Workers)</strong>, dependendo da vaga oferecida pelo empregador nos EUA.\n\nO EB-3 é uma das vias mais sólidas para profissionais com <strong>ensino médio, formação técnica ou experiência profissional</strong>, e também pode ser uma opção para trabalhadores sem qualificação específica, desde que exista uma <strong>oferta de emprego permanente nos EUA</strong>.\n\n<strong>A boa notícia? Se você já tem um sponsor ou está em negociação com uma empresa americana, a Ebgreen pode cuidar de todo o processo para você.</strong>";
+
+  // Investimentos → EB-5 / E-2
+  if (education === "Investimentos") {
+    return [{
+      id: "EB-5 / E-2",
+      label: "EB-5 / E-2 — Visto de Investidor",
+      reason: "Seu perfil de investidor abre caminho para duas categorias estratégicas: o <strong>EB-5</strong>, que concede o Green Card por meio de investimento qualificado nos EUA, e o <strong>E-2</strong>, voltado a empreendedores que desejam abrir ou adquirir um negócio em território americano.\n\nA Ebgreen pode estruturar todo o processo, desde a escolha do investimento até a apresentação ao USCIS.",
+    }];
+  }
+
   // Ensino Médio → sugerir EB-3 (Trabalho Qualificado / Não Qualificado)
   if (education === "Ensino Médio") {
     return [{
       id: "EB-3",
       label: "EB-3 — Trabalho Qualificado ou Não Qualificado",
-      reason: "Para perfis iguais ao seu, existe um caminho excelente para o seu Green Card: a categoria <strong>EB-3</strong>, que pode abranger tanto <strong>trabalhadores qualificados (Skilled Workers)</strong> quanto <strong>trabalhadores não qualificados (Unskilled / Other Workers)</strong>, dependendo da vaga oferecida pelo empregador nos EUA.\n\nO EB-3 é uma das vias mais sólidas para profissionais com <strong>ensino médio, formação técnica ou experiência profissional</strong>, e também pode ser uma opção para trabalhadores sem qualificação específica, desde que exista uma <strong>oferta de emprego permanente nos EUA</strong>.\n\n<strong>A boa notícia? Se você já tem um sponsor ou está em negociação com uma empresa americana, a Ebgreen pode cuidar de todo o processo para você.</strong>",
+      reason: EB3_REASON,
     }];
   }
 
-  const hasAwards = /Sim/i.test(achievements);
-  const hasPublications = /Sim/i.test(achievements);
-  const hasBoth = /ambos/i.test(achievements);
+  const hasPublications = /publicaç|ambos/i.test(achievements);
   const senior = /Mais de 10/i.test(experience);
   const mid = /5 a 10/i.test(experience);
   const hasExperience5plus = senior || mid;
@@ -181,30 +191,24 @@ const suggestVisa = (data: {
   const isDoutorado = education === "Doutorado";
   const isPosDoutorado = education === "Pós-Doutorado";
 
-  const technical = isTecnico;
-  const bachelor = isBacharelado;
-  const postgrad = isPosGrad || isMestrado || isDoutorado || isPosDoutorado;
-  const doctorate = isDoutorado || isPosDoutorado;
-  const advanced = isPosGrad || isMestrado || isDoutorado || isPosDoutorado;
-
-  // Doutorado + publicações → EB-1A e EB-2 NIW combinados
-  if (isDoutorado && hasPublications) {
-    return [{
-      id: "EB-1A e EB-2 NIW",
-      label: "EB-1A e EB-2 NIW – Habilidade Extraordinária",
-      reason: "Seu doutorado e suas publicações podem abrir caminhos estratégicos para o Green Card por meio do EB-1A ou do EB-2 NIW. Essas categorias são voltadas a profissionais com trajetória diferenciada, contribuições relevantes e potencial de impacto em sua área de atuação nos Estados Unidos.",
-    }];
-  }
-  // Pós-Doutorado + publicações → EB-1A e EB-2 NIW combinados
-  if (isPosDoutorado && hasPublications) {
-    return [{
-      id: "EB-1A e EB-2 NIW",
-      label: "EB-1A e EB-2 NIW – Habilidade Extraordinária",
-      reason: "Seu pós-doutorado e suas publicações podem abrir caminhos estratégicos para o Green Card por meio do EB-1A ou do EB-2 NIW. Essas categorias são voltadas a profissionais com trajetória diferenciada, contribuições relevantes e potencial de impacto em sua área de atuação nos Estados Unidos.",
-    }];
+  // Doutorado / Pós-Doutorado + publicações → EB-1A e EB-2 NIW + O-1
+  if ((isDoutorado || isPosDoutorado) && hasPublications) {
+    const base = isDoutorado ? "Seu doutorado" : "Seu pós-doutorado";
+    return [
+      {
+        id: "EB-1A e EB-2 NIW",
+        label: "EB-1A e EB-2 NIW – Habilidade Extraordinária",
+        reason: `${base} e suas publicações podem abrir caminhos estratégicos para o Green Card por meio do EB-1A ou do EB-2 NIW. Essas categorias são voltadas a profissionais com trajetória diferenciada, contribuições relevantes e potencial de impacto em sua área de atuação nos Estados Unidos.`,
+      },
+      {
+        id: "O-1",
+        label: "O-1 — Habilidade Extraordinária (Não Imigrante)",
+        reason: `${base}, somado às suas publicações, também sustenta um forte pedido de <strong>O-1</strong>, visto temporário destinado a profissionais com habilidade extraordinária em sua área. É uma excelente estratégia paralela enquanto o Green Card está em andamento.`,
+      },
+    ];
   }
 
-  // Doutorado/Pós-Doutorado sem publicações → EB-2 NIW
+  // Doutorado / Pós-Doutorado sem publicações → EB-2 NIW
   if (isDoutorado || isPosDoutorado) {
     return [{
       id: "EB-2 NIW",
@@ -212,7 +216,8 @@ const suggestVisa = (data: {
       reason: "Sua formação de doutorado sustenta um forte caso de Interesse Nacional (NIW).",
     }];
   }
-  // Pós-Graduação/Mestrado + publicações → EB-1A e EB-2 NIW combinados
+
+  // Pós-Graduação / Mestrado + publicações → EB-1A e EB-2 NIW
   if ((isPosGrad || isMestrado) && hasPublications) {
     return [{
       id: "EB-1A e EB-2 NIW",
@@ -220,67 +225,47 @@ const suggestVisa = (data: {
       reason: "Sua formação avançada com publicações abre caminho para os vistos EB-1A e EB-2 NIW.",
     }];
   }
-  if ((bachelor || postgrad) && postgrad) {
+
+  // Pós-Graduação / Mestrado sem publicações → EB-2 NIW
+  if (isPosGrad || isMestrado) {
     return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW — Interesse Nacional",
-      reason: "Sua formação superior com pós-graduação sustenta um forte caso de Interesse Nacional (NIW). Essa categoria é voltada a profissionais com trajetória diferenciada, contribuições relevantes e potencial de impacto em sua área de atuação nos Estados Unidos.",
+      reason: "Sua formação avançada cria uma base sólida para um pedido de EB-2 NIW com foco no Interesse Nacional.",
     }];
   }
 
-  if (technical && (senior || mid)) {
+  // Nível Superior / Bacharelado → EB-2 NIW
+  if (isBacharelado) {
+    return [{
+      id: "EB-2 NIW",
+      label: "EB-2 NIW — Interesse Nacional",
+      reason: "Sua formação superior sustenta um forte caso de EB-2 NIW com foco no Interesse Nacional. Essa categoria pode permitir a obtenção do Green Card.",
+    }];
+  }
+
+  // Técnico/Tecnólogo + 5+ anos de experiência → EB-2 NIW
+  if (isTecnico && hasExperience5plus) {
     return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW – Interesse Nacional",
       reason: "Sua formação técnica/tecnológica, aliada a uma sólida experiência profissional, pode sustentar um pedido de EB-2 NIW com foco no Interesse Nacional. Essa categoria pode permitir a obtenção do Green Card.",
     }];
   }
-  if (technical && !hasExperience5plus) {
+
+  // Técnico/Tecnólogo com menos de 5 anos → EB-3
+  if (isTecnico) {
     return [{
       id: "EB-3",
       label: "EB-3 — Trabalho Qualificado ou Não Qualificado",
-      reason: "Para perfis iguais ao seu, existe um caminho excelente para o seu Green Card: a categoria <strong>EB-3</strong>, que pode abranger tanto <strong>trabalhadores qualificados (Skilled Workers)</strong> quanto <strong>trabalhadores não qualificados (Unskilled / Other Workers)</strong>, dependendo da vaga oferecida pelo empregador nos EUA.\n\nO EB-3 é uma das vias mais sólidas para profissionais com <strong>ensino médio, formação técnica ou experiência profissional</strong>, e também pode ser uma opção para trabalhadores sem qualificação específica, desde que exista uma <strong>oferta de emprego permanente nos EUA</strong>.\n\n<strong>A boa notícia? Se você já tem um sponsor ou está em negociação com uma empresa americana, a Ebgreen pode cuidar de todo o processo para você.</strong>",
+      reason: EB3_REASON,
     }];
   }
-  if (bachelor && (senior || mid)) {
-    return [{
-      id: "EB-2 NIW",
-      label: "EB-2 NIW — Interesse Nacional",
-      reason: "Sua formação superior, aliada a uma sólida experiência profissional, pode sustentar um forte caso de EB-2 NIW com foco no Interesse Nacional. Essa categoria pode permitir a obtenção do Green Card.",
-    }];
-  }
-  if (hasBoth && senior) {
-    return [{
-      id: "EB-1A",
-      label: "EB-1A — Habilidade Extraordinária",
-      reason: "Seu perfil sênior, com publicações e prêmios reconhecidos, é altamente compatível com o EB-1A.",
-    }];
-  }
-  if (advanced && hasAwards) {
-    return [{
-      id: "EB-2 NIW",
-      label: "EB-2 NIW — Interesse Nacional",
-      reason: "Sua formação avançada e evidências profissionais sustentam um forte caso de Interesse Nacional (NIW).",
-    }];
-  }
-  if (senior || mid) {
-    return [{
-      id: "H-1B / L-1 / O-1",
-      label: "Vistos de Trabalho — H-1B, L-1 ou O-1",
-      reason: "Sua experiência profissional consolidada favorece estratégias via vistos de trabalho qualificado.",
-    }];
-  }
-  if (advanced) {
-    return [{
-      id: "EB-2 NIW",
-      label: "EB-2 NIW — Interesse Nacional",
-      reason: "Sua formação avançada cria uma base sólida para um pedido de Interesse Nacional.",
-    }];
-  }
+
   return [{
     id: "EB-3",
     label: "EB-3 — Trabalho Qualificado ou Não Qualificado",
-    reason: "Para perfis iguais ao seu, existe um caminho excelente para o seu Green Card: a categoria <strong>EB-3</strong>, que pode abranger tanto <strong>trabalhadores qualificados (Skilled Workers)</strong> quanto <strong>trabalhadores não qualificados (Unskilled / Other Workers)</strong>, dependendo da vaga oferecida pelo empregador nos EUA.\n\nO EB-3 é uma das vias mais sólidas para profissionais com <strong>ensino médio, formação técnica ou experiência profissional</strong>, e também pode ser uma opção para trabalhadores sem qualificação específica, desde que exista uma <strong>oferta de emprego permanente nos EUA</strong>.\n\n<strong>A boa notícia? Se você já tem um sponsor ou está em negociação com uma empresa americana, a Ebgreen pode cuidar de todo o processo para você.</strong>",
+    reason: EB3_REASON,
   }];
 };
 

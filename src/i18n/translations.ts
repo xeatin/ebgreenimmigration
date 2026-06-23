@@ -468,6 +468,7 @@ export const translations = {
       "Mestrado": { pt: "Mestrado", en: "Master's", es: "Maestría" },
       "Doutorado": { pt: "Doutorado", en: "Doctorate", es: "Doctorado" },
       "Pós-Doutorado": { pt: "Pós-Doutorado", en: "Post-Doctorate", es: "Postdoctorado" },
+      "Investimentos": { pt: "Investimentos", en: "Investments", es: "Inversiones" },
     },
     achievementsList: {
       "Sim, publicações acadêmicas": { pt: "Sim, publicações acadêmicas", en: "Yes, academic publications", es: "Sí, publicaciones académicas" },
