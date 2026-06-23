@@ -336,6 +336,9 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
 
   const startedRef = useRef(false);
   const submittedRef = useRef(false);
+  // Dispara a recaptura do lead no Kommo exatamente uma vez ao chegar no passo 3
+  // (análise), mesmo que o lead nunca clique em "Agendar".
+  const recaptureFiredRef = useRef(false);
   const FORM_ID = formIdSuffix ? `main_contact_form_${formIdSuffix}` : "main_contact_form";
 
   const markStart = (field: string) => {
@@ -384,9 +387,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
       education: z.string().min(1, t(s.errors.educationRequired, lang)),
       experience: z.string().min(1, t(s.errors.experienceRequired, lang)),
       message: z.string().max(2000, t(s.errors.messageMax, lang)).optional().or(z.literal("")),
-      privacy: z.literal(true, {
-        errorMap: () => ({ message: t(s.errors.privacyRequired, lang) }),
-      }),
+      // Consentimento agora é por aviso textual (LGPD) no rodapé do passo de análise,
+      // não há mais checkbox de privacidade — por isso não é mais validado aqui.
     });
 
   const validateStep = (current: number): boolean => {
@@ -457,8 +459,11 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    // Recaptura é disparada ao chegar no passo de análise (e também via Enter no
+    // form). Garante envio único por preenchimento.
+    if (submittedRef.current || isSubmitting) return;
 
     if (!validateStep(3)) {
       toast({ title: t(s.validationTitle, lang), variant: "destructive" });
@@ -478,7 +483,6 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         education: f.education?.[0],
         experience: f.experience?.[0],
         message: f.message?.[0],
-        privacy: f.privacy?.[0],
       });
       toast({ title: t(s.validationTitle, lang), variant: "destructive" });
       return;
@@ -669,6 +673,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         variant: "destructive",
       });
       setIsSubmitting(false);
+      // Permite nova tentativa de recaptura se o lead voltar e avançar de novo.
+      recaptureFiredRef.current = false;
       return;
     }
 
@@ -715,17 +721,20 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         description: t(s.successMsg, lang),
       });
     }
-    setFormData({
-      firstName: "", lastName: "", email: "", phoneCode: "+55", phone: "",
-      visa: "",
-      education: "", license: "", achievements: "", experience: "",
-      message: "", currentStatus: "", timeline: "", knownVisa: "",
-      privacy: false,
-      resume: null,
-    });
-    setStep(1);
+    // NÃO resetar o formulário aqui: a recaptura roda em segundo plano ao chegar no
+    // passo de análise e o lead permanece no passo 3 para poder agendar (Calendly).
     setIsSubmitting(false);
   };
+
+  // Recaptura: ao chegar no passo de análise (3), envia o lead ao Kommo (qualificado)
+  // ou notifica a equipe por e-mail (não qualificado) mesmo que o lead não agende.
+  useEffect(() => {
+    if (step === 3 && !recaptureFiredRef.current && !submittedRef.current) {
+      recaptureFiredRef.current = true;
+      void handleSubmit();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step]);
 
   /* ---------- Tokens (claro/institucional, fiel ao sample v2) ---------- */
   const labelCls = "block text-[11px] font-semibold text-foreground/55 tracking-[0.08em] uppercase mb-1.5 font-body";
@@ -1042,6 +1051,24 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                   </p>
                 )}
                 {(() => {
+                  // Gate de agendamento: alinhado ao gate determinístico da Bia/AGENDAMENTO.
+                  // Ensino Médio e Técnico/Tecnólogo com 10 anos ou menos NÃO podem
+                  // se auto-agendar (perfil "low"). A equipe ainda recebe o lead por
+                  // e-mail (recaptura) para avaliação manual, mas sem agenda online.
+                  const leadQ = getLeadQualification(formData.education, formData.experience);
+                  if (leadQ.status === "low") {
+                    return (
+                      <div className="mt-4 rounded-lg border border-border bg-secondary/40 p-4">
+                        <p className="font-display text-[15px] font-semibold text-foreground mb-2">
+                          Recebemos suas informações 💚
+                        </p>
+                        <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
+                          No momento, o <strong>agendamento online não está disponível</strong> para o seu perfil. Nossa equipe vai analisar o seu caso com atenção e, havendo um caminho viável, entrará em contato pelos dados informados.
+                        </p>
+                      </div>
+                    );
+                  }
+
                   const isEb3 = suggestions.some((s) => /^EB-?3/i.test(s.id));
                   const scheduleBtn = (
                     <button
