@@ -168,12 +168,39 @@ const suggestVisa = (data: {
 
   const EB3_REASON = "Para perfis iguais ao seu, existe um caminho excelente para o seu Green Card: a categoria <strong>EB-3</strong>, que pode abranger tanto <strong>trabalhadores qualificados (Skilled Workers)</strong> quanto <strong>trabalhadores não qualificados (Unskilled / Other Workers)</strong>, dependendo da vaga oferecida pelo empregador nos EUA.\n\nO EB-3 é uma das vias mais sólidas para profissionais com <strong>ensino médio, formação técnica ou experiência profissional</strong>, e também pode ser uma opção para trabalhadores sem qualificação específica, desde que exista uma <strong>oferta de emprego permanente nos EUA</strong>.\n\n<strong>A boa notícia? Se você já tem um sponsor ou está em negociação com uma empresa americana, a Ebgreen pode cuidar de todo o processo para você.</strong>";
 
-  // Investimentos → EB-5 / E-2
-  if (education === "Investimentos") {
+  // Investimento → EB-5 / E-2
+  if (education === "Investimento") {
     return [{
       id: "EB-5 / E-2",
       label: "EB-5 / E-2 — Visto de Investidor",
       reason: "Seu perfil de investidor abre caminho para duas categorias estratégicas: o <strong>EB-5</strong>, que concede o Green Card por meio de investimento qualificado nos EUA, e o <strong>E-2</strong>, voltado a empreendedores que desejam abrir ou adquirir um negócio em território americano.\n\nA Ebgreen pode estruturar todo o processo, desde a escolha do investimento até a apresentação ao USCIS.",
+    }];
+  }
+
+  // F-1 → Visto de Estudante
+  if (education === "F-1") {
+    return [{
+      id: "F-1",
+      label: "F-1 — Visto de Estudante",
+      reason: "O <strong>F-1</strong> é o visto destinado a estudantes que desejam cursar programas acadêmicos em instituições americanas reconhecidas. Pode ser o primeiro passo para uma trajetória profissional nos EUA e, em muitos casos, abrir portas para vistos de trabalho ou imigração permanente.\n\nA Ebgreen orienta toda a documentação, escolha da instituição e estratégia de transição para outros vistos.",
+    }];
+  }
+
+  // R-1 → Trabalhador Religioso
+  if (education === "R-1") {
+    return [{
+      id: "R-1",
+      label: "R-1 — Trabalhador Religioso",
+      reason: "O <strong>R-1</strong> é destinado a profissionais que atuam em funções religiosas em organizações reconhecidas nos EUA. É uma via consolidada para pastores, missionários, ministros e demais vocacionados, podendo evoluir para o Green Card via EB-4.\n\nA Ebgreen acompanha todo o processo, da elegibilidade ao pedido junto ao USCIS.",
+    }];
+  }
+
+  // Family-Based → Patrocínio Familiar
+  if (education === "Family-Based") {
+    return [{
+      id: "Family-Based",
+      label: "Family-Based — Patrocínio Familiar",
+      reason: "O <strong>Patrocínio Familiar</strong> permite que cidadãos americanos ou residentes permanentes patrocinem familiares próximos para obtenção do Green Card. É uma das vias mais tradicionais de imigração e exige estratégia adequada conforme o grau de parentesco.\n\nA Ebgreen avalia o melhor caminho e conduz todo o processo junto ao USCIS.",
     }];
   }
 
