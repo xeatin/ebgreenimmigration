@@ -797,6 +797,69 @@ const WhatsAppButton = () => {
                     {errors.experience && <p className="text-xs text-destructive">{errors.experience}</p>}
                   </div>
 
+                  {(() => {
+                    const blocked = isLowQualification(form.education, form.experience);
+                    const bc = blockCopy[lang];
+                    if (blocked && form.education && form.experience) {
+                      if (sponsorAnswer === null) {
+                        return (
+                          <div className="rounded-lg border border-gold/40 bg-gold/[0.04] p-4">
+                            <p className="text-[13px] font-body font-semibold text-foreground mb-1">
+                              {bc.sponsorTitle}
+                            </p>
+                            <p
+                              className="text-[12.5px] text-muted-foreground font-body leading-relaxed mb-3"
+                              dangerouslySetInnerHTML={{ __html: bc.sponsorQuestion }}
+                            />
+                            <div className="flex flex-col sm:flex-row gap-2">
+                              <Button
+                                type="button"
+                                onClick={() => setSponsorAnswer("yes")}
+                                className="flex-1 bg-brand-green hover:brightness-110 text-cream font-body font-semibold"
+                              >
+                                {bc.yes}
+                              </Button>
+                              <Button
+                                type="button"
+                                variant="outline"
+                                onClick={() => setSponsorAnswer("no")}
+                                className="flex-1 font-body font-semibold"
+                              >
+                                {bc.no}
+                              </Button>
+                            </div>
+                          </div>
+                        );
+                      }
+                      if (sponsorAnswer === "no") {
+                        return (
+                          <div className="rounded-lg border border-border bg-secondary/40 p-4">
+                            <p className="font-display text-[15px] font-semibold text-foreground mb-2">
+                              {bc.declineTitle}
+                            </p>
+                            <p
+                              className="text-[12.5px] text-muted-foreground font-body leading-relaxed"
+                              dangerouslySetInnerHTML={{ __html: bc.declineBody }}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setSponsorAnswer(null)}
+                              className="mt-3 text-[12px] text-brand-green font-body font-semibold underline hover:opacity-80"
+                            >
+                              {bc.review}
+                            </button>
+                          </div>
+                        );
+                      }
+                      return (
+                        <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25">
+                          <span className="text-[12px] text-emerald-700 font-body">{bc.sponsorOk}</span>
+                        </div>
+                      );
+                    }
+                    return null;
+                  })()}
+
                   <div className="flex gap-2 pt-1">
                     <Button
                       type="button"
@@ -806,17 +869,28 @@ const WhatsAppButton = () => {
                     >
                       {c.back}
                     </Button>
-                    <Button
-                      type="button"
-                      disabled={submitting || !form.education || !form.experience}
-                      onClick={handleLeadClick}
-                      className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold disabled:opacity-50"
-                    >
-                      {submitting ? c.sending : c.submit}
-                    </Button>
+                    {(() => {
+                      const blocked = isLowQualification(form.education, form.experience);
+                      const disableSubmit =
+                        submitting ||
+                        !form.education ||
+                        !form.experience ||
+                        (blocked && sponsorAnswer !== "yes");
+                      return (
+                        <Button
+                          type="button"
+                          disabled={disableSubmit}
+                          onClick={handleLeadClick}
+                          className="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-body font-semibold disabled:opacity-50"
+                        >
+                          {submitting ? c.sending : c.submit}
+                        </Button>
+                      );
+                    })()}
                   </div>
                 </div>
               )}
+
             </>
             );
           })()}
