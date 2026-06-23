@@ -351,6 +351,7 @@ const WhatsAppButton = () => {
 
   const [client, setClient] = useState<ClientState>(initialClient);
   const [clientErrors, setClientErrors] = useState<ClientErrors>({});
+  const [sponsorAnswer, setSponsorAnswer] = useState<"yes" | "no" | null>(null);
 
   const resetAll = () => {
     setStep("choose");
@@ -360,7 +361,9 @@ const WhatsAppButton = () => {
     setClient(initialClient);
     setClientErrors({});
     setSubmitting(false);
+    setSponsorAnswer(null);
   };
+
 
   const handleOpenChange = (v: boolean) => {
     setOpen(v);
