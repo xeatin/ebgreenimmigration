@@ -250,8 +250,8 @@ const suggestVisa = (data: {
     }];
   }
 
-  // Pós-Graduação / Mestrado + publicações → EB-1A e EB-2 NIW
-  if ((isPosGrad || isMestrado) && hasPublications) {
+  // Mestrado + publicações → EB-1A e EB-2 NIW
+  if (isMestrado && hasPublications) {
     return [{
       id: "EB-1A e EB-2 NIW",
       label: "EB-1A e EB-2 NIW – Habilidade Extraordinária + Interesse Nacional",
@@ -259,8 +259,8 @@ const suggestVisa = (data: {
     }];
   }
 
-  // Pós-Graduação / Mestrado sem publicações → EB-2 NIW
-  if (isPosGrad || isMestrado) {
+  // Mestrado sem publicações → EB-2 NIW
+  if (isMestrado) {
     return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW — Interesse Nacional",
