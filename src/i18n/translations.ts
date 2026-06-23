@@ -404,6 +404,8 @@ export const translations = {
         es: "Esta información ayuda a nuestro equipo a evaluar su elegibilidad antes de la consulta.",
       },
       labelEducation: { pt: "Formação Acadêmica", en: "Education", es: "Formación Académica" },
+      groupAcademic: { pt: "Formação Acadêmica", en: "Academic Background", es: "Formación Académica" },
+      groupVisaTypes: { pt: "Tipos de Vistos", en: "Visa Types", es: "Tipos de Visa" },
       labelAchievements: { pt: "Publicações e prêmios", en: "Publications and awards", es: "Publicaciones y premios" },
       labelLicense: { pt: "Licença Profissional", en: "Professional License", es: "Licencia Profesional" },
       labelExperience: { pt: "Experiência Profissional", en: "Professional Experience", es: "Experiencia Profesional" },
