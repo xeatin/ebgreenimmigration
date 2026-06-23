@@ -587,10 +587,14 @@ const WhatsAppButton = () => {
             const email = form.email ?? "";
             const step1Filled = !!fullName.trim() && !!phone.trim() && !!email.trim();
             const handleNext = () => {
+              const m = errorMessages[lang];
               const partial: FormErrors = {
-                fullName: !fullName.trim() ? "Obrigatório" : undefined,
-                phone: phone.trim().length < 6 ? "Telefone inválido" : undefined,
-                email: !/^\S+@\S+\.\S+$/.test(email.trim()) ? "E-mail inválido" : undefined,
+                fullName: fullName.trim().length < 3 ? m.nameMin : undefined,
+                phone:
+                  phone.trim().length < 6 || !/^[\d\s()+\-.]+$/.test(phone.trim())
+                    ? m.phoneInvalid
+                    : undefined,
+                email: !/^\S+@\S+\.\S+$/.test(email.trim()) ? m.emailInvalid : undefined,
               };
               if (partial.fullName || partial.phone || partial.email) {
                 setErrors((prev) => ({ ...prev, ...partial }));
