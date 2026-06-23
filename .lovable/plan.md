@@ -1,41 +1,60 @@
-## Objetivo
+## Reformulação da Última Tela (Step 4 — Análise e Agendamento)
 
-Aplicar consistência tipográfica (mesma cadência do rodapé do formulário) aos textos pequenos do site — sem alterar títulos (Playfair) nem corpo principal.
+### Problema
+Com a integração do Calendly diretamente no fluxo, os campos abaixo tornam-se redundantes porque o próprio agendamento já captura intenção e contexto:
+1. **"Quando pretende iniciar?"** (timeline) → obsoleto; o usuário escolhe a data/hora no Calendly
+2. **"Status atual"** (currentStatus) → obsoleto; pode ser perguntado na consulta
+3. **"Eu concordo com a Política de Privacidade"** (checkbox) → obsoleto; o próprio Calendly já apresenta os termos no fluxo de agendamento
 
-## Regra de estilo (refinamento institucional)
+### Nova estrutura do Step 4
 
-| Tamanho                               | line-height               | tracking                   | Aplicação                                                |
-| ------------------------------------- | ------------------------- | -------------------------- | -------------------------------------------------------- |
-| **11px** (meta, badges, micro-labels) | `leading-snug` (1.375)    | `tracking-wide` (+0.025em) | Selos, "Dados protegidos", labels de formulário pequenos |
-| **12–13px** (`text-xs`)               | `leading-snug`            | `tracking-wide`            | Captions, helper texts, footer institucional             |
-| **14–15px** (`text-sm`)               | `leading-relaxed` (1.625) | `tracking-normal`          | Descrições curtas em cards                               |
-| **16px+** corpo                       | `leading-relaxed`         | `tracking-normal`          | Sem mudança                                              |
+```
+┌─────────────────────────────────────────────────────┐
+│  ✦  Análise Preliminar do seu Perfil                │
+│                                                      │
+│  [Card com visto sugerido + explicação]             │
+│                                                      │
+│  ┌──────────────────────────────────────────────┐   │
+│  │  🎯  Próximo passo: agende sua consulta     │   │
+│  │                                               │   │
+│  │  Com base no seu perfil, preparamos uma      │   │
+│  │  análise personalizada. Reserve um horário   │   │
+│  │  com nosso time de especialistas.             │   │
+│  │                                               │   │
+│  │  [  📅  Agendar consulta gratuita  ]          │   │
+│  │                                               │   │
+│  │  ⏱ Duração: 30 minutos                       │   │
+│  │  📹 Reunião por Google Meet (link automático)│   │
+│  └──────────────────────────────────────────────┘   │
+│                                                      │
+│  🔒  Seus dados estão protegidos e serão enviados  │
+│      diretamente para nossa equipe de especialistas. │
+└─────────────────────────────────────────────────────┘
+```
 
-Títulos Playfair: **sem alteração** (mantém presença editorial).
+### Mudanças visuais e comportamentais
 
-## Escopo de arquivos
+| # | O que muda | Motivo |
+|---|-----------|--------|
+| 1 | Remove select **"Quando pretende iniciar?"** | O Calendly já captura a data/hora desejada |
+| 2 | Remove select **"Status atual"** | Opcional e melhor tratado na consulta ao vivo |
+| 3 | Remove checkbox **"Eu concordo com a Política de Privacidade"** | O Calendly apresenta os termos no checkout do agendamento |
+| 4 | Remove botão de submit do formulário tradicional | Substituído pelo CTA de agendamento Calendly |
+| 5 | Aumenta destaque do botão **"Agendar consulta"** | Torna-se a ação principal da tela |
+| 6 | Adiciona microcopy abaixo do CTA | "30 min · Google Meet · Confirmação por e-mail" |
+| 7 | Mantém o card de análise preliminar | Continua sendo o valor principal deste step |
 
-Aplicar nos componentes públicos (não nos `ui/` shadcn — esses são primitivos):
+### Fluxo de dados preservado
+- Nome, e-mail, telefone e tipo de visto continuam sendo pré-preenchidos no Calendly via `openCalendlyPopup()`
+- O `customAnswers` (telefone + visto sugerido) continua sendo enviado para a sessão do Calendly
+- O `utm` tracking permanece intacto
 
-1. `src/components/HeroSection.tsx` — métricas e selo "+89% NIW"
-2. `src/components/Footer.tsx` — disclaimer trilíngue, copyright
-3. `src/components/ContactSection.tsx` — labels secundárias e helper texts (footer já feito)
-4. `src/components/ServicesSection.tsx` — descrições curtas dos cards de visto
-5. `src/components/TestimonialsSection.tsx` — função/cargo abaixo dos nomes
-6. `src/components/AboutSection.tsx` — caption do card flutuante
-7. `src/components/ProcessSection.tsx` — números e legendas das etapas
-8. `src/components/DifferentialsSection.tsx` — subtítulos curtos
-9. `src/components/Navbar.tsx` — labels do menu (já em `text-sm`)
-10. `src/components/WhatsAppButton.tsx` — tooltip
+### O que acontece com o botão "Voltar"?
+Continua visível para permitir que o usuário revise os dados do perfil (Step 2) se necessário.
 
-## O que NÃO muda
+### Stepper (indicador de etapas)
+Atualmente o stepper mostra 3 etapas. Com esta mudança, o Step 3 passa a ser apenas **visualização da análise + agendamento** — sem campos de formulário para preencher.
 
-- Tamanhos (`text-[11px]`, `text-xs`, `text-sm`) permanecem
-- Cores e pesos atual
-- Títulos Playfair (h1, h2, h3)
-- Componentes `ui/` shadcn
-- Botões CTA principais
+---
 
-## Resultado esperado
-
-Microtipografia mais respirada e refinada, alinhada ao padrão institucional do rodapé do formulário, sem reflows perceptíveis no layout.
+Aprovo esta reformulação e implemento agora?
