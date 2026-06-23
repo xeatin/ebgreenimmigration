@@ -44,6 +44,7 @@ const EDUCATION_OPTIONS = [
   "Mestrado",
   "Doutorado",
   "Pós-Doutorado",
+  "Investimentos",
 ];
 
 const ACHIEVEMENTS_OPTIONS = [
