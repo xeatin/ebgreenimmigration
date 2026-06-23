@@ -23,25 +23,67 @@ import { supabase } from "@/integrations/supabase/client";
 
 const WHATSAPP_NUMBER = "17712017117";
 
-const leadSchema = z.object({
-  fullName: z.string().trim().min(1, "Obrigatório").max(200),
-  phoneCode: z.string().trim().min(1, "Obrigatório").max(8),
-  phone: z.string().trim().min(6, "Telefone inválido").max(40),
-  email: z.string().trim().email("E-mail inválido").max(255),
-  education: z.string().trim().min(1, "Obrigatório").max(120),
-  experience: z.string().trim().min(1, "Obrigatório").max(40),
-});
+const errorMessages = {
+  pt: {
+    required: "Campo obrigatório",
+    nameMin: "Informe seu nome completo",
+    phoneCode: "Selecione o DDI",
+    phoneInvalid: "Telefone inválido",
+    emailInvalid: "E-mail inválido",
+  },
+  en: {
+    required: "Required field",
+    nameMin: "Enter your full name",
+    phoneCode: "Select the country code",
+    phoneInvalid: "Invalid phone",
+    emailInvalid: "Invalid email",
+  },
+  es: {
+    required: "Campo obligatorio",
+    nameMin: "Ingrese su nombre completo",
+    phoneCode: "Seleccione el código de país",
+    phoneInvalid: "Teléfono inválido",
+    emailInvalid: "Correo inválido",
+  },
+} as const;
 
-const clientSchema = z.object({
-  fullName: z.string().trim().min(1, "Obrigatório").max(200),
-  phone: z.string().trim().min(6, "Telefone inválido").max(40),
-  visa: z.string().trim().min(1, "Obrigatório").max(80),
-});
+const buildLeadSchema = (lang: "pt" | "en" | "es") => {
+  const m = errorMessages[lang];
+  return z.object({
+    fullName: z.string().trim().min(3, m.nameMin).max(200),
+    phoneCode: z.string().trim().min(1, m.phoneCode).max(8),
+    phone: z.string().trim().min(6, m.phoneInvalid).max(40).regex(/^[\d\s()+\-.]+$/, m.phoneInvalid),
+    email: z.string().trim().min(1, m.required).email(m.emailInvalid).max(255),
+    education: z.string().trim().min(1, m.required).max(120),
+    experience: z.string().trim().min(1, m.required).max(40),
+  });
+};
 
-type FormState = z.infer<typeof leadSchema>;
+const buildClientSchema = (lang: "pt" | "en" | "es") => {
+  const m = errorMessages[lang];
+  return z.object({
+    fullName: z.string().trim().min(3, m.nameMin).max(200),
+    phone: z.string().trim().min(6, m.phoneInvalid).max(40).regex(/^[\d\s()+\-.]+$/, m.phoneInvalid),
+    visa: z.string().trim().min(1, m.required).max(80),
+  });
+};
+
+type FormState = {
+  fullName: string;
+  phoneCode: string;
+  phone: string;
+  email: string;
+  education: string;
+  experience: string;
+};
 type FormErrors = Partial<Record<keyof FormState, string>>;
-type ClientState = z.infer<typeof clientSchema>;
+type ClientState = {
+  fullName: string;
+  phone: string;
+  visa: string;
+};
 type ClientErrors = Partial<Record<keyof ClientState, string>>;
+
 
 const copy = {
   pt: {
