@@ -323,6 +323,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [disclaimerOpen, setDisclaimerOpen] = useState(false);
+  const [eb3Sponsor, setEb3Sponsor] = useState<null | "yes" | "no">(null);
 
   const startedRef = useRef(false);
   const submittedRef = useRef(false);
@@ -1013,36 +1014,112 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 <p className="text-[11px] text-foreground/40 font-body italic mt-3">
                   {suggestions.length > 1 ? t(s.form.analysisDisclaimerMulti, lang) : t(s.form.analysisDisclaimer, lang)}
                 </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    const attribution = getAttribution();
-                    trackForm("schedule_click", {
-                      form_id: FORM_ID,
-                      visa_context: suggestions[0]?.id ?? formData.visa,
-                    });
-                    openCalendlyPopup({
-                      firstName: formData.firstName,
-                      lastName: formData.lastName,
-                      email: formData.email,
-                      customAnswers: {
-                        a1: [formData.phoneCode, formData.phone].filter(Boolean).join(" "),
-                        a2: suggestions.map((sug) => sug.label).join(" | "),
-                      },
-                      utm: {
-                        utmSource: attribution?.utm_source,
-                        utmMedium: attribution?.utm_medium,
-                        utmCampaign: attribution?.utm_campaign,
-                        utmContent: attribution?.utm_content,
-                        utmTerm: attribution?.utm_term,
-                      },
-                    });
-                  }}
-                  className="mt-4 inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 rounded-md bg-brand-green text-cream text-[13px] font-body font-semibold uppercase tracking-wider shadow-[0_6px_20px_hsl(var(--brand-green)/0.35)] hover:brightness-110 transition"
-                >
-                  <Clock size={14} />
-                  Agendar consulta agora
-                </button>
+                {(() => {
+                  const isEb3 = suggestions.some((s) => /^EB-?3/i.test(s.id));
+                  const scheduleBtn = (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const attribution = getAttribution();
+                        trackForm("schedule_click", {
+                          form_id: FORM_ID,
+                          visa_context: suggestions[0]?.id ?? formData.visa,
+                        });
+                        openCalendlyPopup({
+                          firstName: formData.firstName,
+                          lastName: formData.lastName,
+                          email: formData.email,
+                          customAnswers: {
+                            a1: [formData.phoneCode, formData.phone].filter(Boolean).join(" "),
+                            a2: suggestions.map((sug) => sug.label).join(" | "),
+                          },
+                          utm: {
+                            utmSource: attribution?.utm_source,
+                            utmMedium: attribution?.utm_medium,
+                            utmCampaign: attribution?.utm_campaign,
+                            utmContent: attribution?.utm_content,
+                            utmTerm: attribution?.utm_term,
+                          },
+                        });
+                      }}
+                      className="mt-4 inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 rounded-md bg-brand-green text-cream text-[13px] font-body font-semibold uppercase tracking-wider shadow-[0_6px_20px_hsl(var(--brand-green)/0.35)] hover:brightness-110 transition"
+                    >
+                      <Clock size={14} />
+                      Agendar consulta agora
+                    </button>
+                  );
+
+                  if (!isEb3) return scheduleBtn;
+
+                  if (eb3Sponsor === null) {
+                    return (
+                      <div className="mt-4 rounded-lg border border-gold/40 bg-gold/[0.04] p-4">
+                        <p className="text-[13px] font-body font-semibold text-foreground mb-1">
+                          Antes de agendar, precisamos confirmar um ponto importante:
+                        </p>
+                        <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed mb-3">
+                          Você já possui um <strong>sponsor</strong> (empregador americano disposto a contratá-lo) ou está em negociação com uma empresa nos EUA?
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-2">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setEb3Sponsor("yes");
+                              trackForm("eb3_sponsor_answer", { form_id: FORM_ID, answer: "yes" });
+                            }}
+                            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-brand-green text-cream text-[13px] font-body font-semibold uppercase tracking-wider hover:brightness-110 transition"
+                          >
+                            <Check size={14} /> Sim, tenho sponsor
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setEb3Sponsor("no");
+                              trackForm("eb3_sponsor_answer", { form_id: FORM_ID, answer: "no" });
+                            }}
+                            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-border bg-white text-foreground text-[13px] font-body font-semibold uppercase tracking-wider hover:border-foreground/40 transition"
+                          >
+                            Ainda não tenho
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  if (eb3Sponsor === "yes") {
+                    return (
+                      <div className="mt-4">
+                        <div className="mb-3 flex items-center gap-2 px-3 py-2 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25">
+                          <Check size={14} className="text-emerald-600 shrink-0" />
+                          <span className="text-[12px] text-emerald-700 font-body">
+                            Perfeito! Como você já possui um sponsor, podemos avançar com seu agendamento.
+                          </span>
+                        </div>
+                        {scheduleBtn}
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <div className="mt-4 rounded-lg border border-border bg-secondary/40 p-4">
+                      <p className="font-display text-[15px] font-semibold text-foreground mb-2">
+                        Agradecemos seu interesse 💚
+                      </p>
+                      <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
+                        A categoria <strong>EB-3</strong> exige uma <strong>oferta de emprego permanente nos EUA</strong> de um empregador disposto a patrociná-lo (sponsor). Sem esse requisito, não conseguimos dar andamento ao processo neste momento.
+                        <br /><br />
+                        Assim que você conseguir um sponsor — ou estiver em negociação com uma empresa americana —, retorne aqui e teremos prazer em cuidar de todo o processo para você.
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setEb3Sponsor(null)}
+                        className="mt-3 text-[12px] text-brand-green font-body font-semibold underline hover:opacity-80"
+                      >
+                        Revisar resposta
+                      </button>
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           </motion.div>
