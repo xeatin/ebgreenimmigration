@@ -184,7 +184,8 @@ export type FormEvent =
   | "form_step"
   | "form_abandon"
   | "form_submit"
-  | "form_error";
+  | "form_error"
+  | "schedule_click";
 
 export const trackForm = (
   type: FormEvent,
