@@ -990,6 +990,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   );
 
   const suggestions = suggestVisa(formData);
+  const isVisaSubgroup = EDUCATION_VISA_OPTIONS.includes(formData.education);
 
   const Step4 = (
     <div>
