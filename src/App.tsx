@@ -10,6 +10,7 @@ import Blog from "./pages/Blog.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
 import Noticias from "./pages/Noticias.tsx";
 import { VisaEb1a, VisaEb2Niw } from "./pages/VisaPages.tsx";
+import AdminCalendly from "./pages/AdminCalendly.tsx";
 import { useGlobalCtaTracking } from "./hooks/useAnalytics";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const AppRoutes = () => {
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogPost />} />
       <Route path="/noticias" element={<Noticias />} />
+      <Route path="/admin/calendly" element={<AdminCalendly />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>
