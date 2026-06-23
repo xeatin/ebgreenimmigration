@@ -424,7 +424,15 @@ const WhatsAppButton = () => {
       return;
     }
     setErrors({});
+
+    // Block low qualification (Ensino Médio or Técnico + Menos de 5 anos)
+    // unless the user confirmed they already have a sponsor.
+    if (isLowQualification(form.education, form.experience) && sponsorAnswer !== "yes") {
+      return;
+    }
+
     setSubmitting(true);
+
 
     const { fullName, phoneCode, phone, email, education, experience } = parsed.data;
     const parts = fullName.split(/\s+/);
