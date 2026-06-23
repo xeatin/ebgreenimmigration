@@ -172,7 +172,7 @@ const suggestVisa = (data: {
   if (education === "Investimento") {
     return [{
       id: "EB-5 / E-2",
-      label: "EB-5 / E-2 — Visto de Investidor",
+      label: "EB-5 / E-2 Investimentos",
       reason: "Seu perfil de investidor abre caminho para duas categorias estratégicas: o <strong>EB-5</strong>, que concede o Green Card por meio de investimento qualificado nos EUA, e o <strong>E-2</strong>, voltado a empreendedores que desejam abrir ou adquirir um negócio em território americano.\n\nA Ebgreen pode estruturar todo o processo, desde a escolha do investimento até a apresentação ao USCIS.",
     }];
   }

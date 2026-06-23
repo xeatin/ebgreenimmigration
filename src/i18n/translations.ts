@@ -469,10 +469,10 @@ export const translations = {
       "Mestrado": { pt: "Mestrado", en: "Master's", es: "Maestría" },
       "Doutorado": { pt: "Doutorado", en: "Doctorate", es: "Doctorado" },
       "Pós-Doutorado": { pt: "Pós-Doutorado", en: "Post-Doctorate", es: "Postdoctorado" },
-      "F-1": { pt: "F-1 — Estudante", en: "F-1 — Student", es: "F-1 — Estudiante" },
-      "R-1": { pt: "R-1 — Religioso", en: "R-1 — Religious Worker", es: "R-1 — Religioso" },
+      "F-1": { pt: "F-1 Estudante", en: "F-1 Student", es: "F-1 Estudiante" },
+      "R-1": { pt: "R-1 Religioso", en: "R-1 Religious Worker", es: "R-1 Religioso" },
       "Investimento": { pt: "Investimento", en: "Investment", es: "Inversión" },
-      "Family-Based": { pt: "Family-Based — Familiar", en: "Family-Based", es: "Family-Based — Familiar" },
+      "Family-Based": { pt: "Family-Based Familiar", en: "Family-Based", es: "Family-Based Familiar" },
     },
     achievementsList: {
       "Sim, publicações acadêmicas": { pt: "Sim, publicações acadêmicas", en: "Yes, academic publications", es: "Sí, publicaciones académicas" },
