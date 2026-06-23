@@ -20,7 +20,7 @@ export const eb1aContent: VisaLPContent = {
   testimonial: {
     quote: "A equipe da EBGreen estruturou meu caso EB-1A com profundidade técnica. Cada critério foi documentado de forma estratégica. Aprovado sem RFE.",
     author: "Pesquisador aprovado",
-    role: "EB-1A — área de Engenharia",
+    role: "EB-1A - área de Engenharia",
   },
   ctaTitle: "Descubra se você se enquadra no EB-1A",
   ctaDesc: "Avaliação gratuita do seu currículo, prêmios, publicações e reconhecimentos internacionais.",
@@ -35,7 +35,7 @@ export const eb2niwContent: VisaLPContent = {
   titleHighlight: "Interesse Nacional",
   subtitle: "Para profissionais qualificados cujo trabalho beneficia o interesse nacional dos Estados Unidos. Dispensa oferta de emprego e certificação trabalhista.",
   benefits: [
-    { icon: Target, title: "Auto-petição", desc: "Você mesmo apresenta o pedido — sem necessidade de empregador ou sponsor americano." },
+    { icon: Target, title: "Auto-petição", desc: "Você mesmo apresenta o pedido - sem necessidade de empregador ou sponsor americano." },
     { icon: GraduationCap, title: "Para mestres e doutores", desc: "Ideal para profissionais com formação avançada ou habilidade excepcional na área." },
     { icon: Sparkles, title: "Sem PERM", desc: "Pula a etapa de certificação trabalhista, encurtando significativamente o cronograma." },
   ],
@@ -47,7 +47,7 @@ export const eb2niwContent: VisaLPContent = {
   testimonial: {
     quote: "Eu tinha mestrado e experiência sólida, mas não sabia como provar 'interesse nacional'. A EBGreen montou a narrativa perfeita. Green Card aprovado.",
     author: "Profissional de Saúde",
-    role: "EB-2 NIW — área de Medicina",
+    role: "EB-2 NIW - área de Medicina",
   },
   ctaTitle: "Seu trabalho serve ao interesse nacional dos EUA?",
   ctaDesc: "Receba uma análise personalizada da sua elegibilidade ao EB-2 NIW.",

@@ -31,7 +31,7 @@ const copy = {
   },
   subtitle: {
     pt: "Fique por dentro das principais notícias, mudanças e atualizações sobre imigração americana em um só lugar.",
-    en: "Stay up to date with the main news, changes and updates on U.S. immigration — all in one place.",
+    en: "Stay up to date with the main news, changes and updates on U.S. immigration - all in one place.",
     es: "Mantente al día con las principales noticias, cambios y actualizaciones sobre inmigración americana en un solo lugar.",
   },
   readMore: { pt: "Ler completa", en: "Read more", es: "Leer completa" },
@@ -219,7 +219,7 @@ const Noticias = () => {
 
       <section className="py-16">
         <div className="container mx-auto px-6 max-w-4xl">
-          {/* Visa Bulletin — same layout as news cards, with DESTAQUE sticker */}
+          {/* Visa Bulletin - same layout as news cards, with DESTAQUE sticker */}
           <motion.a
             href={bulletin?.url ?? "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html"}
             target="_blank"
@@ -241,7 +241,7 @@ const Noticias = () => {
                   {copy.bulletinTitle[lang]}
                   {bulletin && (
                     <>
-                      {" — "}
+                      {" - "}
                       <span className="text-gold">
                         {MONTH_LABELS[bulletin.month]?.[lang] ?? bulletin.month} {bulletin.year}
                       </span>
