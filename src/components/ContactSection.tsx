@@ -36,16 +36,23 @@ const VISA_OPTIONS = [
   { id: "R-1 Religioso", label: "R-1" },
 ];
 
-const EDUCATION_OPTIONS = [
+const EDUCATION_ACADEMIC_OPTIONS = [
   "Ensino Médio",
   "Técnico e Tecnólogo",
   "Nível Superior / Bacharelado",
-  "Pós-Graduação",
   "Mestrado",
   "Doutorado",
   "Pós-Doutorado",
-  "Investimentos",
 ];
+
+const EDUCATION_VISA_OPTIONS = [
+  "F-1",
+  "R-1",
+  "Investimento",
+  "Family-Based",
+];
+
+const EDUCATION_OPTIONS = [...EDUCATION_ACADEMIC_OPTIONS, ...EDUCATION_VISA_OPTIONS];
 
 const ACHIEVEMENTS_OPTIONS = [
   "Sim, publicações acadêmicas",
