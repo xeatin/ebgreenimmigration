@@ -1,7 +1,7 @@
 // Lightweight Calendly popup loader. Injects the official widget script on demand
 // and opens a prefilled popup. No npm dependency required.
 
-export const CALENDLY_URL = "https://calendly.com/ebgreenusa";
+export const CALENDLY_URL = "https://calendly.com/ebgreenusa/30min";
 
 declare global {
   interface Window {
