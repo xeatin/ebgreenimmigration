@@ -220,7 +220,6 @@ const suggestVisa = (data: {
 
   const isTecnico = education === "Técnico e Tecnólogo";
   const isBacharelado = education === "Nível Superior / Bacharelado";
-  const isPosGrad = education === "Pós-Graduação";
   const isMestrado = education === "Mestrado";
   const isDoutorado = education === "Doutorado";
   const isPosDoutorado = education === "Pós-Doutorado";
