@@ -1107,7 +1107,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                       </p>
                       <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
                         A categoria <strong>EB-3</strong> exige uma <strong>oferta de emprego permanente nos EUA</strong> de um empregador disposto a patrociná-lo (sponsor). Sem esse requisito, não conseguimos dar andamento ao processo neste momento.
-                        <br /><br />
+                        <br />
                         Assim que você conseguir um sponsor — ou estiver em negociação com uma empresa americana —, retorne aqui e teremos prazer em cuidar de todo o processo para você.
                       </p>
                       <button
