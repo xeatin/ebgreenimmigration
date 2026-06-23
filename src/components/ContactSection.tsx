@@ -1300,24 +1300,13 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 </button>
 
                 <div>
-                  {step < 3 ? (
+                  {step < 3 && (
                     <button
                       type="button"
                       onClick={handleNext}
                       className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[200px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:opacity-50"
                     >
                       {t(s.form.continue, lang)} <ArrowRight size={15} />
-                    </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      onClick={handleFinalCtaClick}
-                      disabled={isSubmitting}
-                      className="btn-highlight h-11 px-7 rounded-md bg-gradient-gold text-green-deep font-body font-semibold text-[13px] tracking-[0.02em] hover:opacity-90 active:scale-[0.98] transition inline-flex items-center gap-2 min-w-[220px] justify-center shadow-[0_8px_24px_-8px_hsl(var(--gold)/0.55)] disabled:opacity-60"
-                    >
-                      {isSubmitting ? t(s.submitting, lang) : (
-                        <>{t(s.form.submitCta, lang)} <Send size={14} /></>
-                      )}
                     </button>
                   )}
                 </div>
