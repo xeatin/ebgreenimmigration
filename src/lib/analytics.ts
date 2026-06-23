@@ -70,7 +70,7 @@ const META_PIXEL_ID = "989361967125949";
 
 /**
  * Hashed (SHA-256) user data for Meta Advanced Matching. Keys follow Meta's
- * spec (em, ph, fn, ln, ct, st, zp, country) — same shape as `HashedUserData`
+ * spec (em, ph, fn, ln, ct, st, zp, country) - same shape as `HashedUserData`
  * produced by `hashUserData()` in tracking/event-id.ts.
  */
 export type MetaAdvancedMatch = Partial<
@@ -120,7 +120,7 @@ export const trackMetaCustom = (
 ) => trackMeta("trackCustom", event, params, options.eventId);
 
 /**
- * Fire Meta `ViewContent` — a pre-lead intent signal for high-value pages
+ * Fire Meta `ViewContent` - a pre-lead intent signal for high-value pages
  * (e.g. visa content). Mirrors to dataLayer so GA4/GTM can react too.
  */
 export const trackMetaViewContent = (

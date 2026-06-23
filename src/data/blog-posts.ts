@@ -50,7 +50,7 @@ export const blogPosts: BlogPost[] = [
     content: [
       {
         type: "p",
-        text: "O EB-2 NIW (National Interest Waiver) virou, ao longo dos últimos anos, o caminho preferido de profissionais brasileiros que querem morar legalmente nos Estados Unidos sem depender de uma oferta de emprego, de um investimento alto ou de um patrocinador. É um Green Card por mérito profissional — você apresenta sua trajetória, mostra impacto, e o governo americano avalia se sua atuação é de interesse nacional.",
+        text: "O EB-2 NIW (National Interest Waiver) virou, ao longo dos últimos anos, o caminho preferido de profissionais brasileiros que querem morar legalmente nos Estados Unidos sem depender de uma oferta de emprego, de um investimento alto ou de um patrocinador. É um Green Card por mérito profissional - você apresenta sua trajetória, mostra impacto, e o governo americano avalia se sua atuação é de interesse nacional.",
       },
       {
         type: "p",
@@ -73,7 +73,7 @@ export const blogPosts: BlogPost[] = [
       {
         type: "ordered",
         items: [
-          "Mérito substancial e importância nacional: a sua área de atuação precisa ter relevância para os EUA — saúde, educação, tecnologia, ciência, cultura, economia, segurança, sustentabilidade, entre outras.",
+          "Mérito substancial e importância nacional: a sua área de atuação precisa ter relevância para os EUA - saúde, educação, tecnologia, ciência, cultura, economia, segurança, sustentabilidade, entre outras.",
           "Posicionamento para avançar a proposta: você precisa mostrar, com evidências concretas, que tem capacidade real de continuar entregando esse trabalho nos Estados Unidos.",
           "Benefício de dispensar a oferta de emprego: o governo deve entender que faz mais sentido você operar com autonomia do que ficar dependente de um empregador.",
         ],
@@ -100,12 +100,12 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Se você se enxerga em algum desses perfis, o próximo passo é uma análise de elegibilidade séria — não um quiz online. Veja também o nosso comparativo entre <a href=\"/blog/o1a-vs-eb1a\">O-1A e EB-1A</a> para entender se o NIW é mesmo a melhor rota para o seu momento.",
+        text: "Se você se enxerga em algum desses perfis, o próximo passo é uma análise de elegibilidade séria - não um quiz online. Veja também o nosso comparativo entre <a href=\"/blog/o1a-vs-eb1a\">O-1A e EB-1A</a> para entender se o NIW é mesmo a melhor rota para o seu momento.",
       },
       { type: "h2", id: "prazos-2026", text: "Prazos e fila em 2026" },
       {
         type: "p",
-        text: "O Visa Bulletin do Departamento de Estado, atualizado mensalmente, mostra que brasileiros não estão sujeitos a backlog por país no EB-2 — o que é uma vantagem grande em relação à Índia ou China. Mesmo assim, os tempos de processamento na I-140 variaram entre 8 e 14 meses ao longo de 2025, e a tendência para 2026 é de manutenção desse intervalo.",
+        text: "O Visa Bulletin do Departamento de Estado, atualizado mensalmente, mostra que brasileiros não estão sujeitos a backlog por país no EB-2 - o que é uma vantagem grande em relação à Índia ou China. Mesmo assim, os tempos de processamento na I-140 variaram entre 8 e 14 meses ao longo de 2025, e a tendência para 2026 é de manutenção desse intervalo.",
       },
       {
         type: "p",
@@ -136,7 +136,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "É o documento que amarra tudo. Ela conecta sua trajetória aos três critérios do Dhanasar com linguagem clara e evidência objetiva — não promessa.",
+        text: "É o documento que amarra tudo. Ela conecta sua trajetória aos três critérios do Dhanasar com linguagem clara e evidência objetiva - não promessa.",
       },
       {
         type: "h3",
@@ -156,7 +156,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "quote",
-        text: "Casos fortes não são feitos de adjetivos — são feitos de evidência. Métrica, link, recorte de imprensa, resultado mensurável.",
+        text: "Casos fortes não são feitos de adjetivos - são feitos de evidência. Métrica, link, recorte de imprensa, resultado mensurável.",
         author: "Equipe EBGreen",
       },
       { type: "h2", id: "armadilhas", text: "Armadilhas que derrubam casos bons" },
@@ -165,7 +165,7 @@ export const blogPosts: BlogPost[] = [
         items: [
           "Dossiê genérico, sem narrativa: muitas evidências jogadas, sem fio condutor.",
           "Cartas de recomendação repetidas, escritas pelo próprio candidato, com mesma estrutura.",
-          "Plano de continuidade vago — \"pretendo seguir trabalhando na minha área\".",
+          "Plano de continuidade vago - \"pretendo seguir trabalhando na minha área\".",
           "Subestimar o critério 2: bom currículo, mas sem mostrar capacidade real de execução nos EUA.",
           "Confundir EB-2 NIW com EB-1A. O EB-1A exige reconhecimento extraordinário; o NIW, impacto + interesse nacional.",
         ],
@@ -185,7 +185,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", id: "vale-a-pena", text: "Vale a pena começar agora?" },
       {
         type: "p",
-        text: "Sim — desde que com leitura realista do seu caso. O NIW continua sendo a rota com melhor relação custo, autonomia e tempo entre as opções de Green Card por mérito. Mas ele não é \"fácil\": é técnico. Quem trata como formulário, perde. Quem trata como projeto, ganha.",
+        text: "Sim - desde que com leitura realista do seu caso. O NIW continua sendo a rota com melhor relação custo, autonomia e tempo entre as opções de Green Card por mérito. Mas ele não é \"fácil\": é técnico. Quem trata como formulário, perde. Quem trata como projeto, ganha.",
       },
       {
         type: "p",
@@ -195,7 +195,7 @@ export const blogPosts: BlogPost[] = [
     ],
     externalLinks: [
       {
-        label: "USCIS — National Interest Waiver",
+        label: "USCIS - National Interest Waiver",
         url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
       },
       {
@@ -219,7 +219,7 @@ export const blogPosts: BlogPost[] = [
     leitura: "9 min",
     imagem: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=80&fit=crop",
     excerpt:
-      "Os 10 sinais reais de que você está pronto para o Green Card mais prestigiado do sistema americano — sem patrocinador, sem investimento.",
+      "Os 10 sinais reais de que você está pronto para o Green Card mais prestigiado do sistema americano - sem patrocinador, sem investimento.",
     metaTitle: "EB-1A 2026: Como Saber se Você se Qualifica | EBGreen",
     metaDescription:
       "EB-1A para brasileiros em 2026: os 10 critérios oficiais do USCIS, exemplos reais e como construir um caso forte de talento extraordinário.",
@@ -227,7 +227,7 @@ export const blogPosts: BlogPost[] = [
     content: [
       {
         type: "p",
-        text: "O EB-1A é o Green Card mais prestigiado da imigração americana baseada em emprego. Ele dispensa oferta de trabalho, dispensa patrocinador e fica em uma fila preferencial — o que, na prática, significa Green Card mais rápido para quem se qualifica.",
+        text: "O EB-1A é o Green Card mais prestigiado da imigração americana baseada em emprego. Ele dispensa oferta de trabalho, dispensa patrocinador e fica em uma fila preferencial - o que, na prática, significa Green Card mais rápido para quem se qualifica.",
       },
       {
         type: "p",
@@ -236,13 +236,13 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", id: "o-que-e-eb1a", text: "O que o EB-1A realmente exige" },
       {
         type: "p",
-        text: "A regulamentação pede que você prove uma das duas coisas: (1) reconhecimento de nível internacional unanimemente aclamado — caso de prêmios como Nobel, Oscar, Pulitzer; ou (2) atendimento a pelo menos 3 dos 10 critérios listados pelo USCIS, junto com evidência de que o reconhecimento é sustentado e que você continuará atuando na área nos EUA.",
+        text: "A regulamentação pede que você prove uma das duas coisas: (1) reconhecimento de nível internacional unanimemente aclamado - caso de prêmios como Nobel, Oscar, Pulitzer; ou (2) atendimento a pelo menos 3 dos 10 critérios listados pelo USCIS, junto com evidência de que o reconhecimento é sustentado e que você continuará atuando na área nos EUA.",
       },
       {
         type: "p",
         text: "Quase 100% dos casos seguem o segundo caminho. É lá que você precisa montar sua estratégia.",
       },
-      { type: "h2", id: "10-criterios", text: "Os 10 critérios — e o que cada um significa" },
+      { type: "h2", id: "10-criterios", text: "Os 10 critérios - e o que cada um significa" },
       {
         type: "ordered",
         items: [
@@ -270,7 +270,7 @@ export const blogPosts: BlogPost[] = [
           "Pesquisadores e cientistas com publicações citadas (use o Google Scholar para mapear citações).",
           "Engenheiros e profissionais de tecnologia com patentes, contribuições em projetos open source de larga adoção ou liderança técnica em produtos reconhecidos.",
           "Atletas profissionais com participação em competições internacionais.",
-          "Artistas com atuação documentada — exposições, festivais, prêmios, mídia.",
+          "Artistas com atuação documentada - exposições, festivais, prêmios, mídia.",
           "Empreendedores com empresas que se tornaram referência ou foram premiadas.",
           "Médicos com publicações, palestras em congressos internacionais e atuação em hospitais de referência.",
         ],
@@ -298,7 +298,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "h3",
-        text: "3. Cartas de recomendação que provam — não que elogiam",
+        text: "3. Cartas de recomendação que provam - não que elogiam",
       },
       {
         type: "p",
@@ -315,7 +315,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", id: "tempos-2026", text: "Tempos e fila em 2026" },
       {
         type: "p",
-        text: "Brasileiros estão em fila aberta no EB-1 — sem backlog por país. A I-140 leva entre 6 e 12 meses sem premium e até 45 dias com premium processing. Aprovada a I-140, o ajuste de status (I-485) ou processo consular costuma rodar em 8 a 14 meses.",
+        text: "Brasileiros estão em fila aberta no EB-1 - sem backlog por país. A I-140 leva entre 6 e 12 meses sem premium e até 45 dias com premium processing. Aprovada a I-140, o ajuste de status (I-485) ou processo consular costuma rodar em 8 a 14 meses.",
       },
       { type: "h2", id: "armadilhas", text: "Erros que matam casos bons" },
       {
@@ -331,7 +331,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", id: "vale-a-pena", text: "EB-1A vs EB-2 NIW: qual escolher?" },
       {
         type: "p",
-        text: "Regra prática: se você tem reconhecimento sustentado e evidência forte em 3+ critérios, vá de EB-1A. Tem fila preferencial, prestígio e velocidade. Se sua trajetória ainda está em construção mas o impacto da sua área é claro, o EB-2 NIW é o caminho mais inteligente — e nada impede que você faça o EB-1A depois, com mais maturidade.",
+        text: "Regra prática: se você tem reconhecimento sustentado e evidência forte em 3+ critérios, vá de EB-1A. Tem fila preferencial, prestígio e velocidade. Se sua trajetória ainda está em construção mas o impacto da sua área é claro, o EB-2 NIW é o caminho mais inteligente - e nada impede que você faça o EB-1A depois, com mais maturidade.",
       },
       {
         type: "p",
@@ -341,11 +341,11 @@ export const blogPosts: BlogPost[] = [
     ],
     externalLinks: [
       {
-        label: "USCIS — EB-1A Extraordinary Ability",
+        label: "USCIS - EB-1A Extraordinary Ability",
         url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-first-preference-eb-1",
       },
       {
-        label: "USCIS Policy Manual — EB-1A",
+        label: "USCIS Policy Manual - EB-1A",
         url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-2",
       },
       {
@@ -377,12 +377,12 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "O O-1 é um visto de trabalho temporário para profissionais com habilidade extraordinária. Ele não é Green Card — é autorização de trabalho. Mas é, de longe, o visto que mais combina com quem quer começar a operar nos Estados Unidos rápido, com flexibilidade, mantendo o EB-1A ou EB-2 NIW como o passo seguinte.",
+        text: "O O-1 é um visto de trabalho temporário para profissionais com habilidade extraordinária. Ele não é Green Card - é autorização de trabalho. Mas é, de longe, o visto que mais combina com quem quer começar a operar nos Estados Unidos rápido, com flexibilidade, mantendo o EB-1A ou EB-2 NIW como o passo seguinte.",
       },
       { type: "h2", id: "o-que-e", text: "O que é o O-1" },
       {
         type: "p",
-        text: "Existem duas variações principais: O-1A (ciência, educação, negócios, atletismo) e O-1B (artes e indústria audiovisual). Os critérios mudam, mas a lógica é a mesma — o candidato precisa provar habilidade extraordinária e atuar na sua área dentro dos EUA.",
+        text: "Existem duas variações principais: O-1A (ciência, educação, negócios, atletismo) e O-1B (artes e indústria audiovisual). Os critérios mudam, mas a lógica é a mesma - o candidato precisa provar habilidade extraordinária e atuar na sua área dentro dos EUA.",
       },
       {
         type: "p",
@@ -404,7 +404,7 @@ export const blogPosts: BlogPost[] = [
         title: "Cuidado",
         text: "O O-1 exige patrocinador (empregador americano ou agente). Você não pode autopatrocinar. Isso difere do EB-1A e do EB-2 NIW, que permitem auto-petição.",
       },
-      { type: "h2", id: "criterios-o1a", text: "Critérios do O-1A — atenda 3 dos 8" },
+      { type: "h2", id: "criterios-o1a", text: "Critérios do O-1A - atenda 3 dos 8" },
       {
         type: "ordered",
         items: [
@@ -418,7 +418,7 @@ export const blogPosts: BlogPost[] = [
           "Salário alto em relação a outros profissionais da área.",
         ],
       },
-      { type: "h2", id: "criterios-o1b", text: "Critérios do O-1B — atenda 3 dos 6" },
+      { type: "h2", id: "criterios-o1b", text: "Critérios do O-1B - atenda 3 dos 6" },
       {
         type: "ordered",
         items: [
@@ -437,7 +437,7 @@ export const blogPosts: BlogPost[] = [
           "Definição do patrocinador: empregador americano ou agente.",
           "Montagem do dossiê com evidências dos critérios.",
           "Cartas de recomendação independentes (mínimo 6 a 8).",
-          "Itinerário de trabalho — onde, quando e fazendo o quê.",
+          "Itinerário de trabalho - onde, quando e fazendo o quê.",
           "Submissão da I-129 ao USCIS, com ou sem premium processing.",
           "Após aprovação: agendamento da entrevista consular ou ajuste de status.",
         ],
@@ -480,11 +480,11 @@ export const blogPosts: BlogPost[] = [
     ],
     externalLinks: [
       {
-        label: "USCIS — O-1 Visa",
+        label: "USCIS - O-1 Visa",
         url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/o-1-individuals-with-extraordinary-ability-or-achievement",
       },
       {
-        label: "USCIS Policy Manual — O-1",
+        label: "USCIS Policy Manual - O-1",
         url: "https://www.uscis.gov/policy-manual/volume-2-part-m",
       },
     ],
@@ -501,7 +501,7 @@ export const blogPosts: BlogPost[] = [
     imagem: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1200&q=80&fit=crop",
     excerpt:
       "Como funciona o Green Card por investimento depois da reforma de 2022, riscos reais e quando ele faz mais sentido que EB-1A ou EB-2 NIW.",
-    metaTitle: "EB-5 2026: Green Card por Investimento — Guia Completo | EBGreen",
+    metaTitle: "EB-5 2026: Green Card por Investimento - Guia Completo | EBGreen",
     metaDescription:
       "Tudo sobre o EB-5 em 2026: valores, TEAs, prazos, riscos, projeto direto vs Regional Center e como brasileiros estão investindo com segurança.",
     author: "Equipe EBGreen",
@@ -512,20 +512,20 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Depois da reforma de 2022 (RIA — Reform and Integrity Act), o EB-5 ganhou regras mais claras, novas categorias e proteção para investidores. Em 2026, o programa segue ativo, com fila razoável para brasileiros e processos sendo aprovados em ritmo estável.",
+        text: "Depois da reforma de 2022 (RIA - Reform and Integrity Act), o EB-5 ganhou regras mais claras, novas categorias e proteção para investidores. Em 2026, o programa segue ativo, com fila razoável para brasileiros e processos sendo aprovados em ritmo estável.",
       },
       { type: "h2", id: "valores", text: "Quanto custa investir" },
       {
         type: "list",
         items: [
           "Investimento padrão: USD 1.050.000.",
-          "Investimento em TEA (Targeted Employment Area — área rural ou de alta desemprego): USD 800.000.",
+          "Investimento em TEA (Targeted Employment Area - área rural ou de alta desemprego): USD 800.000.",
           "Mínimo de 10 empregos full-time gerados nos EUA.",
         ],
       },
       {
         type: "p",
-        text: "A maioria dos casos brasileiros vai por TEA, com aporte de USD 800 mil. Some a isso taxas governamentais, due diligence, honorários e custos do projeto — o orçamento total realista fica entre USD 850 mil e USD 950 mil.",
+        text: "A maioria dos casos brasileiros vai por TEA, com aporte de USD 800 mil. Some a isso taxas governamentais, due diligence, honorários e custos do projeto - o orçamento total realista fica entre USD 850 mil e USD 950 mil.",
       },
       { type: "h2", id: "categorias", text: "Visa set-asides: a vantagem da reforma" },
       {
@@ -542,7 +542,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Quem investe nessas categorias pode receber Green Card mais rápido — em alguns casos, em menos de 24 meses.",
+        text: "Quem investe nessas categorias pode receber Green Card mais rápido - em alguns casos, em menos de 24 meses.",
       },
       { type: "h2", id: "direto-vs-rc", text: "Investimento direto vs. Regional Center" },
       {
@@ -578,7 +578,7 @@ export const blogPosts: BlogPost[] = [
           "Você não tem perfil profissional para EB-1A nem EB-2 NIW, ou quer evitar o esforço de construir caso.",
           "Tem capital disponível e disposição de imobilizar por 5 a 7 anos.",
           "Quer trazer cônjuge e filhos como dependentes.",
-          "Quer flexibilidade total nos EUA — sem amarra com empregador.",
+          "Quer flexibilidade total nos EUA - sem amarra com empregador.",
         ],
       },
       {
@@ -622,13 +622,13 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "A EBGreen avalia gratuitamente seu perfil e ajuda a entender se o EB-5 é o caminho ou se outra rota — mais barata ou mais rápida — combina mais com seu objetivo.",
+        text: "A EBGreen avalia gratuitamente seu perfil e ajuda a entender se o EB-5 é o caminho ou se outra rota - mais barata ou mais rápida - combina mais com seu objetivo.",
       },
       { type: "cta", text: "Quero avaliar minha estratégia EB-5" },
     ],
     externalLinks: [
       {
-        label: "USCIS — EB-5 Immigrant Investor Program",
+        label: "USCIS - EB-5 Immigrant Investor Program",
         url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/eb-5-immigrant-investor-program",
       },
       {
@@ -653,14 +653,14 @@ export const blogPosts: BlogPost[] = [
     imagem: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&q=80&fit=crop",
     excerpt:
       "O orçamento honesto: taxas, advogado, mudança, primeiros 6 meses. Sem maquiagem, sem otimismo barato.",
-    metaTitle: "Quanto Custa Imigrar para os EUA em 2026 — Guia Completo | EBGreen",
+    metaTitle: "Quanto Custa Imigrar para os EUA em 2026 - Guia Completo | EBGreen",
     metaDescription:
       "O custo real para imigrar para os EUA em 2026: taxas USCIS, honorários, mudança e primeiros meses. Planilha realista para famílias brasileiras.",
     author: "Equipe EBGreen",
     content: [
       {
         type: "p",
-        text: "Quase todo brasileiro que pesquisa imigração começa fazendo a pergunta errada: \"quanto custa o Green Card?\". A pergunta certa é: \"quanto custa imigrar de verdade — do primeiro pagamento até estar com a vida montada nos EUA?\".",
+        text: "Quase todo brasileiro que pesquisa imigração começa fazendo a pergunta errada: \"quanto custa o Green Card?\". A pergunta certa é: \"quanto custa imigrar de verdade - do primeiro pagamento até estar com a vida montada nos EUA?\".",
       },
       {
         type: "p",
@@ -714,7 +714,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Cuidado com preço fora da curva — para baixo ou para cima. Honorário muito barato costuma vir de quem trata caso como produto. Honorário muito alto nem sempre vem de quem entrega mais. Compare estratégia, não só número.",
+        text: "Cuidado com preço fora da curva - para baixo ou para cima. Honorário muito barato costuma vir de quem trata caso como produto. Honorário muito alto nem sempre vem de quem entrega mais. Compare estratégia, não só número.",
       },
       { type: "h2", id: "logistica", text: "Mudança e logística" },
       {
@@ -743,7 +743,7 @@ export const blogPosts: BlogPost[] = [
           "Reserva de emergência mínima: 6 meses de despesa fixa.",
         ],
       },
-      { type: "h2", id: "totais", text: "Cenários totais — família de 4 pessoas" },
+      { type: "h2", id: "totais", text: "Cenários totais - família de 4 pessoas" },
       {
         type: "h3",
         text: "Cenário 1: EB-2 NIW via processo consular",
@@ -775,7 +775,7 @@ export const blogPosts: BlogPost[] = [
           "Mudança: vender mais no Brasil e comprar nos EUA costuma ser mais barato que container.",
           "Carro: usados de 2 a 4 anos têm relação custo-benefício superior.",
           "Plano de saúde: cotar na Open Enrollment certa pode reduzir 30 a 40%.",
-          "Escola: pública americana é referência em muitas regiões — pesquise distritos.",
+          "Escola: pública americana é referência em muitas regiões - pesquise distritos.",
           "Honorários: prefira escopo bem definido a pacotes \"all inclusive\" inflados.",
         ],
       },
@@ -797,11 +797,11 @@ export const blogPosts: BlogPost[] = [
     ],
     externalLinks: [
       {
-        label: "USCIS — Fee Schedule",
+        label: "USCIS - Fee Schedule",
         url: "https://www.uscis.gov/g-1055",
       },
       {
-        label: "Travel.gov — Fees for Visa Services",
+        label: "Travel.gov - Fees for Visa Services",
         url: "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fees.html",
       },
     ],
@@ -818,14 +818,14 @@ export const blogPosts: BlogPost[] = [
     leitura: "10 min",
     imagem: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80&fit=crop",
     excerpt:
-      "Não é sobre escrever bonito — é sobre evidência amarrada em narrativa. O passo a passo do dossiê que o USCIS aprova.",
+      "Não é sobre escrever bonito - é sobre evidência amarrada em narrativa. O passo a passo do dossiê que o USCIS aprova.",
     metaTitle: "Dossiê EB-2 NIW: Como Montar um Caso Aprovado | EBGreen",
     metaDescription:
       "Estrutura completa do dossiê EB-2 NIW: evidências por critério Dhanasar, cartas de recomendação, plano nacional e erros que derrubam casos.",
     author: "Equipe EBGreen",
     content: [
       { type: "p", text: "Dossiê de EB-2 NIW não é uma pilha de diplomas. É uma narrativa estruturada em torno de três perguntas que o oficial do USCIS faz no momento que abre o seu processo: o trabalho dela tem mérito e importância nacional? Ela está bem posicionada para continuar entregando isso? Faz sentido o governo dispensar a oferta de emprego no caso dela?" },
-      { type: "p", text: "Quem responde essas três perguntas com clareza, evidência e fluxo lógico, é aprovado. Quem entrega diploma, currículo e cartas soltas, recebe RFE — ou negativa." },
+      { type: "p", text: "Quem responde essas três perguntas com clareza, evidência e fluxo lógico, é aprovado. Quem entrega diploma, currículo e cartas soltas, recebe RFE - ou negativa." },
       { type: "h2", id: "estrutura", text: "A estrutura de um dossiê que funciona" },
       { type: "p", text: "Existem variações, mas todo dossiê forte tem os mesmos blocos. A diferença está na qualidade de cada um." },
       { type: "ordered", items: [
@@ -833,7 +833,7 @@ export const blogPosts: BlogPost[] = [
         "Tabela de evidência por critério Dhanasar.",
         "Cartas de recomendação (5 a 8, mescla de independentes e diretas).",
         "Plano de continuidade nos EUA (endeavor plan).",
-        "Pacote de evidências objetivas — diplomas, prêmios, métricas, mídia.",
+        "Pacote de evidências objetivas - diplomas, prêmios, métricas, mídia.",
         "Currículo profissional formatado para o oficial (não o seu LinkedIn)."
       ] },
       { type: "h2", id: "carta-peticao", text: "1. Carta de petição: a peça-mestre" },
@@ -842,9 +842,9 @@ export const blogPosts: BlogPost[] = [
       { type: "list", items: [
         "Sumário executivo de 1 página.",
         "Quem é o peticionário (formação, trajetória, posição atual).",
-        "Critério 1 — mérito substancial e importância nacional, com dados.",
-        "Critério 2 — posicionamento, com prova de execução.",
-        "Critério 3 — porque dispensar a oferta de emprego beneficia os EUA.",
+        "Critério 1 - mérito substancial e importância nacional, com dados.",
+        "Critério 2 - posicionamento, com prova de execução.",
+        "Critério 3 - porque dispensar a oferta de emprego beneficia os EUA.",
         "Conclusão objetiva."
       ] },
       { type: "callout", title: "Tom da carta", text: "Profissional, factual, sem adjetivos exagerados. \"Líder reconhecido mundialmente\" enfraquece. \"Citado em 217 publicações revisadas por pares\" fortalece." },
@@ -856,7 +856,7 @@ export const blogPosts: BlogPost[] = [
       { type: "p", text: "Vêm de pessoas que não trabalharam diretamente com você, mas conhecem seu impacto. São as mais valiosas, porque mostram alcance fora do seu círculo direto. Idealmente, líderes americanos da sua área." },
       { type: "h3", text: "Cartas diretas (40%)" },
       { type: "p", text: "De ex-chefes, sócios, colaboradores, clientes. Trazem prova operacional do que você entregou." },
-      { type: "callout", title: "Erro fatal", text: "Cartas com a mesma estrutura, escritas pelo próprio candidato e só assinadas pelo recomendante. O USCIS percebe — e pune. Cada carta precisa ter voz própria, exemplos próprios e ângulo próprio." },
+      { type: "callout", title: "Erro fatal", text: "Cartas com a mesma estrutura, escritas pelo próprio candidato e só assinadas pelo recomendante. O USCIS percebe - e pune. Cada carta precisa ter voz própria, exemplos próprios e ângulo próprio." },
       { type: "h2", id: "plano-continuidade", text: "4. Plano de continuidade nos EUA" },
       { type: "p", text: "É o documento que mais separa casos aprovados de negados em 2026. Não basta dizer \"pretendo continuar trabalhando na minha área\". O oficial quer ver:" },
       { type: "list", items: [
@@ -864,7 +864,7 @@ export const blogPosts: BlogPost[] = [
         "Cartas de interesse de empresas, hospitais, universidades ou clientes americanos.",
         "Projetos já em andamento ou conversas avançadas.",
         "Estrutura jurídica (LLC criada, plano de negócio se aplicável).",
-        "Alinhamento com prioridades nacionais americanas — saúde, segurança, tecnologia, sustentabilidade."
+        "Alinhamento com prioridades nacionais americanas - saúde, segurança, tecnologia, sustentabilidade."
       ] },
       { type: "h2", id: "evidencias", text: "5. Pacote de evidências objetivas" },
       { type: "p", text: "Tudo numerado, organizado em exhibits, com índice no início. Inclua:" },
@@ -888,14 +888,14 @@ export const blogPosts: BlogPost[] = [
         "Backup completo guardado pelo peticionário."
       ] },
       { type: "h2", id: "rfe", text: "E se vier RFE?" },
-      { type: "p", text: "Request for Evidence não é negativa. É uma chance de reforçar pontos específicos que o oficial considerou fracos. Casos bem montados que recebem RFE costumam ser aprovados após a resposta — desde que a resposta seja cirúrgica, não defensiva." },
+      { type: "p", text: "Request for Evidence não é negativa. É uma chance de reforçar pontos específicos que o oficial considerou fracos. Casos bem montados que recebem RFE costumam ser aprovados após a resposta - desde que a resposta seja cirúrgica, não defensiva." },
       { type: "quote", text: "Dossiê forte é dossiê em que cada parágrafo serve a uma decisão. Tudo que não ajuda a aprovar, atrapalha." },
       { type: "h2", id: "erros", text: "Erros que matam dossiês bons" },
       { type: "list", items: [
         "Foco no candidato, não no impacto.",
         "Cartas todas iguais, escritas pelo candidato.",
         "Plano de continuidade vago.",
-        "Misturar evidência forte com evidência fraca — a fraca contamina a forte.",
+        "Misturar evidência forte com evidência fraca - a fraca contamina a forte.",
         "Ignorar tradução juramentada de documentos brasileiros.",
         "Não ter equivalência acadêmica formal."
       ] },
@@ -903,8 +903,8 @@ export const blogPosts: BlogPost[] = [
       { type: "cta", text: "Quero análise do meu material EB-2 NIW" }
     ],
     externalLinks: [
-      { label: "USCIS — Petitioning for EB-2 NIW", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2" },
-      { label: "USCIS Policy Manual — National Interest Waiver", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-5" },
+      { label: "USCIS - Petitioning for EB-2 NIW", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2" },
+      { label: "USCIS Policy Manual - National Interest Waiver", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-5" },
       { label: "Matter of Dhanasar", url: "https://www.justice.gov/eoir/page/file/920996/download" }
     ],
     related: ["eb2-niw-guia-definitivo-2026", "eb2-niw-professores", "eb1a-talento-extraordinario"]
@@ -925,7 +925,7 @@ export const blogPosts: BlogPost[] = [
       "EB-3 para brasileiros: subcategorias, PERM, prazos atuais, custos e como encontrar empregador americano que patrocine.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "O EB-3 é a categoria de Green Card baseada em emprego mais usada do mundo. Ela cobre desde profissionais com diploma até trabalhadores sem qualificação formal. Para o brasileiro médio, é o caminho mais democrático — e também o mais demorado. Em 2026, entender a fila e a estratégia faz toda a diferença." },
+      { type: "p", text: "O EB-3 é a categoria de Green Card baseada em emprego mais usada do mundo. Ela cobre desde profissionais com diploma até trabalhadores sem qualificação formal. Para o brasileiro médio, é o caminho mais democrático - e também o mais demorado. Em 2026, entender a fila e a estratégia faz toda a diferença." },
       { type: "h2", id: "subcategorias", text: "As três subcategorias do EB-3" },
       { type: "ordered", items: [
         "Skilled Workers: vagas que exigem no mínimo 2 anos de experiência ou treinamento.",
@@ -942,7 +942,7 @@ export const blogPosts: BlogPost[] = [
       ] },
       { type: "callout", title: "PERM é a etapa decisiva", text: "O empregador precisa provar ao governo americano que recrutou no mercado local e não encontrou candidatos qualificados. Sem PERM bem feito, não há EB-3." },
       { type: "h2", id: "fila-2026", text: "Como está a fila em 2026" },
-      { type: "p", text: "Brasileiros não estão no chargeability India ou China, o que é uma vantagem grande. Mesmo assim, a fila do EB-3 vem se movendo de forma irregular. As datas de prioridade no Visa Bulletin oscilam mensalmente — consulte a versão atualizada antes de planejar." },
+      { type: "p", text: "Brasileiros não estão no chargeability India ou China, o que é uma vantagem grande. Mesmo assim, a fila do EB-3 vem se movendo de forma irregular. As datas de prioridade no Visa Bulletin oscilam mensalmente - consulte a versão atualizada antes de planejar." },
       { type: "list", items: [
         "Skilled / Professionals: fila razoável para brasileiros, em torno de 2 a 3 anos do PERM ao Green Card.",
         "Other Workers: fila tipicamente mais longa, podendo passar de 4 a 6 anos."
@@ -952,14 +952,14 @@ export const blogPosts: BlogPost[] = [
         "Enfermeiros, fisioterapeutas, técnicos de saúde com formação reconhecida.",
         "Engenheiros, arquitetos, programadores com diploma de graduação.",
         "Cozinheiros, soldadores, eletricistas, mecânicos com experiência comprovada.",
-        "Profissionais de hospitalidade, limpeza pesada, agricultura — em geral via Other Workers."
+        "Profissionais de hospitalidade, limpeza pesada, agricultura - em geral via Other Workers."
       ] },
       { type: "h2", id: "patrocinador", text: "Como encontrar empregador patrocinador" },
       { type: "list", items: [
         "Plataformas especializadas em vagas com sponsorship (MyVisaJobs, H1BData).",
         "Agências de recrutamento focadas em healthcare e hospitality.",
         "LinkedIn com filtro por empresas que historicamente patrocinam vistos.",
-        "Indicação direta — networking ainda é o caminho mais rápido.",
+        "Indicação direta - networking ainda é o caminho mais rápido.",
         "Programas de visto institucional em redes hospitalares e hoteleiras."
       ] },
       { type: "h2", id: "custos", text: "Custos típicos" },
@@ -986,12 +986,12 @@ export const blogPosts: BlogPost[] = [
         "Acreditar em prazos curtos prometidos por intermediários."
       ] },
       { type: "callout", title: "Sinal de alerta", text: "Empregador legítimo não cobra do candidato pelos custos do PERM. A lei americana proíbe. Se cobrarem, fuja." },
-      { type: "p", text: "A EBGreen avalia gratuitamente seu perfil e ajuda a entender qual subcategoria do EB-3 — ou se outra rota — combina mais com você." },
+      { type: "p", text: "A EBGreen avalia gratuitamente seu perfil e ajuda a entender qual subcategoria do EB-3 - ou se outra rota - combina mais com você." },
       { type: "cta", text: "Quero avaliar meu caso para EB-3" }
     ],
     externalLinks: [
-      { label: "USCIS — EB-3 Employment-Based Third Preference", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-third-preference-eb-3" },
-      { label: "DOL — PERM Labor Certification", url: "https://www.dol.gov/agencies/eta/foreign-labor/programs/permanent" },
+      { label: "USCIS - EB-3 Employment-Based Third Preference", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-third-preference-eb-3" },
+      { label: "DOL - PERM Labor Certification", url: "https://www.dol.gov/agencies/eta/foreign-labor/programs/permanent" },
       { label: "Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" }
     ],
     related: ["eb3-unskilled-patrocinador", "custo-real-imigrar-eua-2026", "ajuste-status-greencard"]
@@ -1013,11 +1013,11 @@ export const blogPosts: BlogPost[] = [
     author: "Equipe EBGreen",
     content: [
       { type: "p", text: "O E-2 é o visto de investidor mais usado nos Estados Unidos. Ele é renovável indefinidamente, permite que cônjuge trabalhe livremente em qualquer empresa, e exige investimento bem menor que o EB-5. Em troca, ele tem uma característica que muita gente descobre tarde: <strong>E-2 não é Green Card e não vira Green Card sozinho</strong>." },
-      { type: "p", text: "Saber usar o E-2 como porta de entrada — e não como destino final — é o que separa quem se estabelece dos que ficam em loop de renovação para sempre." },
+      { type: "p", text: "Saber usar o E-2 como porta de entrada - e não como destino final - é o que separa quem se estabelece dos que ficam em loop de renovação para sempre." },
       { type: "h2", id: "tratado", text: "Brasil tem direito ao E-2?" },
       { type: "p", text: "<strong>Sim. Desde 25 de julho de 2019</strong>, brasileiros passaram a poder solicitar o E-2 graças ao tratado de comércio entre Brasil e Estados Unidos. Antes disso, o E-2 estava fora de alcance do passaporte brasileiro." },
       { type: "h2", id: "como-funciona", text: "Como funciona o E-2" },
-      { type: "p", text: "O candidato investe um valor substancial em um negócio nos EUA — próprio ou em sociedade — e dirige esse negócio. O visto inicial costuma vir por 2 a 5 anos, renovável." },
+      { type: "p", text: "O candidato investe um valor substancial em um negócio nos EUA - próprio ou em sociedade - e dirige esse negócio. O visto inicial costuma vir por 2 a 5 anos, renovável." },
       { type: "list", items: [
         "Cônjuge recebe E-2 dependente e pode trabalhar em qualquer empresa.",
         "Filhos solteiros menores de 21 estudam livremente.",
@@ -1040,7 +1040,7 @@ export const blogPosts: BlogPost[] = [
         "Agências digitais, consultorias, tech.",
         "Pequenos hotéis e pousadas em destinos turísticos.",
         "E-commerce com operação física (warehouse + equipe).",
-        "Serviços profissionais — clínicas, escolas, academias."
+        "Serviços profissionais - clínicas, escolas, academias."
       ] },
       { type: "h2", id: "passo-a-passo", text: "Passo a passo do processo" },
       { type: "ordered", items: [
@@ -1053,7 +1053,7 @@ export const blogPosts: BlogPost[] = [
         "Aprovação e entrada nos EUA com vistos da família."
       ] },
       { type: "h2", id: "e2-vs-eb5", text: "E-2 vs. EB-5: o dilema do investidor" },
-      { type: "p", text: "Esse é o ponto crítico. O E-2 é mais barato, rápido e flexível — mas não dá Green Card. O EB-5 custa muito mais, mas dá residência permanente. Veja o comparativo aprofundado em <a href=\"/blog/e2-vs-eb5-investidor\">E-2 vs EB-5</a> e o guia de <a href=\"/blog/eb5-green-card-investimento-2026\">EB-5 em 2026</a>." },
+      { type: "p", text: "Esse é o ponto crítico. O E-2 é mais barato, rápido e flexível - mas não dá Green Card. O EB-5 custa muito mais, mas dá residência permanente. Veja o comparativo aprofundado em <a href=\"/blog/e2-vs-eb5-investidor\">E-2 vs EB-5</a> e o guia de <a href=\"/blog/eb5-green-card-investimento-2026\">EB-5 em 2026</a>." },
       { type: "h2", id: "ponte-greencard", text: "Como o E-2 vira ponte para o Green Card" },
       { type: "p", text: "Caminhos comuns de transição usados por empreendedores brasileiros:" },
       { type: "list", items: [
@@ -1065,10 +1065,10 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", id: "armadilhas", text: "Armadilhas comuns" },
       { type: "list", items: [
         "Comprar negócio sem due diligence financeira.",
-        "Subdimensionar capital de giro — operação morre no 2º ano.",
+        "Subdimensionar capital de giro - operação morre no 2º ano.",
         "Confundir E-2 com Green Card.",
         "Não preparar a transição desde o início.",
-        "Aporte feito por terceiros (proibido — o capital tem que ser do investidor)."
+        "Aporte feito por terceiros (proibido - o capital tem que ser do investidor)."
       ] },
       { type: "h2", id: "tempos-custos", text: "Tempos e custos típicos" },
       { type: "list", items: [
@@ -1078,12 +1078,12 @@ export const blogPosts: BlogPost[] = [
         "Estruturação do negócio + plano: USD 8.000 a 25.000.",
         "Honorários de assessoria de visto: USD 6.000 a 12.000."
       ] },
-      { type: "p", text: "A EBGreen ajuda a entender se o E-2 é o caminho certo — ou se outra rota mais aderente ao seu perfil entrega o que você procura." },
+      { type: "p", text: "A EBGreen ajuda a entender se o E-2 é o caminho certo - ou se outra rota mais aderente ao seu perfil entrega o que você procura." },
       { type: "cta", text: "Quero avaliar meu caso para E-2" }
     ],
     externalLinks: [
-      { label: "USCIS — E-2 Treaty Investors", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/e-2-treaty-investors" },
-      { label: "U.S. Department of State — E-2 Visa", url: "https://travel.state.gov/content/travel/en/us-visas/employment/treaty.html" },
+      { label: "USCIS - E-2 Treaty Investors", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/e-2-treaty-investors" },
+      { label: "U.S. Department of State - E-2 Visa", url: "https://travel.state.gov/content/travel/en/us-visas/employment/treaty.html" },
       { label: "Tratado Brasil-EUA E-1/E-2", url: "https://br.usembassy.gov/visas/treaty-trader-e-1-and-treaty-investor-e-2-visas/" }
     ],
     related: ["e2-vs-eb5-investidor", "eb5-green-card-investimento-2026", "empreender-eua-imigrante"]
@@ -1104,7 +1104,7 @@ export const blogPosts: BlogPost[] = [
       "Guia honesto do EB-3 Other Workers: setores que contratam, sinais de fraude, tempo de fila e o passo a passo do processo.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "O EB-3 Other Workers — também conhecido como EB-3 unskilled — é a única rota legítima de Green Card para brasileiros sem diploma de graduação e sem capital de investidor. Em troca, é uma rota longa, com fila historicamente lenta, e infelizmente também é o terreno preferido de intermediários fraudulentos. Este artigo te ajuda a entender o caminho real." },
+      { type: "p", text: "O EB-3 Other Workers - também conhecido como EB-3 unskilled - é a única rota legítima de Green Card para brasileiros sem diploma de graduação e sem capital de investidor. Em troca, é uma rota longa, com fila historicamente lenta, e infelizmente também é o terreno preferido de intermediários fraudulentos. Este artigo te ajuda a entender o caminho real." },
       { type: "h2", id: "o-que-e", text: "O que é o EB-3 Other Workers" },
       { type: "p", text: "É a subcategoria do EB-3 para vagas que exigem menos de 2 anos de experiência ou treinamento. Foi pensada para preencher posições que o mercado americano não consegue suprir com mão de obra local." },
       { type: "p", text: "Para entender o EB-3 como um todo, leia primeiro <a href=\"/blog/eb3-trabalhadores-qualificados\">EB-3: Green Card para Trabalhadores Qualificados e Não Qualificados</a>." },
@@ -1117,7 +1117,7 @@ export const blogPosts: BlogPost[] = [
         "Cuidadores em casas de repouso e long-term care.",
         "Jardinagem e landscaping em escala."
       ] },
-      { type: "callout", title: "Realidade do mercado", text: "São empregos com salários reais entre USD 14 e USD 22/h em 2026, dependendo da região. O Green Card vem como benefício de longo prazo — a remuneração imediata costuma ser equivalente ao mercado local." },
+      { type: "callout", title: "Realidade do mercado", text: "São empregos com salários reais entre USD 14 e USD 22/h em 2026, dependendo da região. O Green Card vem como benefício de longo prazo - a remuneração imediata costuma ser equivalente ao mercado local." },
       { type: "h2", id: "fila", text: "A fila do EB-3 unskilled em 2026" },
       { type: "p", text: "Diferente do EB-3 Skilled e Professionals, o Other Workers tem fila própria e tipicamente mais longa. As datas de prioridade no Visa Bulletin oscilam mensalmente. É realista projetar entre 4 e 7 anos do PERM ao Green Card para brasileiros." },
       { type: "p", text: "Por causa disso, muitos candidatos optam por entrar nos EUA com outro visto válido (turismo, estudante) durante a espera, mas <strong>nunca trabalham</strong> antes da autorização. Trabalhar sem permissão derruba todo o processo." },
@@ -1135,7 +1135,7 @@ export const blogPosts: BlogPost[] = [
         "Histórico anterior de patrocínios bem-sucedidos (consulte MyVisaJobs).",
         "Contrato de trabalho com salário compatível com o prevailing wage da região.",
         "Não cobra do candidato pelos custos do PERM.",
-        "Comunicação direta com RH ou advogado oficial — sem intermediários estranhos."
+        "Comunicação direta com RH ou advogado oficial - sem intermediários estranhos."
       ] },
       { type: "callout", title: "Bandeira vermelha", text: "Se cobrarem do candidato pelos custos do PERM, é fraude. A lei americana proíbe expressamente. Empregador legítimo paga essa etapa." },
       { type: "h2", id: "fraudes", text: "As fraudes mais comuns nesse mercado" },
@@ -1156,13 +1156,13 @@ export const blogPosts: BlogPost[] = [
         "Mudança e estabelecimento: ver <a href=\"/blog/custo-real-imigrar-eua-2026\">orçamento completo</a>."
       ] },
       { type: "h2", id: "vale-a-pena", text: "Vale a pena?" },
-      { type: "p", text: "Vale para quem tem perfil compatível, paciência para a fila e disposição para trabalhar duro nos primeiros anos. Para a maioria das famílias brasileiras que se enquadram, o EB-3 unskilled é a única rota legítima de Green Card sem diploma e sem capital — e por isso continua sendo procurado." },
+      { type: "p", text: "Vale para quem tem perfil compatível, paciência para a fila e disposição para trabalhar duro nos primeiros anos. Para a maioria das famílias brasileiras que se enquadram, o EB-3 unskilled é a única rota legítima de Green Card sem diploma e sem capital - e por isso continua sendo procurado." },
       { type: "p", text: "A EBGreen avalia gratuitamente seu perfil, identifica patrocinadores legítimos e mostra cenários reais antes de qualquer recomendação." },
       { type: "cta", text: "Quero avaliar meu caso para EB-3 unskilled" }
     ],
     externalLinks: [
-      { label: "USCIS — EB-3 Other Workers", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-third-preference-eb-3" },
-      { label: "DOL — PERM Process", url: "https://www.dol.gov/agencies/eta/foreign-labor/programs/permanent" },
+      { label: "USCIS - EB-3 Other Workers", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-third-preference-eb-3" },
+      { label: "DOL - PERM Process", url: "https://www.dol.gov/agencies/eta/foreign-labor/programs/permanent" },
       { label: "Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" }
     ],
     related: ["eb3-trabalhadores-qualificados", "custo-real-imigrar-eua-2026", "ajuste-status-greencard"]
@@ -1177,13 +1177,13 @@ export const blogPosts: BlogPost[] = [
     leitura: "8 min",
     imagem: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80&fit=crop",
     excerpt:
-      "Mais que estudar — uma porta inteligente para morar, trabalhar e construir trajetória nos Estados Unidos.",
+      "Mais que estudar - uma porta inteligente para morar, trabalhar e construir trajetória nos Estados Unidos.",
     metaTitle: "Visto F-1 em 2026: Estudar nos EUA e Construir Carreira | EBGreen",
     metaDescription:
       "Tudo sobre o visto F-1: como aplicar, comprovação financeira, OPT, STEM extension e o caminho do estudante ao Green Card.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "O F-1 é o visto de estudante. Em 2026, ele continua sendo uma das portas mais inteligentes para o sonho americano — não só pelo diploma, mas pelo que vem depois: até 3 anos de autorização de trabalho via OPT/STEM, transição para visto de trabalho ou Green Card, e tempo para construir reputação nos EUA." },
+      { type: "p", text: "O F-1 é o visto de estudante. Em 2026, ele continua sendo uma das portas mais inteligentes para o sonho americano - não só pelo diploma, mas pelo que vem depois: até 3 anos de autorização de trabalho via OPT/STEM, transição para visto de trabalho ou Green Card, e tempo para construir reputação nos EUA." },
       { type: "h2", id: "como-funciona", text: "Como funciona o F-1" },
       { type: "p", text: "Você precisa ser admitido em uma escola, college ou universidade americana certificada pelo SEVP (Student and Exchange Visitor Program). A escola emite o formulário I-20, que é o que abre seu pedido de visto na embaixada." },
       { type: "list", items: [
@@ -1195,7 +1195,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", id: "passo-a-passo", text: "Passo a passo do processo" },
       { type: "ordered", items: [
         "Escolher escola certificada pelo SEVP.",
-        "Ser aceito formalmente — receber o I-20.",
+        "Ser aceito formalmente - receber o I-20.",
         "Pagar a taxa SEVIS (USD 350 em 2026).",
         "Preencher o DS-160 e pagar a taxa MRV (USD 185).",
         "Agendar entrevista no consulado americano.",
@@ -1240,21 +1240,21 @@ export const blogPosts: BlogPost[] = [
       ] },
       { type: "h2", id: "armadilhas", text: "Armadilhas mais comuns" },
       { type: "list", items: [
-        "Escolher escola sem reputação só pelo preço — desvaloriza diploma e dificulta OPT.",
-        "Trabalhar fora das regras (CPT/OPT) — perda imediata do status.",
+        "Escolher escola sem reputação só pelo preço - desvaloriza diploma e dificulta OPT.",
+        "Trabalhar fora das regras (CPT/OPT) - perda imediata do status.",
         "Subestimar a comprovação financeira na entrevista.",
         "Não planejar transição F-1 → trabalho desde o primeiro semestre.",
-        "Confundir F-1 com green card — F-1 não dá residência permanente automaticamente."
+        "Confundir F-1 com green card - F-1 não dá residência permanente automaticamente."
       ] },
       { type: "h2", id: "vale", text: "Vale a pena em 2026?" },
       { type: "p", text: "Para quem tem perfil acadêmico, jovem ou em transição de carreira, o F-1 ainda é uma das portas mais elegantes para os Estados Unidos. Permite tempo, networking e flexibilidade que outros vistos não oferecem." },
-      { type: "p", text: "A EBGreen ajuda a planejar a jornada completa — da escolha da escola à transição para o visto definitivo." },
+      { type: "p", text: "A EBGreen ajuda a planejar a jornada completa - da escolha da escola à transição para o visto definitivo." },
       { type: "cta", text: "Quero planejar meu F-1 com estratégia" }
     ],
     externalLinks: [
-      { label: "USCIS — Students and Exchange Visitors", url: "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors" },
-      { label: "Study in the States — DHS", url: "https://studyinthestates.dhs.gov/" },
-      { label: "U.S. Department of State — Student Visa", url: "https://travel.state.gov/content/travel/en/us-visas/study/student-visa.html" }
+      { label: "USCIS - Students and Exchange Visitors", url: "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors" },
+      { label: "Study in the States - DHS", url: "https://studyinthestates.dhs.gov/" },
+      { label: "U.S. Department of State - Student Visa", url: "https://travel.state.gov/content/travel/en/us-visas/study/student-visa.html" }
     ],
     related: ["opt-stem-extension", "visto-o1-rota-express", "eb2-niw-guia-definitivo-2026"]
   },
@@ -1271,9 +1271,9 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Como funciona o visto R-1: requisitos, organização patrocinadora, prazos, salário e o caminho do R-1 para o Green Card EB-4.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "O visto R-1 é a porta de entrada legítima para pastores, padres, missionários, ministros de música, líderes de juventude e outros trabalhadores religiosos que querem servir nos Estados Unidos com vínculo formal a uma organização de fé. Em 2026, ele continua sendo subutilizado por brasileiros — em parte por desconhecimento, em parte por mitos sobre o processo." },
+      { type: "p", text: "O visto R-1 é a porta de entrada legítima para pastores, padres, missionários, ministros de música, líderes de juventude e outros trabalhadores religiosos que querem servir nos Estados Unidos com vínculo formal a uma organização de fé. Em 2026, ele continua sendo subutilizado por brasileiros - em parte por desconhecimento, em parte por mitos sobre o processo." },
       { type: "h2", id: "o-que-e", text: "O que é o R-1" },
-      { type: "p", text: "O R-1 é um visto temporário de trabalho para indivíduos que vêm aos EUA exercer função religiosa em uma organização sem fins lucrativos reconhecida pelo IRS como religious organization (geralmente sob 501(c)(3)). É concedido inicialmente por até 30 meses, renovável por mais 30 meses — total de 5 anos." },
+      { type: "p", text: "O R-1 é um visto temporário de trabalho para indivíduos que vêm aos EUA exercer função religiosa em uma organização sem fins lucrativos reconhecida pelo IRS como religious organization (geralmente sob 501(c)(3)). É concedido inicialmente por até 30 meses, renovável por mais 30 meses - total de 5 anos." },
       { type: "h2", id: "requisitos", text: "Requisitos centrais" },
       { type: "list", items: [
         "Pertencer há pelo menos 2 anos a uma denominação religiosa de boa-fé com presença legítima nos EUA.",
@@ -1282,7 +1282,7 @@ export const blogPosts: BlogPost[] = [
         "Atuar em tempo integral (mínimo 20h/semana segundo o USCIS) com remuneração ou suporte comprovado.",
         "Não pretender residência permanente já no R-1 (intenção dupla limitada)."
       ] },
-      { type: "callout", title: "Atenção ao termo \"denominação\"", text: "USCIS exige consistência teológica — não basta ser cristão genérico. A organização nos EUA e a comunidade de origem no Brasil precisam compartilhar credo, governança e prática religiosa comparáveis." },
+      { type: "callout", title: "Atenção ao termo \"denominação\"", text: "USCIS exige consistência teológica - não basta ser cristão genérico. A organização nos EUA e a comunidade de origem no Brasil precisam compartilhar credo, governança e prática religiosa comparáveis." },
       { type: "h2", id: "passo-a-passo", text: "Passo a passo do processo" },
       { type: "ordered", items: [
         "Organização americana prepara e protocola o Form I-129 com suplemento R.",
@@ -1300,24 +1300,24 @@ export const blogPosts: BlogPost[] = [
         "Comprovação de capacidade financeira da organização para pagar o trabalhador."
       ] },
       { type: "h2", id: "salario", text: "Salário e sustento" },
-      { type: "p", text: "O R-1 admite duas formas de remuneração: salário convencional ou suporte não-monetário (moradia, alimentação, transporte) com valor de mercado documentado. Voluntariado puro não qualifica — precisa haver compensação demonstrável." },
+      { type: "p", text: "O R-1 admite duas formas de remuneração: salário convencional ou suporte não-monetário (moradia, alimentação, transporte) com valor de mercado documentado. Voluntariado puro não qualifica - precisa haver compensação demonstrável." },
       { type: "h2", id: "para-greencard", text: "Do R-1 para o Green Card (EB-4)" },
       { type: "p", text: "Após pelo menos 2 anos contínuos de trabalho religioso nos EUA (incluindo o tempo no R-1), o trabalhador pode pleitear residência permanente via categoria EB-4 (special immigrant religious worker). É um caminho legítimo, e detalhamos passo a passo no artigo <a href=\"/blog/r1-para-greencard\">R-1 para Green Card</a>." },
       { type: "h2", id: "armadilhas", text: "Armadilhas comuns" },
       { type: "list", items: [
-        "Organização patrocinadora pequena demais ou recém-criada — gera site visit problemática.",
+        "Organização patrocinadora pequena demais ou recém-criada - gera site visit problemática.",
         "Função descrita de forma genérica (\"ajudar na igreja\") em vez de específica.",
         "Documentação ministerial fraca do Brasil.",
         "Tentar usar R-1 como atalho para morar nos EUA sem real vocação religiosa."
       ] },
       { type: "h2", id: "vale", text: "Vale a pena em 2026?" },
-      { type: "p", text: "Para quem tem chamado real e organização parceira nos EUA, o R-1 é um dos caminhos mais elegantes do sistema imigratório — com transição clara para o Green Card. A EBGreen estrutura tanto o lado da organização patrocinadora quanto a documentação do candidato." },
+      { type: "p", text: "Para quem tem chamado real e organização parceira nos EUA, o R-1 é um dos caminhos mais elegantes do sistema imigratório - com transição clara para o Green Card. A EBGreen estrutura tanto o lado da organização patrocinadora quanto a documentação do candidato." },
       { type: "cta", text: "Quero avaliar meu caso R-1" }
     ],
     externalLinks: [
-      { label: "USCIS — R-1 Temporary Religious Workers", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/r-1-temporary-nonimmigrant-religious-workers" },
-      { label: "USCIS — EB-4 Religious Workers", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-fourth-preference-eb-4/special-immigrant-religious-workers" },
-      { label: "U.S. Department of State — Religious Worker Visa", url: "https://travel.state.gov/content/travel/en/us-visas/employment/religious-worker-visa.html" }
+      { label: "USCIS - R-1 Temporary Religious Workers", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/r-1-temporary-nonimmigrant-religious-workers" },
+      { label: "USCIS - EB-4 Religious Workers", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-fourth-preference-eb-4/special-immigrant-religious-workers" },
+      { label: "U.S. Department of State - Religious Worker Visa", url: "https://travel.state.gov/content/travel/en/us-visas/employment/religious-worker-visa.html" }
     ],
     related: ["r1-para-greencard", "eb2-niw-guia-definitivo-2026", "custo-real-imigrar-eua-2026"]
   },
@@ -1334,22 +1334,22 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Compare E-2 e EB-5 lado a lado: investimento mínimo, prazo, residência permanente, riscos e qual escolher para morar nos EUA.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "Investidor brasileiro que quer morar nos Estados Unidos tem dois caminhos clássicos: o visto E-2 (tratado de comércio) e o EB-5 (Green Card por investimento). Ambos exigem capital, mas resolvem problemas diferentes. Escolher errado custa anos — e às vezes o próprio investimento." },
+      { type: "p", text: "Investidor brasileiro que quer morar nos Estados Unidos tem dois caminhos clássicos: o visto E-2 (tratado de comércio) e o EB-5 (Green Card por investimento). Ambos exigem capital, mas resolvem problemas diferentes. Escolher errado custa anos - e às vezes o próprio investimento." },
       { type: "h2", id: "comparativo-rapido", text: "Comparativo rápido" },
       { type: "list", items: [
         "E-2: visto temporário renovável por tempo indeterminado, NÃO dá Green Card.",
         "EB-5: caminho direto para residência permanente para o investidor e família.",
-        "E-2: investimento \"substancial\" (sem mínimo legal — prática: USD 100k+).",
+        "E-2: investimento \"substancial\" (sem mínimo legal - prática: USD 100k+).",
         "EB-5: USD 800.000 (TEA) ou USD 1.050.000 (área comum) em 2026.",
         "E-2: aprovação em 2-6 meses; EB-5: 24-60 meses dependendo do consulado."
       ] },
       { type: "h2", id: "e2-detalhe", text: "Visto E-2 em detalhe" },
-      { type: "p", text: "O E-2 é baseado em tratado bilateral. O Brasil <strong>não</strong> tem tratado com os EUA — o que significa que brasileiros precisam primeiro obter cidadania de um país elegível (Portugal, Granada, Turquia, etc.) antes de aplicar. Veja detalhes no artigo <a href=\"/blog/visto-e2-investir-morar-eua\">Visto E-2: Como Investir e Morar nos EUA</a>." },
+      { type: "p", text: "O E-2 é baseado em tratado bilateral. O Brasil <strong>não</strong> tem tratado com os EUA - o que significa que brasileiros precisam primeiro obter cidadania de um país elegível (Portugal, Granada, Turquia, etc.) antes de aplicar. Veja detalhes no artigo <a href=\"/blog/visto-e2-investir-morar-eua\">Visto E-2: Como Investir e Morar nos EUA</a>." },
       { type: "list", items: [
         "Investimento ativo em negócio operacional (não passivo).",
         "Negócio precisa gerar empregos para americanos (não pode ser \"marginal\").",
         "Cônjuge recebe autorização de trabalho aberta (EAD).",
-        "Filhos até 21 anos como dependentes — perdem status ao completar 21.",
+        "Filhos até 21 anos como dependentes - perdem status ao completar 21.",
         "Sem caminho automático para Green Card."
       ] },
       { type: "h2", id: "eb5-detalhe", text: "EB-5 em detalhe" },
@@ -1364,26 +1364,26 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", id: "qual-escolher", text: "Qual escolher?" },
       { type: "callout", title: "Resumo prático", text: "Quer morar nos EUA rapidamente, sem precisar de Green Card agora? E-2 (com cidadania europeia). Quer Green Card de fato, com investimento estruturado e passivo via Regional Center? EB-5." },
       { type: "list", items: [
-        "Empreendedor operador, capital USD 150k–500k → E-2 (se elegível).",
+        "Empreendedor operador, capital USD 150k-500k → E-2 (se elegível).",
         "Investidor passivo, capital USD 800k+, busca Green Card → EB-5.",
         "Família com filhos chegando aos 21 → EB-5 trava o status.",
         "Quer testar mercado americano antes de comprometer Green Card → E-2 primeiro, EB-5 depois."
       ] },
       { type: "h2", id: "riscos", text: "Riscos que ninguém conta" },
       { type: "list", items: [
-        "E-2: se o negócio fechar, o visto cai junto — sem rede de proteção.",
+        "E-2: se o negócio fechar, o visto cai junto - sem rede de proteção.",
         "EB-5: projetos Regional Center variam muito em qualidade; auditoria do projeto é obrigatória.",
         "EB-5: se o projeto não criar os 10 empregos, Green Card permanente é negado.",
-        "Ambos: USCIS investiga origem dos fundos — todo dólar precisa ser rastreável e legal."
+        "Ambos: USCIS investiga origem dos fundos - todo dólar precisa ser rastreável e legal."
       ] },
       { type: "h2", id: "ebgreen", text: "Como decidir com a EBGreen" },
-      { type: "p", text: "Investidor sério não escolhe visto pelo preço — escolhe pelo objetivo de vida. A EBGreen avalia perfil familiar, horizonte de tempo, tolerância a risco e fontes de capital antes de recomendar uma rota. Em vários casos, a melhor estratégia combina E-2 no curto prazo com EB-5 no médio prazo." },
+      { type: "p", text: "Investidor sério não escolhe visto pelo preço - escolhe pelo objetivo de vida. A EBGreen avalia perfil familiar, horizonte de tempo, tolerância a risco e fontes de capital antes de recomendar uma rota. Em vários casos, a melhor estratégia combina E-2 no curto prazo com EB-5 no médio prazo." },
       { type: "cta", text: "Quero avaliar E-2 ou EB-5 para meu caso" }
     ],
     externalLinks: [
-      { label: "USCIS — E-2 Treaty Investors", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/e-2-treaty-investors" },
-      { label: "USCIS — EB-5 Immigrant Investor Program", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/eb-5-immigrant-investor-program" },
-      { label: "U.S. Department of State — Treaty Countries", url: "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fees/treaty.html" }
+      { label: "USCIS - E-2 Treaty Investors", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/e-2-treaty-investors" },
+      { label: "USCIS - EB-5 Immigrant Investor Program", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/eb-5-immigrant-investor-program" },
+      { label: "U.S. Department of State - Treaty Countries", url: "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fees/treaty.html" }
     ],
     related: ["visto-e2-investir-morar-eua", "eb5-green-card-investimento-2026", "custo-real-imigrar-eua-2026"]
   },
@@ -1403,41 +1403,41 @@ export const blogPosts: BlogPost[] = [
       { type: "p", text: "Nova York é uma cidade de extremos. É a porta mais cosmopolita dos EUA e, ao mesmo tempo, uma das mais caras do mundo. Para o brasileiro recém-chegado, a diferença entre uma transição tranquila e um pesadelo financeiro está em três decisões: bairro, escola e plano de saúde." },
       { type: "h2", id: "custo-real", text: "Custo real de morar em NY em 2026" },
       { type: "list", items: [
-        "Aluguel 1-bedroom em Manhattan: USD 4.000–6.500/mês.",
-        "Aluguel 1-bedroom em Brooklyn (Park Slope, Williamsburg): USD 3.200–4.800/mês.",
-        "Aluguel 2-bedroom em Astoria/Queens: USD 2.800–3.800/mês.",
-        "Aluguel em Newark/Jersey City (commute fácil): USD 2.200–3.500/mês.",
-        "Mercado para casal: USD 800–1.200/mês.",
+        "Aluguel 1-bedroom em Manhattan: USD 4.000-6.500/mês.",
+        "Aluguel 1-bedroom em Brooklyn (Park Slope, Williamsburg): USD 3.200-4.800/mês.",
+        "Aluguel 2-bedroom em Astoria/Queens: USD 2.800-3.800/mês.",
+        "Aluguel em Newark/Jersey City (commute fácil): USD 2.200-3.500/mês.",
+        "Mercado para casal: USD 800-1.200/mês.",
         "MetroCard mensal: USD 132.",
-        "Plano de saúde família (mercado privado): USD 1.800–3.500/mês."
+        "Plano de saúde família (mercado privado): USD 1.800-3.500/mês."
       ] },
-      { type: "callout", title: "Conta de fim de mês", text: "Família de 4 com vida de classe média em NY consome facilmente USD 12.000–18.000/mês. Salário-alvo realista para ter qualidade de vida: USD 200k+ household, ou estratégia explícita de moradia em New Jersey." },
+      { type: "callout", title: "Conta de fim de mês", text: "Família de 4 com vida de classe média em NY consome facilmente USD 12.000-18.000/mês. Salário-alvo realista para ter qualidade de vida: USD 200k+ household, ou estratégia explícita de moradia em New Jersey." },
       { type: "h2", id: "bairros", text: "Bairros mais escolhidos por brasileiros" },
       { type: "list", items: [
-        "Astoria (Queens) — diversidade, comida boa, metrô N/W direto para Manhattan.",
-        "Long Island City — moderna, vista de Manhattan, prédios novos, preço melhor que Manhattan.",
-        "Park Slope (Brooklyn) — famílias, escolas públicas excelentes, vibe de bairro.",
-        "Forest Hills (Queens) — silenciosa, casas de fato, escola pública forte.",
-        "Hoboken/Jersey City (NJ) — economia de 30-40% no aluguel, PATH train para Manhattan."
+        "Astoria (Queens) - diversidade, comida boa, metrô N/W direto para Manhattan.",
+        "Long Island City - moderna, vista de Manhattan, prédios novos, preço melhor que Manhattan.",
+        "Park Slope (Brooklyn) - famílias, escolas públicas excelentes, vibe de bairro.",
+        "Forest Hills (Queens) - silenciosa, casas de fato, escola pública forte.",
+        "Hoboken/Jersey City (NJ) - economia de 30-40% no aluguel, PATH train para Manhattan."
       ] },
       { type: "h2", id: "escolas", text: "Escolas: pública, charter ou privada?" },
-      { type: "p", text: "NY tem uma das melhores redes públicas dos EUA — mas a qualidade varia drasticamente por escola, não por bairro. Use o site do <a href=\"https://www.schools.nyc.gov\" target=\"_blank\" rel=\"noopener\">NYC DOE</a> e o GreatSchools.org para checar nota da escola específica antes de fechar contrato de aluguel." },
+      { type: "p", text: "NY tem uma das melhores redes públicas dos EUA - mas a qualidade varia drasticamente por escola, não por bairro. Use o site do <a href=\"https://www.schools.nyc.gov\" target=\"_blank\" rel=\"noopener\">NYC DOE</a> e o GreatSchools.org para checar nota da escola específica antes de fechar contrato de aluguel." },
       { type: "list", items: [
         "Pública gratuita: ótimas em Park Slope, Forest Hills, partes de Manhattan.",
         "Charter (pública gratuita por sorteio): Success Academy é referência.",
-        "Privada laica: USD 45.000–65.000/ano por filho.",
+        "Privada laica: USD 45.000-65.000/ano por filho.",
         "Privada bilíngue (português): poucas opções, lista de espera."
       ] },
       { type: "h2", id: "transporte", text: "Transporte e estilo de vida" },
-      { type: "p", text: "NY é a única cidade dos EUA onde NÃO ter carro é vantagem. Metrô (subway) opera 24h, é caótico mas funcional. Carro é estorvo — estacionamento mensal: USD 400–700. Ubers caros: orçamente USD 200–500/mês se for habitual." },
-      { type: "h2", id: "saude", text: "Saúde nos EUA — cuidado especial em NY" },
+      { type: "p", text: "NY é a única cidade dos EUA onde NÃO ter carro é vantagem. Metrô (subway) opera 24h, é caótico mas funcional. Carro é estorvo - estacionamento mensal: USD 400-700. Ubers caros: orçamente USD 200-500/mês se for habitual." },
+      { type: "h2", id: "saude", text: "Saúde nos EUA - cuidado especial em NY" },
       { type: "p", text: "Hospital em Manhattan sem seguro = falência. Antes de pisar em solo americano, contrate plano. Detalhamos opções no artigo <a href=\"/blog/saude-eua-imigrantes\">Saúde nos EUA para imigrantes</a>." },
       { type: "h2", id: "comunidade", text: "Comunidade brasileira" },
       { type: "list", items: [
         "Astoria e Newark concentram brasileiros há décadas.",
         "Igrejas brasileiras (católicas e evangélicas) em Queens e Newark.",
         "Mercados brasileiros: Brazil Plaza (NJ), Buzios (Astoria).",
-        "Consulado-Geral em Manhattan — agende serviços online com antecedência."
+        "Consulado-Geral em Manhattan - agende serviços online com antecedência."
       ] },
       { type: "h2", id: "primeiros-90", text: "Os primeiros 90 dias: roteiro" },
       { type: "ordered", items: [
@@ -1446,16 +1446,16 @@ export const blogPosts: BlogPost[] = [
         "Tirar driver's license / state ID (mesmo sem dirigir, é ID essencial).",
         "Contratar plano de saúde imediatamente.",
         "Matricular filhos na escola (DOE faz matrícula a qualquer época do ano).",
-        "Construir histórico de crédito — secured card é o ponto de partida.",
+        "Construir histórico de crédito - secured card é o ponto de partida.",
         "Registrar-se no consulado brasileiro."
       ] },
       { type: "h2", id: "vale", text: "Nova York vale a pena?" },
-      { type: "p", text: "Para quem busca carreira em finanças, mídia, arte, tech ou medicina, Nova York continua imbatível. Para famílias com perfil mais conservador ou que valorizam casa própria com quintal, a Flórida, Texas e Carolina do Norte costumam fazer mais sentido. A EBGreen ajuda a alinhar visto com cidade — porque escolher errado custa caro." },
+      { type: "p", text: "Para quem busca carreira em finanças, mídia, arte, tech ou medicina, Nova York continua imbatível. Para famílias com perfil mais conservador ou que valorizam casa própria com quintal, a Flórida, Texas e Carolina do Norte costumam fazer mais sentido. A EBGreen ajuda a alinhar visto com cidade - porque escolher errado custa caro." },
       { type: "cta", text: "Quero planejar minha mudança para os EUA" }
     ],
     externalLinks: [
       { label: "NYC Department of Education", url: "https://www.schools.nyc.gov/" },
-      { label: "MTA — Subway and Bus", url: "https://new.mta.info/" },
+      { label: "MTA - Subway and Bus", url: "https://new.mta.info/" },
       { label: "Consulado-Geral do Brasil em Nova York", url: "https://novayork.itamaraty.gov.br/" }
     ],
     related: ["saude-eua-imigrantes", "impostos-eua-imigrantes", "custo-real-imigrar-eua-2026"]
@@ -1473,18 +1473,18 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Comparativo entre O-1A (visto temporário) e EB-1A (Green Card): requisitos, prazos, custos e estratégia de transição entre os dois.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "Talento extraordinário tem dois caminhos para os EUA: O-1A (visto temporário) e EB-1A (Green Card direto). Os critérios são parecidos — mas o nível de prova, o prazo e o resultado final são bem diferentes. Escolher o caminho certo pode economizar 2 anos." },
+      { type: "p", text: "Talento extraordinário tem dois caminhos para os EUA: O-1A (visto temporário) e EB-1A (Green Card direto). Os critérios são parecidos - mas o nível de prova, o prazo e o resultado final são bem diferentes. Escolher o caminho certo pode economizar 2 anos." },
       { type: "h2", id: "comparativo", text: "Comparativo direto" },
       { type: "list", items: [
         "O-1A: visto temporário, 3 anos renováveis indefinidamente.",
         "EB-1A: Green Card permanente, com cidadania após 5 anos.",
         "O-1A: precisa de empregador ou agente patrocinador.",
-        "EB-1A: self-petition — você mesmo aplica, sem precisar de empregador.",
+        "EB-1A: self-petition - você mesmo aplica, sem precisar de empregador.",
         "O-1A: aprovação em 2-4 meses (com Premium Processing, 15 dias).",
         "EB-1A: aprovação em 8-18 meses sem fila para brasileiros em 2026."
       ] },
       { type: "h2", id: "criterios", text: "Os 8 (e 10) critérios" },
-      { type: "p", text: "O-1A pede que você atenda 3 dos 8 critérios; EB-1A pede 3 dos 10 critérios. Embora se sobreponham bastante, o EB-1A tem nível de evidência mais alto: USCIS aplica análise em duas etapas (Kazarian) — primeiro confere se você cumpre os critérios, depois faz \"final merits determination\" sobre se de fato você está no topo do seu campo." },
+      { type: "p", text: "O-1A pede que você atenda 3 dos 8 critérios; EB-1A pede 3 dos 10 critérios. Embora se sobreponham bastante, o EB-1A tem nível de evidência mais alto: USCIS aplica análise em duas etapas (Kazarian) - primeiro confere se você cumpre os critérios, depois faz \"final merits determination\" sobre se de fato você está no topo do seu campo." },
       { type: "h3", id: "criterios-comuns", text: "Critérios que aparecem em ambos" },
       { type: "list", items: [
         "Prêmios reconhecidos nacional ou internacionalmente.",
@@ -1496,9 +1496,9 @@ export const blogPosts: BlogPost[] = [
         "Salário ou remuneração significativamente acima da média.",
         "Sucesso comercial em artes (quando aplicável)."
       ] },
-      { type: "callout", title: "A grande diferença", text: "O-1A é \"você se destaca\". EB-1A é \"você está no top 1% do mundo\". O mesmo dossiê pode ser aprovado no O-1A e negado no EB-1A — não pela falta de critérios, mas pelo \"final merits\"." },
+      { type: "callout", title: "A grande diferença", text: "O-1A é \"você se destaca\". EB-1A é \"você está no top 1% do mundo\". O mesmo dossiê pode ser aprovado no O-1A e negado no EB-1A - não pela falta de critérios, mas pelo \"final merits\"." },
       { type: "h2", id: "estrategia", text: "Estratégia: O-1A primeiro, EB-1A depois?" },
-      { type: "p", text: "Sim — para muitos perfis, é a rota mais eficiente. Você entra nos EUA via O-1A em 3-4 meses, começa a construir mais evidências (citações, prêmios americanos, mídia) e aplica EB-1A com dossiê fortalecido 12-24 meses depois. Veja casos reais no artigo <a href=\"/blog/eb1a-talento-extraordinario\">EB-1A: Visto de Talento Extraordinário</a>." },
+      { type: "p", text: "Sim - para muitos perfis, é a rota mais eficiente. Você entra nos EUA via O-1A em 3-4 meses, começa a construir mais evidências (citações, prêmios americanos, mídia) e aplica EB-1A com dossiê fortalecido 12-24 meses depois. Veja casos reais no artigo <a href=\"/blog/eb1a-talento-extraordinario\">EB-1A: Visto de Talento Extraordinário</a>." },
       { type: "h2", id: "quem-deve", text: "Quem deve aplicar EB-1A direto" },
       { type: "list", items: [
         "Pesquisador com 100+ citações independentes em base como Scopus/Google Scholar.",
@@ -1515,17 +1515,17 @@ export const blogPosts: BlogPost[] = [
       ] },
       { type: "h2", id: "custos", text: "Custos comparados" },
       { type: "list", items: [
-        "O-1A: taxas USCIS USD 530 + Premium USD 2.805 (opcional) + advogado USD 6k–15k.",
-        "EB-1A: taxas USCIS USD 1.225 + Premium USD 2.805 + advogado USD 12k–25k."
+        "O-1A: taxas USCIS USD 530 + Premium USD 2.805 (opcional) + advogado USD 6k-15k.",
+        "EB-1A: taxas USCIS USD 1.225 + Premium USD 2.805 + advogado USD 12k-25k."
       ] },
       { type: "h2", id: "ebgreen", text: "Como a EBGreen escolhe a rota" },
       { type: "p", text: "Fazemos uma avaliação técnica do dossiê com base nos critérios objetivos e na jurisprudência recente do AAO (Administrative Appeals Office). Se o caso é EB-1A direto, vamos direto. Se faltam 12-18 meses de fortalecimento, começamos no O-1A com plano explícito de migração." },
       { type: "cta", text: "Quero avaliar O-1A ou EB-1A no meu caso" }
     ],
     externalLinks: [
-      { label: "USCIS — O-1 Individuals with Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/o-1-visa-individuals-with-extraordinary-ability-or-achievement" },
-      { label: "USCIS — EB-1 Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-first-preference-eb-1" },
-      { label: "USCIS Policy Manual — EB-1A", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-2" }
+      { label: "USCIS - O-1 Individuals with Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/o-1-visa-individuals-with-extraordinary-ability-or-achievement" },
+      { label: "USCIS - EB-1 Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-first-preference-eb-1" },
+      { label: "USCIS Policy Manual - EB-1A", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-2" }
     ],
     related: ["eb1a-talento-extraordinario", "visto-o1-rota-express", "dossie-eb2-niw-irrefutavel"]
   },
@@ -1542,7 +1542,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Guia completo para brasileiros que querem empreender nos EUA: visto certo, tipo de empresa (LLC vs C-Corp), impostos, banco e mitos que custam caro.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "Empreender nos EUA sendo brasileiro é mais simples do que dizem — e mais arriscado do que parece. Abrir uma empresa leva dias. Operar dentro da lei imigratória, ter conta bancária funcional e construir negócio que sustente um visto leva planejamento. Esse guia traz o caminho real, sem mitos." },
+      { type: "p", text: "Empreender nos EUA sendo brasileiro é mais simples do que dizem - e mais arriscado do que parece. Abrir uma empresa leva dias. Operar dentro da lei imigratória, ter conta bancária funcional e construir negócio que sustente um visto leva planejamento. Esse guia traz o caminho real, sem mitos." },
       { type: "h2", id: "primeira-pergunta", text: "Primeira pergunta: você precisa morar nos EUA?" },
       { type: "p", text: "Brasileiros podem ser donos 100% de empresa americana (LLC ou C-Corp) sem morar lá. O que NÃO podem é trabalhar fisicamente nessa empresa em solo americano sem visto adequado. Confundir isso é a primeira armadilha." },
       { type: "list", items: [
@@ -1566,13 +1566,13 @@ export const blogPosts: BlogPost[] = [
         "LLC: simples, tributação pass-through, sem dupla tributação no nível federal.",
         "C-Corp Delaware: padrão para startups com VC, dupla tributação mas estrutura escalável.",
         "S-Corp: NÃO disponível para non-resident aliens.",
-        "Sole proprietorship: NÃO recomendado — sem proteção patrimonial."
+        "Sole proprietorship: NÃO recomendado - sem proteção patrimonial."
       ] },
       { type: "h2", id: "passos-praticos", text: "Passos práticos para abrir e operar" },
       { type: "ordered", items: [
         "Escolher estado (Delaware, Wyoming, Florida ou Texas são os mais comuns).",
-        "Abrir entidade (custo USD 100–500 + agente registrado USD 100–300/ano).",
-        "Solicitar EIN (gratuito direto no IRS — leva 1 dia se aplicar via fax).",
+        "Abrir entidade (custo USD 100-500 + agente registrado USD 100-300/ano).",
+        "Solicitar EIN (gratuito direto no IRS - leva 1 dia se aplicar via fax).",
         "Abrir conta bancária americana (Mercury, Relay e Wise para non-residents; Chase exige presença física).",
         "Configurar contabilidade (QuickBooks ou Xero) desde o dia 1.",
         "Contratar CPA brasileiro-americano para evitar erros de IRS e Receita Federal.",
@@ -1582,18 +1582,18 @@ export const blogPosts: BlogPost[] = [
       { type: "p", text: "Brasileiro com empresa nos EUA tem obrigações em DOIS países. IRS quer Form 5472 + 1120 anualmente (multa por não entregar: USD 25.000). Receita Federal quer declaração de bens no exterior + DCBE no Banco Central se aplicável. Veja detalhes no artigo <a href=\"/blog/impostos-eua-imigrantes\">Impostos nos EUA para imigrantes</a>." },
       { type: "h2", id: "armadilhas", text: "Armadilhas frequentes" },
       { type: "list", items: [
-        "Operar com visto de turista (B1/B2) — é trabalho ilegal e barra futuros vistos.",
-        "Esquecer Form 5472 — multa pesada e quase automática.",
-        "Misturar contas pessoais e empresariais — quebra proteção da LLC.",
-        "Abrir empresa em estado errado pelo benefício tributário e operar em outro — paga em ambos.",
-        "Não documentar entrada de capital — gera problema de origem dos fundos no visto."
+        "Operar com visto de turista (B1/B2) - é trabalho ilegal e barra futuros vistos.",
+        "Esquecer Form 5472 - multa pesada e quase automática.",
+        "Misturar contas pessoais e empresariais - quebra proteção da LLC.",
+        "Abrir empresa em estado errado pelo benefício tributário e operar em outro - paga em ambos.",
+        "Não documentar entrada de capital - gera problema de origem dos fundos no visto."
       ] },
       { type: "h2", id: "ebgreen", text: "Como a EBGreen estrutura empreendedores" },
       { type: "p", text: "Empresa serve estratégia imigratória, não o contrário. Estruturamos a entidade certa, no estado certo, com o visto compatível e com governança que sustenta a aplicação no USCIS. Empresa improvisada vira motivo de RFE (Request for Evidence) e às vezes de negativa." },
       { type: "cta", text: "Quero estruturar minha empresa nos EUA" }
     ],
     externalLinks: [
-      { label: "IRS — International Taxpayers", url: "https://www.irs.gov/individuals/international-taxpayers" },
+      { label: "IRS - International Taxpayers", url: "https://www.irs.gov/individuals/international-taxpayers" },
       { label: "U.S. Small Business Administration", url: "https://www.sba.gov/" },
       { label: "Delaware Division of Corporations", url: "https://corp.delaware.gov/" }
     ],
@@ -1612,31 +1612,31 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Como funciona OPT e STEM Extension: prazos, elegibilidade, empregos qualificados e como transformar em visto de trabalho ou Green Card.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "OPT (Optional Practical Training) e STEM Extension são, juntos, o maior ativo escondido do visto F-1. Eles dão até 36 meses de autorização de trabalho legal nos EUA — tempo suficiente para construir carreira, conseguir patrocínio H-1B ou montar dossiê de EB-2 NIW. Quem ignora esse caminho desperdiça anos." },
+      { type: "p", text: "OPT (Optional Practical Training) e STEM Extension são, juntos, o maior ativo escondido do visto F-1. Eles dão até 36 meses de autorização de trabalho legal nos EUA - tempo suficiente para construir carreira, conseguir patrocínio H-1B ou montar dossiê de EB-2 NIW. Quem ignora esse caminho desperdiça anos." },
       { type: "h2", id: "o-que-e-opt", text: "O que é o OPT" },
       { type: "p", text: "O OPT é uma autorização de trabalho de 12 meses concedida pelo USCIS a estudantes F-1 graduados, dentro da área de estudo. Pode ser usado antes (pre-completion) ou depois (post-completion) da formatura. Quase todos optam pela versão post-completion." },
       { type: "list", items: [
         "12 meses por nível acadêmico (bacharelado, mestrado, doutorado).",
         "Trabalho precisa ser na área do diploma.",
-        "Empregador pode ser qualquer empresa americana — sem necessidade de patrocínio.",
+        "Empregador pode ser qualquer empresa americana - sem necessidade de patrocínio.",
         "Self-employment é permitido com regras específicas.",
         "Período máximo de 90 dias sem emprego durante o OPT regular."
       ] },
       { type: "h2", id: "stem", text: "STEM Extension: +24 meses" },
-      { type: "p", text: "Se seu diploma é em uma área STEM (Science, Technology, Engineering, Mathematics) listada pelo DHS, você pode estender o OPT por mais 24 meses — totalizando 36 meses. Em 2026, a lista STEM inclui ciência da computação, engenharias, dados, biotecnologia, atuária, neurociência, entre outras." },
+      { type: "p", text: "Se seu diploma é em uma área STEM (Science, Technology, Engineering, Mathematics) listada pelo DHS, você pode estender o OPT por mais 24 meses - totalizando 36 meses. Em 2026, a lista STEM inclui ciência da computação, engenharias, dados, biotecnologia, atuária, neurociência, entre outras." },
       { type: "callout", title: "Empregador qualificado", text: "Para STEM Extension, o empregador precisa estar inscrito no E-Verify e fornecer plano formal de treinamento (Form I-983). Freelancer e self-employment NÃO qualificam para STEM." },
       { type: "h2", id: "passo-a-passo", text: "Passo a passo do OPT" },
       { type: "ordered", items: [
         "Solicitar à DSO da escola um novo I-20 com recomendação de OPT.",
         "Protocolar Form I-765 ao USCIS com taxa de USD 470 (2026).",
-        "Aguardar EAD card (Employment Authorization Document) — 60-90 dias.",
+        "Aguardar EAD card (Employment Authorization Document) - 60-90 dias.",
         "Começar trabalho apenas após EAD aprovado e data de início.",
         "Reportar empregador à DSO em até 10 dias do início.",
         "Para STEM: aplicar até 90 dias antes do fim do OPT regular."
       ] },
       { type: "h2", id: "transicao", text: "Do OPT/STEM para visto de trabalho ou Green Card" },
       { type: "list", items: [
-        "OPT → H-1B via lottery (cap-subject) — caminho mais comum.",
+        "OPT → H-1B via lottery (cap-subject) - caminho mais comum.",
         "STEM dá 3 chances de lottery H-1B (3 anos de extensão).",
         "OPT → O-1A se construir reconhecimento (publicações, prêmios).",
         "OPT → EB-2 NIW se trabalho tiver mérito nacional comprovado.",
@@ -1645,19 +1645,19 @@ export const blogPosts: BlogPost[] = [
       { type: "p", text: "Veja também o artigo principal sobre o <a href=\"/blog/visto-f1-estudar-eua\">visto F-1</a> e o comparativo <a href=\"/blog/o1a-vs-eb1a\">O-1A vs EB-1A</a> para quem quer construir caso de talento extraordinário durante o OPT." },
       { type: "h2", id: "armadilhas", text: "Armadilhas comuns" },
       { type: "list", items: [
-        "Aplicar OPT tarde demais — janela é de 90 dias antes a 60 dias depois da formatura.",
-        "Trabalhar fora da área do diploma — caracteriza violação de status.",
-        "Não reportar mudança de empregador à DSO — perda de status silenciosa.",
-        "Esquecer Form I-983 no STEM — cancela extensão.",
-        "Acumular 90+ dias sem emprego no OPT regular — perda de status."
+        "Aplicar OPT tarde demais - janela é de 90 dias antes a 60 dias depois da formatura.",
+        "Trabalhar fora da área do diploma - caracteriza violação de status.",
+        "Não reportar mudança de empregador à DSO - perda de status silenciosa.",
+        "Esquecer Form I-983 no STEM - cancela extensão.",
+        "Acumular 90+ dias sem emprego no OPT regular - perda de status."
       ] },
       { type: "h2", id: "estrategia", text: "Estratégia inteligente" },
-      { type: "p", text: "Quem faz F-1 bem feito não trata o OPT como brinde — trata como rampa para visto definitivo. Nos primeiros 6 meses do OPT, já se planeja H-1B (lottery em março), patrocínio EB-2/EB-3 ou início de dossiê EB-1A/EB-2 NIW. A EBGreen ajuda a costurar essa transição desde o último ano de faculdade." },
+      { type: "p", text: "Quem faz F-1 bem feito não trata o OPT como brinde - trata como rampa para visto definitivo. Nos primeiros 6 meses do OPT, já se planeja H-1B (lottery em março), patrocínio EB-2/EB-3 ou início de dossiê EB-1A/EB-2 NIW. A EBGreen ajuda a costurar essa transição desde o último ano de faculdade." },
       { type: "cta", text: "Quero planejar minha transição OPT → visto definitivo" }
     ],
     externalLinks: [
-      { label: "USCIS — Optional Practical Training (OPT)", url: "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-opt-for-f-1-students" },
-      { label: "USCIS — STEM OPT Extension", url: "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/stem-opt" },
+      { label: "USCIS - Optional Practical Training (OPT)", url: "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-opt-for-f-1-students" },
+      { label: "USCIS - STEM OPT Extension", url: "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/stem-opt" },
       { label: "DHS STEM Designated Degree Program List", url: "https://www.ice.gov/sites/default/files/documents/stem-list.pdf" }
     ],
     related: ["visto-f1-estudar-eua", "o1a-vs-eb1a", "eb2-niw-guia-definitivo-2026"]
@@ -1675,9 +1675,9 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Como atletas e artistas brasileiros estruturam o EB-1A: critérios específicos, evidências, cases reais e estratégia de aprovação.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "EB-1A é o Green Card de talento extraordinário — e historicamente foi pensado para perfis exatamente como atletas profissionais e artistas com reconhecimento internacional. Em 2026, o USCIS continua aprovando esses casos de forma consistente quando o dossiê fala a linguagem certa: prêmios, mídia, julgamento técnico e impacto." },
+      { type: "p", text: "EB-1A é o Green Card de talento extraordinário - e historicamente foi pensado para perfis exatamente como atletas profissionais e artistas com reconhecimento internacional. Em 2026, o USCIS continua aprovando esses casos de forma consistente quando o dossiê fala a linguagem certa: prêmios, mídia, julgamento técnico e impacto." },
       { type: "h2", id: "por-que-funciona", text: "Por que EB-1A funciona bem para atletas e artistas" },
-      { type: "p", text: "Diferente de pesquisadores e executivos, atletas e artistas têm evidências naturalmente espetaculares: pódios, capas de revista, contratos de patrocínio, transmissões. O desafio não é gerar evidência — é organizá-la em torno dos critérios objetivos do USCIS." },
+      { type: "p", text: "Diferente de pesquisadores e executivos, atletas e artistas têm evidências naturalmente espetaculares: pódios, capas de revista, contratos de patrocínio, transmissões. O desafio não é gerar evidência - é organizá-la em torno dos critérios objetivos do USCIS." },
       { type: "h2", id: "criterios-praticos", text: "Como cada critério se traduz" },
       { type: "list", items: [
         "Prêmios: medalhas em campeonatos nacionais/internacionais, indicações Grammy/Latin Grammy, prêmios setoriais (APCA, Prêmio da Música Brasileira).",
@@ -1688,7 +1688,7 @@ export const blogPosts: BlogPost[] = [
         "Salário alto: contrato com clube, cachê de show, renda de royalties.",
         "Sucesso comercial nas artes: bilheteria, streams no Spotify, vendas de álbum."
       ] },
-      { type: "callout", title: "Detalhe técnico", text: "Para artistas, o USCIS aceita o critério extra de \"sucesso comercial em artes\" (8 CFR 204.5(h)(3)(x)). Spotify streams, bilheteria de turnê e cachês são evidências válidas — desde que apresentadas com contexto comparativo." },
+      { type: "callout", title: "Detalhe técnico", text: "Para artistas, o USCIS aceita o critério extra de \"sucesso comercial em artes\" (8 CFR 204.5(h)(3)(x)). Spotify streams, bilheteria de turnê e cachês são evidências válidas - desde que apresentadas com contexto comparativo." },
       { type: "h2", id: "cases", text: "Tipos de casos que aprovamos" },
       { type: "h3", id: "atleta", text: "Atleta de modalidade olímpica" },
       { type: "p", text: "Lutador de jiu-jitsu com títulos mundiais IBJJF, faixa preta, alunos campeões e contrato com academia americana. Dossiê fechado em 60 dias, aprovação em 5 meses sem RFE." },
@@ -1698,7 +1698,7 @@ export const blogPosts: BlogPost[] = [
       { type: "p", text: "Técnico de natação com atletas em Pan-Americano, certificação World Aquatics e artigos técnicos publicados. Aprovação via critério de julgamento + contribuições originais." },
       { type: "h2", id: "construir-evidencia", text: "Como construir evidência se ela ainda não existe" },
       { type: "list", items: [
-        "Buscar cobertura de mídia ativa — releases para jornalistas especializados.",
+        "Buscar cobertura de mídia ativa - releases para jornalistas especializados.",
         "Aceitar convites para palestras, masterclasses, banca de jurados.",
         "Documentar números de impacto (streams, alunos formados, vitórias).",
         "Publicar artigo técnico em revista de federação ou universidade.",
@@ -1708,7 +1708,7 @@ export const blogPosts: BlogPost[] = [
       { type: "list", items: [
         "Submeter mídia genérica (entrevistas em portais sem audiência).",
         "Confundir prêmios locais com prêmios de relevância nacional.",
-        "Cartas de recomendação genéricas e pessoais — USCIS quer pares técnicos.",
+        "Cartas de recomendação genéricas e pessoais - USCIS quer pares técnicos.",
         "Faltar plano de continuidade do trabalho nos EUA (intenção de continuar atuando)."
       ] },
       { type: "h2", id: "ebgreen", text: "Como a EBGreen monta o caso" },
@@ -1716,9 +1716,9 @@ export const blogPosts: BlogPost[] = [
       { type: "cta", text: "Quero avaliar meu caso EB-1A como atleta ou artista" }
     ],
     externalLinks: [
-      { label: "USCIS Policy Manual — Extraordinary Ability", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-2" },
-      { label: "USCIS — EB-1 Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-first-preference-eb-1" },
-      { label: "8 CFR 204.5(h) — Extraordinary Ability", url: "https://www.ecfr.gov/current/title-8/chapter-I/subchapter-B/part-204/section-204.5" }
+      { label: "USCIS Policy Manual - Extraordinary Ability", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-2" },
+      { label: "USCIS - EB-1 Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-first-preference-eb-1" },
+      { label: "8 CFR 204.5(h) - Extraordinary Ability", url: "https://www.ecfr.gov/current/title-8/chapter-I/subchapter-B/part-204/section-204.5" }
     ],
     related: ["eb1a-talento-extraordinario", "o1a-vs-eb1a", "visto-o1-rota-express"]
   },
@@ -1735,59 +1735,59 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Guia honesto de saúde nos EUA para imigrantes brasileiros: tipos de plano, custos, marketplace, Medicaid e o que evitar nos primeiros meses.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "Saúde é o item que mais quebra brasileiro recém-chegado nos EUA. Uma noite de pronto-socorro sem seguro: USD 8.000–25.000. Um parto: USD 20.000–60.000. Cirurgia comum: USD 50.000+. Não é exagero — é tabela. A boa notícia: existe estrutura legítima para se proteger desde o dia 1." },
+      { type: "p", text: "Saúde é o item que mais quebra brasileiro recém-chegado nos EUA. Uma noite de pronto-socorro sem seguro: USD 8.000-25.000. Um parto: USD 20.000-60.000. Cirurgia comum: USD 50.000+. Não é exagero - é tabela. A boa notícia: existe estrutura legítima para se proteger desde o dia 1." },
       { type: "h2", id: "como-funciona", text: "Como funciona o sistema de saúde americano" },
-      { type: "p", text: "Não há sistema único. A maioria dos americanos tem plano via empregador (employer-sponsored). Quem não tem usa o ACA Marketplace (Healthcare.gov). Os mais pobres têm Medicaid. Os 65+ têm Medicare. Imigrante recém-chegado geralmente fica fora dessas redes — daí a necessidade de plano específico." },
+      { type: "p", text: "Não há sistema único. A maioria dos americanos tem plano via empregador (employer-sponsored). Quem não tem usa o ACA Marketplace (Healthcare.gov). Os mais pobres têm Medicaid. Os 65+ têm Medicare. Imigrante recém-chegado geralmente fica fora dessas redes - daí a necessidade de plano específico." },
       { type: "h2", id: "tipos-de-plano", text: "Tipos de plano para imigrantes" },
       { type: "list", items: [
         "Visitor insurance (curto prazo): cobre 5 dias a 12 meses. Bom para chegada e turistas.",
         "ACA Marketplace: para residentes permanentes, asylees, refugiados e alguns visitantes legais.",
-        "Employer plan: padrão-ouro — empregador paga 60-80% do prêmio.",
+        "Employer plan: padrão-ouro - empregador paga 60-80% do prêmio.",
         "Medicaid: renda baixa, depende do estado e status migratório.",
         "Plano internacional brasileiro válido nos EUA: limitado, ler letras miúdas."
       ] },
-      { type: "callout", title: "ACA: quem tem direito", text: "Visto de trabalho (H-1B, L-1, O-1, E-2), Green Card, asilo e refúgio dão direito ao Marketplace. Visto de turista NÃO. F-1 geralmente compra plano da escola. Cada estado opera regras próprias — Califórnia e Nova York são mais inclusivos." },
+      { type: "callout", title: "ACA: quem tem direito", text: "Visto de trabalho (H-1B, L-1, O-1, E-2), Green Card, asilo e refúgio dão direito ao Marketplace. Visto de turista NÃO. F-1 geralmente compra plano da escola. Cada estado opera regras próprias - Califórnia e Nova York são mais inclusivos." },
       { type: "h2", id: "custos", text: "Custos reais em 2026" },
       { type: "list", items: [
-        "Visitor insurance família 4 pessoas: USD 250–600/mês.",
-        "ACA família 4, plano Silver: USD 1.400–2.800/mês (sem subsídio).",
-        "Employer plan família: USD 400–1.200/mês (parte do empregado).",
-        "Plano de estudante (F-1): USD 1.500–4.000/ano.",
-        "Co-pay típico: USD 30–80 por consulta após franquia."
+        "Visitor insurance família 4 pessoas: USD 250-600/mês.",
+        "ACA família 4, plano Silver: USD 1.400-2.800/mês (sem subsídio).",
+        "Employer plan família: USD 400-1.200/mês (parte do empregado).",
+        "Plano de estudante (F-1): USD 1.500-4.000/ano.",
+        "Co-pay típico: USD 30-80 por consulta após franquia."
       ] },
       { type: "h2", id: "rede", text: "Entender HMO, PPO, EPO" },
       { type: "list", items: [
         "HMO: barato, mas só atende dentro da rede e exige referral do médico de família.",
         "PPO: mais caro, escolhe qualquer médico, melhor para quem viaja muito.",
-        "EPO: meio termo — rede fechada, sem referral.",
+        "EPO: meio termo - rede fechada, sem referral.",
         "POS: híbrido, raro em alguns estados."
       ] },
       { type: "h2", id: "medicamentos", text: "Medicamentos: a outra conta" },
-      { type: "p", text: "Remédios nos EUA são caros — mas quase todo plano tem cobertura via formulary. Use GoodRx (cupons) para reduzir até 80% no balcão. Importar do Brasil é arriscado: alfândega confisca, e em caso controlado pode gerar problema imigratório." },
+      { type: "p", text: "Remédios nos EUA são caros - mas quase todo plano tem cobertura via formulary. Use GoodRx (cupons) para reduzir até 80% no balcão. Importar do Brasil é arriscado: alfândega confisca, e em caso controlado pode gerar problema imigratório." },
       { type: "h2", id: "primeiros-meses", text: "Os primeiros 90 dias: o que fazer" },
       { type: "ordered", items: [
         "Antes de embarcar: contratar visitor insurance para os primeiros 30-60 dias.",
-        "Ao chegar: pedir SSN (se elegível) — abre acesso a planos formais.",
+        "Ao chegar: pedir SSN (se elegível) - abre acesso a planos formais.",
         "Receber primeiro paycheck: revisar plano do empregador no qualifying event window (30 dias).",
         "Sem empregador: avaliar Marketplace dentro do special enrollment period (60 dias após mudar para os EUA).",
         "Família com filhos: checar elegibilidade ao CHIP (cobertura infantil estadual)."
       ] },
       { type: "h2", id: "armadilhas", text: "Armadilhas comuns" },
       { type: "list", items: [
-        "Confiar em cartão de crédito \"com seguro internacional\" para morada — não cobre.",
+        "Confiar em cartão de crédito \"com seguro internacional\" para morada - não cobre.",
         "Comprar plano sem checar rede de hospitais perto de casa.",
-        "Subestimar franquia (deductible) — USD 5.000+ por ano é comum.",
-        "Não reportar pre-existing condition — pode anular cobertura.",
-        "Ir ao ER por questões simples — usar urgent care (10x mais barato)."
+        "Subestimar franquia (deductible) - USD 5.000+ por ano é comum.",
+        "Não reportar pre-existing condition - pode anular cobertura.",
+        "Ir ao ER por questões simples - usar urgent care (10x mais barato)."
       ] },
       { type: "h2", id: "ebgreen", text: "Como a EBGreen orienta" },
       { type: "p", text: "Saúde é parte da estratégia de mudança. Antes de embarcar, mapeamos elegibilidade ao Marketplace pelo seu visto, simulamos custos e conectamos a brokers especializados em imigrantes. Combine com os artigos sobre <a href=\"/blog/viver-em-nova-york-imigrantes\">vida em Nova York</a> e <a href=\"/blog/impostos-eua-imigrantes\">impostos nos EUA</a>." },
       { type: "cta", text: "Quero planejar saúde antes de mudar para os EUA" }
     ],
     externalLinks: [
-      { label: "Healthcare.gov — Marketplace", url: "https://www.healthcare.gov/" },
-      { label: "Healthcare.gov — Immigrants Coverage", url: "https://www.healthcare.gov/immigrants/coverage/" },
-      { label: "Medicaid.gov — Eligibility", url: "https://www.medicaid.gov/medicaid/eligibility/" }
+      { label: "Healthcare.gov - Marketplace", url: "https://www.healthcare.gov/" },
+      { label: "Healthcare.gov - Immigrants Coverage", url: "https://www.healthcare.gov/immigrants/coverage/" },
+      { label: "Medicaid.gov - Eligibility", url: "https://www.medicaid.gov/medicaid/eligibility/" }
     ],
     related: ["viver-em-nova-york-imigrantes", "impostos-eua-imigrantes", "custo-real-imigrar-eua-2026"]
   },
@@ -1804,12 +1804,12 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Como funciona o O-1B para artistas: critérios, agente vs empregador, evidências, custos e como migrar para EB-1A depois.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "O O-1B é o visto temporário para artistas com habilidade extraordinária nas artes ou conquista extraordinária no cinema/TV. Em 2026, ele continua sendo o caminho mais elegante para músicos, atores, dançarinos, cineastas, fotógrafos, designers e artistas plásticos brasileiros que querem trabalhar legalmente nos EUA — sem precisar de Green Card imediato." },
+      { type: "p", text: "O O-1B é o visto temporário para artistas com habilidade extraordinária nas artes ou conquista extraordinária no cinema/TV. Em 2026, ele continua sendo o caminho mais elegante para músicos, atores, dançarinos, cineastas, fotógrafos, designers e artistas plásticos brasileiros que querem trabalhar legalmente nos EUA - sem precisar de Green Card imediato." },
       { type: "h2", id: "o1a-vs-o1b", text: "O-1A vs O-1B: a diferença" },
       { type: "list", items: [
-        "O-1A: ciência, educação, negócios, esportes — exige \"extraordinary ability\".",
-        "O-1B Artes: padrão um pouco mais baixo — \"distinction\" (proeminência).",
-        "O-1B Cinema/TV: padrão alto — \"extraordinary achievement\".",
+        "O-1A: ciência, educação, negócios, esportes - exige \"extraordinary ability\".",
+        "O-1B Artes: padrão um pouco mais baixo - \"distinction\" (proeminência).",
+        "O-1B Cinema/TV: padrão alto - \"extraordinary achievement\".",
         "O-1B Artes admite mais flexibilidade interpretativa do USCIS.",
         "Ambos: 3 anos iniciais, renovação anual indefinidamente."
       ] },
@@ -1823,9 +1823,9 @@ export const blogPosts: BlogPost[] = [
         "Salário alto comparado a outros no campo.",
         "Performance em eventos de reputação distinguida."
       ] },
-      { type: "callout", title: "Vantagem do O-1B", text: "USCIS aceita evidência \"comparável\" — se um critério não se aplica perfeitamente, você pode substituir por evidência equivalente. Isso dá flexibilidade que o O-1A não tem." },
+      { type: "callout", title: "Vantagem do O-1B", text: "USCIS aceita evidência \"comparável\" - se um critério não se aplica perfeitamente, você pode substituir por evidência equivalente. Isso dá flexibilidade que o O-1A não tem." },
       { type: "h2", id: "agente", text: "Agente vs empregador" },
-      { type: "p", text: "Diferente de outros vistos, O-1B aceita patrocínio de agente (não só empregador). Isso significa que artista freelancer pode entrar legalmente — o agente coordena bookings, shows, gravações com múltiplos contratantes." },
+      { type: "p", text: "Diferente de outros vistos, O-1B aceita patrocínio de agente (não só empregador). Isso significa que artista freelancer pode entrar legalmente - o agente coordena bookings, shows, gravações com múltiplos contratantes." },
       { type: "list", items: [
         "Empregador: contrato fixo com uma empresa (gravadora, teatro, estúdio).",
         "Agente como empregador: representa o artista junto a múltiplos contratantes.",
@@ -1849,24 +1849,24 @@ export const blogPosts: BlogPost[] = [
       { type: "list", items: [
         "USCIS I-129: USD 530.",
         "Premium Processing (15 dias): USD 2.805.",
-        "Advogado especializado: USD 6.000–12.000.",
-        "Consulta sindical: USD 250–500.",
-        "Total realista: USD 9.000–15.000."
+        "Advogado especializado: USD 6.000-12.000.",
+        "Consulta sindical: USD 250-500.",
+        "Total realista: USD 9.000-15.000."
       ] },
       { type: "h2", id: "armadilhas", text: "Armadilhas que derrubam casos" },
       { type: "list", items: [
         "Dossiê com mídia genérica (blogs sem audiência).",
         "Cartas pessoais de admiradores em vez de pares técnicos.",
-        "Itinerário vago — \"vai fazer shows pelos EUA\" sem datas concretas.",
+        "Itinerário vago - \"vai fazer shows pelos EUA\" sem datas concretas.",
         "Agente sem capacidade real de coordenar contratos.",
         "Falta de evidência de cobertura crítica em mídia americana ou internacional."
       ] },
       { type: "cta", text: "Quero avaliar meu caso O-1B" }
     ],
     externalLinks: [
-      { label: "USCIS — O-1B Extraordinary Ability in the Arts", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/o-1-visa-individuals-with-extraordinary-ability-or-achievement" },
-      { label: "USCIS Policy Manual — O Classification", url: "https://www.uscis.gov/policy-manual/volume-2-part-m" },
-      { label: "8 CFR 214.2(o) — O Nonimmigrant", url: "https://www.ecfr.gov/current/title-8/chapter-I/subchapter-B/part-214/section-214.2#p-214.2(o)" }
+      { label: "USCIS - O-1B Extraordinary Ability in the Arts", url: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/o-1-visa-individuals-with-extraordinary-ability-or-achievement" },
+      { label: "USCIS Policy Manual - O Classification", url: "https://www.uscis.gov/policy-manual/volume-2-part-m" },
+      { label: "8 CFR 214.2(o) - O Nonimmigrant", url: "https://www.ecfr.gov/current/title-8/chapter-I/subchapter-B/part-214/section-214.2#p-214.2(o)" }
     ],
     related: ["visto-o1-rota-express", "eb1a-atletas-artistas", "o1a-vs-eb1a"]
   },
@@ -1883,7 +1883,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Como migrar do visto R-1 para Green Card via EB-4 (Special Immigrant Religious Worker): requisitos, prazos, documentação e armadilhas.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "Trabalhador religioso com R-1 tem um caminho previsível — porém técnico — para o Green Card: a categoria EB-4 (Special Immigrant Religious Worker). Diferente de outras rotas, o EB-4 foi criado especificamente para ministros e trabalhadores religiosos. Em 2026, o programa segue ativo, com regras estáveis pós-INA Section 203(b)(4)." },
+      { type: "p", text: "Trabalhador religioso com R-1 tem um caminho previsível - porém técnico - para o Green Card: a categoria EB-4 (Special Immigrant Religious Worker). Diferente de outras rotas, o EB-4 foi criado especificamente para ministros e trabalhadores religiosos. Em 2026, o programa segue ativo, com regras estáveis pós-INA Section 203(b)(4)." },
       { type: "h2", id: "quem-pode", text: "Quem qualifica para o EB-4" },
       { type: "list", items: [
         "Ministros ordenados de denominação religiosa de boa-fé.",
@@ -1892,9 +1892,9 @@ export const blogPosts: BlogPost[] = [
         "Trabalho remunerado ou com sustento documentado.",
         "Organização patrocinadora qualificada como 501(c)(3) (ou equivalente)."
       ] },
-      { type: "callout", title: "Os 2 anos contam", text: "O trabalho religioso dos 2 anos pode ter ocorrido no Brasil, nos EUA, ou misturado — desde que contínuo. Tempo no R-1 conta. Voluntariado puro NÃO conta — precisa haver compensação documentada (salário ou suporte equivalente)." },
+      { type: "callout", title: "Os 2 anos contam", text: "O trabalho religioso dos 2 anos pode ter ocorrido no Brasil, nos EUA, ou misturado - desde que contínuo. Tempo no R-1 conta. Voluntariado puro NÃO conta - precisa haver compensação documentada (salário ou suporte equivalente)." },
       { type: "h2", id: "ministro-vs-trabalhador", text: "Ministro vs trabalhador religioso" },
-      { type: "p", text: "Ministros (pastores, padres, rabinos, imãs ordenados) têm caminho mais simples. Trabalhadores não-ministros (educadores religiosos, líderes de música, missionários leigos) precisam comprovar que a função é \"propriamente religiosa\" e tradicionalmente desempenhada por pessoa religiosa — não administrativa." },
+      { type: "p", text: "Ministros (pastores, padres, rabinos, imãs ordenados) têm caminho mais simples. Trabalhadores não-ministros (educadores religiosos, líderes de música, missionários leigos) precisam comprovar que a função é \"propriamente religiosa\" e tradicionalmente desempenhada por pessoa religiosa - não administrativa." },
       { type: "h2", id: "passo-a-passo", text: "Passo a passo do EB-4" },
       { type: "ordered", items: [
         "Organização americana protocola Form I-360 ao USCIS.",
@@ -1913,16 +1913,16 @@ export const blogPosts: BlogPost[] = [
         "Cartas de membros, líderes seniores e congregação."
       ] },
       { type: "h2", id: "tempo-fila", text: "Tempo de processo e fila" },
-      { type: "p", text: "I-360 leva 6-12 meses. Adjustment of Status, mais 8-14 meses. EB-4 tem visto disponível na maioria dos meses para brasileiros em 2026 — mas o Visa Bulletin do State Department oscila. Estratégia: protocolar I-360 cedo, monitorar bulletin mensalmente." },
+      { type: "p", text: "I-360 leva 6-12 meses. Adjustment of Status, mais 8-14 meses. EB-4 tem visto disponível na maioria dos meses para brasileiros em 2026 - mas o Visa Bulletin do State Department oscila. Estratégia: protocolar I-360 cedo, monitorar bulletin mensalmente." },
       { type: "h2", id: "trabalhador-nao-ministro", text: "Cuidado especial: non-minister sunset" },
-      { type: "callout", title: "Atenção legislativa", text: "A categoria de \"non-minister religious worker\" do EB-4 já foi alvo de sunset clause no Congresso e historicamente é renovada de tempos em tempos. Em 2026 está ativa, mas planeje com margem — quem é ministro ordenado tem mais segurança jurídica de longo prazo." },
+      { type: "callout", title: "Atenção legislativa", text: "A categoria de \"non-minister religious worker\" do EB-4 já foi alvo de sunset clause no Congresso e historicamente é renovada de tempos em tempos. Em 2026 está ativa, mas planeje com margem - quem é ministro ordenado tem mais segurança jurídica de longo prazo." },
       { type: "h2", id: "armadilhas", text: "Armadilhas frequentes" },
       { type: "list", items: [
-        "Documentação dos 2 anos imprecisa — datas com gap quebram a continuidade.",
+        "Documentação dos 2 anos imprecisa - datas com gap quebram a continuidade.",
         "Função descrita de forma administrativa em vez de religiosa.",
-        "Organização patrocinadora pequena demais — site visit derruba.",
-        "Salário muito abaixo do mercado — USCIS questiona genuinidade.",
-        "Não casar com o R-1 vigente — perda de status durante o I-485."
+        "Organização patrocinadora pequena demais - site visit derruba.",
+        "Salário muito abaixo do mercado - USCIS questiona genuinidade.",
+        "Não casar com o R-1 vigente - perda de status durante o I-485."
       ] },
       { type: "h2", id: "estrategia", text: "Estratégia recomendada" },
       { type: "p", text: "O caminho ideal começa antes do R-1: estruturar a organização patrocinadora e a função desde o início pensando no EB-4 futuro. Isso evita refazer documentação e fortalece o histórico de 2 anos. Veja o artigo principal <a href=\"/blog/visto-r1-religiosos\">Visto R-1</a> para entender a porta de entrada." },
@@ -1930,9 +1930,9 @@ export const blogPosts: BlogPost[] = [
       { type: "cta", text: "Quero avaliar meu caminho R-1 → EB-4" }
     ],
     externalLinks: [
-      { label: "USCIS — EB-4 Special Immigrant Religious Workers", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-fourth-preference-eb-4/special-immigrant-religious-workers" },
-      { label: "USCIS Policy Manual — Religious Workers", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-3" },
-      { label: "U.S. Department of State — Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" }
+      { label: "USCIS - EB-4 Special Immigrant Religious Workers", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-fourth-preference-eb-4/special-immigrant-religious-workers" },
+      { label: "USCIS Policy Manual - Religious Workers", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-3" },
+      { label: "U.S. Department of State - Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" }
     ],
     related: ["visto-r1-religiosos", "eb2-niw-guia-definitivo-2026", "ajuste-status-greencard"]
   },
@@ -1949,16 +1949,16 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Guia honesto de impostos nos EUA para brasileiros: residência fiscal, IRS, Receita Federal, FATCA, FBAR e como evitar dupla tributação.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "Imigrar para os EUA muda sua vida fiscal — em DOIS países. IRS quer saber tudo sobre sua renda mundial; Receita Federal quer saber sobre seus bens lá fora. Sem planejamento, brasileiro paga imposto duas vezes ou (pior) ignora obrigações e vira alvo de auditoria. Esse guia traz o essencial em linguagem direta." },
+      { type: "p", text: "Imigrar para os EUA muda sua vida fiscal - em DOIS países. IRS quer saber tudo sobre sua renda mundial; Receita Federal quer saber sobre seus bens lá fora. Sem planejamento, brasileiro paga imposto duas vezes ou (pior) ignora obrigações e vira alvo de auditoria. Esse guia traz o essencial em linguagem direta." },
       { type: "h2", id: "residencia-fiscal", text: "Residência fiscal: o conceito que muda tudo" },
-      { type: "p", text: "IRS classifica você por substantial presence test: 31 dias no ano corrente + 183 dias contando ano atual + 1/3 do anterior + 1/6 do retrasado. Se passou, é resident alien — tributado igual a americano sobre renda mundial. Se não, é nonresident alien — tributado só sobre renda US-source." },
+      { type: "p", text: "IRS classifica você por substantial presence test: 31 dias no ano corrente + 183 dias contando ano atual + 1/3 do anterior + 1/6 do retrasado. Se passou, é resident alien - tributado igual a americano sobre renda mundial. Se não, é nonresident alien - tributado só sobre renda US-source." },
       { type: "list", items: [
         "Green Card holder: SEMPRE resident alien, dia 1.",
         "H-1B, L-1, O-1, E-2: vira resident alien quando bate substantial presence.",
-        "F-1 e J-1: exceção — primeiros 5 anos como nonresident.",
+        "F-1 e J-1: exceção - primeiros 5 anos como nonresident.",
         "Brasil: regras próprias, mas residente fiscal brasileiro também tributa renda mundial."
       ] },
-      { type: "callout", title: "Saída fiscal do Brasil", text: "Antes de virar resident alien nos EUA, oficialize a Declaração de Saída Definitiva do País (DSDP) à Receita Federal. Sem ela, você continua residente fiscal brasileiro — e tributa duas vezes. Prazo: até último dia de fevereiro do ano seguinte à saída." },
+      { type: "callout", title: "Saída fiscal do Brasil", text: "Antes de virar resident alien nos EUA, oficialize a Declaração de Saída Definitiva do País (DSDP) à Receita Federal. Sem ela, você continua residente fiscal brasileiro - e tributa duas vezes. Prazo: até último dia de fevereiro do ano seguinte à saída." },
       { type: "h2", id: "tratado", text: "Tratado Brasil-EUA: existe?" },
       { type: "p", text: "NÃO. Brasil e EUA não têm tratado bilateral para evitar dupla tributação. Existe um acordo de reciprocidade que permite usar imposto pago lá como crédito aqui (e vice-versa) via Foreign Tax Credit (Form 1116) e o equivalente brasileiro. Mas a falta de tratado significa que você precisa estruturar bem para não pagar duas vezes a alíquota cheia." },
       { type: "h2", id: "obrigacoes-eua", text: "Obrigações principais nos EUA" },
@@ -1966,7 +1966,7 @@ export const blogPosts: BlogPost[] = [
         "Form 1040: declaração anual de renda (resident).",
         "Form 1040-NR: declaração para nonresident alien.",
         "FBAR (FinCEN 114): contas no exterior > USD 10.000 em qualquer momento.",
-        "Form 8938 (FATCA): ativos estrangeiros acima de USD 50k–600k dependendo do status.",
+        "Form 8938 (FATCA): ativos estrangeiros acima de USD 50k-600k dependendo do status.",
         "Form 5471: participação em empresa estrangeira (PJ no Brasil).",
         "Form 5472: empresa americana com sócio estrangeiro (multa USD 25.000 se esquecer)."
       ] },
@@ -1991,20 +1991,20 @@ export const blogPosts: BlogPost[] = [
       ] },
       { type: "h2", id: "armadilhas", text: "Armadilhas que custam caro" },
       { type: "list", items: [
-        "Não fazer DSDP no Brasil — dupla residência fiscal por anos.",
-        "Esquecer FBAR — multa civil até 50% do saldo da conta.",
-        "Não declarar empresa brasileira (Form 5471) — multa USD 10.000+.",
-        "Achar que conta no Brasil é \"invisível\" — bancos brasileiros reportam ao IRS via FATCA desde 2014.",
-        "Vender imóvel no Brasil sendo resident alien sem planejamento — IRS tributa ganho mundial."
+        "Não fazer DSDP no Brasil - dupla residência fiscal por anos.",
+        "Esquecer FBAR - multa civil até 50% do saldo da conta.",
+        "Não declarar empresa brasileira (Form 5471) - multa USD 10.000+.",
+        "Achar que conta no Brasil é \"invisível\" - bancos brasileiros reportam ao IRS via FATCA desde 2014.",
+        "Vender imóvel no Brasil sendo resident alien sem planejamento - IRS tributa ganho mundial."
       ] },
       { type: "h2", id: "ebgreen", text: "Como a EBGreen orienta" },
-      { type: "p", text: "Não substituímos CPA — coordenamos. Indicamos contadores brasileiro-americanos especializados em expats e estruturamos a transição fiscal entre Brasil e EUA, para que o visto não vire armadilha tributária. Combine com <a href=\"/blog/empreender-eua-imigrante\">empreender nos EUA</a> e <a href=\"/blog/viver-em-nova-york-imigrantes\">viver em NY</a>." },
+      { type: "p", text: "Não substituímos CPA - coordenamos. Indicamos contadores brasileiro-americanos especializados em expats e estruturamos a transição fiscal entre Brasil e EUA, para que o visto não vire armadilha tributária. Combine com <a href=\"/blog/empreender-eua-imigrante\">empreender nos EUA</a> e <a href=\"/blog/viver-em-nova-york-imigrantes\">viver em NY</a>." },
       { type: "cta", text: "Quero planejar minha transição fiscal Brasil-EUA" }
     ],
     externalLinks: [
-      { label: "IRS — International Taxpayers", url: "https://www.irs.gov/individuals/international-taxpayers" },
-      { label: "IRS — Substantial Presence Test", url: "https://www.irs.gov/individuals/international-taxpayers/substantial-presence-test" },
-      { label: "FinCEN — FBAR Reporting", url: "https://www.fincen.gov/report-foreign-bank-and-financial-accounts" }
+      { label: "IRS - International Taxpayers", url: "https://www.irs.gov/individuals/international-taxpayers" },
+      { label: "IRS - Substantial Presence Test", url: "https://www.irs.gov/individuals/international-taxpayers/substantial-presence-test" },
+      { label: "FinCEN - FBAR Reporting", url: "https://www.fincen.gov/report-foreign-bank-and-financial-accounts" }
     ],
     related: ["empreender-eua-imigrante", "viver-em-nova-york-imigrantes", "custo-real-imigrar-eua-2026"]
   },
@@ -2021,7 +2021,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Como professores e educadores brasileiros estruturam o EB-2 NIW: critérios Dhanasar, evidências, mérito nacional e cases reais.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "Professor brasileiro raramente se vê como candidato a Green Card por talento — e está errado. O EB-2 NIW (National Interest Waiver) foi pensado exatamente para profissionais cujo trabalho tem mérito nacional substancial. Educação, em qualquer país sério, é interesse nacional dos EUA. A questão é como provar isso ao USCIS." },
+      { type: "p", text: "Professor brasileiro raramente se vê como candidato a Green Card por talento - e está errado. O EB-2 NIW (National Interest Waiver) foi pensado exatamente para profissionais cujo trabalho tem mérito nacional substancial. Educação, em qualquer país sério, é interesse nacional dos EUA. A questão é como provar isso ao USCIS." },
       { type: "h2", id: "por-que-funciona", text: "Por que o EB-2 NIW funciona para educadores" },
       { type: "p", text: "Desde a decisão Matter of Dhanasar (2016), USCIS analisa NIW por 3 prongs: mérito substancial e importância nacional do trabalho; posição do candidato para avançar esse trabalho; e benefício de dispensar a oferta de emprego/PERM. Educação STEM, formação de professores, métodos pedagógicos inovadores e impacto em populações sub-representadas batem direto nos 3 critérios." },
       { type: "h2", id: "perfis", text: "Perfis de professor que aprovam" },
@@ -2054,17 +2054,17 @@ export const blogPosts: BlogPost[] = [
         "Solicitar 5-7 cartas de recomendação (mix Brasil + EUA).",
         "Compor dossiê com tradução juramentada.",
         "Protocolar Form I-140 + I-485 (se já estiver nos EUA) ou via consular.",
-        "Premium Processing opcional (USD 2.805 — decisão em 45 dias)."
+        "Premium Processing opcional (USD 2.805 - decisão em 45 dias)."
       ] },
       { type: "h2", id: "cases", text: "Cases reais" },
       { type: "list", items: [
-        "Coordenador de matemática de escola pública SP — método adotado por rede municipal: aprovação em 6 meses.",
+        "Coordenador de matemática de escola pública SP - método adotado por rede municipal: aprovação em 6 meses.",
         "Professora de alfabetização com método replicado em ONG nacional: aprovação com Premium em 45 dias.",
         "Professor universitário de engenharia com 80 citações: aprovação direta sem RFE."
       ] },
       { type: "h2", id: "armadilhas", text: "Armadilhas frequentes" },
       { type: "list", items: [
-        "Tratar NIW como concurso de currículo — é narrativa estratégica.",
+        "Tratar NIW como concurso de currículo - é narrativa estratégica.",
         "Cartas genéricas de admiradores em vez de pares técnicos.",
         "Não conectar trabalho brasileiro a problema americano específico.",
         "Subestimar evidências quantitativas (números convencem)."
@@ -2073,9 +2073,9 @@ export const blogPosts: BlogPost[] = [
       { type: "cta", text: "Quero avaliar meu caso EB-2 NIW como educador" }
     ],
     externalLinks: [
-      { label: "USCIS — EB-2 National Interest Waiver", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2" },
-      { label: "USCIS Policy Manual — NIW for STEM", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-5" },
-      { label: "Matter of Dhanasar — AAO Decision", url: "https://www.justice.gov/eoir/page/file/920996/download" }
+      { label: "USCIS - EB-2 National Interest Waiver", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2" },
+      { label: "USCIS Policy Manual - NIW for STEM", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-5" },
+      { label: "Matter of Dhanasar - AAO Decision", url: "https://www.justice.gov/eoir/page/file/920996/download" }
     ],
     related: ["eb2-niw-guia-definitivo-2026", "dossie-eb2-niw-irrefutavel", "ajuste-status-greencard"]
   },
@@ -2103,10 +2103,10 @@ export const blogPosts: BlogPost[] = [
       { type: "callout", title: "Concurrent filing", text: "Quando há visa number disponível na data do filing, você pode protocolar a petição imigratória (I-140 ou I-130) JUNTO com o I-485. Isso acelera o processo em 6-12 meses comparado a fazer em sequência." },
       { type: "h2", id: "vantagens", text: "Vantagens do AOS sobre Consular Processing" },
       { type: "list", items: [
-        "Permanece nos EUA durante todo o processo — sem voltar para entrevista no Brasil.",
+        "Permanece nos EUA durante todo o processo - sem voltar para entrevista no Brasil.",
         "Recebe EAD (autorização de trabalho aberta) em ~60-90 dias.",
-        "Recebe Advance Parole — pode viajar internacionalmente sem perder o I-485.",
-        "Cônjuge e filhos derivam — todos ajustam juntos.",
+        "Recebe Advance Parole - pode viajar internacionalmente sem perder o I-485.",
+        "Cônjuge e filhos derivam - todos ajustam juntos.",
         "Entrevista (quando ocorre) é nos EUA, em idioma do candidato escolhido."
       ] },
       { type: "h2", id: "documentos", text: "Documentação principal" },
@@ -2120,7 +2120,7 @@ export const blogPosts: BlogPost[] = [
         "Antecedentes criminais (Brasil + qualquer país onde morou 6+ meses)."
       ] },
       { type: "h2", id: "ead-ap", text: "EAD e Advance Parole: o combo essencial" },
-      { type: "p", text: "Enquanto o I-485 está pendente (12-24 meses comuns), você pode trabalhar em qualquer empresa via EAD e viajar internacionalmente via Advance Parole. Essas duas autorizações vêm em forma de cartão único (combo card) desde 2017. Sem o AP, sair dos EUA significa abandonar o I-485 — exceto se você tem H-1B/L-1 vigente, que permite reentrada normal." },
+      { type: "p", text: "Enquanto o I-485 está pendente (12-24 meses comuns), você pode trabalhar em qualquer empresa via EAD e viajar internacionalmente via Advance Parole. Essas duas autorizações vêm em forma de cartão único (combo card) desde 2017. Sem o AP, sair dos EUA significa abandonar o I-485 - exceto se você tem H-1B/L-1 vigente, que permite reentrada normal." },
       { type: "h2", id: "prazos", text: "Prazos típicos em 2026" },
       { type: "list", items: [
         "Receipt do I-485: 2-4 semanas.",
@@ -2130,15 +2130,15 @@ export const blogPosts: BlogPost[] = [
         "Decisão final: 12-24 meses dependendo da categoria e do field office."
       ] },
       { type: "h2", id: "entrevista", text: "Entrevista: como ela funciona" },
-      { type: "p", text: "USCIS pode pedir entrevista presencial no field office da região. Para casos baseados em emprego (EB-1, EB-2, EB-3), a entrevista costuma ser focada em verificar elegibilidade e identidade. Para casos de família (especialmente cônjuge), o oficial investiga genuinidade do casamento — fotos, contas conjuntas, viagens, declaração conjunta de imposto." },
+      { type: "p", text: "USCIS pode pedir entrevista presencial no field office da região. Para casos baseados em emprego (EB-1, EB-2, EB-3), a entrevista costuma ser focada em verificar elegibilidade e identidade. Para casos de família (especialmente cônjuge), o oficial investiga genuinidade do casamento - fotos, contas conjuntas, viagens, declaração conjunta de imposto." },
       { type: "h2", id: "armadilhas", text: "Armadilhas que travam ou negam" },
       { type: "list", items: [
-        "Sair dos EUA sem Advance Parole — abandono automático do I-485.",
+        "Sair dos EUA sem Advance Parole - abandono automático do I-485.",
         "Trabalhar fora do EAD ainda sem ele aprovado.",
         "Esquecer de atualizar endereço (Form AR-11) em até 10 dias após mudança.",
-        "Antecedente criminal não declarado — fraude grava o caso para sempre.",
+        "Antecedente criminal não declarado - fraude grava o caso para sempre.",
         "Visa retrogression: número de visto fica indisponível e congela o processo.",
-        "Casamento de fachada — investigação Stokes pode derrubar e gerar ban."
+        "Casamento de fachada - investigação Stokes pode derrubar e gerar ban."
       ] },
       { type: "h2", id: "consular-vs-aos", text: "AOS vs Consular Processing" },
       { type: "list", items: [
@@ -2152,9 +2152,9 @@ export const blogPosts: BlogPost[] = [
       { type: "cta", text: "Quero avaliar meu caminho via Adjustment of Status" }
     ],
     externalLinks: [
-      { label: "USCIS — Adjustment of Status (I-485)", url: "https://www.uscis.gov/green-card/green-card-processes-and-procedures/adjustment-of-status" },
-      { label: "U.S. Department of State — Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" },
-      { label: "USCIS — Form I-485 Instructions", url: "https://www.uscis.gov/i-485" }
+      { label: "USCIS - Adjustment of Status (I-485)", url: "https://www.uscis.gov/green-card/green-card-processes-and-procedures/adjustment-of-status" },
+      { label: "U.S. Department of State - Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" },
+      { label: "USCIS - Form I-485 Instructions", url: "https://www.uscis.gov/i-485" }
     ],
     related: ["eb2-niw-guia-definitivo-2026", "eb1a-talento-extraordinario", "custo-real-imigrar-eua-2026"]
   },
@@ -2171,9 +2171,9 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Como CEOs, founders e executivos brasileiros estruturam o EB-1A: critérios aplicáveis, evidências de mídia, board, prêmios e narrativa.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "Executivo brasileiro de carreira sólida costuma ouvir que EB-1A é \"para Nobel e atleta olímpico\". É falso. Em 2026, USCIS aprova EB-1A regularmente para CEOs, founders, board members e executivos C-level que sabem traduzir trajetória corporativa nos critérios certos. O segredo está na narrativa — não no cargo." },
+      { type: "p", text: "Executivo brasileiro de carreira sólida costuma ouvir que EB-1A é \"para Nobel e atleta olímpico\". É falso. Em 2026, USCIS aprova EB-1A regularmente para CEOs, founders, board members e executivos C-level que sabem traduzir trajetória corporativa nos critérios certos. O segredo está na narrativa - não no cargo." },
       { type: "h2", id: "por-que-cabe", text: "Por que EB-1A cabe para executivos" },
-      { type: "p", text: "Os 10 critérios do EB-1A (8 CFR 204.5(h)(3)) foram redigidos de forma agnóstica ao campo. Prêmios, mídia, julgamento, contribuições originais, salário acima da média — tudo isso existe abundantemente no mundo corporativo. O problema é que executivos raramente organizam essas evidências, porque \"é apenas trabalho\"." },
+      { type: "p", text: "Os 10 critérios do EB-1A (8 CFR 204.5(h)(3)) foram redigidos de forma agnóstica ao campo. Prêmios, mídia, julgamento, contribuições originais, salário acima da média - tudo isso existe abundantemente no mundo corporativo. O problema é que executivos raramente organizam essas evidências, porque \"é apenas trabalho\"." },
       { type: "h2", id: "criterios-praticos", text: "Como cada critério se traduz no mundo corporativo" },
       { type: "list", items: [
         "Prêmios: Best CEO setorial, Endeavor Entrepreneur, Forbes Under 30, EY Entrepreneur of the Year, Great Place to Work.",
@@ -2185,7 +2185,7 @@ export const blogPosts: BlogPost[] = [
         "Salário alto: comprovado por contracheque + benchmarks (Mercer, Korn Ferry).",
         "Papel-chave em organização de reputação distinguida: posição C-level em empresa reconhecida."
       ] },
-      { type: "callout", title: "O critério mais subutilizado", text: "\"Papel-chave em organização de reputação distinguida\" (8 CFR 204.5(h)(3)(viii)) é a porta de entrada natural para C-levels — mas exige provar tanto a reputação da empresa quanto seu papel essencial. Muitos casos perdem esse critério por falta de evidência objetiva." },
+      { type: "callout", title: "O critério mais subutilizado", text: "\"Papel-chave em organização de reputação distinguida\" (8 CFR 204.5(h)(3)(viii)) é a porta de entrada natural para C-levels - mas exige provar tanto a reputação da empresa quanto seu papel essencial. Muitos casos perdem esse critério por falta de evidência objetiva." },
       { type: "h2", id: "perfis", text: "Perfis que aprovam consistentemente" },
       { type: "list", items: [
         "CEO/founder de empresa com receita 50M+ e cobertura de mídia.",
@@ -2203,27 +2203,27 @@ export const blogPosts: BlogPost[] = [
         "Publicar 3-5 artigos em mídia de negócios reconhecida.",
         "Aceitar position de board advisory em startup ou ONG.",
         "Ser jurado em prêmio setorial.",
-        "Concorrer ativamente a prêmios (não esperar — submeter candidatura).",
+        "Concorrer ativamente a prêmios (não esperar - submeter candidatura).",
         "Contratar relações públicas para 12 meses de cobertura estratégica."
       ] },
       { type: "h2", id: "cartas", text: "Cartas de recomendação que funcionam" },
       { type: "p", text: "USCIS desconfia de cartas de funcionários e investidores diretos. Quer pares independentes do mesmo nível, idealmente com porção americana. Mix ideal: 2 cartas de pares brasileiros + 2 cartas de executivos americanos do mesmo setor + 1 carta de acadêmico/think tank que valide impacto." },
       { type: "h2", id: "armadilhas", text: "Armadilhas frequentes" },
       { type: "list", items: [
-        "Confundir \"sou CEO\" com critério atendido — o cargo não basta sem evidência objetiva.",
+        "Confundir \"sou CEO\" com critério atendido - o cargo não basta sem evidência objetiva.",
         "Submeter mídia de portais sem audiência ou pagos.",
         "Cartas auto-elogiosas e sem detalhes técnicos verificáveis.",
-        "Não definir \"o campo\" — sem foco, qualquer evidência fica genérica.",
-        "Ignorar critério de salário — basta mostrar contracheque + benchmark."
+        "Não definir \"o campo\" - sem foco, qualquer evidência fica genérica.",
+        "Ignorar critério de salário - basta mostrar contracheque + benchmark."
       ] },
       { type: "h2", id: "estrategia", text: "Estratégia: O-1A → EB-1A" },
       { type: "p", text: "Para executivos com dossiê em construção, faz sentido começar pelo <a href=\"/blog/visto-o1-rota-express\">O-1A</a> e migrar para EB-1A após 12-18 meses de fortalecimento nos EUA. Veja o comparativo em <a href=\"/blog/o1a-vs-eb1a\">O-1A vs EB-1A</a> e o guia base <a href=\"/blog/eb1a-talento-extraordinario\">EB-1A: Talento Extraordinário</a>." },
       { type: "cta", text: "Quero avaliar meu caso EB-1A como executivo" }
     ],
     externalLinks: [
-      { label: "USCIS — EB-1 Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-first-preference-eb-1" },
-      { label: "USCIS Policy Manual — EB-1A", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-2" },
-      { label: "8 CFR 204.5(h) — Extraordinary Ability", url: "https://www.ecfr.gov/current/title-8/chapter-I/subchapter-B/part-204/section-204.5" }
+      { label: "USCIS - EB-1 Extraordinary Ability", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-first-preference-eb-1" },
+      { label: "USCIS Policy Manual - EB-1A", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-2" },
+      { label: "8 CFR 204.5(h) - Extraordinary Ability", url: "https://www.ecfr.gov/current/title-8/chapter-I/subchapter-B/part-204/section-204.5" }
     ],
     related: ["eb1a-talento-extraordinario", "o1a-vs-eb1a", "empreender-eua-imigrante"]
   },
@@ -2240,19 +2240,19 @@ export const blogPosts: BlogPost[] = [
     metaDescription: "Janela política, cambial e regulatória de 2026 para imigração aos EUA: Visa Bulletin, novas regras USCIS e por que adiar custa caro.",
     author: "Equipe EBGreen",
     content: [
-      { type: "p", text: "Imigrar nunca é decisão de calendário — é de vida. Mas existem janelas em que o sistema americano fica mais favorável, e existem anos em que adiar custa anos. 2026 entra na primeira categoria. Esse artigo reúne os 5 motivos objetivos pelos quais começar agora é estrategicamente superior a esperar 2027." },
+      { type: "p", text: "Imigrar nunca é decisão de calendário - é de vida. Mas existem janelas em que o sistema americano fica mais favorável, e existem anos em que adiar custa anos. 2026 entra na primeira categoria. Esse artigo reúne os 5 motivos objetivos pelos quais começar agora é estrategicamente superior a esperar 2027." },
       { type: "h2", id: "motivo-1", text: "1. Visa Bulletin favorável para brasileiros" },
-      { type: "p", text: "Em 2026, EB-1, EB-2 e EB-3 estão com datas \"current\" ou próximas para nascidos no Brasil — o que significa fila curta ou inexistente. Isso é exceção histórica: Índia e China esperam 10+ anos nas mesmas categorias. Brasileiros estão em uma janela rara onde aprovação do I-140 → I-485 acontece em meses, não décadas." },
-      { type: "callout", title: "Por que importa", text: "Quem entra agora pega visa number imediato. Quem espera 2027 pode encontrar retrogression — categoria \"fechando\" para o Brasil — e ter que esperar fila se formar. O custo de oportunidade é real." },
+      { type: "p", text: "Em 2026, EB-1, EB-2 e EB-3 estão com datas \"current\" ou próximas para nascidos no Brasil - o que significa fila curta ou inexistente. Isso é exceção histórica: Índia e China esperam 10+ anos nas mesmas categorias. Brasileiros estão em uma janela rara onde aprovação do I-140 → I-485 acontece em meses, não décadas." },
+      { type: "callout", title: "Por que importa", text: "Quem entra agora pega visa number imediato. Quem espera 2027 pode encontrar retrogression - categoria \"fechando\" para o Brasil - e ter que esperar fila se formar. O custo de oportunidade é real." },
       { type: "h2", id: "motivo-2", text: "2. STEM-friendly policy do USCIS" },
       { type: "p", text: "Desde janeiro 2022, USCIS aplica guidance favorável a NIW em STEM. Em 2024-2026, o padrão de aprovação para EB-2 NIW STEM segue elevado. Pesquisadores, engenheiros, profissionais de tech, ciência e saúde têm vento a favor. Veja em <a href=\"/blog/eb2-niw-guia-definitivo-2026\">EB-2 NIW: Guia Definitivo</a>." },
       { type: "h2", id: "motivo-3", text: "3. EB-5 reformado funcionando" },
-      { type: "p", text: "Após o RIA (2022), o EB-5 ganhou set-aside visas para áreas rurais e TEA — categorias com fila curtíssima para brasileiros. Em 2026, projetos rurais aprovam green card condicional em 12-18 meses, contra 4-5 anos do EB-5 \"comum\". Detalhes em <a href=\"/blog/eb5-green-card-investimento-2026\">EB-5 em 2026</a>." },
+      { type: "p", text: "Após o RIA (2022), o EB-5 ganhou set-aside visas para áreas rurais e TEA - categorias com fila curtíssima para brasileiros. Em 2026, projetos rurais aprovam green card condicional em 12-18 meses, contra 4-5 anos do EB-5 \"comum\". Detalhes em <a href=\"/blog/eb5-green-card-investimento-2026\">EB-5 em 2026</a>." },
       { type: "h2", id: "motivo-4", text: "4. Câmbio e custo relativo" },
-      { type: "p", text: "Câmbio R$/USD e custo de vida nos EUA tornam 2026 um ano em que o investimento total em processo (advogado, taxas, mudança) é alto, sim — mas previsível. Adiar 2-3 anos historicamente significou inflação dolarizada de taxas USCIS (subiram em 2024) + custo de vida em alta. Quem planeja agora trava preço." },
+      { type: "p", text: "Câmbio R$/USD e custo de vida nos EUA tornam 2026 um ano em que o investimento total em processo (advogado, taxas, mudança) é alto, sim - mas previsível. Adiar 2-3 anos historicamente significou inflação dolarizada de taxas USCIS (subiram em 2024) + custo de vida em alta. Quem planeja agora trava preço." },
       { type: "h2", id: "motivo-5", text: "5. Janela política e estabilidade regulatória" },
-      { type: "p", text: "Mudanças de governo nos EUA afetam diretamente políticas imigratórias. Quem está com petição protocolada antes de qualquer mudança normativa fica protegido por princípio de \"adjudication on the record\" — ou seja, regras vigentes na data do filing tendem a prevalecer. Começar agora reduz exposição a futuras mudanças." },
-      { type: "h2", id: "perfis", text: "Quem deve agir agora — sem desculpa" },
+      { type: "p", text: "Mudanças de governo nos EUA afetam diretamente políticas imigratórias. Quem está com petição protocolada antes de qualquer mudança normativa fica protegido por princípio de \"adjudication on the record\" - ou seja, regras vigentes na data do filing tendem a prevalecer. Começar agora reduz exposição a futuras mudanças." },
+      { type: "h2", id: "perfis", text: "Quem deve agir agora - sem desculpa" },
       { type: "list", items: [
         "Profissional STEM com 5+ anos de carreira: EB-2 NIW.",
         "Pesquisador com publicações: EB-2 NIW ou EB-1A.",
@@ -2267,16 +2267,16 @@ export const blogPosts: BlogPost[] = [
         "Escolha da rota imigratória (1 sessão estratégica).",
         "Coleta e organização de evidências (4-12 semanas).",
         "Construção do dossiê (4-8 semanas).",
-        "Protocolo no USCIS — começa o relógio oficial."
+        "Protocolo no USCIS - começa o relógio oficial."
       ] },
       { type: "h2", id: "encerramento", text: "O custo de não decidir" },
-      { type: "p", text: "Toda decisão adiada de imigração custa, em média, 18-36 meses de vida americana — anos que não voltam. 2026 é um ano de janela aberta. A EBGreen ajuda você a transformar avaliação em ação, com clareza sobre rota, prazo e investimento necessários." },
+      { type: "p", text: "Toda decisão adiada de imigração custa, em média, 18-36 meses de vida americana - anos que não voltam. 2026 é um ano de janela aberta. A EBGreen ajuda você a transformar avaliação em ação, com clareza sobre rota, prazo e investimento necessários." },
       { type: "cta", text: "Quero começar minha avaliação em 2026" }
     ],
     externalLinks: [
-      { label: "U.S. Department of State — Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" },
-      { label: "USCIS — STEM Designated Degree Program", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-5" },
-      { label: "USCIS — EB-5 Reform and Integrity Act", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/eb-5-immigrant-investor-program" }
+      { label: "U.S. Department of State - Visa Bulletin", url: "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" },
+      { label: "USCIS - STEM Designated Degree Program", url: "https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-5" },
+      { label: "USCIS - EB-5 Reform and Integrity Act", url: "https://www.uscis.gov/working-in-the-united-states/permanent-workers/eb-5-immigrant-investor-program" }
     ],
     related: ["eb2-niw-guia-definitivo-2026", "eb1a-talento-extraordinario", "eb5-green-card-investimento-2026"]
   },

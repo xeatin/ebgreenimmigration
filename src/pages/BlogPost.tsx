@@ -69,7 +69,7 @@ const Block = ({ block }: { block: ArticleBlock }) => {
           </p>
           {block.author && (
             <footer className="mt-3 text-sm font-body text-green-deep/60 not-italic">
-              — {block.author}
+              - {block.author}
             </footer>
           )}
         </blockquote>
@@ -240,7 +240,7 @@ const BlogPost = () => {
         style={{ width: `${progress}%` }}
       />
 
-      {/* Hero — dark compact split: photo left, text right */}
+      {/* Hero - dark compact split: photo left, text right */}
       <header className="pt-24 md:pt-28 pb-8 md:pb-10 bg-green-deep relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-30 pointer-events-none"

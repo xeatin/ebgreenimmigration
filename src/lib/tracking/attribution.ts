@@ -82,7 +82,7 @@ const sanitizeAttribution = (attr: Attribution): Attribution => {
 const safeStorage = () => {
   if (typeof window === "undefined") return null;
   try {
-    // Test write — throws in private browsing on some Safari versions
+    // Test write - throws in private browsing on some Safari versions
     const t = "__ebg_test__";
     window.localStorage.setItem(t, "1");
     window.localStorage.removeItem(t);
@@ -137,7 +137,7 @@ const readFromUrl = (): Partial<Attribution> => {
 
 /**
  * Initialize attribution capture. Call once on app boot.
- * Safe to call multiple times — idempotent.
+ * Safe to call multiple times - idempotent.
  */
 export const initAttribution = (): Attribution => {
   if (typeof window === "undefined") return {};

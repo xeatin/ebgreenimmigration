@@ -4,9 +4,9 @@ export const translations = {
   // Navbar
   nav: {
     topBar: {
-      pt: "Escritório nos EUA — Orlando, FL | Miami, FL",
-      en: "Office in the USA — Orlando, FL | Miami, FL",
-      es: "Oficina en EE.UU. — Orlando, FL | Miami, FL",
+      pt: "Escritório nos EUA - Orlando, FL | Miami, FL",
+      en: "Office in the USA - Orlando, FL | Miami, FL",
+      es: "Oficina en EE.UU. - Orlando, FL | Miami, FL",
     },
     home: { pt: "Início", en: "Home", es: "Inicio" },
     differentials: { pt: "Diferenciais", en: "Why Us", es: "Diferenciales" },
@@ -289,7 +289,7 @@ export const translations = {
     hoursLabel: { pt: "ATENDIMENTO", en: "OFFICE HOURS", es: "HORARIO" },
     officesLabel: { pt: "ESCRITÓRIOS", en: "OFFICES", es: "OFICINAS" },
     officesValue: { pt: "EUA • Brasil • Europa", en: "USA • Brazil • Europe", es: "EE.UU. • Brasil • Europa" },
-    hoursValue: { pt: "Segunda – Sexta: 9:00 AM – 5:00 PM (Eastern Time)", en: "Monday – Friday: 9:00 AM – 5:00 PM (Eastern Time)", es: "Lunes – Viernes: 9:00 AM – 5:00 PM (Eastern Time)" },
+    hoursValue: { pt: "Segunda - Sexta: 9:00 AM - 5:00 PM (Eastern Time)", en: "Monday - Friday: 9:00 AM - 5:00 PM (Eastern Time)", es: "Lunes - Viernes: 9:00 AM - 5:00 PM (Eastern Time)" },
     freeConsultationBullets: [
       { pt: "Avaliação sem compromisso do seu perfil", en: "No-obligation profile assessment", es: "Evaluación sin compromiso de su perfil" },
       { pt: "Identificamos a melhor rota para o seu caso", en: "We identify the best route for your case", es: "Identificamos la mejor ruta para su caso" },
@@ -333,9 +333,9 @@ export const translations = {
         es: "Teléfono inválido (solo dígitos, mínimo 6)",
       },
       phoneBrInvalid: {
-        pt: "Telefone brasileiro inválido — inclua o DDD (ex: 11 98765-4321)",
-        en: "Invalid Brazilian phone — include area code (DDD, e.g. 11 98765-4321)",
-        es: "Teléfono brasileño inválido — incluya el DDD (ej: 11 98765-4321)",
+        pt: "Telefone brasileiro inválido - inclua o DDD (ex: 11 98765-4321)",
+        en: "Invalid Brazilian phone - include area code (DDD, e.g. 11 98765-4321)",
+        es: "Teléfono brasileño inválido - incluya el DDD (ej: 11 98765-4321)",
       },
       educationRequired: { pt: "Selecione sua formação", en: "Select your education", es: "Seleccione su formación" },
       experienceRequired: { pt: "Selecione sua experiência", en: "Select your experience", es: "Seleccione su experiencia" },
@@ -488,8 +488,8 @@ export const translations = {
     },
     timelineList: {
       "O quanto antes": { pt: "O quanto antes", en: "As soon as possible", es: "Lo antes posible" },
-      "Em breve (1–3 meses)": { pt: "Em breve (1–3 meses)", en: "Soon (1–3 months)", es: "Pronto (1–3 meses)" },
-      "Planejando (3–12 meses)": { pt: "Planejando (3–12 meses)", en: "Planning (3–12 months)", es: "Planeando (3–12 meses)" },
+      "Em breve (1-3 meses)": { pt: "Em breve (1-3 meses)", en: "Soon (1-3 months)", es: "Pronto (1-3 meses)" },
+      "Planejando (3-12 meses)": { pt: "Planejando (3-12 meses)", en: "Planning (3-12 months)", es: "Planeando (3-12 meses)" },
       "Ainda estou explorando opções": { pt: "Ainda estou explorando opções", en: "Still exploring options", es: "Aún explorando opciones" },
     },
     statusList: {

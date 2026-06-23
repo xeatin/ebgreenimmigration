@@ -78,8 +78,8 @@ const CURRENT_STATUS_OPTIONS = [
 
 const TIMELINE_OPTIONS = [
   "O quanto antes",
-  "Em breve (1–3 meses)",
-  "Planejando (3–12 meses)",
+  "Em breve (1-3 meses)",
+  "Planejando (3-12 meses)",
   "Ainda estou explorando opções",
 ];
 
@@ -169,7 +169,7 @@ const suggestVisa = (data: {
   const EB3_REASON = "Para perfis iguais ao seu, existe um caminho excelente para o seu <strong>Green Card</strong>: a categoria <strong>EB-3</strong>, que pode abranger tanto <strong>trabalhadores qualificados (Skilled Workers)</strong> quanto <strong>trabalhadores não qualificados (Unskilled / Other Workers)</strong>, dependendo da vaga oferecida pelo empregador nos EUA.\n\nO EB-3 é uma das vias mais sólidas para profissionais com <strong>ensino médio, formação técnica ou experiência profissional</strong>, e também pode ser uma opção para trabalhadores sem qualificação específica, desde que exista uma <strong>oferta de emprego permanente nos EUA</strong>.\n\n<strong>A boa notícia? Se você já tem um sponsor ou está em negociação com uma empresa americana, a Ebgreen pode cuidar de todo o processo para você.</strong>";
 
   const EB1A_REASON = (base: string) =>
-    `${base} e sua trajetória profissional podem sustentar um caminho estratégico para o <strong>Green Card</strong> por meio do <strong>EB-1A (Extraordinary Ability)</strong>, categoria que dispensa <strong>oferta de emprego</strong> e <strong>Labor Certification</strong> para profissionais que demonstrem reconhecimento e destaque consolidado em sua área de atuação.\n\nEsse caminho costuma ser mais consistente para quem já construiu uma trajetória de destaque comprovável — com prêmios, reconhecimento profissional, liderança em projetos relevantes, publicações, participação em bancas, julgamentos ou avaliações na área, e outras formas de evidência que demonstrem posição de destaque frente aos pares. Quanto mais robustas e documentáveis forem essas evidências, mais forte tende a ser o caso.\n\nNa consulta, a <strong>Ebgreen</strong> realizará uma análise técnica aprofundada do seu histórico, identificando os pontos de maior força evidenciária e o caminho mais sólido para o seu caso.\n\n<strong>Para que essa análise seja precisa, envie seu currículo atualizado antes da consulta.</strong>`;
+    `${base} e sua trajetória profissional podem sustentar um caminho estratégico para o <strong>Green Card</strong> por meio do <strong>EB-1A (Extraordinary Ability)</strong>, categoria que dispensa <strong>oferta de emprego</strong> e <strong>Labor Certification</strong> para profissionais que demonstrem reconhecimento e destaque consolidado em sua área de atuação.\n\nEsse caminho costuma ser mais consistente para quem já construiu uma trajetória de destaque comprovável - com prêmios, reconhecimento profissional, liderança em projetos relevantes, publicações, participação em bancas, julgamentos ou avaliações na área, e outras formas de evidência que demonstrem posição de destaque frente aos pares. Quanto mais robustas e documentáveis forem essas evidências, mais forte tende a ser o caso.\n\nNa consulta, a <strong>Ebgreen</strong> realizará uma análise técnica aprofundada do seu histórico, identificando os pontos de maior força evidenciária e o caminho mais sólido para o seu caso.\n\n<strong>Para que essa análise seja precisa, envie seu currículo atualizado antes da consulta.</strong>`;
 
   const EB2_NIW_REASON_ACADEMIC =
     "Seu perfil acadêmico e profissional indica elegibilidade potencial para o <strong>EB-2 NIW (National Interest Waiver)</strong>, categoria de <strong>Green Card</strong> que dispensa a exigência de <strong>oferta de emprego</strong> e <strong>Labor Certification</strong> para profissionais cuja atuação tenha mérito substancial e importância nacional para os Estados Unidos.\n\nEsse caminho costuma ser indicado para quem já construiu uma carreira sólida, com formação acadêmica avançada, experiência relevante e resultados que podem ser comprovados. Quanto mais consistente for essa trajetória e mais claro for o potencial de contribuição para os Estados Unidos, mais forte tende a ser o caso.\n\nNa consulta, a <strong>Ebgreen</strong> realizará uma análise técnica aprofundada do seu histórico, identificando os pontos de maior força evidenciária e o caminho mais sólido para o seu caso.\n\n<strong>Para que essa análise seja precisa, envie seu currículo atualizado antes da consulta.</strong>";
@@ -217,7 +217,7 @@ const suggestVisa = (data: {
   if (education === "Ensino Médio") {
     return [{
       id: "EB-3",
-      label: "EB-3 — Trabalho Qualificado ou Não Qualificado",
+      label: "EB-3 - Trabalho Qualificado ou Não Qualificado",
       reason: EB3_REASON,
     }];
   }
@@ -236,7 +236,7 @@ const suggestVisa = (data: {
   if (isDoutorado) {
     return [{
       id: "EB-1A",
-      label: "EB-1A – Habilidade Extraordinária",
+      label: "EB-1A - Habilidade Extraordinária",
       reason: EB1A_REASON("Seu doutorado"),
     }];
   }
@@ -245,7 +245,7 @@ const suggestVisa = (data: {
   if (isPosDoutorado) {
     return [{
       id: "EB-1A",
-      label: "EB-1A – Habilidade Extraordinária",
+      label: "EB-1A - Habilidade Extraordinária",
       reason: EB1A_REASON("Seu pós-doutorado"),
     }];
   }
@@ -254,7 +254,7 @@ const suggestVisa = (data: {
   if (isMestrado) {
     return [{
       id: "EB-2 NIW",
-      label: "EB-2 NIW — National Interest Waiver",
+      label: "EB-2 NIW - National Interest Waiver",
       reason: EB2_NIW_REASON_ACADEMIC,
     }];
   }
@@ -263,7 +263,7 @@ const suggestVisa = (data: {
   if (isBacharelado) {
     return [{
       id: "EB-2 NIW",
-      label: "EB-2 NIW — National Interest Waiver",
+      label: "EB-2 NIW - National Interest Waiver",
       reason: EB2_NIW_REASON_ACADEMIC,
     }];
   }
@@ -272,7 +272,7 @@ const suggestVisa = (data: {
   if (isTecnico && hasExperience5plus) {
     return [{
       id: "EB-2 NIW",
-      label: "EB-2 NIW — National Interest Waiver",
+      label: "EB-2 NIW - National Interest Waiver",
       reason: EB2_NIW_REASON_TECH,
     }];
   }
@@ -281,14 +281,14 @@ const suggestVisa = (data: {
   if (isTecnico) {
     return [{
       id: "EB-3",
-      label: "EB-3 — Trabalho Qualificado ou Não Qualificado",
+      label: "EB-3 - Trabalho Qualificado ou Não Qualificado",
       reason: EB3_REASON,
     }];
   }
 
   return [{
     id: "EB-3",
-    label: "EB-3 — Trabalho Qualificado ou Não Qualificado",
+    label: "EB-3 - Trabalho Qualificado ou Não Qualificado",
     reason: EB3_REASON,
   }];
 };
@@ -414,7 +414,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     }
     if (current === 3) {
       // Step 3 agora é apenas análise + agendamento via Calendly.
-      // Sem campos obrigatórios — o Calendly captura o restante.
+      // Sem campos obrigatórios - o Calendly captura o restante.
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -486,7 +486,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     setErrors({});
     setIsSubmitting(true);
 
-    // Upload resume to Storage if present. The bucket is private — we send the
+    // Upload resume to Storage if present. The bucket is private - we send the
     // storage path to the edge function, which generates a signed download URL
     // server-side (so resume files are never publicly enumerable).
     let resumePath = "";
@@ -1135,7 +1135,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                       <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
                         A categoria <strong>EB-3</strong> exige uma <strong>oferta de emprego permanente nos EUA</strong> de um empregador disposto a patrociná-lo (sponsor). Sem esse requisito, não conseguimos dar andamento ao processo neste momento.
                         <br />
-                        Assim que você conseguir um sponsor — ou estiver em negociação com uma empresa americana —, retorne aqui e teremos prazer em cuidar de todo o processo para você.
+                        Assim que você conseguir um sponsor - ou estiver em negociação com uma empresa americana -, retorne aqui e teremos prazer em cuidar de todo o processo para você.
                       </p>
                       <button
                         type="button"
@@ -1247,7 +1247,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 </a>
               </div>
               <p className="text-sm font-body text-gold/90">
-                {t(s.form.mondayFriday, lang)} <span className="text-white/40 mx-1">·</span> 9:00–17:00 ET
+                {t(s.form.mondayFriday, lang)} <span className="text-white/40 mx-1">·</span> 9:00-17:00 ET
               </p>
             </div>
           </motion.div>
