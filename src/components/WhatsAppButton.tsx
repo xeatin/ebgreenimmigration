@@ -80,11 +80,11 @@ const copy = {
     ],
     eduOptions: [
       { value: "Ensino Médio", label: "Ensino Médio" },
-      { value: "Técnico", label: "Curso Técnico" },
-      { value: "Graduação", label: "Graduação" },
-      { value: "Pós-graduação", label: "Pós-graduação / MBA" },
+      { value: "Técnico / Tecnólogo", label: "Técnico / Tecnólogo" },
+      { value: "Nível Superior / Bacharelado", label: "Nível Superior / Bacharelado" },
       { value: "Mestrado", label: "Mestrado" },
       { value: "Doutorado", label: "Doutorado" },
+      { value: "Pós-Doutorado", label: "Pós-Doutorado" },
     ],
     expOptions: [
       { value: "Menos de 5 anos", label: "Menos de 5 anos" },
@@ -141,11 +141,11 @@ const copy = {
     ],
     eduOptions: [
       { value: "High School", label: "High School" },
-      { value: "Technical", label: "Technical Course" },
-      { value: "Bachelor's", label: "Bachelor's Degree" },
-      { value: "Postgraduate", label: "Postgraduate / MBA" },
-      { value: "Master's", label: "Master's Degree" },
+      { value: "Technical / Technologist", label: "Technical / Technologist" },
+      { value: "Bachelor's Degree", label: "Bachelor's Degree" },
+      { value: "Master's Degree", label: "Master's Degree" },
       { value: "PhD", label: "PhD" },
+      { value: "Postdoctoral", label: "Postdoctoral" },
     ],
     expOptions: [
       { value: "Less than 5 years", label: "Less than 5 years" },
@@ -202,11 +202,11 @@ const copy = {
     ],
     eduOptions: [
       { value: "Secundaria", label: "Secundaria" },
-      { value: "Técnico", label: "Curso Técnico" },
-      { value: "Pregrado", label: "Pregrado" },
-      { value: "Posgrado", label: "Posgrado / MBA" },
+      { value: "Técnico / Tecnólogo", label: "Técnico / Tecnólogo" },
+      { value: "Nivel Superior / Bachillerato", label: "Nivel Superior / Bachillerato" },
       { value: "Maestría", label: "Maestría" },
       { value: "Doctorado", label: "Doctorado" },
+      { value: "Posdoctorado", label: "Posdoctorado" },
     ],
     expOptions: [
       { value: "Menos de 5 años", label: "Menos de 5 años" },
