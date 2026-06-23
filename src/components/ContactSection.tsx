@@ -1200,15 +1200,15 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
 
             {/* Institutional stats row */}
             <div className="mt-7 grid grid-cols-3 gap-4 pb-5 border-b border-foreground/10">
-              <div className="text-center">
+              <div>
                 <p className="font-body text-xs text-foreground font-medium leading-none">10+</p>
                 <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">{t(s.form.stats10y, lang)}</p>
               </div>
-              <div className="text-center">
+              <div>
                 <p className="font-body text-xs text-foreground font-medium leading-none">+89%</p>
                 <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">{t(s.form.statsApproval, lang)}</p>
               </div>
-              <div className="text-center">
+              <div>
                 <p className="font-body text-xs text-foreground font-medium leading-none whitespace-nowrap">
                   PT<span className="text-gold mx-1">·</span>EN<span className="text-gold mx-1">·</span>ES
                 </p>
