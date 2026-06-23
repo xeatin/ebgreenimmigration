@@ -185,7 +185,8 @@ export type FormEvent =
   | "form_abandon"
   | "form_submit"
   | "form_error"
-  | "schedule_click";
+  | "schedule_click"
+  | "eb3_sponsor_answer";
 
 export const trackForm = (
   type: FormEvent,
@@ -195,6 +196,7 @@ export const trackForm = (
     visa_context?: string;
     field?: string;
     reason?: string;
+    answer?: string;
   },
 ) => track(type, params);
 
