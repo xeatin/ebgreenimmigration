@@ -163,17 +163,26 @@ const suggestVisa = (data: {
   achievements: string;
   experience: string;
 }): { id: string; label: string; reason: string }[] => {
-  const { education, achievements, experience } = data;
-  if (!education || !achievements || !experience) return [];
+  const { education, experience } = data;
+  if (!education) return [];
 
-  const EB3_REASON = "Para perfis iguais ao seu, existe um caminho excelente para o seu Green Card: a categoria <strong>EB-3</strong>, que pode abranger tanto <strong>trabalhadores qualificados (Skilled Workers)</strong> quanto <strong>trabalhadores não qualificados (Unskilled / Other Workers)</strong>, dependendo da vaga oferecida pelo empregador nos EUA.\n\nO EB-3 é uma das vias mais sólidas para profissionais com <strong>ensino médio, formação técnica ou experiência profissional</strong>, e também pode ser uma opção para trabalhadores sem qualificação específica, desde que exista uma <strong>oferta de emprego permanente nos EUA</strong>.\n\n<strong>A boa notícia? Se você já tem um sponsor ou está em negociação com uma empresa americana, a Ebgreen pode cuidar de todo o processo para você.</strong>";
+  const EB3_REASON = "Para perfis iguais ao seu, existe um caminho excelente para o seu <strong>Green Card</strong>: a categoria <strong>EB-3</strong>, que pode abranger tanto <strong>trabalhadores qualificados (Skilled Workers)</strong> quanto <strong>trabalhadores não qualificados (Unskilled / Other Workers)</strong>, dependendo da vaga oferecida pelo empregador nos EUA.\n\nO EB-3 é uma das vias mais sólidas para profissionais com <strong>ensino médio, formação técnica ou experiência profissional</strong>, e também pode ser uma opção para trabalhadores sem qualificação específica, desde que exista uma <strong>oferta de emprego permanente nos EUA</strong>.\n\n<strong>A boa notícia? Se você já tem um sponsor ou está em negociação com uma empresa americana, a Ebgreen pode cuidar de todo o processo para você.</strong>";
+
+  const EB1A_REASON = (base: string) =>
+    `${base} e sua trajetória profissional podem sustentar um caminho estratégico para o <strong>Green Card</strong> por meio do <strong>EB-1A (Extraordinary Ability)</strong>, categoria que dispensa <strong>oferta de emprego</strong> e <strong>Labor Certification</strong> para profissionais que demonstrem reconhecimento e destaque consolidado em sua área de atuação.\n\nEsse caminho costuma ser mais consistente para quem já construiu uma trajetória de destaque comprovável — com prêmios, reconhecimento profissional, liderança em projetos relevantes, publicações, participação em bancas, julgamentos ou avaliações na área, e outras formas de evidência que demonstrem posição de destaque frente aos pares. Quanto mais robustas e documentáveis forem essas evidências, mais forte tende a ser o caso.\n\nNa consulta, a <strong>Ebgreen</strong> realizará uma análise técnica aprofundada do seu histórico, identificando os pontos de maior força evidenciária e o caminho mais sólido para o seu caso.\n\n<strong>Para que essa análise seja precisa, envie seu currículo atualizado antes da consulta.</strong>`;
+
+  const EB2_NIW_REASON_ACADEMIC =
+    "Seu perfil acadêmico e profissional indica elegibilidade potencial para o <strong>EB-2 NIW (National Interest Waiver)</strong>, categoria de <strong>Green Card</strong> que dispensa a exigência de <strong>oferta de emprego</strong> e <strong>Labor Certification</strong> para profissionais cuja atuação tenha mérito substancial e importância nacional para os Estados Unidos.\n\nEsse caminho costuma ser indicado para quem já construiu uma carreira sólida, com formação acadêmica avançada, experiência relevante e resultados que podem ser comprovados. Quanto mais consistente for essa trajetória e mais claro for o potencial de contribuição para os Estados Unidos, mais forte tende a ser o caso.\n\nNa consulta, a <strong>Ebgreen</strong> realizará uma análise técnica aprofundada do seu histórico, identificando os pontos de maior força evidenciária e o caminho mais sólido para o seu caso.\n\n<strong>Para que essa análise seja precisa, envie seu currículo atualizado antes da consulta.</strong>";
+
+  const EB2_NIW_REASON_TECH =
+    "Seu perfil profissional indica elegibilidade potencial para o <strong>EB-2 NIW (National Interest Waiver)</strong>, categoria de <strong>Green Card</strong> que dispensa a exigência de <strong>oferta de emprego</strong> e <strong>Labor Certification</strong> para profissionais cuja atuação tenha mérito substancial e importância nacional para os Estados Unidos.\n\nEsse caminho costuma ser indicado para quem já construiu uma carreira sólida, com formação acadêmica avançada, experiência relevante e resultados que podem ser comprovados. Quanto mais consistente for essa trajetória e mais claro for o potencial de contribuição para os Estados Unidos, mais forte tende a ser o caso.\n\nNa consulta, a <strong>Ebgreen</strong> realizará uma análise técnica aprofundada do seu histórico, identificando os pontos de maior força evidenciária e o caminho mais sólido para o seu caso.\n\n<strong>Para que essa análise seja precisa, envie seu currículo atualizado antes da consulta.</strong>";
 
   // Investimento → EB-5 / E-2
   if (education === "Investimento") {
     return [{
       id: "EB-5 / E-2",
       label: "EB-5 / E-2 Investimentos",
-      reason: "Seu perfil de investidor abre caminho para duas categorias estratégicas: o <strong>EB-5</strong>, que concede o Green Card por meio de investimento qualificado nos EUA, e o <strong>E-2</strong>, voltado a empreendedores que desejam abrir ou adquirir um negócio em território americano.\n\nA Ebgreen pode estruturar todo o processo, desde a escolha do investimento até a apresentação ao USCIS.",
+      reason: "Seu perfil de investidor abre caminho para duas categorias estratégicas: o <strong>EB-5</strong>, que concede o <strong>Green Card</strong> por meio de investimento qualificado nos EUA, e o <strong>E-2</strong>, voltado a empreendedores que desejam abrir ou adquirir um negócio em território americano.\n\nA <strong>Ebgreen</strong> pode estruturar todo o processo, desde a escolha do investimento até a apresentação ao USCIS.",
     }];
   }
 
@@ -181,8 +190,8 @@ const suggestVisa = (data: {
   if (education === "F-1") {
     return [{
       id: "F-1",
-      label: "F-1 — Visto de Estudante",
-      reason: "O <strong>F-1</strong> é o visto destinado a estudantes que desejam cursar programas acadêmicos em instituições americanas reconhecidas. Pode ser o primeiro passo para uma trajetória profissional nos EUA e, em muitos casos, abrir portas para vistos de trabalho ou imigração permanente.\n\nA Ebgreen orienta toda a documentação, escolha da instituição e estratégia de transição para outros vistos.",
+      label: "F-1 Estudante",
+      reason: "O <strong>F-1</strong> é o visto destinado a estudantes que desejam cursar programas acadêmicos em instituições americanas reconhecidas. Pode ser o primeiro passo para uma trajetória profissional nos EUA e, em muitos casos, abrir portas para vistos de trabalho ou imigração permanente.\n\nA <strong>Ebgreen</strong> orienta toda a documentação, escolha da instituição e estratégia de transição para outros vistos.",
     }];
   }
 
@@ -190,8 +199,8 @@ const suggestVisa = (data: {
   if (education === "R-1") {
     return [{
       id: "R-1",
-      label: "R-1 — Trabalhador Religioso",
-      reason: "O <strong>R-1</strong> é destinado a profissionais que atuam em funções religiosas em organizações reconhecidas nos EUA. É uma via consolidada para pastores, missionários, ministros e demais vocacionados, podendo evoluir para o Green Card via EB-4.\n\nA Ebgreen acompanha todo o processo, da elegibilidade ao pedido junto ao USCIS.",
+      label: "R-1 Religioso",
+      reason: "O <strong>R-1</strong> é destinado a profissionais que atuam em funções religiosas em organizações reconhecidas nos EUA. É uma via consolidada para pastores, missionários, ministros e demais vocacionados, podendo evoluir para o <strong>Green Card</strong> via EB-4.\n\nA <strong>Ebgreen</strong> acompanha todo o processo, da elegibilidade ao pedido junto ao USCIS.",
     }];
   }
 
@@ -199,8 +208,8 @@ const suggestVisa = (data: {
   if (education === "Family-Based") {
     return [{
       id: "Family-Based",
-      label: "Family-Based — Patrocínio Familiar",
-      reason: "O <strong>Patrocínio Familiar</strong> permite que cidadãos americanos ou residentes permanentes patrocinem familiares próximos para obtenção do Green Card. É uma das vias mais tradicionais de imigração e exige estratégia adequada conforme o grau de parentesco.\n\nA Ebgreen avalia o melhor caminho e conduz todo o processo junto ao USCIS.",
+      label: "Family-Based Familiar",
+      reason: "O <strong>Patrocínio Familiar</strong> permite que cidadãos americanos ou residentes permanentes patrocinem familiares próximos para obtenção do <strong>Green Card</strong>. É uma das vias mais tradicionais de imigração e exige estratégia adequada conforme o grau de parentesco.\n\nA <strong>Ebgreen</strong> avalia o melhor caminho e conduz todo o processo junto ao USCIS.",
     }];
   }
 
@@ -213,7 +222,6 @@ const suggestVisa = (data: {
     }];
   }
 
-  const hasPublications = /publicaç|ambos/i.test(achievements);
   const senior = /Mais de 10/i.test(experience);
   const mid = /5 a 10/i.test(experience);
   const hasExperience5plus = senior || mid;
@@ -224,47 +232,30 @@ const suggestVisa = (data: {
   const isDoutorado = education === "Doutorado";
   const isPosDoutorado = education === "Pós-Doutorado";
 
-  // Doutorado / Pós-Doutorado + publicações → EB-1A e EB-2 NIW + O-1
-  if ((isDoutorado || isPosDoutorado) && hasPublications) {
-    const base = isDoutorado ? "Seu doutorado" : "Seu pós-doutorado";
-    return [
-      {
-        id: "EB-1A e EB-2 NIW",
-        label: "EB-1A e EB-2 NIW – Habilidade Extraordinária",
-        reason: `${base} e suas publicações podem abrir caminhos estratégicos para o Green Card por meio do EB-1A ou do EB-2 NIW. Essas categorias são voltadas a profissionais com trajetória diferenciada, contribuições relevantes e potencial de impacto em sua área de atuação nos Estados Unidos.`,
-      },
-      {
-        id: "O-1",
-        label: "O-1 — Habilidade Extraordinária (Não Imigrante)",
-        reason: `${base}, somado às suas publicações, também sustenta um forte pedido de <strong>O-1</strong>, visto temporário destinado a profissionais com habilidade extraordinária em sua área. É uma excelente estratégia paralela enquanto o Green Card está em andamento.`,
-      },
-    ];
-  }
-
-  // Doutorado / Pós-Doutorado sem publicações → EB-2 NIW
-  if (isDoutorado || isPosDoutorado) {
+  // Doutorado → EB-1A
+  if (isDoutorado) {
     return [{
-      id: "EB-2 NIW",
-      label: "EB-2 NIW — Interesse Nacional",
-      reason: "Sua formação de doutorado sustenta um forte caso de Interesse Nacional (NIW).",
+      id: "EB-1A",
+      label: "EB-1A – Habilidade Extraordinária",
+      reason: EB1A_REASON("Seu doutorado"),
     }];
   }
 
-  // Mestrado + publicações → EB-1A e EB-2 NIW
-  if (isMestrado && hasPublications) {
+  // Pós-Doutorado → EB-1A
+  if (isPosDoutorado) {
     return [{
-      id: "EB-1A e EB-2 NIW",
-      label: "EB-1A e EB-2 NIW – Habilidade Extraordinária + Interesse Nacional",
-      reason: "Sua formação avançada com publicações abre caminho para os vistos EB-1A e EB-2 NIW.",
+      id: "EB-1A",
+      label: "EB-1A – Habilidade Extraordinária",
+      reason: EB1A_REASON("Seu pós-doutorado"),
     }];
   }
 
-  // Mestrado sem publicações → EB-2 NIW
+  // Mestrado → EB-2 NIW
   if (isMestrado) {
     return [{
       id: "EB-2 NIW",
-      label: "EB-2 NIW — Interesse Nacional",
-      reason: "Sua formação avançada cria uma base sólida para um pedido de EB-2 NIW com foco no Interesse Nacional.",
+      label: "EB-2 NIW — National Interest Waiver",
+      reason: EB2_NIW_REASON_ACADEMIC,
     }];
   }
 
@@ -272,8 +263,8 @@ const suggestVisa = (data: {
   if (isBacharelado) {
     return [{
       id: "EB-2 NIW",
-      label: "EB-2 NIW — Interesse Nacional",
-      reason: "Sua formação superior sustenta um forte caso de EB-2 NIW com foco no Interesse Nacional. Essa categoria pode permitir a obtenção do Green Card.",
+      label: "EB-2 NIW — National Interest Waiver",
+      reason: EB2_NIW_REASON_ACADEMIC,
     }];
   }
 
@@ -281,8 +272,8 @@ const suggestVisa = (data: {
   if (isTecnico && hasExperience5plus) {
     return [{
       id: "EB-2 NIW",
-      label: "EB-2 NIW – Interesse Nacional",
-      reason: "Sua formação técnica/tecnológica, aliada a uma sólida experiência profissional, pode sustentar um pedido de EB-2 NIW com foco no Interesse Nacional. Essa categoria pode permitir a obtenção do Green Card.",
+      label: "EB-2 NIW — National Interest Waiver",
+      reason: EB2_NIW_REASON_TECH,
     }];
   }
 
