@@ -405,7 +405,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     }
     if (current === 2) {
       if (!formData.education) e.education = t(s.errors.educationRequired, lang);
-      const isVisaSubgroup = VISA_SUBGROUP_OPTIONS.includes(formData.education);
+      const isVisaSubgroup = EDUCATION_VISA_OPTIONS.includes(formData.education);
       if (!isVisaSubgroup) {
         if (!formData.license) e.license = t(s.errors.required, lang);
         if (!formData.achievements) e.achievements = t(s.errors.required, lang);
