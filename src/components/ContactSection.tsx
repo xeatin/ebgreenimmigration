@@ -990,6 +990,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   );
 
   const suggestions = suggestVisa(formData);
+  const isVisaSubgroup = EDUCATION_VISA_OPTIONS.includes(formData.education);
 
   const Step4 = (
     <div>
@@ -1021,22 +1022,31 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 <Sparkles size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-[12px] tracking-[0.18em] uppercase font-body font-extralight text-brand-green mb-2">
-                  {suggestions.length > 1 ? t(s.form.analysisLabelMulti, lang) : t(s.form.analysisLabel, lang)}
-                </p>
-                <div className="space-y-3">
-                  {suggestions.map((sug) => (
-                    <div key={sug.id}>
-                      <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1">
-                        {sug.label}
-                      </p>
-                      <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: sug.reason }} />
+                {!isVisaSubgroup && (
+                  <>
+                    <p className="text-[12px] tracking-[0.18em] uppercase font-body font-extralight text-brand-green mb-2">
+                      {suggestions.length > 1 ? t(s.form.analysisLabelMulti, lang) : t(s.form.analysisLabel, lang)}
+                    </p>
+                    <div className="space-y-3">
+                      {suggestions.map((sug) => (
+                        <div key={sug.id}>
+                          <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1">
+                            {sug.label}
+                          </p>
+                          <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: sug.reason }} />
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-                <p className="text-[11px] text-foreground/40 font-body italic mt-3">
-                  {suggestions.length > 1 ? t(s.form.analysisDisclaimerMulti, lang) : t(s.form.analysisDisclaimer, lang)}
-                </p>
+                    <p className="text-[11px] text-foreground/40 font-body italic mt-3">
+                      {suggestions.length > 1 ? t(s.form.analysisDisclaimerMulti, lang) : t(s.form.analysisDisclaimer, lang)}
+                    </p>
+                  </>
+                )}
+                {isVisaSubgroup && (
+                  <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1">
+                    {t(s.form.yourAnalysis, lang)}
+                  </p>
+                )}
                 {(() => {
                   const isEb3 = suggestions.some((s) => /^EB-?3/i.test(s.id));
                   const scheduleBtn = (
