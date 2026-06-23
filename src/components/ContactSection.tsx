@@ -1013,6 +1013,36 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
                 <p className="text-[11px] text-foreground/40 font-body italic mt-3">
                   {suggestions.length > 1 ? t(s.form.analysisDisclaimerMulti, lang) : t(s.form.analysisDisclaimer, lang)}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const attribution = getAttribution();
+                    trackForm("schedule_click", {
+                      form_id: FORM_ID,
+                      visa_context: suggestions[0]?.id ?? formData.visa,
+                    });
+                    openCalendlyPopup({
+                      firstName: formData.firstName,
+                      lastName: formData.lastName,
+                      email: formData.email,
+                      customAnswers: {
+                        a1: [formData.phoneCode, formData.phone].filter(Boolean).join(" "),
+                        a2: suggestions.map((sug) => sug.label).join(" | "),
+                      },
+                      utm: {
+                        utmSource: attribution?.utm_source,
+                        utmMedium: attribution?.utm_medium,
+                        utmCampaign: attribution?.utm_campaign,
+                        utmContent: attribution?.utm_content,
+                        utmTerm: attribution?.utm_term,
+                      },
+                    });
+                  }}
+                  className="mt-4 inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 rounded-md bg-brand-green text-cream text-[13px] font-body font-semibold uppercase tracking-wider shadow-[0_6px_20px_hsl(var(--brand-green)/0.35)] hover:brightness-110 transition"
+                >
+                  <Clock size={14} />
+                  Agendar consulta agora
+                </button>
               </div>
             </div>
           </motion.div>
