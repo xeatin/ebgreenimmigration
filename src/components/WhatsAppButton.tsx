@@ -400,7 +400,9 @@ const WhatsAppButton = () => {
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
     setForm((prev) => ({ ...prev, [key]: value }));
     if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
+    if (key === "education" || key === "experience") setSponsorAnswer(null);
   };
+
 
   const updateClient = <K extends keyof ClientState>(key: K, value: ClientState[K]) => {
     setClient((prev) => ({ ...prev, [key]: value }));
