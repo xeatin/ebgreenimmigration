@@ -1276,7 +1276,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         </div>
       </motion.div>
 
-      {suggestions.length > 0 && (
+      {!isDirectSchedule && suggestions.length > 0 && (
         <>
           {/* 2 · Análise preliminar — card limpo, full-width, sem aninhamento */}
           <motion.div
