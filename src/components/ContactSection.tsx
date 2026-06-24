@@ -1149,7 +1149,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
           </button>
         </div>
       </div>
-    ) : isEb3Suggestion && !isEb3AutoSchedule && eb3Sponsor === "no" ? (
+    ) : isEb3Suggestion && eb3Sponsor === "no" ? (
       <div className="rounded-2xl border border-border bg-secondary/50 p-5">
         <p className="font-display text-[16px] font-semibold text-foreground mb-1.5">
           Agradecemos seu interesse 💚
