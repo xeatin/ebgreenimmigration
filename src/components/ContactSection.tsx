@@ -1075,6 +1075,18 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
           const attribution = getAttribution();
           const fullPhone = [formData.phoneCode, formData.phone].filter(Boolean).join(" ");
           const visaLabel = suggestions.map((sug) => sug.label).join(" | ") || formData.visa;
+          // Evita duplicação tipo "Williams Williams da Silva" quando o usuário
+          // digita o nome completo no campo de sobrenome.
+          const fRaw = (formData.firstName ?? "").trim();
+          const lRaw = (formData.lastName ?? "").trim();
+          const fLower = fRaw.toLowerCase();
+          const lLower = lRaw.toLowerCase();
+          let cleanFirst = fRaw;
+          let cleanLast = lRaw;
+          if (fRaw && lRaw) {
+            if (lLower === fLower) cleanLast = "";
+            else if (lLower.startsWith(fLower + " ")) cleanLast = lRaw.slice(fRaw.length).trim();
+          }
           trackForm("schedule_click", {
             form_id: FORM_ID,
             visa_context: suggestions[0]?.id ?? formData.visa,
@@ -1088,8 +1100,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
               body: JSON.stringify({
                 source: "calendly_schedule_click",
                 event_type: "schedule_click",
-                firstName: formData.firstName,
-                lastName: formData.lastName,
+                firstName: cleanFirst,
+                lastName: cleanLast,
                 email: formData.email,
                 phone: fullPhone,
                 phoneCode: formData.phoneCode,
@@ -1104,8 +1116,8 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
             }).catch(() => {});
           } catch {}
           openCalendlyPopup({
-            firstName: formData.firstName,
-            lastName: formData.lastName,
+            firstName: cleanFirst,
+            lastName: cleanLast,
             email: formData.email,
             customAnswers: {
               a1: fullPhone,
