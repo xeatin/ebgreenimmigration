@@ -93,15 +93,36 @@ Deno.serve(async (req) => {
     const phoneAnswer = phoneFromQa || tracking.utm_content || ''
     const visaAnswer = visaFromQa || tracking.utm_term || ''
 
-    const [firstName, ...rest] = (inv.name ?? '').split(' ')
-    const lastName = inv.last_name ?? rest.join(' ') ?? ''
+    // Sanitiza nomes para evitar duplicação tipo "Williams Williams da Silva"
+    // que acontece quando o usuário digita o nome completo no campo de sobrenome
+    // ou quando o Calendly devolve o nome completo já com o primeiro nome.
+    const dedupeName = (first: string, last: string) => {
+      const f = (first ?? '').trim()
+      const l = (last ?? '').trim()
+      if (!f) return { first: '', last: l }
+      if (!l) return { first: f, last: '' }
+      const fLower = f.toLowerCase()
+      const lLower = l.toLowerCase()
+      // remove repetição do primeiro nome no início do sobrenome
+      if (lLower === fLower) return { first: f, last: '' }
+      if (lLower.startsWith(fLower + ' ')) {
+        return { first: f, last: l.slice(f.length).trim() }
+      }
+      return { first: f, last: l }
+    }
+
+    const rawFull = (inv.name ?? '').trim()
+    const [splitFirst, ...splitRest] = rawFull.split(' ')
+    const rawFirst = inv.first_name ?? splitFirst ?? ''
+    const rawLast = inv.last_name ?? splitRest.join(' ') ?? ''
+    const { first: firstName, last: lastName } = dedupeName(rawFirst, rawLast)
 
     // Map to the n8n contract used by send-contact-email so Kommo receives
     // a recognizable "agendamento" lead/update.
     const n8nPayload = {
       source: eventType === 'invitee.canceled' ? 'calendly_canceled' : 'calendly_scheduled',
       event_type: eventType,
-      firstName: inv.first_name ?? firstName ?? '',
+      firstName,
       lastName,
       email: inv.email ?? '',
       phone: phoneAnswer,
