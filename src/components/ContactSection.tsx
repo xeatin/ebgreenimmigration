@@ -1043,9 +1043,6 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const suggestions = suggestVisa(formData);
   const leadQ = getLeadQualification(formData.education, formData.experience);
   const isEb3Suggestion = suggestions.some((sug) => /^EB-?3/i.test(sug.id));
-  const isDirectSchedule =
-    EDUCATION_VISA_OPTIONS.includes(formData.education) ||
-    (formData.education === "Técnico e Tecnólogo" && /Mais de 10/i.test(formData.experience));
 
   // CTA principal de agendamento — funcionalidade IDÊNTICA à anterior (mesmo
   // onClick: tracking + openCalendlyPopup). Apenas o visual foi reformulado.
@@ -1276,7 +1273,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         </div>
       </motion.div>
 
-      {!isDirectSchedule && suggestions.length > 0 && (
+      {suggestions.length > 0 && (
         <>
           {/* 2 · Análise preliminar — card limpo, full-width, sem aninhamento */}
           <motion.div
