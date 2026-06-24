@@ -280,21 +280,21 @@ const suggestVisa = (data: {
     }];
   }
 
-  // Técnico/Tecnólogo + mais de 10 anos → EB-3 (agenda liberada automaticamente)
+  // Técnico/Tecnólogo + mais de 10 anos → EB-2 NIW
   if (isTecnico && senior) {
-    return [{
-      id: "EB-3",
-      label: "EB-3 - Trabalho Qualificado",
-      reason: EB3_REASON,
-    }];
-  }
-
-  // Técnico/Tecnólogo + 5 a 10 anos → EB-2 NIW
-  if (isTecnico && mid) {
     return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW - National Interest Waiver",
       reason: EB2_NIW_REASON_TECH,
+    }];
+  }
+
+  // Técnico/Tecnólogo + 5 a 10 anos → EB-3
+  if (isTecnico && mid) {
+    return [{
+      id: "EB-3",
+      label: "EB-3 - Trabalho Qualificado",
+      reason: EB3_REASON,
     }];
   }
 
