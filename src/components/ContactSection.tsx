@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Send, Instagram, Lock, ChevronDown, ArrowRight, ArrowLeft, Check, ShieldCheck, Info, Award, Globe2, Target, Shield, Clock, Paperclip, X, Sparkles } from "lucide-react";
+import { Mail, Send, Instagram, Lock, ChevronDown, ArrowRight, ArrowLeft, Check, ShieldCheck, Info, Award, Globe2, Target, Shield, Clock, Paperclip, X, Sparkles, CalendarCheck, PartyPopper } from "lucide-react";
 
 const WhatsAppIcon = ({ size = 18, className = "" }: { size?: number; className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -87,6 +87,18 @@ const TRACKING_WEBHOOK_URL =
   import.meta.env.VITE_N8N_WEBHOOK_URL ||
   "https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead-tracking-v1";
 
+// === MODO DE TESTE (apenas local) ===========================================
+// Enquanto validamos o novo fluxo de UX de análise/agendamento, o envio REAL ao
+// backend (upload de currículo, webhook n8n e Supabase) fica DESLIGADO durante o
+// desenvolvimento (vite dev). O fluxo continua funcionando ponta a ponta na tela
+// — apenas a chamada de rede é simulada — para podermos validar a interface sem
+// abrir leads de teste no CRM.
+//
+// Em produção (vite build) o envio real é restaurado AUTOMATICAMENTE.
+// Para forçar envio real localmente, rode com VITE_FORCE_REAL_SUBMIT=true.
+const SUBMIT_TO_BACKEND =
+  !import.meta.env.DEV || import.meta.env.VITE_FORCE_REAL_SUBMIT === "true";
+
 const getCookieValue = (name: string) => {
   if (typeof document === "undefined") return "";
   return document.cookie
@@ -166,23 +178,23 @@ const suggestVisa = (data: {
   const { education, experience } = data;
   if (!education) return [];
 
-  const EB3_REASON = "Para perfis iguais ao seu, existe um caminho excelente para o seu <strong>Green Card</strong>: a categoria <strong>EB-3</strong>, que pode abranger tanto <strong>trabalhadores qualificados (Skilled Workers)</strong> quanto <strong>trabalhadores não qualificados (Unskilled / Other Workers)</strong>, dependendo da vaga oferecida pelo empregador nos EUA.\n\nO EB-3 é uma das vias mais sólidas para profissionais com <strong>ensino médio, formação técnica ou experiência profissional</strong>, e também pode ser uma opção para trabalhadores sem qualificação específica, desde que exista uma <strong>oferta de emprego permanente nos EUA</strong>.\n\n<strong>A boa notícia? Se você já tem um sponsor ou está em negociação com uma empresa americana, a Ebgreen pode cuidar de todo o processo para você.</strong>";
+  const EB3_REASON = "Pelo seu perfil, o caminho mais sólido para o seu <strong>Green Card</strong> é o <strong>EB-3</strong> — voltado a profissionais com formação técnica ou experiência, mediante uma <strong>oferta de emprego permanente nos EUA</strong>.\n\nCom um sponsor (ou em negociação com uma empresa americana), a <strong>Ebgreen</strong> conduz todo o processo por você.";
 
   const EB1A_REASON = (base: string) =>
-    `${base} e sua trajetória profissional podem sustentar um caminho estratégico para o <strong>Green Card</strong> por meio do <strong>EB-1A (Extraordinary Ability)</strong>, categoria que dispensa <strong>oferta de emprego</strong> e <strong>Labor Certification</strong> para profissionais que demonstrem reconhecimento e destaque consolidado em sua área de atuação.\n\nEsse caminho costuma ser mais consistente para quem já construiu uma trajetória de destaque comprovável - com prêmios, reconhecimento profissional, liderança em projetos relevantes, publicações, participação em bancas, julgamentos ou avaliações na área, e outras formas de evidência que demonstrem posição de destaque frente aos pares. Quanto mais robustas e documentáveis forem essas evidências, mais forte tende a ser o caso.\n\nNa consulta, a <strong>Ebgreen</strong> realizará uma análise técnica aprofundada do seu histórico, identificando os pontos de maior força evidenciária e o caminho mais sólido para o seu caso.\n\n<strong>Para que essa análise seja precisa, envie seu currículo atualizado antes da consulta.</strong>`;
+    `${base} pode sustentar um <strong>Green Card</strong> pelo <strong>EB-1A</strong>, que <strong>dispensa oferta de emprego</strong> para quem tem destaque comprovado na área — prêmios, liderança, publicações e reconhecimento.\n\nNa consulta, a <strong>Ebgreen</strong> identifica suas evidências mais fortes e a melhor estratégia. <strong>Envie seu currículo atualizado antes da consulta.</strong>`;
 
   const EB2_NIW_REASON_ACADEMIC =
-    "Seu perfil acadêmico e profissional indica elegibilidade potencial para o <strong>EB-2 NIW (National Interest Waiver)</strong>, categoria de <strong>Green Card</strong> que dispensa a exigência de <strong>oferta de emprego</strong> e <strong>Labor Certification</strong> para profissionais cuja atuação tenha mérito substancial e importância nacional para os Estados Unidos.\n\nEsse caminho costuma ser indicado para quem já construiu uma carreira sólida, com formação acadêmica avançada, experiência relevante e resultados que podem ser comprovados. Quanto mais consistente for essa trajetória e mais claro for o potencial de contribuição para os Estados Unidos, mais forte tende a ser o caso.\n\nNa consulta, a <strong>Ebgreen</strong> realizará uma análise técnica aprofundada do seu histórico, identificando os pontos de maior força evidenciária e o caminho mais sólido para o seu caso.\n\n<strong>Para que essa análise seja precisa, envie seu currículo atualizado antes da consulta.</strong>";
+    "Seu perfil acadêmico indica elegibilidade para o <strong>EB-2 NIW</strong> — o <strong>Green Card</strong> que <strong>dispensa oferta de emprego</strong> para profissionais com mérito e relevância para os EUA.\n\nNa consulta, a <strong>Ebgreen</strong> avalia seu histórico e traça a estratégia mais forte. <strong>Envie seu currículo atualizado antes da consulta.</strong>";
 
   const EB2_NIW_REASON_TECH =
-    "Seu perfil profissional indica elegibilidade potencial para o <strong>EB-2 NIW (National Interest Waiver)</strong>, categoria de <strong>Green Card</strong> que dispensa a exigência de <strong>oferta de emprego</strong> e <strong>Labor Certification</strong> para profissionais cuja atuação tenha mérito substancial e importância nacional para os Estados Unidos.\n\nEsse caminho costuma ser indicado para quem já construiu uma carreira sólida, com formação acadêmica avançada, experiência relevante e resultados que podem ser comprovados. Quanto mais consistente for essa trajetória e mais claro for o potencial de contribuição para os Estados Unidos, mais forte tende a ser o caso.\n\nNa consulta, a <strong>Ebgreen</strong> realizará uma análise técnica aprofundada do seu histórico, identificando os pontos de maior força evidenciária e o caminho mais sólido para o seu caso.\n\n<strong>Para que essa análise seja precisa, envie seu currículo atualizado antes da consulta.</strong>";
+    "Seu perfil profissional indica elegibilidade para o <strong>EB-2 NIW</strong> — o <strong>Green Card</strong> que <strong>dispensa oferta de emprego</strong> para quem tem atuação de mérito e relevância para os EUA.\n\nNa consulta, a <strong>Ebgreen</strong> avalia sua trajetória e define a melhor estratégia. <strong>Envie seu currículo atualizado antes da consulta.</strong>";
 
   // Investimento → EB-5 / E-2
   if (education === "Investimento") {
     return [{
       id: "EB-5 / E-2",
       label: "EB-5 / E-2 Investimentos",
-      reason: "Seu perfil de investidor abre caminho para duas categorias estratégicas: o <strong>EB-5</strong>, que concede o <strong>Green Card</strong> por meio de investimento qualificado nos EUA, e o <strong>E-2</strong>, voltado a empreendedores que desejam abrir ou adquirir um negócio em território americano.\n\nA <strong>Ebgreen</strong> pode estruturar todo o processo, desde a escolha do investimento até a apresentação ao USCIS.",
+      reason: "Seu perfil de investidor abre dois caminhos: o <strong>EB-5</strong>, que concede o <strong>Green Card</strong> via investimento qualificado, e o <strong>E-2</strong>, para abrir ou adquirir um negócio nos EUA.\n\nA <strong>Ebgreen</strong> estrutura todo o processo, do investimento à petição no USCIS.",
     }];
   }
 
@@ -191,7 +203,7 @@ const suggestVisa = (data: {
     return [{
       id: "F-1",
       label: "F-1 Estudante",
-      reason: "O <strong>F-1</strong> é o visto destinado a estudantes que desejam cursar programas acadêmicos em instituições americanas reconhecidas. Pode ser o primeiro passo para uma trajetória profissional nos EUA e, em muitos casos, abrir portas para vistos de trabalho ou imigração permanente.\n\nA <strong>Ebgreen</strong> orienta toda a documentação, escolha da instituição e estratégia de transição para outros vistos.",
+      reason: "O <strong>F-1</strong> é o visto para estudar em instituições americanas reconhecidas — muitas vezes o primeiro passo para vistos de trabalho ou para a imigração permanente.\n\nA <strong>Ebgreen</strong> orienta documentação, escolha da instituição e a estratégia de transição.",
     }];
   }
 
@@ -200,7 +212,7 @@ const suggestVisa = (data: {
     return [{
       id: "R-1",
       label: "R-1 Religioso",
-      reason: "O <strong>R-1</strong> é destinado a profissionais que atuam em funções religiosas em organizações reconhecidas nos EUA. É uma via consolidada para pastores, missionários, ministros e demais vocacionados, podendo evoluir para o <strong>Green Card</strong> via EB-4.\n\nA <strong>Ebgreen</strong> acompanha todo o processo, da elegibilidade ao pedido junto ao USCIS.",
+      reason: "O <strong>R-1</strong> é o visto para profissionais religiosos em organizações reconhecidas nos EUA — pastores, missionários e ministros — com caminho possível ao <strong>Green Card</strong> (EB-4).\n\nA <strong>Ebgreen</strong> acompanha todo o processo, da elegibilidade à petição.",
     }];
   }
 
@@ -209,7 +221,7 @@ const suggestVisa = (data: {
     return [{
       id: "Family-Based",
       label: "Family-Based Familiar",
-      reason: "O <strong>Patrocínio Familiar</strong> permite que cidadãos americanos ou residentes permanentes patrocinem familiares próximos para obtenção do <strong>Green Card</strong>. É uma das vias mais tradicionais de imigração e exige estratégia adequada conforme o grau de parentesco.\n\nA <strong>Ebgreen</strong> avalia o melhor caminho e conduz todo o processo junto ao USCIS.",
+      reason: "O <strong>Patrocínio Familiar</strong> permite que cidadãos ou residentes americanos patrocinem familiares próximos para o <strong>Green Card</strong>.\n\nA <strong>Ebgreen</strong> avalia o melhor caminho conforme o grau de parentesco e conduz todo o processo.",
     }];
   }
 
@@ -333,6 +345,10 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [disclaimerOpen, setDisclaimerOpen] = useState(false);
   const [eb3Sponsor, setEb3Sponsor] = useState<null | "yes" | "no">(null);
+  // True quando o lead conclui o agendamento no popup do Calendly (evento
+  // calendly.event_scheduled). Só troca a TELA do site — não altera o booking
+  // nem o backend (o webhook do Calendly continua disparando normalmente).
+  const [scheduled, setScheduled] = useState(false);
 
   const startedRef = useRef(false);
   const submittedRef = useRef(false);
@@ -357,6 +373,26 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     window.addEventListener("pagehide", onLeave);
     return () => window.removeEventListener("pagehide", onLeave);
   }, [FORM_ID, step, formData.visa]);
+
+  // Escuta o evento do Calendly quando o lead conclui o agendamento. Apenas
+  // FRONTEND: troca a tela do site para o agradecimento e fecha o popup do
+  // Calendly. Não toca no backend nem no fluxo de booking.
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      const data = e?.data as { event?: string } | undefined;
+      if (data && typeof data === "object" && data.event === "calendly.event_scheduled") {
+        setScheduled(true);
+        // Fecha o popup do Calendly após um instante para revelar a tela de
+        // agradecimento do site (o Calendly já mostrou sua própria confirmação).
+        window.setTimeout(() => {
+          document.querySelector<HTMLElement>(".calendly-popup-close")?.click();
+          document.querySelector(".calendly-overlay")?.remove();
+        }, 1400);
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
 
   const buildSchema = () =>
     z.object({
@@ -495,7 +531,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     // server-side (so resume files are never publicly enumerable).
     let resumePath = "";
     let resumeName = "";
-    if (formData.resume) {
+    if (formData.resume && SUBMIT_TO_BACKEND) {
       try {
         const ext = formData.resume.name.split(".").pop()?.toLowerCase() || "pdf";
         const safeBase = `${formData.firstName}-${formData.lastName}`
@@ -594,7 +630,15 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
     ).reason;
 
     try {
-      if (qualification === "qualified") {
+      if (!SUBMIT_TO_BACKEND) {
+        // MODO DE TESTE: simula o envio (com pequena latência) sem tocar no
+        // backend. A UI segue exatamente o mesmo caminho de sucesso.
+        await new Promise((resolve) => setTimeout(resolve, 700));
+        console.info(
+          "[lead][MODO DE TESTE] envio simulado — nada foi enviado ao backend.",
+          { qualification, qualificationReason },
+        );
+      } else if (qualification === "qualified") {
         const response = await fetch(TRACKING_WEBHOOK_URL, {
           method: "POST",
           headers: {
@@ -680,36 +724,40 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
 
     submittedRef.current = true;
     trackForm("form_submit", { form_id: FORM_ID, visa_context: formData.visa, reason: qualification });
-    trackMetaLead(
-      {
-        content_name: FORM_ID,
-        content_category: "lead_form",
-        status: qualification,
-        visa_context: formData.visa,
-      },
-      { eventId, userDataHashed: userData },
-    );
-    trackMetaCustom(
-      "assessment_form_submit",
-      {
-        form_id: FORM_ID,
-        status: qualification,
-        visa_context: formData.visa,
-      },
-      { eventId },
-    );
-    trackGoogleAdsLead({
-      eventId,
-      value: 1,
-      currency: "USD",
-      userDataHashed: {
-        em: userData.em,
-        ph: userData.ph,
-        fn: userData.fn,
-        ln: userData.ln,
-        country: userData.country,
-      },
-    });
+    // Pixels de conversão (Meta/Google) só disparam quando o envio real está ativo.
+    // No MODO DE TESTE local, ficam desligados para não gerar conversões falsas.
+    if (SUBMIT_TO_BACKEND) {
+      trackMetaLead(
+        {
+          content_name: FORM_ID,
+          content_category: "lead_form",
+          status: qualification,
+          visa_context: formData.visa,
+        },
+        { eventId, userDataHashed: userData },
+      );
+      trackMetaCustom(
+        "assessment_form_submit",
+        {
+          form_id: FORM_ID,
+          status: qualification,
+          visa_context: formData.visa,
+        },
+        { eventId },
+      );
+      trackGoogleAdsLead({
+        eventId,
+        value: 1,
+        currency: "USD",
+        userDataHashed: {
+          em: userData.em,
+          ph: userData.ph,
+          fn: userData.fn,
+          ln: userData.ln,
+          country: userData.country,
+        },
+      });
+    }
     if (qualification === 'low') {
       toast({
         title: t(s.form.successLowTitle, lang),
@@ -993,207 +1041,299 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   );
 
   const suggestions = suggestVisa(formData);
-  const isVisaSubgroup = EDUCATION_VISA_OPTIONS.includes(formData.education);
+  const leadQ = getLeadQualification(formData.education, formData.experience);
+  const isEb3Suggestion = suggestions.some((sug) => /^EB-?3/i.test(sug.id));
+
+  // CTA principal de agendamento — funcionalidade IDÊNTICA à anterior (mesmo
+  // onClick: tracking + openCalendlyPopup). Apenas o visual foi reformulado.
+  const scheduleCard = (
+    <div className="rounded-2xl border border-brand-green/30 bg-gradient-to-br from-brand-green/[0.08] via-brand-green/[0.03] to-white p-5 shadow-[0_10px_30px_-12px_hsl(var(--brand-green)/0.45)]">
+      <div className="flex items-center gap-2 mb-2.5">
+        <span className="flex items-center gap-1.5 text-[10.5px] font-body font-bold tracking-[0.16em] uppercase text-brand-green">
+          <Sparkles size={12} /> Último passo
+        </span>
+        <span className="h-px flex-1 bg-brand-green/15" />
+      </div>
+      <h4 className="font-display text-[20px] font-semibold text-foreground leading-tight mb-1.5">
+        Agende sua consulta gratuita
+      </h4>
+      <p className="text-[13px] text-muted-foreground font-body leading-relaxed mb-4">
+        Escolha o melhor dia e horário para conversar com um especialista. É uma conversa online de cerca de 30 minutos.
+      </p>
+      <button
+        type="button"
+        onClick={() => {
+          const attribution = getAttribution();
+          trackForm("schedule_click", {
+            form_id: FORM_ID,
+            visa_context: suggestions[0]?.id ?? formData.visa,
+          });
+          openCalendlyPopup({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            customAnswers: {
+              a1: [formData.phoneCode, formData.phone].filter(Boolean).join(" "),
+              a2: suggestions.map((sug) => sug.label).join(" | "),
+            },
+            utm: {
+              utmSource: attribution?.utm_source,
+              utmMedium: attribution?.utm_medium,
+              utmCampaign: attribution?.utm_campaign,
+              utmContent: attribution?.utm_content,
+              utmTerm: attribution?.utm_term,
+            },
+          });
+        }}
+        className="group flex w-full items-center justify-center gap-2 px-4 py-4 rounded-xl bg-brand-green text-cream text-[13.5px] font-body font-bold uppercase tracking-[0.03em] whitespace-nowrap shadow-[0_10px_28px_-8px_hsl(var(--brand-green)/0.6)] hover:brightness-110 active:scale-[0.99] transition"
+      >
+        <Clock size={16} className="shrink-0" />
+        Agendar consulta agora
+        <ArrowRight size={16} className="shrink-0 transition-transform group-hover:translate-x-1" />
+      </button>
+      <p className="mt-3.5 flex items-center justify-center gap-1.5 text-center text-[11px] text-muted-foreground/80 font-body leading-relaxed">
+        <ShieldCheck size={13} className="text-emerald-600 shrink-0" />
+        Sem custo e sem compromisso · remarque ou cancele quando quiser
+      </p>
+    </div>
+  );
+
+  // Seção de ação conforme o gate de qualificação / EB-3 (lógica preservada).
+  const actionSection =
+    leadQ.status === "low" ? (
+      <div className="rounded-2xl border border-border bg-secondary/50 p-5">
+        <p className="font-display text-[16px] font-semibold text-foreground mb-1.5">
+          Nossa equipe vai cuidar do seu caso
+        </p>
+        <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
+          No momento, o <strong className="text-foreground">agendamento online não está disponível</strong> para o seu perfil. Nossa equipe vai analisar o seu caso com atenção e, havendo um caminho viável, entrará em contato pelos dados informados.
+        </p>
+      </div>
+    ) : isEb3Suggestion && eb3Sponsor === null ? (
+      <div className="rounded-2xl border border-gold/40 bg-gold/[0.05] p-5">
+        <p className="text-[13.5px] font-body font-semibold text-foreground mb-1.5">
+          Antes de agendar, uma confirmação importante
+        </p>
+        <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed mb-3.5">
+          Você já possui um <strong className="text-foreground">sponsor</strong> (empregador americano disposto a contratá-lo) ou está em negociação com uma empresa nos EUA?
+        </p>
+        <div className="flex flex-col sm:flex-row gap-2.5">
+          <button
+            type="button"
+            onClick={() => {
+              setEb3Sponsor("yes");
+              trackForm("eb3_sponsor_answer", { form_id: FORM_ID, answer: "yes" });
+            }}
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-brand-green text-cream text-[13px] font-body font-bold uppercase tracking-wider hover:brightness-110 transition"
+          >
+            <Check size={15} /> Sim, tenho sponsor
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setEb3Sponsor("no");
+              trackForm("eb3_sponsor_answer", { form_id: FORM_ID, answer: "no" });
+            }}
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-border bg-white text-foreground text-[13px] font-body font-bold uppercase tracking-wider hover:border-foreground/40 transition"
+          >
+            Ainda não tenho
+          </button>
+        </div>
+      </div>
+    ) : isEb3Suggestion && eb3Sponsor === "no" ? (
+      <div className="rounded-2xl border border-border bg-secondary/50 p-5">
+        <p className="font-display text-[16px] font-semibold text-foreground mb-1.5">
+          Agradecemos seu interesse 💚
+        </p>
+        <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
+          A categoria <strong className="text-foreground">EB-3</strong> exige uma <strong className="text-foreground">oferta de emprego permanente nos EUA</strong> de um empregador disposto a patrociná-lo. Sem esse requisito, não conseguimos dar andamento ao processo neste momento.
+          <br />
+          Assim que você tiver um sponsor — ou estiver em negociação com uma empresa americana —, volte aqui e cuidaremos de todo o processo para você.
+        </p>
+        <button
+          type="button"
+          onClick={() => setEb3Sponsor(null)}
+          className="mt-3 text-[12px] text-brand-green font-body font-semibold underline hover:opacity-80"
+        >
+          Revisar resposta
+        </button>
+      </div>
+    ) : (
+      <>
+        {isEb3Suggestion && eb3Sponsor === "yes" && (
+          <div className="mb-3 flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-emerald-500/[0.08] border border-emerald-500/25">
+            <Check size={15} className="text-emerald-600 shrink-0" />
+            <span className="text-[12.5px] text-emerald-700 font-body">
+              Perfeito! Como você já possui um sponsor, podemos avançar com seu agendamento.
+            </span>
+          </div>
+        )}
+        {scheduleCard}
+      </>
+    );
+
+  // Tela de agradecimento (tema e-mail/calendário) exibida quando o lead conclui
+  // o agendamento no Calendly. Apenas visual.
+  const thankYouCard = (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+      className="text-center px-1 py-4"
+    >
+      {/* Selo de calendário com check — herói visual */}
+      <motion.div
+        initial={{ scale: 0.6, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.1, type: "spring", stiffness: 260, damping: 18 }}
+        className="relative mx-auto mb-6 w-[112px] h-[112px]"
+      >
+        <span className="absolute inset-0 rounded-[28px] bg-brand-green/25 blur-2xl" />
+        <div className="relative w-[112px] h-[112px] rounded-[26px] bg-white border border-brand-green/30 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.28)] overflow-hidden flex flex-col">
+          <div className="h-8 bg-brand-green flex items-center justify-center gap-2">
+            <span className="w-1.5 h-3 rounded-full bg-cream/80" />
+            <span className="w-1.5 h-3 rounded-full bg-cream/80" />
+          </div>
+          <div className="flex-1 flex items-center justify-center">
+            <CalendarCheck size={48} className="text-brand-green" strokeWidth={1.7} />
+          </div>
+        </div>
+        <motion.span
+          initial={{ scale: 0, rotate: -30 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ delay: 0.32, type: "spring", stiffness: 320, damping: 14 }}
+          className="absolute -bottom-2.5 -right-2.5 w-11 h-11 rounded-full bg-emerald-500 text-white flex items-center justify-center border-[3px] border-white shadow-[0_6px_18px_rgba(16,185,129,0.55)]"
+        >
+          <Check size={22} strokeWidth={3} />
+        </motion.span>
+      </motion.div>
+
+      <span className="inline-flex items-center gap-1.5 text-[11px] font-body font-bold tracking-[0.16em] uppercase text-brand-green mb-2">
+        <PartyPopper size={13} /> Consulta confirmada
+      </span>
+      <h3 className="font-display text-[26px] font-semibold text-foreground leading-tight mb-2">
+        {formData.firstName ? `Tudo certo, ${formData.firstName.trim()}!` : "Tudo certo!"}
+      </h3>
+      <p className="text-[13.5px] text-muted-foreground font-body leading-relaxed">
+        Sua consulta gratuita está <strong className="text-foreground">confirmada</strong>. 🎉
+      </p>
+
+      {/* 3 tiles visuais — ícones grandes, pouco texto */}
+      <div className="mt-7 grid grid-cols-3 gap-2.5 sm:gap-3">
+        <div className="flex flex-col items-center gap-2.5">
+          <span className="w-16 h-16 rounded-2xl bg-brand-green/[0.10] border border-brand-green/20 flex items-center justify-center text-brand-green">
+            <CalendarCheck size={30} strokeWidth={1.8} />
+          </span>
+          <span className="text-[11.5px] font-body font-semibold text-foreground leading-tight">Reunião<br />agendada</span>
+        </div>
+        <div className="flex flex-col items-center gap-2.5">
+          <span className="w-16 h-16 rounded-2xl bg-brand-green/[0.10] border border-brand-green/20 flex items-center justify-center text-brand-green">
+            <Mail size={30} strokeWidth={1.8} />
+          </span>
+          <span className="text-[11.5px] font-body font-semibold text-foreground leading-tight">Detalhes<br />por e-mail</span>
+        </div>
+        <div className="flex flex-col items-center gap-2.5">
+          <span className="w-16 h-16 rounded-2xl bg-emerald-500/[0.10] border border-emerald-500/20 flex items-center justify-center text-emerald-600">
+            <WhatsAppIcon size={28} />
+          </span>
+          <span className="text-[11.5px] font-body font-semibold text-foreground leading-tight">Lembrete<br />no WhatsApp</span>
+        </div>
+      </div>
+    </motion.div>
+  );
 
   const Step4 = (
     <div>
-      {/* Analise preliminar baseada nas suas respostas */}
-      <AnimatePresence>
-        {suggestions.length > 0 && (
+      {scheduled ? thankYouCard : (
+      <>
+      {/* Confirmação visual de envio — o lead chega neste passo logo após os dados
+          serem enviados (recaptura ao entrar no passo 3). Aqui apenas TORNAMOS ISSO
+          VISÍVEL; nenhuma funcionalidade nova é adicionada. */}
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="mb-4 flex items-start gap-3 rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/[0.12] via-emerald-500/[0.04] to-white px-4 py-3.5"
+      >
+        <motion.span
+          initial={{ scale: 0.4, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.12, type: "spring", stiffness: 320, damping: 16 }}
+          className="mt-0.5 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-[0_4px_14px_rgba(16,185,129,0.45)]"
+        >
+          <Check size={16} strokeWidth={3} />
+        </motion.span>
+        <div className="min-w-0">
+          <p className="font-display text-[15.5px] font-semibold text-foreground leading-tight">
+            {formData.firstName ? `Pronto, ${formData.firstName.trim()}!` : "Pronto!"} Recebemos suas informações.
+          </p>
+          <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed mt-0.5">
+            Sua avaliação foi enviada e nossa equipe de especialistas já está com o seu caso.
+          </p>
+        </div>
+      </motion.div>
+
+      {suggestions.length > 0 && (
+        <>
+          {/* 2 · Análise preliminar — card limpo, full-width, sem aninhamento */}
           <motion.div
-            key={suggestions.map((s) => s.id).join("-")}
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="mb-5 relative rounded-xl border border-brand-green/40 bg-gradient-to-br from-brand-green/[0.06] via-white to-white p-4 sm:p-5 shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut", delay: 0.05 }}
+            className="mb-4 rounded-2xl border border-brand-green/25 bg-white p-5 shadow-[0_8px_30px_-14px_rgba(0,0,0,0.18)]"
           >
-            {/* Floating attention badge outside the card */}
-            <motion.span
-              initial={{ opacity: 0, y: -6, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 0.15, type: "spring", stiffness: 300 }}
-              className="absolute -top-2.5 -right-2.5 z-10 flex items-center gap-1 bg-brand-green text-cream text-[10px] font-bold font-body px-2.5 py-1 rounded-full shadow-[0_4px_14px_hsl(var(--brand-green)/0.5)] uppercase tracking-wider"
-            >
-              <Sparkles size={10} className="fill-cream" />
-              {t(s.form.yourAnalysis, lang)}
-            </motion.span>
-            <span className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-green to-transparent rounded-t-xl" />
-            <span className="absolute inset-0 rounded-xl ring-1 ring-inset ring-brand-green/20 animate-pulse pointer-events-none" />
-            <div className="flex items-start gap-3">
-              <span className="w-9 h-9 rounded-full bg-brand-green/15 border border-brand-green/40 flex items-center justify-center text-brand-green shrink-0 animate-pulse">
-                <Sparkles size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
-              </span>
-              <div className="min-w-0 flex-1">
-                {!isVisaSubgroup && (
-                  <>
-                    <p className="text-[12px] tracking-[0.18em] uppercase font-body font-extralight text-brand-green mb-2">
-                      {suggestions.length > 1 ? t(s.form.analysisLabelMulti, lang) : t(s.form.analysisLabel, lang)}
-                    </p>
-                    <div className="space-y-3">
-                      {suggestions.map((sug) => (
-                        <div key={sug.id}>
-                          <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1">
-                            {sug.label}
-                          </p>
-                          <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: sug.reason }} />
-                        </div>
-                      ))}
-                    </div>
-                    <p className="text-[11px] text-foreground/40 font-body italic mt-3">
-                      {suggestions.length > 1 ? t(s.form.analysisDisclaimerMulti, lang) : t(s.form.analysisDisclaimer, lang)}
-                    </p>
-                  </>
-                )}
-                {isVisaSubgroup && (
-                  <p className="font-display text-[17px] font-semibold text-foreground leading-tight mb-1">
-                    {t(s.form.yourAnalysis, lang)}
-                  </p>
-                )}
-                {(() => {
-                  // Gate de agendamento: alinhado ao gate determinístico da Bia/AGENDAMENTO.
-                  // Ensino Médio e Técnico/Tecnólogo com 10 anos ou menos NÃO podem
-                  // se auto-agendar (perfil "low"). A equipe ainda recebe o lead por
-                  // e-mail (recaptura) para avaliação manual, mas sem agenda online.
-                  const leadQ = getLeadQualification(formData.education, formData.experience);
-                  if (leadQ.status === "low") {
-                    return (
-                      <div className="mt-4 rounded-lg border border-border bg-secondary/40 p-4">
-                        <p className="font-display text-[15px] font-semibold text-foreground mb-2">
-                          Recebemos suas informações 💚
-                        </p>
-                        <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
-                          No momento, o <strong>agendamento online não está disponível</strong> para o seu perfil. Nossa equipe vai analisar o seu caso com atenção e, havendo um caminho viável, entrará em contato pelos dados informados.
-                        </p>
-                      </div>
-                    );
-                  }
-
-                  const isEb3 = suggestions.some((s) => /^EB-?3/i.test(s.id));
-                  const scheduleBtn = (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const attribution = getAttribution();
-                        trackForm("schedule_click", {
-                          form_id: FORM_ID,
-                          visa_context: suggestions[0]?.id ?? formData.visa,
-                        });
-                        openCalendlyPopup({
-                          firstName: formData.firstName,
-                          lastName: formData.lastName,
-                          email: formData.email,
-                          customAnswers: {
-                            a1: [formData.phoneCode, formData.phone].filter(Boolean).join(" "),
-                            a2: suggestions.map((sug) => sug.label).join(" | "),
-                          },
-                          utm: {
-                            utmSource: attribution?.utm_source,
-                            utmMedium: attribution?.utm_medium,
-                            utmCampaign: attribution?.utm_campaign,
-                            utmContent: attribution?.utm_content,
-                            utmTerm: attribution?.utm_term,
-                          },
-                        });
-                      }}
-                      className="mt-4 inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 rounded-md bg-brand-green text-cream text-[13px] font-body font-semibold uppercase tracking-wider shadow-[0_6px_20px_hsl(var(--brand-green)/0.35)] hover:brightness-110 transition"
-                    >
-                      <Clock size={14} />
-                      Agendar consulta agora
-                    </button>
-                  );
-
-                  if (!isEb3) return scheduleBtn;
-
-                  if (eb3Sponsor === null) {
-                    return (
-                      <div className="mt-4 rounded-lg border border-gold/40 bg-gold/[0.04] p-4">
-                        <p className="text-[13px] font-body font-semibold text-foreground mb-1">
-                          Antes de agendar, precisamos confirmar um ponto importante:
-                        </p>
-                        <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed mb-3">
-                          Você já possui um <strong>sponsor</strong> (empregador americano disposto a contratá-lo) ou está em negociação com uma empresa nos EUA?
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-2">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setEb3Sponsor("yes");
-                              trackForm("eb3_sponsor_answer", { form_id: FORM_ID, answer: "yes" });
-                            }}
-                            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-brand-green text-cream text-[13px] font-body font-semibold uppercase tracking-wider hover:brightness-110 transition"
-                          >
-                            <Check size={14} /> Sim, tenho sponsor
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setEb3Sponsor("no");
-                              trackForm("eb3_sponsor_answer", { form_id: FORM_ID, answer: "no" });
-                            }}
-                            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-border bg-white text-foreground text-[13px] font-body font-semibold uppercase tracking-wider hover:border-foreground/40 transition"
-                          >
-                            Ainda não tenho
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  }
-
-                  if (eb3Sponsor === "yes") {
-                    return (
-                      <div className="mt-4">
-                        <div className="mb-3 flex items-center gap-2 px-3 py-2 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25">
-                          <Check size={14} className="text-emerald-600 shrink-0" />
-                          <span className="text-[12px] text-emerald-700 font-body">
-                            Perfeito! Como você já possui um sponsor, podemos avançar com seu agendamento.
-                          </span>
-                        </div>
-                        {scheduleBtn}
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <div className="mt-4 rounded-lg border border-border bg-secondary/40 p-4">
-                      <p className="font-display text-[15px] font-semibold text-foreground mb-2">
-                        Agradecemos seu interesse 💚
-                      </p>
-                      <p className="text-[12.5px] text-muted-foreground font-body leading-relaxed">
-                        A categoria <strong>EB-3</strong> exige uma <strong>oferta de emprego permanente nos EUA</strong> de um empregador disposto a patrociná-lo (sponsor). Sem esse requisito, não conseguimos dar andamento ao processo neste momento.
-                        <br />
-                        Assim que você conseguir um sponsor - ou estiver em negociação com uma empresa americana -, retorne aqui e teremos prazer em cuidar de todo o processo para você.
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => setEb3Sponsor(null)}
-                        className="mt-3 text-[12px] text-brand-green font-body font-semibold underline hover:opacity-80"
-                      >
-                        Revisar resposta
-                      </button>
-                    </div>
-                  );
-                })()}
+            <div className="flex items-center justify-between gap-3 mb-3.5">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="w-7 h-7 rounded-lg bg-brand-green/[0.12] border border-brand-green/30 flex items-center justify-center text-brand-green shrink-0">
+                  <Sparkles size={14} />
+                </span>
+                <span className="text-[10.5px] tracking-[0.16em] uppercase font-body font-semibold text-brand-green leading-tight">
+                  {suggestions.length > 1 ? t(s.form.analysisLabelMulti, lang) : t(s.form.analysisLabel, lang)}
+                </span>
               </div>
+              <span className="bg-brand-green text-cream text-[9.5px] font-bold font-body px-2.5 py-1 rounded-full uppercase tracking-wider shrink-0">
+                {t(s.form.yourAnalysis, lang)}
+              </span>
             </div>
+
+            <div className="space-y-4">
+              {suggestions.map((sug) => (
+                <div key={sug.id}>
+                  <p className="font-display text-[18px] font-semibold text-foreground leading-tight mb-1.5">
+                    {sug.label}
+                  </p>
+                  <p className="text-[13px] text-muted-foreground font-body leading-relaxed whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: sug.reason }} />
+                </div>
+              ))}
+            </div>
+
+            <p className="text-[11px] text-foreground/45 font-body italic mt-4 pt-3.5 border-t border-border/70">
+              {suggestions.length > 1 ? t(s.form.analysisDisclaimerMulti, lang) : t(s.form.analysisDisclaimer, lang)}
+            </p>
           </motion.div>
-        )}
-      </AnimatePresence>
 
-      <div className="flex items-center gap-2 px-3 py-2.5 rounded-md bg-emerald-500/[0.08] border border-emerald-500/25 mt-1">
-        <ShieldCheck size={14} className="text-emerald-600 shrink-0" />
-        <span className="text-[12px] text-emerald-700 font-body">
-          {t(s.form.advanceBadge, lang)}
-        </span>
-      </div>
+          {/* 3 · Ação — full-width, alinhada à mesma margem do card de análise */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut", delay: 0.12 }}
+            className="mb-4"
+          >
+            {actionSection}
+          </motion.div>
+        </>
+      )}
 
-      <p className="mt-4 text-[11px] text-muted-foreground font-body font-light leading-relaxed">
+      {/* 4 · Aviso legal */}
+      <p className="mt-1 text-[11px] text-muted-foreground font-body font-light leading-relaxed">
         Ao agendar, você concorda com nossa{" "}
         <a href="#" className="text-foreground font-medium underline hover:opacity-80">
           {t(translations.footer.privacy, lang)}
         </a>
         . Seus dados são tratados com confidencialidade e enviados diretamente à nossa equipe de especialistas.
       </p>
+      </>
+      )}
     </div>
   );
 
