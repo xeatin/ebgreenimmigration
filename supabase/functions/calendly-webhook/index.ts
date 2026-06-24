@@ -86,8 +86,12 @@ Deno.serve(async (req) => {
     const inv = payload.payload ?? {}
     const event = inv.scheduled_event ?? {}
     const qa = inv.questions_and_answers ?? []
-    const phoneAnswer = qa.find((q) => /telefone|phone|whats/i.test(q.question))?.answer ?? ''
-    const visaAnswer = qa.find((q) => /visa|visto|categoria/i.test(q.question))?.answer ?? ''
+    const tracking = inv.tracking ?? {}
+    const phoneFromQa = qa.find((q) => /telefone|phone|whats/i.test(q.question))?.answer ?? ''
+    const visaFromQa = qa.find((q) => /visa|visto|categoria/i.test(q.question))?.answer ?? ''
+    // Fallback: o site passa telefone em utm_content e tipo de visto em utm_term
+    const phoneAnswer = phoneFromQa || tracking.utm_content || ''
+    const visaAnswer = visaFromQa || tracking.utm_term || ''
 
     const [firstName, ...rest] = (inv.name ?? '').split(' ')
     const lastName = inv.last_name ?? rest.join(' ') ?? ''
