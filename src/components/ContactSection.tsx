@@ -1073,24 +1073,50 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
         type="button"
         onClick={() => {
           const attribution = getAttribution();
+          const fullPhone = [formData.phoneCode, formData.phone].filter(Boolean).join(" ");
+          const visaLabel = suggestions.map((sug) => sug.label).join(" | ") || formData.visa;
           trackForm("schedule_click", {
             form_id: FORM_ID,
             visa_context: suggestions[0]?.id ?? formData.visa,
           });
+          // Envia ao n8n/Kommo imediatamente para garantir Telefone, Email e Tipo de visto
+          // mesmo antes do webhook do Calendly chegar (que depende das perguntas no evento).
+          try {
+            void fetch("https://n8n.srv1283251.hstgr.cloud/webhook/website-form-lead", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                source: "calendly_schedule_click",
+                event_type: "schedule_click",
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                phone: fullPhone,
+                phoneCode: formData.phoneCode,
+                phoneNumber: formData.phone,
+                visa: visaLabel,
+                visa_id: suggestions[0]?.id ?? formData.visa,
+                education: formData.education,
+                qualification: "qualified",
+                attribution: attribution ?? {},
+              }),
+              keepalive: true,
+            }).catch(() => {});
+          } catch {}
           openCalendlyPopup({
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
             customAnswers: {
-              a1: [formData.phoneCode, formData.phone].filter(Boolean).join(" "),
-              a2: suggestions.map((sug) => sug.label).join(" | "),
+              a1: fullPhone,
+              a2: visaLabel,
             },
             utm: {
               utmSource: attribution?.utm_source,
               utmMedium: attribution?.utm_medium,
               utmCampaign: attribution?.utm_campaign,
-              utmContent: attribution?.utm_content,
-              utmTerm: attribution?.utm_term,
+              utmContent: fullPhone || attribution?.utm_content,
+              utmTerm: visaLabel || attribution?.utm_term,
             },
           });
         }}
