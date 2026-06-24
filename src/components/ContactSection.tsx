@@ -1118,7 +1118,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
           No momento, o <strong className="text-foreground">agendamento online não está disponível</strong> para o seu perfil. Nossa equipe vai analisar o seu caso com atenção e, havendo um caminho viável, entrará em contato pelos dados informados.
         </p>
       </div>
-    ) : isEb3Suggestion && !isEb3AutoSchedule && eb3Sponsor === null ? (
+    ) : isEb3Suggestion && eb3Sponsor === null ? (
       <div className="rounded-2xl border border-gold/40 bg-gold/[0.05] p-5">
         <p className="text-[13.5px] font-body font-semibold text-foreground mb-1.5">
           Antes de agendar, uma confirmação importante
