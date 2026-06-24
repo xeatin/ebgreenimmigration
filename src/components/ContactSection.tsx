@@ -1052,6 +1052,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const suggestions = suggestVisa(formData);
   const leadQ = getLeadQualification(formData.education, formData.experience);
   const isEb3Suggestion = suggestions.some((sug) => /^EB-?3/i.test(sug.id));
+  const isEb3AutoSchedule = isEb3Suggestion && formData.education === "Técnico e Tecnólogo" && /Mais de 10/i.test(formData.experience);
 
   // CTA principal de agendamento — funcionalidade IDÊNTICA à anterior (mesmo
   // onClick: tracking + openCalendlyPopup). Apenas o visual foi reformulado.
