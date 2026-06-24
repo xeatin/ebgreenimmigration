@@ -280,21 +280,21 @@ const suggestVisa = (data: {
     }];
   }
 
-  // Técnico/Tecnólogo + mais de 10 anos → EB-3 (agenda liberada automaticamente)
+  // Técnico/Tecnólogo + mais de 10 anos → EB-2 NIW
   if (isTecnico && senior) {
-    return [{
-      id: "EB-3",
-      label: "EB-3 - Trabalho Qualificado",
-      reason: EB3_REASON,
-    }];
-  }
-
-  // Técnico/Tecnólogo + 5 a 10 anos → EB-2 NIW
-  if (isTecnico && mid) {
     return [{
       id: "EB-2 NIW",
       label: "EB-2 NIW - National Interest Waiver",
       reason: EB2_NIW_REASON_TECH,
+    }];
+  }
+
+  // Técnico/Tecnólogo + 5 a 10 anos → EB-3
+  if (isTecnico && mid) {
+    return [{
+      id: "EB-3",
+      label: "EB-3 - Trabalho Qualificado",
+      reason: EB3_REASON,
     }];
   }
 
@@ -1052,7 +1052,6 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
   const suggestions = suggestVisa(formData);
   const leadQ = getLeadQualification(formData.education, formData.experience);
   const isEb3Suggestion = suggestions.some((sug) => /^EB-?3/i.test(sug.id));
-  const isEb3AutoSchedule = isEb3Suggestion && formData.education === "Técnico e Tecnólogo" && /Mais de 10/i.test(formData.experience);
 
   // CTA principal de agendamento — funcionalidade IDÊNTICA à anterior (mesmo
   // onClick: tracking + openCalendlyPopup). Apenas o visual foi reformulado.
@@ -1119,7 +1118,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
           No momento, o <strong className="text-foreground">agendamento online não está disponível</strong> para o seu perfil. Nossa equipe vai analisar o seu caso com atenção e, havendo um caminho viável, entrará em contato pelos dados informados.
         </p>
       </div>
-    ) : isEb3Suggestion && !isEb3AutoSchedule && eb3Sponsor === null ? (
+    ) : isEb3Suggestion && eb3Sponsor === null ? (
       <div className="rounded-2xl border border-gold/40 bg-gold/[0.05] p-5">
         <p className="text-[13.5px] font-body font-semibold text-foreground mb-1.5">
           Antes de agendar, uma confirmação importante
@@ -1150,7 +1149,7 @@ const ContactSection = ({ presetVisa, formIdSuffix }: ContactSectionProps = {}) 
           </button>
         </div>
       </div>
-    ) : isEb3Suggestion && !isEb3AutoSchedule && eb3Sponsor === "no" ? (
+    ) : isEb3Suggestion && eb3Sponsor === "no" ? (
       <div className="rounded-2xl border border-border bg-secondary/50 p-5">
         <p className="font-display text-[16px] font-semibold text-foreground mb-1.5">
           Agradecemos seu interesse 💚
